@@ -98,9 +98,7 @@ when not defined(ATCODER_STRING_HPP):
       if ls[i - 1] == 0 and ls[i] != 0:
         lms_map[i] = m
         m.inc
-    var lms = newSeq[int]()
-# TODO
-#    lms.reserve(m);
+    var lms = newSeqOfCap[int](m)
     for i in 1..<n:
       if ls[i - 1] == 0 and ls[i] != 0:
         lms.add(i)
@@ -108,9 +106,7 @@ when not defined(ATCODER_STRING_HPP):
     induce(lms)
   
     if m != 0:
-      var sorted_lms = newSeq[int]()
-# TODO
-#      sorted_lms.reserve(m);
+      var sorted_lms = newSeqOfCap[int](m)
       for v in sa:
         if lms_map[v] != -1: sorted_lms.add(v)
       var

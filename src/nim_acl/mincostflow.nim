@@ -1,41 +1,7 @@
-{.hints:off checks:off assertions:on checks:off}
-# header {{{
-import algorithm, sequtils, tables, macros, math, sets, strutils, streams, strformat, sugar
-when defined(MYDEBUG):
-  import header
-
-proc scanf(formatstr: cstring){.header: "<stdio.h>", varargs.}
-proc getchar(): char {.header: "<stdio.h>", varargs.}
-proc nextInt(base:int = 0): int =
-  scanf("%lld",addr result)
-  result -= base
-proc nextFloat(): float = scanf("%lf",addr result)
-proc nextString(): string =
-  var get = false;result = ""
-  while true:
-    var c = getchar()
-    if int(c) > int(' '): get = true;result.add(c)
-    elif get: break
-template `max=`*(x,y:typed):void = x = max(x,y)
-template `min=`*(x,y:typed):void = x = min(x,y)
-template inf(T): untyped = 
-  when T is SomeFloat: T(Inf)
-  elif T is SomeInteger: ((T(1) shl T(sizeof(T)*8-2)) - (T(1) shl T(sizeof(T)*4-1)))
-  else: assert(false)
-
-# }}}
-
-
 when not defined ATCODER_MINCOSTFLOW_HPP:
   const ATCODER_MINCOSTFLOW_HPP = 1
 
   import heapqueue, sequtils
-
-#include <algorithm>
-#include <cassert>
-#include <limits>
-#include <queue>
-#include <vector>
 
   type edge[Cap, Cost] = object
     dst, rev:int
@@ -164,35 +130,3 @@ when not defined ATCODER_MINCOSTFLOW_HPP:
         discard result.pop()
       result.add((flow, cost))
       prev_cost = cost
-
-# namespace atcoder
-
-#endif  # ATCODER_MINCOSTFLOW_HPP
-
-let n, k = nextInt()
-var g = initMCFGraph[int,int](n * 2 + 2)
-let (s, t) = (n * 2, n * 2 + 1)
-let BIG = 1000000000
-
-g.add_edge(s, t, n * k, BIG)
-
-for i in 0..<n:
-  g.add_edge(s, i, k, 0)
-  g.add_edge(n + i, t, k, 0)
-
-for i in 0..<n:
-  for j in 0..<n:
-    let a = nextInt()
-    g.add_edge(i, n + j, 1, BIG - a)
-
-var result = g.flow(s, t, n * k)
-echo n * k * BIG - result[1]
-
-var grid = newSeqWith(n, '.'.repeat(n))
-let es = g.edges()
-for e in es:
-  if e.src == s or e.dst == t or e.flow == 0: continue
-  grid[e.src][e.dst - n] = 'X'
-
-for i in 0..<n:
-  echo grid[i]
