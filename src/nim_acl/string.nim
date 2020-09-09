@@ -8,12 +8,12 @@ when not defined(ATCODER_STRING_HPP):
     var sa = newSeq[int](n)
     for i in 0..<n:sa[i] = i
     sa.sort() do (l, r:int) -> int:
-      var (l, r) = (l, r)
       if l == r: return 0
+      var (l, r) = (l, r)
       while l < n and r < n:
         if s[l] != s[r]: return cmp[int](s[l], s[r])
         l.inc;r.inc
-      return cmp[int](l, n)
+      return cmp[int](n, l)
     return sa
   
   proc sa_doubling(s:seq[int]):seq[int] =
@@ -184,8 +184,7 @@ when not defined(ATCODER_STRING_HPP):
       lcp[rnk[i] - 1] = h
     return lcp
   
-  proc lcp_array*(s:string, sa:seq[int]):seq[int] =
-    return lcp_array(s.mapIt(it.int), sa);
+  proc lcp_array*(s:string, sa:seq[int]):seq[int] = lcp_array(s.mapIt(it.int), sa)
   
   # Reference:
   # D. Gusfield,
