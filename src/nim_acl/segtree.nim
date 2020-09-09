@@ -1,30 +1,3 @@
-#{.hints:off checks:off assertions:on checks:off}
-## header {{{
-#import algorithm, sequtils, tables, macros, math, sets, strutils, streams, strformat, sugar
-#when defined(MYDEBUG):
-#  import header
-#
-#proc scanf(formatstr: cstring){.header: "<stdio.h>", varargs.}
-#proc getchar(): char {.header: "<stdio.h>", varargs.}
-#proc nextInt(base:int = 0): int =
-#  scanf("%lld",addr result)
-#  result -= base
-#proc nextFloat(): float = scanf("%lf",addr result)
-#proc nextString(): string =
-#  var get = false;result = ""
-#  while true:
-#    var c = getchar()
-#    if int(c) > int(' '): get = true;result.add(c)
-#    elif get: break
-#template `max=`*(x,y:typed):void = x = max(x,y)
-#template `min=`*(x,y:typed):void = x = min(x,y)
-#template inf(T): untyped = 
-#  when T is SomeFloat: T(Inf)
-#  elif T is SomeInteger: ((T(1) shl T(sizeof(T)*8-2)) - (T(1) shl T(sizeof(T)*4-1)))
-#  else: assert(false)
-#
-## }}}
-#
 when not defined ATCODER_SEGTREE_HPP:
   const ATCODER_SEGTREE_HPP = 1
   import internal_bit
@@ -118,28 +91,3 @@ when not defined ATCODER_SEGTREE_HPP:
       sm = self.op(self.d[r], sm)
       if not ((r and -r) != r): break
     return 0
-
-#endif  // ATCODER_SEGTREE_HPP
-
-#import strutils
-#
-#let n, q = nextInt()
-#let a = newSeqWith(n, nextInt())
-#var target:int
-#proc f(v:int):bool = v < target
-#var seg = initSegTree[int](a, (a:int,b:int)=>max(a, b), () => -1)
-#
-#for i in 0..<q:
-#  let t = nextInt()
-#  if t == 1:
-#    var x, v = nextInt()
-#    x.dec
-#    seg.set(x, v);
-#  elif t == 2:
-#    var l, r = nextInt()
-#    l.dec
-#    echo seg.prod(l..<r)
-#  elif t == 3:
-#    let p = nextInt() - 1
-#    target = nextInt()
-#    echo seg.max_right(p, f) + 1
