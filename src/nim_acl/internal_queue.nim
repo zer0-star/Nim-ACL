@@ -17,5 +17,3 @@ when not defined ATCODER_INTERNAL_QUEUE_HPP:
     self.payload.setLen(0)
     self.pos = 0;
   proc pop[T](self:var simple_queue[T]) = self.pos.inc
-
-#endif  // ATCODER_INTERNAL_QUEUE_HPP

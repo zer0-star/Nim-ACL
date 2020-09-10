@@ -1,3 +1,8 @@
 {
-"verify/dsu_test.nim": "2020-09-09 21:00:15 +0900"
+"verify/dsu_test.nim": "2020-09-09 21:00:15 +0900",
+"verify/lcp_array_test.nim": "2020-09-09 23:03:48 +0900",
+"verify/segtree_test.nim": "2020-09-10 00:04:43 +0900",
+"verify/suffix_array_test.nim": "2020-09-09 23:03:48 +0900",
+"verify/twosat_test.nim": "2020-09-10 22:39:22 +0900",
+"verify/z_algorithm_test.nim": "2020-09-09 23:03:48 +0900"
 }

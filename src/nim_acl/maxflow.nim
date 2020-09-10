@@ -122,6 +122,3 @@ when not defined ATCODER_MAXFLOW_HPP:
           visited[e.dst] = true
           que.push(e.dst)
     return visited
-
-var graph = init_mf_graph[int](10)
-graph.flow(0, 3)
