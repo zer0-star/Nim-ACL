@@ -25,15 +25,24 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: src/nim_acl/internal_queue.nim
+# :heavy_check_mark: src/nim_acl/header.nim
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#9445bba494c2e7790206eaaedbe1a4db">src/nim_acl</a>
-* <a href="{{ site.github.repository_url }}/blob/master/src/nim_acl/internal_queue.nim">View this file on GitHub</a>
-    - Last commit date: 2020-09-10 22:39:22+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/src/nim_acl/header.nim">View this file on GitHub</a>
+    - Last commit date: 2020-09-09 23:03:48+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../../verify/verify/lcp_array_test.nim.html">verify/lcp_array_test.nim</a>
+* :heavy_check_mark: <a href="../../../verify/verify/segtree_test.nim.html">verify/segtree_test.nim</a>
+* :heavy_check_mark: <a href="../../../verify/verify/suffix_array_test.nim.html">verify/suffix_array_test.nim</a>
+* :heavy_check_mark: <a href="../../../verify/verify/twosat_test.nim.html">verify/twosat_test.nim</a>
+* :heavy_check_mark: <a href="../../../verify/verify/z_algorithm_test.nim.html">verify/z_algorithm_test.nim</a>
 
 
 ## Code
@@ -41,25 +50,29 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-when not defined ATCODER_INTERNAL_QUEUE_HPP:
-  const ATCODER_INTERNAL_QUEUE_HPP = 1
-
-  import sequtils
+when not defined ATCODER_HEADER_HPP:
+  {.hints:off checks:off assertions:on checks:off}
+  const ATCODER_HEADER_HPP = 1
+  import algorithm, sequtils, tables, macros, math, sets, strutils, streams, strformat, sugar
   
-  type simple_queue[T] = object
-    payload:seq[T]
-    pos:int
-  proc init_simple_queue[T]():auto = simple_queue[T](payload:newSeq[T](), pos:0)
-# TODO
-#      void reserve(int n) { payload.reserve(n); }
-  proc len[T](self:simple_queue[T]):int = self.payload.len - pos
-  proc empty[T](self:simple_queue[T]):bool = pos == payload.len
-  proc push[T](self:var simple_queue[T], t:T) = payload.add(t)
-  proc front[T](self:simple_queue[T]):T = self.payload[pos]
-  proc clear[T](self:simple_queue[T]) =
-    self.payload.setLen(0)
-    self.pos = 0;
-  proc pop[T](self:var simple_queue[T]) = self.pos.inc
+  proc scanf(formatstr: cstring){.header: "<stdio.h>", varargs.}
+  proc getchar(): char {.header: "<stdio.h>", varargs.}
+  proc nextInt(base:int = 0): int =
+    scanf("%lld",addr result)
+    result -= base
+  proc nextFloat(): float = scanf("%lf",addr result)
+  proc nextString(): string =
+    var get = false;result = ""
+    while true:
+      var c = getchar()
+      if int(c) > int(' '): get = true;result.add(c)
+      elif get: break
+  template `max=`*(x,y:typed):void = x = max(x,y)
+  template `min=`*(x,y:typed):void = x = min(x,y)
+  template inf(T): untyped = 
+    when T is SomeFloat: T(Inf)
+    elif T is SomeInteger: ((T(1) shl T(sizeof(T)*8-2)) - (T(1) shl T(sizeof(T)*4-1)))
+    else: assert(false)
 
 ```
 {% endraw %}

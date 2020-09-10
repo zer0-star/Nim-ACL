@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#9445bba494c2e7790206eaaedbe1a4db">src/nim_acl</a>
 * <a href="{{ site.github.repository_url }}/blob/master/src/nim_acl/maxflow.nim">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 01:13:51+09:00
+    - Last commit date: 2020-09-10 00:05:29+09:00
 
 
 
@@ -165,9 +165,6 @@ when not defined ATCODER_MAXFLOW_HPP:
           visited[e.dst] = true
           que.push(e.dst)
     return visited
-
-var graph = init_mf_graph[int](10)
-graph.flow(0, 3)
 
 ```
 {% endraw %}

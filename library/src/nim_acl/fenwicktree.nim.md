@@ -25,12 +25,12 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: src/nim_acl/internal_queue.nim
+# :warning: src/nim_acl/fenwicktree.nim
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#9445bba494c2e7790206eaaedbe1a4db">src/nim_acl</a>
-* <a href="{{ site.github.repository_url }}/blob/master/src/nim_acl/internal_queue.nim">View this file on GitHub</a>
+* <a href="{{ site.github.repository_url }}/blob/master/src/nim_acl/fenwicktree.nim">View this file on GitHub</a>
     - Last commit date: 2020-09-10 22:39:22+09:00
 
 
@@ -41,25 +41,53 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-when not defined ATCODER_INTERNAL_QUEUE_HPP:
-  const ATCODER_INTERNAL_QUEUE_HPP = 1
+when not defined ATCODER_FENWICKTREE_HPP:
+  const ATCODER_FENWICKTREE_HPP = 1
 
-  import sequtils
-  
-  type simple_queue[T] = object
-    payload:seq[T]
-    pos:int
-  proc init_simple_queue[T]():auto = simple_queue[T](payload:newSeq[T](), pos:0)
 # TODO
-#      void reserve(int n) { payload.reserve(n); }
-  proc len[T](self:simple_queue[T]):int = self.payload.len - pos
-  proc empty[T](self:simple_queue[T]):bool = pos == payload.len
-  proc push[T](self:var simple_queue[T], t:T) = payload.add(t)
-  proc front[T](self:simple_queue[T]):T = self.payload[pos]
-  proc clear[T](self:simple_queue[T]) =
-    self.payload.setLen(0)
-    self.pos = 0;
-  proc pop[T](self:var simple_queue[T]) = self.pos.inc
+#include <atcoder/internal_type_traits>
+
+# Reference: https://en.wikipedia.org/wiki/Fenwick_tree
+  type fenwick_tree[T] = object
+    n:int
+    data:seq[T]
+  
+  
+  # TODO
+  #  using U = internal::to_unsigned_t<T>;
+  
+  proc init_fenwick_tree[T](n:int) = fenwick_tree[T](n:n, data:newSeq[T](n))
+  
+  proc add[T](self: var fenwick_tree[T], p:int, x:T) =
+    assert p in 0..<self.n
+    var p = p + 1
+    while p <= self.n:
+# TODO
+#      self.data[p - 1] += U(x)
+      self.data[p - 1] += x
+      p += p and -p
+  
+  proc sum[T](self: fenwick_tree[T], p:Slice[int]):T =
+    let (l, r) = (p.a, p.b + 1)
+    assert 0 <= l and l <= r and r <= self.n
+    return self.sum(r) - self.sum(l)
+  
+#  U sum(int r) =
+#    U s = 0;
+#    while (r > 0) {
+#      s += data[r - 1];
+#      r -= r & -r;
+#    }
+#    return s;
+#  }
+  proc sum[T](self: fenwick_tree[T], r:int):T =
+    var
+      s = T(0)
+      r = r
+    while r > 0:
+      s += data[r - 1]
+      r -= r and -r
+    return s
 
 ```
 {% endraw %}

@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: src/nim_acl/internal_queue.nim
+# :warning: src/nim_acl/internal_bit.nim
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#9445bba494c2e7790206eaaedbe1a4db">src/nim_acl</a>
-* <a href="{{ site.github.repository_url }}/blob/master/src/nim_acl/internal_queue.nim">View this file on GitHub</a>
-    - Last commit date: 2020-09-10 22:39:22+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/src/nim_acl/internal_bit.nim">View this file on GitHub</a>
+    - Last commit date: 2020-09-09 20:06:33+09:00
 
 
 
@@ -41,25 +41,29 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-when not defined ATCODER_INTERNAL_QUEUE_HPP:
-  const ATCODER_INTERNAL_QUEUE_HPP = 1
+when not defined ATCODER_INTERNAL_BITOP_HPP:
+  const ATCODER_INTERNAL_BITOP_HPP = 1
+  import bitops
 
-  import sequtils
-  
-  type simple_queue[T] = object
-    payload:seq[T]
-    pos:int
-  proc init_simple_queue[T]():auto = simple_queue[T](payload:newSeq[T](), pos:0)
-# TODO
-#      void reserve(int n) { payload.reserve(n); }
-  proc len[T](self:simple_queue[T]):int = self.payload.len - pos
-  proc empty[T](self:simple_queue[T]):bool = pos == payload.len
-  proc push[T](self:var simple_queue[T], t:T) = payload.add(t)
-  proc front[T](self:simple_queue[T]):T = self.payload[pos]
-  proc clear[T](self:simple_queue[T]) =
-    self.payload.setLen(0)
-    self.pos = 0;
-  proc pop[T](self:var simple_queue[T]) = self.pos.inc
+#ifdef _MSC_VER
+#include <intrin.h>
+#endif
+
+#namespace atcoder {
+
+#namespace internal {
+
+# @param n `0 <= n`
+# @return minimum non-negative `x` s.t. `n <= 2**x`
+  proc ceil_pow2*(n:int):int =
+    var x = 0
+    while (1'u shl x) < n.uint: x.inc
+    return x
+# @param n `1 <= n`
+# @return minimum non-negative `x` s.t. `(n & (1 << x)) != 0`
+  proc bsf(n:uint):int =
+    return countTrailingZeroBits(n)
+
 
 ```
 {% endraw %}

@@ -21,19 +21,26 @@ layout: default
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="../../../assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="../../../assets/css/copy-button.css" />
+<script type="text/javascript" src="../../assets/js/copy-button.js"></script>
+<link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: src/nim_acl/internal_queue.nim
+# :heavy_check_mark: verify/lcp_array_test.nim
 
-<a href="../../../index.html">Back to top page</a>
+<a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../../index.html#9445bba494c2e7790206eaaedbe1a4db">src/nim_acl</a>
-* <a href="{{ site.github.repository_url }}/blob/master/src/nim_acl/internal_queue.nim">View this file on GitHub</a>
-    - Last commit date: 2020-09-10 22:39:22+09:00
+* category: <a href="../../index.html#e8418d1d706cd73548f9f16f1d55ad6e">verify</a>
+* <a href="{{ site.github.repository_url }}/blob/master/verify/lcp_array_test.nim">View this file on GitHub</a>
+    - Last commit date: 2020-09-09 23:03:48+09:00
 
 
+* see: <a href="https://judge.yosupo.jp/problem/number_of_substrings">https://judge.yosupo.jp/problem/number_of_substrings</a>
+
+
+## Depends on
+
+* :heavy_check_mark: <a href="../../library/src/nim_acl/header.nim.html">src/nim_acl/header.nim</a>
+* :heavy_check_mark: <a href="../../library/src/nim_acl/string.nim.html">src/nim_acl/string.nim</a>
 
 
 ## Code
@@ -41,25 +48,22 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-when not defined ATCODER_INTERNAL_QUEUE_HPP:
-  const ATCODER_INTERNAL_QUEUE_HPP = 1
+# verify-helper: PROBLEM https://judge.yosupo.jp/problem/number_of_substrings
 
-  import sequtils
-  
-  type simple_queue[T] = object
-    payload:seq[T]
-    pos:int
-  proc init_simple_queue[T]():auto = simple_queue[T](payload:newSeq[T](), pos:0)
-# TODO
-#      void reserve(int n) { payload.reserve(n); }
-  proc len[T](self:simple_queue[T]):int = self.payload.len - pos
-  proc empty[T](self:simple_queue[T]):bool = pos == payload.len
-  proc push[T](self:var simple_queue[T], t:T) = payload.add(t)
-  proc front[T](self:simple_queue[T]):T = self.payload[pos]
-  proc clear[T](self:simple_queue[T]) =
-    self.payload.setLen(0)
-    self.pos = 0;
-  proc pop[T](self:var simple_queue[T]) = self.pos.inc
+include src/nim_acl/header
+import src/nim_acl/string
+
+import sequtils, strutils, sugar
+
+let
+  S = nextString()
+  sa = S.suffixarray()
+  lcp = S.lcp_array(sa)
+  n = S.len
+
+var ans = n * (n + 1) div 2
+for v in lcp: ans -= v
+echo ans
 
 ```
 {% endraw %}
@@ -77,5 +81,5 @@ NotImplementedError
 ```
 {% endraw %}
 
-<a href="../../../index.html">Back to top page</a>
+<a href="../../index.html">Back to top page</a>
 
