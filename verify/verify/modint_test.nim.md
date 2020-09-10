@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#e8418d1d706cd73548f9f16f1d55ad6e">verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/verify/modint_test.nim">View this file on GitHub</a>
-    - Last commit date: 2020-09-11 02:31:50+09:00
+    - Last commit date: 2020-09-11 02:46:30+09:00
 
 
 * see: <a href="https://yukicoder.me/problems/no/741">https://yukicoder.me/problems/no/741</a>
