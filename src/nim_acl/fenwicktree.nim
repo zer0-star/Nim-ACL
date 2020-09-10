@@ -3,9 +3,6 @@ when not defined ATCODER_FENWICKTREE_HPP:
 
 # TODO
 #include <atcoder/internal_type_traits>
-#include <cassert>
-#include <vector>
-
 
 # Reference: https://en.wikipedia.org/wiki/Fenwick_tree
   type fenwick_tree[T] = object

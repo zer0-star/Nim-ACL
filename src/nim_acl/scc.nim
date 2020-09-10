@@ -1,11 +1,8 @@
 when not defined ATCODER_SCC_HPP:
   const ATCODER_SCC_HPP = 1
 
-#include <algorithm>
-#include <atcoder/internal_scc>
-#include <cassert>
-#include <vector>
   import sequtils, internal_scc
+
   type scc_graph = object
     internal: internal_scc_graph
 

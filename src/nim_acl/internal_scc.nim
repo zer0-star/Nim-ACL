@@ -1,9 +1,6 @@
 when not defined ATCODER_INTERNAL_SCC_HPP:
   const ATCODER_INTERNAL_SCC_HPP = 1
   
-  #include <algorithm>
-  #include <utility>
-  #include <vector>
   import sequtils
   
   type csr[E] = object

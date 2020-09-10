@@ -1,12 +1,6 @@
 when not defined ATCODER_TWOSAT_HPP:
   const ATCODER_TWOSAT_HPP = 1
 
-  #include <atcoder/internal_scc>
-  #include <cassert>
-  #include <vector>
-  
-  #namespace atcoder {
-  
   import internal_scc
   
   # Reference:
@@ -33,5 +27,3 @@ when not defined ATCODER_TWOSAT_HPP:
       self.answer[i] = id[2 * i] < id[2 * i + 1]
     return true
 #  proc answer*(self: two_sat):auto = self.answer
-
-#endif  // ATCODER_TWOSAT_HPP
