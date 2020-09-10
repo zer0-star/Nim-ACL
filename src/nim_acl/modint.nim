@@ -57,12 +57,6 @@ when not defined ATCODER_MODINT_HPP:
     proc name*[M: static[int]](l: ModInt[M]; r: int): retType {.inline.} =
       body
 
-  generateDefinitions(`<`, m, n, bool):
-    int(m) < int(n)
-
-  generateDefinitions(`<=`, m, n, bool):
-    int(m) <= int(n)
-
   proc inv*[M: static[int]](m: ModInt[M]): ModInt[M] {.inline.} =
     result = initModInt(extgcd(M, int(m))[1], M)
 
@@ -98,7 +92,7 @@ when not defined ATCODER_MODINT_HPP:
     result += m
     result /= n
 
-  proc `==`*[M: static[int]](m: ModInt[M]; n: int | ModInt[M]) {.inline.} =
+  proc `==`*[M: static[int]](m: ModInt[M]; n: int | ModInt[M]): bool {.inline.} =
     int(m) == int(n)
 
   proc inc*[M: static[int]](m: var ModInt[M]) {.inline.} =
@@ -118,7 +112,7 @@ when not defined ATCODER_MODINT_HPP:
       m = m
     int(result) = 1
     while p > 0:
-      if p & 2 == 1:
+      if (p and 1) == 1:
         result *= m
       m *= m
       p = p shr 1
