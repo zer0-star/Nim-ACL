@@ -6,10 +6,6 @@ when not defined ATCODER_INTERNAL_BITOP_HPP:
 #include <intrin.h>
 #endif
 
-#namespace atcoder {
-
-#namespace internal {
-
 # @param n `0 <= n`
 # @return minimum non-negative `x` s.t. `n <= 2**x`
   proc ceil_pow2*(n:int):int =
@@ -20,4 +16,3 @@ when not defined ATCODER_INTERNAL_BITOP_HPP:
 # @return minimum non-negative `x` s.t. `(n & (1 << x)) != 0`
   proc bsf(n:uint):int =
     return countTrailingZeroBits(n)
-
