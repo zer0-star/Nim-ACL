@@ -1,7 +1,7 @@
 when not defined ATCODER_SCC_HPP:
   const ATCODER_SCC_HPP = 1
 
-  import sequtils, internal_scc
+  import sequtils, src/nim_acl/internal_scc
 
   type scc_graph = object
     internal: internal_scc_graph

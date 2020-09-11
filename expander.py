@@ -11,9 +11,10 @@ from typing import List
 
 logger = getLogger(__name__)  # type: Logger
 
-atcoder_include = re.compile(' *(?:include|import)\s*(src/nim_acl/[a-z_]*(|.nim))\s*')
+atcoder_include = re.compile('\s*(?:include|import)\s*([a-z0-9_,/\s"]*)\s*')
 
 include_guard = re.compile('when.*ATCODER_[A-Z_]*_HPP')
+atcoder_dir = 'src/nim_acl/'
 
 lib_path = Path.cwd()
 
@@ -37,10 +38,13 @@ def dfs(f: str, level:int) -> List[str]:
 
         m = atcoder_include.match(line)
         if m:
-            f = m.group(1)
-            if not f.endswith(".nim"):
-                f = f + ".nim"
-            result.extend(dfs(f, level + 1))
+            for f in m.group(1).split(","):
+                if not f.startswith(atcoder_dir):
+                    result.extend(["  " * (level + 1) + "import " + f])
+                else:
+                    if not f.endswith(".nim"):
+                        f = f + ".nim"
+                    result.extend(dfs(f, level + 1))
             continue
         result.append(line)
     result.append("  discard")
@@ -74,10 +78,14 @@ if __name__ == "__main__":
         m = atcoder_include.match(line)
 
         if m:
-            f = m.group(1)
-            if not f.endswith(".nim"):
-                f = f + ".nim"
-            result.extend(dfs(f, 0))
+            for f in m.group(1).split(","):
+                f = f.strip()
+                if not f.startswith(atcoder_dir):
+                    result.extend(["  " + "import " + f])
+                else:
+                    if not f.endswith(".nim"):
+                        f = f + ".nim"
+                    result.extend(dfs(f, 0))
             continue
         result.append(line)
 
