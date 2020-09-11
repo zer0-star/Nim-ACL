@@ -26,6 +26,38 @@ def trailingSpace(s:str):
             return i
     return len(s)
 
+def read_source(s:str, level:int) -> List[str]:
+    result = []
+    if level >= 0:
+        result.append("when true:")
+    for line in s.splitlines():
+        if include_guard.match(line):
+            continue
+
+        m = atcoder_include.match(line)
+        if m:
+            for f in m.group(1).split(","):
+                f_orig = f = f.strip()
+                if f[0] == '\"':
+                    assert f[-1] == '\"'
+                    f = f[1:-1]
+                if not f.startswith(atcoder_dir):
+                    result.extend([" " * trailingSpace(line) + "import " + f_orig])
+                else:
+                    if not f.endswith(".nim"):
+                        f = f + ".nim"
+                    result.extend(dfs(f, level + 1))
+            continue
+        result.append(line)
+    if level >= 0:
+        result.append("  discard")
+        result2 = []
+        for line in result:
+            result2.append("  " * level + line)
+        result = result2
+    return result
+
+
 def dfs(f: str, level:int) -> List[str]:
     global defined
     if f in defined:
@@ -36,29 +68,7 @@ def dfs(f: str, level:int) -> List[str]:
     logger.info('include {}'.format(f))
 
     s = open(str(lib_path / f)).read()
-    result = []
-    result.append("when true:")
-    for line in s.splitlines():
-        if include_guard.match(line):
-            continue
-
-        m = atcoder_include.match(line)
-        if m:
-            for f in m.group(1).split(","):
-                if not f.startswith(atcoder_dir):
-                    result.extend([" " * trailingSpace(line) + "import " + f])
-                else:
-                    if not f.endswith(".nim"):
-                        f = f + ".nim"
-                    result.extend(dfs(f, level + 1))
-            continue
-        result.append(line)
-    result.append("  discard")
-    result2 = []
-    for line in result:
-        result2.append("  " * level + line)
-    return result2
-
+    return read_source(s, level)
 
 if __name__ == "__main__":
     basicConfig(
@@ -78,22 +88,7 @@ if __name__ == "__main__":
     elif 'CPLUS_INCLUDE_PATH' in environ:
         lib_path = Path(environ['CPLUS_INCLUDE_PATH'])
     s = open(opts.source).read()
-
-    result = []
-    for line in s.splitlines():
-        m = atcoder_include.match(line)
-
-        if m:
-            for f in m.group(1).split(","):
-                f = f.strip()
-                if not f.startswith(atcoder_dir):
-                    result.extend([" " * trailingSpace(line) + "import " + f])
-                else:
-                    if not f.endswith(".nim"):
-                        f = f + ".nim"
-                    result.extend(dfs(f, 0))
-            continue
-        result.append(line)
+    result = read_source(s, -1)
 
     output = '\n'.join(result) + '\n'
     if opts.console:
