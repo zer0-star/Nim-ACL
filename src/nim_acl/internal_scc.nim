@@ -80,5 +80,3 @@ when not defined ATCODER_INTERNAL_SCC_HPP:
       result[i] = newSeqOfCap[int](counts[i])
     for i in 0..<self.n:
       result[ids[1][i]].add(i)
-
-#endif  // ATCODER_INTERNAL_SCC_HPP
