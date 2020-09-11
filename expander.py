@@ -20,6 +20,12 @@ lib_path = Path.cwd()
 
 defined = set()
 
+def trailingSpace(s:str):
+    for i in range(0, len(s)):
+        if s[i] != ' ':
+            return i
+    return len(s)
+
 def dfs(f: str, level:int) -> List[str]:
     global defined
     if f in defined:
@@ -40,7 +46,7 @@ def dfs(f: str, level:int) -> List[str]:
         if m:
             for f in m.group(1).split(","):
                 if not f.startswith(atcoder_dir):
-                    result.extend(["  " * (level + 1) + "import " + f])
+                    result.extend([" " * trailingSpace(line) + "import " + f])
                 else:
                     if not f.endswith(".nim"):
                         f = f + ".nim"
@@ -81,7 +87,7 @@ if __name__ == "__main__":
             for f in m.group(1).split(","):
                 f = f.strip()
                 if not f.startswith(atcoder_dir):
-                    result.extend(["  " + "import " + f])
+                    result.extend([" " * trailingSpace(line) + "import " + f])
                 else:
                     if not f.endswith(".nim"):
                         f = f + ".nim"
