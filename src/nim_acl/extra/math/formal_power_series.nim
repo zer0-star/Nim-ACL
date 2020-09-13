@@ -1,5 +1,5 @@
-when not defined ATCODER_FORMAL_POWER_SERIES:
-  const ATCODER_FORMAL_POWER_SERIES = 1
+when not declared ATCODER_FORMAL_POWER_SERIES:
+  const ATCODER_FORMAL_POWER_SERIES* = 1
   const FastMod = true
   const UseFFT = true
   

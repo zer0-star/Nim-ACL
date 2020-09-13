@@ -1,5 +1,5 @@
-when not defined ATCODER_LAZYSEGTREE_HPP:
-  const ATCODER_LAZYSEGTREE_HPP {.used.} = 1
+when not declared ATCODER_LAZYSEGTREE_HPP:
+  const ATCODER_LAZYSEGTREE_HPP* = 1
   
   import sugar, sequtils, bitops
   import src/nim_acl/internal_bit

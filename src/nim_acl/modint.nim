@@ -1,4 +1,4 @@
-when not defined ATCODER_MODINT_HPP:
+when not declared ATCODER_MODINT_HPP:
   const ATCODER_MODINT_HPP* = 1
 
   type

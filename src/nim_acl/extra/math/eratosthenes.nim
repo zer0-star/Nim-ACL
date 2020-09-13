@@ -1,5 +1,5 @@
-#{{{ sieve_of_eratosthenes
-when not defined ATCODER_ERATOSTHENES_HPP:
+#{{{ eratosthenes
+when not declared ATCODER_ERATOSTHENES_HPP:
   const ATCODER_ERATOSTHENES_HPP = 1
   type Eratosthenes* = object
     pdiv:seq[int]

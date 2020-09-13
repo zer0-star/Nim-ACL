@@ -1,6 +1,6 @@
 # {{{ divisor
-when not defined ATCODER_DEVISOR_HPP:
-  const ATCODER_DEVISOR_HPP = 1
+when not declared ATCODER_DEVISOR_HPP:
+  const ATCODER_DEVISOR_HPP* = 1
   import algorithm
   proc divisor*(n:int):seq[int] =
     result = newSeq[int]()

@@ -1,5 +1,5 @@
 # dijkstra {{{
-when not defined ATCODER_EXTRA_DIJKSTRA_HPP:
+when not declared ATCODER_EXTRA_DIJKSTRA_HPP:
   const ATCODER_EXTRA_DIJKSTRA_HPP* = 1
   import heapqueue, sequtils, algorithm
   import "src/nim_acl/extra/graph/template.nim"

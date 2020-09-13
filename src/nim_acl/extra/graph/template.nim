@@ -1,6 +1,6 @@
 # Graph {{{
-when not defined ATCODER_GRAPH_TEMPLATE_HPP:
-  const ATCODER_GRAPH_TEMPLATE_HPP = 1
+when not declared ATCODER_GRAPH_TEMPLATE_HPP:
+  const ATCODER_GRAPH_TEMPLATE_HPP* = 1
   import sequtils
   
   type

@@ -1,4 +1,4 @@
-when not defined ATCODER_DSU_HPP:
+when not declared ATCODER_DSU_HPP:
   const ATCODER_DSU_HPP* = 1
 
   import sequtils

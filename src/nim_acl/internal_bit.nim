@@ -1,5 +1,5 @@
-when not defined ATCODER_INTERNAL_BITOP_HPP:
-  const ATCODER_INTERNAL_BITOP_HPP = 1
+when not declared ATCODER_INTERNAL_BITOP_HPP:
+  const ATCODER_INTERNAL_BITOP_HPP* = 1
   import bitops
 
 #ifdef _MSC_VER

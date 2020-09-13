@@ -1,6 +1,6 @@
 # {{{ header
 when not declared ATCODER_CHAEMON_HEADER_HPP:
-  const ATCODER_CHAEMON_HEADER_HPP = 1
+  const ATCODER_CHAEMON_HEADER_HPP* = 1
   {.hints:off checks:off warnings:off assertions:on optimization:speed.}
   import algorithm, sequtils, tables, macros, math, sets, strutils, strformat, sugar
   

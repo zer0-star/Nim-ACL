@@ -1,5 +1,5 @@
-when not defined ATCODER_MINCOSTFLOW_HPP:
-  const ATCODER_MINCOSTFLOW_HPP = 1
+when not declared ATCODER_MINCOSTFLOW_HPP:
+  const ATCODER_MINCOSTFLOW_HPP* = 1
 
   import heapqueue, sequtils
 

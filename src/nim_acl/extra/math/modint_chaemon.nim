@@ -1,5 +1,5 @@
 # ModInt {{{
-when not defined ATCODER_MODINT_CHAEMON_HPP:
+when not declared ATCODER_MODINT_CHAEMON_HPP:
   const ATCODER_MODINT_CHAEMON_HPP* = 1
   import strformat, macros
   # ModInt[Mod] {{{

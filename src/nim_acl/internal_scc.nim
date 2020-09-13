@@ -1,5 +1,5 @@
-when not defined ATCODER_INTERNAL_SCC_HPP:
-  const ATCODER_INTERNAL_SCC_HPP = 1
+when not declared ATCODER_INTERNAL_SCC_HPP:
+  const ATCODER_INTERNAL_SCC_HPP* = 1
   
   import sequtils
   

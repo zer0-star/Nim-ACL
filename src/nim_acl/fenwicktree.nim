@@ -1,5 +1,5 @@
-when not defined ATCODER_FENWICKTREE_HPP:
-  const ATCODER_FENWICKTREE_HPP = 1
+when not declared ATCODER_FENWICKTREE_HPP:
+  const ATCODER_FENWICKTREE_HPP* = 1
 
 # TODO
 #include <atcoder/internal_type_traits>
