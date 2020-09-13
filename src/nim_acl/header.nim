@@ -1,5 +1,5 @@
 when not defined ATCODER_HEADER_HPP:
-  {.hints:off checks:off assertions:on checks:off}
+  {.hints:off checks:off assertions:on checks:off optimization:speed .}
   const ATCODER_HEADER_HPP = 1
   import algorithm, sequtils, tables, macros, math, sets, strutils, streams, strformat, sugar
   

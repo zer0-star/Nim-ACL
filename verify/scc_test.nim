@@ -2,7 +2,7 @@
 
 include src/nim_acl/header
 include src/nim_acl/scc
-include src/nim_acl/topological_sort
+include src/nim_acl/extra/graph/topological_sort
 
 import sequtils, strutils, sugar
 

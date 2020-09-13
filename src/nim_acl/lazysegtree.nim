@@ -1,8 +1,8 @@
 when not defined ATCODER_LAZYSEGTREE_HPP:
   const ATCODER_LAZYSEGTREE_HPP = 1
   
-  import sugar, sequtils, internal_bit
-  type lazy_segtree[S,F] = object
+  import sugar, sequtils, src/nim_acl/internal_bit
+  type lazy_segtree*[S,F] = object
     n, size, log:int
     d:seq[S]
     lz:seq[F]
@@ -12,17 +12,17 @@ when not defined ATCODER_LAZYSEGTREE_HPP:
     composition:(F,F)->F
     id:()->F
   
-  proc update[ST:lazy_segtree](self:var ST, k:int) = self.d[k] = self.op(self.d[2 * k], self.d[2 * k + 1])
-  proc all_apply[ST:lazy_segtree](self:var ST, k:int, f:ST.F) =
+  proc update*[ST:lazy_segtree](self:var ST, k:int) = self.d[k] = self.op(self.d[2 * k], self.d[2 * k + 1])
+  proc all_apply*[ST:lazy_segtree](self:var ST, k:int, f:ST.F) =
     self.d[k] = self.mapping(f, self.d[k])
     if k < self.size: self.lz[k] = self.composition(f, self.lz[k])
-  proc push[ST:lazy_segtree](self: var ST, k:int) =
+  proc push*[ST:lazy_segtree](self: var ST, k:int) =
     self.all_apply(2 * k, self.lz[k])
     self.all_apply(2 * k + 1, self.lz[k])
     self.lz[k] = self.id()
 
 #  lazy_segtree(int n) : lazy_segtree(std::vector<S>(n, e())) {}
-  proc init_lazy_segtree[S,F](v:int or seq[S], op:(S,S)->S,e:()->S,mapping:(F,S)->S,composition:(F,F)->F,id:()->F):auto =
+  proc init_lazy_segtree*[S,F](v:int or seq[S], op:(S,S)->S,e:()->S,mapping:(F,S)->S,composition:(F,F)->F,id:()->F):auto =
     when v is int:
       return init_lazy_segtree[S,F](newSeqWith(v, e()),op,e,mapping,composition,id)
     let
@@ -36,20 +36,20 @@ when not defined ATCODER_LAZYSEGTREE_HPP:
     for i in countdown(size - 1, 1):
       result.update(i)
 
-  proc set[ST:lazy_segtree](self: var ST, p:int, x:ST.S) =
+  proc set*[ST:lazy_segtree](self: var ST, p:int, x:ST.S) =
     assert p in 0..<self.n
     let p = p + self.size
     for i in countdown(self.log, 1): self.push(p shr i)
     self.d[p] = x
     for i in 1..self.log: self.update(p shr i)
 
-  proc get[ST:lazy_segtree](self: ST, p:int):ST.S =
+  proc get*[ST:lazy_segtree](self: ST, p:int):ST.S =
     assert p in 0..<self.n
     let p = p + self.size
     for i in countdown(self.log, 1): self.push(p shr i)
     return self.d[p]
 
-  proc prod[ST:lazy_segtree](self:var ST, p:Slice[int]):ST.S =
+  proc prod*[ST:lazy_segtree](self:var ST, p:Slice[int]):ST.S =
     var (l, r) = (p.a, p.b + 1)
     assert 0 <= l and l <= r and r <= self.n
     if l == r: return self.e()
@@ -69,15 +69,15 @@ when not defined ATCODER_LAZYSEGTREE_HPP:
       r = r shr 1
     return self.op(sml, smr)
 
-  proc all_prod[ST:lazy_segtree](self:ST):auto = self.d[1]
+  proc all_prod*[ST:lazy_segtree](self:ST):auto = self.d[1]
 
-  proc apply[ST:lazy_segtree](self: var ST, p:int, f:ST.F) =
+  proc apply*[ST:lazy_segtree](self: var ST, p:int, f:ST.F) =
     assert p in 0..<self.n
     let p = p + self.size
     for i in countdown(self.log, 1): self.push(p shr i)
     self.d[p] = self.mapping(f, self.d[p])
     for i in 1..self.log: self.update(p shr i)
-  proc apply[ST:lazy_segtree](self: var ST, p:Slice[int], f:ST.F) =
+  proc apply*[ST:lazy_segtree](self: var ST, p:Slice[int], f:ST.F) =
     var (l, r) = (p.a, p.b + 1)
     assert 0 <= l and l <= r and r <= self.n
     if l == r: return
@@ -104,7 +104,7 @@ when not defined ATCODER_LAZYSEGTREE_HPP:
 #  template <bool (*g)(S)> int max_right(int l) {
 #    return max_right(l, [](S x) { return g(x); });
 #  }
-  proc max_right[ST:lazysegtree](self:var ST, l:int, g:(ST.S)->bool):int =
+  proc max_right*[ST:lazysegtree](self:var ST, l:int, g:(ST.S)->bool):int =
     assert l in 0..self.n
     assert g(e())
     if l == self.n: return self.n
@@ -129,7 +129,7 @@ when not defined ATCODER_LAZYSEGTREE_HPP:
 #  template <bool (*g)(S)> int min_left(int r) {
 #    return min_left(r, [](S x) { return g(x); });
 #  }
-  proc min_left[ST:lazy_segtree](self: var ST, r:int, g:(ST.S)->bool):int =
+  proc min_left*[ST:lazy_segtree](self: var ST, r:int, g:(ST.S)->bool):int =
     assert r in 0..self.n
     assert(g(self.e()))
     if r == 0: return 0
