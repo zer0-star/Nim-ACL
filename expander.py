@@ -13,7 +13,7 @@ logger = getLogger(__name__)  # type: Logger
 
 atcoder_include = re.compile('\s*(?:include|import)\s*([a-z0-9_,/\s"]*)\s*')
 
-include_guard = re.compile('when.*ATCODER_[A-Z_]*_HPP')
+include_guard = re.compile('when.*not.*defined.*ATCODER_[A-Z_]*_HPP')
 atcoder_dir = 'src/nim_acl/'
 
 lib_path = Path.cwd()
@@ -28,10 +28,11 @@ def trailingSpace(s:str):
 
 def read_source(s:str, level:int) -> List[str]:
     result = []
-    if level >= 0:
-        result.append("when true:")
+#    if level >= 0:
+#        result.append("when true:")
     for line in s.splitlines():
         if include_guard.match(line):
+            result.append(line)
             continue
 
         m = atcoder_include.match(line)
