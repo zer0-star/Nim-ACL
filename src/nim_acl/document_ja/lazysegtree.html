@@ -38,7 +38,7 @@
                 var editor = ace.edit(e);
                 editor.setOption("maxLines", "Infinity");
                 editor.setReadOnly(true);
-                editor.getSession().setMode("ace/mode/c_cpp");                
+                editor.getSession().setMode("ace/mode/nim");
             }
         });
     </script>
@@ -269,69 +269,43 @@ int main() {
 </div>
 
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_l">https://atcoder.jp/contests/practice2/tasks/practice2_l</a></h3>
-<div class="sample-code">#include &lt;atcoder/lazysegtree&gt;
-#include &lt;atcoder/modint&gt;
-#include &lt;cstdio&gt;
+<div class="sample-code">
+include src/nim_acl/header
+import src/nim_acl/lazysegtree
 
-using namespace std;
-using namespace atcoder;
+block:
+  type S = tuple[zero, one, inversion:int]
+  # swapping flag
+  type F = bool
 
-using mint = modint998244353;
+  proc op(l, r:S):S =
+    (l.zero + r.zero,
+     l.one + r.one,
+     l.inversion + r.inversion + l.one * r.zero)
+  proc e():S = (0,0,0)
+  proc mapping(l:F, r:S):S =
+      if not l: return r
+      return (r.one, r.zero, r.one * r.zero - r.inversion)
+  proc composition(l, r:F):F = (l and not r) or (not l and r)
+  proc id():F = false
+  
+  let n, q = nextInt()
+  var a = newSeq[S](n)
+  for i in 0..&lt;n:
+    let x = nextInt()
+    if x == 0:
+      a[i] = (1, 0, 0)
+    else:
+      a[i] = (0, 1, 0)
 
-struct S {
-    // # of 0 / # of 1 / inversion number
-    long long zero, one, inversion;
-};
-
-// swapping flag
-using F = bool;
-
-S op(S l, S r) {
-    return S{
-        l.zero + r.zero,
-        l.one + r.one,
-        l.inversion + r.inversion + l.one * r.zero,
-    };
-}
-
-S e() { return S{0, 0, 0}; }
-
-S mapping(F l, S r) {
-    if (!l) return r;
-    // swap
-    return S{r.one, r.zero, r.one * r.zero - r.inversion};
-}
-
-F composition(F l, F r) { return (l &amp;&amp; !r) || (!l &amp;&amp; r); }
-
-F id() { return false; }
-
-int main() {
-    int n, q;
-    scanf(&#34;%d %d&#34;, &amp;n, &amp;q);
-
-    vector&lt;S&gt; a(n);
-    for (int i = 0; i &lt; n; i++) {
-        int x;
-        scanf(&#34;%d&#34;, &amp;x);
-        if (x == 0)
-            a[i] = S{1, 0, 0};
-        else
-            a[i] = S{0, 1, 0};
-    }
-
-    lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(a);
-    for (int i = 0; i &lt; q; i++) {
-        int t, l, r;
-        scanf(&#34;%d %d %d&#34;, &amp;t, &amp;l, &amp;r);
-        l--;
-        if (t == 1) {
-            seg.apply(l, r, true);
-        } else {
-            printf(&#34;%lld\n&#34;, seg.prod(l, r).inversion);
-        }
-    }
-}
+  var seg = init_lazy_segtree(a, op, e, mapping, composition, id)
+  for i in 0..&lt;q:
+    var t, l, r = nextInt()
+    l.dec
+    if t == 1:
+      seg.apply(l..&lt;r, true)
+    else:
+      echo seg.prod(l..&lt;r).inversion
 </div>
         </div>
     </section>

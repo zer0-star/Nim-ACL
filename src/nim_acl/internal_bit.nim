@@ -14,5 +14,5 @@ when not declared ATCODER_INTERNAL_BITOP_HPP:
     return x
 # @param n `1 <= n`
 # @return minimum non-negative `x` s.t. `(n & (1 << x)) != 0`
-  proc bsf(n:uint):int =
+  proc bsf*(n:uint):int =
     return countTrailingZeroBits(n)

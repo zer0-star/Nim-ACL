@@ -13,7 +13,7 @@ logger = getLogger(__name__)  # type: Logger
 
 atcoder_include = re.compile('\s*(?:include|import)\s*([a-z0-9_,/\s"]*)\s*')
 
-include_guard = re.compile('when.*not.*defined.*ATCODER_[A-Z_]*_HPP')
+include_guard = re.compile('when\s+not\s+declared\s+ATCODER_[A-Z_]*_HPP')
 atcoder_dir = 'src/nim_acl/'
 
 lib_path = Path.cwd()
