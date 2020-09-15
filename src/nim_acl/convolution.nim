@@ -13,7 +13,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
   include src/nim_acl/modint
   
 #  template <class mint, internal::is_static_modint_t<mint>* = nullptr>
-  proc butterfly*[mint:ModInt](a:var seq[mint]) =
+  proc butterfly*[mint:StaticModInt](a:var seq[mint]) =
     const g = primitive_root[mint.M]()
     let
       n = a.len
@@ -54,7 +54,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
           a[i + offset + p] = l - r
         now *= sum_e[bsf(not s.uint)]
   
-  proc butterfly_inv*[mint:ModInt](a:var seq[mint]) =
+  proc butterfly_inv*[mint:StaticModInt](a:var seq[mint]) =
     const g = primitive_root[mint.M]()
     let
       n = a.len
@@ -92,11 +92,11 @@ when not declared ATCODER_CONVOLUTION_HPP:
             l = a[i + offset]
             r = a[i + offset + p]
           a[i + offset] = l + r
-          a[i + offset + p] = initModInt((mint.M + int(l) - int(r)) * int(inow), mint.M)
+          a[i + offset + p] = mint.init((mint.umod.uint + l.uint - r.uint) * uint(inow))
         inow *= sum_ie[bsf(not s.uint)]
 
 #  template <class mint, internal::is_static_modint_t<mint>* = nullptr>
-  proc convolution*[mint:ModInt](a, b:seq[mint]):seq[mint] =
+  proc convolution*[mint:StaticModInt](a, b:seq[mint]):seq[mint] =
     var
       n = a.len
       m = b.len
@@ -131,7 +131,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
     let (n, m) = (a.len, b.len)
     if n == 0 or m == 0: return newSeq[T]()
   
-    type mint = ModInt[M.int]
+    type mint = StaticModInt[M.int]
     var
       a2 = newSeq[mint](n)
       b2 = newSeq[mint](m)
