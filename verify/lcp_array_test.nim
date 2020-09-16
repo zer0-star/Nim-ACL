@@ -3,8 +3,6 @@
 include src/nim_acl/header
 import src/nim_acl/string
 
-import sequtils, strutils, sugar
-
 let
   S = nextString()
   sa = S.suffixarray()

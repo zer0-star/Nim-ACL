@@ -1,7 +1,7 @@
 when not declared ATCODER_DSU_HPP:
   const ATCODER_DSU_HPP* = 1
 
-  import sequtils
+  import std/sequtils
 
   type
     DSU* = ref object

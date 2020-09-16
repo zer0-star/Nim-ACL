@@ -1,7 +1,7 @@
 # {{{ RandomizedBinarySearchTree
 when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
   const ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP* = 1
-  import sugar, random, strutils
+  import std/sugar, std/random
   
   type RandomizedBinarySearchTree*[D,L,useP,updateData] = object of RootObj
     when D isnot void:

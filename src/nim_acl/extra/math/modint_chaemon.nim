@@ -1,7 +1,7 @@
 # ModInt {{{
 when not declared ATCODER_MODINT_CHAEMON_HPP:
   const ATCODER_MODINT_CHAEMON_HPP* = 1
-  import strformat, macros
+  import std/strformat, std/macros
   # ModInt[Mod] {{{
   type ModInt*[Mod: static[int]] = object
     v:int32

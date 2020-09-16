@@ -3,7 +3,7 @@
 include src/nim_acl/modint
 import src/nim_acl/header, src/nim_acl/lazysegtree
 
-import sequtils
+import std/sequtils
 
 const Mod = 998244353
 type mint = StaticModInt[Mod]

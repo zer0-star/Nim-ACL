@@ -3,7 +3,7 @@
 include src/nim_acl/header
 include src/nim_acl/string
 
-import sequtils, strutils, sugar
+import std/strutils
 
 let S = nextString()
 echo S.z_algorithm().join(" ")

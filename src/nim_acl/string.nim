@@ -1,7 +1,7 @@
 when not declared ATCODER_STRING_HPP:
   const ATCODER_STRING_HPP* = 1
 
-  import algorithm, strutils, sequtils
+  import std/algorithm, std/sequtils
 
   proc sa_naive(s:seq[int]):seq[int] =
     let n = s.len

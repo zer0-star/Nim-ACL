@@ -2,7 +2,7 @@
 
 include src/nim_acl/modint
 
-import strutils, sequtils, math
+import std/strutils, std/sequtils, std/math
 
 let
   N = stdin.readLine.parseInt.initModInt()

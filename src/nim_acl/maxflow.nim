@@ -1,16 +1,9 @@
 when not declared ATCODER_MAXFLOW_HPP:
   const ATCODER_MAXFLOW_HPP* = 1
   
-  import internal_queue
-  import algorithm, sequtils
-  #include <algorithm>
-  # TODO?
-  #include <atcoder/internal_queue>
-  
-  #include <cassert>
-  #include <limits>
-  #include <queue>
-  #include <vector>
+  import src/nim_acl/internal_queue
+  import std/algorithm
+
   type edge[Cap] = object
     dst, rev:int
     cap:Cap
@@ -20,9 +13,9 @@ when not declared ATCODER_MAXFLOW_HPP:
     pos:seq[(int,int)]
     g:seq[seq[edge[Cap]]]
   
-  proc init_mf_graph[Cap](n:int):auto = mf_graph[Cap](n:n, g:newSeq[seq[edge[Cap]]](n))
+  proc init_mf_graph*[Cap](n:int):auto = mf_graph[Cap](n:n, g:newSeq[seq[edge[Cap]]](n))
   
-  proc add_edge[Cap](self: var mf_graph[Cap], src, dst:int, cap:Cap):int {.discardable.}=
+  proc add_edge*[Cap](self: var mf_graph[Cap], src, dst:int, cap:Cap):int {.discardable.}=
     assert src in 0..<self.n
     assert dst in 0..<self.n
     assert 0 <= cap
@@ -36,20 +29,20 @@ when not declared ATCODER_MAXFLOW_HPP:
     src, dst:int
     cap, flow:Cap
   
-  proc get_edge[Cap](self: mf_graph[Cap], i:int):edge_info[Cap] =
+  proc get_edge*[Cap](self: mf_graph[Cap], i:int):edge_info[Cap] =
     let m = self.pos.len
     assert i in 0..<m
     let e = self.g[self.pos[i][0]][self.pos[i][1]]
     let re = self.g[e.dst][e.rev]
     return edge_info[Cap](src:pos[i][0], dst:e.to, cap:e.cap + re.cap, flow:re.cap)
 
-  proc edges[Cap](self: mf_graph[Cap]):seq[edge_info] =
+  proc edges*[Cap](self: mf_graph[Cap]):seq[edge_info] =
     let m = self.pos.len
     result = newSeqOfCap[edge_info](m)
     for i in 0..<m:
       result.add(get_edge(i))
 
-  proc change_edge[Cap](self: var mf_graph[Cap], i:int, new_cap, new_flow:Cap) =
+  proc change_edge*[Cap](self: var mf_graph[Cap], i:int, new_cap, new_flow:Cap) =
     let m = self.pos.len
     assert i in 0..<m
     assert new_flow in 0..new_cap
@@ -59,7 +52,7 @@ when not declared ATCODER_MAXFLOW_HPP:
     re[].cap = new_flow
 
 
-  proc flow[Cap](self: var mf_graph[Cap], s, t:int, flow_limit:Cap):Cap =
+  proc flow*[Cap](self: var mf_graph[Cap], s, t:int, flow_limit:Cap):Cap =
     assert s in 0..<self.n
     assert t in 0..<self.n
   
@@ -107,9 +100,9 @@ when not declared ATCODER_MAXFLOW_HPP:
         flow += f
     return flow
 
-  proc flow[Cap](self: var mf_graph[Cap], s,t:int):auto = self.flow(s, t, Cap.high)
+  proc flow*[Cap](self: var mf_graph[Cap], s,t:int):auto = self.flow(s, t, Cap.high)
 
-  proc min_cut[Cap](self:mf_graph[Cap], s:int):seq[bool] =
+  proc min_cut*[Cap](self:mf_graph[Cap], s:int):seq[bool] =
     var visited = newSeq[bool](self.n)
     var que = init_simple_queue[int]()
     que.push(s)

@@ -3,7 +3,7 @@
 import src/nim_acl/header
 import src/nim_acl/fenwicktree
 
-import sequtils, strutils
+import std/sequtils
 
 let N, Q = nextInt()
 let a = newSeqWith(N, nextInt())

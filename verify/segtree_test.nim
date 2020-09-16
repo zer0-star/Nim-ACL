@@ -3,7 +3,7 @@
 import src/nim_acl/header
 import src/nim_acl/segtree
 
-import sequtils, strutils, sugar
+import std/sequtils, std/sugar
 
 let N, Q = nextInt()
 let a = newSeqWith(N, nextInt())

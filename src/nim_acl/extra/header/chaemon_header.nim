@@ -2,7 +2,7 @@
 when not declared ATCODER_CHAEMON_HEADER_HPP:
   const ATCODER_CHAEMON_HEADER_HPP* = 1
   {.hints:off checks:off warnings:off assertions:on optimization:speed.}
-  import algorithm, sequtils, tables, macros, math, sets, strutils, strformat, sugar
+  import std/algorithm, std/sequtils, std/tables, std/macros, std/math, std/sets, std/strutils, std/strformat, std/sugar
   
   import streams
   proc scanf*(formatstr: cstring){.header: "<stdio.h>", varargs.}

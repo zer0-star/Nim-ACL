@@ -1,6 +1,6 @@
 when not declared ATCODER_INTERNAL_MATH_HPP:
   const ATCODER_INTERNAL_MATH_HPP* = 1
-  import math
+  import std/math
 
   # Fast moduler by barrett reduction
   # Reference: https:#en.wikipedia.org/wiki/Barrett_reduction

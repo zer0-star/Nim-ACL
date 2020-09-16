@@ -1,7 +1,7 @@
 when not declared ATCODER_HEADER_HPP:
-  {.hints:off checks:off assertions:on checks:off optimization:speed .}
+  {.hints:off checks:off assertions:on checks:off optimization:speed.}
   const ATCODER_HEADER_HPP = 1
-  import algorithm, sequtils, tables, macros, math, sets, strutils, streams, strformat, sugar
+  import std/algorithm, std/sequtils, std/tables, std/macros, std/math, std/sets, std/strutils, std/streams, std/strformat, std/sugar
   
   proc scanf*(formatstr: cstring){.header: "<stdio.h>", varargs.}
   proc getchar*(): char {.header: "<stdio.h>", varargs.}

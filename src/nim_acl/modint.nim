@@ -9,7 +9,7 @@ when not defined ATCODER_MODINT_HPP:
   type ModInt = StaticModInt or DynamicModInt
 
   var ModVal_of_DynamicModInt = 1000000007.uint32
-  import internal_math
+  import src/nim_acl/internal_math
   var Barrett_of_DynamicModInt:Barrett
 
   proc getMod*(t:typedesc[DynamicModInt], set = false, M:SomeInteger = 0.uint32):uint32 =
