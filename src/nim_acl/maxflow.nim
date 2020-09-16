@@ -1,5 +1,5 @@
-when not defined ATCODER_MAXFLOW_HPP:
-  const ATCODER_MAXFLOW_HPP = 1
+when not declared ATCODER_MAXFLOW_HPP:
+  const ATCODER_MAXFLOW_HPP* = 1
   
   import internal_queue
   import algorithm, sequtils

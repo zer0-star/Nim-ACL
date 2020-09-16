@@ -1,26 +1,26 @@
-when not defined ATCODER_MINCOSTFLOW_HPP:
-  const ATCODER_MINCOSTFLOW_HPP = 1
+when not declared ATCODER_MINCOSTFLOW_HPP:
+  const ATCODER_MINCOSTFLOW_HPP* = 1
 
   import heapqueue, sequtils
 
-  type edge[Cap, Cost] = object
+  type edge*[Cap, Cost] = object
     dst, rev:int
     cap:Cap
     cost:Cost
 
-  type mcf_graph[Cap, Cost] = object
+  type mcf_graph*[Cap, Cost] = object
     n:int
     pos:seq[(int,int)]
     g:seq[seq[edge[Cap, Cost]]]
 
-  type edge_info[Cap, Cost] = object
+  type edge_info*[Cap, Cost] = object
     src, dst:int
     cap, flow: Cap
     cost: Cost
 
-  proc initMCFGraph[Cap, Cost](n:int):auto = mcf_graph[Cap, Cost](n:n, g:newSeq[seq[edge[Cap, Cost]]](n))
+  proc initMCFGraph*[Cap, Cost](n:int):auto = mcf_graph[Cap, Cost](n:n, g:newSeq[seq[edge[Cap, Cost]]](n))
 
-  proc add_edge[Cap, Cost](self: var mcf_graph[Cap, Cost], src:int, dst:int, cap:Cap, cost:Cost):int {.discardable.} =
+  proc add_edge*[Cap, Cost](self: var mcf_graph[Cap, Cost], src:int, dst:int, cap:Cap, cost:Cost):int {.discardable.} =
     assert src in 0..<self.n
     assert dst in 0..<self.n
     let m = self.pos.len
@@ -29,32 +29,20 @@ when not defined ATCODER_MINCOSTFLOW_HPP:
     self.g[dst].add(edge[Cap, Cost](dst:src, rev:self.g[src].len - 1, cap:Cap(0), cost: -cost))
     return m
 
-  proc get_edge[Cap, Cost](self: mcf_graph[Cap, Cost], i:int):edge_info[Cap, Cost] =
+  proc get_edge*[Cap, Cost](self: mcf_graph[Cap, Cost], i:int):edge_info[Cap, Cost] =
     let m = self.pos.len
     assert 0 <= i and i < m
     let e = self.g[self.pos[i][0]][self.pos[i][1]]
     let re = self.g[e.dst][e.rev]
     return edge_info[Cap, Cost](src:self.pos[i][0], dst:e.dst, cap:e.cap + re.cap, flow:re.cap, cost:e.cost)
 
-  proc edges[Cap, Cost](self: mcf_graph[Cap, Cost]):seq[edge_info[Cap, Cost]] =
+  proc edges*[Cap, Cost](self: mcf_graph[Cap, Cost]):seq[edge_info[Cap, Cost]] =
     let m = self.pos.len
     result = newSeq[edge_info[Cap, Cost]](m)
     for i in 0..<m:
       result[i] = self.get_edge(i)
 
-  proc flow[Cap, Cost](self: var mcf_graph[Cap, Cost], s,t:int):(Cap, Cost) =
-    self.flow(s, t, Cap.high)
-  proc flow[Cap, Cost](self: var mcf_graph[Cap, Cost], s,t:int, flow_limit:Cap):(Cap, Cost) =
-    self.slope(s, t, flow_limit)[^1]
-  proc slope[Cap, Cost](self: var mcf_graph[Cap, Cost], s,t:int):(Cap, Cost) =
-    self.slope(s, t, Cap.high)
-
-  type Q[Cost] = object
-    key:Cost
-    dst:int
-  proc `<`[Cost](l,r:Q[Cost]):bool = l.key < r.key
-
-  proc slope[Cap, Cost](self: var mcf_graph[Cap, Cost], s, t:int, flow_limit:Cap):seq[(Cap, Cost)] =
+  proc slope*[Cap, Cost](self: var mcf_graph[Cap, Cost], s, t:int, flow_limit:Cap):seq[(Cap, Cost)] =
     assert s in 0..<self.n
     assert t in 0..<self.n
     assert s != t
@@ -71,9 +59,12 @@ when not defined ATCODER_MINCOSTFLOW_HPP:
       pv.fill(-1)
       pe.fill(-1)
       vis.fill(false)
-      var que = initHeapQueue[Q[Cost]]()
+      type Q = tuple[key:Cost, dst:int]
+      proc `<`(l,r:Q):bool = l.key < r.key
+
+      var que = initHeapQueue[Q]()
       dist[s] = 0
-      que.push(Q[Cost](key:Cost(0), dst:s))
+      que.push((Cost(0), s))
       while que.len > 0:
         let v = que.pop().dst
         if vis[v]: continue
@@ -92,7 +83,7 @@ when not defined ATCODER_MINCOSTFLOW_HPP:
             dist[e.dst] = dist[v] + cost
             pv[e.dst] = v
             pe[e.dst] = i
-            que.push(Q[Cost](key:dist[e.dst], dst:e.dst))
+            que.push((dist[e.dst], e.dst))
       if not vis[t]:
         return false
 
@@ -130,3 +121,9 @@ when not defined ATCODER_MINCOSTFLOW_HPP:
         discard result.pop()
       result.add((flow, cost))
       prev_cost = cost
+  proc flow*[Cap, Cost](self: var mcf_graph[Cap, Cost], s,t:int):(Cap, Cost) =
+    self.flow(s, t, Cap.high)
+  proc flow*[Cap, Cost](self: var mcf_graph[Cap, Cost], s,t:int, flow_limit:Cap):(Cap, Cost) =
+    self.slope(s, t, flow_limit)[^1]
+  proc slope*[Cap, Cost](self: var mcf_graph[Cap, Cost], s,t:int):seq[(Cap, Cost)] =
+    self.slope(s, t, Cap.high)

@@ -1,7 +1,7 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/suffixarray
 
-include src/nim_acl/header
-include src/nim_acl/string
+import src/nim_acl/header
+import src/nim_acl/string
 
 import sequtils, strutils, sugar
 

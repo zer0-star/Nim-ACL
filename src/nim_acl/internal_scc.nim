@@ -1,5 +1,5 @@
-when not defined ATCODER_INTERNAL_SCC_HPP:
-  const ATCODER_INTERNAL_SCC_HPP = 1
+when not declared ATCODER_INTERNAL_SCC_HPP:
+  const ATCODER_INTERNAL_SCC_HPP* = 1
   
   import sequtils
   
@@ -80,5 +80,3 @@ when not defined ATCODER_INTERNAL_SCC_HPP:
       result[i] = newSeqOfCap[int](counts[i])
     for i in 0..<self.n:
       result[ids[1][i]].add(i)
-
-#endif  // ATCODER_INTERNAL_SCC_HPP

@@ -1,14 +1,14 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/point_add_range_sum
 
 import src/nim_acl/header
-import src/nim_acl/segtree
+import src/nim_acl/extra/structure/universal_segtree
 
-import sequtils, strutils, sugar
+import sequtils, sugar
 
 let N, Q = nextInt()
 let a = newSeqWith(N, nextInt())
 
-var st = initSegTree[int](a, (x:int,y:int)=>x+y, ()=>0)
+var st = initSegTree(a, (x:int,y:int)=>x+y, ()=>0)
 
 for _ in 0 ..< Q:
   let t = nextInt()

@@ -1,5 +1,5 @@
-when not defined(ATCODER_STRING_HPP):
-  const ATCODER_STRING_HPP = 1
+when not declared ATCODER_STRING_HPP:
+  const ATCODER_STRING_HPP* = 1
 
   import algorithm, strutils, sequtils
 
