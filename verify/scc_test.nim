@@ -3,8 +3,6 @@
 include src/nim_acl/header
 include src/nim_acl/scc
 
-import sequtils, strutils, sugar
-
 block:
   let N, M = nextInt()
   var

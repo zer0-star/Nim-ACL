@@ -6,7 +6,7 @@ import src/nim_acl/header, src/nim_acl/extra/structure/universal_segtree
 import sequtils
 
 const Mod = 998244353
-type mint = ModInt[Mod]
+type mint = StaticModInt[Mod]
 let n, q = nextInt()
 let a = newSeqWith(n, (mint(nextInt()), 1))
 
