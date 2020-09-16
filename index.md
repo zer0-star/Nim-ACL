@@ -1,78 +1,187 @@
 ---
-layout: default
+data:
+  libraryCategories:
+  - name: .
+    pages:
+    - icon: ':warning:'
+      path: expander.py
+      title: expander.py
+  - name: src
+    pages:
+    - icon: ':warning:'
+      path: src/modint.nim
+      title: src/modint.nim
+    - icon: ':warning:'
+      path: src/nim_acl.nim
+      title: src/nim_acl.nim
+  - name: src/nim_acl
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: src/nim_acl/convolution.nim
+      title: src/nim_acl/convolution.nim
+    - icon: ':heavy_check_mark:'
+      path: src/nim_acl/dsu.nim
+      title: src/nim_acl/dsu.nim
+    - icon: ':heavy_check_mark:'
+      path: src/nim_acl/fenwicktree.nim
+      title: src/nim_acl/fenwicktree.nim
+    - icon: ':heavy_check_mark:'
+      path: src/nim_acl/header.nim
+      title: src/nim_acl/header.nim
+    - icon: ':heavy_check_mark:'
+      path: src/nim_acl/internal_bit.nim
+      title: src/nim_acl/internal_bit.nim
+    - icon: ':heavy_check_mark:'
+      path: src/nim_acl/internal_math.nim
+      title: src/nim_acl/internal_math.nim
+    - icon: ':warning:'
+      path: src/nim_acl/internal_queue.nim
+      title: src/nim_acl/internal_queue.nim
+    - icon: ':heavy_check_mark:'
+      path: src/nim_acl/internal_scc.nim
+      title: src/nim_acl/internal_scc.nim
+    - icon: ':warning:'
+      path: src/nim_acl/internal_type_traits.nim
+      title: src/nim_acl/internal_type_traits.nim
+    - icon: ':heavy_check_mark:'
+      path: src/nim_acl/lazysegtree.nim
+      title: src/nim_acl/lazysegtree.nim
+    - icon: ':heavy_check_mark:'
+      path: src/nim_acl/math_lib.nim
+      title: src/nim_acl/math_lib.nim
+    - icon: ':warning:'
+      path: src/nim_acl/maxflow.nim
+      title: src/nim_acl/maxflow.nim
+    - icon: ':warning:'
+      path: src/nim_acl/mincostflow.nim
+      title: src/nim_acl/mincostflow.nim
+    - icon: ':warning:'
+      path: src/nim_acl/mod_int.nim
+      title: src/nim_acl/mod_int.nim
+    - icon: ':heavy_check_mark:'
+      path: src/nim_acl/modint.nim
+      title: src/nim_acl/modint.nim
+    - icon: ':warning:'
+      path: src/nim_acl/modint_signed.nim
+      title: src/nim_acl/modint_signed.nim
+    - icon: ':warning:'
+      path: src/nim_acl/modint_unsigned.nim
+      title: src/nim_acl/modint_unsigned.nim
+    - icon: ':warning:'
+      path: src/nim_acl/modint_zer0star.nim
+      title: src/nim_acl/modint_zer0star.nim
+    - icon: ':heavy_check_mark:'
+      path: src/nim_acl/scc.nim
+      title: src/nim_acl/scc.nim
+    - icon: ':heavy_check_mark:'
+      path: src/nim_acl/segtree.nim
+      title: src/nim_acl/segtree.nim
+    - icon: ':heavy_check_mark:'
+      path: src/nim_acl/string.nim
+      title: src/nim_acl/string.nim
+    - icon: ':heavy_check_mark:'
+      path: src/nim_acl/twosat.nim
+      title: src/nim_acl/twosat.nim
+  - name: src/nim_acl/extra/graph
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: src/nim_acl/extra/graph/dijkstra.nim
+      title: src/nim_acl/extra/graph/dijkstra.nim
+    - icon: ':heavy_check_mark:'
+      path: src/nim_acl/extra/graph/template.nim
+      title: src/nim_acl/extra/graph/template.nim
+    - icon: ':warning:'
+      path: src/nim_acl/extra/graph/topological_sort.nim
+      title: src/nim_acl/extra/graph/topological_sort.nim
+  - name: src/nim_acl/extra/header
+    pages:
+    - icon: ':warning:'
+      path: src/nim_acl/extra/header/chaemon_header.nim
+      title: src/nim_acl/extra/header/chaemon_header.nim
+  - name: src/nim_acl/extra/math
+    pages:
+    - icon: ':warning:'
+      path: src/nim_acl/extra/math/combination.nim
+      title: src/nim_acl/extra/math/combination.nim
+    - icon: ':warning:'
+      path: src/nim_acl/extra/math/divisor.nim
+      title: src/nim_acl/extra/math/divisor.nim
+    - icon: ':warning:'
+      path: src/nim_acl/extra/math/element_concepts.nim
+      title: src/nim_acl/extra/math/element_concepts.nim
+    - icon: ':warning:'
+      path: src/nim_acl/extra/math/eratosthenes.nim
+      title: src/nim_acl/extra/math/eratosthenes.nim
+    - icon: ':warning:'
+      path: src/nim_acl/extra/math/formal_power_series.nim
+      title: src/nim_acl/extra/math/formal_power_series.nim
+    - icon: ':warning:'
+      path: src/nim_acl/extra/math/modint_chaemon.nim
+      title: src/nim_acl/extra/math/modint_chaemon.nim
+  - name: src/nim_acl/extra/structure
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: src/nim_acl/extra/structure/randomized_binary_search_tree.nim
+      title: src/nim_acl/extra/structure/randomized_binary_search_tree.nim
+    - icon: ':heavy_check_mark:'
+      path: src/nim_acl/extra/structure/set_map.nim
+      title: src/nim_acl/extra/structure/set_map.nim
+    - icon: ':heavy_check_mark:'
+      path: src/nim_acl/extra/structure/universal_segtree.nim
+      title: src/nim_acl/extra/structure/universal_segtree.nim
+  verificationCategories:
+  - name: verify
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/convolution_test.nim
+      title: verify/convolution_test.nim
+    - icon: ':heavy_check_mark:'
+      path: verify/dsu_test.nim
+      title: verify/dsu_test.nim
+    - icon: ':heavy_check_mark:'
+      path: verify/extra_lazy_segtree_test.nim
+      title: verify/extra_lazy_segtree_test.nim
+    - icon: ':heavy_check_mark:'
+      path: verify/extra_segtree_test.nim
+      title: verify/extra_segtree_test.nim
+    - icon: ':heavy_check_mark:'
+      path: verify/fenwick_tree_test.nim
+      title: verify/fenwick_tree_test.nim
+    - icon: ':heavy_check_mark:'
+      path: verify/floor_sum_test.nim
+      title: verify/floor_sum_test.nim
+    - icon: ':heavy_check_mark:'
+      path: verify/lazy_segtree_dynamicmodint_test.nim
+      title: verify/lazy_segtree_dynamicmodint_test.nim
+    - icon: ':heavy_check_mark:'
+      path: verify/lazy_segtree_test.nim
+      title: verify/lazy_segtree_test.nim
+    - icon: ':heavy_check_mark:'
+      path: verify/lcp_array_test.nim
+      title: verify/lcp_array_test.nim
+    - icon: ':heavy_check_mark:'
+      path: verify/map_test.nim
+      title: verify/map_test.nim
+    - icon: ':heavy_check_mark:'
+      path: verify/modint_test.nim
+      title: verify/modint_test.nim
+    - icon: ':heavy_check_mark:'
+      path: verify/scc_test.nim
+      title: verify/scc_test.nim
+    - icon: ':heavy_check_mark:'
+      path: verify/segtree_test.nim
+      title: verify/segtree_test.nim
+    - icon: ':heavy_check_mark:'
+      path: verify/shortest_path_test.nim
+      title: verify/shortest_path_test.nim
+    - icon: ':heavy_check_mark:'
+      path: verify/suffix_array_test.nim
+      title: verify/suffix_array_test.nim
+    - icon: ':heavy_check_mark:'
+      path: verify/twosat_test.nim
+      title: verify/twosat_test.nim
+    - icon: ':heavy_check_mark:'
+      path: verify/z_algorithm_test.nim
+      title: verify/z_algorithm_test.nim
+layout: toppage
 ---
-
-<!-- mathjax config similar to math.stackexchange -->
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    TeX: { equationNumbers: { autoNumber: "AMS" }},
-    tex2jax: {
-      inlineMath: [ ['$','$'] ],
-      processEscapes: true
-    },
-    "HTML-CSS": { matchFontHeight: false },
-    displayAlign: "left",
-    displayIndent: "2em"
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="assets/css/copy-button.css" />
-
-
-# {{ site.title }}
-
-[![Actions Status]({{ site.github.repository_url }}/workflows/verify/badge.svg)]({{ site.github.repository_url }}/actions)
-<a href="{{ site.github.repository_url }}"><img src="https://img.shields.io/github/last-commit/{{ site.github.owner_name }}/{{ site.github.repository_name }}" /></a>
-
-{% if site.github.project_tagline %}{{ site.github.project_tagline }}{% else %}This documentation is automatically generated by <a href="https://github.com/online-judge-tools/verification-helper">online-judge-tools/verification-helper</a>.{% endif %}
-
-## Library Files
-
-<div id="25d902c24283ab8cfbac54dfa101ad31"></div>
-
-### src
-
-* :warning: <a href="library/src/modint.nim.html">src/modint.nim</a>
-* :warning: <a href="library/src/nim_acl.nim.html">src/nim_acl.nim</a>
-
-
-<div id="9445bba494c2e7790206eaaedbe1a4db"></div>
-
-### src/nim_acl
-
-* :heavy_check_mark: <a href="library/src/nim_acl/dsu.nim.html">src/nim_acl/dsu.nim</a>
-* :warning: <a href="library/src/nim_acl/fenwicktree.nim.html">src/nim_acl/fenwicktree.nim</a>
-* :heavy_check_mark: <a href="library/src/nim_acl/header.nim.html">src/nim_acl/header.nim</a>
-* :warning: <a href="library/src/nim_acl/internal_bit.nim.html">src/nim_acl/internal_bit.nim</a>
-* :warning: <a href="library/src/nim_acl/internal_math.nim.html">src/nim_acl/internal_math.nim</a>
-* :warning: <a href="library/src/nim_acl/internal_queue.nim.html">src/nim_acl/internal_queue.nim</a>
-* :warning: <a href="library/src/nim_acl/internal_scc.nim.html">src/nim_acl/internal_scc.nim</a>
-* :warning: <a href="library/src/nim_acl/internal_type_traits.nim.html">src/nim_acl/internal_type_traits.nim</a>
-* :warning: <a href="library/src/nim_acl/lazysegtree.nim.html">src/nim_acl/lazysegtree.nim</a>
-* :warning: <a href="library/src/nim_acl/math.nim.html">src/nim_acl/math.nim</a>
-* :warning: <a href="library/src/nim_acl/maxflow.nim.html">src/nim_acl/maxflow.nim</a>
-* :warning: <a href="library/src/nim_acl/mincostflow.nim.html">src/nim_acl/mincostflow.nim</a>
-* :heavy_check_mark: <a href="library/src/nim_acl/modint.nim.html">src/nim_acl/modint.nim</a>
-* :warning: <a href="library/src/nim_acl/scc.nim.html">src/nim_acl/scc.nim</a>
-* :heavy_check_mark: <a href="library/src/nim_acl/segtree.nim.html">src/nim_acl/segtree.nim</a>
-* :heavy_check_mark: <a href="library/src/nim_acl/string.nim.html">src/nim_acl/string.nim</a>
-* :heavy_check_mark: <a href="library/src/nim_acl/twosat.nim.html">src/nim_acl/twosat.nim</a>
-
-
-## Verify Files
-
-* :heavy_check_mark: <a href="verify/verify/dsu_test.nim.html">verify/dsu_test.nim</a>
-* :heavy_check_mark: <a href="verify/verify/lcp_array_test.nim.html">verify/lcp_array_test.nim</a>
-* :heavy_check_mark: <a href="verify/verify/modint_test.nim.html">verify/modint_test.nim</a>
-* :heavy_check_mark: <a href="verify/verify/segtree_test.nim.html">verify/segtree_test.nim</a>
-* :heavy_check_mark: <a href="verify/verify/suffix_array_test.nim.html">verify/suffix_array_test.nim</a>
-* :heavy_check_mark: <a href="verify/verify/twosat_test.nim.html">verify/twosat_test.nim</a>
-* :heavy_check_mark: <a href="verify/verify/z_algorithm_test.nim.html">verify/z_algorithm_test.nim</a>
-
-
