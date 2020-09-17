@@ -2,23 +2,23 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/internal_scc.nim
-    title: src/nim_acl/internal_scc.nim
-  - icon: ':question:'
-    path: src/nim_acl/header.nim
-    title: src/nim_acl/header.nim
+    path: atcoder/scc.nim
+    title: atcoder/scc.nim
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/scc.nim
-    title: src/nim_acl/scc.nim
+    path: atcoder/internal_scc.nim
+    title: atcoder/internal_scc.nim
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/internal_scc.nim
-    title: src/nim_acl/internal_scc.nim
-  - icon: ':question:'
-    path: src/nim_acl/header.nim
-    title: src/nim_acl/header.nim
+    path: atcoder/internal_scc.nim
+    title: atcoder/internal_scc.nim
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/scc.nim
-    title: src/nim_acl/scc.nim
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/scc.nim
+    title: atcoder/scc.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -31,22 +31,22 @@ data:
     , line 70, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
-  code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/scc\n\ninclude src/nim_acl/header\n\
-    include src/nim_acl/scc\n\nblock:\n  let N, M = nextInt()\n  var\n    scc = initSccGraph(N)\n\
+  code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/scc\n\ninclude atcoder/header\n\
+    include atcoder/scc\n\nblock:\n  let N, M = nextInt()\n  var\n    scc = initSccGraph(N)\n\
     \  for i in 0..<M:\n    let a, b = nextInt()\n    scc.add_edge(a, b)\n  var a\
     \ = scc.scc()\n  echo a.len\n  for a in a:\n    echo a.len, \" \", a.join(\" \"\
     )\n"
   dependsOn:
-  - src/nim_acl/internal_scc.nim
-  - src/nim_acl/header.nim
-  - src/nim_acl/scc.nim
-  - src/nim_acl/internal_scc.nim
-  - src/nim_acl/header.nim
-  - src/nim_acl/scc.nim
+  - atcoder/scc.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_scc.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/scc.nim
   isVerificationFile: true
   path: verify/scc_test.nim
   requiredBy: []
-  timestamp: '2020-09-16 23:07:19+09:00'
+  timestamp: '2020-09-18 00:06:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/scc_test.nim

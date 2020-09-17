@@ -2,17 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/string.nim
-    title: src/nim_acl/string.nim
-  - icon: ':question:'
-    path: src/nim_acl/header.nim
-    title: src/nim_acl/header.nim
+    path: atcoder/string.nim
+    title: atcoder/string.nim
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/string.nim
-    title: src/nim_acl/string.nim
-  - icon: ':question:'
-    path: src/nim_acl/header.nim
-    title: src/nim_acl/header.nim
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/string.nim
+    title: atcoder/string.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -26,18 +26,18 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/number_of_substrings\n\
-    \ninclude src/nim_acl/header\nimport src/nim_acl/string\n\nlet\n  S = nextString()\n\
-    \  sa = S.suffixarray()\n  lcp = S.lcp_array(sa)\n  n = S.len\n\nvar ans = n *\
+    \ninclude atcoder/header\nimport atcoder/string\n\nlet\n  S = nextString()\n \
+    \ sa = S.suffixarray()\n  lcp = S.lcp_array(sa)\n  n = S.len\n\nvar ans = n *\
     \ (n + 1) div 2\nfor v in lcp: ans -= v\necho ans\n"
   dependsOn:
-  - src/nim_acl/string.nim
-  - src/nim_acl/header.nim
-  - src/nim_acl/string.nim
-  - src/nim_acl/header.nim
+  - atcoder/string.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/string.nim
   isVerificationFile: true
   path: verify/lcp_array_test.nim
   requiredBy: []
-  timestamp: '2020-09-16 23:07:19+09:00'
+  timestamp: '2020-09-18 00:06:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/lcp_array_test.nim

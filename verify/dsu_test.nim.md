@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/dsu.nim
-    title: src/nim_acl/dsu.nim
+    path: atcoder/dsu.nim
+    title: atcoder/dsu.nim
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/dsu.nim
-    title: src/nim_acl/dsu.nim
+    path: atcoder/dsu.nim
+    title: atcoder/dsu.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -20,17 +20,17 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/unionfind\n\nimport\
-    \ src/nim_acl/dsu\nimport std/sequtils, std/strutils\n\nlet\n  nq = stdin.readLine.split.map(parseInt)\n\
+    \ atcoder/dsu\nimport std/sequtils, std/strutils\n\nlet\n  nq = stdin.readLine.split.map(parseInt)\n\
     \nvar\n  uf = initDSU(nq[0])\n\nfor _ in 0 ..< nq[1]:\n  let\n    tuv = stdin.readLine.split.map(parseInt)\n\
     \n  if tuv[0] == 0:\n    uf.merge(tuv[1], tuv[2])\n  elif tuv[0] == 1:\n    echo(\n\
     \      if uf.same(tuv[1], tuv[2]):\n        1\n      else:\n        0\n    )\n"
   dependsOn:
-  - src/nim_acl/dsu.nim
-  - src/nim_acl/dsu.nim
+  - atcoder/dsu.nim
+  - atcoder/dsu.nim
   isVerificationFile: true
   path: verify/dsu_test.nim
   requiredBy: []
-  timestamp: '2020-09-16 23:07:19+09:00'
+  timestamp: '2020-09-18 00:06:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/dsu_test.nim

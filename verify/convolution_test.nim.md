@@ -2,35 +2,35 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/internal_math.nim
-    title: src/nim_acl/internal_math.nim
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/internal_bit.nim
-    title: src/nim_acl/internal_bit.nim
+    path: atcoder/header.nim
+    title: atcoder/header.nim
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/modint.nim
-    title: src/nim_acl/modint.nim
-  - icon: ':question:'
-    path: src/nim_acl/header.nim
-    title: src/nim_acl/header.nim
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/internal_math.nim
-    title: src/nim_acl/internal_math.nim
+    path: atcoder/header.nim
+    title: atcoder/header.nim
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/modint.nim
-    title: src/nim_acl/modint.nim
+    path: atcoder/convolution.nim
+    title: atcoder/convolution.nim
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/internal_bit.nim
-    title: src/nim_acl/internal_bit.nim
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/convolution.nim
-    title: src/nim_acl/convolution.nim
-  - icon: ':question:'
-    path: src/nim_acl/header.nim
-    title: src/nim_acl/header.nim
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/convolution.nim
-    title: src/nim_acl/convolution.nim
+    path: atcoder/convolution.nim
+    title: atcoder/convolution.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -46,9 +46,9 @@ data:
   code: '# verify-helper: PROBLEM https://judge.yosupo.jp/problem/convolution_mod
 
 
-    include src/nim_acl/header, src/nim_acl/modint
+    include atcoder/header, atcoder/modint
 
-    import src/nim_acl/convolution
+    import atcoder/convolution
 
 
     let N, M = nextInt()
@@ -61,20 +61,20 @@ data:
 
     '
   dependsOn:
-  - src/nim_acl/internal_math.nim
-  - src/nim_acl/internal_bit.nim
-  - src/nim_acl/modint.nim
-  - src/nim_acl/header.nim
-  - src/nim_acl/internal_math.nim
-  - src/nim_acl/modint.nim
-  - src/nim_acl/internal_bit.nim
-  - src/nim_acl/convolution.nim
-  - src/nim_acl/header.nim
-  - src/nim_acl/convolution.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
+  - atcoder/convolution.nim
+  - atcoder/internal_bit.nim
+  - atcoder/modint.nim
+  - atcoder/convolution.nim
+  - atcoder/modint.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: true
   path: verify/convolution_test.nim
   requiredBy: []
-  timestamp: '2020-09-17 20:03:53+09:00'
+  timestamp: '2020-09-18 00:06:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/convolution_test.nim

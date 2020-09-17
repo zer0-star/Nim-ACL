@@ -2,23 +2,23 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/twosat.nim
-    title: src/nim_acl/twosat.nim
+    path: atcoder/twosat.nim
+    title: atcoder/twosat.nim
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/internal_scc.nim
-    title: src/nim_acl/internal_scc.nim
-  - icon: ':question:'
-    path: src/nim_acl/header.nim
-    title: src/nim_acl/header.nim
+    path: atcoder/internal_scc.nim
+    title: atcoder/internal_scc.nim
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/twosat.nim
-    title: src/nim_acl/twosat.nim
+    path: atcoder/twosat.nim
+    title: atcoder/twosat.nim
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/internal_scc.nim
-    title: src/nim_acl/internal_scc.nim
-  - icon: ':question:'
-    path: src/nim_acl/header.nim
-    title: src/nim_acl/header.nim
+    path: atcoder/internal_scc.nim
+    title: atcoder/internal_scc.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -32,26 +32,26 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/two_sat\n\ninclude\
-    \ src/nim_acl/header\ninclude src/nim_acl/twosat\n\nblock:\n  let\n    p, cnf\
-    \ = nextString() # dummy\n    N, M = nextInt()\n  var ts = initTwoSat(N)\n  for\
-    \ _ in 0..<M:\n    var a, b = nextInt()\n    let zero = nextString() # summy\n\
-    \    var f, g:bool\n    if a > 0:\n      f = true\n    else:\n      f = false\n\
-    \      a *= -1\n    a.dec\n    if b > 0:\n      g = true\n    else:\n      g =\
-    \ false\n      b *= -1\n    b.dec\n    ts.add_clause(a, f, b, g)\n  if ts.satisfiable:\n\
-    \    echo \"s SATISFIABLE\"\n    stdout.write \"v \"\n    for i,a in ts.answer:\n\
-    \      if a:\n        stdout.write i + 1, \" \"\n      else:\n        stdout.write\
+    \ atcoder/header\ninclude atcoder/twosat\n\nblock:\n  let\n    p, cnf = nextString()\
+    \ # dummy\n    N, M = nextInt()\n  var ts = initTwoSat(N)\n  for _ in 0..<M:\n\
+    \    var a, b = nextInt()\n    let zero = nextString() # summy\n    var f, g:bool\n\
+    \    if a > 0:\n      f = true\n    else:\n      f = false\n      a *= -1\n  \
+    \  a.dec\n    if b > 0:\n      g = true\n    else:\n      g = false\n      b *=\
+    \ -1\n    b.dec\n    ts.add_clause(a, f, b, g)\n  if ts.satisfiable:\n    echo\
+    \ \"s SATISFIABLE\"\n    stdout.write \"v \"\n    for i,a in ts.answer:\n    \
+    \  if a:\n        stdout.write i + 1, \" \"\n      else:\n        stdout.write\
     \ -(i + 1), \" \"\n    echo 0\n  else:\n    echo \"s UNSATISFIABLE\"\n"
   dependsOn:
-  - src/nim_acl/twosat.nim
-  - src/nim_acl/internal_scc.nim
-  - src/nim_acl/header.nim
-  - src/nim_acl/twosat.nim
-  - src/nim_acl/internal_scc.nim
-  - src/nim_acl/header.nim
+  - atcoder/twosat.nim
+  - atcoder/internal_scc.nim
+  - atcoder/twosat.nim
+  - atcoder/internal_scc.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/twosat_test.nim
   requiredBy: []
-  timestamp: '2020-09-16 23:07:19+09:00'
+  timestamp: '2020-09-18 00:06:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/twosat_test.nim

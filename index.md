@@ -1,119 +1,114 @@
 ---
 data:
   libraryCategories:
+  - name: atcoder
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: atcoder/convolution.nim
+      title: atcoder/convolution.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/dsu.nim
+      title: atcoder/dsu.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/fenwicktree.nim
+      title: atcoder/fenwicktree.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/header.nim
+      title: atcoder/header.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/internal_bit.nim
+      title: atcoder/internal_bit.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/internal_math.nim
+      title: atcoder/internal_math.nim
+    - icon: ':warning:'
+      path: atcoder/internal_queue.nim
+      title: atcoder/internal_queue.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/internal_scc.nim
+      title: atcoder/internal_scc.nim
+    - icon: ':warning:'
+      path: atcoder/internal_type_traits.nim
+      title: atcoder/internal_type_traits.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/lazysegtree.nim
+      title: atcoder/lazysegtree.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/math.nim
+      title: atcoder/math.nim
+    - icon: ':warning:'
+      path: atcoder/maxflow.nim
+      title: atcoder/maxflow.nim
+    - icon: ':warning:'
+      path: atcoder/mincostflow.nim
+      title: atcoder/mincostflow.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/modint.nim
+      title: atcoder/modint.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/scc.nim
+      title: atcoder/scc.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/segtree.nim
+      title: atcoder/segtree.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/string.nim
+      title: atcoder/string.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/twosat.nim
+      title: atcoder/twosat.nim
+  - name: atcoder/extra/graph
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: atcoder/extra/graph/dijkstra.nim
+      title: atcoder/extra/graph/dijkstra.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/extra/graph/template.nim
+      title: atcoder/extra/graph/template.nim
+    - icon: ':warning:'
+      path: atcoder/extra/graph/topological_sort.nim
+      title: atcoder/extra/graph/topological_sort.nim
+  - name: atcoder/extra/header
+    pages:
+    - icon: ':warning:'
+      path: atcoder/extra/header/chaemon_header.nim
+      title: atcoder/extra/header/chaemon_header.nim
+  - name: atcoder/extra/math
+    pages:
+    - icon: ':warning:'
+      path: atcoder/extra/math/combination.nim
+      title: atcoder/extra/math/combination.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/divisor.nim
+      title: atcoder/extra/math/divisor.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/element_concepts.nim
+      title: atcoder/extra/math/element_concepts.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/eratosthenes.nim
+      title: atcoder/extra/math/eratosthenes.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/formal_power_series.nim
+      title: atcoder/extra/math/formal_power_series.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/modint_chaemon.nim
+      title: atcoder/extra/math/modint_chaemon.nim
+  - name: atcoder/extra/structure
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: atcoder/extra/structure/randomized_binary_search_tree.nim
+      title: atcoder/extra/structure/randomized_binary_search_tree.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/extra/structure/set_map.nim
+      title: atcoder/extra/structure/set_map.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/extra/structure/universal_segtree.nim
+      title: atcoder/extra/structure/universal_segtree.nim
   - name: .
     pages:
     - icon: ':warning:'
       path: expander.py
       title: expander.py
-  - name: src
-    pages:
-    - icon: ':warning:'
-      path: src/modint.nim
-      title: src/modint.nim
-    - icon: ':warning:'
-      path: src/nim_acl.nim
-      title: src/nim_acl.nim
-  - name: src/nim_acl
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: src/nim_acl/convolution.nim
-      title: src/nim_acl/convolution.nim
-    - icon: ':heavy_check_mark:'
-      path: src/nim_acl/dsu.nim
-      title: src/nim_acl/dsu.nim
-    - icon: ':heavy_check_mark:'
-      path: src/nim_acl/fenwicktree.nim
-      title: src/nim_acl/fenwicktree.nim
-    - icon: ':question:'
-      path: src/nim_acl/header.nim
-      title: src/nim_acl/header.nim
-    - icon: ':heavy_check_mark:'
-      path: src/nim_acl/internal_bit.nim
-      title: src/nim_acl/internal_bit.nim
-    - icon: ':heavy_check_mark:'
-      path: src/nim_acl/internal_math.nim
-      title: src/nim_acl/internal_math.nim
-    - icon: ':warning:'
-      path: src/nim_acl/internal_queue.nim
-      title: src/nim_acl/internal_queue.nim
-    - icon: ':heavy_check_mark:'
-      path: src/nim_acl/internal_scc.nim
-      title: src/nim_acl/internal_scc.nim
-    - icon: ':warning:'
-      path: src/nim_acl/internal_type_traits.nim
-      title: src/nim_acl/internal_type_traits.nim
-    - icon: ':heavy_check_mark:'
-      path: src/nim_acl/lazysegtree.nim
-      title: src/nim_acl/lazysegtree.nim
-    - icon: ':warning:'
-      path: src/nim_acl/maxflow.nim
-      title: src/nim_acl/maxflow.nim
-    - icon: ':warning:'
-      path: src/nim_acl/mincostflow.nim
-      title: src/nim_acl/mincostflow.nim
-    - icon: ':heavy_check_mark:'
-      path: src/nim_acl/modint.nim
-      title: src/nim_acl/modint.nim
-    - icon: ':heavy_check_mark:'
-      path: src/nim_acl/scc.nim
-      title: src/nim_acl/scc.nim
-    - icon: ':heavy_check_mark:'
-      path: src/nim_acl/segtree.nim
-      title: src/nim_acl/segtree.nim
-    - icon: ':heavy_check_mark:'
-      path: src/nim_acl/string.nim
-      title: src/nim_acl/string.nim
-    - icon: ':heavy_check_mark:'
-      path: src/nim_acl/twosat.nim
-      title: src/nim_acl/twosat.nim
-  - name: src/nim_acl/extra/graph
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: src/nim_acl/extra/graph/dijkstra.nim
-      title: src/nim_acl/extra/graph/dijkstra.nim
-    - icon: ':heavy_check_mark:'
-      path: src/nim_acl/extra/graph/template.nim
-      title: src/nim_acl/extra/graph/template.nim
-    - icon: ':warning:'
-      path: src/nim_acl/extra/graph/topological_sort.nim
-      title: src/nim_acl/extra/graph/topological_sort.nim
-  - name: src/nim_acl/extra/header
-    pages:
-    - icon: ':warning:'
-      path: src/nim_acl/extra/header/chaemon_header.nim
-      title: src/nim_acl/extra/header/chaemon_header.nim
-  - name: src/nim_acl/extra/math
-    pages:
-    - icon: ':warning:'
-      path: src/nim_acl/extra/math/combination.nim
-      title: src/nim_acl/extra/math/combination.nim
-    - icon: ':warning:'
-      path: src/nim_acl/extra/math/divisor.nim
-      title: src/nim_acl/extra/math/divisor.nim
-    - icon: ':warning:'
-      path: src/nim_acl/extra/math/element_concepts.nim
-      title: src/nim_acl/extra/math/element_concepts.nim
-    - icon: ':warning:'
-      path: src/nim_acl/extra/math/eratosthenes.nim
-      title: src/nim_acl/extra/math/eratosthenes.nim
-    - icon: ':warning:'
-      path: src/nim_acl/extra/math/formal_power_series.nim
-      title: src/nim_acl/extra/math/formal_power_series.nim
-    - icon: ':warning:'
-      path: src/nim_acl/extra/math/modint_chaemon.nim
-      title: src/nim_acl/extra/math/modint_chaemon.nim
-  - name: src/nim_acl/extra/structure
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: src/nim_acl/extra/structure/randomized_binary_search_tree.nim
-      title: src/nim_acl/extra/structure/randomized_binary_search_tree.nim
-    - icon: ':heavy_check_mark:'
-      path: src/nim_acl/extra/structure/set_map.nim
-      title: src/nim_acl/extra/structure/set_map.nim
-    - icon: ':heavy_check_mark:'
-      path: src/nim_acl/extra/structure/universal_segtree.nim
-      title: src/nim_acl/extra/structure/universal_segtree.nim
   verificationCategories:
   - name: verify
     pages:
@@ -132,7 +127,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/fenwick_tree_test.nim
       title: verify/fenwick_tree_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/floor_sum_test.nim
       title: verify/floor_sum_test.nim
     - icon: ':heavy_check_mark:'

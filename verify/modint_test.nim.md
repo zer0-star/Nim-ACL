@@ -2,17 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/internal_math.nim
-    title: src/nim_acl/internal_math.nim
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/modint.nim
-    title: src/nim_acl/modint.nim
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/internal_math.nim
-    title: src/nim_acl/internal_math.nim
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/modint.nim
-    title: src/nim_acl/modint.nim
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -26,18 +26,18 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://yukicoder.me/problems/no/741\n\ninclude\
-    \ src/nim_acl/modint\n\nimport std/strutils, std/sequtils, std/math\n\nlet\n \
-    \ N = stdin.readLine.parseInt.initModInt()\n\necho (0 ..< 9).mapIt(N + 9 - it).prod\
+    \ atcoder/modint\n\nimport std/strutils, std/sequtils, std/math\n\nlet\n  N =\
+    \ stdin.readLine.parseInt.initModInt()\n\necho (0 ..< 9).mapIt(N + 9 - it).prod\
     \ / toSeq(1 .. 9).prod\n"
   dependsOn:
-  - src/nim_acl/internal_math.nim
-  - src/nim_acl/modint.nim
-  - src/nim_acl/internal_math.nim
-  - src/nim_acl/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/modint.nim
   isVerificationFile: true
   path: verify/modint_test.nim
   requiredBy: []
-  timestamp: '2020-09-17 20:03:53+09:00'
+  timestamp: '2020-09-18 00:06:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/modint_test.nim

@@ -2,17 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/string.nim
-    title: src/nim_acl/string.nim
-  - icon: ':question:'
-    path: src/nim_acl/header.nim
-    title: src/nim_acl/header.nim
+    path: atcoder/string.nim
+    title: atcoder/string.nim
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/string.nim
-    title: src/nim_acl/string.nim
-  - icon: ':question:'
-    path: src/nim_acl/header.nim
-    title: src/nim_acl/header.nim
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/string.nim
+    title: atcoder/string.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -28,9 +28,9 @@ data:
   code: '# verify-helper: PROBLEM https://judge.yosupo.jp/problem/suffixarray
 
 
-    import src/nim_acl/header
+    import atcoder/header
 
-    import src/nim_acl/string
+    import atcoder/string
 
 
     import std/strutils
@@ -42,14 +42,14 @@ data:
 
     '
   dependsOn:
-  - src/nim_acl/string.nim
-  - src/nim_acl/header.nim
-  - src/nim_acl/string.nim
-  - src/nim_acl/header.nim
+  - atcoder/string.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/string.nim
   isVerificationFile: true
   path: verify/suffix_array_test.nim
   requiredBy: []
-  timestamp: '2020-09-16 23:07:19+09:00'
+  timestamp: '2020-09-18 00:06:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/suffix_array_test.nim

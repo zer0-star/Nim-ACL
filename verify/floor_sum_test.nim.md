@@ -1,16 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: src/nim_acl/header.nim
-    title: src/nim_acl/header.nim
-  - icon: ':question:'
-    path: src/nim_acl/header.nim
-    title: src/nim_acl/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/math.nim
+    title: atcoder/math.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/math.nim
+    title: atcoder/math.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_floor_of_linear
     links:
@@ -20,16 +32,20 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/sum_of_floor_of_linear\n\
-    \nimport src/nim_acl/header, src/nim_acl/math\n\nlet T = nextInt()\n\nfor _ in\
-    \ 0..<T:\n  let N, M, A, B = nextInt()\n  echo floor_sum(N, M, A, B)\n"
+    \nimport atcoder/header, atcoder/math\n\nlet T = nextInt()\n\nfor _ in 0..<T:\n\
+    \  let N, M, A, B = nextInt()\n  echo floor_sum(N, M, A, B)\n"
   dependsOn:
-  - src/nim_acl/header.nim
-  - src/nim_acl/header.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
+  - atcoder/math.nim
+  - atcoder/math.nim
   isVerificationFile: true
   path: verify/floor_sum_test.nim
   requiredBy: []
-  timestamp: '2020-09-16 23:07:19+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-09-18 00:06:18+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/floor_sum_test.nim
 layout: document
