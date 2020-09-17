@@ -4,6 +4,7 @@
 "verify/extra_lazy_segtree_test.nim": "2020-09-17 20:03:53 +0900",
 "verify/extra_segtree_test.nim": "2020-09-16 23:07:19 +0900",
 "verify/fenwick_tree_test.nim": "2020-09-16 23:07:19 +0900",
+"verify/floor_sum_test.nim": "2020-09-18 00:15:02 +0900",
 "verify/lazy_segtree_dynamicmodint_test.nim": "2020-09-17 20:03:53 +0900",
 "verify/lazy_segtree_test.nim": "2020-09-17 20:03:53 +0900",
 "verify/lcp_array_test.nim": "2020-09-16 23:07:19 +0900",
