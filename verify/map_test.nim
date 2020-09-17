@@ -1,7 +1,7 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/associative_array
 
-include src/nim_acl/header
-include src/nim_acl/extra/structure/set_map
+include atcoder/header
+include atcoder/extra/structure/set_map
 
 proc main() =
   let Q = nextInt()

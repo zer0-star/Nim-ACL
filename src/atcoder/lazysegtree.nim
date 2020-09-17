@@ -1,7 +1,7 @@
 when not declared ATCODER_LAZYSEGTREE_HPP:
   const ATCODER_LAZYSEGTREE_HPP* = 1
   
-  import std/sugar, std/sequtils, src/nim_acl/internal_bit
+  import std/sugar, std/sequtils, atcoder/internal_bit
   type lazy_segtree*[S,F] = object
     n, size, log:int
     d:seq[S]

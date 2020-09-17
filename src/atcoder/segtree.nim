@@ -1,6 +1,6 @@
 when not declared ATCODER_SEGTREE_HPP:
   const ATCODER_SEGTREE_HPP* = 1
-  import src/nim_acl/internal_bit
+  import atcoder/internal_bit
   import std/sugar, std/sequtils
 
   type segtree[S] = object

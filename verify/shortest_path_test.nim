@@ -1,8 +1,8 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/shortest_path
 
-include src/nim_acl/header
-import "src/nim_acl/extra/graph/template.nim"
-import src/nim_acl/extra/graph/dijkstra
+include atcoder/header
+import "atcoder/extra/graph/template.nim"
+import atcoder/extra/graph/dijkstra
 
 proc main() =
   let N, M, s, t = nextInt()

@@ -1,6 +1,6 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/sum_of_floor_of_linear
 
-import src/nim_acl/header, src/nim_acl/math
+import atcoder/header, atcoder/math
 
 let T = nextInt()
 

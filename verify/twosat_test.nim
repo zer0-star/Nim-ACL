@@ -1,7 +1,7 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/two_sat
 
-include src/nim_acl/header
-include src/nim_acl/twosat
+include atcoder/header
+include atcoder/twosat
 
 block:
   let

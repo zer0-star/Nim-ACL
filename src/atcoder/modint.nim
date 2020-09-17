@@ -8,7 +8,7 @@ when not defined ATCODER_MODINT_HPP:
   
   type ModInt = StaticModInt or DynamicModInt
 
-  import src/nim_acl/internal_math
+  import atcoder/internal_math
 
   proc getBarrett*[T:static[int]](t:typedesc[DynamicModInt[T]], set = false, M:SomeInteger = 0.uint32):ptr Barrett =
     var Barrett_of_DynamicModInt {.global.} :Barrett

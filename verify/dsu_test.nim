@@ -1,6 +1,6 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/unionfind
 
-import src/nim_acl/dsu
+import atcoder/dsu
 import std/sequtils, std/strutils
 
 let

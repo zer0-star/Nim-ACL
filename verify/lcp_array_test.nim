@@ -1,7 +1,7 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/number_of_substrings
 
-include src/nim_acl/header
-import src/nim_acl/string
+include atcoder/header
+import atcoder/string
 
 let
   S = nextString()

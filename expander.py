@@ -14,7 +14,7 @@ logger = getLogger(__name__)  # type: Logger
 atcoder_include = re.compile('\s*(?:include|import)\s*([a-z0-9_,/\s"]*)\s*')
 
 include_guard = re.compile('when\s+not\s+declared\s+ATCODER_[A-Z_]*_HPP')
-atcoder_dir = 'src/nim_acl/'
+atcoder_dir = 'atcoder/'
 
 lib_path = Path.cwd()
 
@@ -46,7 +46,7 @@ def read_source(s:str, level:int) -> List[str]:
                     result.extend([" " * trailingSpace(line) + "import " + f_orig])
                 else:
                     if not f.endswith(".nim"):
-                        f = f + ".nim"
+                        f = "src/" + f + ".nim"
                     result.extend(dfs(f, level + 1))
             continue
         result.append(line)
