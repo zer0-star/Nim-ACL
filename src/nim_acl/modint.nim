@@ -4,21 +4,19 @@ when not defined ATCODER_MODINT_HPP:
   type
     StaticModInt*[M: static[int]] = distinct uint32
   type
-    DynamicModInt* = distinct uint32
+    DynamicModInt*[T: static[int]] = distinct uint32
   
   type ModInt = StaticModInt or DynamicModInt
 
-  var ModVal_of_DynamicModInt = 1000000007.uint32
   import src/nim_acl/internal_math
-  var Barrett_of_DynamicModInt:Barrett
 
-  proc getMod*(t:typedesc[DynamicModInt], set = false, M:SomeInteger = 0.uint32):uint32 =
-    if set:
-      ModVal_of_DynamicModInt = M.uint32
-    return ModVal_of_DynamicModInt
-  proc setMod*(t:typedesc[DynamicModInt], M:SomeInteger){.used.} =
-    discard t.getMod(true, M)
-    Barrett_of_DynamicModInt = initBarrett(M.uint)
+  proc getBarrett*[T:static[int]](t:typedesc[DynamicModInt[T]], set = false, M:SomeInteger = 0.uint32):ptr Barrett =
+    var Barrett_of_DynamicModInt {.global.} :Barrett
+    return Barrett_of_DynamicModInt.addr
+  proc getMod*[T:static[int]](t:typedesc[DynamicModInt[T]]):uint32 {.inline.} =
+    (t.getBarrett)[].m.uint32
+  proc setMod*[T:static[int]](t:typedesc[DynamicModInt[T]], M:SomeInteger){.used.} =
+    (t.getBarrett)[] = initBarrett(M.uint)
 
   proc `$`*(m: ModInt): string {.inline.} =
     $m.int
@@ -91,7 +89,7 @@ when not defined ATCODER_MODINT_HPP:
     when T is StaticModInt:
       uint32(m) = (uint(m) * T.init(n).uint mod T.umod()).uint32
     elif T is DynamicModInt:
-      uint32(m) = Barrett_of_DynamicModInt.mul(uint(m), T.init(n).uint).uint32
+      uint32(m) = T.getBarrett[].mul(uint(m), T.init(n).uint).uint32
     else:
       static: assert false
 
@@ -138,3 +136,7 @@ when not defined ATCODER_MODINT_HPP:
         result *= m
       m *= m
       p = p shr 1
+
+  type modint998244353* = StaticModInt[998244353]
+  type modint1000000007* = StaticModInt[1000000007]
+  type modint* = DynamicModInt[-1]

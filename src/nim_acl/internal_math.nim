@@ -6,7 +6,7 @@ when not declared ATCODER_INTERNAL_MATH_HPP:
   # Reference: https:#en.wikipedia.org/wiki/Barrett_reduction
   # NOTE: reconsider after Ice Lake
   type Barrett* = object
-    m, im:uint
+    m*, im:uint
 
   # @param m `1 <= m`
   proc initBarrett*(m:uint):auto = Barrett(m:m, im:(0'u - 1'u) div m + 1)
