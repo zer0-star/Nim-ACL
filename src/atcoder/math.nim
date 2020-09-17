@@ -6,12 +6,10 @@ when not declared ATCODER_MATH_HPP:
     assert 0 <= n and 1 <= m
     if m == 1: return 0
     let bt = initBarrett(m.uint)
-#    internal::barrett bt((unsigned int)(m));
     var
       r = 1.uint
       y = x.floorMod(m).uint
       n = n
-#    unsigned int r = 1, y = (unsigned int)(internal::safe_mod(x, m));
     while n != 0:
       if (n and 1) != 0: r = bt.mul(r, y)
       y = bt.mul(y, y)
