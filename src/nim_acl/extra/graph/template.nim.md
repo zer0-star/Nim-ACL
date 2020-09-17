@@ -24,7 +24,7 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# Graph {{{\nwhen not declared ATCODER_GRAPH_TEMPLATE_HPP:\n  const ATCODER_GRAPH_TEMPLATE_HPP*\
-    \ = 1\n  import sequtils\n  \n  type\n    Edge*[T] = object\n      src*,dst*:int\n\
+    \ = 1\n  import std/sequtils\n  \n  type\n    Edge*[T] = object\n      src*,dst*:int\n\
     \      weight*:T\n      rev*:int\n    Edges*[T] = seq[Edge[T]]\n    Graph*[T]\
     \ = seq[seq[Edge[T]]]\n    Matrix*[T] = seq[seq[T]]\n  \n  proc initEdge*[T](src,dst:int,weight:T\
     \ = 1,rev:int = -1):Edge[T] =\n    var e:Edge[T]\n    e.src = src\n    e.dst =\
@@ -51,7 +51,7 @@ data:
   requiredBy:
   - src/nim_acl/extra/graph/dijkstra.nim
   - src/nim_acl/extra/graph/dijkstra.nim
-  timestamp: '2020-09-14 00:37:28+09:00'
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/shortest_path_test.nim

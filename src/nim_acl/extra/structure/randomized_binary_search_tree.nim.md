@@ -24,14 +24,14 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# {{{ RandomizedBinarySearchTree\nwhen not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:\n\
-    \  const ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP* = 1\n  import sugar,\
-    \ random, strutils\n  \n  type RandomizedBinarySearchTree*[D,L,useP,updateData]\
-    \ = object of RootObj\n    when D isnot void:\n      f:(D,D)->D\n      D0:D\n\
-    \    when L isnot void:\n      h:(L,L)->L\n      g:(D,L)->D\n      L0:L\n    when\
-    \ useP isnot void:\n      p:(L,Slice[int])->L\n    r:Rand\n    id_max:int\n  \n\
-    \  type Node*[D, L, updateData] = ref object\n    cnt*:int\n    l*,r*:Node[D,\
-    \ L, updateData]\n    key*:D\n    when updateData isnot void:\n      sum*:D\n\
-    \    when L isnot void:\n      lazy*:L\n    id:int\n\n  proc isUpdateData*(t:typedesc[RandomizedBinarySearchTree]\
+    \  const ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP* = 1\n  import std/sugar,\
+    \ std/random\n  \n  type RandomizedBinarySearchTree*[D,L,useP,updateData] = object\
+    \ of RootObj\n    when D isnot void:\n      f:(D,D)->D\n      D0:D\n    when L\
+    \ isnot void:\n      h:(L,L)->L\n      g:(D,L)->D\n      L0:L\n    when useP isnot\
+    \ void:\n      p:(L,Slice[int])->L\n    r:Rand\n    id_max:int\n  \n  type Node*[D,\
+    \ L, updateData] = ref object\n    cnt*:int\n    l*,r*:Node[D, L, updateData]\n\
+    \    key*:D\n    when updateData isnot void:\n      sum*:D\n    when L isnot void:\n\
+    \      lazy*:L\n    id:int\n\n  proc isUpdateData*(t:typedesc[RandomizedBinarySearchTree]\
     \ or typedesc[Node]):bool {.compileTime.} = t.updateData isnot void\n  #proc hasData*(t:typedesc):bool\
     \ {.compileTime.} = t.D isnot void\n  proc hasLazy*(t:typedesc):bool {.compileTime.}\
     \ = t.L isnot void\n  proc hasP*(t:typedesc):bool {.compileTime.} = t.useP isnot\
@@ -130,7 +130,7 @@ data:
   requiredBy:
   - src/nim_acl/extra/structure/set_map.nim
   - src/nim_acl/extra/structure/set_map.nim
-  timestamp: '2020-09-16 19:06:51+09:00'
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/map_test.nim

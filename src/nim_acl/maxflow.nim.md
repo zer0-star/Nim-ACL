@@ -1,6 +1,12 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':warning:'
+    path: src/nim_acl/internal_queue.nim
+    title: src/nim_acl/internal_queue.nim
+  - icon: ':warning:'
+    path: src/nim_acl/internal_queue.nim
+    title: src/nim_acl/internal_queue.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -12,27 +18,25 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_MAXFLOW_HPP:\n  const ATCODER_MAXFLOW_HPP* = 1\n\
-    \  \n  import internal_queue\n  import algorithm, sequtils\n  #include <algorithm>\n\
-    \  # TODO?\n  #include <atcoder/internal_queue>\n  \n  #include <cassert>\n  #include\
-    \ <limits>\n  #include <queue>\n  #include <vector>\n  type edge[Cap] = object\n\
-    \    dst, rev:int\n    cap:Cap\n  \n  type mf_graph[Cap] = object\n    n:int\n\
-    \    pos:seq[(int,int)]\n    g:seq[seq[edge[Cap]]]\n  \n  proc init_mf_graph[Cap](n:int):auto\
-    \ = mf_graph[Cap](n:n, g:newSeq[seq[edge[Cap]]](n))\n  \n  proc add_edge[Cap](self:\
+    \  \n  import src/nim_acl/internal_queue\n  import std/algorithm\n\n  type edge[Cap]\
+    \ = object\n    dst, rev:int\n    cap:Cap\n  \n  type mf_graph[Cap] = object\n\
+    \    n:int\n    pos:seq[(int,int)]\n    g:seq[seq[edge[Cap]]]\n  \n  proc init_mf_graph*[Cap](n:int):auto\
+    \ = mf_graph[Cap](n:n, g:newSeq[seq[edge[Cap]]](n))\n  \n  proc add_edge*[Cap](self:\
     \ var mf_graph[Cap], src, dst:int, cap:Cap):int {.discardable.}=\n    assert src\
     \ in 0..<self.n\n    assert dst in 0..<self.n\n    assert 0 <= cap\n    let m\
     \ = self.pos.len\n    self.pos.add((src, self.g[src].len))\n    self.g[src].add(edge[Cap](dst:dst,\
     \ rev:self.g[dst].len, cap:cap))\n    self.g[dst].add(edge[Cap](dst:src, rev:self.g[src].len\
     \ - 1, cap:0))\n    return m\n  \n  type edge_info[Cap] = object\n    src, dst:int\n\
-    \    cap, flow:Cap\n  \n  proc get_edge[Cap](self: mf_graph[Cap], i:int):edge_info[Cap]\
+    \    cap, flow:Cap\n  \n  proc get_edge*[Cap](self: mf_graph[Cap], i:int):edge_info[Cap]\
     \ =\n    let m = self.pos.len\n    assert i in 0..<m\n    let e = self.g[self.pos[i][0]][self.pos[i][1]]\n\
     \    let re = self.g[e.dst][e.rev]\n    return edge_info[Cap](src:pos[i][0], dst:e.to,\
-    \ cap:e.cap + re.cap, flow:re.cap)\n\n  proc edges[Cap](self: mf_graph[Cap]):seq[edge_info]\
+    \ cap:e.cap + re.cap, flow:re.cap)\n\n  proc edges*[Cap](self: mf_graph[Cap]):seq[edge_info]\
     \ =\n    let m = self.pos.len\n    result = newSeqOfCap[edge_info](m)\n    for\
-    \ i in 0..<m:\n      result.add(get_edge(i))\n\n  proc change_edge[Cap](self:\
+    \ i in 0..<m:\n      result.add(get_edge(i))\n\n  proc change_edge*[Cap](self:\
     \ var mf_graph[Cap], i:int, new_cap, new_flow:Cap) =\n    let m = self.pos.len\n\
     \    assert i in 0..<m\n    assert new_flow in 0..new_cap\n    var e = self.g[self.pos[i][0]][self.pos[i][1]].addr\n\
     \    var re = self.g[e[].dst][e[].rev].addr\n    e[].cap = new_cap - new_flow\n\
-    \    re[].cap = new_flow\n\n\n  proc flow[Cap](self: var mf_graph[Cap], s, t:int,\
+    \    re[].cap = new_flow\n\n\n  proc flow*[Cap](self: var mf_graph[Cap], s, t:int,\
     \ flow_limit:Cap):Cap =\n    assert s in 0..<self.n\n    assert t in 0..<self.n\n\
     \  \n    var level, iter = newSeq[int](self.n)\n    var que = init_simple_queue[int]()\n\
     #    internal::simple_queue<int> que;\n  \n    proc bfs(self: mf_graph[Cap]) =\n\
@@ -50,18 +54,20 @@ data:
     \n    var flow = Cap(0)\n    while flow < flow_limit:\n      self.bfs()\n    \
     \  if level[t] == -1: break\n      iter.fill(0)\n      while flow < flow_limit:\n\
     \        let f = self.dfs(t, flow_limit - flow)\n        if f == Cap(0): break\n\
-    \        flow += f\n    return flow\n\n  proc flow[Cap](self: var mf_graph[Cap],\
-    \ s,t:int):auto = self.flow(s, t, Cap.high)\n\n  proc min_cut[Cap](self:mf_graph[Cap],\
+    \        flow += f\n    return flow\n\n  proc flow*[Cap](self: var mf_graph[Cap],\
+    \ s,t:int):auto = self.flow(s, t, Cap.high)\n\n  proc min_cut*[Cap](self:mf_graph[Cap],\
     \ s:int):seq[bool] =\n    var visited = newSeq[bool](self.n)\n    var que = init_simple_queue[int]()\n\
     \    que.push(s)\n    while not que.empty():\n      let p = que.front()\n    \
     \  que.pop()\n      visited[p] = true\n      for e in self.g[p]:\n        if e.cap\
     \ != Cap(0) and not visited[e.dst]:\n          visited[e.dst] = true\n       \
     \   que.push(e.dst)\n    return visited\n"
-  dependsOn: []
+  dependsOn:
+  - src/nim_acl/internal_queue.nim
+  - src/nim_acl/internal_queue.nim
   isVerificationFile: false
   path: src/nim_acl/maxflow.nim
   requiredBy: []
-  timestamp: '2020-09-14 00:37:28+09:00'
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/nim_acl/maxflow.nim

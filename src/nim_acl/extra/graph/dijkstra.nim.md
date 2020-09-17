@@ -24,7 +24,7 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# dijkstra {{{\nwhen not declared ATCODER_EXTRA_DIJKSTRA_HPP:\n  const ATCODER_EXTRA_DIJKSTRA_HPP*\
-    \ = 1\n  import heapqueue, sequtils, algorithm\n  import \"src/nim_acl/extra/graph/template.nim\"\
+    \ = 1\n  import std/heapqueue, std/sequtils, std/algorithm\n  import \"src/nim_acl/extra/graph/template.nim\"\
     \n\n  proc dijkstra*[T](g:Graph[T], s:int): (seq[T],seq[int]) = \n    var\n  \
     \    n = g.len\n      dist = newSeqWith(n,T.inf)\n      prev = newSeqWith(n,-1)\n\
     \      Q = initHeapQueue[Edge[T]]()\n    dist[s] = T(0)\n    Q.push(initEdge[T](-2,s,T(0)))\n\
@@ -40,7 +40,7 @@ data:
   isVerificationFile: false
   path: src/nim_acl/extra/graph/dijkstra.nim
   requiredBy: []
-  timestamp: '2020-09-14 00:37:28+09:00'
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/shortest_path_test.nim

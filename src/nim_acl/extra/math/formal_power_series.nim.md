@@ -1,6 +1,12 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':warning:'
+    path: src/nim_acl/extra/math/element_concepts.nim
+    title: src/nim_acl/extra/math/element_concepts.nim
+  - icon: ':warning:'
+    path: src/nim_acl/extra/math/element_concepts.nim
+    title: src/nim_acl/extra/math/element_concepts.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -13,7 +19,7 @@ data:
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_FORMAL_POWER_SERIES:\n  const ATCODER_FORMAL_POWER_SERIES*\
     \ = 1\n  const FastMod = true\n  const UseFFT = true\n  \n  # FormalPowerSeries\
-    \ {{{\n  import sugar, sequtils, strformat, options, macros\n  \n  import /src/nim_acl/extra/math/element_concepts\n\
+    \ {{{\n  import sugar, sequtils, strformat, options, macros\n  \n  import src/nim_acl/extra/math/element_concepts\n\
     \n  type FormalPowerSeries*[T:FieldElem] = seq[T]\n  type SparseFormalPowerSeries*[T:FieldElem]\
     \ = seq[(int, T)]\n  \n  when not declared(FastMult):\n    const FastMult* = true\n\
     \  when not declared(UseFFT):\n    const UseFFT* = true\n  when not declared(ArbitraryMod):\n\
@@ -164,11 +170,13 @@ data:
     \ ret = initFormalPowerSeries[T](@[T(1)])\n    while n > 0:\n      if (n and 1)\
     \ > 0:\n        ret *= x\n        ret -= getDiv(ret) * M\n      x *= x\n     \
     \ x -= getDiv(x) * M\n      n = n shr 1\n    return ret\n  # }}}\n\n"
-  dependsOn: []
+  dependsOn:
+  - src/nim_acl/extra/math/element_concepts.nim
+  - src/nim_acl/extra/math/element_concepts.nim
   isVerificationFile: false
   path: src/nim_acl/extra/math/formal_power_series.nim
   requiredBy: []
-  timestamp: '2020-09-14 00:37:28+09:00'
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/nim_acl/extra/math/formal_power_series.nim

@@ -36,13 +36,13 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_INTERNAL_SCC_HPP:\n  const ATCODER_INTERNAL_SCC_HPP*\
-    \ = 1\n  \n  import sequtils\n  \n  type csr[E] = object\n    start:seq[int]\n\
-    \    elist:seq[E]\n  proc initCsr[E](n:int, edges:seq[(int,E)]):auto =\n    var\n\
+    \ = 1\n  \n  import std/sequtils\n  \n  type csr[E] = object\n    start:seq[int]\n\
+    \    elist:seq[E]\n  proc initCsr*[E](n:int, edges:seq[(int,E)]):auto =\n    var\n\
     \      start = newSeq[int](n + 1)\n      elist = newSeq[E](edges.len)\n    for\
     \ e in edges:\n      start[e[0] + 1].inc\n    for i in 1..n:\n      start[i] +=\
     \ start[i - 1]\n    var counter = start\n    for e in edges:\n      elist[counter[e[0]]]\
     \ = e[1]\n      counter[e[0]].inc\n    return csr[E](start:start, elist:elist)\n\
-    \  \n  type edge = object\n    dst:int\n  # Reference:\n  # R. Tarjan,\n  # Depth-First\
+    \  \n  type edge* = object\n    dst:int\n  # Reference:\n  # R. Tarjan,\n  # Depth-First\
     \ Search and Linear Graph Algorithms\n  type internal_scc_graph* = object\n  \
     \  n:int\n    edges:seq[(int,edge)]\n\n  proc init_internal_scc_graph*(n:int):auto\
     \ = internal_scc_graph(n:n, edges:newSeq[(int,edge)]())\n  \n  proc num_vertices*(self:\
@@ -73,7 +73,7 @@ data:
   - src/nim_acl/twosat.nim
   - src/nim_acl/scc.nim
   - src/nim_acl/scc.nim
-  timestamp: '2020-09-14 00:37:28+09:00'
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/scc_test.nim

@@ -1,6 +1,12 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: src/nim_acl/internal_math.nim
+    title: src/nim_acl/internal_math.nim
+  - icon: ':heavy_check_mark:'
+    path: src/nim_acl/internal_math.nim
+    title: src/nim_acl/internal_math.nim
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: src/nim_acl/convolution.nim
@@ -48,13 +54,13 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not defined ATCODER_MODINT_HPP:\n  const ATCODER_MODINT_HPP* = 1\n\n\
-    \  type\n    StaticModInt*[M: static[int]] = distinct uint32\n  type\n    DynamicModInt*\
-    \ = distinct uint32\n  \n  type ModInt = StaticModInt or DynamicModInt\n\n  var\
-    \ ModVal_of_DynamicModInt = 1000000007.uint32\n  import internal_math\n  var Barrett_of_DynamicModInt:Barrett\n\
-    \n  proc getMod*(t:typedesc[DynamicModInt], set = false, M:SomeInteger = 0.uint32):uint32\
-    \ =\n    if set:\n      ModVal_of_DynamicModInt = M.uint32\n    return ModVal_of_DynamicModInt\n\
-    \  proc setMod*(t:typedesc[DynamicModInt], M:SomeInteger){.used.} =\n    discard\
-    \ t.getMod(true, M)\n    Barrett_of_DynamicModInt = initBarrett(M.uint)\n\n  proc\
+    \  type\n    StaticModInt*[M: static[int]] = distinct uint32\n  type\n    DynamicModInt*[T:\
+    \ static[int]] = distinct uint32\n  \n  type ModInt = StaticModInt or DynamicModInt\n\
+    \n  import src/nim_acl/internal_math\n\n  proc getBarrett*[T:static[int]](t:typedesc[DynamicModInt[T]],\
+    \ set = false, M:SomeInteger = 0.uint32):ptr Barrett =\n    var Barrett_of_DynamicModInt\
+    \ {.global.} :Barrett\n    return Barrett_of_DynamicModInt.addr\n  proc getMod*[T:static[int]](t:typedesc[DynamicModInt[T]]):uint32\
+    \ {.inline.} =\n    (t.getBarrett)[].m.uint32\n  proc setMod*[T:static[int]](t:typedesc[DynamicModInt[T]],\
+    \ M:SomeInteger){.used.} =\n    (t.getBarrett)[] = initBarrett(M.uint)\n\n  proc\
     \ `$`*(m: ModInt): string {.inline.} =\n    $m.int\n\n  template umod*[T:ModInt](self:\
     \ typedesc[T]):uint32 =\n    when T is StaticModInt:\n      T.M\n    elif T is\
     \ DynamicModInt:\n      T.getMod()\n    else:\n      static: assert false\n  template\
@@ -82,9 +88,9 @@ data:
     \ T.umod - T.init(n).uint32\n    if uint32(m) >= T.umod: uint32(m) -= T.umod\n\
     \n  proc `*=`*[T:ModInt](m: var T; n: SomeInteger | T) {.inline.} =\n    when\
     \ T is StaticModInt:\n      uint32(m) = (uint(m) * T.init(n).uint mod T.umod()).uint32\n\
-    \    elif T is DynamicModInt:\n      uint32(m) = Barrett_of_DynamicModInt.mul(uint(m),\
-    \ T.init(n).uint).uint32\n    else:\n      static: assert false\n\n  proc `/=`*[T:ModInt](m:\
-    \ var T; n: SomeInteger | T) {.inline.} =\n    uint32(m) = (uint(m) * T.init(n).inv().uint\
+    \    elif T is DynamicModInt:\n      uint32(m) = T.getBarrett[].mul(uint(m), T.init(n).uint).uint32\n\
+    \    else:\n      static: assert false\n\n  proc `/=`*[T:ModInt](m: var T; n:\
+    \ SomeInteger | T) {.inline.} =\n    uint32(m) = (uint(m) * T.init(n).inv().uint\
     \ mod T.umod).uint32\n\n  generateDefinitions(`+`, m, n):\n    result = T.init(m)\n\
     \    result += n\n\n  generateDefinitions(`-`, m, n):\n    result = T.init(m)\n\
     \    result -= n\n\n  generateDefinitions(`*`, m, n):\n    result = T.init(m)\n\
@@ -96,14 +102,17 @@ data:
     \      uint32(m).dec\n\n  proc pow*[T:ModInt](m: T; p: SomeInteger): T {.inline.}\
     \ =\n    var\n      p = p.int\n      m = m\n    uint32(result) = 1\n    while\
     \ p > 0:\n      if (p and 1) == 1:\n        result *= m\n      m *= m\n      p\
-    \ = p shr 1\n"
-  dependsOn: []
+    \ = p shr 1\n\n  type modint998244353* = StaticModInt[998244353]\n  type modint1000000007*\
+    \ = StaticModInt[1000000007]\n  type modint* = DynamicModInt[-1]\n"
+  dependsOn:
+  - src/nim_acl/internal_math.nim
+  - src/nim_acl/internal_math.nim
   isVerificationFile: false
   path: src/nim_acl/modint.nim
   requiredBy:
   - src/nim_acl/convolution.nim
   - src/nim_acl/convolution.nim
-  timestamp: '2020-09-16 20:20:15+09:00'
+  timestamp: '2020-09-17 20:03:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/lazy_segtree_test.nim

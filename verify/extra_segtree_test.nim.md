@@ -5,20 +5,20 @@ data:
     path: src/nim_acl/internal_bit.nim
     title: src/nim_acl/internal_bit.nim
   - icon: ':heavy_check_mark:'
+    path: src/nim_acl/extra/structure/universal_segtree.nim
+    title: src/nim_acl/extra/structure/universal_segtree.nim
+  - icon: ':question:'
     path: src/nim_acl/header.nim
     title: src/nim_acl/header.nim
+  - icon: ':heavy_check_mark:'
+    path: src/nim_acl/extra/structure/universal_segtree.nim
+    title: src/nim_acl/extra/structure/universal_segtree.nim
   - icon: ':heavy_check_mark:'
     path: src/nim_acl/internal_bit.nim
     title: src/nim_acl/internal_bit.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/nim_acl/header.nim
     title: src/nim_acl/header.nim
-  - icon: ':heavy_check_mark:'
-    path: src/nim_acl/extra/structure/universal_segtree.nim
-    title: src/nim_acl/extra/structure/universal_segtree.nim
-  - icon: ':heavy_check_mark:'
-    path: src/nim_acl/extra/structure/universal_segtree.nim
-    title: src/nim_acl/extra/structure/universal_segtree.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -33,21 +33,22 @@ data:
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/point_add_range_sum\n\
     \nimport src/nim_acl/header\nimport src/nim_acl/extra/structure/universal_segtree\n\
-    \nimport sequtils, sugar\n\nlet N, Q = nextInt()\nlet a = newSeqWith(N, nextInt())\n\
-    \nvar st = initSegTree(a, (x:int,y:int)=>x+y, ()=>0)\n\nfor _ in 0 ..< Q:\n  let\
-    \ t = nextInt()\n  if t == 0:\n    let p, x = nextInt()\n    let a = st.get(p)\n\
-    \    st.set(p, a + x)\n  else:\n    let l, r = nextInt()\n    echo st.prod(l..<r)\n"
+    \nimport std/sequtils, std/sugar\n\nlet N, Q = nextInt()\nlet a = newSeqWith(N,\
+    \ nextInt())\n\nvar st = initSegTree(a, (x:int,y:int)=>x+y, ()=>0)\n\nfor _ in\
+    \ 0 ..< Q:\n  let t = nextInt()\n  if t == 0:\n    let p, x = nextInt()\n    let\
+    \ a = st.get(p)\n    st.set(p, a + x)\n  else:\n    let l, r = nextInt()\n   \
+    \ echo st.prod(l..<r)\n"
   dependsOn:
   - src/nim_acl/internal_bit.nim
+  - src/nim_acl/extra/structure/universal_segtree.nim
   - src/nim_acl/header.nim
+  - src/nim_acl/extra/structure/universal_segtree.nim
   - src/nim_acl/internal_bit.nim
   - src/nim_acl/header.nim
-  - src/nim_acl/extra/structure/universal_segtree.nim
-  - src/nim_acl/extra/structure/universal_segtree.nim
   isVerificationFile: true
   path: verify/extra_segtree_test.nim
   requiredBy: []
-  timestamp: '2020-09-14 18:38:25+09:00'
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra_segtree_test.nim

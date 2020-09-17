@@ -30,7 +30,7 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_STRING_HPP:\n  const ATCODER_STRING_HPP* = 1\n\n\
-    \  import algorithm, strutils, sequtils\n\n  proc sa_naive(s:seq[int]):seq[int]\
+    \  import std/algorithm, std/sequtils\n\n  proc sa_naive(s:seq[int]):seq[int]\
     \ =\n    let n = s.len\n    var sa = newSeq[int](n)\n    for i in 0..<n:sa[i]\
     \ = i\n    sa.sort() do (l, r:int) -> int:\n      if l == r: return 0\n      var\
     \ (l, r) = (l, r)\n      while l < n and r < n:\n        if s[l] != s[r]: return\
@@ -109,7 +109,7 @@ data:
   isVerificationFile: false
   path: src/nim_acl/string.nim
   requiredBy: []
-  timestamp: '2020-09-14 00:37:28+09:00'
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/z_algorithm_test.nim

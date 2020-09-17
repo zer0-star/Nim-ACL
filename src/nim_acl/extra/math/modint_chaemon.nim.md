@@ -12,8 +12,8 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# ModInt {{{\nwhen not declared ATCODER_MODINT_CHAEMON_HPP:\n  const ATCODER_MODINT_CHAEMON_HPP*\
-    \ = 1\n  import strformat, macros\n  # ModInt[Mod] {{{\n  type ModInt*[Mod: static[int]]\
-    \ = object\n    v:int32\n   \n  proc initModInt*(a:SomeInteger, Mod:static[int]):ModInt[Mod]\
+    \ = 1\n  import std/strformat, std/macros\n  # ModInt[Mod] {{{\n  type ModInt*[Mod:\
+    \ static[int]] = object\n    v:int32\n   \n  proc initModInt*(a:SomeInteger, Mod:static[int]):ModInt[Mod]\
     \ =\n    var a = a.int\n    a = a mod Mod\n    if a < 0: a += Mod\n    result.v\
     \ = a.int32\n   \n  proc getMod[Mod:static[int]](self: ModInt[Mod]):static int32\
     \ = self.Mod\n  proc getMod[Mod:static[int]](self: typedesc[ModInt[Mod]]):static\
@@ -74,7 +74,7 @@ data:
   isVerificationFile: false
   path: src/nim_acl/extra/math/modint_chaemon.nim
   requiredBy: []
-  timestamp: '2020-09-14 00:37:28+09:00'
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/nim_acl/extra/math/modint_chaemon.nim

@@ -19,7 +19,7 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_FENWICKTREE_HPP:\n  const ATCODER_FENWICKTREE_HPP*\
-    \ = 1\n  import sequtils\n\n  # TODO\n  #include <atcoder/internal_type_traits>\n\
+    \ = 1\n  import std/sequtils\n\n  # TODO\n  #include <atcoder/internal_type_traits>\n\
     \n  # Reference: https://en.wikipedia.org/wiki/Fenwick_tree\n  type fenwick_tree*[T]\
     \ = object\n    n:int\n    data:seq[T]\n  \n  # TODO\n  #  using U = internal::to_unsigned_t<T>;\n\
     \  \n  proc init_fenwick_tree*[T](n:int):auto\n    = fenwick_tree[T](n:n, data:newSeqWith(n,\
@@ -37,7 +37,7 @@ data:
   isVerificationFile: false
   path: src/nim_acl/fenwicktree.nim
   requiredBy: []
-  timestamp: '2020-09-16 18:22:00+09:00'
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/fenwick_tree_test.nim

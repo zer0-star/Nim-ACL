@@ -30,7 +30,7 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_LAZYSEGTREE_HPP:\n  const ATCODER_LAZYSEGTREE_HPP*\
-    \ = 1\n  \n  import sugar, sequtils, bitops\n  import src/nim_acl/internal_bit\n\
+    \ = 1\n  \n  import std/sugar, std/sequtils, std/bitops\n  import src/nim_acl/internal_bit\n\
     \  type segtree[S,F,useP] = object\n    n, size, log:int\n    when S isnot void:\n\
     \      d:seq[S]\n      op:(S, S)->S\n      e:()->S\n    when F isnot void:\n \
     \     lz:seq[F]\n      composition:(F,F)->F\n      id:()->F\n      when S isnot\
@@ -128,7 +128,7 @@ data:
   isVerificationFile: false
   path: src/nim_acl/extra/structure/universal_segtree.nim
   requiredBy: []
-  timestamp: '2020-09-14 18:38:25+09:00'
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra_lazy_segtree_test.nim

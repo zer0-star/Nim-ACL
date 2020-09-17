@@ -30,23 +30,23 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_LAZYSEGTREE_HPP:\n  const ATCODER_LAZYSEGTREE_HPP*\
-    \ = 1\n  \n  import sugar, sequtils, src/nim_acl/internal_bit\n  type lazy_segtree*[S,F]\
-    \ = object\n    n, size, log:int\n    d:seq[S]\n    lz:seq[F]\n    op:(S, S)->S\n\
-    \    e:()->S\n    mapping:(F,S)->S\n    composition:(F,F)->F\n    id:()->F\n \
-    \ \n  proc update*[ST:lazy_segtree](self:var ST, k:int) = self.d[k] = self.op(self.d[2\
-    \ * k], self.d[2 * k + 1])\n  proc all_apply*[ST:lazy_segtree](self:var ST, k:int,\
-    \ f:ST.F) =\n    self.d[k] = self.mapping(f, self.d[k])\n    if k < self.size:\
-    \ self.lz[k] = self.composition(f, self.lz[k])\n  proc push*[ST:lazy_segtree](self:\
+    \ = 1\n  \n  import std/sugar, std/sequtils, src/nim_acl/internal_bit\n  type\
+    \ lazy_segtree*[S,F] = object\n    n, size, log:int\n    d:seq[S]\n    lz:seq[F]\n\
+    \    op:(S, S)->S\n    e:()->S\n    mapping:(F,S)->S\n    composition:(F,F)->F\n\
+    \    id:()->F\n  \n  proc update*[ST:lazy_segtree](self:var ST, k:int) = self.d[k]\
+    \ = self.op(self.d[2 * k], self.d[2 * k + 1])\n  proc all_apply*[ST:lazy_segtree](self:var\
+    \ ST, k:int, f:ST.F) =\n    self.d[k] = self.mapping(f, self.d[k])\n    if k <\
+    \ self.size: self.lz[k] = self.composition(f, self.lz[k])\n  proc push*[ST:lazy_segtree](self:\
     \ var ST, k:int) =\n    self.all_apply(2 * k, self.lz[k])\n    self.all_apply(2\
     \ * k + 1, self.lz[k])\n    self.lz[k] = self.id()\n\n#  lazy_segtree(int n) :\
-    \ lazy_segtree(std::vector<S>(n, e())) {}\n  proc init_lazy_segtree*[S,F](v:int\
+    \ lazy_segtree(std::vector<S>(n, e())) {}\n  proc init_lazy_segtree*[S, F](v:int\
     \ or seq[S], op:(S,S)->S,e:()->S,mapping:(F,S)->S,composition:(F,F)->F,id:()->F):auto\
-    \ =\n    when v is int:\n      return init_lazy_segtree[S,F](newSeqWith(v, e()),op,e,mapping,composition,id)\n\
-    \    let\n      n = v.len\n      log = ceil_pow2(n)\n      size = 1 shl log\n\
-    \    var d = newSeqWith(2 * size, e())\n    for i in 0..<n:\n      d[size + i]\
-    \ = v[i]\n    result = lazy_segtree[S,F](n:n,log:log,size:size,d:d,lz:newSeqWith(size,\
-    \ id()),op:op,e:e,mapping:mapping,composition:composition,id:id)\n    for i in\
-    \ countdown(size - 1, 1):\n      result.update(i)\n\n  proc set*[ST:lazy_segtree](self:\
+    \ =\n    when v is int:\n      return init_lazy_segtree(newSeqWith(v, e()),op,e,mapping,composition,id)\n\
+    \    else:\n      let\n        n = v.len\n        log = ceil_pow2(n)\n       \
+    \ size = 1 shl log\n      var d = newSeqWith(2 * size, e())\n      for i in 0..<n:\n\
+    \        d[size + i] = v[i]\n      result = lazy_segtree[S,F](n:n,log:log,size:size,d:d,lz:newSeqWith(size,\
+    \ id()),op:op,e:e,mapping:mapping,composition:composition,id:id)\n      for i\
+    \ in countdown(size - 1, 1):\n        result.update(i)\n\n  proc set*[ST:lazy_segtree](self:\
     \ var ST, p:int, x:ST.S) =\n    assert p in 0..<self.n\n    let p = p + self.size\n\
     \    for i in countdown(self.log, 1): self.push(p shr i)\n    self.d[p] = x\n\
     \    for i in 1..self.log: self.update(p shr i)\n\n  proc get*[ST:lazy_segtree](self:\
@@ -98,7 +98,7 @@ data:
   isVerificationFile: false
   path: src/nim_acl/lazysegtree.nim
   requiredBy: []
-  timestamp: '2020-09-14 18:38:25+09:00'
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/lazy_segtree_test.nim

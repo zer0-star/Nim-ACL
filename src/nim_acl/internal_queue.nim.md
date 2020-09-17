@@ -1,7 +1,13 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: src/nim_acl/maxflow.nim
+    title: src/nim_acl/maxflow.nim
+  - icon: ':warning:'
+    path: src/nim_acl/maxflow.nim
+    title: src/nim_acl/maxflow.nim
   _extendedVerifiedWith: []
   _pathExtension: nim
   _verificationStatusIcon: ':warning:'
@@ -12,19 +18,21 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_INTERNAL_QUEUE_HPP:\n  const ATCODER_INTERNAL_QUEUE_HPP*\
-    \ = 1\n\n  import sequtils\n  \n  type simple_queue[T] = object\n    payload:seq[T]\n\
-    \    pos:int\n  proc init_simple_queue[T]():auto = simple_queue[T](payload:newSeq[T](),\
-    \ pos:0)\n# TODO\n#      void reserve(int n) { payload.reserve(n); }\n  proc len[T](self:simple_queue[T]):int\
-    \ = self.payload.len - pos\n  proc empty[T](self:simple_queue[T]):bool = pos ==\
-    \ payload.len\n  proc push[T](self:var simple_queue[T], t:T) = payload.add(t)\n\
-    \  proc front[T](self:simple_queue[T]):T = self.payload[pos]\n  proc clear[T](self:simple_queue[T])\
-    \ =\n    self.payload.setLen(0)\n    self.pos = 0;\n  proc pop[T](self:var simple_queue[T])\
-    \ = self.pos.inc\n"
+    \ = 1\n\n  type simple_queue[T] = object\n    payload:seq[T]\n    pos:int\n  proc\
+    \ init_simple_queue*[T]():auto = simple_queue[T](payload:newSeq[T](), pos:0)\n\
+    # TODO\n#      void reserve(int n) { payload.reserve(n); }\n  proc len*[T](self:simple_queue[T]):int\
+    \ = self.payload.len - self.pos\n  proc empty*[T](self:simple_queue[T]):bool =\
+    \ self.pos == self.payload.len\n  proc push*[T](self:var simple_queue[T], t:T)\
+    \ = self.payload.add(t)\n  proc front*[T](self:simple_queue[T]):T = self.payload[pos]\n\
+    \  proc clear*[T](self:simple_queue[T]) =\n    self.payload.setLen(0)\n    self.pos\
+    \ = 0;\n  proc pop*[T](self:var simple_queue[T]) = self.pos.inc\n"
   dependsOn: []
   isVerificationFile: false
   path: src/nim_acl/internal_queue.nim
-  requiredBy: []
-  timestamp: '2020-09-14 00:37:28+09:00'
+  requiredBy:
+  - src/nim_acl/maxflow.nim
+  - src/nim_acl/maxflow.nim
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/nim_acl/internal_queue.nim

@@ -24,18 +24,18 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_SCC_HPP:\n  const ATCODER_SCC_HPP* = 1\n\n  import\
-    \ sequtils, src/nim_acl/internal_scc\n\n  type scc_graph = object\n    internal:\
-    \ internal_scc_graph\n\n  proc initSccGraph(n:int):auto = init_internal_scc_graph(n)\n\
-    \  \n  proc add_edge(self:var scc_graph, src, dst:int) =\n    let n = self.internal.num_vertices()\n\
-    \    assert 0 <= src and dst < n\n    assert 0 <= dst and dst < n\n    self.internal.add_edge(src,\
-    \ dst)\n\n  proc scc(self:scc_graph):auto = self.internal.scc()\n"
+    \ src/nim_acl/internal_scc\n\n  type scc_graph = object\n    internal: internal_scc_graph\n\
+    \n  proc initSccGraph*(n:int):auto = init_internal_scc_graph(n)\n  \n  proc add_edge*(self:var\
+    \ scc_graph, src, dst:int) =\n    let n = self.internal.num_vertices()\n    assert\
+    \ 0 <= src and dst < n\n    assert 0 <= dst and dst < n\n    self.internal.add_edge(src,\
+    \ dst)\n\n  proc scc*(self:scc_graph):auto = self.internal.scc()\n"
   dependsOn:
   - src/nim_acl/internal_scc.nim
   - src/nim_acl/internal_scc.nim
   isVerificationFile: false
   path: src/nim_acl/scc.nim
   requiredBy: []
-  timestamp: '2020-09-14 00:37:28+09:00'
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/scc_test.nim

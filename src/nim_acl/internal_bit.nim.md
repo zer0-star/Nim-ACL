@@ -72,11 +72,11 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_INTERNAL_BITOP_HPP:\n  const ATCODER_INTERNAL_BITOP_HPP*\
-    \ = 1\n  import bitops\n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\n# @param\
-    \ n `0 <= n`\n# @return minimum non-negative `x` s.t. `n <= 2**x`\n  proc ceil_pow2*(n:int):int\
-    \ =\n    var x = 0\n    while (1'u shl x) < n.uint: x.inc\n    return x\n# @param\
-    \ n `1 <= n`\n# @return minimum non-negative `x` s.t. `(n & (1 << x)) != 0`\n\
-    \  proc bsf*(n:uint):int =\n    return countTrailingZeroBits(n)\n"
+    \ = 1\n  import std/bitops\n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\n\
+    # @param n `0 <= n`\n# @return minimum non-negative `x` s.t. `n <= 2**x`\n  proc\
+    \ ceil_pow2*(n:int):int =\n    var x = 0\n    while (1'u shl x) < n.uint: x.inc\n\
+    \    return x\n# @param n `1 <= n`\n# @return minimum non-negative `x` s.t. `(n\
+    \ & (1 << x)) != 0`\n  proc bsf*(n:uint):int =\n    return countTrailingZeroBits(n)\n"
   dependsOn: []
   isVerificationFile: false
   path: src/nim_acl/internal_bit.nim
@@ -89,7 +89,7 @@ data:
   - src/nim_acl/extra/structure/universal_segtree.nim
   - src/nim_acl/lazysegtree.nim
   - src/nim_acl/lazysegtree.nim
-  timestamp: '2020-09-14 18:38:25+09:00'
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/lazy_segtree_test.nim

@@ -12,15 +12,15 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# {{{ divisor\nwhen not declared ATCODER_DEVISOR_HPP:\n  const ATCODER_DEVISOR_HPP*\
-    \ = 1\n  import algorithm\n  proc divisor*(n:int):seq[int] =\n    result = newSeq[int]()\n\
-    \    var i = 1\n    while i * i <= n:\n      if n mod i == 0:\n        result.add(i)\n\
-    \        if i * i != n: result.add(n div i)\n      i += 1\n    result.sort(cmp[int])\n\
-    # }}}\n"
+    \ = 1\n  import std/algorithm\n  proc divisor*(n:int):seq[int] =\n    result =\
+    \ newSeq[int]()\n    var i = 1\n    while i * i <= n:\n      if n mod i == 0:\n\
+    \        result.add(i)\n        if i * i != n: result.add(n div i)\n      i +=\
+    \ 1\n    result.sort(cmp[int])\n# }}}\n"
   dependsOn: []
   isVerificationFile: false
   path: src/nim_acl/extra/math/divisor.nim
   requiredBy: []
-  timestamp: '2020-09-14 00:37:28+09:00'
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/nim_acl/extra/math/divisor.nim

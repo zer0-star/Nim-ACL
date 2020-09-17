@@ -18,10 +18,10 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_DSU_HPP:\n  const ATCODER_DSU_HPP* = 1\n\n  import\
-    \ sequtils\n\n  type\n    DSU* = ref object\n      n: int\n      par_or_siz: seq[int]\n\
-    \n  proc initDSU*(n: int): DSU {.inline.} =\n    return DSU(n: n, par_or_siz:\
-    \ newSeqWith(n, -1))\n\n  proc leader*(self: DSU; a: int): int {.inline.} =\n\
-    \    ## Path compression\n    if self.par_or_siz[a] < 0: return a\n    self.par_or_siz[a]\
+    \ std/sequtils\n\n  type\n    DSU* = ref object\n      n: int\n      par_or_siz:\
+    \ seq[int]\n\n  proc initDSU*(n: int): DSU {.inline.} =\n    return DSU(n: n,\
+    \ par_or_siz: newSeqWith(n, -1))\n\n  proc leader*(self: DSU; a: int): int {.inline.}\
+    \ =\n    ## Path compression\n    if self.par_or_siz[a] < 0: return a\n    self.par_or_siz[a]\
     \ = self.leader(self.par_or_siz[a])\n    return self.par_or_siz[a]\n\n  proc same*(self:\
     \ DSU; a, b: int): bool {.inline.} =\n    self.leader(a) == self.leader(b)\n\n\
     \  proc size*(self: DSU; a: int): int {.inline.} =\n    - self.par_or_siz[self.leader(a)]\n\
@@ -38,7 +38,7 @@ data:
   isVerificationFile: false
   path: src/nim_acl/dsu.nim
   requiredBy: []
-  timestamp: '2020-09-14 00:37:28+09:00'
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/dsu_test.nim

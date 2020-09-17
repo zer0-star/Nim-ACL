@@ -5,20 +5,20 @@ data:
     path: src/nim_acl/internal_math.nim
     title: src/nim_acl/internal_math.nim
   - icon: ':heavy_check_mark:'
+    path: src/nim_acl/internal_bit.nim
+    title: src/nim_acl/internal_bit.nim
+  - icon: ':heavy_check_mark:'
+    path: src/nim_acl/modint.nim
+    title: src/nim_acl/modint.nim
+  - icon: ':heavy_check_mark:'
     path: src/nim_acl/internal_math.nim
     title: src/nim_acl/internal_math.nim
   - icon: ':heavy_check_mark:'
-    path: src/nim_acl/internal_bit.nim
-    title: src/nim_acl/internal_bit.nim
-  - icon: ':heavy_check_mark:'
     path: src/nim_acl/modint.nim
     title: src/nim_acl/modint.nim
   - icon: ':heavy_check_mark:'
     path: src/nim_acl/internal_bit.nim
     title: src/nim_acl/internal_bit.nim
-  - icon: ':heavy_check_mark:'
-    path: src/nim_acl/modint.nim
-    title: src/nim_acl/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -38,8 +38,8 @@ data:
   code: "when not declared ATCODER_CONVOLUTION_HPP:\n  const ATCODER_CONVOLUTION_HPP\
     \ = 1\n\n#include <algorithm>\n#include <array>\n#include <atcoder/internal_bit>\n\
     #include <atcoder/modint>\n#include <cassert>\n#include <type_traits>\n#include\
-    \ <vector>\n  import math\n  import src/nim_acl/internal_math, src/nim_acl/internal_bit\n\
-    \  include src/nim_acl/modint\n  \n#  template <class mint, internal::is_static_modint_t<mint>*\
+    \ <vector>\n  import std/math\n  import src/nim_acl/internal_math, src/nim_acl/internal_bit,\
+    \ src/nim_acl/modint\n  \n#  template <class mint, internal::is_static_modint_t<mint>*\
     \ = nullptr>\n  proc butterfly*[mint:StaticModInt](a:var seq[mint]) =\n    const\
     \ g = primitive_root[mint.M]()\n    let\n      n = a.len\n      h = ceil_pow2(n)\n\
     \    \n    var \n      first {.global.} = true\n      sum_e {.global.} :array[30,\
@@ -113,15 +113,15 @@ data:
     \ -= offset[diff mod 5]\n      c[i] = x.int\n    return c\n"
   dependsOn:
   - src/nim_acl/internal_math.nim
+  - src/nim_acl/internal_bit.nim
+  - src/nim_acl/modint.nim
   - src/nim_acl/internal_math.nim
-  - src/nim_acl/internal_bit.nim
   - src/nim_acl/modint.nim
   - src/nim_acl/internal_bit.nim
-  - src/nim_acl/modint.nim
   isVerificationFile: false
   path: src/nim_acl/convolution.nim
   requiredBy: []
-  timestamp: '2020-09-16 20:20:15+09:00'
+  timestamp: '2020-09-17 20:03:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/convolution_test.nim

@@ -3,6 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: src/nim_acl/extra/math/formal_power_series.nim
+    title: src/nim_acl/extra/math/formal_power_series.nim
+  - icon: ':warning:'
+    path: src/nim_acl/extra/math/formal_power_series.nim
+    title: src/nim_acl/extra/math/formal_power_series.nim
+  - icon: ':warning:'
     path: src/nim_acl/extra/math/combination.nim
     title: src/nim_acl/extra/math/combination.nim
   - icon: ':warning:'
@@ -27,6 +33,8 @@ data:
   isVerificationFile: false
   path: src/nim_acl/extra/math/element_concepts.nim
   requiredBy:
+  - src/nim_acl/extra/math/formal_power_series.nim
+  - src/nim_acl/extra/math/formal_power_series.nim
   - src/nim_acl/extra/math/combination.nim
   - src/nim_acl/extra/math/combination.nim
   timestamp: '2020-09-14 00:37:28+09:00'

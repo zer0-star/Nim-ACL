@@ -25,7 +25,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/nim_acl/fenwicktree.nim
       title: src/nim_acl/fenwicktree.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: src/nim_acl/header.nim
       title: src/nim_acl/header.nim
     - icon: ':heavy_check_mark:'
@@ -46,30 +46,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/nim_acl/lazysegtree.nim
       title: src/nim_acl/lazysegtree.nim
-    - icon: ':heavy_check_mark:'
-      path: src/nim_acl/math_lib.nim
-      title: src/nim_acl/math_lib.nim
     - icon: ':warning:'
       path: src/nim_acl/maxflow.nim
       title: src/nim_acl/maxflow.nim
     - icon: ':warning:'
       path: src/nim_acl/mincostflow.nim
       title: src/nim_acl/mincostflow.nim
-    - icon: ':warning:'
-      path: src/nim_acl/mod_int.nim
-      title: src/nim_acl/mod_int.nim
     - icon: ':heavy_check_mark:'
       path: src/nim_acl/modint.nim
       title: src/nim_acl/modint.nim
-    - icon: ':warning:'
-      path: src/nim_acl/modint_signed.nim
-      title: src/nim_acl/modint_signed.nim
-    - icon: ':warning:'
-      path: src/nim_acl/modint_unsigned.nim
-      title: src/nim_acl/modint_unsigned.nim
-    - icon: ':warning:'
-      path: src/nim_acl/modint_zer0star.nim
-      title: src/nim_acl/modint_zer0star.nim
     - icon: ':heavy_check_mark:'
       path: src/nim_acl/scc.nim
       title: src/nim_acl/scc.nim
@@ -147,7 +132,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/fenwick_tree_test.nim
       title: verify/fenwick_tree_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/floor_sum_test.nim
       title: verify/floor_sum_test.nim
     - icon: ':heavy_check_mark:'

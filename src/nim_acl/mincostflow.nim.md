@@ -12,9 +12,9 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_MINCOSTFLOW_HPP:\n  const ATCODER_MINCOSTFLOW_HPP*\
-    \ = 1\n\n  import heapqueue, sequtils\n\n  type edge*[Cap, Cost] = object\n  \
-    \  dst, rev:int\n    cap:Cap\n    cost:Cost\n\n  type mcf_graph*[Cap, Cost] =\
-    \ object\n    n:int\n    pos:seq[(int,int)]\n    g:seq[seq[edge[Cap, Cost]]]\n\
+    \ = 1\n\n  import std/heapqueue, std/sequtils\n\n  type edge*[Cap, Cost] = object\n\
+    \    dst, rev:int\n    cap:Cap\n    cost:Cost\n\n  type mcf_graph*[Cap, Cost]\
+    \ = object\n    n:int\n    pos:seq[(int,int)]\n    g:seq[seq[edge[Cap, Cost]]]\n\
     \n  type edge_info*[Cap, Cost] = object\n    src, dst:int\n    cap, flow: Cap\n\
     \    cost: Cost\n\n  proc initMCFGraph*[Cap, Cost](n:int):auto = mcf_graph[Cap,\
     \ Cost](n:n, g:newSeq[seq[edge[Cap, Cost]]](n))\n\n  proc add_edge*[Cap, Cost](self:\
@@ -71,7 +71,7 @@ data:
   isVerificationFile: false
   path: src/nim_acl/mincostflow.nim
   requiredBy: []
-  timestamp: '2020-09-14 00:37:28+09:00'
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/nim_acl/mincostflow.nim

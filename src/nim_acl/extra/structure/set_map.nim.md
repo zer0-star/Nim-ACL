@@ -82,7 +82,7 @@ data:
   isVerificationFile: false
   path: src/nim_acl/extra/structure/set_map.nim
   requiredBy: []
-  timestamp: '2020-09-16 19:06:51+09:00'
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/map_test.nim

@@ -23,7 +23,7 @@ data:
     , line 70, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
-  code: "when not declared ATCODER_TWOSAT_HPP:\n  const ATCODER_TWOSAT_HPP = 1\n\n\
+  code: "when not declared ATCODER_TWOSAT_HPP:\n  const ATCODER_TWOSAT_HPP* = 1\n\n\
     \  import src/nim_acl/internal_scc\n  \n  # Reference:\n  # B. Aspvall, M. Plass,\
     \ and R. Tarjan,\n  # A Linear-Time Algorithm for Testing the Truth of Certain\
     \ Quantified Boolean\n  # Formulas\n  type two_sat* = object\n    n:int\n    answer:seq[bool]\n\
@@ -42,7 +42,7 @@ data:
   isVerificationFile: false
   path: src/nim_acl/twosat.nim
   requiredBy: []
-  timestamp: '2020-09-14 00:37:28+09:00'
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/twosat_test.nim

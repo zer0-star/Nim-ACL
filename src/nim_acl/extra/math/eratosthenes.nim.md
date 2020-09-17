@@ -11,7 +11,7 @@ data:
     , line 70, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
-  code: "#{{{ eratosthenes\nwhen not declared ATCODER_ERATOSTHENES_HPP:\n  const ATCODER_ERATOSTHENES_HPP\
+  code: "#{{{ eratosthenes\nwhen not declared ATCODER_ERATOSTHENES_HPP:\n  const ATCODER_ERATOSTHENES_HPP*\
     \ = 1\n  type Eratosthenes* = object\n    pdiv:seq[int]\n  \n  proc initEratosthenes*(n:int):Eratosthenes\
     \ =\n    var pdiv = newSeq[int](n + 1)\n    for i in 2..n:\n      pdiv[i] = i;\n\
     \    for i in 2..n:\n      if i * i > n: break\n      if pdiv[i] == i:\n     \
@@ -25,7 +25,7 @@ data:
   isVerificationFile: false
   path: src/nim_acl/extra/math/eratosthenes.nim
   requiredBy: []
-  timestamp: '2020-09-14 00:37:28+09:00'
+  timestamp: '2020-09-16 23:07:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/nim_acl/extra/math/eratosthenes.nim
