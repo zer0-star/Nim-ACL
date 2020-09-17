@@ -1,6 +1,6 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/range_affine_range_sum
-import src/nim_acl/modint
-import src/nim_acl/header, src/nim_acl/lazysegtree
+import atcoder/modint
+import atcoder/header, atcoder/lazysegtree
 
 import std/sequtils
 

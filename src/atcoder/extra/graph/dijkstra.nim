@@ -2,7 +2,7 @@
 when not declared ATCODER_EXTRA_DIJKSTRA_HPP:
   const ATCODER_EXTRA_DIJKSTRA_HPP* = 1
   import std/heapqueue, std/sequtils, std/algorithm
-  import "src/nim_acl/extra/graph/template.nim"
+  import "atcoder/extra/graph/template.nim"
 
   proc dijkstra*[T](g:Graph[T], s:int): (seq[T],seq[int]) = 
     var

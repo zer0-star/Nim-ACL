@@ -1,7 +1,7 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/point_add_range_sum
 
-import src/nim_acl/header
-import src/nim_acl/segtree
+import atcoder/header
+import atcoder/segtree
 
 import std/sequtils, std/sugar
 

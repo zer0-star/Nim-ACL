@@ -1,7 +1,7 @@
 when not declared ATCODER_MAXFLOW_HPP:
   const ATCODER_MAXFLOW_HPP* = 1
   
-  import src/nim_acl/internal_queue
+  import atcoder/internal_queue
   import std/algorithm
 
   type edge[Cap] = object

@@ -1,7 +1,7 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/point_add_range_sum
 
-import src/nim_acl/header
-import src/nim_acl/fenwicktree
+import atcoder/header
+import atcoder/fenwicktree
 
 import std/sequtils
 
@@ -10,7 +10,7 @@ let a = newSeqWith(N, nextInt())
 
 var st = initFenwickTree[int](N)
 
-for i in 0..<N:st.add(i, a[i])
+for i in 0..<N: st.add(i, a[i])
 for _ in 0 ..< Q:
   let t = nextInt()
   if t == 0:

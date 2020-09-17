@@ -1,7 +1,7 @@
 # {{{ OrderedSet[K], OrderedMultiSet[K], OrderedMap[K], OrderedMultiMap[K]
 when not declared ATCODER_SET_MAP_HPP:
   const ATCODER_SET_MAP_HPP* = 1
-  import src/nim_acl/extra/structure/randomized_binary_search_tree
+  import atcoder/extra/structure/randomized_binary_search_tree
   type OrderedMultiSet*[K] = object
     rbst: RandomizedBinarySearchTree[K,void,void,void]
     root: Node[K, void, void]
