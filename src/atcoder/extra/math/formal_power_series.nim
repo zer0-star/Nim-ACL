@@ -6,7 +6,7 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
   # FormalPowerSeries {{{
   import sugar, sequtils, strformat, options, macros
   
-  import src/nim_acl/extra/math/element_concepts
+  import atcoder/extra/math/element_concepts
 
   type FormalPowerSeries*[T:FieldElem] = seq[T]
   type SparseFormalPowerSeries*[T:FieldElem] = seq[(int, T)]

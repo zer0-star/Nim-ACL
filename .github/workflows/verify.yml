@@ -15,6 +15,10 @@ jobs:
     - name: Install dependencies
       run: pip3 install -U online-judge-verify-helper
 
+    - run: |
+        mv src/atcoder ./
+        rm -rf src
+
     # required only if you want to verify Nim code
     - name: Cache choosenim
       id: cache-choosenim

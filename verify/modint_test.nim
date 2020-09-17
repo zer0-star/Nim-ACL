@@ -1,6 +1,6 @@
 # verify-helper: PROBLEM https://yukicoder.me/problems/no/741
 
-include src/nim_acl/modint
+include atcoder/modint
 
 import std/strutils, std/sequtils, std/math
 

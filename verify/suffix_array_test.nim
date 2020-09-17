@@ -1,7 +1,7 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/suffixarray
 
-import src/nim_acl/header
-import src/nim_acl/string
+import atcoder/header
+import atcoder/string
 
 import std/strutils
 

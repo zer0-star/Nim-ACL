@@ -1,7 +1,7 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/scc
 
-include src/nim_acl/header
-include src/nim_acl/scc
+include atcoder/header
+include atcoder/scc
 
 block:
   let N, M = nextInt()

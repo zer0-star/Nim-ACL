@@ -1,7 +1,7 @@
 # Topological Sort {{{
 when not declared ATCODER_TOPOLOGICAL_SORT_HPP:
   const ATCODER_TOPOLOGICAL_SORT_HPP* = 1
-  import "src/nim_acl/extra/graph/template"
+  import "atcoder/extra/graph/template"
   proc topologicalSort*(g:Graph[int]):seq[int] =
     let N = g.len
     var deg = newSeq[int](N)
