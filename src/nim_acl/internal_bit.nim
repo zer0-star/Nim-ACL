@@ -1,6 +1,6 @@
 when not declared ATCODER_INTERNAL_BITOP_HPP:
   const ATCODER_INTERNAL_BITOP_HPP* = 1
-  import bitops
+  import std/bitops
 
 #ifdef _MSC_VER
 #include <intrin.h>

@@ -1,9 +1,8 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/range_affine_range_sum
-
-include src/nim_acl/modint
+import src/nim_acl/modint
 import src/nim_acl/header, src/nim_acl/extra/structure/universal_segtree
 
-import sequtils
+import std/sequtils
 
 const Mod = 998244353
 type mint = StaticModInt[Mod]

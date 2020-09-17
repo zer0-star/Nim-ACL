@@ -3,8 +3,6 @@
 include src/nim_acl/header
 include src/nim_acl/twosat
 
-import sequtils, strutils, sugar
-
 block:
   let
     p, cnf = nextString() # dummy

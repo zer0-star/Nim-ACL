@@ -1,12 +1,12 @@
 when not declared ATCODER_INTERNAL_SCC_HPP:
   const ATCODER_INTERNAL_SCC_HPP* = 1
   
-  import sequtils
+  import std/sequtils
   
   type csr[E] = object
     start:seq[int]
     elist:seq[E]
-  proc initCsr[E](n:int, edges:seq[(int,E)]):auto =
+  proc initCsr*[E](n:int, edges:seq[(int,E)]):auto =
     var
       start = newSeq[int](n + 1)
       elist = newSeq[E](edges.len)
@@ -20,7 +20,7 @@ when not declared ATCODER_INTERNAL_SCC_HPP:
       counter[e[0]].inc
     return csr[E](start:start, elist:elist)
   
-  type edge = object
+  type edge* = object
     dst:int
   # Reference:
   # R. Tarjan,

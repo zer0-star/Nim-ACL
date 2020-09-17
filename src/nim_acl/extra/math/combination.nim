@@ -1,7 +1,6 @@
 # combination {{{
 when not declared ATCODER_COMBINATION_HPP:
   const ATCODER_COMBINATION_HPP* = 1
-  import sequtils
   import src/nim_acl/extra/math/element_concepts
 
   type Combination*[T] = object

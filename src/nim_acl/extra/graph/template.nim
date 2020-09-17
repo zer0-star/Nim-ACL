@@ -1,7 +1,7 @@
 # Graph {{{
 when not declared ATCODER_GRAPH_TEMPLATE_HPP:
   const ATCODER_GRAPH_TEMPLATE_HPP* = 1
-  import sequtils
+  import std/sequtils
   
   type
     Edge*[T] = object

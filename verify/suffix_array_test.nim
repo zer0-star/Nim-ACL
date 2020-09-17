@@ -3,7 +3,7 @@
 import src/nim_acl/header
 import src/nim_acl/string
 
-import sequtils, strutils, sugar
+import std/strutils
 
 let S = nextString()
 echo S.suffixarray().join(" ")

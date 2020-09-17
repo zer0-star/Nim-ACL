@@ -1,7 +1,7 @@
 when not declared ATCODER_MINCOSTFLOW_HPP:
   const ATCODER_MINCOSTFLOW_HPP* = 1
 
-  import heapqueue, sequtils
+  import std/heapqueue, std/sequtils
 
   type edge*[Cap, Cost] = object
     dst, rev:int

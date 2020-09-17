@@ -1,7 +1,7 @@
 when not declared ATCODER_LAZYSEGTREE_HPP:
   const ATCODER_LAZYSEGTREE_HPP* = 1
   
-  import sugar, sequtils, src/nim_acl/internal_bit
+  import std/sugar, std/sequtils, src/nim_acl/internal_bit
   type lazy_segtree*[S,F] = object
     n, size, log:int
     d:seq[S]
@@ -22,19 +22,20 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
     self.lz[k] = self.id()
 
 #  lazy_segtree(int n) : lazy_segtree(std::vector<S>(n, e())) {}
-  proc init_lazy_segtree*[S,F](v:int or seq[S], op:(S,S)->S,e:()->S,mapping:(F,S)->S,composition:(F,F)->F,id:()->F):auto =
+  proc init_lazy_segtree*[S, F](v:int or seq[S], op:(S,S)->S,e:()->S,mapping:(F,S)->S,composition:(F,F)->F,id:()->F):auto =
     when v is int:
-      return init_lazy_segtree[S,F](newSeqWith(v, e()),op,e,mapping,composition,id)
-    let
-      n = v.len
-      log = ceil_pow2(n)
-      size = 1 shl log
-    var d = newSeqWith(2 * size, e())
-    for i in 0..<n:
-      d[size + i] = v[i]
-    result = lazy_segtree[S,F](n:n,log:log,size:size,d:d,lz:newSeqWith(size, id()),op:op,e:e,mapping:mapping,composition:composition,id:id)
-    for i in countdown(size - 1, 1):
-      result.update(i)
+      return init_lazy_segtree(newSeqWith(v, e()),op,e,mapping,composition,id)
+    else:
+      let
+        n = v.len
+        log = ceil_pow2(n)
+        size = 1 shl log
+      var d = newSeqWith(2 * size, e())
+      for i in 0..<n:
+        d[size + i] = v[i]
+      result = lazy_segtree[S,F](n:n,log:log,size:size,d:d,lz:newSeqWith(size, id()),op:op,e:e,mapping:mapping,composition:composition,id:id)
+      for i in countdown(size - 1, 1):
+        result.update(i)
 
   proc set*[ST:lazy_segtree](self: var ST, p:int, x:ST.S) =
     assert p in 0..<self.n

@@ -1,6 +1,6 @@
 #{{{ eratosthenes
 when not declared ATCODER_ERATOSTHENES_HPP:
-  const ATCODER_ERATOSTHENES_HPP = 1
+  const ATCODER_ERATOSTHENES_HPP* = 1
   type Eratosthenes* = object
     pdiv:seq[int]
   

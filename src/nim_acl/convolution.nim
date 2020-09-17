@@ -8,9 +8,8 @@ when not declared ATCODER_CONVOLUTION_HPP:
 #include <cassert>
 #include <type_traits>
 #include <vector>
-  import math
-  import src/nim_acl/internal_math, src/nim_acl/internal_bit
-  include src/nim_acl/modint
+  import std/math
+  import src/nim_acl/internal_math, src/nim_acl/internal_bit, src/nim_acl/modint
   
 #  template <class mint, internal::is_static_modint_t<mint>* = nullptr>
   proc butterfly*[mint:StaticModInt](a:var seq[mint]) =

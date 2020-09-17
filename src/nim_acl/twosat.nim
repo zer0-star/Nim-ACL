@@ -1,5 +1,5 @@
 when not declared ATCODER_TWOSAT_HPP:
-  const ATCODER_TWOSAT_HPP = 1
+  const ATCODER_TWOSAT_HPP* = 1
 
   import src/nim_acl/internal_scc
   
