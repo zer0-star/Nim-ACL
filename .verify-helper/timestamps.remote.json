@@ -8,6 +8,7 @@
 "verify/lazy_segtree_test.nim": "2020-09-17 20:03:53 +0900",
 "verify/lcp_array_test.nim": "2020-09-16 23:07:19 +0900",
 "verify/map_test.nim": "2020-09-16 23:07:19 +0900",
+"verify/modint_test.nim": "2020-09-17 20:03:53 +0900",
 "verify/scc_test.nim": "2020-09-16 23:07:19 +0900",
 "verify/segtree_test.nim": "2020-09-16 23:07:19 +0900",
 "verify/shortest_path_test.nim": "2020-09-16 23:07:19 +0900",
