@@ -15,7 +15,7 @@ when not defined ATCODER_MODINT_HPP:
     return Barrett_of_DynamicModInt.addr
   proc getMod*[T:static[int]](t:typedesc[DynamicModInt[T]]):uint32 {.inline.} =
     (t.getBarrett)[].m.uint32
-  proc setMod*[T:static[int]](t:typedesc[DynamicModInt[T]], M:SomeInteger){.used.} =
+  proc setMod*[T:static[int]](t:typedesc[DynamicModInt[T]], M:SomeInteger){.used inline.} =
     (t.getBarrett)[] = initBarrett(M.uint)
 
   proc `$`*(m: ModInt): string {.inline.} =
@@ -82,8 +82,8 @@ when not defined ATCODER_MODINT_HPP:
     if uint32(m) >= T.umod: uint32(m) -= T.umod
 
   proc `-=`*[T:ModInt](m: var T; n: SomeInteger | T) {.inline.} =
-    uint32(m) += T.umod - T.init(n).uint32
-    if uint32(m) >= T.umod: uint32(m) -= T.umod
+    uint32(m) -= T.init(n).uint32
+    if uint32(m) >= T.umod: uint32(m) += T.umod
 
   proc `*=`*[T:ModInt](m: var T; n: SomeInteger | T) {.inline.} =
     when T is StaticModInt:

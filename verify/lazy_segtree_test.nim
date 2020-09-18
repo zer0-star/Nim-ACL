@@ -1,8 +1,6 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/range_affine_range_sum
 
-include atcoder/modint
-import atcoder/header, atcoder/lazysegtree
-
+import atcoder/header, atcoder/lazysegtree, atcoder/modint
 import std/sequtils
 
 const Mod = 998244353

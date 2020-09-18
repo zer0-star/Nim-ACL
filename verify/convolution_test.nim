@@ -1,7 +1,8 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/convolution_mod
 
-include atcoder/header, atcoder/modint
+import atcoder/header, atcoder/modint
 import atcoder/convolution
+import sequtils, strutils
 
 let N, M = nextInt()
 let a = newSeqWith(N, nextInt())

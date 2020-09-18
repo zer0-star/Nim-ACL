@@ -26,4 +26,4 @@ when not declared ATCODER_TWOSAT_HPP:
       if id[2 * i] == id[2 * i + 1]: return false
       self.answer[i] = id[2 * i] < id[2 * i + 1]
     return true
-#  proc answer*(self: two_sat):auto = self.answer
+  proc answer*(self: two_sat):auto = self.answer
