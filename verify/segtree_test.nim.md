@@ -5,20 +5,20 @@ data:
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
   - icon: ':heavy_check_mark:'
+    path: atcoder/segtree.nim
+    title: atcoder/segtree.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/segtree.nim
+    title: atcoder/segtree.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/segtree.nim
-    title: atcoder/segtree.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/segtree.nim
-    title: atcoder/segtree.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -39,11 +39,11 @@ data:
     \  else:\n    let l, r = nextInt()\n    echo st.prod(l..<r)\n"
   dependsOn:
   - atcoder/internal_bit.nim
+  - atcoder/segtree.nim
+  - atcoder/segtree.nim
+  - atcoder/header.nim
   - atcoder/internal_bit.nim
   - atcoder/header.nim
-  - atcoder/header.nim
-  - atcoder/segtree.nim
-  - atcoder/segtree.nim
   isVerificationFile: true
   path: verify/segtree_test.nim
   requiredBy: []

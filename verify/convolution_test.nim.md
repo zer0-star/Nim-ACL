@@ -2,32 +2,32 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':heavy_check_mark:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/convolution.nim
-    title: atcoder/convolution.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/convolution.nim
     title: atcoder/convolution.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/convolution.nim
+    title: atcoder/convolution.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
@@ -63,15 +63,15 @@ data:
 
     '
   dependsOn:
-  - atcoder/internal_math.nim
   - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
-  - atcoder/convolution.nim
   - atcoder/internal_math.nim
   - atcoder/convolution.nim
+  - atcoder/internal_math.nim
   - atcoder/modint.nim
+  - atcoder/convolution.nim
   - atcoder/modint.nim
   - atcoder/header.nim
+  - atcoder/internal_bit.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/convolution_test.nim

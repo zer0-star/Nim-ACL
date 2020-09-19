@@ -50,8 +50,8 @@ data:
     \ var ST, p:int, x:ST.S) =\n    assert p in 0..<self.n\n    let p = p + self.size\n\
     \    for i in countdown(self.log, 1): self.push(p shr i)\n    self.d[p] = x\n\
     \    for i in 1..self.log: self.update(p shr i)\n\n  proc get*[ST:lazy_segtree](self:\
-    \ ST, p:int):ST.S =\n    assert p in 0..<self.n\n    let p = p + self.size\n \
-    \   for i in countdown(self.log, 1): self.push(p shr i)\n    return self.d[p]\n\
+    \ var ST, p:int):ST.S =\n    assert p in 0..<self.n\n    let p = p + self.size\n\
+    \    for i in countdown(self.log, 1): self.push(p shr i)\n    return self.d[p]\n\
     \n  proc prod*[ST:lazy_segtree](self:var ST, p:Slice[int]):ST.S =\n    var (l,\
     \ r) = (p.a, p.b + 1)\n    assert 0 <= l and l <= r and r <= self.n\n    if l\
     \ == r: return self.e()\n\n    l += self.size\n    r += self.size\n\n    for i\

@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
+    path: atcoder/string.nim
+    title: atcoder/string.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/string.nim
     title: atcoder/string.nim
@@ -11,8 +11,8 @@ data:
     path: atcoder/header.nim
     title: atcoder/header.nim
   - icon: ':heavy_check_mark:'
-    path: atcoder/string.nim
-    title: atcoder/string.nim
+    path: atcoder/header.nim
+    title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -30,10 +30,10 @@ data:
     \ = S.suffixarray()\n  lcp = S.lcp_array(sa)\n  n = S.len\n\nvar ans = n * (n\
     \ + 1) div 2\nfor v in lcp: ans -= v\necho ans\n"
   dependsOn:
-  - atcoder/header.nim
+  - atcoder/string.nim
   - atcoder/string.nim
   - atcoder/header.nim
-  - atcoder/string.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/lcp_array_test.nim
   requiredBy: []

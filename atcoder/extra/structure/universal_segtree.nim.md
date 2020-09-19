@@ -41,20 +41,22 @@ data:
     \  \n  proc update*[ST:segtree](self:var ST, k:int) =\n    self.d[k] = self.op(self.d[2\
     \ * k], self.d[2 * k + 1])\n  proc all_apply*[ST:segtree](self:var ST, k:int,\
     \ f:ST.F) =\n    static: assert ST.hasLazy\n    when ST.hasData:\n      self.d[k]\
-    \ = self.mapping(f, self.d[k])\n    if k < self.size: self.lz[k] = self.composition(f,\
-    \ self.lz[k])\n\n  proc push*[ST:segtree](self: var ST, k:int) =\n    static:\
-    \ assert ST.hasLazy\n    when ST.hasP:\n      let m = self.size shr (k.fastLog2\
-    \ + 1)\n    self.all_apply(2 * k    , when ST.hasP: self.p(self.lz[k], 0..<m \
-    \   ) else: self.lz[k])\n    self.all_apply(2 * k + 1, when ST.hasP: self.p(self.lz[k],\
-    \ m..<m + m) else: self.lz[k])\n    self.lz[k] = self.id()\n\n#  segtree(int n)\
-    \ : segtree(std::vector<S>(n, e())) {}\n  proc init*[ST:segtree](self: var ST,\
-    \ v:int or seq[ST.S] or seq[ST.F]) =\n    when v is int:\n      when ST.hasData:\n\
-    \        self.init(newSeqWith(v, self.e()))\n      else:\n        self.init(newSeqWith(v,\
-    \ self.id()))\n    else:\n      let\n        n = v.len\n        log = ceil_pow2(n)\n\
-    \        size = 1 shl log\n      self.n = n;self.log = log;self.size = size\n\
-    \      when ST.hasLazy:\n        self.lz = newSeqWith(size, self.id())\n     \
-    \ when ST.hasData:\n        self.d = newSeqWith(2 * size, self.e())\n        for\
-    \ i in 0..<n: self.d[size + i] = v[i]\n        for i in countdown(size - 1, 1):\
+    \ = self.mapping(f, self.d[k])\n      if k < self.size: self.lz[k] = self.composition(f,\
+    \ self.lz[k])\n    else:\n      self.lz[k] = self.composition(f, self.lz[k])\n\
+    \n  proc push*[ST:segtree](self: var ST, k:int) =\n    static: assert ST.hasLazy\n\
+    \    when ST.hasP:\n      let m = self.size shr (k.fastLog2 + 1)\n    self.all_apply(2\
+    \ * k    , when ST.hasP: self.p(self.lz[k], 0..<m    ) else: self.lz[k])\n   \
+    \ self.all_apply(2 * k + 1, when ST.hasP: self.p(self.lz[k], m..<m + m) else:\
+    \ self.lz[k])\n    self.lz[k] = self.id()\n\n#  segtree(int n) : segtree(std::vector<S>(n,\
+    \ e())) {}\n  proc init*[ST:segtree](self: var ST, v:int or seq[ST.S] or seq[ST.F])\
+    \ =\n    when v is int:\n      when ST.hasData:\n        self.init(newSeqWith(v,\
+    \ self.e()))\n      else:\n        self.init(newSeqWith(v, self.id()))\n    else:\n\
+    \      let\n        n = v.len\n        log = ceil_pow2(n)\n        size = 1 shl\
+    \ log\n      self.n = n;self.log = log;self.size = size\n      when ST.hasLazy:\n\
+    \        when ST.hasData:\n          self.lz = newSeqWith(size, self.id())\n \
+    \       else:\n          self.lz = newSeqWith(size * 2, self.id())\n      when\
+    \ ST.hasData:\n        self.d = newSeqWith(2 * size, self.e())\n        for i\
+    \ in 0..<n: self.d[size + i] = v[i]\n        for i in countdown(size - 1, 1):\
     \ self.update(i)\n      else:\n        for i in 0..<n: self.lz[size + i] = v[i]\n\
     \        \n  proc init_segtree*[S](v:int or seq[S], op:(S,S)->S, e:()->S):auto\
     \ =\n    result = segtree[S,void,void](op:op,e:e)\n    result.init(v)\n  proc\

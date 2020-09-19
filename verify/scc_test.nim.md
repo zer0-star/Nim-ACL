@@ -5,20 +5,20 @@ data:
     path: atcoder/header.nim
     title: atcoder/header.nim
   - icon: ':heavy_check_mark:'
+    path: atcoder/scc.nim
+    title: atcoder/scc.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/scc.nim
+    title: atcoder/scc.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/internal_scc.nim
+    title: atcoder/internal_scc.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/internal_scc.nim
+    title: atcoder/internal_scc.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/scc.nim
-    title: atcoder/scc.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/scc.nim
-    title: atcoder/scc.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_scc.nim
-    title: atcoder/internal_scc.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_scc.nim
-    title: atcoder/internal_scc.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -38,11 +38,11 @@ data:
     )\n"
   dependsOn:
   - atcoder/header.nim
+  - atcoder/scc.nim
+  - atcoder/scc.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_scc.nim
   - atcoder/header.nim
-  - atcoder/scc.nim
-  - atcoder/scc.nim
-  - atcoder/internal_scc.nim
-  - atcoder/internal_scc.nim
   isVerificationFile: true
   path: verify/scc_test.nim
   requiredBy: []
