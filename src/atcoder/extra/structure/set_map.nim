@@ -35,9 +35,8 @@ when not declared ATCODER_SET_MAP_HPP:
   type anyMap = concept x
     x is OrderedMultiMap or x is OrderedMap
   
-  type SetOrMap = concept x
-    x is OrderedMultiSet | OrderedSet | OrderedMultiMap | OrderedMap
-  
+  type SetOrMap = OrderedMultiSet or OrderedSet or OrderedMultiMap or OrderedMap
+
   template getKey*(self: SetOrMap, t:Node):auto =
     when self.type is anySet: t.key
     else: t.key[0]
@@ -69,12 +68,12 @@ when not declared ATCODER_SET_MAP_HPP:
   proc upper_bound*[T:SetOrMap](self: var T, x:T.K):int =
     self.upper_bound(self.root, x)
   
-  proc kth_element*(self: SetOrMap, t:Node, k:int):auto =
+  proc kth_element*[T:SetOrmap](self: var T, t:Node, k:int):auto =
     if k < self.rbst.count(t.l): return self.kth_element(t.l, k)
     if k == self.rbst.count(t.l): return t.key
     return self.kth_element(t.r, k - self.rbst.count(t.l) - 1)
   
-  proc kth_element*(self: SetOrMap, k:int):auto =
+  proc kth_element*[T:SetOrMap](self: var T, k:int):auto =
     self.kth_element(self.root, k)
   
   proc insert*[K](self: var OrderedMultiSet[K], x:K) =

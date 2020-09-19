@@ -64,7 +64,7 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
   proc count*[RBST:RandomizedBinarySearchTree](self: RBST, t:Node):auto = (if t != nil: t.cnt else: 0)
   proc sum*[RBST:RandomizedBinarySearchTree](self: RBST, t:Node):auto = (if t != nil: t.sum else: self.D0)
   
-  template update*[RBST:RandomizedBinarySearchTree](self: RBST, t:var Node):Node =
+  proc update*[RBST:RandomizedBinarySearchTree](self: RBST, t:var Node):Node {.inline.} =
     t.cnt = self.count(t.l) + self.count(t.r) + 1
     when RBST.isUpdateData:
       t.sum = self.f(self.f(self.sum(t.l), t.key), self.sum(t.r))

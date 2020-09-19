@@ -10,8 +10,8 @@ when not declared ATCODER_INTERNAL_QUEUE_HPP:
   proc len*[T](self:simple_queue[T]):int = self.payload.len - self.pos
   proc empty*[T](self:simple_queue[T]):bool = self.pos == self.payload.len
   proc push*[T](self:var simple_queue[T], t:T) = self.payload.add(t)
-  proc front*[T](self:simple_queue[T]):T = self.payload[pos]
-  proc clear*[T](self:simple_queue[T]) =
+  proc front*[T](self:simple_queue[T]):T = self.payload[self.pos]
+  proc clear*[T](self:var simple_queue[T]) =
     self.payload.setLen(0)
     self.pos = 0;
   proc pop*[T](self:var simple_queue[T]) = self.pos.inc

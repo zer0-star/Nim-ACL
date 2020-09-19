@@ -26,21 +26,21 @@ when not declared ATCODER_MAXFLOW_HPP:
     return m
   
   type edge_info[Cap] = object
-    src, dst:int
-    cap, flow:Cap
+    src*, dst*:int
+    cap*, flow*:Cap
   
   proc get_edge*[Cap](self: mf_graph[Cap], i:int):edge_info[Cap] =
     let m = self.pos.len
     assert i in 0..<m
     let e = self.g[self.pos[i][0]][self.pos[i][1]]
     let re = self.g[e.dst][e.rev]
-    return edge_info[Cap](src:pos[i][0], dst:e.to, cap:e.cap + re.cap, flow:re.cap)
+    return edge_info[Cap](src:self.pos[i][0], dst:e.dst, cap:e.cap + re.cap, flow:re.cap)
 
-  proc edges*[Cap](self: mf_graph[Cap]):seq[edge_info] =
+  proc edges*[Cap](self: mf_graph[Cap]):seq[edge_info[Cap]] =
     let m = self.pos.len
-    result = newSeqOfCap[edge_info](m)
+    result = newSeqOfCap[edge_info[Cap]](m)
     for i in 0..<m:
-      result.add(get_edge(i))
+      result.add(self.get_edge(i))
 
   proc change_edge*[Cap](self: var mf_graph[Cap], i:int, new_cap, new_flow:Cap) =
     let m = self.pos.len
@@ -79,12 +79,16 @@ when not declared ATCODER_MAXFLOW_HPP:
       let level_v = level[v]
       var i = iter[v].addr
       while i[] < self.g[v].len:
-        let e = self.g[v][i[]]
-        if level_v <= level[e.dst] or self.g[e.dst][e.rev].cap == 0: continue
-        let d = self.dfs(e.dst, min(up - result, self.g[e.dst][e.rev].cap))
-        if d <= 0: continue
+        let e = self.g[v][i[]].addr
+        if level_v <= level[e[].dst] or self.g[e[].dst][e[].rev].cap == 0:
+          i[].inc
+          continue
+        let d = self.dfs(e.dst, min(up - result, self.g[e[].dst][e[].rev].cap))
+        if d <= 0:
+          i[].inc
+          continue
         self.g[v][i[]].cap += d
-        self.g[e.dst][e.rev].cap -= d
+        self.g[e[].dst][e[].rev].cap -= d
         result += d
         if result == up: break
         i[].inc

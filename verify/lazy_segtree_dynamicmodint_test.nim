@@ -5,7 +5,7 @@ import atcoder/header, atcoder/lazysegtree
 import std/sequtils
 
 const Mod = 998244353
-type mint = DynamicModInt[2020]
+type mint = DynamicModInt[-1]
 mint.setMod(Mod)
 let n, q = nextInt()
 let a = newSeqWith(n, (mint(nextInt()), 1))

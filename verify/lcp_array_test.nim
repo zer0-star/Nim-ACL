@@ -1,6 +1,6 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/number_of_substrings
 
-include atcoder/header
+import atcoder/header
 import atcoder/string
 
 let

@@ -1,7 +1,7 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/zalgorithm
 
 include atcoder/header
-include atcoder/string
+import atcoder/string
 
 import std/strutils
 

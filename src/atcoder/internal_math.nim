@@ -88,7 +88,7 @@ inline unsigned long long calc_mul(const unsigned long long &a, const unsigned l
 #  
 #  # @param b `1 <= b`
 #  # @return pair(g, x) s.t. g = gcd(a, b), xa = g (mod b), 0 <= x < b/g
-  proc inv_gcd*(a, b:int):(int,int) {.compileTime} =
+  proc inv_gcd*(a, b:int):(int,int) =
     var a = floorMod(a, b)
     if a == 0: return (b, 0)
   

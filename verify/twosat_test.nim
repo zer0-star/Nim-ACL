@@ -1,7 +1,7 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/two_sat
 
 include atcoder/header
-include atcoder/twosat
+import atcoder/twosat
 
 block:
   let
