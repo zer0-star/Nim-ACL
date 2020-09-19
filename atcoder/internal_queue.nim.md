@@ -23,9 +23,9 @@ data:
     # TODO\n#      void reserve(int n) { payload.reserve(n); }\n  proc len*[T](self:simple_queue[T]):int\
     \ = self.payload.len - self.pos\n  proc empty*[T](self:simple_queue[T]):bool =\
     \ self.pos == self.payload.len\n  proc push*[T](self:var simple_queue[T], t:T)\
-    \ = self.payload.add(t)\n  proc front*[T](self:simple_queue[T]):T = self.payload[pos]\n\
-    \  proc clear*[T](self:simple_queue[T]) =\n    self.payload.setLen(0)\n    self.pos\
-    \ = 0;\n  proc pop*[T](self:var simple_queue[T]) = self.pos.inc\n"
+    \ = self.payload.add(t)\n  proc front*[T](self:simple_queue[T]):T = self.payload[self.pos]\n\
+    \  proc clear*[T](self:var simple_queue[T]) =\n    self.payload.setLen(0)\n  \
+    \  self.pos = 0;\n  proc pop*[T](self:var simple_queue[T]) = self.pos.inc\n"
   dependsOn: []
   isVerificationFile: false
   path: atcoder/internal_queue.nim

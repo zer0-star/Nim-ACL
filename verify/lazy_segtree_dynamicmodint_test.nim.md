@@ -5,32 +5,32 @@ data:
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
   - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
   - icon: ':heavy_check_mark:'
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/lazysegtree.nim
+    title: atcoder/lazysegtree.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/lazysegtree.nim
     title: atcoder/lazysegtree.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/lazysegtree.nim
-    title: atcoder/lazysegtree.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/modint.nim
-    title: atcoder/modint.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/modint.nim
-    title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -45,7 +45,7 @@ data:
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/range_affine_range_sum\n\
     import atcoder/modint\nimport atcoder/header, atcoder/lazysegtree\n\nimport std/sequtils\n\
-    \nconst Mod = 998244353\ntype mint = DynamicModInt[2020]\nmint.setMod(Mod)\nlet\
+    \nconst Mod = 998244353\ntype mint = DynamicModInt[-1]\nmint.setMod(Mod)\nlet\
     \ n, q = nextInt()\nlet a = newSeqWith(n, (mint(nextInt()), 1))\n\ntype S = tuple[a:mint,\
     \ size:int]\ntype F = tuple[a:mint, b:mint]\n\nproc op(l, r:S):S = (l.a + r.a,\
     \ l.size + r.size)\nproc e():S = (mint(0), 0)\nproc mapping(l:F, r:S):S = (r.a\
@@ -56,19 +56,19 @@ data:
     \  else:\n    let l, r = nextInt()\n    echo seg.prod(l..<r)[0]\n"
   dependsOn:
   - atcoder/internal_math.nim
-  - atcoder/header.nim
+  - atcoder/internal_bit.nim
+  - atcoder/internal_bit.nim
   - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/modint.nim
+  - atcoder/lazysegtree.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/lazysegtree.nim
-  - atcoder/internal_bit.nim
-  - atcoder/lazysegtree.nim
-  - atcoder/modint.nim
-  - atcoder/internal_bit.nim
-  - atcoder/modint.nim
   isVerificationFile: true
   path: verify/lazy_segtree_dynamicmodint_test.nim
   requiredBy: []
-  timestamp: '2020-09-18 00:06:18+09:00'
+  timestamp: '2020-09-18 23:26:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/lazy_segtree_dynamicmodint_test.nim

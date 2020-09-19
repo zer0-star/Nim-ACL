@@ -5,20 +5,20 @@ data:
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
   - icon: ':heavy_check_mark:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
   - icon: ':heavy_check_mark:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
-  - icon: ':heavy_check_mark:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -113,11 +113,11 @@ data:
     \ -= offset[diff mod 5]\n      c[i] = x.int\n    return c\n"
   dependsOn:
   - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
+  - atcoder/internal_bit.nim
   - atcoder/internal_math.nim
-  - atcoder/internal_bit.nim
   - atcoder/modint.nim
   - atcoder/modint.nim
-  - atcoder/internal_bit.nim
   isVerificationFile: false
   path: atcoder/convolution.nim
   requiredBy: []

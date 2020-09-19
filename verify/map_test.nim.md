@@ -5,14 +5,14 @@ data:
     path: atcoder/extra/structure/randomized_binary_search_tree.nim
     title: atcoder/extra/structure/randomized_binary_search_tree.nim
   - icon: ':heavy_check_mark:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/randomized_binary_search_tree.nim
     title: atcoder/extra/structure/randomized_binary_search_tree.nim
@@ -32,22 +32,22 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/associative_array\n\
-    \ninclude atcoder/header\ninclude atcoder/extra/structure/set_map\n\nproc main()\
+    \nimport atcoder/header\nimport atcoder/extra/structure/set_map\n\nproc main()\
     \ =\n  let Q = nextInt()\n  var a = initOrderedMap[int,int]()\n  for q in 0..<Q:\n\
     \    let t = nextInt()\n    if t == 0:\n      let k, v = nextInt()\n      a[k]\
     \ = v\n    else:\n      let k = nextInt()\n      if k in a: echo a[k]\n      else:\
     \ echo 0\n\nmain()\n"
   dependsOn:
   - atcoder/extra/structure/randomized_binary_search_tree.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
   - atcoder/extra/structure/set_map.nim
-  - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/extra/structure/randomized_binary_search_tree.nim
   - atcoder/extra/structure/set_map.nim
   isVerificationFile: true
   path: verify/map_test.nim
   requiredBy: []
-  timestamp: '2020-09-18 00:06:18+09:00'
+  timestamp: '2020-09-18 23:26:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/map_test.nim

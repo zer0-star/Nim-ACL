@@ -58,10 +58,10 @@ data:
     \ template clone*[D,L,updateData](t:Node[D, L, updateData]):auto = t\n  \n  proc\
     \ count*[RBST:RandomizedBinarySearchTree](self: RBST, t:Node):auto = (if t !=\
     \ nil: t.cnt else: 0)\n  proc sum*[RBST:RandomizedBinarySearchTree](self: RBST,\
-    \ t:Node):auto = (if t != nil: t.sum else: self.D0)\n  \n  template update*[RBST:RandomizedBinarySearchTree](self:\
-    \ RBST, t:var Node):Node =\n    t.cnt = self.count(t.l) + self.count(t.r) + 1\n\
-    \    when RBST.isUpdateData:\n      t.sum = self.f(self.f(self.sum(t.l), t.key),\
-    \ self.sum(t.r))\n    t\n  \n  template propagate*[RBST:RandomizedBinarySearchTree](self:\
+    \ t:Node):auto = (if t != nil: t.sum else: self.D0)\n  \n  proc update*[RBST:RandomizedBinarySearchTree](self:\
+    \ RBST, t:var Node):Node {.inline.} =\n    t.cnt = self.count(t.l) + self.count(t.r)\
+    \ + 1\n    when RBST.isUpdateData:\n      t.sum = self.f(self.f(self.sum(t.l),\
+    \ t.key), self.sum(t.r))\n    t\n  \n  template propagate*[RBST:RandomizedBinarySearchTree](self:\
     \ var RBST, t:Node):auto =\n    when RBST.hasLazy:\n      t = clone(t)\n     \
     \ if t.lazy != self.L0:\n        when RBST.hasP:\n          var\n            li\
     \ = 0\n            ri = 0\n        if t.l != nil:\n          t.l = clone(t.l)\n\

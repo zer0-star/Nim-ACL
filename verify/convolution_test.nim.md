@@ -5,32 +5,32 @@ data:
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
   - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/convolution.nim
+    title: atcoder/convolution.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
   - icon: ':heavy_check_mark:'
+    path: atcoder/convolution.nim
+    title: atcoder/convolution.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   - icon: ':heavy_check_mark:'
-    path: atcoder/convolution.nim
-    title: atcoder/convolution.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/modint.nim
-    title: atcoder/modint.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/convolution.nim
-    title: atcoder/convolution.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/modint.nim
-    title: atcoder/modint.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
+    path: atcoder/header.nim
+    title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -46,9 +46,11 @@ data:
   code: '# verify-helper: PROBLEM https://judge.yosupo.jp/problem/convolution_mod
 
 
-    include atcoder/header, atcoder/modint
+    import atcoder/header, atcoder/modint
 
     import atcoder/convolution
+
+    import sequtils, strutils
 
 
     let N, M = nextInt()
@@ -62,19 +64,19 @@ data:
     '
   dependsOn:
   - atcoder/internal_math.nim
-  - atcoder/header.nim
+  - atcoder/internal_bit.nim
+  - atcoder/internal_bit.nim
+  - atcoder/convolution.nim
   - atcoder/internal_math.nim
+  - atcoder/convolution.nim
+  - atcoder/modint.nim
+  - atcoder/modint.nim
   - atcoder/header.nim
-  - atcoder/convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/modint.nim
-  - atcoder/convolution.nim
-  - atcoder/modint.nim
-  - atcoder/internal_bit.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/convolution_test.nim
   requiredBy: []
-  timestamp: '2020-09-18 00:06:18+09:00'
+  timestamp: '2020-09-18 23:26:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/convolution_test.nim

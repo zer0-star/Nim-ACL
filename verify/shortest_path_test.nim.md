@@ -14,11 +14,11 @@ data:
     path: atcoder/header.nim
     title: atcoder/header.nim
   - icon: ':heavy_check_mark:'
-    path: atcoder/extra/graph/dijkstra.nim
-    title: atcoder/extra/graph/dijkstra.nim
-  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/template.nim
     title: atcoder/extra/graph/template.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/dijkstra.nim
+    title: atcoder/extra/graph/dijkstra.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -45,8 +45,8 @@ data:
   - atcoder/extra/graph/template.nim
   - atcoder/header.nim
   - atcoder/header.nim
-  - atcoder/extra/graph/dijkstra.nim
   - atcoder/extra/graph/template.nim
+  - atcoder/extra/graph/dijkstra.nim
   isVerificationFile: true
   path: verify/shortest_path_test.nim
   requiredBy: []

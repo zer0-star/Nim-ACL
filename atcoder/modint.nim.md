@@ -60,8 +60,8 @@ data:
     \ set = false, M:SomeInteger = 0.uint32):ptr Barrett =\n    var Barrett_of_DynamicModInt\
     \ {.global.} :Barrett\n    return Barrett_of_DynamicModInt.addr\n  proc getMod*[T:static[int]](t:typedesc[DynamicModInt[T]]):uint32\
     \ {.inline.} =\n    (t.getBarrett)[].m.uint32\n  proc setMod*[T:static[int]](t:typedesc[DynamicModInt[T]],\
-    \ M:SomeInteger){.used.} =\n    (t.getBarrett)[] = initBarrett(M.uint)\n\n  proc\
-    \ `$`*(m: ModInt): string {.inline.} =\n    $m.int\n\n  template umod*[T:ModInt](self:\
+    \ M:SomeInteger){.used inline.} =\n    (t.getBarrett)[] = initBarrett(M.uint)\n\
+    \n  proc `$`*(m: ModInt): string {.inline.} =\n    $m.int\n\n  template umod*[T:ModInt](self:\
     \ typedesc[T]):uint32 =\n    when T is StaticModInt:\n      T.M\n    elif T is\
     \ DynamicModInt:\n      T.getMod()\n    else:\n      static: assert false\n  template\
     \ umod*[T:ModInt](self: T):uint32 = self.type.umod\n\n  proc init*[T:ModInt](t:typedesc[T],\
@@ -84,11 +84,11 @@ data:
     \    proc name*[T:ModInt](l: T; r: SomeInteger): auto {.inline.} =\n      body\n\
     \n  proc `+=`*[T:ModInt](m: var T; n: SomeInteger | T) {.inline.} =\n    uint32(m)\
     \ += T.init(n).uint32\n    if uint32(m) >= T.umod: uint32(m) -= T.umod\n\n  proc\
-    \ `-=`*[T:ModInt](m: var T; n: SomeInteger | T) {.inline.} =\n    uint32(m) +=\
-    \ T.umod - T.init(n).uint32\n    if uint32(m) >= T.umod: uint32(m) -= T.umod\n\
-    \n  proc `*=`*[T:ModInt](m: var T; n: SomeInteger | T) {.inline.} =\n    when\
-    \ T is StaticModInt:\n      uint32(m) = (uint(m) * T.init(n).uint mod T.umod()).uint32\n\
-    \    elif T is DynamicModInt:\n      uint32(m) = T.getBarrett[].mul(uint(m), T.init(n).uint).uint32\n\
+    \ `-=`*[T:ModInt](m: var T; n: SomeInteger | T) {.inline.} =\n    uint32(m) -=\
+    \ T.init(n).uint32\n    if uint32(m) >= T.umod: uint32(m) += T.umod\n\n  proc\
+    \ `*=`*[T:ModInt](m: var T; n: SomeInteger | T) {.inline.} =\n    when T is StaticModInt:\n\
+    \      uint32(m) = (uint(m) * T.init(n).uint mod T.umod()).uint32\n    elif T\
+    \ is DynamicModInt:\n      uint32(m) = T.getBarrett[].mul(uint(m), T.init(n).uint).uint32\n\
     \    else:\n      static: assert false\n\n  proc `/=`*[T:ModInt](m: var T; n:\
     \ SomeInteger | T) {.inline.} =\n    uint32(m) = (uint(m) * T.init(n).inv().uint\
     \ mod T.umod).uint32\n\n  generateDefinitions(`+`, m, n):\n    result = T.init(m)\n\

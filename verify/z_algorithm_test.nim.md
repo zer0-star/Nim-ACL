@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/string.nim
     title: atcoder/string.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/string.nim
     title: atcoder/string.nim
@@ -30,7 +30,7 @@ data:
 
     include atcoder/header
 
-    include atcoder/string
+    import atcoder/string
 
 
     import std/strutils
@@ -42,14 +42,14 @@ data:
 
     '
   dependsOn:
+  - atcoder/header.nim
+  - atcoder/header.nim
   - atcoder/string.nim
-  - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/string.nim
   isVerificationFile: true
   path: verify/z_algorithm_test.nim
   requiredBy: []
-  timestamp: '2020-09-18 00:06:18+09:00'
+  timestamp: '2020-09-18 23:26:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/z_algorithm_test.nim

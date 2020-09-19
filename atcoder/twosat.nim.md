@@ -34,7 +34,7 @@ data:
     \ g: 1 else: 0))\n    self.scc.add_edge(2 * j + (if g: 0 else: 1), 2 * i + (if\
     \ f: 1 else: 0))\n  proc satisfiable*(self:var two_sat):bool =\n    let id = self.scc.scc_ids()[1]\n\
     \    for i in 0..<self.n:\n      if id[2 * i] == id[2 * i + 1]: return false\n\
-    \      self.answer[i] = id[2 * i] < id[2 * i + 1]\n    return true\n#  proc answer*(self:\
+    \      self.answer[i] = id[2 * i] < id[2 * i + 1]\n    return true\n  proc answer*(self:\
     \ two_sat):auto = self.answer\n"
   dependsOn:
   - atcoder/internal_scc.nim

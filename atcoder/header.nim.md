@@ -22,6 +22,12 @@ data:
     path: verify/z_algorithm_test.nim
     title: verify/z_algorithm_test.nim
   - icon: ':heavy_check_mark:'
+    path: verify/crt_test.nim
+    title: verify/crt_test.nim
+  - icon: ':heavy_check_mark:'
+    path: verify/crt_test.nim
+    title: verify/crt_test.nim
+  - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_dynamicmodint_test.nim
     title: verify/lazy_segtree_dynamicmodint_test.nim
   - icon: ':heavy_check_mark:'
@@ -127,6 +133,8 @@ data:
   - verify/scc_test.nim
   - verify/z_algorithm_test.nim
   - verify/z_algorithm_test.nim
+  - verify/crt_test.nim
+  - verify/crt_test.nim
   - verify/lazy_segtree_dynamicmodint_test.nim
   - verify/lazy_segtree_dynamicmodint_test.nim
   - verify/segtree_test.nim

@@ -28,6 +28,12 @@ data:
     path: verify/lazy_segtree_test.nim
     title: verify/lazy_segtree_test.nim
   - icon: ':heavy_check_mark:'
+    path: verify/crt_test.nim
+    title: verify/crt_test.nim
+  - icon: ':heavy_check_mark:'
+    path: verify/crt_test.nim
+    title: verify/crt_test.nim
+  - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_dynamicmodint_test.nim
     title: verify/lazy_segtree_dynamicmodint_test.nim
   - icon: ':heavy_check_mark:'
@@ -101,17 +107,17 @@ data:
     \ return false\n    return true\n  proc is_prime*[n:static[int]]():bool {.compileTime.}\
     \ = is_prime_constexpr(n)\n#  \n#  # @param b `1 <= b`\n#  # @return pair(g, x)\
     \ s.t. g = gcd(a, b), xa = g (mod b), 0 <= x < b/g\n  proc inv_gcd*(a, b:int):(int,int)\
-    \ {.compileTime} =\n    var a = floorMod(a, b)\n    if a == 0: return (b, 0)\n\
-    \  \n    # Contracts:\n    # [1] s - m0 * a = 0 (mod b)\n    # [2] t - m1 * a\
-    \ = 0 (mod b)\n    # [3] s * |m1| + t * |m0| <= b\n    var\n      s = b\n    \
-    \  t = a\n      m0 = 0\n      m1 = 1\n  \n    while t != 0:\n      var u = s div\
-    \ t\n      s -= t * u;\n      m0 -= m1 * u;  # |m1 * u| <= |m1| * s <= b\n  \n\
-    \      # [3]:\n      # (s - t * u) * |m1| + t * |m0 - m1 * u|\n      # <= s *\
-    \ |m1| - t * u * |m1| + t * (|m0| + |m1| * u)\n      # = s * |m1| + t * |m0| <=\
-    \ b\n  \n      var tmp = s\n      s = t;t = tmp;\n      tmp = m0;m0 = m1;m1 =\
-    \ tmp;\n    # by [3]: |m0| <= b/g\n    # by g != b: |m0| < b/g\n    if m0 < 0:\
-    \ m0 += b div s\n    return (s, m0)\n\n  # Compile time primitive root\n  # @param\
-    \ m must be prime\n  # @return primitive root (and minimum in now)\n  proc primitive_root_constexpr*(m:int):int\
+    \ =\n    var a = floorMod(a, b)\n    if a == 0: return (b, 0)\n  \n    # Contracts:\n\
+    \    # [1] s - m0 * a = 0 (mod b)\n    # [2] t - m1 * a = 0 (mod b)\n    # [3]\
+    \ s * |m1| + t * |m0| <= b\n    var\n      s = b\n      t = a\n      m0 = 0\n\
+    \      m1 = 1\n  \n    while t != 0:\n      var u = s div t\n      s -= t * u;\n\
+    \      m0 -= m1 * u;  # |m1 * u| <= |m1| * s <= b\n  \n      # [3]:\n      # (s\
+    \ - t * u) * |m1| + t * |m0 - m1 * u|\n      # <= s * |m1| - t * u * |m1| + t\
+    \ * (|m0| + |m1| * u)\n      # = s * |m1| + t * |m0| <= b\n  \n      var tmp =\
+    \ s\n      s = t;t = tmp;\n      tmp = m0;m0 = m1;m1 = tmp;\n    # by [3]: |m0|\
+    \ <= b/g\n    # by g != b: |m0| < b/g\n    if m0 < 0: m0 += b div s\n    return\
+    \ (s, m0)\n\n  # Compile time primitive root\n  # @param m must be prime\n  #\
+    \ @return primitive root (and minimum in now)\n  proc primitive_root_constexpr*(m:int):int\
     \ {.compileTime.} =\n    if m == 2: return 1\n    if m == 167772161: return 3\n\
     \    if m == 469762049: return 3\n    if m == 754974721: return 11\n    if m ==\
     \ 998244353: return 3\n    var divs:array[20, int]\n    divs[0] = 2\n    var cnt\
@@ -138,6 +144,8 @@ data:
   verifiedWith:
   - verify/lazy_segtree_test.nim
   - verify/lazy_segtree_test.nim
+  - verify/crt_test.nim
+  - verify/crt_test.nim
   - verify/lazy_segtree_dynamicmodint_test.nim
   - verify/lazy_segtree_dynamicmodint_test.nim
   - verify/convolution_test.nim

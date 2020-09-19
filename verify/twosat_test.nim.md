@@ -2,23 +2,23 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/twosat.nim
+    title: atcoder/twosat.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/twosat.nim
     title: atcoder/twosat.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
   - icon: ':heavy_check_mark:'
-    path: atcoder/twosat.nim
-    title: atcoder/twosat.nim
-  - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -32,7 +32,7 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/two_sat\n\ninclude\
-    \ atcoder/header\ninclude atcoder/twosat\n\nblock:\n  let\n    p, cnf = nextString()\
+    \ atcoder/header\nimport atcoder/twosat\n\nblock:\n  let\n    p, cnf = nextString()\
     \ # dummy\n    N, M = nextInt()\n  var ts = initTwoSat(N)\n  for _ in 0..<M:\n\
     \    var a, b = nextInt()\n    let zero = nextString() # summy\n    var f, g:bool\n\
     \    if a > 0:\n      f = true\n    else:\n      f = false\n      a *= -1\n  \
@@ -42,16 +42,16 @@ data:
     \  if a:\n        stdout.write i + 1, \" \"\n      else:\n        stdout.write\
     \ -(i + 1), \" \"\n    echo 0\n  else:\n    echo \"s UNSATISFIABLE\"\n"
   dependsOn:
+  - atcoder/header.nim
+  - atcoder/twosat.nim
+  - atcoder/header.nim
   - atcoder/twosat.nim
   - atcoder/internal_scc.nim
-  - atcoder/twosat.nim
   - atcoder/internal_scc.nim
-  - atcoder/header.nim
-  - atcoder/header.nim
   isVerificationFile: true
   path: verify/twosat_test.nim
   requiredBy: []
-  timestamp: '2020-09-18 00:06:18+09:00'
+  timestamp: '2020-09-18 23:26:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/twosat_test.nim

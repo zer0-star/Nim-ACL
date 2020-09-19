@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
   - icon: ':heavy_check_mark:'
@@ -10,12 +16,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
@@ -39,11 +39,11 @@ data:
     \   let a = st.get(p)\n    st.set(p, a + x)\n  else:\n    let l, r = nextInt()\n\
     \    echo st.prod(l..<r)\n"
   dependsOn:
+  - atcoder/internal_bit.nim
+  - atcoder/internal_bit.nim
   - atcoder/extra/structure/universal_segtree.nim
   - atcoder/header.nim
   - atcoder/header.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
   - atcoder/extra/structure/universal_segtree.nim
   isVerificationFile: true
   path: verify/extra_segtree_test.nim

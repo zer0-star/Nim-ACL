@@ -26,13 +26,13 @@ data:
     \ in 0..<self.n\n    assert dst in 0..<self.n\n    assert 0 <= cap\n    let m\
     \ = self.pos.len\n    self.pos.add((src, self.g[src].len))\n    self.g[src].add(edge[Cap](dst:dst,\
     \ rev:self.g[dst].len, cap:cap))\n    self.g[dst].add(edge[Cap](dst:src, rev:self.g[src].len\
-    \ - 1, cap:0))\n    return m\n  \n  type edge_info[Cap] = object\n    src, dst:int\n\
-    \    cap, flow:Cap\n  \n  proc get_edge*[Cap](self: mf_graph[Cap], i:int):edge_info[Cap]\
+    \ - 1, cap:0))\n    return m\n  \n  type edge_info[Cap] = object\n    src*, dst*:int\n\
+    \    cap*, flow*:Cap\n  \n  proc get_edge*[Cap](self: mf_graph[Cap], i:int):edge_info[Cap]\
     \ =\n    let m = self.pos.len\n    assert i in 0..<m\n    let e = self.g[self.pos[i][0]][self.pos[i][1]]\n\
-    \    let re = self.g[e.dst][e.rev]\n    return edge_info[Cap](src:pos[i][0], dst:e.to,\
-    \ cap:e.cap + re.cap, flow:re.cap)\n\n  proc edges*[Cap](self: mf_graph[Cap]):seq[edge_info]\
-    \ =\n    let m = self.pos.len\n    result = newSeqOfCap[edge_info](m)\n    for\
-    \ i in 0..<m:\n      result.add(get_edge(i))\n\n  proc change_edge*[Cap](self:\
+    \    let re = self.g[e.dst][e.rev]\n    return edge_info[Cap](src:self.pos[i][0],\
+    \ dst:e.dst, cap:e.cap + re.cap, flow:re.cap)\n\n  proc edges*[Cap](self: mf_graph[Cap]):seq[edge_info[Cap]]\
+    \ =\n    let m = self.pos.len\n    result = newSeqOfCap[edge_info[Cap]](m)\n \
+    \   for i in 0..<m:\n      result.add(self.get_edge(i))\n\n  proc change_edge*[Cap](self:\
     \ var mf_graph[Cap], i:int, new_cap, new_flow:Cap) =\n    let m = self.pos.len\n\
     \    assert i in 0..<m\n    assert new_flow in 0..new_cap\n    var e = self.g[self.pos[i][0]][self.pos[i][1]].addr\n\
     \    var re = self.g[e[].dst][e[].rev].addr\n    e[].cap = new_cap - new_flow\n\
@@ -47,9 +47,10 @@ data:
     \      que.push(e.dst)\n    proc dfs(self: var mf_graph[Cap], v:int, up:Cap):Cap\
     \ =\n      if v == s: return up\n      result = Cap(0)\n      let level_v = level[v]\n\
     \      var i = iter[v].addr\n      while i[] < self.g[v].len:\n        let e =\
-    \ self.g[v][i[]]\n        if level_v <= level[e.dst] or self.g[e.dst][e.rev].cap\
-    \ == 0: continue\n        let d = self.dfs(e.dst, min(up - result, self.g[e.dst][e.rev].cap))\n\
-    \        if d <= 0: continue\n        self.g[v][i[]].cap += d\n        self.g[e.dst][e.rev].cap\
+    \ self.g[v][i[]].addr\n        if level_v <= level[e[].dst] or self.g[e[].dst][e[].rev].cap\
+    \ == 0:\n          i[].inc\n          continue\n        let d = self.dfs(e.dst,\
+    \ min(up - result, self.g[e[].dst][e[].rev].cap))\n        if d <= 0:\n      \
+    \    i[].inc\n          continue\n        self.g[v][i[]].cap += d\n        self.g[e[].dst][e[].rev].cap\
     \ -= d\n        result += d\n        if result == up: break\n        i[].inc\n\
     \n    var flow = Cap(0)\n    while flow < flow_limit:\n      self.bfs()\n    \
     \  if level[t] == -1: break\n      iter.fill(0)\n      while flow < flow_limit:\n\

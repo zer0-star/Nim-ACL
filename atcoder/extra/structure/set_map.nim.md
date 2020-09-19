@@ -40,13 +40,12 @@ data:
     \ initRandomizedBinarySearchTree[(K, V)]()\n    result.root = nil\n  \n  #RBST(sz,\
     \ [&](T x, T y) { return x; }, T()) {}\n  \n  type anySet = concept x\n    x is\
     \ OrderedMultiSet or x is OrderedSet\n  type anyMap = concept x\n    x is OrderedMultiMap\
-    \ or x is OrderedMap\n  \n  type SetOrMap = concept x\n    x is OrderedMultiSet\
-    \ | OrderedSet | OrderedMultiMap | OrderedMap\n  \n  template getKey*(self: SetOrMap,\
-    \ t:Node):auto =\n    when self.type is anySet: t.key\n    else: t.key[0]\n  \n\
-    \  proc lower_bound*[T:SetOrMap](self: var T, t:var Node, x:T.K):int =\n    if\
-    \ t == nil: return 0\n    if x <= self.getKey(t): return self.lower_bound(t.l,\
-    \ x)\n    return self.lower_bound(t.r, x) + self.rbst.count(t.l) + 1\n  \n  proc\
-    \ lower_bound*[T:SetOrMap](self:var T, x:T.K):int =\n    self.lower_bound(self.root,\
+    \ or x is OrderedMap\n  \n  type SetOrMap = OrderedMultiSet or OrderedSet or OrderedMultiMap\
+    \ or OrderedMap\n\n  template getKey*(self: SetOrMap, t:Node):auto =\n    when\
+    \ self.type is anySet: t.key\n    else: t.key[0]\n  \n  proc lower_bound*[T:SetOrMap](self:\
+    \ var T, t:var Node, x:T.K):int =\n    if t == nil: return 0\n    if x <= self.getKey(t):\
+    \ return self.lower_bound(t.l, x)\n    return self.lower_bound(t.r, x) + self.rbst.count(t.l)\
+    \ + 1\n  \n  proc lower_bound*[T:SetOrMap](self:var T, x:T.K):int =\n    self.lower_bound(self.root,\
     \ x)\n  \n  proc upper_bound*[T:SetOrMap](self: var T, t:var Node, x:T.K):int\
     \ =\n    if t == nil: return 0\n    if x < self.getKey(t): return self.upper_bound(t.l,\
     \ x)\n    return self.upper_bound(t.r, x) + self.rbst.count(t.l) + 1\n  \n  proc\
@@ -55,13 +54,13 @@ data:
     \ return self.find(t.r, x)\n    else: return t\n  proc find*[T:SetOrMap](self:var\
     \ T, x:T.K):auto =\n    self.find(self.root, x)\n  \n  proc contains*[T:SetOrMap](self:\
     \ var T, x:T.K):bool =\n    self.find(x) != nil\n  \n  proc upper_bound*[T:SetOrMap](self:\
-    \ var T, x:T.K):int =\n    self.upper_bound(self.root, x)\n  \n  proc kth_element*(self:\
-    \ SetOrMap, t:Node, k:int):auto =\n    if k < self.rbst.count(t.l): return self.kth_element(t.l,\
+    \ var T, x:T.K):int =\n    self.upper_bound(self.root, x)\n  \n  proc kth_element*[T:SetOrmap](self:\
+    \ var T, t:Node, k:int):auto =\n    if k < self.rbst.count(t.l): return self.kth_element(t.l,\
     \ k)\n    if k == self.rbst.count(t.l): return t.key\n    return self.kth_element(t.r,\
-    \ k - self.rbst.count(t.l) - 1)\n  \n  proc kth_element*(self: SetOrMap, k:int):auto\
-    \ =\n    self.kth_element(self.root, k)\n  \n  proc insert*[K](self: var OrderedMultiSet[K],\
-    \ x:K) =\n    self.rbst.insert(self.root, self.lower_bound(x), x)\n  proc insert*[K,\
-    \ V](self: var OrderedMultiMap[K, V], x:(K, V)) =\n    self.rbst.insert(self.root,\
+    \ k - self.rbst.count(t.l) - 1)\n  \n  proc kth_element*[T:SetOrMap](self: var\
+    \ T, k:int):auto =\n    self.kth_element(self.root, k)\n  \n  proc insert*[K](self:\
+    \ var OrderedMultiSet[K], x:K) =\n    self.rbst.insert(self.root, self.lower_bound(x),\
+    \ x)\n  proc insert*[K, V](self: var OrderedMultiMap[K, V], x:(K, V)) =\n    self.rbst.insert(self.root,\
     \ self.lower_bound(x[0]), x)\n  \n  proc count*[T:SetOrMap](self: var T, x:T.K):int\
     \ =\n    return self.upper_bound(x) - self.lower_bound(x)\n  \n  proc erase_key*[T:SetOrMap](self:\
     \ var T, x:T.K) =\n    if self.count(x) == 0: return\n    self.rbst.erase(self.root,\

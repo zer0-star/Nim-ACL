@@ -116,6 +116,9 @@ data:
       path: verify/convolution_test.nim
       title: verify/convolution_test.nim
     - icon: ':heavy_check_mark:'
+      path: verify/crt_test.nim
+      title: verify/crt_test.nim
+    - icon: ':heavy_check_mark:'
       path: verify/dsu_test.nim
       title: verify/dsu_test.nim
     - icon: ':heavy_check_mark:'
