@@ -63,19 +63,27 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
         for i in countdown(size - 1, 1): self.update(i)
       else:
         for i in 0..<n: self.lz[size + i] = v[i]
-        
-  proc init_segtree*[S](v:int or seq[S], op:(S,S)->S, e:()->S):auto =
+
+  proc init_segtree*[S](v:seq[S], op:(S,S)->S, e:()->S):auto =
     result = segtree[S,void,void](op:op,e:e)
     result.init(v)
-  proc init_dual_segtree*[F](v:int or seq[F], composition:(F,F)->F, id:()->F):auto =
+  proc init_segtree*[S](n:int, op:(S,S)->S, e:()->S):auto =
+    init_segtree[S](newSeqWith(n, e()), op, e)
+  proc init_dual_segtree*[F](v:seq[F], composition:(F,F)->F, id:()->F):auto =
     result = segtree[void,F,void](composition:composition,id:id)
     result.init(v)
-  proc init_lazy_segtree*[S,F](v:int or seq[S], op:(S,S)->S,e:()->S,mapping:(F,S)->S,composition:(F,F)->F,id:()->F):auto =
+  proc init_dual_segtree*[F](n:int, composition:(F,F)->F, id:()->F):auto =
+    init_dual_segtree[F](newSeqWith(n, id()), composition, id)
+  proc init_lazy_segtree*[S,F](v:seq[S], op:(S,S)->S,e:()->S,mapping:(F,S)->S,composition:(F,F)->F,id:()->F):auto =
     result = segtree[S,F,void](op:op,e:e,mapping:mapping,composition:composition,id:id)
     result.init(v)
-  proc init_lazy_segtree*[S,F](v:int or seq[S], op:(S,S)->S,e:()->S,mapping:(F,S)->S,composition:(F,F)->F,id:()->F, p:(F,Slice[int])->F):auto =
+  proc init_lazy_segtree*[S,F](n:int, op:(S,S)->S,e:()->S,mapping:(F,S)->S,composition:(F,F)->F,id:()->F):auto =
+    init_lazy_segtree[S,F](newSeqWith(n, e()), op,e,mapping,composition,id)
+  proc init_lazy_segtree*[S,F](v:seq[S], op:(S,S)->S,e:()->S,mapping:(F,S)->S,composition:(F,F)->F,id:()->F, p:(F,Slice[int])->F):auto =
     result = segtree[S,F,int](op:op,e:e,mapping:mapping,composition:composition,id:id, p:p)
     result.init(v)
+  proc init_lazy_segtree*[S,F](n:int, op:(S,S)->S,e:()->S,mapping:(F,S)->S,composition:(F,F)->F,id:()->F, p:(F,Slice[int])->F):auto =
+    init_lazy_segtree[S,F](newSeqWith(n, e()), op,e,mapping,composition,id,p)
 
   proc set*[ST:segtree](self: var ST, p:int, x:ST.S or ST.F) =
     assert p in 0..<self.n

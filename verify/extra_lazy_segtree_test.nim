@@ -18,7 +18,7 @@ proc mapping(l: F, r: S): S = (r.a * l.a + r.size * l.b, r.size)
 proc composition(l, r: F): F = (r.a * l.a, r.b * l.a + l.b)
 proc id(): F = (mint(1), mint(0))
 
-var seg = init_lazy_segtree(a, op, e, mapping, composition, id)
+var seg = init_lazy_segtree[S, F](a, op, e, mapping, composition, id)
 
 for i in 0..<q:
   let t = nextInt()
