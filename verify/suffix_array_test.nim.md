@@ -5,14 +5,14 @@ data:
     path: atcoder/string.nim
     title: atcoder/string.nim
   - icon: ':heavy_check_mark:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/string.nim
     title: atcoder/string.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -43,9 +43,9 @@ data:
     '
   dependsOn:
   - atcoder/string.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
   - atcoder/string.nim
-  - atcoder/header.nim
-  - atcoder/header.nim
   isVerificationFile: true
   path: verify/suffix_array_test.nim
   requiredBy: []

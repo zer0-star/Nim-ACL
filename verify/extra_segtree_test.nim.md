@@ -5,20 +5,20 @@ data:
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
   - icon: ':heavy_check_mark:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -34,21 +34,21 @@ data:
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/point_add_range_sum\n\
     \nimport atcoder/header\nimport atcoder/extra/structure/universal_segtree\n\n\
     import std/sequtils, std/sugar\n\nlet N, Q = nextInt()\nlet a = newSeqWith(N,\
-    \ nextInt())\n\nvar st = initSegTree(a, (x: int, y: int)=>x+y, ()=>0)\n\nfor _\
-    \ in 0 ..< Q:\n  let t = nextInt()\n  if t == 0:\n    let p, x = nextInt()\n \
-    \   let a = st.get(p)\n    st.set(p, a + x)\n  else:\n    let l, r = nextInt()\n\
+    \ nextInt())\n\nvar st = initSegTree[int](a, (x: int, y: int)=>x+y, ()=>0)\n\n\
+    for _ in 0 ..< Q:\n  let t = nextInt()\n  if t == 0:\n    let p, x = nextInt()\n\
+    \    let a = st.get(p)\n    st.set(p, a + x)\n  else:\n    let l, r = nextInt()\n\
     \    echo st.prod(l..<r)\n"
   dependsOn:
   - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/internal_bit.nim
   - atcoder/internal_bit.nim
   - atcoder/extra/structure/universal_segtree.nim
-  - atcoder/header.nim
-  - atcoder/internal_bit.nim
-  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra_segtree_test.nim
   requiredBy: []
-  timestamp: '2020-09-18 00:06:18+09:00'
+  timestamp: '2020-09-20 00:58:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra_segtree_test.nim

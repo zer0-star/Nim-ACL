@@ -58,18 +58,25 @@ data:
     \ ST.hasData:\n        self.d = newSeqWith(2 * size, self.e())\n        for i\
     \ in 0..<n: self.d[size + i] = v[i]\n        for i in countdown(size - 1, 1):\
     \ self.update(i)\n      else:\n        for i in 0..<n: self.lz[size + i] = v[i]\n\
-    \        \n  proc init_segtree*[S](v:int or seq[S], op:(S,S)->S, e:()->S):auto\
-    \ =\n    result = segtree[S,void,void](op:op,e:e)\n    result.init(v)\n  proc\
-    \ init_dual_segtree*[F](v:int or seq[F], composition:(F,F)->F, id:()->F):auto\
-    \ =\n    result = segtree[void,F,void](composition:composition,id:id)\n    result.init(v)\n\
-    \  proc init_lazy_segtree*[S,F](v:int or seq[S], op:(S,S)->S,e:()->S,mapping:(F,S)->S,composition:(F,F)->F,id:()->F):auto\
-    \ =\n    result = segtree[S,F,void](op:op,e:e,mapping:mapping,composition:composition,id:id)\n\
-    \    result.init(v)\n  proc init_lazy_segtree*[S,F](v:int or seq[S], op:(S,S)->S,e:()->S,mapping:(F,S)->S,composition:(F,F)->F,id:()->F,\
+    \n  proc init_segtree*[S](v:seq[S], op:(S,S)->S, e:()->S):auto =\n    result =\
+    \ segtree[S,void,void](op:op,e:e)\n    result.init(v)\n  proc init_segtree*[S](n:int,\
+    \ op:(S,S)->S, e:()->S):auto =\n    init_segtree[S](newSeqWith(n, e()), op, e)\n\
+    \  proc init_dual_segtree*[F](v:seq[F], composition:(F,F)->F, id:()->F):auto =\n\
+    \    result = segtree[void,F,void](composition:composition,id:id)\n    result.init(v)\n\
+    \  proc init_dual_segtree*[F](n:int, composition:(F,F)->F, id:()->F):auto =\n\
+    \    init_dual_segtree[F](newSeqWith(n, id()), composition, id)\n  proc init_lazy_segtree*[S,F](v:seq[S],\
+    \ op:(S,S)->S,e:()->S,mapping:(F,S)->S,composition:(F,F)->F,id:()->F):auto =\n\
+    \    result = segtree[S,F,void](op:op,e:e,mapping:mapping,composition:composition,id:id)\n\
+    \    result.init(v)\n  proc init_lazy_segtree*[S,F](n:int, op:(S,S)->S,e:()->S,mapping:(F,S)->S,composition:(F,F)->F,id:()->F):auto\
+    \ =\n    init_lazy_segtree[S,F](newSeqWith(n, e()), op,e,mapping,composition,id)\n\
+    \  proc init_lazy_segtree*[S,F](v:seq[S], op:(S,S)->S,e:()->S,mapping:(F,S)->S,composition:(F,F)->F,id:()->F,\
     \ p:(F,Slice[int])->F):auto =\n    result = segtree[S,F,int](op:op,e:e,mapping:mapping,composition:composition,id:id,\
-    \ p:p)\n    result.init(v)\n\n  proc set*[ST:segtree](self: var ST, p:int, x:ST.S\
-    \ or ST.F) =\n    assert p in 0..<self.n\n    let p = p + self.size\n    when\
-    \ ST.hasLazy:\n      for i in countdown(self.log, 1): self.push(p shr i)\n   \
-    \ when ST.hasData:\n      self.d[p] = x\n      for i in 1..self.log: self.update(p\
+    \ p:p)\n    result.init(v)\n  proc init_lazy_segtree*[S,F](n:int, op:(S,S)->S,e:()->S,mapping:(F,S)->S,composition:(F,F)->F,id:()->F,\
+    \ p:(F,Slice[int])->F):auto =\n    init_lazy_segtree[S,F](newSeqWith(n, e()),\
+    \ op,e,mapping,composition,id,p)\n\n  proc set*[ST:segtree](self: var ST, p:int,\
+    \ x:ST.S or ST.F) =\n    assert p in 0..<self.n\n    let p = p + self.size\n \
+    \   when ST.hasLazy:\n      for i in countdown(self.log, 1): self.push(p shr i)\n\
+    \    when ST.hasData:\n      self.d[p] = x\n      for i in 1..self.log: self.update(p\
     \ shr i)\n    else:\n      self.lz[p] = x\n\n  proc get*[ST:segtree](self: var\
     \ ST, p:int):auto =\n    assert p in 0..<self.n\n    let p = p + self.size\n \
     \   when ST.hasLazy:\n      for i in countdown(self.log, 1): self.push(p shr i)\n\

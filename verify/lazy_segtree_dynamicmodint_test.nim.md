@@ -2,8 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
+    path: atcoder/lazysegtree.nim
+    title: atcoder/lazysegtree.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/lazysegtree.nim
+    title: atcoder/lazysegtree.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
@@ -14,23 +23,14 @@ data:
     path: atcoder/header.nim
     title: atcoder/header.nim
   - icon: ':heavy_check_mark:'
-    path: atcoder/modint.nim
-    title: atcoder/modint.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/modint.nim
-    title: atcoder/modint.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/lazysegtree.nim
-    title: atcoder/lazysegtree.nim
-  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
   - icon: ':heavy_check_mark:'
-    path: atcoder/lazysegtree.nim
-    title: atcoder/lazysegtree.nim
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -55,16 +55,16 @@ data:
     \ if t == 0:\n    let l, r, c, d = nextInt()\n    seg.apply(l..<r, (mint(c), mint(d)))\n\
     \  else:\n    let l, r = nextInt()\n    echo seg.prod(l..<r)[0]\n"
   dependsOn:
-  - atcoder/internal_bit.nim
+  - atcoder/lazysegtree.nim
+  - atcoder/lazysegtree.nim
+  - atcoder/modint.nim
+  - atcoder/modint.nim
   - atcoder/internal_math.nim
   - atcoder/internal_math.nim
   - atcoder/header.nim
-  - atcoder/modint.nim
-  - atcoder/modint.nim
-  - atcoder/lazysegtree.nim
   - atcoder/header.nim
   - atcoder/internal_bit.nim
-  - atcoder/lazysegtree.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: true
   path: verify/lazy_segtree_dynamicmodint_test.nim
   requiredBy: []

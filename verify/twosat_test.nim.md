@@ -2,14 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: atcoder/twosat.nim
-    title: atcoder/twosat.nim
-  - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/twosat.nim
-    title: atcoder/twosat.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
@@ -19,6 +13,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/twosat.nim
+    title: atcoder/twosat.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/twosat.nim
+    title: atcoder/twosat.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -42,12 +42,12 @@ data:
     \  if a:\n        stdout.write i + 1, \" \"\n      else:\n        stdout.write\
     \ -(i + 1), \" \"\n    echo 0\n  else:\n    echo \"s UNSATISFIABLE\"\n"
   dependsOn:
-  - atcoder/twosat.nim
   - atcoder/internal_scc.nim
-  - atcoder/twosat.nim
   - atcoder/internal_scc.nim
   - atcoder/header.nim
   - atcoder/header.nim
+  - atcoder/twosat.nim
+  - atcoder/twosat.nim
   isVerificationFile: true
   path: verify/twosat_test.nim
   requiredBy: []

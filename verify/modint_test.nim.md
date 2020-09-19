@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
@@ -11,8 +11,8 @@ data:
     path: atcoder/modint.nim
     title: atcoder/modint.nim
   - icon: ':heavy_check_mark:'
-    path: atcoder/modint.nim
-    title: atcoder/modint.nim
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -29,10 +29,10 @@ data:
     import std/strutils, std/sequtils, std/math\n\nlet\n  N = stdin.readLine.parseInt.initModInt()\n\
     \necho (0 ..< 9).mapIt(N + 9 - it).prod / toSeq(1 .. 9).prod\n"
   dependsOn:
-  - atcoder/internal_math.nim
+  - atcoder/modint.nim
   - atcoder/internal_math.nim
   - atcoder/modint.nim
-  - atcoder/modint.nim
+  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/modint_test.nim
   requiredBy: []
