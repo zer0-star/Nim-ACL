@@ -27,7 +27,9 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
     static: assert ST.hasLazy
     when ST.hasData:
       self.d[k] = self.mapping(f, self.d[k])
-    if k < self.size: self.lz[k] = self.composition(f, self.lz[k])
+      if k < self.size: self.lz[k] = self.composition(f, self.lz[k])
+    else:
+      self.lz[k] = self.composition(f, self.lz[k])
 
   proc push*[ST:segtree](self: var ST, k:int) =
     static: assert ST.hasLazy
@@ -51,7 +53,10 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
         size = 1 shl log
       self.n = n;self.log = log;self.size = size
       when ST.hasLazy:
-        self.lz = newSeqWith(size, self.id())
+        when ST.hasData:
+          self.lz = newSeqWith(size, self.id())
+        else:
+          self.lz = newSeqWith(size * 2, self.id())
       when ST.hasData:
         self.d = newSeqWith(2 * size, self.e())
         for i in 0..<n: self.d[size + i] = v[i]

@@ -44,7 +44,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
     self.d[p] = x
     for i in 1..self.log: self.update(p shr i)
 
-  proc get*[ST:lazy_segtree](self: ST, p:int):ST.S =
+  proc get*[ST:lazy_segtree](self: var ST, p:int):ST.S =
     assert p in 0..<self.n
     let p = p + self.size
     for i in countdown(self.log, 1): self.push(p shr i)
