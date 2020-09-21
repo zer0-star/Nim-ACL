@@ -1,5 +1,5 @@
 when not declared ATCODER_CONVOLUTION_HPP:
-  const ATCODER_CONVOLUTION_HPP = 1
+  const ATCODER_CONVOLUTION_HPP* = 1
 
 #include <algorithm>
 #include <array>
@@ -35,7 +35,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
         e *= e
         ie *= ie
       var now = mint(1)
-      for i in 0..<cnt2 - 2:
+      for i in 0..cnt2 - 2:
         sum_e[i] = es[i] * now
         now *= ies[i]
     for ph in 1..h:
@@ -114,7 +114,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
     a.setlen(z)
     butterfly(a)
     b.setlen(z)
-    butterfly(b);
+    butterfly(b)
     for i in 0..<z:
       a[i] *= b[i]
     butterfly_inv(a)
@@ -126,7 +126,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
 #  template <unsigned int mod = 998244353,
 #      class T,
 #      std::enable_if_t<internal::is_integral<T>::value>* = nullptr>
-  proc convolution*[M:static[uint] = 998244353, T:SomeInteger](a, b:seq[T]):seq[T] =
+  proc convolution*[M:static[uint], T:SomeInteger](a, b:seq[T]):seq[T] =
     let (n, m) = (a.len, b.len)
     if n == 0 or m == 0: return newSeq[T]()
   

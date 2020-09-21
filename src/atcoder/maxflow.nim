@@ -55,6 +55,7 @@ when not declared ATCODER_MAXFLOW_HPP:
   proc flow*[Cap](self: var mf_graph[Cap], s, t:int, flow_limit:Cap):Cap =
     assert s in 0..<self.n
     assert t in 0..<self.n
+    assert s != t
   
     var level, iter = newSeq[int](self.n)
     var que = init_simple_queue[int]()

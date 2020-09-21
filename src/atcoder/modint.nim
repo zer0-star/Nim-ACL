@@ -1,4 +1,4 @@
-when not defined ATCODER_MODINT_HPP:
+when not declared ATCODER_MODINT_HPP:
   const ATCODER_MODINT_HPP* = 1
 
   type
@@ -6,7 +6,7 @@ when not defined ATCODER_MODINT_HPP:
   type
     DynamicModInt*[T: static[int]] = distinct uint32
   
-  type ModInt = StaticModInt or DynamicModInt
+  type ModInt* = StaticModInt or DynamicModInt
 
   import atcoder/internal_math
 
