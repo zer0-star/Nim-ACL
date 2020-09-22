@@ -103,7 +103,7 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
           for j in 0..<r.len:
             res += self[i] * r[j]
         swap(self, res)
-  
+ 
   proc `mod=`*[T](self: var FormalPowerSeries[T], r:FormalPowerSeries[T]) = self -= self div r * r
   
   proc `-`*[T](self: FormalPowerSeries[T]):FormalPowerSeries[T] =
@@ -179,7 +179,9 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
         ret = (ret + ret - ret * ret * self.pre(i shl 1)).pre(i shl 1)
         i = i shl 1
       return ret.pre(deg)
-  
+  proc `/=`*[T](self: var FormalPowerSeries[T], r: FormalPowerSeries[T]) =
+    self *= r.inv()
+
   proc `div=`*[T](self: var FormalPowerSeries[T], r: FormalPowerSeries[T]) =
     if self.len < r.len:
       self.setlen(0)

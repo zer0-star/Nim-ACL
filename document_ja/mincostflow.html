@@ -53,7 +53,7 @@
             <h1>MinCostFlow</h1>
 <p><a href="https://en.wikipedia.org/wiki/Minimum-cost_flow_problem">Minimum-cost flow problem</a>を扱うライブラリです。</p>
 <h2>コンストラクタ</h2>
-<pre><code class="cpp">var graph = initMCFGraph[Cap, Cost](int n)
+<pre><code class="cpp">mcf_graph&lt;Cap, Cost&gt; graph(int n);
 </code></pre>
 
 <p>$n$ 頂点 $0$ 辺のグラフを作る。<code>Cap</code>は容量の型、<code>Cost</code>はコストの型</p>
@@ -67,7 +67,7 @@
 <li>$O(n)$</li>
 </ul>
 <h2>add_edge</h2>
-<pre><code class="cpp">graph.add_edge[Cap, Cost](from:int, to:int, cap:Cap, cost:Cost)
+<pre><code class="cpp">int graph.add_edge(int from, int to, Cap cap, Cost cost);
 </code></pre>
 
 <p><code>from</code>から<code>to</code>へ最大容量<code>cap</code>, コスト<code>cost</code>の辺を追加する。何番目に追加された辺かを返す。</p>
@@ -81,8 +81,8 @@
 <li>ならし $O(1)$</li>
 </ul>
 <h2>min_cost_max_flow</h2>
-<pre><code class="cpp">(1) graph.flow(s:int, t:int):(Cap, Cost)
-(2) graph.flow(s:int, t:int, flow_limit:Cap):(Cap, Cost)
+<pre><code class="cpp">(1) pair&lt;Cap, Cost&gt; graph.flow(int s, int t);
+(2) pair&lt;Cap, Cost&gt; graph.flow(int s, int t, Cap flow_limit);
 </code></pre>
 
 <p>$s$ から $t$ へ流せるだけ流し、その流量とコストを返す。</p>
@@ -99,8 +99,8 @@
 <li><code>min_cost_slope</code>と同じ</li>
 </ul>
 <h2>min_cost_slope</h2>
-<pre><code class="cpp">graph.slope(int s, int t):seq[(Cap, Cost)]
-graph.slope(int s, int t, Cap flow_limit):seq[(Cap, Cost)]
+<pre><code class="cpp">vector&lt;pair&lt;Cap, Cost&gt;&gt; graph.slope(int s, int t);
+vector&lt;pair&lt;Cap, Cost&gt;&gt; graph.slope(int s, int t, Cap flow_limit);
 </code></pre>
 
 <p>帰り値に流量とコストの関係の折れ線が入る。全ての $x$ について、流量 $x$ の時の最小コストを $g(x)$ とすると、$(x, g(x))$ は帰り値を折れ線として見たものに含まれる。</p>
@@ -127,13 +127,14 @@ graph.slope(int s, int t, Cap flow_limit):seq[(Cap, Cost)]
 <li>$O(F (n + m) \log n)$</li>
 </ul>
 <h2>edges</h2>
-<pre><code class="cpp">type edge_info[Cap, Cost] = object
-  src, dst:int
-  cap, flow:Cap
-  cost:Cost
+<pre><code class="cpp">struct edge&lt;Cap, Cost&gt; {
+    int from, to;
+    Cap cap, flow;
+    Cost cost;
+};
 
-(1) graph.get_edge(int i):edge_info
-(2) graph.edges():seq[edge_info]
+(1) mcf_graph&lt;Cap, Cost&gt;::edge graph.get_edge(int i);
+(2) vector&lt;mcf_graph&lt;Cap, Cost&gt;::edge&gt; graph.edges();
 </code></pre>
 
 <ul>
@@ -153,35 +154,57 @@ graph.slope(int s, int t, Cap flow_limit):seq[(Cap, Cost)]
 <h2>使用例</h2>
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_e">https://atcoder.jp/contests/practice2/tasks/practice2_e</a></h3>
 <div class="sample-code">#include &lt;atcoder/mincostflow&gt;
+#include &lt;iostream&gt;
+
+using namespace std;
+using namespace atcoder;
+
 const long long BIG = 1&#39;000&#39;000&#39;000;
 
-let n, k = nextInt()
-var g = initMCFGraph[int,int](n * 2 + 2)
-let (s, t) = (n * 2, n * 2 + 1)
-let BIG = 1000000000
+int main() {
+    int n, k;
+    cin &gt;&gt; n &gt;&gt; k;
 
-g.add_edge(s, t, n * k, BIG)
+    /**
+     * generate (s -&gt; row -&gt; column -&gt; t) graph
+     * i-th row correspond to vertex i
+     * i-th col correspond to vertex n + i
+     **/
+    mcf_graph&lt;int, long long&gt; g(2 * n + 2);
+    int s = 2 * n, t = 2 * n + 1;
 
-for i in 0..<n:
-  g.add_edge(s, i, k, 0)
-  g.add_edge(n + i, t, k, 0)
+    // we can &#34;waste&#34; the flow
+    g.add_edge(s, t, n * k, BIG);
 
-for i in 0..<n:
-  for j in 0..<n:
-    let a = nextInt()
-    g.add_edge(i, n + j, 1, BIG - a)
+    for (int i = 0; i &lt; n; i++) {
+        g.add_edge(s, i, k, 0);
+        g.add_edge(n + i, t, k, 0);
+    }
 
-var result = g.flow(s, t, n * k)
-echo n * k * BIG - result[1]
+    for (int i = 0; i &lt; n; i++) {
+        for (int j = 0; j &lt; n; j++) {
+            long long a;
+            cin &gt;&gt; a;
+            g.add_edge(i, n + j, 1, BIG - a);
+        }
+    }
 
-var grid = newSeqWith(n, '.'.repeat(n))
-let es = g.edges()
-for e in es:
-  if e.src == s or e.dst == t or e.flow == 0: continue
-  grid[e.src][e.dst - n] = 'X'
+    auto result = g.flow(s, t, n * k);
+    cout &lt;&lt; 1LL * n * k * BIG - result.second &lt;&lt; endl;
 
-for i in 0..<n:
-  echo grid[i]
+    vector&lt;string&gt; grid(n, string(n, &#39;.&#39;));
+    auto edges = g.edges();
+    for (auto e : edges) {
+        if (e.from == s || e.to == t || e.flow == 0) continue;
+
+        grid[e.from][e.to - n] = &#39;X&#39;;
+    }
+
+    for (int i = 0; i &lt; n; i++) {
+        cout &lt;&lt; grid[i] &lt;&lt; endl;
+    }
+    return 0;
+}
 </div>
         </div>
     </section>

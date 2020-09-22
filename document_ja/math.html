@@ -53,7 +53,7 @@
             <h1>Math</h1>
 <p>数論的アルゴリズム詰め合わせです。</p>
 <h2>pow_mod</h2>
-<pre><code class="cpp">pow_mod(x:int, n:int, m:int):int
+<pre><code class="cpp">ll pow_mod(ll x, ll n, int m)
 </code></pre>
 
 <p>$x^n \bmod m$ を返します。</p>
@@ -67,7 +67,7 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2>inv_mod</h2>
-<pre><code class="cpp">inv_mod(x:int, m:int):int
+<pre><code class="cpp">ll inv_mod(ll x, ll m)
 </code></pre>
 
 <p>$xy \equiv 1 \pmod m$ なる $y$ のうち、$0 \le y &lt; m$ を満たすものを返します。</p>
@@ -81,7 +81,7 @@
 <li>$O(\log m)$</li>
 </ul>
 <h2>crt</h2>
-<pre><code class="cpp">crt(r:seq[int], m:seq[int]):(int,int)
+<pre><code class="cpp">pair&lt;ll, ll&gt; crt(vector&lt;ll&gt; r, vector&lt;ll&gt; m)
 </code></pre>
 
 <p>同じ長さの配列 $r, m$ を渡します。この配列の長さを $n$ とした時、</p>
@@ -98,7 +98,7 @@
 <li>$O(n \log{\mathrm{lcm}(m[i])})$</li>
 </ul>
 <h2>floor_sum</h2>
-<pre><code class="cpp">floor_sum(n:int, m:int, a:int, b:int):int
+<pre><code class="cpp">ll floor_sum(ll n, ll m, ll a, ll b)
 </code></pre>
 
 <p>$\sum_{i = 0}^{n - 1} \mathrm{floor}(\frac{a \times i + b}{m})$</p>
@@ -115,13 +115,22 @@
 </ul>
 <h2>使用例</h2>
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_c">https://atcoder.jp/contests/practice2/tasks/practice2_c</a></h3>
-<div class="sample-code">import atcoder/header, atcoder/math
+<div class="sample-code">#include &lt;atcoder/math&gt;
+#include &lt;cstdio&gt;
 
-let t = nextInt()
+using namespace std;
+using namespace atcoder;
 
-for i in 0..&lt;t:
-  let n, m, a, b = nextInt()
-  echo floor_sum(n, m, a, b)
+int main() {
+    int t;
+    scanf(&#34;%d&#34;, &amp;t);
+    for (int i = 0; i &lt; t; i++) {
+        long long n, m, a, b;
+        scanf(&#34;%lld %lld %lld %lld&#34;, &amp;n, &amp;m, &amp;a, &amp;b);
+        printf(&#34;%lld\n&#34;, floor_sum(n, m, a, b));
+    }
+    return 0;
+}
 </div>
         </div>
     </section>

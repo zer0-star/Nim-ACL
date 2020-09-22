@@ -65,7 +65,7 @@
 <p>を $O(\log N)$ で行うことが出来ます。詳細な要件は <a href="./appendix.html">Appendix</a> を参照してください。</p>
 <p>また、このライブラリはオラクルとして<code>op, e</code>の2種類を使用しますが、これらが定数時間で動くものと仮定したときの計算量を記述します。オラクル内部の計算量が $O(f(n))$ である場合はすべての計算量が $O(f(n))$ 倍となります。</p>
 <h2>コンストラクタ</h2>
-<pre><code class="cpp">(1) seg = initSegTree[S](n:int, op:(S,S)-&gt;S, e:()-&gt;S):segtree[S]
+<pre><code class="nim">(1) seg = initSegTree[S](n:int, op:(S,S)-&gt;S, e:()-&gt;S):segtree[S]
 (2) seg = initSegTree[S](v:seq[S], op:(S,S)-&gt;S, e:()-&gt;S):segtree[S]
 </code></pre>
 
@@ -75,7 +75,7 @@
 <li>単位元 <code>S e()</code></li>
 </ul>
 <p>を定義する必要があります。例として、Range Min Queryならば</p>
-<pre><code class="cpp">proc op(a:int, b:int):int =
+<pre><code class="nim">proc op(a:int, b:int):int =
     return min(a, b)
 
 proc e():int =
@@ -99,7 +99,7 @@ var seg = initSegTree[int](10, seg, e)
 <li>$O(n)$</li>
 </ul>
 <h2>set</h2>
-<pre><code class="cpp">vproc seg.set(p:int, x:S)
+<pre><code class="nim">seg.set(p:int, x:S):void
 </code></pre>
 
 <p><code>a[p]</code> に <code>x</code> を代入します。</p>
@@ -112,7 +112,7 @@ var seg = initSegTree[int](10, seg, e)
 <li>$O(\log n)$</li>
 </ul>
 <h2>get</h2>
-<pre><code class="cpp">seg.get(p:int):S
+<pre><code class="nim">seg.get(p:int):S
 </code></pre>
 
 <p><code>a[p]</code> を返します。</p>
@@ -125,7 +125,7 @@ var seg = initSegTree[int](10, seg, e)
 <li>$O(1)$</li>
 </ul>
 <h2>prod</h2>
-<pre><code class="cpp">seg.prod(l:int, r:int):S
+<pre><code class="nim">seg.prod(l:int, r:int):S
 </code></pre>
 
 <p><code>op(a[l], ..., a[r - 1])</code> を、モノイドの性質を満たしていると仮定して計算します。$l = r$ のときは <code>e()</code> を返します。</p>
@@ -138,7 +138,7 @@ var seg = initSegTree[int](10, seg, e)
 <li>$O(\log n)$</li>
 </ul>
 <h2>all_prod</h2>
-<pre><code class="cpp">seg.all_prod():S
+<pre><code class="nim">seg.all_prod():S
 </code></pre>
 
 <p><code>op(a[0], ..., a[n - 1])</code> を計算します。$n = 0$ のときは <code>e()</code> を返します。</p>
@@ -147,8 +147,8 @@ var seg = initSegTree[int](10, seg, e)
 <li>$O(1)$</li>
 </ul>
 <h2>max_right</h2>
-<pre><code class="cpp">(1) seg.max_right(l:int, f:(S)-&gt;bool):int
-(2💻) seg.max_right(l:int, f:(S)-&gt;bool):int
+<pre><code class="nim">(1) seg.max_right&lt;f&gt;(l:int):int
+(2💻) seg.max_right[F](l:int, f:F):int
 </code></pre>
 
 <ul>
@@ -172,8 +172,8 @@ var seg = initSegTree[int](10, seg, e)
 <li>$O(\log n)$</li>
 </ul>
 <h2>min_left</h2>
-<pre><code class="cpp">(1) seg.min_left(int r, f:(S)-&gt;bool):int
-(2💻) seg.min_left(r:int, f:(S)-&gt;bool):int
+<pre><code class="nim">(1) seg.min_left[f](r:int):int
+(2💻) seg.min_left[F](r:int, f:F):int
 </code></pre>
 
 <ul>
@@ -183,7 +183,7 @@ var seg = initSegTree[int](10, seg, e)
 <p>以下の条件を両方満たす <code>l</code> を(いずれか一つ)返します。</p>
 <ul>
 <li><code>l = r</code> もしくは <code>f(op(a[l], a[l + 1], ..., a[r - 1])) = true</code></li>
-<li><code>l = 0</code> もしくは <code>f(op(a[l - 1], a[l + 1], ..., a[r - 1])) = false</code></li>
+<li><code>l = 0</code> もしくは <code>f(op(a[l - 1], a[l], ..., a[r - 1])) = false</code></li>
 </ul>
 <p><code>f</code>が単調だとすれば、<code>f(op(a[l], a[l + 1], ..., a[r - 1])) = true</code> となる最小の <code>l</code>、と解釈することが可能です。</p>
 <p><strong>制約</strong></p>
@@ -198,14 +198,15 @@ var seg = initSegTree[int](10, seg, e)
 </ul>
 <h2>使用例</h2>
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_j">https://atcoder.jp/contests/practice2/tasks/practice2_j</a></h3>
-<div class="sample-code">
-import strutils
+<div class="sample-code">import atcoder/header
+import atcoder/segtree
+import sequtils, sugar
 
 let n, q = nextInt()
 let a = newSeqWith(n, nextInt())
 var target:int
-proc f(v:int):bool = v < target
-var seg = initSegTree[int](a, (a:int,b:int)=>max(a, b), () =&gt; -1)
+proc f(v:int):bool = v &lt; target
+var seg = initSegTree[int](a, (a:int,b:int)=&gt;max(a, b), () =&gt; -1)
 
 for i in 0..&lt;q:
   let t = nextInt()

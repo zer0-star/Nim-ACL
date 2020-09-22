@@ -6,7 +6,8 @@ when not declared ATCODER_SCC_HPP:
   type scc_graph = object
     internal: internal_scc_graph
 
-  proc initSccGraph*(n:int):auto = init_internal_scc_graph(n)
+  proc initSccGraph*(n:int):auto =
+    scc_graph(internal:init_internal_scc_graph(n))
   
   proc add_edge*(self:var scc_graph, src, dst:int) =
     let n = self.internal.num_vertices()
