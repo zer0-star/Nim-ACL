@@ -1,6 +1,5 @@
 # verify-helper: PROBLEM https://yukicoder.me/problems/no/1080
 
-
 import atcoder/header
 import atcoder/extra/math/mod_sqrt
 import atcoder/modint

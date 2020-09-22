@@ -2,7 +2,11 @@ when not declared ATCODER_ARBITRARY_MOD_CONVOLUTION:
   const ATCODER_ARBITRARY_MOD_CONVOLUTION* = 1
   import atcoder/convolution
   import atcoder/modint
-  import atcoder/extra/math/internal_fft
+  import atcoder/extra/math/particular_mod_convolution
+
+  type ArbitraryModConvolution* = object
+    discard
+
   const
     m0 = 167772161.uint
     m1 = 469762049.uint
@@ -16,9 +20,10 @@ when not declared ATCODER_ARBITRARY_MOD_CONVOLUTION:
     r01 = mint1.init(m0).inv().uint
     r02 = mint2.init(m0).inv().uint
     r12 = mint2.init(m1).inv().uint
-    r02r12 = r02.int * r12.int mod m2
+    r02r12 = r02 * r12 mod m2
 
-  proc fft*[T:ModInt](a:seq[T]):auto =
+  proc fft*[T:ModInt](t:typedesc[ArbitraryModConvolution], a:seq[T]):auto {.inline.} =
+    type F = ParticularModConvolution
     var
       v0 = newSeq[mint0](a.len)
       v1 = newSeq[mint1](a.len)
@@ -27,9 +32,9 @@ when not declared ATCODER_ARBITRARY_MOD_CONVOLUTION:
       v0[i] = mint0.init(a[i].int)
       v1[i] = mint1.init(a[i].int)
       v2[i] = mint2.init(a[i].int)
-    v0 = internal_fft.fft(v0)
-    v1 = internal_fft.fft(v1)
-    v2 = internal_fft.fft(v2)
+    v0 = F.fft(v0)
+    v1 = F.fft(v1)
+    v2 = F.fft(v2)
     return (v0,v1,v2)
   proc dot*(a, b:(seq[mint0], seq[mint1], seq[mint2])):auto =
     let N = a[0].len
@@ -39,7 +44,7 @@ when not declared ATCODER_ARBITRARY_MOD_CONVOLUTION:
       result[1][i] = a[1][i] * b[1][i]
       result[2][i] = a[2][i] * b[2][i]
   
-  proc calc_garner*[T:ModInt](a0:seq[mint0], a1:seq[mint1], a2:seq[mint2], deg:int):seq[T] =
+  proc calc_garner[T:ModInt](a0:seq[mint0], a1:seq[mint1], a2:seq[mint2], deg:int):seq[T] =
     let
       w1 = m0 mod T.umod
       w2 = w1 * m1 mod T.umod
@@ -51,14 +56,15 @@ when not declared ATCODER_ARBITRARY_MOD_CONVOLUTION:
         c = ((n2 + m2 - n0) * r02r12 + (m2 - b) * r12) mod m2
       result[i] = T.init(n0 + b * w1 + c * w2)
 
-  proc ifft*[T:ModInt](a:(seq[mint0], seq[mint1], seq[mint2]), deg = -1):auto =
+  proc ifft*[T:ModInt](t:typedesc[ArbitraryModConvolution], a:(seq[mint0], seq[mint1], seq[mint2]), deg = -1):auto {.inline.} =
+    type F = ParticularModConvolution
     let
       deg = if deg == -1: a[0].len else: deg
-      a0 = internal_fft.ifft(a[0])
-      a1 = internal_fft.ifft(a[1])
-      a2 = internal_fft.ifft(a[2])
+      a0 = F.ifft(a[0])
+      a1 = F.ifft(a[1])
+      a2 = F.ifft(a[2])
     return calc_garner[T](a0, a1, a2, deg)
-  proc convolution*[T:ModInt](a, b:seq[T]):seq[T] =
+  proc convolution*[T:ModInt](t:typedesc[ArbitraryModConvolution], a, b:seq[T]):seq[T] {.inline.} =
     var
       a0 = newSeq[mint0](a.len)
       a1 = newSeq[mint1](a.len)

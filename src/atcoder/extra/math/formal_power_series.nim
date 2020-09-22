@@ -1,5 +1,5 @@
 # FormalPowerSeries {{{
-when not defined ATCODER_FORMAL_POWER_SERIES:
+when not declared ATCODER_FORMAL_POWER_SERIES:
   const ATCODER_FORMAL_POWER_SERIES* = 1
   
   import std/sequtils, std/strformat, std/options, std/macros, std/tables
@@ -9,6 +9,7 @@ when not defined ATCODER_FORMAL_POWER_SERIES:
 #  import atcoder/extra/math/element_concepts
   import atcoder/extra/math/internal_fft
   import atcoder/extra/math/arbitrary_mod_convolution
+  import atcoder/extra/math/particular_mod_convolution
 #  import atcoder/extra/math/combination
 
   type FormalPowerSeries*[T:ModInt] = seq[T]
@@ -85,26 +86,17 @@ when not defined ATCODER_FORMAL_POWER_SERIES:
         if k notin r: r[k] = T(0)
         r[k] += c0 * c1
     return toSeq(r.pairs)
-  proc fft[T](self: FormalPowerSeries[T]):auto =
-    when T is StaticModInt and T.isGoodMod:
-      internal_fft.fft(self)
-    else:
-      arbitrary_mod_convolution.fft(self)
-  proc ifft[T](self: FormalPowerSeries[T]):auto =
-    when T is StaticModInt and T.isGoodMod:
-      internal_fft.ifft[T](self)
-    else:
-      arbitrary_mod_convolution.ifft[T](self)
 
   proc `*=`*[T](self: var FormalPowerSeries[T],  r: FormalPowerSeries[T]) =
     if self.len == 0 or r.len == 0:
       self.setlen(0)
     else:
       when T is ModInt:
-        when T is StaticModInt and T.isGoodMod:
-          self = convolution.convolution(self, r)
-        else:
-          self = arbitrary_mod_convolution.convolution(self, r)
+        self = T.get_fft_type().convolution(self, r)
+#        when T is StaticModInt and T.isGoodMod:
+#          self = convolution.convolution(self, r)
+#        else:
+#          self = arbitrary_mod_convolution.convolution(self, r)
       else:
         var res = initFormalPowerSeries[T](self.len + r.len - 1)
         for i in 0..<self.len:
@@ -154,6 +146,7 @@ when not defined ATCODER_FORMAL_POWER_SERIES:
   proc inv*[T](self: FormalPowerSeries[T], deg = -1):auto =
     assert(self[0] != 0)
     deg.revise(self.len)
+    type F = T.get_fft_type()
     when T is ModInt:
       proc invFast[T](self: FormalPowerSeries[T]):auto =
         assert(self[0] != 0)
@@ -165,12 +158,12 @@ when not defined ATCODER_FORMAL_POWER_SERIES:
           var f, g = initFormalPowerSeries[T](2 * d)
           for j in 0..<min(n, 2 * d): f[j] = self[j]
           for j in 0..<d: g[j] = res[j]
-          let g1 = fft(g)
-          f = ifft[T](dot(fft(f), g1))
+          let g1 = F.fft(g)
+          f = ifft[T](F, dot(F.fft(f), g1))
           for j in 0..<d:
             f[j] = T(0)
             f[j + d] = -f[j + d]
-          f = ifft[T](dot(fft(f), g1))
+          f = ifft[T](F, dot(F.fft(f), g1))
           f[0..<d] = res[0..<d]
           res = f
           d = d shl 1
@@ -259,13 +252,14 @@ proc `{op}`*[T](self: not FormalPowerSeries, r:FormalPowerSeries[T]):FormalPower
       proc onlineConvolutionExp[T](self, conv_coeff:FormalPowerSeries[T]):auto =
         let n = conv_coeff.len
         assert((n and (n - 1)) == 0)
-        type FFTType = fft(initFormalPowerSeries[T](0)).type
+        type F = T.get_fft_type()
+        type FFTType = F.fft(initFormalPowerSeries[T](0)).type
         var
           conv_ntt_coeff = newSeq[FFTType]()
           i = n
         while (i shr 1) > 0:
           var g = conv_coeff.pre(i)
-          conv_ntt_coeff.add(fft(g))
+          conv_ntt_coeff.add(F.fft(g))
           i = i shr 1
         var conv_arg, conv_ret = initFormalPowerSeries[T](n)
         proc rec(l,r,d:int) =
@@ -280,7 +274,7 @@ proc `{op}`*[T](self: not FormalPowerSeries, r:FormalPowerSeries[T]):FormalPower
             rec(l, m, d + 1)
             var pre = initFormalPowerSeries[T](r - l)
             pre[0..<m-l] = conv_arg[l..<m]
-            pre = ifft[T](dot(fft(pre), conv_ntt_coeff[d]))
+            pre = ifft[T](F, dot(F.fft(pre), conv_ntt_coeff[d]))
             for i in 0..<r - m: conv_ret[m + i] += pre[m + i - l]
             rec(m, r, d + 1)
         rec(0, n, 0)
