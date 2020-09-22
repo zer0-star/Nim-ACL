@@ -55,9 +55,9 @@
 文字列に関する様々なアルゴリズムが入っています。</p>
 <p>文字列 <code>s</code> の $a$ 番目から $b - 1$ 番目の要素のsubstringを、<code>s[a..b)</code>と表記します。</p>
 <h2>suffix_array</h2>
-<pre><code class="cpp">(1) vector&lt;int&gt; suffix_array(string s)
-(2) vector&lt;int&gt; suffix_array&lt;T&gt;(vector&lt;T&gt; s)
-(3) vector&lt;int&gt; suffix_array(vector&lt;int&gt; s, int upper)
+<pre><code class="nim">(1) suffix_array(string s):seq[int]
+(2) suffix_array[T](s:seq[T]):seq[int]
+(3) suffix_array(s:seq[int], upper:int):seq[int]
 </code></pre>
 
 <p>長さ $n$ の文字列 <code>s</code> のSuffix Arrayとして、長さ $n$ の vector を返す。
@@ -76,8 +76,8 @@ Suffix Array <code>sa</code> は $(0, 1, \dots, n - 1)$ の順列であって、
 <li>(3) $O(n + \mathrm{upper})$</li>
 </ul>
 <h2>lcp_array</h2>
-<pre><code class="cpp">(1) vector&lt;int&gt; lcp_array(string s, vector&lt;int&gt; sa)
-(2) vector&lt;int&gt; lcp_array&lt;T&gt;(vector&lt;T&gt; s, vector&lt;int&gt; sa)
+<pre><code class="nim">(1) lcp_array(s:string, sa:seq[int]):seq[int]
+(2) lcp_array[T](s:seq[T], sa:seq[int]):seq[int]
 </code></pre>
 
 <p>長さ $n$ の文字列 <code>s</code> のLCP Arrayとして、長さ $n-1$ の配列を返す。$i$ 番目の要素は <code>s[sa[i]..n), s[sa[i+1]..n)</code> の LCP(Longest Common Prefix) の長さ。</p>
@@ -92,8 +92,8 @@ Suffix Array <code>sa</code> は $(0, 1, \dots, n - 1)$ の順列であって、
 <li>$O(n)$</li>
 </ul>
 <h2>z_algorithm</h2>
-<pre><code class="cpp">(1) vector&lt;int&gt; z_algorithm(string s)
-(2) vector&lt;int&gt; z_algorithm&lt;T&gt;(vector&lt;T&gt; s)
+<pre><code class="nim">(1) z_algorithm(s:string):seq[int]
+(2) z_algorithm[T](s:seq[T]):seq[int]
 </code></pre>
 
 <p>入力の長さを $n$ として、長さ $n$ の配列を返す。
@@ -109,59 +109,40 @@ $i$ 番目の要素は <code>s[0..n)</code>と<code>s[i..n)</code>のLCP(Longest
 </ul>
 <h2>使用例</h2>
 <h3>How to Use</h3>
-<div class="sample-code">#include &lt;atcoder/string&gt;
-#include &lt;string&gt;
-#include &lt;vector&gt;
+<div class="sample-code">import atcoder/string
 
-using namespace std;
-using namespace atcoder;
+let s = &#34;missisippi&#34;
+let sa = suffix_array(s)
 
-int main() {
-    string s = &#34;missisippi&#34;;
+let answer = [
+  &#34;i&#34;,
+  &#34;ippi&#34;,
+  &#34;isippi&#34;,
+  &#34;issisippi&#34;,
+  &#34;missisippi&#34;,
+  &#34;pi&#34;,
+  &#34;ppi&#34;,
+  &#34;sippi&#34;,
+  &#34;sisippi&#34;,
+  &#34;ssisippi&#34;,
+]
 
-    vector&lt;int&gt; sa = suffix_array(s);
-
-    vector&lt;string&gt; answer = {
-        &#34;i&#34;,
-        &#34;ippi&#34;,
-        &#34;isippi&#34;,
-        &#34;issisippi&#34;,
-        &#34;missisippi&#34;,
-        &#34;pi&#34;,
-        &#34;ppi&#34;,
-        &#34;sippi&#34;,
-        &#34;sisippi&#34;,
-        &#34;ssisippi&#34;,
-    };
-
-    assert(sa.size() == answer.size());
-    for (int i = 0; i &lt; int(sa.size()); i++) {
-        assert(s.substr(sa[i]) == answer[i]);
-    }
-}
+assert sa.len == answer.len
+for i in 0..&lt;sa.len:
+  assert s[sa[i]..^1] == answer[i]
 </div>
 
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_i">https://atcoder.jp/contests/practice2/tasks/practice2_i</a></h3>
-<div class="sample-code">#include &lt;atcoder/string&gt;
-#include &lt;iostream&gt;
-#include &lt;string&gt;
-#include &lt;vector&gt;
+<div class="sample-code">include atcoder/header
+import atcoder/string
 
-using namespace std;
-using namespace atcoder;
-
-int main() {
-    static char buf[500&#39;001];
-    scanf(&#34;%s&#34;, buf);
-    string s = buf;
-    vector&lt;int&gt; sa = suffix_array(s);
-    long long answer = 1LL * s.size() * (s.size() + 1) / 2;
-    for (auto x : lcp_array(s, sa)) {
-        answer -= x;
-    }
-    printf(&#34;%lld\n&#34;, answer);
-    return 0;
-}
+let
+  s = nextString()
+  sa = suffix_array(s)
+var answer = s.len * (s.len + 1) div 2
+for x in lcp_array(s, sa):
+  answer -= x
+echo answer
 </div>
         </div>
     </section>

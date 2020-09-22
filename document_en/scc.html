@@ -95,37 +95,22 @@
 </ul>
 <h2>Examples</h2>
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_g">https://atcoder.jp/contests/practice2/tasks/practice2_g</a></h3>
-<div class="sample-code">#include &lt;atcoder/scc&gt;
-#include &lt;cstdio&gt;
+<div class="sample-code">include atcoder/header
+import atcoder/scc as scc_lib
 
-using namespace std;
-using namespace atcoder;
+let n, m = nextInt()
 
-int main() {
-    int n, m;
-    scanf(&#34;%d %d&#34;, &amp;n, &amp;m);
+var g = init_scc_graph(n)
 
-    scc_graph g(n);
+for i in 0..&lt;m:
+  let u, v = nextInt()
+  g.add_edge(u, v)
 
-    for (int i = 0; i &lt; m; i++) {
-        int u, v;
-        scanf(&#34;%d %d&#34;, &amp;u, &amp;v);
-        g.add_edge(u, v);
-    }
+var scc = g.scc()
 
-    auto scc = g.scc();
-
-    printf(&#34;%d\n&#34;, int(scc.size()));
-    for (auto v : scc) {
-        printf(&#34;%d&#34;, int(v.size()));
-        for (int x : v) {
-            printf(&#34; %d&#34;, x);
-        }
-        printf(&#34;\n&#34;);
-    }
-
-    return 0;
-}
+echo scc.len
+for v in scc:
+  echo v.len, &#34; &#34;, v.join(&#34; &#34;)
 </div>
         </div>
     </section>

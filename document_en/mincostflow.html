@@ -152,58 +152,36 @@ It returns $g$ as the list of the changepoints, that satisfies the followings.</
 </ul>
 <h2>Examples</h2>
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_e">https://atcoder.jp/contests/practice2/tasks/practice2_e</a></h3>
-<div class="sample-code">#include &lt;atcoder/mincostflow&gt;
-#include &lt;iostream&gt;
+<div class="sample-code">include atcoder/header
+import atcoder/mincostflow
 
-using namespace std;
-using namespace atcoder;
+let n, k = nextInt()
+var g = initMCFGraph[int,int](n * 2 + 2)
+let (s, t) = (n * 2, n * 2 + 1)
+let BIG = 1000000000
 
-const long long BIG = 1&#39;000&#39;000&#39;000;
+g.add_edge(s, t, n * k, BIG)
 
-int main() {
-    int n, k;
-    cin &gt;&gt; n &gt;&gt; k;
+for i in 0..&lt;n:
+  g.add_edge(s, i, k, 0)
+  g.add_edge(n + i, t, k, 0)
 
-    /**
-     * generate (s -&gt; row -&gt; column -&gt; t) graph
-     * i-th row correspond to vertex i
-     * i-th col correspond to vertex n + i
-     **/
-    mcf_graph&lt;int, long long&gt; g(2 * n + 2);
-    int s = 2 * n, t = 2 * n + 1;
+for i in 0..&lt;n:
+  for j in 0..&lt;n:
+    let a = nextInt()
+    g.add_edge(i, n + j, 1, BIG - a)
 
-    // we can &#34;waste&#34; the flow
-    g.add_edge(s, t, n * k, BIG);
+var result = g.flow(s, t, n * k)
+echo n * k * BIG - result[1]
 
-    for (int i = 0; i &lt; n; i++) {
-        g.add_edge(s, i, k, 0);
-        g.add_edge(n + i, t, k, 0);
-    }
+var grid = newSeqWith(n, &#39;.&#39;.repeat(n))
+let es = g.edges()
+for e in es:
+  if e.src == s or e.dst == t or e.flow == 0: continue
+  grid[e.src][e.dst - n] = &#39;X&#39;
 
-    for (int i = 0; i &lt; n; i++) {
-        for (int j = 0; j &lt; n; j++) {
-            long long a;
-            cin &gt;&gt; a;
-            g.add_edge(i, n + j, 1, BIG - a);
-        }
-    }
-
-    auto result = g.flow(s, t, n * k);
-    cout &lt;&lt; 1LL * n * k * BIG - result.second &lt;&lt; endl;
-
-    vector&lt;string&gt; grid(n, string(n, &#39;.&#39;));
-    auto edges = g.edges();
-    for (auto e : edges) {
-        if (e.from == s || e.to == t || e.flow == 0) continue;
-
-        grid[e.from][e.to - n] = &#39;X&#39;;
-    }
-
-    for (int i = 0; i &lt; n; i++) {
-        cout &lt;&lt; grid[i] &lt;&lt; endl;
-    }
-    return 0;
-}
+for i in 0..&lt;n:
+  echo grid[i]
 </div>
         </div>
     </section>

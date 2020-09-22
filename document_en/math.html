@@ -115,22 +115,13 @@ $y, z$ $(0 \leq y &lt; z = \mathrm{lcm}(m[i]))$. It returns this $(y, z)$ as a p
 </ul>
 <h2>Examples</h2>
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_c">https://atcoder.jp/contests/practice2/tasks/practice2_c</a></h3>
-<div class="sample-code">#include &lt;atcoder/math&gt;
-#include &lt;cstdio&gt;
+<div class="sample-code">import atcoder/header
+import atcoder/math
 
-using namespace std;
-using namespace atcoder;
-
-int main() {
-    int t;
-    scanf(&#34;%d&#34;, &amp;t);
-    for (int i = 0; i &lt; t; i++) {
-        long long n, m, a, b;
-        scanf(&#34;%lld %lld %lld %lld&#34;, &amp;n, &amp;m, &amp;a, &amp;b);
-        printf(&#34;%lld\n&#34;, floor_sum(n, m, a, b));
-    }
-    return 0;
-}
+let t = nextInt()
+for i in 0..&lt;t:
+  let n, m, a, b = nextInt()
+  echo floor_sum(n, m, a, b)
 </div>
         </div>
     </section>

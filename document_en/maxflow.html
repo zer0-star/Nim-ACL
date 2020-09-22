@@ -145,92 +145,68 @@ The returned vector corresponds to a $s-t$ minimum cut after calling <code>flow(
 </ul>
 <h2>Examples</h2>
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_d">https://atcoder.jp/contests/practice2/tasks/practice2_d</a></h3>
-<div class="sample-code">#include &lt;atcoder/maxflow&gt;
-#include &lt;iostream&gt;
+<div class="sample-code">include atcoder/header
+import atcoder/maxflow
 
-using namespace std;
-using namespace atcoder;
+let n, m = nextInt()
+var grid = newSeqWith(n, nextString())
 
-int main() {
-    int n, m;
-    cin &gt;&gt; n &gt;&gt; m;
+# generate (s -&gt; even grid -&gt; odd grid -&gt; t) graph
+# grid(i, j) correspond to vertex (i * m + j)
+var g = initMFGraph[int](n * m + 2)
+let
+  s = n * m
+  t = n * m + 1;
 
-    vector&lt;string&gt; grid(n);
-    for (int i = 0; i &lt; n; i++) {
-        cin &gt;&gt; grid[i];
-    }
+# s -&gt; even / odd -&gt; t
+for i in 0..&lt;n:
+  for j in 0..&lt;m:
+    if grid[i][j] == &#39;#&#39;: continue
+    let v = i * m + j
+    if (i + j) mod 2 == 0:
+      g.add_edge(s, v, 1)
+    else:
+      g.add_edge(v, t, 1)
 
-    /**
-     * generate (s -&gt; even grid -&gt; odd grid -&gt; t) graph
-     * grid(i, j) correspond to vertex (i * m + j)
-     **/
-    mf_graph&lt;int&gt; g(n * m + 2);
-    int s = n * m, t = n * m + 1;
+# even -&gt; odd
+for i in 0..&lt;n:
+  for j in 0..&lt;m:
+    if (i + j) mod 2 == 1 or grid[i][j] == &#39;#&#39;: continue
+    let v0 = i * m + j
+    if i != 0 and grid[i - 1][j] == &#39;.&#39;:
+      let v1 = (i - 1) * m + j
+      g.add_edge(v0, v1, 1)
+    if j != 0 and grid[i][j - 1] == &#39;.&#39;:
+      let v1 = i * m + (j - 1)
+      g.add_edge(v0, v1, 1)
+    if i + 1 &lt; n and grid[i + 1][j] == &#39;.&#39;:
+      let v1 = (i + 1) * m + j
+      g.add_edge(v0, v1, 1)
+    if j + 1 &lt; m and grid[i][j + 1] == &#39;.&#39;:
+      let v1 = i * m + (j + 1)
+      g.add_edge(v0, v1, 1)
 
-    // s -&gt; even / odd -&gt; t
-    for (int i = 0; i &lt; n; i++) {
-        for (int j = 0; j &lt; m; j++) {
-            if (grid[i][j] == &#39;#&#39;) continue;
-            int v = i * m + j;
-            if ((i + j) % 2 == 0) {
-                g.add_edge(s, v, 1);
-            } else {
-                g.add_edge(v, t, 1);
-            }
-        }
-    }
+echo g.flow(s, t)
 
-    // even -&gt; odd
-    for (int i = 0; i &lt; n; i++) {
-        for (int j = 0; j &lt; m; j++) {
-            if ((i + j) % 2 || grid[i][j] == &#39;#&#39;) continue;
-            int v0 = i * m + j;
-            if (i &amp;&amp; grid[i - 1][j] == &#39;.&#39;) {
-                int v1 = (i - 1) * m + j;
-                g.add_edge(v0, v1, 1);
-            }
-            if (j &amp;&amp; grid[i][j - 1] == &#39;.&#39;) {
-                int v1 = i * m + (j - 1);
-                g.add_edge(v0, v1, 1);
-            }
-            if (i + 1 &lt; n &amp;&amp; grid[i + 1][j] == &#39;.&#39;) {
-                int v1 = (i + 1) * m + j;
-                g.add_edge(v0, v1, 1);
-            }
-            if (j + 1 &lt; m &amp;&amp; grid[i][j + 1] == &#39;.&#39;) {
-                int v1 = i * m + (j + 1);
-                g.add_edge(v0, v1, 1);
-            }
-        }
-    }
+let edges = g.edges()
+for e in edges:
+  if e.src == s or e.dst == t or e.flow == 0: continue
+  let
+    i0 = e.src div m
+    j0 = e.src mod m
+    i1 = e.dst div m
+    j1 = e.dst mod m
 
-    cout &lt;&lt; g.flow(s, t) &lt;&lt; endl;
+  if i0 == i1 + 1:
+    grid[i1][j1] = &#39;v&#39;; grid[i0][j0] = &#39;^&#39;
+  elif j0 == j1 + 1:
+    grid[i1][j1] = &#39;&gt;&#39;; grid[i0][j0] = &#39;&lt;&#39;
+  elif i0 == i1 - 1:
+    grid[i0][j0] = &#39;v&#39;; grid[i1][j1] = &#39;^&#39;
+  else:
+    grid[i0][j0] = &#39;&gt;&#39;; grid[i1][j1] = &#39;&lt;&#39;
 
-    auto edges = g.edges();
-    for (auto e : edges) {
-        if (e.from == s || e.to == t || e.flow == 0) continue;
-        int i0 = e.from / m, j0 = e.from % m;
-        int i1 = e.to / m, j1 = e.to % m;
-
-        if (i0 == i1 + 1) {
-            grid[i1][j1] = &#39;v&#39;;
-            grid[i0][j0] = &#39;^&#39;;
-        } else if (j0 == j1 + 1) {
-            grid[i1][j1] = &#39;&gt;&#39;; grid[i0][j0] = &#39;&lt;&#39;;
-        } else if (i0 == i1 - 1) {
-            grid[i0][j0] = &#39;v&#39;;
-            grid[i1][j1] = &#39;^&#39;;
-        } else {
-            grid[i0][j0] = &#39;&gt;&#39;; grid[i1][j1] = &#39;&lt;&#39;;
-        }
-    }
-
-    for (int i = 0; i &lt; n; i++) {
-        cout &lt;&lt; grid[i] &lt;&lt; endl;
-    }
-
-    return 0;
-}
+echo grid.join(&#34;\n&#34;)
 </div>
         </div>
     </section>

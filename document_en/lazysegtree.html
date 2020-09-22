@@ -209,67 +209,44 @@
 </ul>
 <h2>Examples</h2>
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_k">https://atcoder.jp/contests/practice2/tasks/practice2_k</a></h3>
-<div class="sample-code">#include &lt;atcoder/lazysegtree&gt;
-#include &lt;atcoder/modint&gt;
-#include &lt;cstdio&gt;
+<div class="sample-code">import atcoder/header
+import atcoder/lazysegtree
+import atcoder/modint
+import sugar
 
-using namespace std;
-using namespace atcoder;
+type mint = modint998244353
 
-using mint = modint998244353;
+type S = tuple[a:mint, size:int]
+type F = tuple[a:mint, b:mint]
 
-struct S {
-    mint a;
-    int size;
-};
+let op = (l:S, r:S) =&gt; (l.a + r.a, l.size + r.size)
+let e = () =&gt; (mint(0), 0)
+let mapping = (l:F, r:S) =&gt; (r.a * l.a + r.size * l.b, r.size)
+let composition = (l:F, r:F) =&gt; (r.a * l.a, r.b * l.a + l.b)
+let id = () =&gt; (mint(1), mint(0))
 
-struct F {
-    mint a, b;
-};
+let n, q = nextInt()
+var a = newSeq[S](n)
 
-S op(S l, S r) { return S{l.a + r.a, l.size + r.size}; }
+for i in 0..&lt;n:
+  let x = nextInt()
+  a[i] = (mint.init(x), 1)
 
-S e() { return S{0, 0}; }
+var seg = initLazySegTree(a, op, e, mapping, composition, id)
 
-S mapping(F l, S r) { return S{r.a * l.a + r.size * l.b, r.size}; }
-
-F composition(F l, F r) { return F{r.a * l.a, r.b * l.a + l.b}; }
-
-F id() { return F{1, 0}; }
-
-int main() {
-    int n, q;
-    scanf(&#34;%d %d&#34;, &amp;n, &amp;q);
-
-    vector&lt;S&gt; a(n);
-    for (int i = 0; i &lt; n; i++) {
-        int x;
-        scanf(&#34;%d&#34;, &amp;x);
-        a[i] = S{x, 1};
-    }
-
-    lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(a);
-
-    for (int i = 0; i &lt; q; i++) {
-        int t;
-        scanf(&#34;%d&#34;, &amp;t);
-        if (t == 0) {
-            int l, r;
-            int c, d;
-            scanf(&#34;%d %d %d %d&#34;, &amp;l, &amp;r, &amp;c, &amp;d);
-            seg.apply(l, r, F{c, d});
-        } else {
-            int l, r;
-            scanf(&#34;%d %d&#34;, &amp;l, &amp;r);
-            printf(&#34;%d\n&#34;, seg.prod(l, r).a.val());
-        }
-    }
-}
+for i in 0..&lt;q:
+  let t = nextInt()
+  if t == 0:
+    let l, r, c, d = nextInt()
+    seg.apply(l..&lt;r, (c.mint, d.mint));
+  else:
+    let l, r = nextInt()
+    echo seg.prod(l..&lt;r).a.val()
 </div>
 
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_l">https://atcoder.jp/contests/practice2/tasks/practice2_l</a></h3>
-<div class="sample-code">include src/nim_acl/header
-import src/nim_acl/lazysegtree
+<div class="sample-code">include atcoder/header
+import atcoder/lazysegtree
 
 block:
   type S = tuple[zero, one, inversion:int]

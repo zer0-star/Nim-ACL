@@ -58,7 +58,7 @@
 </ul>
 <p>というクローズを足し、これをすべて満たす変数の割当があるかを解きます。</p>
 <h2>コンストラクタ</h2>
-<pre><code class="cpp">two_sat ts(int n)
+<pre><code class="nim">ts = initTwoSat(n:int):TwoSat
 </code></pre>
 
 <p>$n$ 変数の2-SATを作ります。</p>
@@ -71,7 +71,7 @@
 <li>$O(n)$</li>
 </ul>
 <h2>add_clause</h2>
-<pre><code class="cpp">void ts.add_clause(int i, bool f, int j, bool g)
+<pre><code class="nim">ts.add_clause(i:int, f:bool, j:int, g:bool):void
 </code></pre>
 
 <p>$(x_i = f) \lor (x_j = g)$ というクローズを足します。</p>
@@ -85,7 +85,7 @@
 <li>ならし $O(1)$</li>
 </ul>
 <h2>satisfiable</h2>
-<pre><code class="cpp">bool ts.satisfiable()
+<pre><code class="nim">ts.satisfiable():bool
 </code></pre>
 
 <p>条件を足す割当が存在するかどうかを判定する。割当が存在するならば<code>true</code>、そうでないなら<code>false</code>を返す。</p>
@@ -99,7 +99,7 @@
 <li>$O(n + m)$</li>
 </ul>
 <h2>answer</h2>
-<pre><code class="cpp">vector&lt;bool&gt; ts.answer()
+<pre><code class="nim">ts.answer():seq[bool]
 </code></pre>
 
 <p>最後に呼んだ <code>satisfiable</code> の、クローズを満たす割当を返す。<code>satisfiable</code> を呼ぶ前や、<code>satisfiable</code> で割当が存在しなかったときにこの関数を呼ぶと、中身が未定義の長さ $n$ の vectorを返す。</p>
@@ -109,58 +109,39 @@
 </ul>
 <h2>使用例</h2>
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_h">https://atcoder.jp/contests/practice2/tasks/practice2_h</a></h3>
-<div class="sample-code">#include &lt;atcoder/twosat&gt;
-#include &lt;iostream&gt;
-#include &lt;vector&gt;
+<div class="sample-code">import atcoder/header
+import atcoder/twosat
 
-using namespace std;
-using namespace atcoder;
+let n, d = nextInt()
+var x, y = newSeq[int](n)
+for i in 0..&lt;n:
+  (x[i], y[i]) = (nextInt(), nextInt())
 
-int main() {
-    int n, d;
-    cin &gt;&gt; n &gt;&gt; d;
-    vector&lt;int&gt; x(n), y(n);
-    for (int i = 0; i &lt; n; i++) {
-        cin &gt;&gt; x[i] &gt;&gt; y[i];
-    }
+# ts[i] = (i-th flag is located on x[i])
+var ts = init_two_sat(n)
 
-    // ts[i] = (i-th flag is located on x[i])
-    two_sat ts(n);
+for i in 0..&lt;n:
+  for j in i + 1 ..&lt; n:
+    if abs(x[i] - x[j]) &lt; d:
+      # cannot use both of x[i] and x[j]
+      ts.add_clause(i, false, j, false)
+    if abs(x[i] - y[j]) &lt; d:
+      ts.add_clause(i, false, j, true)
+    if abs(y[i] - x[j]) &lt; d:
+      ts.add_clause(i, true, j, false)
+    if abs(y[i] - y[j]) &lt; d:
+      ts.add_clause(i, true, j, true)
 
-    for (int i = 0; i &lt; n; i++) {
-        for (int j = i + 1; j &lt; n; j++) {
-            if (abs(x[i] - x[j]) &lt; d) {
-                // cannot use both of x[i] and x[j]
-                ts.add_clause(i, false, j, false);
-            }
-            if (abs(x[i] - y[j]) &lt; d) {
-                ts.add_clause(i, false, j, true);
-            }
-            if (abs(y[i] - x[j]) &lt; d) {
-                ts.add_clause(i, true, j, false);
-            }
-            if (abs(y[i] - y[j]) &lt; d) {
-                ts.add_clause(i, true, j, true);
-            }
-        }
-    }
-
-    if (!ts.satisfiable()) {
-        cout &lt;&lt; &#34;No&#34; &lt;&lt; endl;
-        return 0;
-    }
-
-    cout &lt;&lt; &#34;Yes&#34; &lt;&lt; endl;
-    auto answer = ts.answer();
-    for (int i = 0; i &lt; n; i++) {
-        if (answer[i])
-            cout &lt;&lt; x[i] &lt;&lt; endl;
-        else
-            cout &lt;&lt; y[i] &lt;&lt; endl;
-    }
-
-    return 0;
-}
+if not ts.satisfiable():
+  echo &#34;No&#34;
+else:
+  echo &#34;Yes&#34;
+  let answer = ts.answer
+  for i in 0..&lt;n:
+    if answer[i]:
+      echo x[i]
+    else:
+      echo y[i]
 </div>
         </div>
     </section>

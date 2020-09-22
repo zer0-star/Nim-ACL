@@ -65,8 +65,8 @@
 <p>を $O(\log N)$ で行うことが出来ます。詳細な要件は <a href="./appendix.html">Appendix</a> を参照してください。</p>
 <p>また、このライブラリはオラクルとして<code>op, e, mapping, composition, id</code>を使用しますが、これらが定数時間で動くものと仮定したときの計算量を記述します。オラクル内部の計算量が $O(f(n))$ である場合はすべての計算量が $O(f(n))$ 倍となります。</p>
 <h2>コンストラクタ</h2>
-<pre><code class="cpp">(1) lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(int n);
-(2) lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(vector&lt;T&gt; v);
+<pre><code class="nim">(1) var seg = initLazySegTree(n:int, op, e, mapping, composition, id)
+(2) var seg = initLazySegTree(v:seq[T], op, e, mapping, composition, id)
 </code></pre>
 
 <ul>
@@ -93,7 +93,7 @@
 <li>$O(n)$</li>
 </ul>
 <h2>set</h2>
-<pre><code class="cpp">void seg.set(int p, S x)
+<pre><code class="nim">seg.set(p:int, x:S):void
 </code></pre>
 
 <p><code>a[p] = x</code></p>
@@ -106,7 +106,7 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2>get</h2>
-<pre><code class="cpp">S seg.get(int p)
+<pre><code class="nim">seg.get(p:int):S
 </code></pre>
 
 <p><code>a[p]</code> を返します。</p>
@@ -119,7 +119,7 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2>prod</h2>
-<pre><code class="cpp">S seg.prod(int l, int r)
+<pre><code class="nim">seg.prod(l..&lt;r):S
 </code></pre>
 
 <p><code>op(a[l], ..., a[r - 1])</code> を、モノイドの性質を満たしていると仮定して計算します。$l = r$ のときは <code>e()</code> を返します。</p>
@@ -132,7 +132,7 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2>all_prod</h2>
-<pre><code class="cpp">S seg.all_prod()
+<pre><code class="nim">seg.all_prod():S
 </code></pre>
 
 <p><code>op(a[0], ..., a[n-1])</code> を計算します。$n = 0$ のときは <code>e()</code> を返します。</p>
@@ -141,8 +141,8 @@
 <li>$O(1)$</li>
 </ul>
 <h2>apply</h2>
-<pre><code class="cpp">(1) void seg.apply(int p, F f)
-(2) void seg.apply(int l, int r, F f)
+<pre><code class="nim">(1) seg.apply(p:int, f:F):void
+(2) seg.apply(l..&lt;r, f:F):void
 </code></pre>
 
 <ul>
@@ -159,12 +159,12 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2>max_right</h2>
-<pre><code class="cpp">(1) int seg.max_right&lt;g&gt;(int l)
-(2💻) int seg.max_right&lt;G&gt;(int l, G g)
+<pre><code class="nim">(1) seg.max_right(l:int, g:(S)-&gt;bool):int
+(2💻) seg.max_right(l:int, g:(S)-&gt;bool):int
 </code></pre>
 
 <ul>
-<li>(1): 関数 <code>bool g(S x)</code> を定義する必要があります。segtreeの上で二分探索をします。  </li>
+<li>(1): 関数 <code>g(x:S):bool</code> を定義する必要があります。segtreeの上で二分探索をします。  </li>
 <li>(2): <code>S</code>を引数にとり<code>bool</code>を返す関数オブジェクトを渡して使用します。  </li>
 </ul>
 <p>以下の条件を両方満たす <code>r</code> を(いずれか一つ)返します。</p>
@@ -184,8 +184,8 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2>min_left</h2>
-<pre><code class="cpp">(1) int seg.min_left&lt;g&gt;(int r)
-(2💻) int seg.min_left&lt;G&gt;(int r, G g)
+<pre><code class="nim">(1) seg.min_left(r:int, g:(S)-&gt;bool):int
+(2💻) int seg.min_left(r:int, g:(S)-&gt;bool):int
 </code></pre>
 
 <ul>
@@ -210,67 +210,44 @@
 </ul>
 <h2>使用例</h2>
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_k">https://atcoder.jp/contests/practice2/tasks/practice2_k</a></h3>
-<div class="sample-code">#include &lt;atcoder/lazysegtree&gt;
-#include &lt;atcoder/modint&gt;
-#include &lt;cstdio&gt;
+<div class="sample-code">import atcoder/header
+import atcoder/lazysegtree
+import atcoder/modint
+import sugar
 
-using namespace std;
-using namespace atcoder;
+type mint = modint998244353
 
-using mint = modint998244353;
+type S = tuple[a:mint, size:int]
+type F = tuple[a:mint, b:mint]
 
-struct S {
-    mint a;
-    int size;
-};
+let op = (l:S, r:S) =&gt; (l.a + r.a, l.size + r.size)
+let e = () =&gt; (mint(0), 0)
+let mapping = (l:F, r:S) =&gt; (r.a * l.a + r.size * l.b, r.size)
+let composition = (l:F, r:F) =&gt; (r.a * l.a, r.b * l.a + l.b)
+let id = () =&gt; (mint(1), mint(0))
 
-struct F {
-    mint a, b;
-};
+let n, q = nextInt()
+var a = newSeq[S](n)
 
-S op(S l, S r) { return S{l.a + r.a, l.size + r.size}; }
+for i in 0..&lt;n:
+  let x = nextInt()
+  a[i] = (mint.init(x), 1)
 
-S e() { return S{0, 0}; }
+var seg = initLazySegTree(a, op, e, mapping, composition, id)
 
-S mapping(F l, S r) { return S{r.a * l.a + r.size * l.b, r.size}; }
-
-F composition(F l, F r) { return F{r.a * l.a, r.b * l.a + l.b}; }
-
-F id() { return F{1, 0}; }
-
-int main() {
-    int n, q;
-    scanf(&#34;%d %d&#34;, &amp;n, &amp;q);
-
-    vector&lt;S&gt; a(n);
-    for (int i = 0; i &lt; n; i++) {
-        int x;
-        scanf(&#34;%d&#34;, &amp;x);
-        a[i] = S{x, 1};
-    }
-
-    lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(a);
-
-    for (int i = 0; i &lt; q; i++) {
-        int t;
-        scanf(&#34;%d&#34;, &amp;t);
-        if (t == 0) {
-            int l, r;
-            int c, d;
-            scanf(&#34;%d %d %d %d&#34;, &amp;l, &amp;r, &amp;c, &amp;d);
-            seg.apply(l, r, F{c, d});
-        } else {
-            int l, r;
-            scanf(&#34;%d %d&#34;, &amp;l, &amp;r);
-            printf(&#34;%d\n&#34;, seg.prod(l, r).a.val());
-        }
-    }
-}
+for i in 0..&lt;q:
+  let t = nextInt()
+  if t == 0:
+    let l, r, c, d = nextInt()
+    seg.apply(l..&lt;r, (c.mint, d.mint));
+  else:
+    let l, r = nextInt()
+    echo seg.prod(l..&lt;r).a.val()
 </div>
 
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_l">https://atcoder.jp/contests/practice2/tasks/practice2_l</a></h3>
-<div class="sample-code">include src/nim_acl/header
-import src/nim_acl/lazysegtree
+<div class="sample-code">include atcoder/header
+import atcoder/lazysegtree
 
 block:
   type S = tuple[zero, one, inversion:int]

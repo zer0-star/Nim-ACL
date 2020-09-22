@@ -53,57 +53,39 @@
             <h1>Modint</h1>
 <p>自動でmodを取る構造体です。AC Libraryはmodintを使わなくとも全アルゴリズムが使えるように整備しているので、必ずしもこのファイルの内容を把握する必要はありません。</p>
 <p>多くの問題では <code>modint998244353</code>, <code>modint1000000007</code>, <code>modint</code> のどれかを使えば十分で、以下のように使えます。</p>
-<pre><code class="cpp">#include &lt;atcoder/modint&gt;
-#include &lt;iostream&gt;
+<pre><code class="nim">import atcoder/header
+import atcoder/modint
 
-using namespace std;
-using namespace atcoder;
+type mint = modint998244353
 
-using mint = modint998244353;
-// or: typedef modint998244353 mint;
-
-int main() {
-    // print sum of array (mod 998244353)
-    int n;
-    cin &gt;&gt; n;
-    mint sum = 0;
-    for (int i = 0; i &lt; n; i++) {
-        int x;
-        cin &gt;&gt; x;
-        sum += x;
-    }
-    cout &lt;&lt; sum.val() &lt;&lt; endl;
-}
+# print sum of array (mod 998244353)
+let n = nextInt()
+var sum = mint(0)
+for i in 0..&lt;n:
+  sum += nextInt()
+echo sum.val()
 </code></pre>
 
 <p>modがfixedでない場合は、<code>modint</code> を使用し以下のように書けます。</p>
-<pre><code class="cpp">#include &lt;atcoder/modint&gt;
-#include &lt;iostream&gt;
+<pre><code class="nim">import atcoder/header
+import atcoder/modint as modint_lib
 
-using namespace std;
+type mint = modint
 
-using mint = modint;
-// or: typedef modint mint;
+# print sum of array (input mod)
+let n, M = nextInt()
+mint.set_mod(M)
+var sum = mint(0)
+for i in 0..&lt;n:
+  sum += nextInt()
+echo sum.val()
 
-int main() {
-    // print sum of array (input mod)
-    int n, mod;
-    cin &gt;&gt; n &gt;&gt; mod;
-    mint::set_mod(mod);
-    mint sum = 0;
-    for (int i = 0; i &lt; n; i++) {
-        int x;
-        cin &gt;&gt; x;
-        sum += x;
-    }
-    cout &lt;&lt; sum.val() &lt;&lt; endl;
-}
 </code></pre>
 
 <p>以下の関数らは、<code>set_mod</code> を除き $3$ つともに対して動きます。</p>
 <h2>コンストラクタ</h2>
-<pre><code class="cpp">(1) modint x()
-(2) modint x&lt;T&gt;(T y)
+<pre><code class="nim">(1) x = modint()
+(2) x = modint[T](y:T)
 </code></pre>
 
 <ul>
@@ -111,7 +93,7 @@ int main() {
 <li>(2) 整数型 <code>T</code>(<code>int, char, ull, bool, ...</code>) に対するコンストラクタです。<code>y</code> のmodを取ってmodintに格納します。</li>
 </ul>
 <h2>set_mod</h2>
-<pre><code class="cpp">void modint::set_mod(int m)
+<pre><code class="nim">set_mod(m:int):void
 </code></pre>
 
 <p>modを設定します。最初に呼んでください。</p>
@@ -124,47 +106,45 @@ int main() {
 <li>$O(1)$</li>
 </ul>
 <h2>mod</h2>
-<pre><code class="cpp">int modint::mod()
+<pre><code class="nim">modint.mod():int
 </code></pre>
 
 <p>modを返します。</p>
 <h2>val</h2>
-<pre><code class="cpp">int x.val();
+<pre><code class="nim">x.val():int
 </code></pre>
 
 <p><code>x</code>に格納されている値を返します。</p>
 <h2>各種演算</h2>
-<pre><code class="cpp">-modint;
+<pre><code class="nim">-modint
 
-modint++;
-modint--;
-++modint;
---modint;
+modint.inc
+modint.dec
 
-modint + modint;
-modint - modint;
-modint * modint;
-modint / modint;
+modint + modint
+modint - modint
+modint * modint
+modint / modint
 
-modint += modint;
-modint -= modint;
-modint *= modint;
-modint /= modint;
+modint += modint
+modint -= modint
+modint *= modint
+modint /= modint
 
-modint == modint;
-modint != modint;
+modint == modint
+modint != modint
 </code></pre>
 
 <p>が動きます。</p>
-<pre><code class="cpp">modint x = 10;
+<pre><code class="nim">modint x = 10;
 1 + x;
 </code></pre>
 
 <p>も(<code>modint(1) + x</code>と自動で解釈されるので)動きます。</p>
-<pre><code class="cpp">modint::set_mod(11);
-modint y = 10;
-int z = 1234;
-y * z;
+<pre><code class="cpp">modint.set_mod(11)
+var y = modint(10)
+var z = 1234
+y * z
 </code></pre>
 
 <p>も<code>y * modint(z)</code>と解釈され、動きます。</p>
@@ -178,7 +158,7 @@ y * z;
 <li>$O(\log \mathrm{mod})$ (割り算)</li>
 </ul>
 <h2>pow</h2>
-<pre><code class="cpp">modint x.pow(ll n)
+<pre><code class="nim">x.pow(ll n):modint
 </code></pre>
 
 <p>$x^n$ を返します。</p>
@@ -191,7 +171,7 @@ y * z;
 <li>$O(\log n)$</li>
 </ul>
 <h2>inv</h2>
-<pre><code class="cpp">modint x.inv()
+<pre><code class="nim">x.inv():modint
 </code></pre>
 
 <p>$xy \equiv 1$ なる $y$ を返します。</p>
@@ -204,36 +184,30 @@ y * z;
 <li>$O(\log \mathrm{mod})$</li>
 </ul>
 <h2>raw</h2>
-<pre><code class="cpp">modint modint::raw(int x)
+<pre><code class="nim">modint.raw(int x):modint
 </code></pre>
 
 <p><code>x</code>に対してmodを取らずに、<code>modint(x)</code>を返す。</p>
 <p>定数倍高速化のための関数です。</p>
 <p>上で述べたように</p>
-<pre><code class="cpp">modint a;
-int i;
-a += i;
+<pre><code class="nim">var a:modint
+var i:int
+a += i
 </code></pre>
 
 <p>は、<code>i</code>がmod以上でも動きます。勝手に<code>i</code>に対してmodを取るためです。</p>
 <p>ですが、たとえば以下のようなコードでは、<code>i</code>がmodを超えないことを保証できます。</p>
-<pre><code class="cpp">int main() {
-    modint::set_mod(1000000007);
-    modint a = 1;
-    for (int i = 1; i &lt; 100000; i++) {
-        a += i;
-    }
-}
+<pre><code class="nim">modint::set_mod(1000000007)
+var a = modint(1)
+for i in 1..&lt; 100000:
+    a += i
 </code></pre>
 
 <p>このような時に、</p>
-<pre><code class="cpp">int main() {
-    modint::set_mod(1000000007);
-    modint a = 1;
-    for (int i = 1; i &lt; 100000; i++) {
-        a += modint::raw(i);
-    }
-}
+<pre><code class="nim">modint::set_mod(1000000007)
+var a = modint(1)
+for i in 1..&lt; 100000:
+  a += modint.raw(i)
 </code></pre>
 
 <p>と書くと、modの回数を減らすことが出来ます。</p>
@@ -244,85 +218,81 @@ a += i;
 </ul>
 <h2>Tips(other mod)</h2>
 <p>問題文で他のmod (例: <code>1000000009</code>) が与えられる場合、以下のように書けます</p>
-<pre><code class="cpp">using mint = static_modint&lt;1000000009&gt;;
+<pre><code class="nim">type mint = StaticModInt[1000000009]
 </code></pre>
 
 <p><code>modint998244353</code>, <code>modint1000000007</code> は、<code>static_modint&lt;998244353&gt;</code>, <code>static_modint&lt;1000000007&gt;</code>のエイリアスになっています。</p>
-<pre><code class="cpp">using modint998244353 = static_modint&lt;998244353&gt;;
-using modint1000000007 = static_modint&lt;1000000007&gt;;
+<pre><code class="nim">type modint998244353 = StaticModInt[998244353]
+type modint1000000007 = StaticModInt[1000000007]
 </code></pre>
 
 <h2>Tips(複数mod)</h2>
 <p>複数種類modを使用したい場合以下のようにできます</p>
-<pre><code class="cpp">using mint0 = dynamic_modint&lt;0&gt;;
-using mint1 = dynamic_modint&lt;1&gt;;
+<pre><code class="nim">type mint0 = DynamicModInt[0]
+type mint1 = DynamicModInt[1]
 </code></pre>
 
-<p><code>modint</code>は、<code>dynamic_modint&lt;-1&gt;</code>のエイリアスになっています。</p>
-<pre><code class="cpp">using modint = dynamic_modint&lt;-1&gt;;
+<p><code>modint</code>は、<code>DynamicModInt[-1]</code>のエイリアスになっています。</p>
+<pre><code class="cpp">type modint = DynamicModInt[-1]
 </code></pre>
 
 <h2>使用例</h2>
 <h3>How to Use</h3>
-<div class="sample-code">#include &lt;atcoder/modint&gt;
-#include &lt;cstdio&gt;
+<div class="sample-code">import atcoder/modint
 
-using namespace std;
-using namespace atcoder;
+type mint = StaticModInt[11]
 
-using mint = static_modint&lt;11&gt;;
-int main() {
-    mint a = 10;
-    mint b(3);
+var
+  a = mint(10)
+  b:mint = mint(3)
 
-    // equal
-    assert(a == 21);
-    assert(a == -1);
-    assert(-1 == a);
+# equal
+assert a == 21
+assert a == -1
+assert -1 == a
 
-    // negative
-    assert(-b == 8);
+# negative
+assert -b == 8
 
-    // plus
-    assert(a + b == 2);  // (10 + 3) mod 11
-    assert(1 + a == 0);
+# plus
+assert a + b == 2  # (10 + 3) mod 11
+assert 1 + a == 0
 
-    // minus
-    assert(a - b == 7);  // (10 - 3) mod 11
-    assert(b - a == 4);
+# minus
+assert a - b == 7  # (10 - 3) mod 11
+assert b - a == 4
 
-    // mul
-    assert(a * b == 8);  // (10 * 3) mod 11
+# mul
+assert a * b == 8  # (10 * 3) mod 11
 
-    // inv
-    assert(b.inv() == 4);  // (3 * 4) mod 11 == 1
+# inv
+assert b.inv() == 4  # (3 * 4) mod 11 == 1
 
-    // div
-    assert(a / b == 7);  // (10 * 4) mod 11
+# div
+assert a / b == 7  # (10 * 4) mod 11
 
-    // +=, -=, *=, /=
-    a += b;
-    assert(a == 2 &amp;&amp; b == 3);
-    a -= b;
-    assert(a == 10 &amp;&amp; b == 3);
-    a *= b;
-    assert(a == 8 &amp;&amp; b == 3);
-    a /= b;
-    assert(a == 10 &amp;&amp; b == 3);
+# +=, -=, *=, /=
+a += b
+assert a == 2 and b == 3
+a -= b
+assert a == 10 and b == 3
+a *= b
+assert a == 8 and b == 3
+a /= b
+assert a == 10 and b == 3
 
-    // pow
-    assert(mint(2).pow(4) == 5);  // 16 mod 11
+# pow
+assert mint(2).pow(4) == 5  # 16 mod 11
 
-    // print value
-    printf(&#34;%d\n&#34;, a.val());  // 10
+# print value
+echo a.val()  # 10
 
-    // get mod
-    assert(mint::mod() == 11 &amp;&amp; a.mod() == 11);
+# get mod
+assert mint.mod == 11 and a.mod == 11
 
-    // mint(x) と書くとmodを取る操作が発生します((x % mod + mod) % modをmodintに代入します)
-    // mint::raw(x) はxをmodを取らずに代入するので高速です(もちろんxが[0, mod)であることを利用者が保証しないといけません)
-    assert(mint::raw(3) == 3);
-}
+# mint(x) と書くとmodを取る操作が発生します((x % mod + mod) % modをmodintに代入します)
+# mint::raw(x) はxをmodを取らずに代入するので高速です(もちろんxが[0, mod)であることを利用者が保証しないといけません)
+assert mint.raw(3) == 3
 </div>
         </div>
     </section>

@@ -141,31 +141,21 @@ Both of the orders of the connected components and the vertices are undefined.</
 </ul>
 <h2>Examples</h2>
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_a">https://atcoder.jp/contests/practice2/tasks/practice2_a</a></h3>
-<div class="sample-code">#include &lt;atcoder/dsu&gt;
-#include &lt;cstdio&gt;
+<div class="sample-code">import atcoder/header
+import atcoder/dsu
 
-using namespace std;
-using namespace atcoder;
+let n, q = nextInt()
+var d = initDSU(n)
+for i in 0..&lt;q:
+  let t, u, v = nextInt()
+  if t == 0:
+    d.merge(u, v)
+  else:
+    if d.same(u, v):
+      echo 1
+    else:
+      echo 0
 
-int main() {
-    int n, q;
-    scanf(&#34;%d %d&#34;, &amp;n, &amp;q);
-    dsu d(n);
-    for (int i = 0; i &lt; q; i++) {
-        int t, u, v;
-        scanf(&#34;%d %d %d&#34;, &amp;t, &amp;u, &amp;v);
-        if (t == 0) {
-            d.merge(u, v);
-        } else {
-            if (d.same(u, v)) {
-                printf(&#34;1\n&#34;);
-            } else {
-                printf(&#34;0\n&#34;);
-            }
-        }
-    }
-    return 0;
-}
 </div>
         </div>
     </section>

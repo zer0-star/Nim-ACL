@@ -109,58 +109,39 @@ If we call it before calling <code>satisfiable</code> or when the last call of <
 </ul>
 <h2>Examples</h2>
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_h">https://atcoder.jp/contests/practice2/tasks/practice2_h</a></h3>
-<div class="sample-code">#include &lt;atcoder/twosat&gt;
-#include &lt;iostream&gt;
-#include &lt;vector&gt;
+<div class="sample-code">import atcoder/header
+import atcoder/twosat
 
-using namespace std;
-using namespace atcoder;
+let n, d = nextInt()
+var x, y = newSeq[int](n)
+for i in 0..&lt;n:
+  (x[i], y[i]) = (nextInt(), nextInt())
 
-int main() {
-    int n, d;
-    cin &gt;&gt; n &gt;&gt; d;
-    vector&lt;int&gt; x(n), y(n);
-    for (int i = 0; i &lt; n; i++) {
-        cin &gt;&gt; x[i] &gt;&gt; y[i];
-    }
+# ts[i] = (i-th flag is located on x[i])
+var ts = init_two_sat(n)
 
-    // ts[i] = (i-th flag is located on x[i])
-    two_sat ts(n);
+for i in 0..&lt;n:
+  for j in i + 1 ..&lt; n:
+    if abs(x[i] - x[j]) &lt; d:
+      # cannot use both of x[i] and x[j]
+      ts.add_clause(i, false, j, false)
+    if abs(x[i] - y[j]) &lt; d:
+      ts.add_clause(i, false, j, true)
+    if abs(y[i] - x[j]) &lt; d:
+      ts.add_clause(i, true, j, false)
+    if abs(y[i] - y[j]) &lt; d:
+      ts.add_clause(i, true, j, true)
 
-    for (int i = 0; i &lt; n; i++) {
-        for (int j = i + 1; j &lt; n; j++) {
-            if (abs(x[i] - x[j]) &lt; d) {
-                // cannot use both of x[i] and x[j]
-                ts.add_clause(i, false, j, false);
-            }
-            if (abs(x[i] - y[j]) &lt; d) {
-                ts.add_clause(i, false, j, true);
-            }
-            if (abs(y[i] - x[j]) &lt; d) {
-                ts.add_clause(i, true, j, false);
-            }
-            if (abs(y[i] - y[j]) &lt; d) {
-                ts.add_clause(i, true, j, true);
-            }
-        }
-    }
-
-    if (!ts.satisfiable()) {
-        cout &lt;&lt; &#34;No&#34; &lt;&lt; endl;
-        return 0;
-    }
-
-    cout &lt;&lt; &#34;Yes&#34; &lt;&lt; endl;
-    auto answer = ts.answer();
-    for (int i = 0; i &lt; n; i++) {
-        if (answer[i])
-            cout &lt;&lt; x[i] &lt;&lt; endl;
-        else
-            cout &lt;&lt; y[i] &lt;&lt; endl;
-    }
-
-    return 0;
-}
+if not ts.satisfiable():
+  echo &#34;No&#34;
+else:
+  echo &#34;Yes&#34;
+  let answer = ts.answer
+  for i in 0..&lt;n:
+    if answer[i]:
+      echo x[i]
+    else:
+      echo y[i]
 </div>
         </div>
     </section>
