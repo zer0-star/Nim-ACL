@@ -2,8 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':x:'
+    path: atcoder/convolution.nim
+    title: atcoder/convolution.nim
   - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
@@ -13,9 +16,6 @@ data:
   - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
-  - icon: ':x:'
-    path: atcoder/convolution.nim
-    title: atcoder/convolution.nim
   - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
@@ -23,14 +23,14 @@ data:
     path: atcoder/header.nim
     title: atcoder/header.nim
   - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':question:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
+    path: atcoder/header.nim
+    title: atcoder/header.nim
   - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -46,16 +46,16 @@ data:
     \ mint(nextInt()))\n  b = newSeqWith(m, mint(nextInt()))\n  c = convolution(a,\
     \ b)\n\necho c.join(\" \")\n"
   dependsOn:
-  - atcoder/header.nim
+  - atcoder/internal_bit.nim
+  - atcoder/convolution.nim
   - atcoder/modint.nim
   - atcoder/convolution.nim
   - atcoder/internal_math.nim
-  - atcoder/convolution.nim
   - atcoder/internal_bit.nim
   - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/internal_bit.nim
+  - atcoder/header.nim
   - atcoder/modint.nim
+  - atcoder/internal_math.nim
   isVerificationFile: false
   path: test/example/convolution_practice.nim
   requiredBy: []

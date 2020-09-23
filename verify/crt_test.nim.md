@@ -4,9 +4,6 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/math.nim
-    title: atcoder/math.nim
   - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
@@ -19,6 +16,9 @@ data:
   - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/math.nim
+    title: atcoder/math.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -37,11 +37,11 @@ data:
     \ 0: y += z\n  echo y\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/math.nim
   - atcoder/internal_math.nim
   - atcoder/math.nim
   - atcoder/header.nim
   - atcoder/internal_math.nim
+  - atcoder/math.nim
   isVerificationFile: true
   path: verify/crt_test.nim
   requiredBy: []

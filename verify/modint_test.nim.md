@@ -8,11 +8,11 @@ data:
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
   - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -31,8 +31,8 @@ data:
   dependsOn:
   - atcoder/modint.nim
   - atcoder/internal_math.nim
-  - atcoder/internal_math.nim
   - atcoder/modint.nim
+  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/modint_test.nim
   requiredBy: []

@@ -4,15 +4,15 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':warning:'
-    path: atcoder/mincostflow.nim
-    title: atcoder/mincostflow.nim
-  - icon: ':warning:'
-    path: atcoder/mincostflow.nim
-    title: atcoder/mincostflow.nim
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
+  - icon: ':warning:'
+    path: atcoder/mincostflow.nim
+    title: atcoder/mincostflow.nim
+  - icon: ':warning:'
+    path: atcoder/mincostflow.nim
+    title: atcoder/mincostflow.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -33,9 +33,9 @@ data:
     \ continue\n  grid[e.src][e.dst - n] = 'X'\n\nfor i in 0..<n:\n  echo grid[i]\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/mincostflow.nim
-  - atcoder/mincostflow.nim
   - atcoder/header.nim
+  - atcoder/mincostflow.nim
+  - atcoder/mincostflow.nim
   isVerificationFile: false
   path: test/example/mincostflow_practice.nim
   requiredBy: []

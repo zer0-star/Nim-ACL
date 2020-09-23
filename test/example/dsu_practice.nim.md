@@ -7,12 +7,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/dsu.nim
-    title: atcoder/dsu.nim
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/dsu.nim
+    title: atcoder/dsu.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -30,8 +30,8 @@ data:
   dependsOn:
   - atcoder/header.nim
   - atcoder/dsu.nim
-  - atcoder/dsu.nim
   - atcoder/header.nim
+  - atcoder/dsu.nim
   isVerificationFile: false
   path: test/example/dsu_practice.nim
   requiredBy: []

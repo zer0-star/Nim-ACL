@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
   - icon: ':question:'
@@ -11,14 +14,11 @@ data:
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
   - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':question:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
-  - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
   _extendedRequiredBy:
   - icon: ':warning:'
     path: test/example/convolution_practice.nim
@@ -189,12 +189,12 @@ data:
     \ 2'u * M1M2M3, 3'u * M1M2M3]\n      x -= offset[diff mod 5]\n      c[i] = x.int\n\
     \    return c\n"
   dependsOn:
+  - atcoder/internal_bit.nim
   - atcoder/modint.nim
   - atcoder/internal_math.nim
   - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
-  - atcoder/internal_bit.nim
   - atcoder/modint.nim
+  - atcoder/internal_math.nim
   isVerificationFile: false
   path: atcoder/convolution.nim
   requiredBy:

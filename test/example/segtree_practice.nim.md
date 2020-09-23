@@ -2,12 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/segtree.nim
-    title: atcoder/segtree.nim
-  - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
   - icon: ':question:'
@@ -19,6 +13,12 @@ data:
   - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/segtree.nim
+    title: atcoder/segtree.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -37,12 +37,12 @@ data:
     \ l.dec\n    echo seg.prod(l..<r)\n  elif t == 3:\n    let p = nextInt() - 1\n\
     \    target = nextInt()\n    echo seg.max_right(p, f) + 1\n"
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/segtree.nim
   - atcoder/internal_bit.nim
   - atcoder/header.nim
   - atcoder/segtree.nim
   - atcoder/internal_bit.nim
+  - atcoder/header.nim
+  - atcoder/segtree.nim
   isVerificationFile: false
   path: test/example/segtree_practice.nim
   requiredBy: []

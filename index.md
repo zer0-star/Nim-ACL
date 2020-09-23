@@ -353,4 +353,4 @@ layout: toppage
 ---
 ## ドキュメント
 
-[日本語](/document_ja/)
+[日本語](./document_ja/)

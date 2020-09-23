@@ -8,11 +8,11 @@ data:
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
   - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
@@ -42,8 +42,8 @@ data:
   dependsOn:
   - atcoder/modint.nim
   - atcoder/internal_math.nim
-  - atcoder/internal_math.nim
   - atcoder/modint.nim
+  - atcoder/internal_math.nim
   isVerificationFile: false
   path: atcoder/extra/math/mod_sqrt.nim
   requiredBy: []

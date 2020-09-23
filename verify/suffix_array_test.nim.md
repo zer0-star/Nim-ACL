@@ -1,15 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':question:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/string.nim
     title: atcoder/string.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/string.nim
     title: atcoder/string.nim
@@ -42,9 +42,9 @@ data:
 
     '
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/string.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
   - atcoder/string.nim
   isVerificationFile: true
   path: verify/suffix_array_test.nim

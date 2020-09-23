@@ -1,48 +1,48 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
-    path: atcoder/extra/math/internal_fft.nim
-    title: atcoder/extra/math/internal_fft.nim
-  - icon: ':x:'
-    path: atcoder/extra/math/internal_fft.nim
-    title: atcoder/extra/math/internal_fft.nim
   - icon: ':question:'
-    path: atcoder/modint.nim
-    title: atcoder/modint.nim
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/particular_mod_convolution.nim
+    title: atcoder/extra/math/particular_mod_convolution.nim
   - icon: ':x:'
     path: atcoder/convolution.nim
     title: atcoder/convolution.nim
   - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
   - icon: ':x:'
-    path: atcoder/extra/math/arbitrary_mod_convolution.nim
-    title: atcoder/extra/math/arbitrary_mod_convolution.nim
+    path: atcoder/extra/math/particular_mod_convolution.nim
+    title: atcoder/extra/math/particular_mod_convolution.nim
   - icon: ':x:'
     path: atcoder/convolution.nim
     title: atcoder/convolution.nim
   - icon: ':x:'
     path: atcoder/extra/math/arbitrary_mod_convolution.nim
     title: atcoder/extra/math/arbitrary_mod_convolution.nim
-  - icon: ':x:'
-    path: atcoder/extra/math/particular_mod_convolution.nim
-    title: atcoder/extra/math/particular_mod_convolution.nim
-  - icon: ':x:'
-    path: atcoder/extra/math/particular_mod_convolution.nim
-    title: atcoder/extra/math/particular_mod_convolution.nim
-  - icon: ':question:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
   - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
   - icon: ':question:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/arbitrary_mod_convolution.nim
+    title: atcoder/extra/math/arbitrary_mod_convolution.nim
+  - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
   - icon: ':question:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/internal_fft.nim
+    title: atcoder/extra/math/internal_fft.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/internal_fft.nim
+    title: atcoder/extra/math/internal_fft.nim
   _extendedRequiredBy:
   - icon: ':warning:'
     path: verify/extra/composition_of_formal_power_series_test_backup.nim
@@ -250,20 +250,20 @@ data:
     \ > 0:\n        ret *= x\n        ret -= getDiv(ret) * M\n      x *= x\n     \
     \ x -= getDiv(x) * M\n      n = n shr 1\n    return ret\n# }}}\n"
   dependsOn:
+  - atcoder/internal_bit.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/convolution.nim
+  - atcoder/modint.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/convolution.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
   - atcoder/extra/math/internal_fft.nim
   - atcoder/extra/math/internal_fft.nim
-  - atcoder/modint.nim
-  - atcoder/convolution.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/convolution.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
-  - atcoder/internal_bit.nim
   isVerificationFile: false
   path: atcoder/extra/math/formal_power_series.nim
   requiredBy:
