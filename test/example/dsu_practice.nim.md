@@ -1,18 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/dsu.nim
-    title: atcoder/dsu.nim
-  - icon: ':question:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/dsu.nim
-    title: atcoder/dsu.nim
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -27,11 +15,7 @@ data:
     \ = initDSU(n)\nfor i in 0..<q:\n  let t, u, v = nextInt()\n  if t == 0:\n   \
     \ d.merge(u, v)\n  else:\n    if d.same(u, v):\n      echo 1\n    else:\n    \
     \  echo 0\n\n"
-  dependsOn:
-  - atcoder/header.nim
-  - atcoder/dsu.nim
-  - atcoder/header.nim
-  - atcoder/dsu.nim
+  dependsOn: []
   isVerificationFile: false
   path: test/example/dsu_practice.nim
   requiredBy: []

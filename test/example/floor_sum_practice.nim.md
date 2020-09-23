@@ -1,24 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/math.nim
-    title: atcoder/math.nim
-  - icon: ':question:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/math.nim
-    title: atcoder/math.nim
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -31,13 +13,7 @@ data:
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "import atcoder/header\nimport atcoder/math\n\nlet t = nextInt()\nfor i in\
     \ 0..<t:\n  let n, m, a, b = nextInt()\n  echo floor_sum(n, m, a, b)\n"
-  dependsOn:
-  - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/math.nim
-  - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/math.nim
+  dependsOn: []
   isVerificationFile: false
   path: test/example/floor_sum_practice.nim
   requiredBy: []

@@ -1,18 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: atcoder/modint.nim
-    title: atcoder/modint.nim
-  - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':question:'
-    path: atcoder/modint.nim
-    title: atcoder/modint.nim
-  - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -40,11 +28,7 @@ data:
     \ mod)\u3067\u3042\u308B\u3053\u3068\u3092\u5229\u7528\u8005\u304C\u4FDD\u8A3C\
     \u3057\u306A\u3044\u3068\u3044\u3051\u307E\u305B\u3093)\nassert mint.raw(3) ==\
     \ 3\n"
-  dependsOn:
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
+  dependsOn: []
   isVerificationFile: false
   path: test/example/modint_usage.nim
   requiredBy: []

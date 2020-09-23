@@ -1,36 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
-  - icon: ':x:'
-    path: atcoder/convolution.nim
-    title: atcoder/convolution.nim
-  - icon: ':question:'
-    path: atcoder/modint.nim
-    title: atcoder/modint.nim
-  - icon: ':x:'
-    path: atcoder/convolution.nim
-    title: atcoder/convolution.nim
-  - icon: ':question:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':question:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
-  - icon: ':question:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':question:'
-    path: atcoder/modint.nim
-    title: atcoder/modint.nim
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -45,17 +15,7 @@ data:
     \nlet\n  n, m = nextInt()\n  a = newSeqWith(n, nextInt())\n  b = newSeqWith(m,\
     \ nextInt())\n\nlet c = convolution[998244353, int](a, b)\n# or: c = convolution<998244353>(a,\
     \ b)\n\necho c.join(\" \")\n"
-  dependsOn:
-  - atcoder/internal_bit.nim
-  - atcoder/convolution.nim
-  - atcoder/modint.nim
-  - atcoder/convolution.nim
-  - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/internal_bit.nim
-  - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
+  dependsOn: []
   isVerificationFile: false
   path: test/example/convolution_int_practice.nim
   requiredBy: []
