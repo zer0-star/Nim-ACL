@@ -14,7 +14,7 @@
 ```
 
 長さ $n$ の文字列 `s` のSuffix Arrayとして、長さ $n$ の vector を返す。
-Suffix Array `sa` は $(0, 1, \dots, n - 1)$ の順列であって、各 $i = 0,1, \cdots ,n-2$ について `s[sa[i]..n) < s[sa[i+1]..n)` を満たすもの。
+Suffix Array `sa` は $(0, 1, \dots, n - 1)$ の順列であって、各 $i = 0,1, \cdots ,n-2$ について `s[sa[i]..<n] < s[sa[i+1]..<n]` を満たすもの。
 
 **@{keyword.constraints}**
 
@@ -36,7 +36,7 @@ Suffix Array `sa` は $(0, 1, \dots, n - 1)$ の順列であって、各 $i = 0,
 (2) lcp_array[T](s:seq[T], sa:seq[int]):seq[int]
 ```
 
-長さ $n$ の文字列 `s` のLCP Arrayとして、長さ $n-1$ の配列を返す。$i$ 番目の要素は `s[sa[i]..n), s[sa[i+1]..n)` の LCP(Longest Common Prefix) の長さ。
+長さ $n$ の文字列 `s` のLCP Arrayとして、長さ $n-1$ の配列を返す。$i$ 番目の要素は `s[sa[i]..<n], s[sa[i+1]..<n]` の LCP(Longest Common Prefix) の長さ。
 
 **@{keyword.constraints}**
 
@@ -56,7 +56,7 @@ Suffix Array `sa` は $(0, 1, \dots, n - 1)$ の順列であって、各 $i = 0,
 ```
 
 入力の長さを $n$ として、長さ $n$ の配列を返す。
-$i$ 番目の要素は `s[0..n)`と`s[i..n)`のLCP(Longest Common Prefix)の長さ。
+$i$ 番目の要素は `s[0..<n]`と`s[i..<n]`のLCP(Longest Common Prefix)の長さ。
 
 **@{keyword.constraints}**
 

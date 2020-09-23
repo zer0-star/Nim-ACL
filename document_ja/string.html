@@ -61,7 +61,7 @@
 </code></pre>
 
 <p>長さ $n$ の文字列 <code>s</code> のSuffix Arrayとして、長さ $n$ の vector を返す。
-Suffix Array <code>sa</code> は $(0, 1, \dots, n - 1)$ の順列であって、各 $i = 0,1, \cdots ,n-2$ について <code>s[sa[i]..n) &lt; s[sa[i+1]..n)</code> を満たすもの。</p>
+Suffix Array <code>sa</code> は $(0, 1, \dots, n - 1)$ の順列であって、各 $i = 0,1, \cdots ,n-2$ について <code>s[sa[i]..&lt;n] &lt; s[sa[i+1]..&lt;n]</code> を満たすもの。</p>
 <p><strong>制約</strong></p>
 <ul>
 <li>$0 \leq n \leq 10^8$</li>
@@ -80,7 +80,7 @@ Suffix Array <code>sa</code> は $(0, 1, \dots, n - 1)$ の順列であって、
 (2) lcp_array[T](s:seq[T], sa:seq[int]):seq[int]
 </code></pre>
 
-<p>長さ $n$ の文字列 <code>s</code> のLCP Arrayとして、長さ $n-1$ の配列を返す。$i$ 番目の要素は <code>s[sa[i]..n), s[sa[i+1]..n)</code> の LCP(Longest Common Prefix) の長さ。</p>
+<p>長さ $n$ の文字列 <code>s</code> のLCP Arrayとして、長さ $n-1$ の配列を返す。$i$ 番目の要素は <code>s[sa[i]..&lt;n], s[sa[i+1]..&lt;n]</code> の LCP(Longest Common Prefix) の長さ。</p>
 <p><strong>制約</strong></p>
 <ul>
 <li><code>sa</code> は <code>s</code> のSuffix Array</li>
@@ -97,7 +97,7 @@ Suffix Array <code>sa</code> は $(0, 1, \dots, n - 1)$ の順列であって、
 </code></pre>
 
 <p>入力の長さを $n$ として、長さ $n$ の配列を返す。
-$i$ 番目の要素は <code>s[0..n)</code>と<code>s[i..n)</code>のLCP(Longest Common Prefix)の長さ。</p>
+$i$ 番目の要素は <code>s[0..&lt;n]</code>と<code>s[i..&lt;n]</code>のLCP(Longest Common Prefix)の長さ。</p>
 <p><strong>制約</strong></p>
 <ul>
 <li>$0 \leq n \leq 10^8$</li>
