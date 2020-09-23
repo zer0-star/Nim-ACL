@@ -1,45 +1,31 @@
+# FormalPowerSeries {{{
 when not declared ATCODER_FORMAL_POWER_SERIES:
   const ATCODER_FORMAL_POWER_SERIES* = 1
-  const FastMod = true
-  const UseFFT = true
   
-  # FormalPowerSeries {{{
-  import sugar, sequtils, strformat, options, macros
+  import std/sequtils, std/strformat, std/options, std/macros, std/tables
   
-  import atcoder/extra/math/element_concepts
+  import atcoder/modint
+  import atcoder/convolution
+#  import atcoder/extra/math/element_concepts
+  import atcoder/extra/math/internal_fft
+  import atcoder/extra/math/arbitrary_mod_convolution
+  import atcoder/extra/math/particular_mod_convolution
+#  import atcoder/extra/math/combination
 
-  type FormalPowerSeries*[T:FieldElem] = seq[T]
-  type SparseFormalPowerSeries*[T:FieldElem] = seq[(int, T)]
-  
-  when not declared(FastMult):
-    const FastMult* = true
-  when not declared(UseFFT):
-    const UseFFT* = true
-  when not declared(ArbitraryMod):
-    const ArbitraryMod* = false
-  when UseFFT or FastMult:
-    when ArbitraryMod:
-      when declared(ArbitraryModNTT):
-        type BaseFFT*[T] = ArbitraryModNTT[T]
-      elif declared(ArbitraryModFFT):
-        type BaseFFT*[T] = ArbitraryModFFT[T]
-      else:
-        assert(false)
+  type FormalPowerSeries*[T:ModInt] = seq[T]
+  type SparseFormalPowerSeries*[T:ModInt] = seq[(int, T)]
+
+  proc initFormalPowerSeries*[T](n:int):FormalPowerSeries[T] =
+    FormalPowerSeries[T](newSeq[T](n))
+  proc initFormalPowerSeries*[T](v:seq or array):FormalPowerSeries[T] =
+    when v is FormalPowerSeries[T]: return v
     else:
-      when declared(NumberTheoreticTransform):
-        type BaseFFT*[T] = NumberTheoreticTransform[T]
-      else:
-        assert(false)
-    proc getFFT[T](self:FormalPowerSeries[T]):ptr BaseFFT[T] =
-      var fft {.global.} = BaseFFT[T].init()
-      return fft.addr
-  
-  template initFormalPowerSeries*[T:FieldElem](data: typed):FormalPowerSeries[T] =
-    when data is int: FormalPowerSeries[T](newSeq[T](data))
-    else: data.mapIt(T(it))
-  
-  proc `$`*[T](self:FormalPowerSeries[T]):string = return self.mapIt($it).join(" ")
-  
+      result = newSeq[T](data.len)
+      for i, it in data:
+        result[i] = T.init(it)
+  template init*[T](self:typedesc[FormalPowerSeries[T]], data:typed):auto =
+    initFormalPowerSeries[T](data)
+
   macro revise(a, b) =
     parseStmt(fmt"""let {a.repr} = if {a.repr} == -1: {b.repr} else: {a.repr}""")
   # sqrt {{{
@@ -60,7 +46,7 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
   
   proc shrink*[T](self: var FormalPowerSeries[T]) =
     while self.len > 0 and self[^1] == 0: discard self.pop()
-  
+ 
   # operators +=, -=, *=, mod=, -, /= {{{
   proc `+=`*(self: var FormalPowerSeries, r:FormalPowerSeries) =
     if r.len > self.len: self.setlen(r.len)
@@ -72,14 +58,14 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
   proc `-=`*[T](self: var FormalPowerSeries[T], r:FormalPowerSeries[T]) =
     if r.len > self.len: self.setlen(r.len)
     for i in 0..<r.len: self[i] -= r[i]
-    self.shrink()
+#    self.shrink()
   proc `-=`*[T](self: var FormalPowerSeries[T], r:T) =
     if self.len == 0: self.setlen(1)
     self[0] -= r
-    self.shrink()
-  
+#    self.shrink()
+
   proc `*=`*[T](self: var FormalPowerSeries[T], v:T) = self.applyIt(it * v)
-  
+
   proc multRaw*[T](a:FormalPowerSeries[T], b:SparseFormalPowerSeries[T], deg = -1):FormalPowerSeries[T] =
     var deg = deg
     if deg == -1:
@@ -100,17 +86,25 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
         if k notin r: r[k] = T(0)
         r[k] += c0 * c1
     return toSeq(r.pairs)
-  
+
   proc `*=`*[T](self: var FormalPowerSeries[T],  r: FormalPowerSeries[T]) =
     if self.len == 0 or r.len == 0:
       self.setlen(0)
     else:
-      when FastMult:
-        var fft = self.getFFT()
-        self = fft[].multiply(self, r)
+      when T is ModInt:
+        type F = T.get_fft_type()
+        self = F.convolution(self, r)
+#        when T is StaticModInt and T.isGoodMod:
+#          self = convolution.convolution(self, r)
+#        else:
+#          self = arbitrary_mod_convolution.convolution(self, r)
       else:
-        assert(false)
-  
+        var res = initFormalPowerSeries[T](self.len + r.len - 1)
+        for i in 0..<self.len:
+          for j in 0..<r.len:
+            res += self[i] * r[j]
+        swap(self, res)
+ 
   proc `mod=`*[T](self: var FormalPowerSeries[T], r:FormalPowerSeries[T]) = self -= self div r * r
   
   proc `-`*[T](self: FormalPowerSeries[T]):FormalPowerSeries[T] =
@@ -119,8 +113,7 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
     return ret
   proc `/=`*[T](self: var FormalPowerSeries[T], v:T) = self.applyIt(it / v)
   #}}}
-  
-  
+
   proc rev*[T](self: FormalPowerSeries[T], deg = -1):auto =
     result = self
     if deg != -1: result.setlen(deg)
@@ -129,10 +122,6 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
   proc pre*[T](self: FormalPowerSeries[T], sz:int):auto =
     result = self
     result.setlen(min(self.len, sz))
-  
-  proc dot*[T](self:FormalPowerSeries[T], r: FormalPowerSeries[T]):auto =
-    result = initFormalPowerSeries[T](min(self.len, r.len))
-    for i in 0..<result.len: result[i] = self[i] * r[i]
   
   proc `shr`*[T](self: FormalPowerSeries[T], sz:int):auto =
     if self.len <= sz: return initFormalPowerSeries[T](0)
@@ -156,26 +145,26 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
   
   # F(0) must not be 0
   proc inv*[T](self: FormalPowerSeries[T], deg = -1):auto =
-    doAssert(self[0] != 0)
+    assert(self[0] != 0)
     deg.revise(self.len)
-    when UseFFT:
+    type F = T.get_fft_type()
+    when T is ModInt:
       proc invFast[T](self: FormalPowerSeries[T]):auto =
-        doAssert(self[0] != 0)
+        assert(self[0] != 0)
         let n = self.len
         var res = initFormalPowerSeries[T](1)
         res[0] = T(1) / self[0]
-        var fft = self.getFFT()
         var d = 1
         while d < n:
           var f, g = initFormalPowerSeries[T](2 * d)
           for j in 0..<min(n, 2 * d): f[j] = self[j]
           for j in 0..<d: g[j] = res[j]
-          let g1 = fft[].fft(g)
-          f = fft[].ifft(fft[].dot(fft[].fft(f), g1))
+          let g1 = F.fft(g)
+          f = ifft[T](F, dot(F.fft(f), g1))
           for j in 0..<d:
             f[j] = T(0)
             f[j + d] = -f[j + d]
-          f = fft[].ifft(fft[].dot(fft[].fft(f), g1))
+          f = ifft[T](F, dot(F.fft(f), g1))
           f[0..<d] = res[0..<d]
           res = f
           d = d shl 1
@@ -191,7 +180,9 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
         ret = (ret + ret - ret * ret * self.pre(i shl 1)).pre(i shl 1)
         i = i shl 1
       return ret.pre(deg)
-  
+  proc `/=`*[T](self: var FormalPowerSeries[T], r: FormalPowerSeries[T]) =
+    self *= r.inv()
+
   proc `div=`*[T](self: var FormalPowerSeries[T], r: FormalPowerSeries[T]) =
     if self.len < r.len:
       self.setlen(0)
@@ -199,10 +190,14 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
       let n = self.len - r.len + 1
       self = (self.rev().pre(n) * r.rev().inv(n)).pre(n).rev(n)
   
+  template toFormalPowerSeries[T](f:FormalPowerSeries[T] or T or SomeNumber):auto =
+    when f is SomeNumber or f is T: initFormalPowerSeries[T](@[T(f)])
+    else: initFormalPowerSeries[T](f)
+
   # operators +, -, *, div, mod {{{
   macro declareOp(op) =
     fmt"""proc `{op}`*[T](self:FormalPowerSeries[T];r:FormalPowerSeries[T] or T):FormalPowerSeries[T] = result = self;result {op}= r
-  proc `{op}`*[T](self: not FormalPowerSeries, r:FormalPowerSeries[T]):FormalPowerSeries[T] = result = initFormalPowerSeries[T](@[self]);result {op}= r""".parseStmt
+proc `{op}`*[T](self: not FormalPowerSeries, r:FormalPowerSeries[T]):FormalPowerSeries[T] = result = initFormalPowerSeries[T](@[T(self)]);result {op}= r""".parseStmt
   
   declareOp(`+`)
   declareOp(`-`)
@@ -215,7 +210,7 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
   
   # F(0) must be 1
   proc log*[T](self:FormalPowerSeries[T], deg = -1):auto =
-    doAssert self[0] == T(1)
+    assert self[0] == T(1)
     deg.revise(self.len)
     return (self.diff() * self.inv(deg)).pre(deg - 1).integral()
   
@@ -240,34 +235,34 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
       if not opt.isSome: return FormalPowerSeries[T].none
       ret = initFormalPowerSeries[T](@[T(opt.get)])
     else:
-      doAssert(self[0] == 1)
+      assert(self[0] == 1)
       ret = initFormalPowerSeries[T](@[T(1)])
   
-    let inv2 = T(1) / T(2);
+    let inv2 = T(1) / T(2)
     var i = 1
     while i < deg:
       ret = (ret + self.pre(i shl 1) * ret.inv(i shl 1)) * inv2
       i = i shl 1
     return ret.pre(deg).some
   
-  import typetraits
+#  import typetraits
   
   # F(0) must be 0
   proc exp*[T](self: FormalPowerSeries[T], deg = -1):auto =
-    doAssert self[0] == 0
+    assert self[0] == 0
     deg.revise(self.len)
-    when UseFFT:
+    when T is ModInt:
       proc onlineConvolutionExp[T](self, conv_coeff:FormalPowerSeries[T]):auto =
-        var fft = self.getFFT()
         let n = conv_coeff.len
-        doAssert((n and (n - 1)) == 0)
-        type FFTType = fft[].fft(initFormalPowerSeries[T](0)).type
+        assert((n and (n - 1)) == 0)
+        type F = T.get_fft_type()
+        type FFTType = F.fft(initFormalPowerSeries[T](0)).type
         var
           conv_ntt_coeff = newSeq[FFTType]()
           i = n
         while (i shr 1) > 0:
           var g = conv_coeff.pre(i)
-          conv_ntt_coeff.add(fft[].fft(g))
+          conv_ntt_coeff.add(F.fft(g))
           i = i shr 1
         var conv_arg, conv_ret = initFormalPowerSeries[T](n)
         proc rec(l,r,d:int) =
@@ -282,13 +277,13 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
             rec(l, m, d + 1)
             var pre = initFormalPowerSeries[T](r - l)
             pre[0..<m-l] = conv_arg[l..<m]
-            pre = fft[].ifft(fft[].dot(fft[].fft(pre), conv_ntt_coeff[d]))
+            pre = ifft[T](F, dot(F.fft(pre), conv_ntt_coeff[d]))
             for i in 0..<r - m: conv_ret[m + i] += pre[m + i - l]
             rec(m, r, d + 1)
         rec(0, n, 0)
         return conv_arg
       proc expRec[T](self: FormalPowerSeries[T]):auto =
-        doAssert self[0] == 0
+        assert self[0] == 0
         let n = self.len
         var m = 1
         while m < n: m *= 2
@@ -307,21 +302,21 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
         i = i shl 1
       return ret.pre(deg)
   
-  proc exponent*[T](a:FormalPowerSeries[T]):FormalPowerSeries[T] =
-    assert(a.len == 0 or a[0] == 0);
-    var
-      a = a
-      b = initFormalPowerSeries[T]([1])
-    while b.len < a.len:
-      var x = a[0..<min(a.len, 2 * b.len)]
-      x[0] += 1
-      b.setLen(2 * b.len)
-      x -= log(b)
-      let l = b.len div 2
-      x *= b[0..<l]
-      for i in l..<min(x.len, b.len):
-        b[i] = x[i]
-    return b[0..<a.len]
+#  proc exponent*[T](a:FormalPowerSeries[T]):FormalPowerSeries[T] =
+#    assert(a.len == 0 or a[0] == 0);
+#    var
+#      a = a
+#      b = initFormalPowerSeries[T]([1])
+#    while b.len < a.len:
+#      var x = a[0..<min(a.len, 2 * b.len)]
+#      x[0] += 1
+#      b.setLen(2 * b.len)
+#      x -= log(b)
+#      let l = b.len div 2
+#      x *= b[0..<l]
+#      for i in l..<min(x.len, b.len):
+#        b[i] = x[i]
+#    return b[0..<a.len]
   
   proc pow*[T](self: FormalPowerSeries[T], k:int, deg = -1):auto =
     var self = self
@@ -331,7 +326,7 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
     for i in 0..<n:
       if self[i] != T(0):
         let rev = T(1) / self[i]
-        result = (((self * rev) shr i).log(deg) * T(k)).exp() * (self[i]^k)
+        result = (((self * rev) shr i).log(deg) * T.init(k)).exp() * (self[i].pow(k))
         if i * k > deg: return initFormalPowerSeries[T](deg)
         result = (result shl (i * k)).pre(deg)
         if result.len < deg: result.setlen(deg)
@@ -368,5 +363,4 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
       x -= getDiv(x) * M
       n = n shr 1
     return ret
-  # }}}
-
+# }}}

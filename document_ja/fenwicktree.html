@@ -58,7 +58,7 @@
 </ul>
 <p>を $O(\log N)$ で求めることが出来るデータ構造です。</p>
 <h2>コンストラクタ</h2>
-<pre><code class="cpp">fenwick_tree&lt;T&gt; fw(int n)
+<pre><code class="nim">fw = initFenwickTree[T](n:int):fenwick_tree[T]
 </code></pre>
 
 <ul>
@@ -74,7 +74,7 @@
 <li>$O(n)$</li>
 </ul>
 <h2>add</h2>
-<pre><code class="cpp">void fw.add(int p, T x)
+<pre><code class="nim">fw.add(p:int, x:T):void
 </code></pre>
 
 <p><code>a[p] += x</code> を行う</p>
@@ -87,10 +87,10 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2>sum</h2>
-<pre><code class="cpp">T fw.sum(int l, int r)
+<pre><code class="nim">fw.sum(l..&lt;r):T
 </code></pre>
 
-<p><code>a[l] + a[l - 1] + ... + a[r - 1]</code> を返す。
+<p><code>a[l] + a[l + 1] + ... + a[r - 1]</code> を返す。
 <code>T</code> が整数型(<code>int / uint / ll / ull</code>)の場合、答えがオーバーフローしたならば $\bmod 2^{\mathrm{bit}}$ で等しい値が返る。</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -102,37 +102,24 @@
 </ul>
 <h2>使用例</h2>
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_b">https://atcoder.jp/contests/practice2/tasks/practice2_b</a></h3>
-<div class="sample-code">#include &lt;atcoder/fenwicktree&gt;
-#include &lt;cstdio&gt;
+<div class="sample-code">import atcoder/header
+import atcoder/fenwicktree
 
-using namespace std;
-using namespace atcoder;
+let n, q = nextInt()
+var fw = init_fenwick_tree[int](n)
 
-int main() {
-    int n, q;
-    scanf(&#34;%d %d&#34;, &amp;n, &amp;q);
+for i in 0..&lt;n:
+  let a = nextInt()
+  fw.add(i, a)
 
-    fenwick_tree&lt;long long&gt; fw(n);
-    for (int i = 0; i &lt; n; i++) {
-        int a;
-        scanf(&#34;%d&#34;, &amp;a);
-        fw.add(i, a);
-    }
-
-    for (int i = 0; i &lt; q; i++) {
-        int t;
-        scanf(&#34;%d&#34;, &amp;t);
-        if (t == 0) {
-            int p, x;
-            scanf(&#34;%d %d&#34;, &amp;p, &amp;x);
-            fw.add(p, x);
-        } else {
-            int l, r;
-            scanf(&#34;%d %d&#34;, &amp;l, &amp;r);
-            printf(&#34;%lld\n&#34;, fw.sum(l, r));
-        }
-    }
-}
+for i in 0..&lt;q:
+  let t = nextInt()
+  if t == 0:
+    let p, x = nextInt()
+    fw.add(p, x)
+  else:
+    let l, r = nextInt()
+    echo fw.sum(l..&lt;r)
 </div>
         </div>
     </section>

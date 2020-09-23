@@ -55,8 +55,8 @@
 <p>$$c_i = \sum_{j = 0}^i a_j b_{i - j}$$</p>
 <p>を計算します。</p>
 <h2>convolution</h2>
-<pre><code class="cpp">(1) vector&lt;T&gt; convolution&lt;int m = 998244353&gt;(vector&lt;T&gt; a, vector&lt;T&gt; b)
-💻(2) vector&lt;static_modint&lt;m&gt;&gt; convolution&lt;int m&gt;(vector&lt;static_modint&lt;m&gt;&gt; a, vector&lt;static_modint&lt;m&gt;&gt; b)
+<pre><code class="nim">(1) convolution[T:SomeInteger](a:seq[T], b:seq[T], m:static[int]):seq[T]
+💻(2) convolution[T:StaticModInt](a:seq[StaticModInt], b:seq[StaticModInt]):seq[StaticModInt]
 </code></pre>
 
 <p>畳み込みを $\bmod m$ で計算します。$a, b$ の少なくとも一方が空配列の場合は空配列を返します。</p>
@@ -73,7 +73,7 @@
 <li>$O(n\log{n} + \log{\mathrm{mod}})$</li>
 </ul>
 <h2>convolution_ll</h2>
-<pre><code class="cpp">vector&lt;ll&gt; convolution_ll(vector&lt;ll&gt; a, vector&lt;ll&gt; b)
+<pre><code class="nim">convolution_ll(a:seq[int], b:seq[int]):seq[int]
 </code></pre>
 
 <p>畳み込みを計算します。$a, b$ の少なくとも一方が空配列の場合は空配列を返します。</p>
@@ -89,70 +89,35 @@
 </ul>
 <h2>使用例</h2>
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_f">https://atcoder.jp/contests/practice2/tasks/practice2_f</a></h3>
-<div class="sample-code">#include &lt;atcoder/convolution&gt;
-#include &lt;atcoder/modint&gt;
-#include &lt;cstdio&gt;
+<div class="sample-code">include atcoder/header
+import atcoder/convolution
+import atcoder/modint
 
-using namespace std;
-using namespace atcoder;
+let
+  n, m = nextInt()
+  a = newSeqWith(n, nextInt())
+  b = newSeqWith(m, nextInt())
 
-int main() {
-    int n, m;
-    scanf(&#34;%d %d&#34;, &amp;n, &amp;m);
-    vector&lt;long long&gt; a(n), b(m);
-    for (int i = 0; i &lt; n; i++) {
-        scanf(&#34;%lld&#34;, &amp;(a[i]));
-    }
-    for (int i = 0; i &lt; m; i++) {
-        scanf(&#34;%lld&#34;, &amp;(b[i]));
-    }
+let c = convolution[998244353, int](a, b)
+# or: c = convolution&lt;998244353&gt;(a, b)
 
-    vector&lt;long long&gt; c = convolution(a, b);
-    // or: vector&lt;long long&gt; c = convolution&lt;998244353&gt;(a, b);
-
-    for (int i = 0; i &lt; n + m - 1; i++) {
-        printf(&#34;%lld &#34;, c[i]);
-    }
-    printf(&#34;\n&#34;);
-
-    return 0;
-}
+echo c.join(&#34; &#34;)
 </div>
 
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_f">https://atcoder.jp/contests/practice2/tasks/practice2_f</a></h3>
-<div class="sample-code">#include &lt;atcoder/convolution&gt;
-#include &lt;atcoder/modint&gt;
-#include &lt;cstdio&gt;
+<div class="sample-code">include atcoder/header
+import atcoder/modint
+import atcoder/convolution
 
-using namespace std;
-using namespace atcoder;
+type mint = modint998244353
 
-using mint = modint998244353;
+let
+  n, m = nextInt()
+  a = newSeqWith(n, mint(nextInt()))
+  b = newSeqWith(m, mint(nextInt()))
+  c = convolution(a, b)
 
-int main() {
-    int n, m;
-    scanf(&#34;%d %d&#34;, &amp;n, &amp;m);
-    vector&lt;mint&gt; a(n), b(m);
-    for (int i = 0; i &lt; n; i++) {
-        int x;
-        scanf(&#34;%d&#34;, &amp;x);
-        a[i] = x;
-    }
-    for (int i = 0; i &lt; m; i++) {
-        int x;
-        scanf(&#34;%d&#34;, &amp;x);
-        b[i] = x;
-    }
-
-    auto c = convolution(a, b);
-
-    for (int i = 0; i &lt; n + m - 1; i++) {
-        printf(&#34;%d &#34;, c[i].val());
-    }
-    printf(&#34;\n&#34;);
-
-    return 0;
-}
+echo c.join(&#34; &#34;)
 </div>
         </div>
     </section>

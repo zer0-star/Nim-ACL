@@ -59,7 +59,7 @@
 <p>をならし $O(\alpha(n))$ 時間で処理することが出来ます。</p>
 <p>また、内部的に各連結成分ごとに代表となる頂点を $1$ つ持っています。辺の追加により連結成分がマージされる時、新たな代表元は元の連結成分の代表元のうちどちらかになります。</p>
 <h2>コンストラクタ</h2>
-<pre><code class="cpp">dsu d(int n)
+<pre><code class="nim">d = initDSU(n:int):DSU
 </code></pre>
 
 <ul>
@@ -74,7 +74,7 @@
 <li>$O(n)$</li>
 </ul>
 <h2>merge</h2>
-<pre><code class="cpp">int d.merge(int a, int b)
+<pre><code class="nim">d.merge(a:int, b:int):int
 </code></pre>
 
 <p>辺 $(a, b)$ を足します。</p>
@@ -89,7 +89,7 @@
 <li>ならし $O(\alpha(n))$</li>
 </ul>
 <h2>same</h2>
-<pre><code class="cpp">bool d.same(int a, int b)
+<pre><code class="nim">d.same(a:int, b:int):bool
 </code></pre>
 
 <p>頂点 $a, b$ が連結かどうかを返します。</p>
@@ -103,7 +103,7 @@
 <li>ならし $O(\alpha(n))$</li>
 </ul>
 <h2>leader</h2>
-<pre><code class="cpp">int d.leader(int a)
+<pre><code class="nim">d.leader(a:int):int
 </code></pre>
 
 <p>頂点 $a$ の属する連結成分の代表元を返します。</p>
@@ -116,7 +116,7 @@
 <li>ならし $O(\alpha(n))$</li>
 </ul>
 <h2>size</h2>
-<pre><code class="cpp">int d.size(int a)
+<pre><code class="nim">d.size(a:int):int
 </code></pre>
 
 <p>頂点 $a$ の属する連結成分のサイズを返します。</p>
@@ -129,7 +129,7 @@
 <li>ならし $O(\alpha(n))$</li>
 </ul>
 <h2>groups</h2>
-<pre><code class="cpp">vector&lt;vector&lt;int&gt;&gt; d.groups()
+<pre><code class="nim">d.groups():seq[seq[int]]
 </code></pre>
 
 <p>グラフを連結成分に分け、その情報を返します。</p>
@@ -141,31 +141,21 @@
 </ul>
 <h2>使用例</h2>
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_a">https://atcoder.jp/contests/practice2/tasks/practice2_a</a></h3>
-<div class="sample-code">#include &lt;atcoder/dsu&gt;
-#include &lt;cstdio&gt;
+<div class="sample-code">import atcoder/header
+import atcoder/dsu
 
-using namespace std;
-using namespace atcoder;
+let n, q = nextInt()
+var d = initDSU(n)
+for i in 0..&lt;q:
+  let t, u, v = nextInt()
+  if t == 0:
+    d.merge(u, v)
+  else:
+    if d.same(u, v):
+      echo 1
+    else:
+      echo 0
 
-int main() {
-    int n, q;
-    scanf(&#34;%d %d&#34;, &amp;n, &amp;q);
-    dsu d(n);
-    for (int i = 0; i &lt; q; i++) {
-        int t, u, v;
-        scanf(&#34;%d %d %d&#34;, &amp;t, &amp;u, &amp;v);
-        if (t == 0) {
-            d.merge(u, v);
-        } else {
-            if (d.same(u, v)) {
-                printf(&#34;1\n&#34;);
-            } else {
-                printf(&#34;0\n&#34;);
-            }
-        }
-    }
-    return 0;
-}
 </div>
         </div>
     </section>

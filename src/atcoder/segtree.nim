@@ -9,7 +9,7 @@ when not declared ATCODER_SEGTREE_HPP:
     op:(S, S)->S
     e:()->S
 
-  proc update[ST:segtree](self: var ST, k:int) =
+  proc update[ST:segtree](self: var ST, k:int) {.inline.} =
     self.d[k] = self.op(self.d[2 * k], self.d[2 * k + 1])
 
   proc initSegTree*[S](v:seq[S], op:(S,S)->S, e:()->S):auto =
@@ -24,17 +24,17 @@ when not declared ATCODER_SEGTREE_HPP:
   proc initSegTree*[S](n:int, op:(S,S)->S, e:()->S):auto =
     initSegTree(newSeqWith(n, e()), op, e)
 
-  proc set*[ST:segtree](self:var ST, p:int, x:ST.S) =
+  proc set*[ST:segtree](self:var ST, p:int, x:ST.S) {.inline.} =
     assert p in 0..<self.n
     var p = p + self.size
     self.d[p] = x
     for i in 1..self.log: self.update(p shr i)
 
-  proc get*[ST:segtree](self:ST, p:int):ST.S =
+  proc get*[ST:segtree](self:ST, p:int):ST.S {.inline.} =
     assert p in 0..<self.n
     return self.d[p + self.size]
 
-  proc prod*[ST:segtree](self:ST, p:Slice[int]):ST.S =
+  proc prod*[ST:segtree](self:ST, p:Slice[int]):ST.S {.inline.} =
     var (l, r) = (p.a, p.b + 1)
     assert 0 <= l and l <= r and r <= self.n
     var sml, smr = self.e()

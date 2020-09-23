@@ -1,8 +1,8 @@
-# {{{ header
+# header {{{
 when not declared ATCODER_CHAEMON_HEADER_HPP:
   const ATCODER_CHAEMON_HEADER_HPP* = 1
   {.hints:off checks:off warnings:off assertions:on optimization:speed.}
-  import std/algorithm, std/sequtils, std/tables, std/macros, std/math, std/sets, std/strutils, std/strformat, std/sugar
+  import std/algorithm as algorithm_lib, std/sequtils as sequtils_lib, std/tables as tables_lib, std/macros as macros_lib, std/math as math_lib, std/sets as sets_lib, std/strutils as strutils_lib, std/strformat as strformat_lib, std/sugar as sugar_lib
   
   import streams
   proc scanf*(formatstr: cstring){.header: "<stdio.h>", varargs.}

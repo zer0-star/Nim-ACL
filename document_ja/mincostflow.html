@@ -53,7 +53,7 @@
             <h1>MinCostFlow</h1>
 <p><a href="https://en.wikipedia.org/wiki/Minimum-cost_flow_problem">Minimum-cost flow problem</a>を扱うライブラリです。</p>
 <h2>コンストラクタ</h2>
-<pre><code class="cpp">var graph = initMCFGraph[Cap, Cost](int n)
+<pre><code class="nim">var graph = init_mcf_graph[Cap, Cost](int n)
 </code></pre>
 
 <p>$n$ 頂点 $0$ 辺のグラフを作る。<code>Cap</code>は容量の型、<code>Cost</code>はコストの型</p>
@@ -67,7 +67,7 @@
 <li>$O(n)$</li>
 </ul>
 <h2>add_edge</h2>
-<pre><code class="cpp">graph.add_edge[Cap, Cost](from:int, to:int, cap:Cap, cost:Cost)
+<pre><code class="nim">graph.add_edge(src:int, dst:int, cap:Cap, cost:Cost):int
 </code></pre>
 
 <p><code>from</code>から<code>to</code>へ最大容量<code>cap</code>, コスト<code>cost</code>の辺を追加する。何番目に追加された辺かを返す。</p>
@@ -81,7 +81,7 @@
 <li>ならし $O(1)$</li>
 </ul>
 <h2>min_cost_max_flow</h2>
-<pre><code class="cpp">(1) graph.flow(s:int, t:int):(Cap, Cost)
+<pre><code class="nim">(1) graph.flow(s:int, t:int):(Cap, Cost)
 (2) graph.flow(s:int, t:int, flow_limit:Cap):(Cap, Cost)
 </code></pre>
 
@@ -99,8 +99,8 @@
 <li><code>min_cost_slope</code>と同じ</li>
 </ul>
 <h2>min_cost_slope</h2>
-<pre><code class="cpp">graph.slope(int s, int t):seq[(Cap, Cost)]
-graph.slope(int s, int t, Cap flow_limit):seq[(Cap, Cost)]
+<pre><code class="nim">graph.slope(s:int, t:int):seq[(Cap, Cost)]
+graph.slope(s:int, t:int, flow_limit:Cap):seq[(Cap, Cost)]
 </code></pre>
 
 <p>帰り値に流量とコストの関係の折れ線が入る。全ての $x$ について、流量 $x$ の時の最小コストを $g(x)$ とすると、$(x, g(x))$ は帰り値を折れ線として見たものに含まれる。</p>
@@ -127,13 +127,13 @@ graph.slope(int s, int t, Cap flow_limit):seq[(Cap, Cost)]
 <li>$O(F (n + m) \log n)$</li>
 </ul>
 <h2>edges</h2>
-<pre><code class="cpp">type edge_info[Cap, Cost] = object
+<pre><code class="nim">type edge_info[Cap, Cost] =
   src, dst:int
-  cap, flow:Cap
+  cap, flow: Cap
   cost:Cost
 
-(1) graph.get_edge(int i):edge_info
-(2) graph.edges():seq[edge_info]
+(1) graph.get_edge(int i):edge_info[Cap, Cost]
+(2) graph.edges():seq[edge_info[Cap, Cost]]
 </code></pre>
 
 <ul>
@@ -152,8 +152,8 @@ graph.slope(int s, int t, Cap flow_limit):seq[(Cap, Cost)]
 </ul>
 <h2>使用例</h2>
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_e">https://atcoder.jp/contests/practice2/tasks/practice2_e</a></h3>
-<div class="sample-code">#include &lt;atcoder/mincostflow&gt;
-const long long BIG = 1&#39;000&#39;000&#39;000;
+<div class="sample-code">include atcoder/header
+import atcoder/mincostflow
 
 let n, k = nextInt()
 var g = initMCFGraph[int,int](n * 2 + 2)
@@ -162,25 +162,25 @@ let BIG = 1000000000
 
 g.add_edge(s, t, n * k, BIG)
 
-for i in 0..<n:
+for i in 0..&lt;n:
   g.add_edge(s, i, k, 0)
   g.add_edge(n + i, t, k, 0)
 
-for i in 0..<n:
-  for j in 0..<n:
+for i in 0..&lt;n:
+  for j in 0..&lt;n:
     let a = nextInt()
     g.add_edge(i, n + j, 1, BIG - a)
 
 var result = g.flow(s, t, n * k)
 echo n * k * BIG - result[1]
 
-var grid = newSeqWith(n, '.'.repeat(n))
+var grid = newSeqWith(n, &#39;.&#39;.repeat(n))
 let es = g.edges()
 for e in es:
   if e.src == s or e.dst == t or e.flow == 0: continue
-  grid[e.src][e.dst - n] = 'X'
+  grid[e.src][e.dst - n] = &#39;X&#39;
 
-for i in 0..<n:
+for i in 0..&lt;n:
   echo grid[i]
 </div>
         </div>

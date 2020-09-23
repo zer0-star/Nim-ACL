@@ -43,18 +43,21 @@ def read_source(s:str, level:int) -> List[str]:
                     assert f[-1] == '\"'
                     f = f[1:-1]
                 if not f.startswith(atcoder_dir):
-                    result.extend([" " * trailingSpace(line) + "import " + f_orig])
+                    d = trailingSpace(line)
+                    result.extend([" " * d + "import " + f_orig])
                 else:
                     if not f.endswith(".nim"):
                         f = "src/" + f + ".nim"
                     result.extend(dfs(f, level + 1))
             continue
         result.append(line)
-    if level >= 0:
+    if level > 0:
         result.append("  discard")
         result2 = []
+#        print(level)
         for line in result:
-            result2.append("  " * level + line)
+#            result2.append("  " * level + line)
+            result2.append("  " + line)
         result = result2
     return result
 
