@@ -1,33 +1,33 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
-    path: atcoder/extra/math/particular_mod_convolution.nim
-    title: atcoder/extra/math/particular_mod_convolution.nim
-  - icon: ':question:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
-  - icon: ':question:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
-  - icon: ':x:'
-    path: atcoder/extra/math/particular_mod_convolution.nim
-    title: atcoder/extra/math/particular_mod_convolution.nim
-  - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':x:'
-    path: atcoder/convolution.nim
-    title: atcoder/convolution.nim
-  - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':x:'
-    path: atcoder/convolution.nim
-    title: atcoder/convolution.nim
   - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
+  - icon: ':x:'
+    path: atcoder/convolution.nim
+    title: atcoder/convolution.nim
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
+  - icon: ':x:'
+    path: atcoder/convolution.nim
+    title: atcoder/convolution.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/particular_mod_convolution.nim
+    title: atcoder/extra/math/particular_mod_convolution.nim
+  - icon: ':question:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/particular_mod_convolution.nim
+    title: atcoder/extra/math/particular_mod_convolution.nim
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
+  - icon: ':question:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
   - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
@@ -131,15 +131,15 @@ data:
     \      c1 = convolution(a1, b1)\n      c2 = convolution(a2, b2)\n    return calc_garner[T](c0,\
     \ c1, c2, a.len + b.len - 1)\n"
   dependsOn:
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/internal_math.nim
-  - atcoder/convolution.nim
-  - atcoder/internal_math.nim
-  - atcoder/convolution.nim
   - atcoder/modint.nim
+  - atcoder/convolution.nim
+  - atcoder/internal_math.nim
+  - atcoder/convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/internal_bit.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
   - atcoder/modint.nim
   isVerificationFile: false
   path: atcoder/extra/math/arbitrary_mod_convolution.nim

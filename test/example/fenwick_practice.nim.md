@@ -1,18 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: atcoder/fenwicktree.nim
-    title: atcoder/fenwicktree.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/fenwicktree.nim
     title: atcoder/fenwicktree.nim
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/fenwicktree.nim
+    title: atcoder/fenwicktree.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -29,10 +29,10 @@ data:
     \ p, x = nextInt()\n    fw.add(p, x)\n  else:\n    let l, r = nextInt()\n    echo\
     \ fw.sum(l..<r)\n"
   dependsOn:
-  - atcoder/fenwicktree.nim
+  - atcoder/header.nim
   - atcoder/fenwicktree.nim
   - atcoder/header.nim
-  - atcoder/header.nim
+  - atcoder/fenwicktree.nim
   isVerificationFile: false
   path: test/example/fenwick_practice.nim
   requiredBy: []

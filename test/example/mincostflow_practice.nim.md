@@ -1,12 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
-    path: atcoder/mincostflow.nim
-    title: atcoder/mincostflow.nim
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
+  - icon: ':warning:'
+    path: atcoder/mincostflow.nim
+    title: atcoder/mincostflow.nim
   - icon: ':warning:'
     path: atcoder/mincostflow.nim
     title: atcoder/mincostflow.nim
@@ -32,8 +32,8 @@ data:
     let es = g.edges()\nfor e in es:\n  if e.src == s or e.dst == t or e.flow == 0:\
     \ continue\n  grid[e.src][e.dst - n] = 'X'\n\nfor i in 0..<n:\n  echo grid[i]\n"
   dependsOn:
-  - atcoder/mincostflow.nim
   - atcoder/header.nim
+  - atcoder/mincostflow.nim
   - atcoder/mincostflow.nim
   - atcoder/header.nim
   isVerificationFile: false

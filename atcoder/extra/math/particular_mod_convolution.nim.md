@@ -2,26 +2,26 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
-  - icon: ':question:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
-  - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':x:'
-    path: atcoder/convolution.nim
-    title: atcoder/convolution.nim
-  - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':x:'
-    path: atcoder/convolution.nim
-    title: atcoder/convolution.nim
-  - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
+  - icon: ':x:'
+    path: atcoder/convolution.nim
+    title: atcoder/convolution.nim
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
+  - icon: ':x:'
+    path: atcoder/convolution.nim
+    title: atcoder/convolution.nim
+  - icon: ':question:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
+  - icon: ':question:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
   - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
@@ -105,13 +105,13 @@ data:
     \  let iz = T(a.len).inv()\n    result.applyIt(it * iz)\n  proc convolution*[T:StaticModInt](t:typedesc[ParticularModConvolution],\
     \ a, b:seq[T]):auto {.inline.} = convolution(a, b)\n"
   dependsOn:
-  - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
-  - atcoder/convolution.nim
-  - atcoder/internal_math.nim
-  - atcoder/convolution.nim
   - atcoder/modint.nim
+  - atcoder/convolution.nim
+  - atcoder/internal_math.nim
+  - atcoder/convolution.nim
+  - atcoder/internal_bit.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
   - atcoder/modint.nim
   isVerificationFile: false
   path: atcoder/extra/math/particular_mod_convolution.nim

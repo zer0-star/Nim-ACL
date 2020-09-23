@@ -1,18 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: atcoder/string.nim
-    title: atcoder/string.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/string.nim
-    title: atcoder/string.nim
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/string.nim
+    title: atcoder/string.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/string.nim
+    title: atcoder/string.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -27,10 +27,10 @@ data:
     \  sa = suffix_array(s)\nvar answer = s.len * (s.len + 1) div 2\nfor x in lcp_array(s,\
     \ sa):\n  answer -= x\necho answer\n"
   dependsOn:
-  - atcoder/string.nim
-  - atcoder/string.nim
   - atcoder/header.nim
   - atcoder/header.nim
+  - atcoder/string.nim
+  - atcoder/string.nim
   isVerificationFile: false
   path: test/example/sa_practice.nim
   requiredBy: []

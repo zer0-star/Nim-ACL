@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
+    path: atcoder/header.nim
+    title: atcoder/header.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/math.nim
     title: atcoder/math.nim
@@ -17,8 +17,8 @@ data:
     path: atcoder/header.nim
     title: atcoder/header.nim
   - icon: ':question:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -35,12 +35,12 @@ data:
     \nimport atcoder/header, atcoder/math\n\nlet T = nextInt()\n\nfor _ in 0..<T:\n\
     \  let N, M, A, B = nextInt()\n  echo floor_sum(N, M, A, B)\n"
   dependsOn:
-  - atcoder/internal_math.nim
+  - atcoder/header.nim
   - atcoder/math.nim
   - atcoder/internal_math.nim
   - atcoder/math.nim
   - atcoder/header.nim
-  - atcoder/header.nim
+  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/floor_sum_test.nim
   requiredBy: []

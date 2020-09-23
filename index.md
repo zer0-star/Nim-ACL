@@ -351,3 +351,6 @@ data:
       title: verify/extra/pow_of_formal_power_series_test.nim
 layout: toppage
 ---
+## ドキュメント
+
+[日本語](/document_ja/)

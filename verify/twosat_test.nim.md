@@ -1,12 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/twosat.nim
     title: atcoder/twosat.nim
@@ -42,8 +42,8 @@ data:
     \  if a:\n        stdout.write i + 1, \" \"\n      else:\n        stdout.write\
     \ -(i + 1), \" \"\n    echo 0\n  else:\n    echo \"s UNSATISFIABLE\"\n"
   dependsOn:
-  - atcoder/header.nim
   - atcoder/internal_scc.nim
+  - atcoder/header.nim
   - atcoder/twosat.nim
   - atcoder/internal_scc.nim
   - atcoder/twosat.nim

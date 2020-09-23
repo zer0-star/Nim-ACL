@@ -1,24 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: atcoder/extra/structure/set_map.nim
-    title: atcoder/extra/structure/set_map.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/extra/structure/set_map.nim
-    title: atcoder/extra/structure/set_map.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/extra/structure/randomized_binary_search_tree.nim
-    title: atcoder/extra/structure/randomized_binary_search_tree.nim
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/randomized_binary_search_tree.nim
     title: atcoder/extra/structure/randomized_binary_search_tree.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/structure/randomized_binary_search_tree.nim
+    title: atcoder/extra/structure/randomized_binary_search_tree.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/structure/set_map.nim
+    title: atcoder/extra/structure/set_map.nim
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/structure/set_map.nim
+    title: atcoder/extra/structure/set_map.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -38,12 +38,12 @@ data:
     \ = v\n    else:\n      let k = nextInt()\n      if k in a: echo a[k]\n      else:\
     \ echo 0\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/structure/set_map.nim
-  - atcoder/extra/structure/set_map.nim
-  - atcoder/extra/structure/randomized_binary_search_tree.nim
   - atcoder/header.nim
   - atcoder/extra/structure/randomized_binary_search_tree.nim
+  - atcoder/extra/structure/randomized_binary_search_tree.nim
+  - atcoder/extra/structure/set_map.nim
   - atcoder/header.nim
+  - atcoder/extra/structure/set_map.nim
   isVerificationFile: true
   path: verify/map_test.nim
   requiredBy: []

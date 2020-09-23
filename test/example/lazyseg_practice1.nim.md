@@ -2,20 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
-  - icon: ':question:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
-  - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':question:'
-    path: atcoder/modint.nim
-    title: atcoder/modint.nim
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/lazysegtree.nim
+    title: atcoder/lazysegtree.nim
   - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
@@ -23,14 +14,23 @@ data:
     path: atcoder/lazysegtree.nim
     title: atcoder/lazysegtree.nim
   - icon: ':question:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/lazysegtree.nim
-    title: atcoder/lazysegtree.nim
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
+  - icon: ':question:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
+  - icon: ':question:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':question:'
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -52,16 +52,16 @@ data:
     \ let t = nextInt()\n  if t == 0:\n    let l, r, c, d = nextInt()\n    seg.apply(l..<r,\
     \ (c.mint, d.mint));\n  else:\n    let l, r = nextInt()\n    echo seg.prod(l..<r).a.val()\n"
   dependsOn:
-  - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
-  - atcoder/modint.nim
-  - atcoder/lazysegtree.nim
   - atcoder/header.nim
   - atcoder/lazysegtree.nim
+  - atcoder/modint.nim
+  - atcoder/lazysegtree.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
   - atcoder/header.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
+  - atcoder/modint.nim
   isVerificationFile: false
   path: test/example/lazyseg_practice1.nim
   requiredBy: []
