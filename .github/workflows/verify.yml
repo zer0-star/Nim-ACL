@@ -18,7 +18,7 @@ jobs:
       - run: |
           mv src/atcoder ./
           rm -rf src
-          mkdir -r .verify-helper/docs/static/
+          mkdir -p .verify-helper/docs/static/
           rm -f document_ja/*.md
           mv document_ja .verify-helper/docs/static/
 
