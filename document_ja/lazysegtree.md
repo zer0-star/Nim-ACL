@@ -24,17 +24,17 @@
 
 - モノイドの型 `S`
 - $\cdot: S \times S \to S$ を計算する関数 `S op(S a, S b)`
-- $e$ を返す関数 `S e()`
+- $e$ を返す関数 `e():S`
 - 写像の型 `F`
-- $f(x)$ を返す関数 `S mapping(F f, S x)`
-- $f \circ g$ を返す関数 `F composition(F f, F g)`
-- $id$ を返す関数 `F id()`
+- $f(x)$ を返す関数 `mapping(f:F, x:S):S`
+- $f \circ g$ を返す関数 `composition(f:F, f:F):F`
+- $id$ を返す関数 `id():F`
 
 を定義する必要があります。
 詳しくは、使用例や [こちら](https://atcoder.jp/contests/practice2/editorial) も参照してください。
 
 - (1): 長さ `n` の数列 `a` を作ります。初期値は全部`e()`です。
-- (2): 長さ `n = v.size()` の数列 `a` を作ります。`v` の内容が初期値となります。
+- (2): 長さ `n = v.len` の数列 `a` を作ります。`v` の内容が初期値となります。
 
 **@{keyword.constraints}**
 

@@ -71,8 +71,8 @@
 
 <ul>
 <li>型 <code>S</code></li>
-<li>二項演算 <code>S op(S a, S b)</code></li>
-<li>単位元 <code>S e()</code></li>
+<li>二項演算 <code>op(a:S, b:S):S</code></li>
+<li>単位元 <code>e():S</code></li>
 </ul>
 <p>を定義する必要があります。例として、Range Min Queryならば</p>
 <pre><code class="nim">proc op(a:int, b:int):int =
@@ -87,7 +87,7 @@ var seg = initSegTree[int](10, seg, e)
 <p>のようになります。</p>
 <ul>
 <li>(1): 長さ <code>n</code> の数列 <code>a</code> を作ります。初期値は全部<code>e()</code>です。</li>
-<li>(2): 長さ <code>n = v.size()</code> の数列 <code>a</code> を作ります。<code>v</code> の内容が初期値となります。</li>
+<li>(2): 長さ <code>n = v.len</code> の数列 <code>a</code> を作ります。<code>v</code> の内容が初期値となります。</li>
 </ul>
 <p>詳しくは、使用例や <a href="https://atcoder.jp/contests/practice2/editorial">こちら</a> も参照してください。</p>
 <p><strong>制約</strong></p>
@@ -125,7 +125,7 @@ var seg = initSegTree[int](10, seg, e)
 <li>$O(1)$</li>
 </ul>
 <h2>prod</h2>
-<pre><code class="nim">seg.prod(l:int, r:int):S
+<pre><code class="nim">seg.prod(l..&lt;r):S
 </code></pre>
 
 <p><code>op(a[l], ..., a[r - 1])</code> を、モノイドの性質を満たしていると仮定して計算します。$l = r$ のときは <code>e()</code> を返します。</p>

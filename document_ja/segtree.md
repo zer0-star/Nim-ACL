@@ -24,8 +24,8 @@
 ```
 
 - 型 `S`
-- 二項演算 `S op(S a, S b)`
-- 単位元 `S e()`
+- 二項演算 `op(a:S, b:S):S`
+- 単位元 `e():S`
 
 を定義する必要があります。例として、Range Min Queryならば
 
@@ -42,7 +42,7 @@ var seg = initSegTree[int](10, seg, e)
 のようになります。
 
 - (1): 長さ `n` の数列 `a` を作ります。初期値は全部`e()`です。
-- (2): 長さ `n = v.size()` の数列 `a` を作ります。`v` の内容が初期値となります。
+- (2): 長さ `n = v.len` の数列 `a` を作ります。`v` の内容が初期値となります。
 
 詳しくは、使用例や [こちら](https://atcoder.jp/contests/practice2/editorial) も参照してください。
 
@@ -89,7 +89,7 @@ seg.get(p:int):S
 ## prod
 
 ```nim
-seg.prod(l:int, r:int):S
+seg.prod(l..<r):S
 ```
 
 `op(a[l], ..., a[r - 1])` を、モノイドの性質を満たしていると仮定して計算します。$l = r$ のときは `e()` を返します。

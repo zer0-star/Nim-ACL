@@ -72,17 +72,17 @@
 <ul>
 <li>モノイドの型 <code>S</code></li>
 <li>$\cdot: S \times S \to S$ を計算する関数 <code>S op(S a, S b)</code></li>
-<li>$e$ を返す関数 <code>S e()</code></li>
+<li>$e$ を返す関数 <code>e():S</code></li>
 <li>写像の型 <code>F</code></li>
-<li>$f(x)$ を返す関数 <code>S mapping(F f, S x)</code></li>
-<li>$f \circ g$ を返す関数 <code>F composition(F f, F g)</code></li>
-<li>$id$ を返す関数 <code>F id()</code></li>
+<li>$f(x)$ を返す関数 <code>mapping(f:F, x:S):S</code></li>
+<li>$f \circ g$ を返す関数 <code>composition(f:F, f:F):F</code></li>
+<li>$id$ を返す関数 <code>id():F</code></li>
 </ul>
 <p>を定義する必要があります。
 詳しくは、使用例や <a href="https://atcoder.jp/contests/practice2/editorial">こちら</a> も参照してください。</p>
 <ul>
 <li>(1): 長さ <code>n</code> の数列 <code>a</code> を作ります。初期値は全部<code>e()</code>です。</li>
-<li>(2): 長さ <code>n = v.size()</code> の数列 <code>a</code> を作ります。<code>v</code> の内容が初期値となります。</li>
+<li>(2): 長さ <code>n = v.len</code> の数列 <code>a</code> を作ります。<code>v</code> の内容が初期値となります。</li>
 </ul>
 <p><strong>制約</strong></p>
 <ul>

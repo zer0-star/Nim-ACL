@@ -92,7 +92,8 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
       self.setlen(0)
     else:
       when T is ModInt:
-        self = T.get_fft_type().convolution(self, r)
+        type F = T.get_fft_type()
+        self = F.convolution(self, r)
 #        when T is StaticModInt and T.isGoodMod:
 #          self = convolution.convolution(self, r)
 #        else:

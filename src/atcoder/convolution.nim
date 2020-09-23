@@ -8,7 +8,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
 #include <cassert>
 #include <type_traits>
 #include <vector>
-  import std/math
+  import std/math, std/sequtils
   import atcoder/internal_math, atcoder/internal_bit, atcoder/modint
   
 #  template <class mint, internal::is_static_modint_t<mint>* = nullptr>
@@ -91,7 +91,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
             l = a[i + offset]
             r = a[i + offset + p]
           a[i + offset] = l + r
-          a[i + offset + p] = mint.init((mint.mod.uint + l.uint - r.uint) * uint(inow))
+          a[i + offset + p] = mint.init((mint.umod + l.uint - r.uint) * uint(inow))
         inow *= sum_ie[bsf(not s.uint)]
 
 #  template <class mint, internal::is_static_modint_t<mint>* = nullptr>
@@ -126,7 +126,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
 #  template <unsigned int mod = 998244353,
 #      class T,
 #      std::enable_if_t<internal::is_integral<T>::value>* = nullptr>
-  proc convolution*[M:static[uint], T:SomeInteger](a, b:seq[T]):seq[T] =
+  proc convolution*[T:SomeInteger](a, b:seq[T], M:static[uint] = 998244353):seq[T] =
     let (n, m) = (a.len, b.len)
     if n == 0 or m == 0: return newSeq[T]()
   
@@ -138,12 +138,12 @@ when not declared ATCODER_CONVOLUTION_HPP:
       a2[i] = mint(a[i])
     for i in 0..<m:
       b2[i] = mint(b[i])
-#    let c2 = convolution(move(a2), move(b2))
     let c2 = convolution(a2, b2)
     var c = newSeq[T](n + m - 1)
     for i in 0..<n + m - 1:
       c[i] = c2[i].val()
     return c
+
   proc convolution_ll*(a, b:seq[int]):seq[int] =
     let (n, m) = (a.len, b.len)
     if n == 0 or m == 0: return newSeq[int]()
@@ -161,9 +161,9 @@ when not declared ATCODER_CONVOLUTION_HPP:
       i3 = inv_gcd((MOD1 * MOD2).int, MOD3.int)[1].uint
     
     let
-      c1 = convolution[MOD1,int](a, b)
-      c2 = convolution[MOD2,int](a, b)
-      c3 = convolution[MOD3,int](a, b)
+      c1 = convolution(a, b, MOD1)
+      c2 = convolution(a, b, MOD2)
+      c3 = convolution(a, b, MOD3)
   
     var c = newSeq[int](n + m - 1)
     for i in 0..<n + m - 1:

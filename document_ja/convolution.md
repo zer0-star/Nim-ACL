@@ -9,7 +9,7 @@ $$c_i = \sum_{j = 0}^i a_j b_{i - j}$$
 ## convolution
 
 ```nim
-(1) convolution[m:static[int], T:SomeInteger](a:seq[T], b:seq[T]):seq[T]
+(1) convolution[T:SomeInteger](a:seq[T], b:seq[T], m:static[int]):seq[T]
 💻(2) convolution[T:StaticModInt](a:seq[StaticModInt], b:seq[StaticModInt]):seq[StaticModInt]
 ```
 

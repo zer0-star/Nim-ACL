@@ -21,14 +21,14 @@ when not declared ATCODER_MODINT_HPP:
   proc `$`*(m: ModInt): string {.inline.} =
     $m.int
 
-  template umod[T:ModInt](self: typedesc[T]):uint32 =
+  template umod*[T:ModInt](self: typedesc[T]):uint32 =
     when T is StaticModInt:
       T.M
     elif T is DynamicModInt:
       T.getMod()
     else:
       static: assert false
-  template umod[T:ModInt](self: T):uint32 = self.type.umod
+  template umod*[T:ModInt](self: T):uint32 = self.type.umod
 
   proc `mod`*[T:ModInt](self:typedesc[T]):int = T.umod.int
   proc `mod`*[T:ModInt](self:T):int = self.umod.int

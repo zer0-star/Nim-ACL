@@ -7,4 +7,5 @@ import sequtils, strutils
 let N, M = nextInt()
 let a = newSeqWith(N, nextInt())
 let b = newSeqWith(M, nextInt())
-echo convolution[998244353, int](a, b).join(" ")
+echo convolution(a, b).join(" ")
+#echo convolution(a, b, 998244353).join(" ")
