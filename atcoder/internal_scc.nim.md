@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: test/example/twosat_practice.nim
+    title: test/example/twosat_practice.nim
+  - icon: ':warning:'
+    path: test/example/twosat_practice.nim
+    title: test/example/twosat_practice.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/twosat.nim
     title: atcoder/twosat.nim
@@ -69,6 +75,8 @@ data:
   isVerificationFile: false
   path: atcoder/internal_scc.nim
   requiredBy:
+  - test/example/twosat_practice.nim
+  - test/example/twosat_practice.nim
   - atcoder/twosat.nim
   - atcoder/twosat.nim
   - atcoder/scc.nim

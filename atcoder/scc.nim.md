@@ -25,9 +25,9 @@ data:
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_SCC_HPP:\n  const ATCODER_SCC_HPP* = 1\n\n  import\
     \ atcoder/internal_scc\n\n  type scc_graph = object\n    internal: internal_scc_graph\n\
-    \n  proc initSccGraph*(n:int):auto = init_internal_scc_graph(n)\n  \n  proc add_edge*(self:var\
-    \ scc_graph, src, dst:int) =\n    let n = self.internal.num_vertices()\n    assert\
-    \ 0 <= src and dst < n\n    assert 0 <= dst and dst < n\n    self.internal.add_edge(src,\
+    \n  proc initSccGraph*(n:int):auto =\n    scc_graph(internal:init_internal_scc_graph(n))\n\
+    \  \n  proc add_edge*(self:var scc_graph, src, dst:int) =\n    let n = self.internal.num_vertices()\n\
+    \    assert 0 <= src and dst < n\n    assert 0 <= dst and dst < n\n    self.internal.add_edge(src,\
     \ dst)\n\n  proc scc*(self:scc_graph):auto = self.internal.scc()\n"
   dependsOn:
   - atcoder/internal_scc.nim

@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: atcoder/modint.nim
-    title: atcoder/modint.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/modint.nim
-    title: atcoder/modint.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
+  - icon: ':x:'
     path: atcoder/convolution.nim
     title: atcoder/convolution.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
+  - icon: ':x:'
     path: atcoder/convolution.nim
     title: atcoder/convolution.nim
+  - icon: ':question:'
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
+  - icon: ':question:'
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/convolution_mod
     links:
@@ -59,25 +59,27 @@ data:
 
     let b = newSeqWith(M, nextInt())
 
-    echo convolution[998244353, int](a, b).join(" ")
+    echo convolution(a, b).join(" ")
+
+    #echo convolution(a, b, 998244353).join(" ")
 
     '
   dependsOn:
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
   - atcoder/internal_bit.nim
+  - atcoder/internal_bit.nim
+  - atcoder/internal_math.nim
+  - atcoder/convolution.nim
+  - atcoder/internal_math.nim
+  - atcoder/convolution.nim
+  - atcoder/modint.nim
+  - atcoder/modint.nim
   - atcoder/header.nim
   - atcoder/header.nim
-  - atcoder/internal_bit.nim
-  - atcoder/convolution.nim
-  - atcoder/convolution.nim
   isVerificationFile: true
   path: verify/convolution_test.nim
   requiredBy: []
-  timestamp: '2020-09-18 23:26:10+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-09-23 20:38:11+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/convolution_test.nim
 layout: document

@@ -1,21 +1,21 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':question:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':question:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
@@ -39,22 +39,22 @@ data:
     \    let a = st.get(p)\n    st.set(p, a + x)\n  else:\n    let l, r = nextInt()\n\
     \    echo st.prod(l..<r)\n"
   dependsOn:
+  - atcoder/internal_bit.nim
+  - atcoder/internal_bit.nim
   - atcoder/extra/structure/universal_segtree.nim
   - atcoder/header.nim
   - atcoder/header.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
   - atcoder/extra/structure/universal_segtree.nim
   isVerificationFile: true
-  path: verify/extra_segtree_test.nim
+  path: verify/extra/extra_segtree_test.nim
   requiredBy: []
-  timestamp: '2020-09-20 00:58:24+09:00'
+  timestamp: '2020-09-22 00:56:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/extra_segtree_test.nim
+documentation_of: verify/extra/extra_segtree_test.nim
 layout: document
 redirect_from:
-- /verify/verify/extra_segtree_test.nim
-- /verify/verify/extra_segtree_test.nim.html
-title: verify/extra_segtree_test.nim
+- /verify/verify/extra/extra_segtree_test.nim
+- /verify/verify/extra/extra_segtree_test.nim.html
+title: verify/extra/extra_segtree_test.nim
 ---

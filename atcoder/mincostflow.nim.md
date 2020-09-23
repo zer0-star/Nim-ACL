@@ -1,7 +1,13 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: test/example/mincostflow_practice.nim
+    title: test/example/mincostflow_practice.nim
+  - icon: ':warning:'
+    path: test/example/mincostflow_practice.nim
+    title: test/example/mincostflow_practice.nim
   _extendedVerifiedWith: []
   _pathExtension: nim
   _verificationStatusIcon: ':warning:'
@@ -70,7 +76,9 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: atcoder/mincostflow.nim
-  requiredBy: []
+  requiredBy:
+  - test/example/mincostflow_practice.nim
+  - test/example/mincostflow_practice.nim
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

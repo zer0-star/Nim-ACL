@@ -1,24 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
   - icon: ':heavy_check_mark:'
+    path: atcoder/math.nim
+    title: atcoder/math.nim
+  - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
   - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
     path: atcoder/math.nim
     title: atcoder/math.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/math.nim
-    title: atcoder/math.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -36,11 +36,11 @@ data:
     \  let N, M, A, B = nextInt()\n  echo floor_sum(N, M, A, B)\n"
   dependsOn:
   - atcoder/internal_math.nim
+  - atcoder/math.nim
   - atcoder/internal_math.nim
+  - atcoder/math.nim
   - atcoder/header.nim
   - atcoder/header.nim
-  - atcoder/math.nim
-  - atcoder/math.nim
   isVerificationFile: true
   path: verify/floor_sum_test.nim
   requiredBy: []

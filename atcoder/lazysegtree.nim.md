@@ -1,13 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: test/example/lazyseg_practice2.nim
+    title: test/example/lazyseg_practice2.nim
+  - icon: ':warning:'
+    path: test/example/lazyseg_practice2.nim
+    title: test/example/lazyseg_practice2.nim
+  - icon: ':warning:'
+    path: test/example/lazyseg_practice1.nim
+    title: test/example/lazyseg_practice1.nim
+  - icon: ':warning:'
+    path: test/example/lazyseg_practice1.nim
+    title: test/example/lazyseg_practice1.nim
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_test.nim
@@ -99,7 +111,11 @@ data:
   - atcoder/internal_bit.nim
   isVerificationFile: false
   path: atcoder/lazysegtree.nim
-  requiredBy: []
+  requiredBy:
+  - test/example/lazyseg_practice2.nim
+  - test/example/lazyseg_practice2.nim
+  - test/example/lazyseg_practice1.nim
+  - test/example/lazyseg_practice1.nim
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

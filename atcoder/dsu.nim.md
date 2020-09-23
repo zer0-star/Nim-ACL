@@ -1,7 +1,13 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: test/example/dsu_practice.nim
+    title: test/example/dsu_practice.nim
+  - icon: ':warning:'
+    path: test/example/dsu_practice.nim
+    title: test/example/dsu_practice.nim
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/dsu_test.nim
@@ -37,7 +43,9 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: atcoder/dsu.nim
-  requiredBy: []
+  requiredBy:
+  - test/example/dsu_practice.nim
+  - test/example/dsu_practice.nim
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

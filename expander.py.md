@@ -25,16 +25,17 @@ data:
     \            for f in m.group(1).split(\",\"):\n                f_orig = f = f.strip()\n\
     \                if f[0] == '\\\"':\n                    assert f[-1] == '\\\"\
     '\n                    f = f[1:-1]\n                if not f.startswith(atcoder_dir):\n\
-    \                    result.extend([\" \" * trailingSpace(line) + \"import \"\
-    \ + f_orig])\n                else:\n                    if not f.endswith(\"\
-    .nim\"):\n                        f = \"src/\" + f + \".nim\"\n              \
-    \      result.extend(dfs(f, level + 1))\n            continue\n        result.append(line)\n\
-    \    if level >= 0:\n        result.append(\"  discard\")\n        result2 = []\n\
-    \        for line in result:\n            result2.append(\"  \" * level + line)\n\
-    \        result = result2\n    return result\n\n\ndef dfs(f: str, level:int) ->\
-    \ List[str]:\n    global defined\n    if f in defined:\n        logger.info('already\
-    \ included {}, skip'.format(f))\n        return []\n    defined.add(f)\n\n   \
-    \ logger.info('include {}'.format(f))\n\n    s = open(str(lib_path / f)).read()\n\
+    \                    d = trailingSpace(line)\n                    result.extend([\"\
+    \ \" * d + \"import \" + f_orig])\n                else:\n                   \
+    \ if not f.endswith(\".nim\"):\n                        f = \"src/\" + f + \"\
+    .nim\"\n                    result.extend(dfs(f, level + 1))\n            continue\n\
+    \        result.append(line)\n    if level > 0:\n        result.append(\"  discard\"\
+    )\n        result2 = []\n#        print(level)\n        for line in result:\n\
+    #            result2.append(\"  \" * level + line)\n            result2.append(\"\
+    \  \" + line)\n        result = result2\n    return result\n\n\ndef dfs(f: str,\
+    \ level:int) -> List[str]:\n    global defined\n    if f in defined:\n       \
+    \ logger.info('already included {}, skip'.format(f))\n        return []\n    defined.add(f)\n\
+    \n    logger.info('include {}'.format(f))\n\n    s = open(str(lib_path / f)).read()\n\
     \    return read_source(s, level)\n\nif __name__ == \"__main__\":\n    basicConfig(\n\
     \        format=\"%(asctime)s [%(levelname)s] %(message)s\",\n        datefmt=\"\
     %H:%M:%S\",\n        level=getenv('LOG_LEVEL', 'INFO'),\n    )\n    parser = argparse.ArgumentParser(description='Expander')\n\

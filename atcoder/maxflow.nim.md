@@ -7,7 +7,13 @@ data:
   - icon: ':warning:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: test/example/maxflow_practice.nim
+    title: test/example/maxflow_practice.nim
+  - icon: ':warning:'
+    path: test/example/maxflow_practice.nim
+    title: test/example/maxflow_practice.nim
   _extendedVerifiedWith: []
   _pathExtension: nim
   _verificationStatusIcon: ':warning:'
@@ -38,36 +44,39 @@ data:
     \    var re = self.g[e[].dst][e[].rev].addr\n    e[].cap = new_cap - new_flow\n\
     \    re[].cap = new_flow\n\n\n  proc flow*[Cap](self: var mf_graph[Cap], s, t:int,\
     \ flow_limit:Cap):Cap =\n    assert s in 0..<self.n\n    assert t in 0..<self.n\n\
-    \  \n    var level, iter = newSeq[int](self.n)\n    var que = init_simple_queue[int]()\n\
-    #    internal::simple_queue<int> que;\n  \n    proc bfs(self: mf_graph[Cap]) =\n\
-    \      level.fill(-1)\n      level[s] = 0\n      que.clear()\n      que.push(s)\n\
-    \      while not que.empty():\n        let v = que.front()\n        que.pop()\n\
-    \        for e in self.g[v]:\n          if e.cap == 0 or level[e.dst] >= 0: continue\n\
-    \          level[e.dst] = level[v] + 1\n          if e.dst == t: return\n    \
-    \      que.push(e.dst)\n    proc dfs(self: var mf_graph[Cap], v:int, up:Cap):Cap\
-    \ =\n      if v == s: return up\n      result = Cap(0)\n      let level_v = level[v]\n\
-    \      var i = iter[v].addr\n      while i[] < self.g[v].len:\n        let e =\
-    \ self.g[v][i[]].addr\n        if level_v <= level[e[].dst] or self.g[e[].dst][e[].rev].cap\
-    \ == 0:\n          i[].inc\n          continue\n        let d = self.dfs(e.dst,\
-    \ min(up - result, self.g[e[].dst][e[].rev].cap))\n        if d <= 0:\n      \
-    \    i[].inc\n          continue\n        self.g[v][i[]].cap += d\n        self.g[e[].dst][e[].rev].cap\
-    \ -= d\n        result += d\n        if result == up: break\n        i[].inc\n\
-    \n    var flow = Cap(0)\n    while flow < flow_limit:\n      self.bfs()\n    \
-    \  if level[t] == -1: break\n      iter.fill(0)\n      while flow < flow_limit:\n\
-    \        let f = self.dfs(t, flow_limit - flow)\n        if f == Cap(0): break\n\
-    \        flow += f\n    return flow\n\n  proc flow*[Cap](self: var mf_graph[Cap],\
-    \ s,t:int):auto = self.flow(s, t, Cap.high)\n\n  proc min_cut*[Cap](self:mf_graph[Cap],\
-    \ s:int):seq[bool] =\n    var visited = newSeq[bool](self.n)\n    var que = init_simple_queue[int]()\n\
-    \    que.push(s)\n    while not que.empty():\n      let p = que.front()\n    \
-    \  que.pop()\n      visited[p] = true\n      for e in self.g[p]:\n        if e.cap\
-    \ != Cap(0) and not visited[e.dst]:\n          visited[e.dst] = true\n       \
-    \   que.push(e.dst)\n    return visited\n"
+    \    assert s != t\n  \n    var level, iter = newSeq[int](self.n)\n    var que\
+    \ = init_simple_queue[int]()\n#    internal::simple_queue<int> que;\n  \n    proc\
+    \ bfs(self: mf_graph[Cap]) =\n      level.fill(-1)\n      level[s] = 0\n     \
+    \ que.clear()\n      que.push(s)\n      while not que.empty():\n        let v\
+    \ = que.front()\n        que.pop()\n        for e in self.g[v]:\n          if\
+    \ e.cap == 0 or level[e.dst] >= 0: continue\n          level[e.dst] = level[v]\
+    \ + 1\n          if e.dst == t: return\n          que.push(e.dst)\n    proc dfs(self:\
+    \ var mf_graph[Cap], v:int, up:Cap):Cap =\n      if v == s: return up\n      result\
+    \ = Cap(0)\n      let level_v = level[v]\n      var i = iter[v].addr\n      while\
+    \ i[] < self.g[v].len:\n        let e = self.g[v][i[]].addr\n        if level_v\
+    \ <= level[e[].dst] or self.g[e[].dst][e[].rev].cap == 0:\n          i[].inc\n\
+    \          continue\n        let d = self.dfs(e.dst, min(up - result, self.g[e[].dst][e[].rev].cap))\n\
+    \        if d <= 0:\n          i[].inc\n          continue\n        self.g[v][i[]].cap\
+    \ += d\n        self.g[e[].dst][e[].rev].cap -= d\n        result += d\n     \
+    \   if result == up: break\n        i[].inc\n\n    var flow = Cap(0)\n    while\
+    \ flow < flow_limit:\n      self.bfs()\n      if level[t] == -1: break\n     \
+    \ iter.fill(0)\n      while flow < flow_limit:\n        let f = self.dfs(t, flow_limit\
+    \ - flow)\n        if f == Cap(0): break\n        flow += f\n    return flow\n\
+    \n  proc flow*[Cap](self: var mf_graph[Cap], s,t:int):auto = self.flow(s, t, Cap.high)\n\
+    \n  proc min_cut*[Cap](self:mf_graph[Cap], s:int):seq[bool] =\n    var visited\
+    \ = newSeq[bool](self.n)\n    var que = init_simple_queue[int]()\n    que.push(s)\n\
+    \    while not que.empty():\n      let p = que.front()\n      que.pop()\n    \
+    \  visited[p] = true\n      for e in self.g[p]:\n        if e.cap != Cap(0) and\
+    \ not visited[e.dst]:\n          visited[e.dst] = true\n          que.push(e.dst)\n\
+    \    return visited\n"
   dependsOn:
   - atcoder/internal_queue.nim
   - atcoder/internal_queue.nim
   isVerificationFile: false
   path: atcoder/maxflow.nim
-  requiredBy: []
+  requiredBy:
+  - test/example/maxflow_practice.nim
+  - test/example/maxflow_practice.nim
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

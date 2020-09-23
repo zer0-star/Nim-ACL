@@ -3,12 +3,6 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: atcoder/extra/math/formal_power_series.nim
-    title: atcoder/extra/math/formal_power_series.nim
-  - icon: ':warning:'
-    path: atcoder/extra/math/formal_power_series.nim
-    title: atcoder/extra/math/formal_power_series.nim
-  - icon: ':warning:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
   - icon: ':warning:'
@@ -33,8 +27,6 @@ data:
   isVerificationFile: false
   path: atcoder/extra/math/element_concepts.nim
   requiredBy:
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/formal_power_series.nim
   - atcoder/extra/math/combination.nim
   - atcoder/extra/math/combination.nim
   timestamp: '1970-01-01 00:00:00+00:00'

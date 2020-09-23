@@ -3,6 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: test/example/maxflow_practice.nim
+    title: test/example/maxflow_practice.nim
+  - icon: ':warning:'
+    path: test/example/maxflow_practice.nim
+    title: test/example/maxflow_practice.nim
+  - icon: ':warning:'
     path: atcoder/maxflow.nim
     title: atcoder/maxflow.nim
   - icon: ':warning:'
@@ -30,6 +36,8 @@ data:
   isVerificationFile: false
   path: atcoder/internal_queue.nim
   requiredBy:
+  - test/example/maxflow_practice.nim
+  - test/example/maxflow_practice.nim
   - atcoder/maxflow.nim
   - atcoder/maxflow.nim
   timestamp: '1970-01-01 00:00:00+00:00'

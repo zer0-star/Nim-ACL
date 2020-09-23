@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/extra_lazy_segtree_test.nim
-    title: verify/extra_lazy_segtree_test.nim
+    path: verify/extra/extra_lazy_segtree_test.nim
+    title: verify/extra/extra_lazy_segtree_test.nim
   - icon: ':heavy_check_mark:'
-    path: verify/extra_lazy_segtree_test.nim
-    title: verify/extra_lazy_segtree_test.nim
+    path: verify/extra/extra_lazy_segtree_test.nim
+    title: verify/extra/extra_lazy_segtree_test.nim
   - icon: ':heavy_check_mark:'
-    path: verify/extra_segtree_test.nim
-    title: verify/extra_segtree_test.nim
+    path: verify/extra/extra_segtree_test.nim
+    title: verify/extra/extra_segtree_test.nim
   - icon: ':heavy_check_mark:'
-    path: verify/extra_segtree_test.nim
-    title: verify/extra_segtree_test.nim
+    path: verify/extra/extra_segtree_test.nim
+    title: verify/extra/extra_segtree_test.nim
   _pathExtension: nim
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -140,10 +140,10 @@ data:
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/extra_lazy_segtree_test.nim
-  - verify/extra_lazy_segtree_test.nim
-  - verify/extra_segtree_test.nim
-  - verify/extra_segtree_test.nim
+  - verify/extra/extra_lazy_segtree_test.nim
+  - verify/extra/extra_lazy_segtree_test.nim
+  - verify/extra/extra_segtree_test.nim
+  - verify/extra/extra_segtree_test.nim
 documentation_of: atcoder/extra/structure/universal_segtree.nim
 layout: document
 redirect_from:

@@ -1,13 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: test/example/floor_sum_practice.nim
+    title: test/example/floor_sum_practice.nim
+  - icon: ':warning:'
+    path: test/example/floor_sum_practice.nim
+    title: test/example/floor_sum_practice.nim
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/crt_test.nim
@@ -64,7 +70,9 @@ data:
   - atcoder/internal_math.nim
   isVerificationFile: false
   path: atcoder/math.nim
-  requiredBy: []
+  requiredBy:
+  - test/example/floor_sum_practice.nim
+  - test/example/floor_sum_practice.nim
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -1,36 +1,36 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: atcoder/modint.nim
-    title: atcoder/modint.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/modint.nim
-    title: atcoder/modint.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/extra/structure/universal_segtree.nim
-    title: atcoder/extra/structure/universal_segtree.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
+  - icon: ':question:'
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
+  - icon: ':question:'
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/structure/universal_segtree.nim
+    title: atcoder/extra/structure/universal_segtree.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -55,26 +55,26 @@ data:
     \  let t = nextInt()\n  if t == 0:\n    let l, r, c, d = nextInt()\n    seg.apply(l..<r,\
     \ (mint(c), mint(d)))\n  else:\n    let l, r = nextInt()\n    echo seg.prod(l..<r)[0]\n"
   dependsOn:
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/structure/universal_segtree.nim
-  - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/internal_bit.nim
   - atcoder/internal_bit.nim
   - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/modint.nim
+  - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
   isVerificationFile: true
-  path: verify/extra_lazy_segtree_test.nim
+  path: verify/extra/extra_lazy_segtree_test.nim
   requiredBy: []
-  timestamp: '2020-09-20 00:58:24+09:00'
+  timestamp: '2020-09-22 00:56:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/extra_lazy_segtree_test.nim
+documentation_of: verify/extra/extra_lazy_segtree_test.nim
 layout: document
 redirect_from:
-- /verify/verify/extra_lazy_segtree_test.nim
-- /verify/verify/extra_lazy_segtree_test.nim.html
-title: verify/extra_lazy_segtree_test.nim
+- /verify/verify/extra/extra_lazy_segtree_test.nim
+- /verify/verify/extra/extra_lazy_segtree_test.nim.html
+title: verify/extra/extra_lazy_segtree_test.nim
 ---

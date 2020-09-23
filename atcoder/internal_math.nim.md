@@ -2,10 +2,46 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
+    path: test/example/convolution_practice.nim
+    title: test/example/convolution_practice.nim
+  - icon: ':warning:'
+    path: test/example/convolution_practice.nim
+    title: test/example/convolution_practice.nim
+  - icon: ':warning:'
+    path: test/example/convolution_int_practice.nim
+    title: test/example/convolution_int_practice.nim
+  - icon: ':warning:'
+    path: test/example/convolution_int_practice.nim
+    title: test/example/convolution_int_practice.nim
+  - icon: ':warning:'
+    path: test/example/lazyseg_practice1.nim
+    title: test/example/lazyseg_practice1.nim
+  - icon: ':warning:'
+    path: test/example/lazyseg_practice1.nim
+    title: test/example/lazyseg_practice1.nim
+  - icon: ':warning:'
+    path: test/example/modint_usage.nim
+    title: test/example/modint_usage.nim
+  - icon: ':warning:'
+    path: test/example/modint_usage.nim
+    title: test/example/modint_usage.nim
+  - icon: ':warning:'
+    path: test/example/floor_sum_practice.nim
+    title: test/example/floor_sum_practice.nim
+  - icon: ':warning:'
+    path: test/example/floor_sum_practice.nim
+    title: test/example/floor_sum_practice.nim
+  - icon: ':warning:'
+    path: verify/extra/composition_of_formal_power_series_test_backup.nim
+    title: verify/extra/composition_of_formal_power_series_test_backup.nim
+  - icon: ':warning:'
+    path: verify/extra/composition_of_formal_power_series_test_backup.nim
+    title: verify/extra/composition_of_formal_power_series_test_backup.nim
+  - icon: ':x:'
     path: atcoder/convolution.nim
     title: atcoder/convolution.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/convolution.nim
     title: atcoder/convolution.nim
   - icon: ':heavy_check_mark:'
@@ -14,10 +50,40 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/math.nim
     title: atcoder/math.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: atcoder/extra/math/arbitrary_mod_convolution.nim
+    title: atcoder/extra/math/arbitrary_mod_convolution.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/arbitrary_mod_convolution.nim
+    title: atcoder/extra/math/arbitrary_mod_convolution.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/internal_fft.nim
+    title: atcoder/extra/math/internal_fft.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/internal_fft.nim
+    title: atcoder/extra/math/internal_fft.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/mod_sqrt.nim
+    title: atcoder/extra/math/mod_sqrt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/mod_sqrt.nim
+    title: atcoder/extra/math/mod_sqrt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series.nim
+    title: atcoder/extra/math/formal_power_series.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series.nim
+    title: atcoder/extra/math/formal_power_series.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/particular_mod_convolution.nim
+    title: atcoder/extra/math/particular_mod_convolution.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/particular_mod_convolution.nim
+    title: atcoder/extra/math/particular_mod_convolution.nim
+  - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
   _extendedVerifiedWith:
@@ -39,10 +105,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_dynamicmodint_test.nim
     title: verify/lazy_segtree_dynamicmodint_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/convolution_test.nim
     title: verify/convolution_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/convolution_test.nim
     title: verify/convolution_test.nim
   - icon: ':heavy_check_mark:'
@@ -57,14 +123,50 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/modint_test.nim
     title: verify/modint_test.nim
+  - icon: ':x:'
+    path: verify/extra/inv_of_formal_power_series_test.nim
+    title: verify/extra/inv_of_formal_power_series_test.nim
+  - icon: ':x:'
+    path: verify/extra/inv_of_formal_power_series_test.nim
+    title: verify/extra/inv_of_formal_power_series_test.nim
+  - icon: ':x:'
+    path: verify/extra/arbitrary_mod_convolution_test.nim
+    title: verify/extra/arbitrary_mod_convolution_test.nim
+  - icon: ':x:'
+    path: verify/extra/arbitrary_mod_convolution_test.nim
+    title: verify/extra/arbitrary_mod_convolution_test.nim
+  - icon: ':x:'
+    path: verify/extra/arbitrary_mod_exp_modsqrt_test.nim
+    title: verify/extra/arbitrary_mod_exp_modsqrt_test.nim
+  - icon: ':x:'
+    path: verify/extra/arbitrary_mod_exp_modsqrt_test.nim
+    title: verify/extra/arbitrary_mod_exp_modsqrt_test.nim
+  - icon: ':x:'
+    path: verify/extra/exp_of_formal_power_series_test.nim
+    title: verify/extra/exp_of_formal_power_series_test.nim
+  - icon: ':x:'
+    path: verify/extra/exp_of_formal_power_series_test.nim
+    title: verify/extra/exp_of_formal_power_series_test.nim
+  - icon: ':x:'
+    path: verify/extra/pow_of_formal_power_series_test.nim
+    title: verify/extra/pow_of_formal_power_series_test.nim
+  - icon: ':x:'
+    path: verify/extra/pow_of_formal_power_series_test.nim
+    title: verify/extra/pow_of_formal_power_series_test.nim
+  - icon: ':x:'
+    path: verify/extra/log_of_formal_power_series_test.nim
+    title: verify/extra/log_of_formal_power_series_test.nim
+  - icon: ':x:'
+    path: verify/extra/log_of_formal_power_series_test.nim
+    title: verify/extra/log_of_formal_power_series_test.nim
   - icon: ':heavy_check_mark:'
-    path: verify/extra_lazy_segtree_test.nim
-    title: verify/extra_lazy_segtree_test.nim
+    path: verify/extra/extra_lazy_segtree_test.nim
+    title: verify/extra/extra_lazy_segtree_test.nim
   - icon: ':heavy_check_mark:'
-    path: verify/extra_lazy_segtree_test.nim
-    title: verify/extra_lazy_segtree_test.nim
+    path: verify/extra/extra_lazy_segtree_test.nim
+    title: verify/extra/extra_lazy_segtree_test.nim
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -133,14 +235,36 @@ data:
   isVerificationFile: false
   path: atcoder/internal_math.nim
   requiredBy:
+  - test/example/convolution_practice.nim
+  - test/example/convolution_practice.nim
+  - test/example/convolution_int_practice.nim
+  - test/example/convolution_int_practice.nim
+  - test/example/lazyseg_practice1.nim
+  - test/example/lazyseg_practice1.nim
+  - test/example/modint_usage.nim
+  - test/example/modint_usage.nim
+  - test/example/floor_sum_practice.nim
+  - test/example/floor_sum_practice.nim
+  - verify/extra/composition_of_formal_power_series_test_backup.nim
+  - verify/extra/composition_of_formal_power_series_test_backup.nim
   - atcoder/convolution.nim
   - atcoder/convolution.nim
   - atcoder/math.nim
   - atcoder/math.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/internal_fft.nim
+  - atcoder/extra/math/internal_fft.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/modint.nim
   - atcoder/modint.nim
   timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/lazy_segtree_test.nim
   - verify/lazy_segtree_test.nim
@@ -154,8 +278,20 @@ data:
   - verify/floor_sum_test.nim
   - verify/modint_test.nim
   - verify/modint_test.nim
-  - verify/extra_lazy_segtree_test.nim
-  - verify/extra_lazy_segtree_test.nim
+  - verify/extra/inv_of_formal_power_series_test.nim
+  - verify/extra/inv_of_formal_power_series_test.nim
+  - verify/extra/arbitrary_mod_convolution_test.nim
+  - verify/extra/arbitrary_mod_convolution_test.nim
+  - verify/extra/arbitrary_mod_exp_modsqrt_test.nim
+  - verify/extra/arbitrary_mod_exp_modsqrt_test.nim
+  - verify/extra/exp_of_formal_power_series_test.nim
+  - verify/extra/exp_of_formal_power_series_test.nim
+  - verify/extra/pow_of_formal_power_series_test.nim
+  - verify/extra/pow_of_formal_power_series_test.nim
+  - verify/extra/log_of_formal_power_series_test.nim
+  - verify/extra/log_of_formal_power_series_test.nim
+  - verify/extra/extra_lazy_segtree_test.nim
+  - verify/extra/extra_lazy_segtree_test.nim
 documentation_of: atcoder/internal_math.nim
 layout: document
 redirect_from:

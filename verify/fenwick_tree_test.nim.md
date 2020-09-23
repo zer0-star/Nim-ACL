@@ -5,12 +5,12 @@ data:
     path: atcoder/fenwicktree.nim
     title: atcoder/fenwicktree.nim
   - icon: ':heavy_check_mark:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
     path: atcoder/fenwicktree.nim
     title: atcoder/fenwicktree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
@@ -33,8 +33,8 @@ data:
     \ nextInt()\n    echo st.sum(l..<r)\n"
   dependsOn:
   - atcoder/fenwicktree.nim
-  - atcoder/header.nim
   - atcoder/fenwicktree.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/fenwick_tree_test.nim

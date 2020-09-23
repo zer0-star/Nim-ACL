@@ -7,7 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: test/example/twosat_practice.nim
+    title: test/example/twosat_practice.nim
+  - icon: ':warning:'
+    path: test/example/twosat_practice.nim
+    title: test/example/twosat_practice.nim
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/twosat_test.nim
@@ -41,7 +47,9 @@ data:
   - atcoder/internal_scc.nim
   isVerificationFile: false
   path: atcoder/twosat.nim
-  requiredBy: []
+  requiredBy:
+  - test/example/twosat_practice.nim
+  - test/example/twosat_practice.nim
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

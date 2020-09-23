@@ -5,18 +5,18 @@ data:
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
   - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/template.nim
+    title: atcoder/extra/graph/template.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/template.nim
+    title: atcoder/extra/graph/template.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/extra/graph/template.nim
-    title: atcoder/extra/graph/template.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/extra/graph/template.nim
-    title: atcoder/extra/graph/template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
@@ -42,9 +42,9 @@ data:
     \  for i in 0..<ans.len - 1:\n      echo ans[i], \" \", ans[i+1]\n\nmain()\n"
   dependsOn:
   - atcoder/extra/graph/dijkstra.nim
+  - atcoder/extra/graph/template.nim
+  - atcoder/extra/graph/template.nim
   - atcoder/extra/graph/dijkstra.nim
-  - atcoder/extra/graph/template.nim
-  - atcoder/extra/graph/template.nim
   - atcoder/header.nim
   - atcoder/header.nim
   isVerificationFile: true
