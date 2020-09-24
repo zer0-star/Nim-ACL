@@ -63,7 +63,7 @@ when not declared ATCODER_ARBITRARY_MOD_CONVOLUTION:
       a0 = F.ifft(a[0])
       a1 = F.ifft(a[1])
       a2 = F.ifft(a[2])
-    return calc_garner[T, mint0, mint1, mint2](a0, a1, a2, deg)
+    return calc_garner[T](a0, a1, a2, deg)
   proc convolution*[T:ModInt](t:typedesc[ArbitraryModConvolution], a, b:seq[T]):seq[T] {.inline.} =
     proc f0(x:T):mint0 = mint0.init(x.int)
     proc f1(x:T):mint1 = mint1.init(x.int)

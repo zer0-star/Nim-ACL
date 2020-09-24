@@ -3,7 +3,7 @@ when not declared ATCODER_SEGTREE_HPP:
   import atcoder/internal_bit
   import std/sugar, std/sequtils
 
-  type segtree[S] = object
+  type segtree*[S] = object
     n, size, log:int
     d:seq[S]
     op:(S, S)->S

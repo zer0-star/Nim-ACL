@@ -3,7 +3,7 @@ when not declared ATCODER_STRING_HPP:
 
   import std/algorithm, std/sequtils
 
-  proc sa_naive(s:seq[int]):seq[int] =
+  proc sa_naive*(s:seq[int]):seq[int] =
     let n = s.len
     var sa = newSeq[int](n)
     for i in 0..<n:sa[i] = i
@@ -16,7 +16,7 @@ when not declared ATCODER_STRING_HPP:
       return cmp[int](n, l)
     return sa
   
-  proc sa_doubling(s:seq[int]):seq[int] =
+  proc sa_doubling*(s:seq[int]):seq[int] =
     let n = s.len
     var
       sa, tmp = newSeq[int](n)
@@ -43,7 +43,7 @@ when not declared ATCODER_STRING_HPP:
   # G. Nong, S. Zhang, and W. H. Chan,
   # Two Efficient Algorithms for Linear Time Suffix Array Construction
 #  template <int THRESHOLD_NAIVE = 10, int THRESHOLD_DOUBLING = 40>
-  proc sa_is[THRESHOLD_NAIVE:static[int], THRESHOLD_DOUBLING:static[int]](s:seq[int], upper:int):seq[int] =
+  proc sa_is*(s:seq[int], upper:int, THRESHOLD_NAIVE:static[int] = 10, THRESHOLD_DOUBLING:static[int] = 40):seq[int] =
     let n = s.len
     if n == 0: return @[]
     if n == 1: return @[0]
@@ -145,7 +145,7 @@ when not declared ATCODER_STRING_HPP:
     assert 0 <= upper
     for d in s:
       assert 0 <= d and d <= upper
-    return sa_is[10, 40](s, upper)
+    return sa_is(s, upper)
   
   proc suffix_array*[T](s:seq[T]):seq[int] =
     let n = s.len
@@ -157,10 +157,10 @@ when not declared ATCODER_STRING_HPP:
     for i in 0..<n:
       if i != 0 and s[idx[i - 1]] != s[idx[i]]: now.inc
       s2[idx[i]] = now
-    return sa_is[10, 40](s2, now)
+    return sa_is(s2, now)
   
   proc suffix_array*(s:string):seq[int] =
-    return sa_is[10, 40](s.mapIt(it.int), 255);
+    return sa_is(s.mapIt(it.int), 255);
   
   # Reference:
   # T. Kasai, G. Lee, H. Arimura, S. Arikawa, and K. Park,
