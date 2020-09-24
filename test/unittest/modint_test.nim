@@ -49,7 +49,7 @@ test "ModintTest, DynamicBorder":
 
 test "ModintTest, ULL":
   modint.set_mod(998244353)
-  let m1 = 0'u - 1'u
+  let m1 = cast[uint](-1)
   check modint.mod() - 1 != modint.init(m1).val()
   check 0 != (m1 + modint.init(1)).val()
   type mint = StaticModInt[998244353]
