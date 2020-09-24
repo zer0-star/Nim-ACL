@@ -33,7 +33,9 @@ jobs:
           nim-version: 1.0.6
 
       - run: |
-          cd src
+          mv src/* ./
+          mkdir -p .verify-helper/docs/static/
+          mv document_ja/ .verify-helper/docs/static/
 
       - name: Run tests
         env:
