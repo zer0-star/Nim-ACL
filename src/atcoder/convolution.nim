@@ -91,7 +91,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
             l = a[i + offset]
             r = a[i + offset + p]
           a[i + offset] = l + r
-          a[i + offset + p] = mint.init((mint.umod + l.uint - r.uint) * uint(inow))
+          a[i + offset + p] = mint.init((mint.umod.uint + l.uint - r.uint) * uint(inow))
         inow *= sum_ie[bsf(not s.uint)]
 
 #  template <class mint, internal::is_static_modint_t<mint>* = nullptr>
