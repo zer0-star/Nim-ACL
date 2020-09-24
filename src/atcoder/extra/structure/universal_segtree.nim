@@ -171,7 +171,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
   proc max_right*[ST:segtree](self:var ST, l:int, g:(ST.S)->bool):int =
     static: assert ST.hasData
     assert l in 0..self.n
-    assert g(e())
+    assert g(self.e())
     if l == self.n: return self.n
     var l = l + self.size
     when ST.hasLazy:
@@ -190,7 +190,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
         return l - self.size
       sm = self.op(sm, self.d[l])
       l.inc
-      if not((l & -l) != l): break
+      if not((l and -l) != l): break
     return self.n
 
 #  template <bool (*g)(S)> int min_left(int r) {
@@ -218,5 +218,5 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
             r.dec
         return r + 1 - self.size
       sm = self.op(self.d[r], sm)
-      if not ((r & -r) != r): break
+      if not ((r and -r) != r): break
     return 0
