@@ -8,10 +8,14 @@ when not declared ATCODER_MODINT_HPP:
   
   type ModInt* = StaticModInt or DynamicModInt
 
+  proc isStaticModInt*(T:typedesc):bool = T is StaticModInt
+  proc isDynamicModInt*(T:typedesc):bool = T is DynamicModInt
+  proc isModInt*(T:typedesc):bool = T.isStaticModInt or T.isDynamicModInt
+
   import atcoder/internal_math
 
   proc getBarrett*[T:static[int]](t:typedesc[DynamicModInt[T]], set = false, M:SomeInteger = 0.uint32):ptr Barrett =
-    var Barrett_of_DynamicModInt {.global.} :Barrett
+    var Barrett_of_DynamicModInt {.global.} = initBarrett(998244353.uint)
     return Barrett_of_DynamicModInt.addr
   proc getMod*[T:static[int]](t:typedesc[DynamicModInt[T]]):uint32 {.inline.} =
     (t.getBarrett)[].m.uint32
@@ -36,14 +40,20 @@ when not declared ATCODER_MODINT_HPP:
   proc init*[T:ModInt](t:typedesc[T], v: SomeInteger or T): auto {.inline.} =
     when v is T: return v
     else:
-      var v = v.int
-      if 0 <= v:
-        if v < T.mod: return T(v.uint32)
-        else: return T((v mod T.mod).uint32)
+      when v is SomeUnsignedInt:
+        if v.uint < T.umod:
+          return T(v.uint32)
+        else:
+          return T((v.uint mod T.umod.uint).uint32)
       else:
-        v = v mod T.mod
-        if v < 0: v += T.mod
-        return T(v.uint32)
+        var v = v.int
+        if 0 <= v:
+          if v < T.mod: return T(v.uint32)
+          else: return T((v mod T.mod).uint32)
+        else:
+          v = v mod T.mod
+          if v < 0: v += T.mod
+          return T(v.uint32)
   template initModInt*(v: SomeInteger or ModInt; M: static[int] = 1_000_000_007): auto =
     StaticModInt[M].init(v)
 
@@ -134,6 +144,7 @@ when not declared ATCODER_MODINT_HPP:
       uint32(m).dec
 
   proc pow*[T:ModInt](m: T; p: SomeInteger): T {.inline.} =
+    assert 0 <= p
     var
       p = p.int
       m = m
