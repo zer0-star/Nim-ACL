@@ -8,7 +8,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
 #include <cassert>
 #include <type_traits>
 #include <vector>
-  import std/math, std/sequtils
+  import std/math, std/sequtils, std/sugar
   import atcoder/internal_math, atcoder/internal_bit, atcoder/modint
   
 #  template <class mint, internal::is_static_modint_t<mint>* = nullptr>
@@ -75,7 +75,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
         e *= e
         ie *= ie
       var now = mint(1)
-      for i in 0..<cnt2 - 2:
+      for i in 0..cnt2 - 2:
         sum_ie[i] = ies[i] * now
         now *= es[i]
   
@@ -131,18 +131,10 @@ when not declared ATCODER_CONVOLUTION_HPP:
     if n == 0 or m == 0: return newSeq[T]()
   
     type mint = StaticModInt[M.int]
-    var
-      a2 = newSeq[mint](n)
-      b2 = newSeq[mint](m)
-    for i in 0..<n:
-      a2[i] = mint(a[i])
-    for i in 0..<m:
-      b2[i] = mint(b[i])
-    let c2 = convolution(a2, b2)
-    var c = newSeq[T](n + m - 1)
-    for i in 0..<n + m - 1:
-      c[i] = c2[i].val()
-    return c
+    return convolution(
+      a.map((x:T) => mint.init(x)), 
+      b.map((x:T) => mint.init(x))
+    ).map((x:mint) => T(x.val()))
 
   proc convolution_ll*(a, b:seq[int]):seq[int] =
     let (n, m) = (a.len, b.len)
