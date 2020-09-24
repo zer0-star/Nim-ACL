@@ -1,6 +1,18 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':question:'
+    path: atcoder/string.nim
+    title: atcoder/string.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':question:'
+    path: atcoder/string.nim
+    title: atcoder/string.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -14,7 +26,11 @@ data:
   code: "include atcoder/header\nimport atcoder/string\n\nlet\n  s = nextString()\n\
     \  sa = suffix_array(s)\nvar answer = s.len * (s.len + 1) div 2\nfor x in lcp_array(s,\
     \ sa):\n  answer -= x\necho answer\n"
-  dependsOn: []
+  dependsOn:
+  - atcoder/header.nim
+  - atcoder/string.nim
+  - atcoder/header.nim
+  - atcoder/string.nim
   isVerificationFile: false
   path: test/example/sa_practice.nim
   requiredBy: []

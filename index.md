@@ -1,139 +1,132 @@
 ---
 data:
   libraryCategories:
+  - name: atcoder
+    pages:
+    - icon: ':x:'
+      path: atcoder/convolution.nim
+      title: atcoder/convolution.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/dsu.nim
+      title: atcoder/dsu.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/fenwicktree.nim
+      title: atcoder/fenwicktree.nim
+    - icon: ':question:'
+      path: atcoder/header.nim
+      title: atcoder/header.nim
+    - icon: ':question:'
+      path: atcoder/internal_bit.nim
+      title: atcoder/internal_bit.nim
+    - icon: ':question:'
+      path: atcoder/internal_math.nim
+      title: atcoder/internal_math.nim
+    - icon: ':warning:'
+      path: atcoder/internal_queue.nim
+      title: atcoder/internal_queue.nim
+    - icon: ':question:'
+      path: atcoder/internal_scc.nim
+      title: atcoder/internal_scc.nim
+    - icon: ':warning:'
+      path: atcoder/internal_type_traits.nim
+      title: atcoder/internal_type_traits.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/lazysegtree.nim
+      title: atcoder/lazysegtree.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/math.nim
+      title: atcoder/math.nim
+    - icon: ':warning:'
+      path: atcoder/maxflow.nim
+      title: atcoder/maxflow.nim
+    - icon: ':warning:'
+      path: atcoder/mincostflow.nim
+      title: atcoder/mincostflow.nim
+    - icon: ':question:'
+      path: atcoder/modint.nim
+      title: atcoder/modint.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/scc.nim
+      title: atcoder/scc.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/segtree.nim
+      title: atcoder/segtree.nim
+    - icon: ':question:'
+      path: atcoder/string.nim
+      title: atcoder/string.nim
+    - icon: ':x:'
+      path: atcoder/twosat.nim
+      title: atcoder/twosat.nim
+  - name: atcoder/extra/graph
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: atcoder/extra/graph/dijkstra.nim
+      title: atcoder/extra/graph/dijkstra.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/extra/graph/template.nim
+      title: atcoder/extra/graph/template.nim
+    - icon: ':warning:'
+      path: atcoder/extra/graph/topological_sort.nim
+      title: atcoder/extra/graph/topological_sort.nim
+  - name: atcoder/extra/header
+    pages:
+    - icon: ':warning:'
+      path: atcoder/extra/header/chaemon_header.nim
+      title: atcoder/extra/header/chaemon_header.nim
+  - name: atcoder/extra/math
+    pages:
+    - icon: ':x:'
+      path: atcoder/extra/math/arbitrary_mod_convolution.nim
+      title: atcoder/extra/math/arbitrary_mod_convolution.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/combination.nim
+      title: atcoder/extra/math/combination.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/composition.nim
+      title: atcoder/extra/math/composition.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/divisor.nim
+      title: atcoder/extra/math/divisor.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/element_concepts.nim
+      title: atcoder/extra/math/element_concepts.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/eratosthenes.nim
+      title: atcoder/extra/math/eratosthenes.nim
+    - icon: ':x:'
+      path: atcoder/extra/math/formal_power_series.nim
+      title: atcoder/extra/math/formal_power_series.nim
+    - icon: ':x:'
+      path: atcoder/extra/math/internal_fft.nim
+      title: atcoder/extra/math/internal_fft.nim
+    - icon: ':x:'
+      path: atcoder/extra/math/mod_sqrt.nim
+      title: atcoder/extra/math/mod_sqrt.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/modint_chaemon.nim
+      title: atcoder/extra/math/modint_chaemon.nim
+    - icon: ':x:'
+      path: atcoder/extra/math/particular_mod_convolution.nim
+      title: atcoder/extra/math/particular_mod_convolution.nim
+  - name: atcoder/extra/structure
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: atcoder/extra/structure/randomized_binary_search_tree.nim
+      title: atcoder/extra/structure/randomized_binary_search_tree.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/extra/structure/set_map.nim
+      title: atcoder/extra/structure/set_map.nim
+    - icon: ':heavy_check_mark:'
+      path: atcoder/extra/structure/universal_segtree.nim
+      title: atcoder/extra/structure/universal_segtree.nim
   - name: .
     pages:
     - icon: ':warning:'
+      path: atcoder.nim
+      title: atcoder.nim
+    - icon: ':warning:'
       path: expander.py
       title: expander.py
-  - name: src/atcoder
-    pages:
-    - icon: ':warning:'
-      path: src/atcoder/convolution.nim
-      title: src/atcoder/convolution.nim
-    - icon: ':warning:'
-      path: src/atcoder/dsu.nim
-      title: src/atcoder/dsu.nim
-    - icon: ':warning:'
-      path: src/atcoder/fenwicktree.nim
-      title: src/atcoder/fenwicktree.nim
-    - icon: ':warning:'
-      path: src/atcoder/header.nim
-      title: src/atcoder/header.nim
-    - icon: ':warning:'
-      path: src/atcoder/internal_bit.nim
-      title: src/atcoder/internal_bit.nim
-    - icon: ':warning:'
-      path: src/atcoder/internal_math.nim
-      title: src/atcoder/internal_math.nim
-    - icon: ':warning:'
-      path: src/atcoder/internal_queue.nim
-      title: src/atcoder/internal_queue.nim
-    - icon: ':warning:'
-      path: src/atcoder/internal_scc.nim
-      title: src/atcoder/internal_scc.nim
-    - icon: ':warning:'
-      path: src/atcoder/internal_type_traits.nim
-      title: src/atcoder/internal_type_traits.nim
-    - icon: ':warning:'
-      path: src/atcoder/lazysegtree.nim
-      title: src/atcoder/lazysegtree.nim
-    - icon: ':warning:'
-      path: src/atcoder/math.nim
-      title: src/atcoder/math.nim
-    - icon: ':warning:'
-      path: src/atcoder/maxflow.nim
-      title: src/atcoder/maxflow.nim
-    - icon: ':warning:'
-      path: src/atcoder/mincostflow.nim
-      title: src/atcoder/mincostflow.nim
-    - icon: ':warning:'
-      path: src/atcoder/modint.nim
-      title: src/atcoder/modint.nim
-    - icon: ':warning:'
-      path: src/atcoder/scc.nim
-      title: src/atcoder/scc.nim
-    - icon: ':warning:'
-      path: src/atcoder/segtree.nim
-      title: src/atcoder/segtree.nim
-    - icon: ':warning:'
-      path: src/atcoder/string.nim
-      title: src/atcoder/string.nim
-    - icon: ':warning:'
-      path: src/atcoder/twosat.nim
-      title: src/atcoder/twosat.nim
-  - name: src/atcoder/extra/graph
-    pages:
-    - icon: ':warning:'
-      path: src/atcoder/extra/graph/dijkstra.nim
-      title: src/atcoder/extra/graph/dijkstra.nim
-    - icon: ':warning:'
-      path: src/atcoder/extra/graph/template.nim
-      title: src/atcoder/extra/graph/template.nim
-    - icon: ':warning:'
-      path: src/atcoder/extra/graph/topological_sort.nim
-      title: src/atcoder/extra/graph/topological_sort.nim
-  - name: src/atcoder/extra/header
-    pages:
-    - icon: ':warning:'
-      path: src/atcoder/extra/header/chaemon_header.nim
-      title: src/atcoder/extra/header/chaemon_header.nim
-  - name: src/atcoder/extra/math
-    pages:
-    - icon: ':warning:'
-      path: src/atcoder/extra/math/arbitrary_mod_convolution.nim
-      title: src/atcoder/extra/math/arbitrary_mod_convolution.nim
-    - icon: ':warning:'
-      path: src/atcoder/extra/math/combination.nim
-      title: src/atcoder/extra/math/combination.nim
-    - icon: ':warning:'
-      path: src/atcoder/extra/math/composition.nim
-      title: src/atcoder/extra/math/composition.nim
-    - icon: ':warning:'
-      path: src/atcoder/extra/math/divisor.nim
-      title: src/atcoder/extra/math/divisor.nim
-    - icon: ':warning:'
-      path: src/atcoder/extra/math/element_concepts.nim
-      title: src/atcoder/extra/math/element_concepts.nim
-    - icon: ':warning:'
-      path: src/atcoder/extra/math/eratosthenes.nim
-      title: src/atcoder/extra/math/eratosthenes.nim
-    - icon: ':warning:'
-      path: src/atcoder/extra/math/formal_power_series.nim
-      title: src/atcoder/extra/math/formal_power_series.nim
-    - icon: ':warning:'
-      path: src/atcoder/extra/math/internal_fft.nim
-      title: src/atcoder/extra/math/internal_fft.nim
-    - icon: ':warning:'
-      path: src/atcoder/extra/math/mod_sqrt.nim
-      title: src/atcoder/extra/math/mod_sqrt.nim
-    - icon: ':warning:'
-      path: src/atcoder/extra/math/modint_chaemon.nim
-      title: src/atcoder/extra/math/modint_chaemon.nim
-    - icon: ':warning:'
-      path: src/atcoder/extra/math/particular_mod_convolution.nim
-      title: src/atcoder/extra/math/particular_mod_convolution.nim
-  - name: src/atcoder/extra/structure
-    pages:
-    - icon: ':warning:'
-      path: src/atcoder/extra/structure/randomized_binary_search_tree.nim
-      title: src/atcoder/extra/structure/randomized_binary_search_tree.nim
-    - icon: ':warning:'
-      path: src/atcoder/extra/structure/set_map.nim
-      title: src/atcoder/extra/structure/set_map.nim
-    - icon: ':warning:'
-      path: src/atcoder/extra/structure/universal_segtree.nim
-      title: src/atcoder/extra/structure/universal_segtree.nim
-  - name: src
-    pages:
-    - icon: ':warning:'
-      path: src/atcoder.nim
-      title: src/atcoder.nim
-  - name: src/verify/extra
-    pages:
-    - icon: ':warning:'
-      path: src/verify/extra/composition_of_formal_power_series_test_backup.nim
-      title: src/verify/extra/composition_of_formal_power_series_test_backup.nim
   - name: test/example
     pages:
     - icon: ':warning:'
@@ -277,82 +270,90 @@ data:
     - icon: ':warning:'
       path: tools/generate_zip.py
       title: tools/generate_zip.py
+  - name: verify/extra
+    pages:
+    - icon: ':warning:'
+      path: verify/extra/composition_of_formal_power_series_test_backup.nim
+      title: verify/extra/composition_of_formal_power_series_test_backup.nim
   verificationCategories:
-  - name: src/verify
+  - name: verify
     pages:
     - icon: ':x:'
-      path: src/verify/convolution_test.nim
-      title: src/verify/convolution_test.nim
+      path: verify/convolution_test.nim
+      title: verify/convolution_test.nim
     - icon: ':heavy_check_mark:'
-      path: src/verify/crt_test.nim
-      title: src/verify/crt_test.nim
+      path: verify/crt_test.nim
+      title: verify/crt_test.nim
     - icon: ':heavy_check_mark:'
-      path: src/verify/dsu_test.nim
-      title: src/verify/dsu_test.nim
+      path: verify/dsu_test.nim
+      title: verify/dsu_test.nim
     - icon: ':heavy_check_mark:'
-      path: src/verify/fenwick_tree_test.nim
-      title: src/verify/fenwick_tree_test.nim
+      path: verify/fenwick_tree_test.nim
+      title: verify/fenwick_tree_test.nim
     - icon: ':heavy_check_mark:'
-      path: src/verify/floor_sum_test.nim
-      title: src/verify/floor_sum_test.nim
+      path: verify/floor_sum_test.nim
+      title: verify/floor_sum_test.nim
     - icon: ':heavy_check_mark:'
-      path: src/verify/lazy_segtree_dynamicmodint_test.nim
-      title: src/verify/lazy_segtree_dynamicmodint_test.nim
+      path: verify/lazy_segtree_dynamicmodint_test.nim
+      title: verify/lazy_segtree_dynamicmodint_test.nim
     - icon: ':heavy_check_mark:'
-      path: src/verify/lazy_segtree_test.nim
-      title: src/verify/lazy_segtree_test.nim
+      path: verify/lazy_segtree_test.nim
+      title: verify/lazy_segtree_test.nim
     - icon: ':heavy_check_mark:'
-      path: src/verify/lcp_array_test.nim
-      title: src/verify/lcp_array_test.nim
+      path: verify/lcp_array_test.nim
+      title: verify/lcp_array_test.nim
     - icon: ':heavy_check_mark:'
-      path: src/verify/map_test.nim
-      title: src/verify/map_test.nim
+      path: verify/map_test.nim
+      title: verify/map_test.nim
     - icon: ':heavy_check_mark:'
-      path: src/verify/modint_test.nim
-      title: src/verify/modint_test.nim
+      path: verify/modint_test.nim
+      title: verify/modint_test.nim
     - icon: ':heavy_check_mark:'
-      path: src/verify/scc_test.nim
-      title: src/verify/scc_test.nim
+      path: verify/scc_test.nim
+      title: verify/scc_test.nim
     - icon: ':heavy_check_mark:'
-      path: src/verify/segtree_test.nim
-      title: src/verify/segtree_test.nim
+      path: verify/segtree_test.nim
+      title: verify/segtree_test.nim
     - icon: ':heavy_check_mark:'
-      path: src/verify/shortest_path_test.nim
-      title: src/verify/shortest_path_test.nim
+      path: verify/shortest_path_test.nim
+      title: verify/shortest_path_test.nim
+    - icon: ':heavy_check_mark:'
+      path: verify/suffix_array_test.nim
+      title: verify/suffix_array_test.nim
     - icon: ':x:'
-      path: src/verify/suffix_array_test.nim
-      title: src/verify/suffix_array_test.nim
+      path: verify/twosat_test.nim
+      title: verify/twosat_test.nim
     - icon: ':x:'
-      path: src/verify/twosat_test.nim
-      title: src/verify/twosat_test.nim
-    - icon: ':x:'
-      path: src/verify/z_algorithm_test.nim
-      title: src/verify/z_algorithm_test.nim
-  - name: src/verify/extra
+      path: verify/z_algorithm_test.nim
+      title: verify/z_algorithm_test.nim
+  - name: verify/extra
     pages:
     - icon: ':x:'
-      path: src/verify/extra/arbitrary_mod_convolution_test.nim
-      title: src/verify/extra/arbitrary_mod_convolution_test.nim
+      path: verify/extra/arbitrary_mod_convolution_test.nim
+      title: verify/extra/arbitrary_mod_convolution_test.nim
     - icon: ':x:'
-      path: src/verify/extra/arbitrary_mod_exp_modsqrt_test.nim
-      title: src/verify/extra/arbitrary_mod_exp_modsqrt_test.nim
+      path: verify/extra/arbitrary_mod_exp_modsqrt_test.nim
+      title: verify/extra/arbitrary_mod_exp_modsqrt_test.nim
     - icon: ':x:'
-      path: src/verify/extra/exp_of_formal_power_series_test.nim
-      title: src/verify/extra/exp_of_formal_power_series_test.nim
+      path: verify/extra/exp_of_formal_power_series_test.nim
+      title: verify/extra/exp_of_formal_power_series_test.nim
     - icon: ':heavy_check_mark:'
-      path: src/verify/extra/extra_lazy_segtree_test.nim
-      title: src/verify/extra/extra_lazy_segtree_test.nim
+      path: verify/extra/extra_lazy_segtree_test.nim
+      title: verify/extra/extra_lazy_segtree_test.nim
     - icon: ':heavy_check_mark:'
-      path: src/verify/extra/extra_segtree_test.nim
-      title: src/verify/extra/extra_segtree_test.nim
+      path: verify/extra/extra_segtree_test.nim
+      title: verify/extra/extra_segtree_test.nim
     - icon: ':x:'
-      path: src/verify/extra/inv_of_formal_power_series_test.nim
-      title: src/verify/extra/inv_of_formal_power_series_test.nim
+      path: verify/extra/inv_of_formal_power_series_test.nim
+      title: verify/extra/inv_of_formal_power_series_test.nim
     - icon: ':x:'
-      path: src/verify/extra/log_of_formal_power_series_test.nim
-      title: src/verify/extra/log_of_formal_power_series_test.nim
+      path: verify/extra/log_of_formal_power_series_test.nim
+      title: verify/extra/log_of_formal_power_series_test.nim
     - icon: ':x:'
-      path: src/verify/extra/pow_of_formal_power_series_test.nim
-      title: src/verify/extra/pow_of_formal_power_series_test.nim
+      path: verify/extra/pow_of_formal_power_series_test.nim
+      title: verify/extra/pow_of_formal_power_series_test.nim
 layout: toppage
 ---
+## ドキュメント
+
+[日本語](./document_ja/)

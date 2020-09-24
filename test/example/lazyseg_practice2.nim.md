@@ -1,6 +1,24 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/lazysegtree.nim
+    title: atcoder/lazysegtree.nim
+  - icon: ':question:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/lazysegtree.nim
+    title: atcoder/lazysegtree.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -23,7 +41,13 @@ data:
     \ e, mapping, composition, id)\n  for i in 0..<q:\n    var t, l, r = nextInt()\n\
     \    l.dec\n    if t == 1:\n      seg.apply(l..<r, true)\n    else:\n      echo\
     \ seg.prod(l..<r).inversion\n"
-  dependsOn: []
+  dependsOn:
+  - atcoder/internal_bit.nim
+  - atcoder/header.nim
+  - atcoder/lazysegtree.nim
+  - atcoder/internal_bit.nim
+  - atcoder/header.nim
+  - atcoder/lazysegtree.nim
   isVerificationFile: false
   path: test/example/lazyseg_practice2.nim
   requiredBy: []

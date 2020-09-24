@@ -1,6 +1,18 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':warning:'
+    path: atcoder/mincostflow.nim
+    title: atcoder/mincostflow.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':warning:'
+    path: atcoder/mincostflow.nim
+    title: atcoder/mincostflow.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -19,7 +31,11 @@ data:
     \ t, n * k)\necho n * k * BIG - result[1]\n\nvar grid = newSeqWith(n, '.'.repeat(n))\n\
     let es = g.edges()\nfor e in es:\n  if e.src == s or e.dst == t or e.flow == 0:\
     \ continue\n  grid[e.src][e.dst - n] = 'X'\n\nfor i in 0..<n:\n  echo grid[i]\n"
-  dependsOn: []
+  dependsOn:
+  - atcoder/header.nim
+  - atcoder/mincostflow.nim
+  - atcoder/header.nim
+  - atcoder/mincostflow.nim
   isVerificationFile: false
   path: test/example/mincostflow_practice.nim
   requiredBy: []

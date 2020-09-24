@@ -1,6 +1,12 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -15,7 +21,9 @@ data:
     \nvar g = init_scc_graph(n)\n\nfor i in 0..<m:\n  let u, v = nextInt()\n  g.add_edge(u,\
     \ v)\n\nvar scc = g.scc()\n\necho scc.len\nfor v in scc:\n  echo v.len, \" \"\
     , v.join(\" \")\n"
-  dependsOn: []
+  dependsOn:
+  - atcoder/header.nim
+  - atcoder/header.nim
   isVerificationFile: false
   path: test/example/scc_practice.nim
   requiredBy: []

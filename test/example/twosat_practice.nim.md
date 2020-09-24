@@ -1,6 +1,24 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':x:'
+    path: atcoder/twosat.nim
+    title: atcoder/twosat.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':x:'
+    path: atcoder/twosat.nim
+    title: atcoder/twosat.nim
+  - icon: ':question:'
+    path: atcoder/internal_scc.nim
+    title: atcoder/internal_scc.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':question:'
+    path: atcoder/internal_scc.nim
+    title: atcoder/internal_scc.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -21,7 +39,13 @@ data:
     \      ts.add_clause(i, true, j, true)\n\nif not ts.satisfiable():\n  echo \"\
     No\"\nelse:\n  echo \"Yes\"\n  let answer = ts.answer\n  for i in 0..<n:\n   \
     \ if answer[i]:\n      echo x[i]\n    else:\n      echo y[i]\n"
-  dependsOn: []
+  dependsOn:
+  - atcoder/twosat.nim
+  - atcoder/header.nim
+  - atcoder/twosat.nim
+  - atcoder/internal_scc.nim
+  - atcoder/header.nim
+  - atcoder/internal_scc.nim
   isVerificationFile: false
   path: test/example/twosat_practice.nim
   requiredBy: []

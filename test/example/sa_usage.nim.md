@@ -1,6 +1,12 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: atcoder/string.nim
+    title: atcoder/string.nim
+  - icon: ':question:'
+    path: atcoder/string.nim
+    title: atcoder/string.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: nim
@@ -16,7 +22,9 @@ data:
     missisippi\",\n  \"pi\",\n  \"ppi\",\n  \"sippi\",\n  \"sisippi\",\n  \"ssisippi\"\
     ,\n]\n\nassert sa.len == answer.len\nfor i in 0..<sa.len:\n  assert s[sa[i]..^1]\
     \ == answer[i]\n"
-  dependsOn: []
+  dependsOn:
+  - atcoder/string.nim
+  - atcoder/string.nim
   isVerificationFile: false
   path: test/example/sa_usage.nim
   requiredBy: []
