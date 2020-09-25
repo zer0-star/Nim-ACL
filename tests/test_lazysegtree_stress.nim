@@ -1,8 +1,9 @@
 import atcoder/lazysegtree
 import std/unittest
 import std/sequtils
-import std/random
+import std/random as random_lib
 
+import "../test/utils/random.nim"
 #include "../utils/random.hpp"
 #include <string>
 #include <vector>
@@ -61,8 +62,7 @@ test "LazySegtreeStressTest, NaiveTest":
       var now = 0
       for q in 0..<3000:
         let ty = rnd.rand(3)
-        var (l, r) = (rnd.rand(n), rnd.rand(n))
-        if l > r: swap(l, r)
+        let (l, r) = randpair(0, n)
         if ty == 0:
           let res = seg0.prod(l ..< r)
           check l == res.l
@@ -95,8 +95,7 @@ test "LazySegtreeStressTest, MaxRightTest":
       var now = 0
       for q in 0..<1000:
         let ty = rnd.rand(2)
-        var (l, r) = (rnd.rand(n), rnd.rand(n))
-        if l > r: swap(l, r)
+        let (l, r) = randpair(0, n)
         if ty == 0:
           check r == seg0.max_right(l, proc(s:S):bool =
             if s.l == -1: return true
@@ -120,8 +119,7 @@ test "LazySegtreeStressTest, MinLeftTest":
       var now = 0
       for q in 0..<1000:
         let ty = rnd.rand(2)
-        var (l, r) = (rnd.rand(n), rnd.rand(n))
-        if l > r: swap(l, r)
+        let (l, r) = randpair(0, n)
         if ty == 0:
           check l == seg0.min_left(r, proc(s:S):bool =
             if s.l == -1: return true

@@ -1,5 +1,4 @@
 import std/unittest
-import std/sugar
 import std/sequtils
 import atcoder/lazysegtree
 
