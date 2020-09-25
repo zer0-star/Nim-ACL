@@ -52,7 +52,7 @@ inline unsigned long long calc_mul(const unsigned long long &a, const unsigned l
   # @param n `0 <= n`
   # @param m `1 <= m`
   # @return `(x ** n) % m`
-  proc pow_mod_constexpr*(x,n,m:int):int {.compileTime.} =
+  proc pow_mod_constexpr*(x,n,m:int):int =
     if m == 1: return 0
     var
       r = 1
@@ -68,7 +68,7 @@ inline unsigned long long calc_mul(const unsigned long long &a, const unsigned l
   # M. Forisek and J. Jancina,
   # Fast Primality Testing for Integers That Fit into a Machine Word
   # @param n `0 <= n`
-  proc is_prime_constexpr*(n:int):bool {.compileTime.} =
+  proc is_prime_constexpr*(n:int):bool =
     if n <= 1: return false
     if n == 2 or n == 7 or n == 61: return true
     if n mod 2 == 0: return false
@@ -84,7 +84,7 @@ inline unsigned long long calc_mul(const unsigned long long &a, const unsigned l
       if y != n - 1 and t mod 2 == 0:
         return false
     return true
-  proc is_prime*[n:static[int]]():bool {.compileTime.} = is_prime_constexpr(n)
+  proc is_prime*[n:static[int]]():bool = is_prime_constexpr(n)
 #  
 #  # @param b `1 <= b`
 #  # @return pair(g, x) s.t. g = gcd(a, b), xa = g (mod b), 0 <= x < b/g
@@ -123,7 +123,7 @@ inline unsigned long long calc_mul(const unsigned long long &a, const unsigned l
   # Compile time primitive root
   # @param m must be prime
   # @return primitive root (and minimum in now)
-  proc primitive_root_constexpr*(m:int):int {.compileTime.} =
+  proc primitive_root_constexpr*(m:int):int =
     if m == 2: return 1
     if m == 167772161: return 3
     if m == 469762049: return 3
@@ -154,5 +154,5 @@ inline unsigned long long calc_mul(const unsigned long long &a, const unsigned l
           break
       if ok: return g
       g.inc
-  proc primitive_root*[m:static[int]]():auto {.compileTime.} =
+  proc primitive_root*[m:static[int]]():auto =
     primitive_root_constexpr(m)
