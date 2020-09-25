@@ -32,6 +32,9 @@ jobs:
         with:
           nim-version: 1.0.6
 
+      - name: Run nimble test
+        run: nimble test
+
       - run: |
           mv src/* ./
           mkdir -p .verify-helper/docs/static/
