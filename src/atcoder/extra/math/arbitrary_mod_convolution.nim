@@ -43,7 +43,7 @@ when not declared ATCODER_ARBITRARY_MOD_CONVOLUTION:
       result[0][i] = a[0][i] * b[0][i]
       result[1][i] = a[1][i] * b[1][i]
       result[2][i] = a[2][i] * b[2][i]
-  
+
   proc calc_garner[T:ModInt](a0:seq[mint0], a1:seq[mint1], a2:seq[mint2], deg:int):seq[T] =
     let
       w1 = m0 mod T.umod
@@ -63,26 +63,13 @@ when not declared ATCODER_ARBITRARY_MOD_CONVOLUTION:
       a0 = F.ifft(a[0])
       a1 = F.ifft(a[1])
       a2 = F.ifft(a[2])
-    return calc_garner[T, mint0, mint1, mint2](a0, a1, a2, deg)
+    return calc_garner[T](a0, a1, a2, deg)
   proc convolution*[T:ModInt](t:typedesc[ArbitraryModConvolution], a, b:seq[T]):seq[T] {.inline.} =
-    var
-      a0 = newSeq[mint0](a.len)
-      a1 = newSeq[mint1](a.len)
-      a2 = newSeq[mint2](a.len)
-    for i in 0..<a.len:
-      a0[i] = mint0.init(a[i].int)
-      a1[i] = mint1.init(a[i].int)
-      a2[i] = mint2.init(a[i].int)
-    var
-      b0 = newSeq[mint0](b.len)
-      b1 = newSeq[mint1](b.len)
-      b2 = newSeq[mint2](b.len)
-    for i in 0..<b.len:
-      b0[i] = mint0.init(b[i].int)
-      b1[i] = mint1.init(b[i].int)
-      b2[i] = mint2.init(b[i].int)
+    proc f0(x:T):mint0 = mint0.init(x.int)
+    proc f1(x:T):mint1 = mint1.init(x.int)
+    proc f2(x:T):mint2 = mint2.init(x.int)
     let
-      c0 = convolution(a0, b0)
-      c1 = convolution(a1, b1)
-      c2 = convolution(a2, b2)
+      c0 = convolution(a.map(f0), b.map(f0))
+      c1 = convolution(a.map(f1), b.map(f1))
+      c2 = convolution(a.map(f2), b.map(f2))
     return calc_garner[T](c0, c1, c2, a.len + b.len - 1)

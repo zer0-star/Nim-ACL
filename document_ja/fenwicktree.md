@@ -10,7 +10,7 @@
 ## コンストラクタ
 
 ```nim
-fw = initFenwickTree[T](n:int):fenwick_tree[T]
+var fw = initFenwickTree[T](n:int):fenwick_tree[T]
 ```
 
 - 長さ $n$ の配列 $a_0, a_1, \cdots, a_{n-1}$ を作ります。初期値はすべて $0$ です。

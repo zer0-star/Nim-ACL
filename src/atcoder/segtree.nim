@@ -3,9 +3,9 @@ when not declared ATCODER_SEGTREE_HPP:
   import atcoder/internal_bit
   import std/sugar, std/sequtils
 
-  type segtree[S] = object
+  type segtree*[S] = object
     n, size, log:int
-    d:seq[int]
+    d:seq[S]
     op:(S, S)->S
     e:()->S
 
@@ -46,7 +46,7 @@ when not declared ATCODER_SEGTREE_HPP:
       r = r shr 1
     return self.op(sml, smr)
 
-  proc all_prod*[ST:segtree](self:ST):auto = self.d[1]
+  proc all_prod*[ST:segtree](self:ST):ST.S = self.d[1]
 
 #  proc max_right*[ST:segtree, f:static[proc(s:ST.S):bool]](self:ST, l:int):auto = self.max_right(l, f)
   proc max_right*[ST:segtree](self:ST, l:int, f:proc(s:ST.S):bool):int =
