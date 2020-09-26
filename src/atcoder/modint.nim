@@ -64,9 +64,9 @@ when not declared ATCODER_MODINT_HPP:
 #    ModInt[M](v.uint32)
   proc raw*[T:ModInt](t:typedesc[T], v:SomeInteger):auto = T(v)
 
-  proc inv*[T](v:T):T {.inline.} =
+  proc inv*[T:ModInt](v:T):T {.inline.} =
     var
-      a = T.init(v).int
+      a = v.int
       b = T.mod
       u = 1
       v = 0

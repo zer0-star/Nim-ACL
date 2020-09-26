@@ -3,7 +3,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
   
   import std/sugar, std/sequtils, atcoder/internal_bit
   type LazySegtree*[S,F;p:static[tuple]] = object
-    n, size, log:int
+    n*, size*, log*:int
     d:seq[S]
     lz:seq[F]
 #    op:(S, S)->S

@@ -1,7 +1,7 @@
 when not declared ATCODER_MONTGOMERY_MODINT_HPP:
   const ATCODER_MONTGOMERY_MODINT_HPP* = 1
 
-  import macros, strformat
+  import std/macros, std/strformat
 
   type LazyMontgomeryModInt*[M, r, n2:static[uint32]] = object
     a:uint32
@@ -14,8 +14,12 @@ when not declared ATCODER_MONTGOMERY_MODINT_HPP:
   #static constexpr u32 n2 = -u64(mod) % mod;
   
   proc reduce(b:uint, M, r:static[uint32]):uint32 =
-    return ((b + (b.uint32 * ((not r) + 1.uint32)).uint * M.uint) shr 32).uint32
-  
+    const MASK = cast[uint32](-1).uint
+#    return ((b + ((b and MASK).uint32 * ((not r) + 1.uint32)).uint * M.uint) shr 32).uint32
+    return ((b + (((b and MASK) * ((not r) + 1.uint32).uint) and MASK) * M.uint) shr 32).uint32
+  proc `mod`*[T:LazyMontgomeryModInt](self:typedesc[T]):int = T.M.int
+  proc `mod`*[T:LazyMontgomeryModInt](self:T):int = T.M.int
+
   template reduce(T:typedesc[LazyMontgomeryModInt], b:uint):auto =
     reduce(b, T.M, T.r)
 
@@ -31,16 +35,13 @@ when not declared ATCODER_MONTGOMERY_MODINT_HPP:
     return T(a:reduce((b.int mod M.int + M.int).uint * T.n2, M, T.r))
 
   proc init*(T:typedesc[LazyMontgomeryModInt], b:T or SomeInteger):auto =
-    when b is T: b
-    else: T(a:reduce((b.int mod T.M.int + T.M.int).uint * T.n2, T.M, T.r))
+    when b is LazyMontgomeryModInt: b
+    else:
+      T(a:reduce((b.int mod T.M.int + T.M.int).uint * T.n2, T.M, T.r))
 
   macro declareMontgomery*(name, M) =
     var strBody = ""
-    strBody &= fmt"""
-type {name.repr}* = LazyMontgomeryModInt[{M.repr}.uint32, get_r({M.repr}), (((not {M.repr}.uint) + 1.uint) mod {M.repr}.uint).uint32]
-proc `$`*(m: {name.repr}): string = $(m.val())
-converter to{name.repr}OfMontgomery(n:SomeInteger):{name.repr} = {name.repr}.init(n)
-"""
+    strBody &= fmt"""type {name.repr}* = LazyMontgomeryModInt[{M.repr}.uint32, get_r({M.repr}), (((not {M.repr}.uint) + 1.uint) mod {M.repr}.uint).uint32]{'\n'}proc `$`*(m: {name.repr}): string = $(m.val()){'\n'}converter to{name.repr}OfMontgomery(n:SomeInteger):{name.repr} = {name.repr}.init(n){'\n'}"""
     parseStmt(strBody)
 
   #constexpr LazyMontgomeryModInt() : a(0) {}
@@ -116,38 +117,5 @@ converter to{name.repr}OfMontgomery(n:SomeInteger):{name.repr} = {name.repr}.ini
 
   proc `$`*[T:LazyMontgomeryModInt](m: T): string = (m.val()).toStr
 
-  proc `-`*[T:LazyMontgomeryModInt](self:T):T = T.init() - self
-
-#
-#friend istream &operator>>(istream &is, mint &b) {
-#  int64_t t;
-#  is >> t;
-#  b = LazyMontgomeryModInt<mod>(t);
-#  return (is);
-#}
-
-
-
-#const MOD = 998244353
-#var a = initLazyMontgomeryModInt(100000000, MOD)
-#var b = initLazyMontgomeryModInt(123456789, MOD)
-#
-#for i in 0..<MOD-1:
-#  a *= b
-#
-#echo a.val
-#echo a.val == 100000000
-#
-
-#import atcoder/modint
-#type mint = modint998244353
-#
-#var a = mint.init(100000000)
-#var b = mint.init(123456789)
-#
-#for i in 0..<998244352:
-#  a *= b
-#
-#echo a
-
+  proc `-`*[T:LazyMontgomeryModInt](self:T):T = T.init(0) - self
 
