@@ -72,9 +72,20 @@ test "SegtreeTest, Invalid":
   expect AssertionError: discard s.prod(0..<11)
   expect AssertionError: discard s.prod(-1..<11)
 
-  expect AssertionError: discard s.max_right(11, proc(s:string):bool = true)
-  expect AssertionError: discard s.max_right(-1, proc(s:string):bool = true)
-  expect AssertionError: discard s.max_right(0, proc(s:string):bool = false)
+  expect AssertionError:
+#    discard s.max_right(11, proc(s:string):bool = true)
+    proc f(s:string):bool = true
+    discard s.max_right(11, f)
+  expect AssertionError:
+#    discard s.max_right(-1, proc(s:string):bool = true)
+    proc f(s:string):bool = true
+    discard s.max_right(-1, f)
+
+#  expect AssertionError: discard s.max_right(0, proc(s:string):bool = false)
+  proc f(s:string):bool = false
+  expect AssertionError: 
+#    proc f(s:string):bool = false
+    discard s.max_right(0, f)
 
 test "SegtreeTest, One":
   var s = initSegTree(1, op, e)
@@ -120,5 +131,5 @@ test "SegtreeTest, CompareNaive":
           seg1.min_left(r, (x:string) => x.len <= y.len)
 
 test "SegtreeTest, Assign":
-  var seg0:segtree[string]
-  seg0 = initSegTree(10, op, e)
+  var seg0:segtree[string, (op:op, e:e)]
+  seg0.init(10)
