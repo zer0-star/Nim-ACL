@@ -8,7 +8,7 @@ when not declared ATCODER_PARTICULAR_MOD_CONVOLUTION:
   proc fft*[T:StaticModInt](t:typedesc[ParticularModConvolution], a:seq[T]):seq[T] {.inline.} =
     result = a
     butterfly(result)
-  proc dot*[T:StaticModInt](a, b:seq[T]):seq[T] =
+  proc dot*[T:StaticModInt](t:typedesc[ParticularModConvolution], a, b:seq[T]):seq[T] =
     result = newSeq[T](a.len)
     for i in 0..<a.len:
       result[i] = a[i] * b[i]

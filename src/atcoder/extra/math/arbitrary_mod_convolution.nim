@@ -36,7 +36,7 @@ when not declared ATCODER_ARBITRARY_MOD_CONVOLUTION:
     v1 = F.fft(v1)
     v2 = F.fft(v2)
     return (v0,v1,v2)
-  proc dot*(a, b:(seq[mint0], seq[mint1], seq[mint2])):auto =
+  proc dot*(t:typedesc[ArbitraryModConvolution], a, b:(seq[mint0], seq[mint1], seq[mint2])):auto =
     let N = a[0].len
     result = (newSeq[mint0](N), newSeq[mint1](N), newSeq[mint2](N))
     for i in 0..<N:

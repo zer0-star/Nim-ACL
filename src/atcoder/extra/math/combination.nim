@@ -1,7 +1,7 @@
 # combination {{{
 when not defined ATCODER_COMBINATION_HPP:
   const ATCODER_COMBINATION_HPP* = 1
-  import atcoder/extra/math/element_concepts
+  import atcoder/element_concepts
 
   type Combination*[T] = object
     fact_a, rfact_a: seq[T]

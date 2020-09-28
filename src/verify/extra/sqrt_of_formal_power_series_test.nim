@@ -1,9 +1,10 @@
-# verify-helper: PROBLEM https://judge.yosupo.jp/problem/inv_of_formal_power_series
+# verify-helper: PROBLEM https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
 
 import atcoder/header, atcoder/modint
 import atcoder/extra/math/internal_fft
 import atcoder/extra/math/formal_power_series
-import strutils
+import atcoder/extra/math/formal_power_series_sqrt
+import std/strutils, std/options
 
 proc main():void =
   type mint = modint998244353
@@ -11,8 +12,7 @@ proc main():void =
   var p = initFormalPowerSeries[mint](N)
   for i in 0..<N:
     p[i] = mint(nextInt())
-  let q = p.inv()
-  echo q.join(" ")
-
+  let q = p.sqrt()
+  echo if q.isSome: q.get.join(" ") else: "-1"
 
 main()

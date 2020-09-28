@@ -58,7 +58,7 @@ when not declared ATCODER_MODINT_HPP:
     StaticModInt[M].init(v)
 
 # TODO
-#  converter toModInt[M:static[int]](n:SomeInteger):ModInt[M] {.inline.}= initModInt(n, M)
+#  converter toModInt[M:static[int]](n:SomeInteger):StaticModInt[M] {.inline.} = initModInt(n, M)
 
 #  proc initModIntRaw*(v: SomeInteger; M: static[int] = 1_000_000_007): auto {.inline.} =
 #    ModInt[M](v.uint32)
@@ -154,6 +154,7 @@ when not declared ATCODER_MODINT_HPP:
         result *= m
       m *= m
       p = p shr 1
+  proc `^`*[T:ModInt](m: T; p: SomeInteger): T {.inline.} = m.pow(p)
 
   type modint998244353* = StaticModInt[998244353]
   type modint1000000007* = StaticModInt[1000000007]

@@ -3,17 +3,8 @@ when not declared ATCODER_CONVOLUTION_HPP:
 
   import std/math, std/sequtils, std/sugar
   import atcoder/internal_math, atcoder/internal_bit
-  import atcoder/modint
+  import atcoder/element_concepts
 
-  type FiniteFieldElem = concept x, y, type T
-    x + y
-    x - y
-    x * y
-    x / y
-    T(0)
-    T(1)
-    T.mod() is int
-  
 #  template <class mint, internal::is_static_modint_t<mint>* = nullptr>
   proc butterfly*[mint:FiniteFieldElem](a:var seq[mint]) =
     const g = primitive_root[mint.mod]()
@@ -125,7 +116,9 @@ when not declared ATCODER_CONVOLUTION_HPP:
     let iz = mint(z).inv()
     for i in 0..<n+m-1: a[i] *= iz
     return a
-  
+
+
+  import atcoder/modint
 #  template <unsigned int mod = 998244353,
 #      class T,
 #      std::enable_if_t<internal::is_integral<T>::value>* = nullptr>
@@ -134,6 +127,8 @@ when not declared ATCODER_CONVOLUTION_HPP:
     if n == 0 or m == 0: return newSeq[T]()
   
     type mint = StaticModInt[M.int]
+    static:
+      assert mint is FiniteFieldElem
     return convolution(
       a.map((x:T) => mint.init(x)), 
       b.map((x:T) => mint.init(x))
