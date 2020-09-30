@@ -1,5 +1,5 @@
-when not declared ATCODER_INTERNAL_FFT_HPP:
-  const ATCODER_INTERNAL_FFT_HPP* = 1
+when not declared ATCODER_NTT_HPP:
+  const ATCODER_NTT_HPP* = 1
   import atcoder/element_concepts
   import atcoder/extra/math/particular_mod_convolution
   import atcoder/extra/math/arbitrary_mod_convolution

@@ -46,8 +46,7 @@ when not declared ATCODER_GRAPH_TEMPLATE_HPP:
   proc initGraph*[T](n:int, a,b:seq[int]):Graph[T] =
     result = initGraph[T](n)
     for i in 0..<a.len: result.addEdge(a[i], b[i])
-  
-  
+
   proc addEdge*[T](g:var Graph[T],e:Edge[T]):void =
     g[e.src].add(e)
   proc addEdge*[T](g:var Graph[T],src,dst:int,weight:T = 1):void =
