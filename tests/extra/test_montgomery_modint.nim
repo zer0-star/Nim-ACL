@@ -5,7 +5,6 @@ static:
 #  assert StaticModInt[1].isModInt
 #  assert StaticModInt[998244353].isModInt
 #  assert modint.isModInt
-#  assert DynamicModInt[0].isModInt
 #  assert not int.isModInt
 #
 #  assert StaticModInt[1].is_static_modint
@@ -13,48 +12,22 @@ static:
 #  assert modint998244353.is_static_modint
 #  assert modint1000000007.is_static_modint
 #  assert not modint.is_static_modint
-#  assert not DynamicModInt[0].is_static_modint
 #  assert not int.is_static_modint
 #
 #  assert not StaticModInt[1].is_dynamic_modint
 #  assert not StaticModInt[998244353].is_dynamic_modint
 #
 #  assert modint.is_dynamic_modint
-#  assert DynamicModInt[0].is_dynamic_modint
 #  assert not int.is_dynamic_modint
 #
-#  assert modint is DynamicModInt[-1]
-
 
   assert modint998244353.mod() == 998244353
   assert modint1000000007.mod() == 1000000007
 
-#test "ModintTest, DynamicBorder":
-#  type mint = modint
-#  const mod_upper = int32.high
-#  for m in countdown(mod_upper, mod_upper - 20'i32):
-#    mint.set_mod(m)
-#    var v = newSeq[int]()
-#    for i in 0..<10: 
-#      v.add(i)
-#      v.add(m.int - i)
-#      v.add(m.int div 2 + i)
-#      v.add(m.int div 2 - i)
-#    for a in v:
-#      check ((a * a) mod m * a) mod m == (mint.init(a).pow(3)).val()
-#      for b in v:
-#        check (a + b) mod m == (mint.init(a) + mint.init(b)).val()
-#        check (a - b + m) mod m == (mint.init(a) - mint.init(b)).val()
-#        check (a * b) mod m == (mint.init(a) * mint.init(b)).val()
-
-#test "ModintTest, ULL":
-#  modint.set_mod(998244353)
-#  let m1 = cast[uint](-1)
-#  check modint.mod() - 1 != modint.init(m1).val()
-#  check 0 != (m1 + modint.init(1)).val()
-#  type mint = StaticModInt[998244353]
-#  check mint.mod() - 1 != modint.init(m1).val()
-#  check 0 != (m1 + mint.init(1)).val()
+test "ModintTest, ULL":
+  let m1 = cast[uint](-1)
+  type mint = modint998244353
+  check 0 != (m1 + mint.init(1)).val()
 
 #test "ModintTest, Mod1":
 #  modint.set_mod(1)
@@ -83,25 +56,6 @@ static:
 
 ##ifndef _MSC_VER
 #
-#TEST(ModintTest, Int128) {
-#  modint.set_mod(998244353);
-#  check 12345678, modint(__int128_t(12345678)).val());
-#  check 12345678, modint(__uint128_t(12345678)).val());
-#  check 12345678, modint(__int128(12345678)).val());
-#  check 12345678, modint((unsigned __int128)(12345678)).val());
-#  check modint(2).pow(100).val(), modint(__int128_t(1) << 100).val());
-#  check modint(2).pow(100).val(), modint(__uint128_t(1) << 100).val());
-#  type mint = static_modint<998244353>;
-#  check 12345678, mint(__int128_t(12345678)).val());
-#  check 12345678, mint(__uint128_t(12345678)).val());
-#  check 12345678, mint(__int128(12345678)).val());
-#  check 12345678, mint((unsigned __int128)(12345678)).val());
-#  check mint(2).pow(100).val(), mint(__int128_t(1) << 100).val());
-#  check mint(2).pow(100).val(), mint(__uint128_t(1) << 100).val());
-#}
-#
-##endif
-
 useMontgomery modint11, 11
 
 test "ModintTest, Inv":
@@ -109,32 +63,9 @@ test "ModintTest, Inv":
     let x = modint11.init(i).inv().val()
     check 1 == (x * i) mod 11
 
-#  for i in 1..<11:
-#    if gcd(i, 12) != 1: continue
-#    let x = StaticModInt[12](i).inv().val()
-#    check 1 == (x * i) mod 12
-
   for i in 1 ..< 100000:
     let x = modint1000000007.init(i).inv().val()
     check 1 == (x * i) mod 1_000_000_007
-
-#  for i in 1 ..< 100000:
-#    if gcd(i, 1_000_000_008) != 1: continue
-#    let x = StaticModInt[1_000_000_008].init(i).inv().val()
-#    check 1 == (x * i) mod 1_000_000_008
-
-#  modint.set_mod(998244353)
-#  for i in 1 ..< 100000:
-#    let x = modint.init(i).inv().val()
-#    check 0 <= x
-#    check 998244353 - 1 >= x
-#    check 1 == x * i mod 998244353
-#
-#  modint.set_mod(1_000_000_008)
-#  for i in 1 ..< 100000:
-#    if gcd(i, 1_000_000_008) != 1: continue
-#    let x = modint.init(i).inv().val()
-#    check 1 == (x * i) mod 1_000_000_008
 
 test "ModintTest, ConstUsage":
   type sint = modint11
@@ -237,14 +168,6 @@ test "ModintTest, StaticUsage":
   expect AssertionError:
     discard mint(3).pow(-1)
 
-#test "ModintTest, DynamicUsage":
-#  check 998244353 == DynamicModInt[12345].mod()
-#  type mint = modint
-#  mint.set_mod(998244353)
-#  check 998244353 == mint.mod()
-#  check 3 == (mint.init(1) + mint.init(2)).val()
-#  check 3 == (1 + mint.init(2)).val()
-#  check 3 == (mint.init(1) + 2).val()
 #
 #  mint.set_mod(3)
 #  check 3 == mint.mod()
@@ -298,23 +221,23 @@ test "ModintTest, StaticUsage":
 test "ModintTest, ConstructorStatic":
   type mint = modint11
 
-  check 1 == mint(true.int).val()
-  check 3 == mint((3.chr).int).val()
-  check 3 == mint((3).int8).val()
-  check 3 == mint((3).uint8).val()
-  check 3 == mint((3).int16).val()
-  check 3 == mint((3).uint16).val()
-  check 3 == mint((3).int32).val()
-  check 3 == mint((3).uint32).val()
-  check 3 == mint((3).int64).val()
-  check 3 == mint((3).uint64).val()
-  check 3 == mint((3).int).val()
-  check 3 == mint((3).uint).val()
-  check 1 == mint((-10).int8).val()
-  check 1 == mint((-10).int16).val()
-  check 1 == mint((-10).int32).val()
-  check 1 == mint((-10).int64).val()
-  check 1 == mint((-10).int).val()
+  check 1 == mint.init(true.int).val()
+  check 3 == mint.init((3.chr).int).val()
+  check 3 == mint.init((3).int8).val()
+  check 3 == mint.init((3).uint8).val()
+  check 3 == mint.init((3).int16).val()
+  check 3 == mint.init((3).uint16).val()
+  check 3 == mint.init((3).int32).val()
+  check 3 == mint.init((3).uint32).val()
+  check 3 == mint.init((3).int64).val()
+  check 3 == mint.init((3).uint64).val()
+  check 3 == mint.init((3).int).val()
+  check 3 == mint.init((3).uint).val()
+  check 1 == mint.init((-10).int8).val()
+  check 1 == mint.init((-10).int16).val()
+  check 1 == mint.init((-10).int32).val()
+  check 1 == mint.init((-10).int64).val()
+  check 1 == mint.init((-10).int).val()
 
   check 2 == ((1).int32 + mint(1)).val()
   check 2 == ((1).int16 + mint(1)).val()

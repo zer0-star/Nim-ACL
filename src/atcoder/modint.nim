@@ -3,14 +3,14 @@ when not declared ATCODER_MODINT_HPP:
 
   type
     StaticModInt*[M: static[int]] = distinct uint32
-  type
     DynamicModInt*[T: static[int]] = distinct uint32
-  
+
   type ModInt* = StaticModInt or DynamicModInt
 
   proc isStaticModInt*(T:typedesc):bool = T is StaticModInt
   proc isDynamicModInt*(T:typedesc):bool = T is DynamicModInt
   proc isModInt*(T:typedesc):bool = T.isStaticModInt or T.isDynamicModInt
+  proc isStatic*(T:typedesc[ModInt]):bool = T is StaticModInt
 
   import atcoder/internal_math
 

@@ -24,9 +24,6 @@ when not declared ATCODER_FORMAL_POWER_SERIES_SQRT:
     let opt = modSqrt(self[0])
     if not opt.isSome: return FormalPowerSeries[T].none
     ret = initFormalPowerSeries[T](@[T(opt.get)])
-#    else:
-#      assert(self[0] == 1)
-#      ret = initFormalPowerSeries[T](@[T(1)])
   
     let inv2 = T(1) / T(2)
     var i = 1
@@ -34,5 +31,3 @@ when not declared ATCODER_FORMAL_POWER_SERIES_SQRT:
       ret = (ret + self.pre(i shl 1) * ret.inv(i shl 1)) * inv2
       i = i shl 1
     return ret.pre(deg).some
-
-

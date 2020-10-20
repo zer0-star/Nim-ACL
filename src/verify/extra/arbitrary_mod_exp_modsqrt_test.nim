@@ -3,7 +3,7 @@
 import atcoder/header
 import atcoder/extra/math/mod_sqrt
 import atcoder/modint
-import atcoder/extra/math/internal_fft
+import atcoder/extra/math/ntt
 import atcoder/extra/math/formal_power_series
 import std/options
 

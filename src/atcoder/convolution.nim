@@ -19,6 +19,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
       first = false
       var es, ies:array[30, mint] # es[i]^(2^(2+i)) == 1
       let cnt2 = bsf(mint.mod - 1)
+      mixin inv
       var
         e = mint(g).pow((mint.mod - 1) shr cnt2)
         ie = e.inv()
@@ -59,6 +60,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
       first = false
       var es, ies: array[30, mint] # es[i]^(2^(2+i)) == 1
       let cnt2 = bsf(mint.mod - 1)
+      mixin inv
       var
         e = mint(g).pow((mint.mod - 1) shr cnt2)
         ie = e.inv()
@@ -72,7 +74,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
       for i in 0..cnt2 - 2:
         sum_ie[i] = ies[i] * now
         now *= es[i]
-  
+    mixin init
     for ph in countdown(h, 1):
       let
         w = 1 shl (ph - 1)
@@ -93,6 +95,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
     var
       n = a.len
       m = b.len
+    mixin inv
     if n == 0 or m == 0: return newSeq[mint]()
     var (a, b) = (a, b)
     if min(n, m) <= 60:

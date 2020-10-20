@@ -41,30 +41,30 @@ when not declared ATCODER_MONTGOMERY_MODINT_HPP:
 
   macro useMontgomery*(name, M) =
     var strBody = ""
-    strBody &= fmt"""type {name.repr}* = LazyMontgomeryModInt[{M.repr}.uint32]{'\n'}proc `$`*(m: {name.repr}): string {{.used.}} = system.`$`(m.val()){'\n'}converter to{name.repr}OfMontgomery*(n:SomeInteger):{name.repr} {{.used.}} = {name.repr}.init(n){'\n'}"""
+    strBody &= fmt"""type {name.repr}* = LazyMontgomeryModInt[{M.repr}.uint32]{'\n'}proc `$`*(m: {name.repr}): string {{.used.}} = system.`$`(m.val()){'\n'}converter to{name.repr}OfMontgomery*(n:int):{name.repr} {{.used.}} = {name.repr}.init(n){'\n'}"""
     parseStmt(strBody)
 
   proc val*[T:LazyMontgomeryModInt](self: T):int =
     var a = T.reduce(self.a)
     if a >= T.M: a -= T.M
     a.int
-  
+
   proc get_mod*[T:LazyMontgomeryModInt](self:T):auto = T.M
-  
+
   proc `+=`*[T:LazyMontgomeryModInt](self: var T, b:T):T {.discardable, inline.} =
     self.a += b.a - 2.uint32 * T.M
     if cast[int32](self.a) < 0.int32: self.a += 2.uint32 * T.M
     return self
-  
+
   proc `-=`*[T:LazyMontgomeryModInt](self: var T, b:T):T {.discardable, inline.} =
     self.a -= b.a
     if cast[int32](self.a) < 0.int32: self.a += 2.uint32 * T.M
     return self
-  
+
   proc `*=`*[T:LazyMontgomeryModInt](self: var T, b:T):T {.discardable, inline.} =
     self.a = T.reduce(self.a.uint * b.a.uint)
     return self
-  
+
   proc pow*[T:LazyMontgomeryModInt, N:SomeInteger](self: T, n:N):T {.inline.} =
     assert n >= N(0)
     result = T.init(1)
@@ -74,9 +74,9 @@ when not declared ATCODER_MONTGOMERY_MODINT_HPP:
       if (n and 1'u) != 0'u: result *= mul
       mul *= mul
       n = n shr 1
-  
+
   proc inv*[T:LazyMontgomeryModInt](self: T):T = self.pow(T.M - 2)
-  
+
   proc `/=`*[T:LazyMontgomeryModInt](self: var T, b:T):T {.discardable, inline.} =
     self *= b.inv()
     return self
