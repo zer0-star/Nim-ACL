@@ -3,6 +3,7 @@ when not declared ATCODER_ARBITRARY_MOD_CONVOLUTION:
   import atcoder/convolution
   import atcoder/modint
   import atcoder/extra/math/particular_mod_convolution
+  import std/sequtils
 
   type ArbitraryModConvolution* = object
     discard
@@ -15,6 +16,15 @@ when not declared ATCODER_ARBITRARY_MOD_CONVOLUTION:
     mint0 = StaticModInt[m0.int]
     mint1 = StaticModInt[m1.int]
     mint2 = StaticModint[m2.int]
+  type ArbitraryModFFTElem* = (mint0, mint1, mint2)
+  proc setLen*(v:var (seq[mint0], seq[mint1], seq[mint2]), n:int) =
+    v[0].setLen(n)
+    v[1].setLen(n)
+    v[2].setLen(n)
+  
+  proc `*=`(a:var ArbitraryModFFTElem, b:ArbitraryModFFTElem) =
+    a[0] *= b[0];a[1] *= b[1];a[2] *= b[2]
+  proc `-`(a:ArbitraryModFFTElem):auto = (-a[0], -a[1], -a[2])
 
   const
     r01 = mint1.init(m0).inv().uint
@@ -36,13 +46,14 @@ when not declared ATCODER_ARBITRARY_MOD_CONVOLUTION:
     v1 = F.fft(v1)
     v2 = F.fft(v2)
     return (v0,v1,v2)
-  proc dot*(a, b:(seq[mint0], seq[mint1], seq[mint2])):auto =
-    let N = a[0].len
-    result = (newSeq[mint0](N), newSeq[mint1](N), newSeq[mint2](N))
-    for i in 0..<N:
-      result[0][i] = a[0][i] * b[0][i]
-      result[1][i] = a[1][i] * b[1][i]
-      result[2][i] = a[2][i] * b[2][i]
+  proc inplace_partial_dot*(t:typedesc[ArbitraryModConvolution], a:var (seq[mint0], seq[mint1], seq[mint2]), b:(seq[mint0], seq[mint1], seq[mint2]), p:Slice[int]):auto =
+    for i in p:
+      a[0][i] *= b[0][i]
+      a[1][i] *= b[1][i]
+      a[2][i] *= b[2][i]
+  proc dot*(t:typedesc[ArbitraryModConvolution], a, b:(seq[mint0], seq[mint1], seq[mint2])):auto =
+    result = a
+    t.inplace_partial_dot(result, b, 0..<a[0].len)
 
   proc calc_garner[T:ModInt](a0:seq[mint0], a1:seq[mint1], a2:seq[mint2], deg:int):seq[T] =
     let

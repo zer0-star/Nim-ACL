@@ -20,7 +20,7 @@ when not declared ATCODER_MODINT_CHAEMON_HPP:
     strBody &= fmt"""
 type {t.repr}* = ModInt[{Mod.repr}]
 proc init{t.repr}*(a:SomeInteger):{t.repr} = initModInt(a, {Mod.repr})
-proc `$`*(a:{t.repr}):string = $(a.v)
+#proc `$`*(a:{t.repr}):string = $(a.v)
 converter to{t.repr}*(a:SomeInteger):{t.repr} = initModInt(a, {Mod.repr})
 """
     parseStmt(strBody)
@@ -113,7 +113,7 @@ converter to{t.repr}*(a:SomeInteger):{t.repr} =
   proc `-`*(self:ModIntC):auto =
     if self.v == 0: return self
     else: return self.init(self.getMod() - self.v)
-  proc `$`*(a:ModIntC):string = return $(a.v)
+#  proc `$`*(a:ModIntC):string = return $(a.v)
    
   proc `+=`*(self:var ModIntC; a:SomeIntC) =
     self.v += self.init(a).v

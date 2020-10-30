@@ -2,6 +2,7 @@
 
 import atcoder/header
 import atcoder/modint
+import atcoder/extra/math/ntt
 import atcoder/extra/math/formal_power_series
 import std/strutils
 

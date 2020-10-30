@@ -1,23 +1,19 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/unionfind
 
+import atcoder/header
 import atcoder/dsu
-import std/sequtils, std/strutils
 
-let
-  nq = stdin.readLine.split.map(parseInt)
+let N, Q = nextInt()
+var uf = initDSU(N)
 
-var
-  uf = initDSU(nq[0])
+for _ in 0 ..< Q:
+  let t, u, v = nextInt()
 
-for _ in 0 ..< nq[1]:
-  let
-    tuv = stdin.readLine.split.map(parseInt)
-
-  if tuv[0] == 0:
-    uf.merge(tuv[1], tuv[2])
-  elif tuv[0] == 1:
+  if t == 0:
+    uf.merge(u, v)
+  elif t == 1:
     echo(
-      if uf.same(tuv[1], tuv[2]):
+      if uf.same(u, v):
         1
       else:
         0

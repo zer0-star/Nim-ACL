@@ -5,14 +5,18 @@ when not declared ATCODER_PARTICULAR_MOD_CONVOLUTION:
   import std/sequtils
   type ParticularModConvolution* = object
     discard
-  proc fft*[T:StaticModInt](t:typedesc[ParticularModConvolution], a:seq[T]):seq[T] {.inline.} =
+  type ParticularModFFTType[T:StaticModInt] = seq[T]
+  proc fft*[T:StaticModInt](t:typedesc[ParticularModConvolution], a:seq[T]):ParticularModFFTType[T] {.inline.} =
     result = a
     butterfly(result)
-  proc dot*[T:StaticModInt](a, b:seq[T]):seq[T] =
-    result = newSeq[T](a.len)
-    for i in 0..<a.len:
-      result[i] = a[i] * b[i]
-  proc ifft*[T:StaticModInt](t:typedesc[ParticularModConvolution], a:seq[T]):seq[T] {.inline.} =
+  proc inplace_partial_dot*[T](t:typedesc[ParticularModConvolution], a:var ParticularModFFTType[T], b:ParticularModFFTType[T], p:Slice[int]) =
+    for i in p:
+      a[i] *= b[i]
+  proc dot*[T](t:typedesc[ParticularModConvolution], a, b:ParticularModFFTType[T]):ParticularModFFTType[T] =
+    result = a
+    inplace_partial_dot(t, result, b, 0..<a.len)
+
+  proc ifft*[T](t:typedesc[ParticularModConvolution], a:ParticularModFFTType[T]):seq[T] {.inline.} =
     result = a
     result.butterfly_inv
     let iz = T(a.len).inv()

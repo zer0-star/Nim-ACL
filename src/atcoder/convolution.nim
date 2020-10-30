@@ -1,19 +1,13 @@
 when not declared ATCODER_CONVOLUTION_HPP:
   const ATCODER_CONVOLUTION_HPP* = 1
 
-#include <algorithm>
-#include <array>
-#include <atcoder/internal_bit>
-#include <atcoder/modint>
-#include <cassert>
-#include <type_traits>
-#include <vector>
   import std/math, std/sequtils, std/sugar
-  import atcoder/internal_math, atcoder/internal_bit, atcoder/modint
-  
+  import atcoder/internal_math, atcoder/internal_bit
+  import atcoder/element_concepts
+
 #  template <class mint, internal::is_static_modint_t<mint>* = nullptr>
-  proc butterfly*[mint:StaticModInt](a:var seq[mint]) =
-    const g = primitive_root[mint.M]()
+  proc butterfly*[mint:FiniteFieldElem](a:var seq[mint]) =
+    const g = primitive_root[mint.mod]()
     let
       n = a.len
       h = ceil_pow2(n)
@@ -24,9 +18,10 @@ when not declared ATCODER_CONVOLUTION_HPP:
     if first:
       first = false
       var es, ies:array[30, mint] # es[i]^(2^(2+i)) == 1
-      let cnt2 = bsf(mint.M - 1)
+      let cnt2 = bsf(mint.mod - 1)
+      mixin inv
       var
-        e = mint(g).pow((mint.M - 1) shr cnt2)
+        e = mint(g).pow((mint.mod - 1) shr cnt2)
         ie = e.inv()
       for i in countdown(cnt2, 2):
         # e^(2^i) == 1
@@ -51,10 +46,10 @@ when not declared ATCODER_CONVOLUTION_HPP:
             r = a[i + offset + p] * now
           a[i + offset] = l + r
           a[i + offset + p] = l - r
-        now *= sum_e[bsf(not s.uint)]
+        now *= sum_e[bsf(not s)]
   
-  proc butterfly_inv*[mint:StaticModInt](a:var seq[mint]) =
-    const g = primitive_root[mint.M]()
+  proc butterfly_inv*[mint:FiniteFieldElem](a:var seq[mint]) =
+    const g = primitive_root[mint.mod]()
     let
       n = a.len
       h = ceil_pow2(n)
@@ -64,9 +59,10 @@ when not declared ATCODER_CONVOLUTION_HPP:
     if first:
       first = false
       var es, ies: array[30, mint] # es[i]^(2^(2+i)) == 1
-      let cnt2 = bsf(mint.M - 1)
+      let cnt2 = bsf(mint.mod - 1)
+      mixin inv
       var
-        e = mint(g).pow((mint.M - 1) shr cnt2)
+        e = mint(g).pow((mint.mod - 1) shr cnt2)
         ie = e.inv()
       for i in countdown(cnt2, 2):
         # e^(2^i) == 1
@@ -78,7 +74,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
       for i in 0..cnt2 - 2:
         sum_ie[i] = ies[i] * now
         now *= es[i]
-  
+    mixin init
     for ph in countdown(h, 1):
       let
         w = 1 shl (ph - 1)
@@ -91,14 +87,15 @@ when not declared ATCODER_CONVOLUTION_HPP:
             l = a[i + offset]
             r = a[i + offset + p]
           a[i + offset] = l + r
-          a[i + offset + p] = mint.init((mint.umod.uint + l.uint - r.uint) * uint(inow))
-        inow *= sum_ie[bsf(not s.uint)]
+          a[i + offset + p] = mint.init((mint.mod + l.val - r.val) * inow.val)
+        inow *= sum_ie[bsf(not s)]
 
 #  template <class mint, internal::is_static_modint_t<mint>* = nullptr>
-  proc convolution*[mint:StaticModInt](a, b:seq[mint]):seq[mint] =
+  proc convolution*[mint:FiniteFieldElem](a, b:seq[mint]):seq[mint] =
     var
       n = a.len
       m = b.len
+    mixin inv
     if n == 0 or m == 0: return newSeq[mint]()
     var (a, b) = (a, b)
     if min(n, m) <= 60:
@@ -122,7 +119,9 @@ when not declared ATCODER_CONVOLUTION_HPP:
     let iz = mint(z).inv()
     for i in 0..<n+m-1: a[i] *= iz
     return a
-  
+
+
+  import atcoder/modint
 #  template <unsigned int mod = 998244353,
 #      class T,
 #      std::enable_if_t<internal::is_integral<T>::value>* = nullptr>
@@ -131,6 +130,8 @@ when not declared ATCODER_CONVOLUTION_HPP:
     if n == 0 or m == 0: return newSeq[T]()
   
     type mint = StaticModInt[M.int]
+    static:
+      assert mint is FiniteFieldElem
     return convolution(
       a.map((x:T) => mint.init(x)), 
       b.map((x:T) => mint.init(x))

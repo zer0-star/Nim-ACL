@@ -40,7 +40,6 @@ when not declared ATCODER_FENWICKTREE_HPP:
     assert p in 0..<self.n
     var p = p + 1
     while p <= self.n:
-  # TODO
       self.data[p - 1] += U(x)
       p += p and -p
   proc sum[T, U](self: fenwick_tree[T, U], r:int):auto =
@@ -62,4 +61,3 @@ when not declared ATCODER_FENWICKTREE_HPP:
     let (l, r) = (p.a, p.b + 1)
     assert 0 <= l and l <= r and r <= self.n
     return cast[T](self.sum(r) - self.sum(l))
-

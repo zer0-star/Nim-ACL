@@ -1,7 +1,7 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/shortest_path
 
 include atcoder/header
-import "atcoder/extra/graph/template.nim"
+import atcoder/extra/graph/graph_template
 import atcoder/extra/graph/dijkstra
 
 proc main() =
