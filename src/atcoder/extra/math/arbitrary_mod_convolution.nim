@@ -27,9 +27,9 @@ when not declared ATCODER_ARBITRARY_MOD_CONVOLUTION:
   proc `-`(a:ArbitraryModFFTElem):auto = (-a[0], -a[1], -a[2])
 
   const
-    r01 = mint1.init(m0).inv().uint
-    r02 = mint2.init(m0).inv().uint
-    r12 = mint2.init(m1).inv().uint
+    r01 = mint1.init(m0).inv().val().uint
+    r02 = mint2.init(m0).inv().val().uint
+    r12 = mint2.init(m1).inv().val().uint
     r02r12 = r02 * r12 mod m2
 
   proc fft*[T:ModInt](t:typedesc[ArbitraryModConvolution], a:seq[T]):auto {.inline.} =
@@ -39,9 +39,9 @@ when not declared ATCODER_ARBITRARY_MOD_CONVOLUTION:
       v1 = newSeq[mint1](a.len)
       v2 = newSeq[mint2](a.len)
     for i in 0..<a.len:
-      v0[i] = mint0.init(a[i].int)
-      v1[i] = mint1.init(a[i].int)
-      v2[i] = mint2.init(a[i].int)
+      v0[i] = mint0.init(a[i].val())
+      v1[i] = mint1.init(a[i].val())
+      v2[i] = mint2.init(a[i].val())
     v0 = F.fft(v0)
     v1 = F.fft(v1)
     v2 = F.fft(v2)
@@ -62,7 +62,7 @@ when not declared ATCODER_ARBITRARY_MOD_CONVOLUTION:
     result = newSeq[T](deg)
     for i in 0..<deg:
       let
-        (n0, n1, n2) = (a0[i].uint, a1[i].uint, a2[i].uint)
+        (n0, n1, n2) = (a0[i].val().uint, a1[i].val().uint, a2[i].val().uint)
         b = (n1 + m1 - n0) * r01 mod m1
         c = ((n2 + m2 - n0) * r02r12 + (m2 - b) * r12) mod m2
       result[i] = T.init(n0 + b * w1 + c * w2)
@@ -76,9 +76,9 @@ when not declared ATCODER_ARBITRARY_MOD_CONVOLUTION:
       a2 = F.ifft(a[2])
     return calc_garner[T](a0, a1, a2, deg)
   proc convolution*[T:ModInt](t:typedesc[ArbitraryModConvolution], a, b:seq[T]):seq[T] {.inline.} =
-    proc f0(x:T):mint0 = mint0.init(x.int)
-    proc f1(x:T):mint1 = mint1.init(x.int)
-    proc f2(x:T):mint2 = mint2.init(x.int)
+    proc f0(x:T):mint0 = mint0.init(x.val())
+    proc f1(x:T):mint1 = mint1.init(x.val())
+    proc f2(x:T):mint2 = mint2.init(x.val())
     let
       c0 = convolution(a.map(f0), b.map(f0))
       c1 = convolution(a.map(f1), b.map(f1))

@@ -33,6 +33,5 @@ when not declared ATCODER_ELEMENT_CONCEPTS_HPP:
     T.mod
     T.mod() is int
     x.pow(1000000)
-    discard
   type hasInf* = concept x, type T
     T(Inf)

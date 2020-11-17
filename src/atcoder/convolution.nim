@@ -11,17 +11,16 @@ when not declared ATCODER_CONVOLUTION_HPP:
     let
       n = a.len
       h = ceil_pow2(n)
-    
-    var 
+    var
       first {.global.} = true
       sum_e {.global.} :array[30, mint]   # sum_e[i] = ies[0] * ... * ies[i - 1] * es[i]
     if first:
       first = false
       var es, ies:array[30, mint] # es[i]^(2^(2+i)) == 1
       let cnt2 = bsf(mint.mod - 1)
-      mixin inv
+      mixin inv, init
       var
-        e = mint(g).pow((mint.mod - 1) shr cnt2)
+        e = mint.init(g).pow((mint.mod - 1) shr cnt2)
         ie = e.inv()
       for i in countdown(cnt2, 2):
         # e^(2^i) == 1
@@ -29,7 +28,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
         ies[i - 2] = ie
         e *= e
         ie *= ie
-      var now = mint(1)
+      var now = mint.init(1)
       for i in 0..cnt2 - 2:
         sum_e[i] = es[i] * now
         now *= ies[i]
@@ -37,7 +36,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
       let
         w = 1 shl (ph - 1)
         p = 1 shl (h - ph)
-      var now = mint(1)
+      var now = mint.init(1)
       for s in 0..<w:
         let offset = s shl (h - ph + 1)
         for i in 0..<p:
@@ -56,13 +55,13 @@ when not declared ATCODER_CONVOLUTION_HPP:
     var
       first{.global.} = true
       sum_ie{.global.}:array[30, mint]  # sum_ie[i] = es[0] * ... * es[i - 1] * ies[i]
+    mixin inv, init
     if first:
       first = false
       var es, ies: array[30, mint] # es[i]^(2^(2+i)) == 1
       let cnt2 = bsf(mint.mod - 1)
-      mixin inv
       var
-        e = mint(g).pow((mint.mod - 1) shr cnt2)
+        e = mint.init(g).pow((mint.mod - 1) shr cnt2)
         ie = e.inv()
       for i in countdown(cnt2, 2):
         # e^(2^i) == 1
@@ -70,16 +69,15 @@ when not declared ATCODER_CONVOLUTION_HPP:
         ies[i - 2] = ie
         e *= e
         ie *= ie
-      var now = mint(1)
+      var now = mint.init(1)
       for i in 0..cnt2 - 2:
         sum_ie[i] = ies[i] * now
         now *= es[i]
-    mixin init
     for ph in countdown(h, 1):
       let
         w = 1 shl (ph - 1)
         p = 1 shl (h - ph)
-      var inow = mint(1)
+      var inow = mint.init(1)
       for s in 0..<w:
         let offset = s shl (h - ph + 1)
         for i in 0..<p:
@@ -95,7 +93,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
     var
       n = a.len
       m = b.len
-    mixin inv
+    mixin inv, init
     if n == 0 or m == 0: return newSeq[mint]()
     var (a, b) = (a, b)
     if min(n, m) <= 60:
@@ -116,7 +114,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
       a[i] *= b[i]
     butterfly_inv(a)
     a.setlen(n + m - 1)
-    let iz = mint(z).inv()
+    let iz = mint.init(z).inv()
     for i in 0..<n+m-1: a[i] *= iz
     return a
 

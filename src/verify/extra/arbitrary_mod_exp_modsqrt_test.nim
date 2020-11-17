@@ -1,13 +1,13 @@
 # verify-helper: PROBLEM https://yukicoder.me/problems/no/1080
 
 import atcoder/header
-import atcoder/extra/math/mod_sqrt
 import atcoder/modint
+import atcoder/extra/math/mod_sqrt
 import atcoder/extra/math/ntt
 import atcoder/extra/math/formal_power_series
 import std/options
 
-type mint = StaticModInt[1000000009]
+useStaticModInt(mint, 1000000009)
 
 let N = nextInt()
 let im = modSqrt(mint.init(-1)).get()

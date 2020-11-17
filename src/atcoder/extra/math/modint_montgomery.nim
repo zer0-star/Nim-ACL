@@ -35,13 +35,15 @@ when not declared ATCODER_MONTGOMERY_MODINT_HPP:
   proc init*(T:typedesc[LazyMontgomeryModInt], b:T or SomeInteger):auto =
     const r = get_r(T.M)
     const n2 = get_n2(T.M)
+    when b is uint:
+      let b = (b mod T.M.uint).int
     when b is LazyMontgomeryModInt: b
     else:
       T(a:reduce((b.int mod T.M.int + T.M.int).uint * n2, T.M))
 
   macro useMontgomery*(name, M) =
     var strBody = ""
-    strBody &= fmt"""type {name.repr}* = LazyMontgomeryModInt[{M.repr}.uint32]{'\n'}proc `$`*(m: {name.repr}): string {{.used.}} = system.`$`(m.val()){'\n'}converter to{name.repr}OfMontgomery*(n:int):{name.repr} {{.used.}} = {name.repr}.init(n){'\n'}"""
+    strBody &= fmt"""type {name.repr}* = LazyMontgomeryModInt[{M.repr}.uint32]{'\n'}converter to{name.repr}OfMontgomery*(n:int):{name.repr} {{.used.}} = {name.repr}.init(n){'\n'}"""
     parseStmt(strBody)
 
   proc val*[T:LazyMontgomeryModInt](self: T):int =
@@ -80,19 +82,16 @@ when not declared ATCODER_MONTGOMERY_MODINT_HPP:
   proc `/=`*[T:LazyMontgomeryModInt](self: var T, b:T):T {.discardable, inline.} =
     self *= b.inv()
     return self
-#  proc `==`*[T:LazyMontgomeryModInt](a, b:T):bool {.inline.} =
-#    return (if a.a >= T.M: a.a - T.M else: a.a) == (if b.a >= T.M: b.a - T.M else: b.a)
-  proc `==`*[T:LazyMontgomeryModInt](a:SomeInteger, b:T):bool {.inline.} =
-    return T.init(a).val.uint32 == (if b.a >= T.M: b.a - T.M else: b.a)
-  proc `==`*[T:LazyMontgomeryModInt](a:T, b:SomeInteger):bool {.inline.} =
-    return (if a.a >= T.M: a.a - T.M else: a.a) == T.init(b).val.uint32
 
   template generateLazyMontgomeryModIntDefinitions(name, l, r, body: untyped): untyped {.dirty.} =
-    proc name*[T:LazyMontgomeryModInt](l: T; r: T): auto {.inline.} =
+    proc name*(l, r: LazyMontgomeryModInt): auto {.inline.} =
+      type T = l.type
       body
-    proc name*[T:LazyMontgomeryModInt](l: SomeInteger; r: T): auto {.inline.} =
+    proc name*(l: SomeInteger; r: LazyMontgomeryModInt): auto {.inline.} =
+      type T = r.type
       body
-    proc name*[T:LazyMontgomeryModInt](l: T; r: SomeInteger): auto {.inline.} =
+    proc name*(l: LazyMontgomeryModInt; r: SomeInteger): auto {.inline.} =
+      type T = l.type
       body
 
   generateLazyMontgomeryModIntDefinitions(`+`, m, n):
@@ -111,7 +110,10 @@ when not declared ATCODER_MONTGOMERY_MODINT_HPP:
     result = T.init(m)
     result /= T.init(n)
 
-#  proc `$`*[T:LazyMontgomeryModInt](m: T): string = (m.val()).toStr
+  generateLazyMontgomeryModIntDefinitions(`==`, m, n):
+    result = (T.init(m).val() == T.init(n).val())
+
+  proc `$`*(m: LazyMontgomeryModInt): string {.inline.} = $(m.val())
 
   proc `-`*[T:LazyMontgomeryModInt](self:T):T = T.init(0) - self
 

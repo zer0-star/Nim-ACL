@@ -56,7 +56,7 @@ test "ModintTest, ULL":
 
 ##ifndef _MSC_VER
 #
-useMontgomery modint11, 11
+useMontgomery(modint11, 11)
 
 test "ModintTest, Inv":
   for i in 1..<10:
@@ -150,6 +150,7 @@ test "ModintTest, ConstUsage":
 ##    check 10, a.val());
 
 # TODO: == ‰‰ŽZŽq‚ª”í‚éH
+
 
 test "ModintTest, StaticUsage":
   type mint = modint11

@@ -1,12 +1,9 @@
 when not declared ATCODER_MODINT_HPP:
   const ATCODER_MODINT_HPP* = 1
-  import std/macros, std/strformat
 
   type
-    StaticModInt*[M: static[int]] = object
-      a:uint32
-    DynamicModInt*[T: static[int]] = object
-      a:uint32
+    StaticModInt*[M: static[int]] = distinct uint32
+    DynamicModInt*[T: static[int]] = distinct uint32
 
   type ModInt* = StaticModInt or DynamicModInt
 
@@ -25,7 +22,8 @@ when not declared ATCODER_MODINT_HPP:
   proc setMod*[T:static[int]](t:typedesc[DynamicModInt[T]], M:SomeInteger){.used inline.} =
     (t.getBarrett)[] = initBarrett(M.uint)
 
-  proc `$`*(m: ModInt): string {.inline.} = $(m.val())
+  proc `$`*(m: ModInt): string {.inline.} =
+    $m.int
 
   template umod*[T:ModInt](self: typedesc[T]):uint32 =
     when T is StaticModInt:
@@ -44,18 +42,18 @@ when not declared ATCODER_MODINT_HPP:
     else:
       when v is SomeUnsignedInt:
         if v.uint < T.umod:
-          return T(a:v.uint32)
+          return T(v.uint32)
         else:
-          return T(a:(v.uint mod T.umod.uint).uint32)
+          return T((v.uint mod T.umod.uint).uint32)
       else:
         var v = v.int
         if 0 <= v:
-          if v < T.mod: return T(a:v.uint32)
-          else: return T(a:(v mod T.mod).uint32)
+          if v < T.mod: return T(v.uint32)
+          else: return T((v mod T.mod).uint32)
         else:
           v = v mod T.mod
           if v < 0: v += T.mod
-          return T(a:v.uint32)
+          return T(v.uint32)
   template initModInt*(v: SomeInteger or ModInt; M: static[int] = 1_000_000_007): auto =
     StaticModInt[M].init(v)
 
@@ -64,11 +62,11 @@ when not declared ATCODER_MODINT_HPP:
 
 #  proc initModIntRaw*(v: SomeInteger; M: static[int] = 1_000_000_007): auto {.inline.} =
 #    ModInt[M](v.uint32)
-  proc raw*[T:ModInt](t:typedesc[T], v:SomeInteger):auto = T(a:v)
+  proc raw*[T:ModInt](t:typedesc[T], v:SomeInteger):auto = T(v)
 
   proc inv*[T:ModInt](v:T):T {.inline.} =
     var
-      a = v.a.int
+      a = v.int
       b = T.mod
       u = 1
       v = 0
@@ -79,41 +77,41 @@ when not declared ATCODER_MODINT_HPP:
     return T.init(u)
 
   proc val*(m: ModInt): int {.inline.} =
-    int(m.a)
+    int(m)
 
   proc `-`*[T:ModInt](m: T): T {.inline.} =
-    if int(m.a) == 0: return m
-    else: return T(a:m.umod() - m.a)
+    if int(m) == 0: return m
+    else: return T(m.umod() - uint32(m))
 
   template generateDefinitions(name, l, r, body: untyped): untyped {.dirty.} =
-    proc name*(l, r: ModInt): auto {.inline.} =
-      type T = l.type
+    proc name*[T:ModInt](l: T; r: T): auto {.inline.} =
       body
-    proc name*(l: SomeInteger; r: ModInt): auto {.inline.} =
-      type T = r.type
+    proc name*[T:ModInt](l: SomeInteger; r: T): auto {.inline.} =
       body
-    proc name*(l: ModInt; r: SomeInteger): auto {.inline.} =
-      type T = l.type
+    proc name*[T:ModInt](l: T; r: SomeInteger): auto {.inline.} =
       body
 
   proc `+=`*[T:ModInt](m: var T; n: SomeInteger | T) {.inline.} =
-    m.a += T.init(n).a
-    if m.a >= T.umod: m.a -= T.umod
+    uint32(m) += T.init(n).uint32
+    if uint32(m) >= T.umod: uint32(m) -= T.umod
 
   proc `-=`*[T:ModInt](m: var T; n: SomeInteger | T) {.inline.} =
-    m.a -= T.init(n).a
-    if m.a >= T.umod: m.a += T.umod
+    uint32(m) -= T.init(n).uint32
+    if uint32(m) >= T.umod: uint32(m) += T.umod
 
   proc `*=`*[T:ModInt](m: var T; n: SomeInteger | T) {.inline.} =
     when T is StaticModInt:
-      m.a = (m.a.uint * T.init(n).a.uint mod T.umod).uint32
+      uint32(m) = (uint(m) * T.init(n).uint mod T.umod).uint32
     elif T is DynamicModInt:
-      m.a = T.getBarrett[].mul(m.a.uint, T.init(n).a.uint).uint32
+      uint32(m) = T.getBarrett[].mul(uint(m), T.init(n).uint).uint32
     else:
       static: assert false
 
   proc `/=`*[T:ModInt](m: var T; n: SomeInteger | T) {.inline.} =
-    m.a = (m.a.uint * T.init(n).inv().a.uint mod T.umod).uint32
+    uint32(m) = (uint(m) * T.init(n).inv().uint mod T.umod).uint32
+
+#  proc `==`*[T:ModInt](m: T; n: SomeInteger | T): bool {.inline.} =
+#    int(m) == T.init(n).int
 
   generateDefinitions(`+`, m, n):
     result = T.init(m)
@@ -132,25 +130,25 @@ when not declared ATCODER_MODINT_HPP:
     result /= n
 
   generateDefinitions(`==`, m, n):
-    result = (T.init(m).val() == T.init(n).val())
+    result = (T.init(m).int == T.init(n).int)
 
-  proc inc*(m: var ModInt) {.inline.} =
-    m.a.inc
-    if m == m.umod:
-      m.a = 0
+  proc inc*[T:ModInt](m: var T) {.inline.} =
+    uint32(m).inc
+    if m == T.umod:
+      uint32(m) = 0
 
-  proc dec*(m: var ModInt) {.inline.} =
+  proc dec*[T:ModInt](m: var T) {.inline.} =
     if m == 0:
-      m.a = m.umod - 1
+      uint32(m) = T.umod - 1
     else:
-      m.a.dec
+      uint32(m).dec
 
-  proc pow*(m: ModInt; p: SomeInteger): ModInt {.inline.} =
+  proc pow*[T:ModInt](m: T; p: SomeInteger): T {.inline.} =
     assert 0 <= p
     var
       p = p.int
       m = m
-    result.a = 1
+    uint32(result) = 1
     while p > 0:
       if (p and 1) == 1:
         result *= m
@@ -158,15 +156,6 @@ when not declared ATCODER_MODINT_HPP:
       p = p shr 1
   proc `^`*[T:ModInt](m: T; p: SomeInteger): T {.inline.} = m.pow(p)
 
-  macro useStaticModInt*(name, M) =
-    var strBody = ""
-    strBody &= fmt"""type {name.repr}* = StaticModInt[{M.repr}.int]{'\n'}converter to{name.repr}OfModInt*(n:int):{name.repr} {{.used.}} = {name.repr}.init(n){'\n'}"""
-    parseStmt(strBody)
-  macro useDynamicModInt*(name, M) =
-    var strBody = ""
-    strBody &= fmt"""type {name.repr}* = DynamicModInt[{M.repr}.int]{'\n'}converter to{name.repr}OfModInt*(n:int):{name.repr} {{.used.}} = {name.repr}.init(n){'\n'}"""
-    parseStmt(strBody)
-
-  useStaticModInt(modint998244353, 998244353)
-  useStaticModInt(modint1000000007, 1000000007)
-  useDynamicModInt(modint, -1)
+  type modint998244353* = StaticModInt[998244353]
+  type modint1000000007* = StaticModInt[1000000007]
+  type modint* = DynamicModInt[-1]

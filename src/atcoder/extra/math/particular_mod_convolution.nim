@@ -19,6 +19,6 @@ when not declared ATCODER_PARTICULAR_MOD_CONVOLUTION:
   proc ifft*[T](t:typedesc[ParticularModConvolution], a:ParticularModFFTType[T]):seq[T] {.inline.} =
     result = a
     result.butterfly_inv
-    let iz = T(a.len).inv()
+    let iz = T.init(a.len).inv()
     result.applyIt(it * iz)
   proc convolution*[T:StaticModInt](t:typedesc[ParticularModConvolution], a, b:seq[T]):auto {.inline.} = convolution(a, b)

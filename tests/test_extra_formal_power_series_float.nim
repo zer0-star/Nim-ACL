@@ -32,9 +32,6 @@ test "ExpTest":
   let
     p = @[0.0] & p
     q = p.exp()
-  echo p
-  echo q
-  echo q.log
   check q.len == p.len
   check EQUAL(q.log()[0..<p.len], p)
 

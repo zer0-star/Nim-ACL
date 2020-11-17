@@ -256,15 +256,16 @@ proc `{op}`*[T](self: not FormalPowerSeries, r:FormalPowerSeries[T]):FormalPower
     assert EQUAL(self[0], T(0))
     deg.revise(self.len)
 
-    when true:
+    when T is FiniteFieldElem:
       var self = self
       self.setLen(deg)
       return self.expFast(deg)
     else:
-      ret = initFormalPowerSeries[T](@[T(1)])
-      var i = 1
+      var
+        ret = initFormalPowerSeries[T](@[T(1)])
+        i = 1
       while i < deg:
-        ret = (ret * (pre(i shl 1) + T(1) - ret.log(i shl 1))).pre(i shl 1)
+        ret = (ret * (self.pre(i shl 1) + T(1) - ret.log(i shl 1))).pre(i shl 1)
         i = i shl 1
       return ret.pre(deg)
 
