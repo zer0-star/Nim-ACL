@@ -69,7 +69,7 @@ when not declared ATCODER_GAUSSIAN_ELIMINATION_HPP:
     for i in 0..<n:
       for j in 0..<n:
         A2[i][j] = A[i][j]
-      A2[i][i + n] = M.p[1]() # unit
+      A2[i][i + n] = M.getUnit()
     let (G, ids) = A2.gaussianElimination()
     result = M.init(n)
     assert ids == (0..<n).toSeq

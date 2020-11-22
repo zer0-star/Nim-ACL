@@ -1,4 +1,3 @@
-# Graph {{{
 when not declared ATCODER_GRAPH_TEMPLATE_HPP:
   const ATCODER_GRAPH_TEMPLATE_HPP* = 1
   import std/sequtils
@@ -49,8 +48,7 @@ when not declared ATCODER_GRAPH_TEMPLATE_HPP:
 
   proc addEdge*[T](g:var Graph[T],e:Edge[T]):void =
     g[e.src].add(e)
-  proc addEdge*[T](g:var Graph[T],src,dst:int,weight:T = 1):void =
+  proc addEdge*[T](g:var Graph[T],src,dst:int,weight:T = T(1)):void =
     g.addEdge(initEdge(src, dst, weight, -1))
   
   proc `<`*[T](l,r:Edge[T]):bool = l.weight < r.weight
-#}}}

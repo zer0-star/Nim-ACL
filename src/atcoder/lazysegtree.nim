@@ -1,16 +1,12 @@
 when not declared ATCODER_LAZYSEGTREE_HPP:
   const ATCODER_LAZYSEGTREE_HPP* = 1
   
-  import std/sugar, std/sequtils, atcoder/internal_bit
+  import atcoder/internal_bit
+  import std/sugar, std/sequtils, std/algorithm
   type LazySegtree*[S,F;p:static[tuple]] = object
     n*, size*, log*:int
     d:seq[S]
     lz:seq[F]
-#    op:(S, S)->S
-#    e:()->S
-#    mapping:(F,S)->S
-#    composition:(F,F)->F
-#    id:()->F
 
   template calc_op[ST:LazySegtree](self:typedesc[ST], a, b:ST.S):auto =
     block:
@@ -48,12 +44,18 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       n = v.len
       log = ceil_pow2(n)
       size = 1 shl log
-    var d = newSeqWith(2 * size, ST.calc_e())
+    (self.n, self.size, self.log) = (n, size, log)
+    if self.d.len < 2 * size:
+      self.d = newSeqWith(2 * size, ST.calc_e())
+    else:
+      self.d.fill(0, 2 * size - 1, ST.calc_e())
     for i in 0..<n:
-      d[size + i] = v[i]
-    self = ST(n:n,log:log,size:size,d:d,lz:newSeqWith(size, ST.calc_id()))
-    for i in countdown(size - 1, 1):
-      self.update(i)
+      self.d[size + i] = v[i]
+    if self.lz.len < size:
+      self.lz = newSeqWith(size, ST.calc_id())
+    else:
+      self.lz.fill(0, size - 1, ST.calc_id())
+    for i in countdown(size - 1, 1): self.update(i)
   proc init[ST:LazySegtree](self: var ST, n:int) =
     self.init(newSeqWith(n, ST.calc_e()))
   proc init[ST:LazySegtree](self: typedesc[ST], v:seq[ST.S]):auto =

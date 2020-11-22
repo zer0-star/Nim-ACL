@@ -1,7 +1,7 @@
 when not declared ATCODER_SEGTREE_HPP:
   const ATCODER_SEGTREE_HPP* = 1
   import atcoder/internal_bit
-  import std/sugar, std/sequtils
+  import std/sugar, std/sequtils, std/algorithm
 
   type segtree*[S; p:static[tuple]] = object
     n, size, log:int
@@ -24,10 +24,11 @@ when not declared ATCODER_SEGTREE_HPP:
       n = v.len
       log = ceil_pow2(n)
       size = 1 shl log
-    self.n = n
-    self.size = size
-    self.log = log
-    self.d = newSeqWith(2 * size, ST.calc_e())
+    (self.n, self.size, self.log) = (n, size, log)
+    if self.d.len < 2 * size:
+      self.d = newSeqWith(2 * size, ST.calc_e())
+    else:
+      self.d.fill(0, 2 * size - 1, ST.calc_e())
     for i in 0..<n: self.d[size + i] = v[i]
     for i in countdown(size - 1, 1): self.update(i)
   proc init*[ST:segtree](self: var ST, n:int) =
@@ -37,11 +38,13 @@ when not declared ATCODER_SEGTREE_HPP:
     result.init(v)
   proc init*[ST:segtree](self: typedesc[ST], n:int):auto =
     self.init(newSeqWith(n, ST.calc_e()))
+  template getSegTreeType*(S:typedesc, op0:static[(S,S)->S], e0:static[()->S]):typedesc =
+    segtree[S, (op:op0, e:e0)]
   proc initSegTree*[S](v:seq[S], op:static[(S,S)->S], e:static[()->S]):auto =
-    result = segtree[S, (op:op, e:e)]()
+    result = getSegTreeType(S, op, e)()
     result.init(v)
   proc initSegTree*[S](n:int, op:static[(S,S)->S], e:static[()->S]):auto =
-    result = segtree[S, (op:op, e:e)]()
+    result = getSegTreeType(S, op, e)()
     result.init(newSeqWith(n, result.type.calc_e()))
 
   proc set*[ST:segtree](self:var ST, p:int, x:ST.S) {.inline.} =
