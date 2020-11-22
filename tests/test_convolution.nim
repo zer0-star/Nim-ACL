@@ -64,11 +64,14 @@ test "ConvolutionTest, Mid":
     b[i] = modint998244353.init(rnd.next())
   check conv_naive(a, b) == convolution(a, b)
 
+const MOD1 = 998244353
+const MOD2 = 924844033
+useStaticModInt(s_mint1, MOD1)
+useStaticModInt(s_mint2, MOD2)
+
 test "ConvolutionTest, SimpleSMod":
-  const MOD1 = 998244353
-  const MOD2 = 924844033
-  type s_mint1 = StaticModInt[MOD1]
-  type s_mint2 = StaticModInt[MOD2]
+#  type s_mint1 = StaticModInt[MOD1]
+#  type s_mint2 = StaticModInt[MOD2]
 
   var rnd = initRand(2020)
   for n in 1..<20:

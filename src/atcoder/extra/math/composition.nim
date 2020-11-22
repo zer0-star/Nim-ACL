@@ -1,13 +1,21 @@
 # TODO incomplete...
-  import std/math, std/bitops
+when not declared ATCODER_COMPOSITION_HPP:
+  const ATCODER_COMPOSITION_HPP* = 1
+  import std/math, std/bitops, std/sequtils
+  import atcoder/modint
+  import atcoder/extra/math/ntt
+  import atcoder/extra/math/formal_power_series
 
   proc mat_mul[T](A, B:seq[FormalPowerSeries[T]]):auto =
-    let N = A.len
+    let
+      N = A.len
+      K = A[0].len
+      M = B[0].len
     result = newSeq[FormalPowerSeries[T]](N)
-    for i in 0..<N:result[i] = initFormalPowerSeries[T](N)
+    for i in 0..<N:result[i] = initFormalPowerSeries[T](M)
     for i in 0..<N:
-      for j in 0..<N:
-        for k in 0..<N:
+      for j in 0..<M:
+        for k in 0..<K:
           result[i][j] += A[i][k] * B[k][j]
 
   # composition: calc Q(P(x)) {{{
@@ -41,7 +49,7 @@
     for i in 2..K:
       PS[i].setLen(l)
       for j in 0..<deg: PS[i][j] = PS[i - 1][j]
-      PS[i] = ifft(dot(PS[i].fft, Pomega1))
+      PS[i] = ifft(dot(PS[i].fft, Pomega1, T), T)
       PS[i].setLen(deg)
   #    PS[i].shrink_to_fit()
   
@@ -65,7 +73,7 @@
     for i in 2..<K:
       TS[i].setLen(l)
       TS[i][0..<deg] = TS[i - 1][0..<deg]
-      TS[i] = ifft(dot(TS[i].fft, Tomega))
+      TS[i] = ifft(dot(TS[i].fft, Tomega1, T), T)
   #    TS[i].ntt();
   #    for (int j = 0; j < len; j++) TS[i][j] *= Tomega[j];
   #    TS[i].intt();
@@ -88,62 +96,3 @@
     # step 4,5
     for i in 0..<K: ans += (QP[i] * TS[i]).pre(deg)
     return ans
-
-
-
-
-
-
-#  P.setLen(deg)
-#  Q.setLen(deg)
-#  let
-#    M = max(1, sqrt(deg.float / log2(deg.float)).int)
-#    L = (deg + M - 1) div M
-#    Pm = P[0..<M]
-#    Pr = P[M..^1]
-#
-#  let J = 31 - countLeadingZeroBits(deg - 1) + 1 + 32
-#  var pms = newSeq[FormalPowerSeries[T]](J)
-#  pms[0] = Pm
-#  for i in 1..<J: pms[i] = (pms[i - 1] * pms[i - 1]).pre(deg)
-#
-#  proc comp(left, j:int, Qd:FormalPowerSeries[T], deg:int):FormalPowerSeries[T] =
-#    if j == 1:
-#      let
-#        Q1 = if left + 0 < Qd.len: Qd[left + 0] else: T(0)
-#        Q2 = if left + 1 < Qd.len: Qd[left + 1] else: T(0)
-#      return (pms[0].pre(deg) * Q2 + Q1).pre(deg)
-#    if Qd.len <= left: return @[]
-#    let
-#      Q1 = comp(left, j - 1, Qd, deg)
-#      Q2 = comp(left + (1 shl (j - 1)), j - 1, Qd, deg)
-#    return (Q1 + pms[j - 1].pre(deg) * Q2).pre(deg)
-#
-#  var
-#    QPm = comp(0, J, Q, deg)
-#    R = QPm
-#    pw_Pr = initFormalPowerSeries[T](@[T(1)])
-#    dPm = Pm.diff()
-#  dPm.shrink()
-#  if not (dPm.len == 0 or dPm[0] != 0):
-#    echo dPm
-#  assert(dPm.len == 0 or dPm[0] != 0)
-#  var
-#    idPm = if dPm.len == 0: @[] else: dPm.inv(deg)
-#    l = 1
-#    d = M
-#  while l <= L and deg > d:
-#    pw_Pr = (pw_Pr * Pr).pre(deg - d)
-#    if dPm.len == 0:
-#      R += (pw_Pr * Q[l]) shl d
-#    else:
-#      idPm.setLen(deg - d)
-#      QPm = (QPm.diff().pre(deg - d) * idPm).pre(deg - d)
-#      R += ((QPm * pw_Pr).pre(deg - d) * T.rfact(l)) shl d
-#    l.inc
-#    d += M
-#  R.setLen(deg)
-#  return R
-
-
-

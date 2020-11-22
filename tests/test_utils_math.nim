@@ -1,6 +1,6 @@
 import std/unittest
 import atcoder/internal_math
-import ../../test/utils/math
+import ../test/utils/math
 
 test "UtilsMathTest, FactorsTest":
   for m in 1..50000:

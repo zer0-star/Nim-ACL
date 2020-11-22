@@ -45,8 +45,9 @@ test "FenwickTreeTest, NaiveTest":
           sum += i * i
         check sum == fw.sum(l..<r)
 
+useStaticModInt(mint, 11)
+
 test "FenwickTreeTest, SMintTest":
-  type mint = StaticModInt[11]
   for n in 0..50:
     var fw = init_fenwick_tree[mint](n)
     for i in 0..<n:

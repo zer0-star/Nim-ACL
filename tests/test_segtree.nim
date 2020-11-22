@@ -22,7 +22,6 @@ proc prod[ST:segtree_naive](self: ST, p:Slice[int]):ST.S =
   return sum
 
 proc all_prod[ST:segtree_naive](self: ST):ST.S = return self.prod(0..<self.n)
-
 proc max_right[ST:segtree_naive](self: ST, l:int, f:(ST.S)->bool):int =
   var sum = self.e()
   assert(f(sum))

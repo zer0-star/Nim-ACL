@@ -56,6 +56,8 @@ test "ModintTest, ULL":
   check mint.mod() - 1 != modint.init(m1).val()
   check 0 != (m1 + mint.init(1)).val()
 
+useStaticModInt(modint1, 1)
+
 test "ModintTest, Mod1":
   modint.set_mod(1)
   for i in 0..<100:
@@ -69,7 +71,7 @@ test "ModintTest, Mod1":
 
   check 0 == modint.init(true.int).val()
 
-  type mint = StaticModInt[1]
+  type mint = modint1
   for i in 0..<100:
     for j in 0..<100:
       check (mint(i) * mint(j)).val() == 0
@@ -101,7 +103,9 @@ test "ModintTest, Mod1":
 #}
 #
 ##endif
-#
+
+useStaticModInt(modint12, 12)
+
 test "ModintTest, Inv":
   for i in 1..<10:
     let x = StaticModInt[11].init(i).inv().val()
@@ -109,7 +113,7 @@ test "ModintTest, Inv":
 
   for i in 1..<11:
     if gcd(i, 12) != 1: continue
-    let x = StaticModInt[12](i).inv().val()
+    let x = modint12(i).inv().val()
     check 1 == (x * i) mod 12
 
   for i in 1 ..< 100000:
@@ -143,77 +147,76 @@ test "ModintTest, ConstUsage":
   let b = dint.init(9)
   check 9 == b.val()
 
-# TODO: inc, dec‚Í‚­‚¹‚à‚Ì‚Å‚ ‚é
-#test "ModintTest, Increment":
-#  type sint = StaticModInt[11]
-#  type dint = modint
-#  dint.set_mod(11)
-#
-#  block:
-#    var a = sint.init(8)
-#    a.inc
-#    check 9 == a.val()
-#    a.inc
-#    check 10 == a.val()
-#    a.inc
-#    check 0 == a.val()
-#    a.inc
-#    check 1 == a.val()
-#    a = sint.init(3)
-#    a.dec
-#    check 2 == a.val()
-#    a.dec
-#    check 1 == a.val()
-#    a.dec
-#    check 0 == a.val()
-#    a.dec
-#    check 10 == a.val()
-## TODO:
-##    a = 8
-##    check 8, (a++).val());
-##    check 9, (a++).val());
-##    check 10, (a++).val());
-##    check 0, (a++).val());
-##    check 1, a.val());
-##    a = 3;
-##    check 3, (a--).val());
-##    check 2, (a--).val());
-##    check 1, (a--).val());
-##    check 0, (a--).val());
-##    check 10, a.val());
-#
-#  block:
-#    var a = dint.init(8)
-#    a.inc
-#    check 9 == a.val()
-#    a.inc
-#    check 10 == a.val()
-#    a.inc
-#    check 0 == a.val()
-#    a.inc
-#    check 1 == a.val()
-#    a = dint.init(3)
-#    a.dec
-#    check 2 == a.val()
-#    a.dec
-#    check 1 == a.val()
-#    a.dec
-#    check 0 == a.val()
-#    a.dec
-#    check 10 == a.val()
-## TODO:
-##    a = 8;
-##    check 8, (a++).val());
-##    check 9, (a++).val());
-##    check 10, (a++).val());
-##    check 0, (a++).val());
-##    check 1, a.val());
-##    a = 3;
-##    check 3, (a--).val());
-##    check 2, (a--).val());
-##    check 1, (a--).val());
-##    check 0, (a--).val());
-##    check 10, a.val());
+test "ModintTest, Increment":
+  type sint = StaticModInt[11]
+  type dint = modint
+  dint.set_mod(11)
+
+  block:
+    var a = sint.init(8)
+    a.inc
+    check 9 == a.val()
+    a.inc
+    check 10 == a.val()
+    a.inc
+    check 0 == a.val()
+    a.inc
+    check 1 == a.val()
+    a = sint.init(3)
+    a.dec
+    check 2 == a.val()
+    a.dec
+    check 1 == a.val()
+    a.dec
+    check 0 == a.val()
+    a.dec
+    check 10 == a.val()
+# TODO:
+#    a = 8
+#    check 8, (a++).val());
+#    check 9, (a++).val());
+#    check 10, (a++).val());
+#    check 0, (a++).val());
+#    check 1, a.val());
+#    a = 3;
+#    check 3, (a--).val());
+#    check 2, (a--).val());
+#    check 1, (a--).val());
+#    check 0, (a--).val());
+#    check 10, a.val());
+
+  block:
+    var a = dint.init(8)
+    a.inc
+    check 9 == a.val()
+    a.inc
+    check 10 == a.val()
+    a.inc
+    check 0 == a.val()
+    a.inc
+    check 1 == a.val()
+    a = dint.init(3)
+    a.dec
+    check 2 == a.val()
+    a.dec
+    check 1 == a.val()
+    a.dec
+    check 0 == a.val()
+    a.dec
+    check 10 == a.val()
+# TODO:
+#    a = 8;
+#    check 8, (a++).val());
+#    check 9, (a++).val());
+#    check 10, (a++).val());
+#    check 0, (a++).val());
+#    check 1, a.val());
+#    a = 3;
+#    check 3, (a--).val());
+#    check 2, (a--).val());
+#    check 1, (a--).val());
+#    check 0, (a--).val());
+#    check 10, a.val());
 
 test "ModintTest, StaticUsage":
   type mint = StaticModInt[11]
@@ -230,7 +233,7 @@ test "ModintTest, StaticUsage":
   check mint.init(1) == mint.init(12)
 
   expect AssertionError:
-    discard mint(3).pow(-1)
+    discard mint.init(3).pow(-1)
 
 test "ModintTest, DynamicUsage":
   check 998244353 == DynamicModInt[12345].mod()
@@ -293,8 +296,8 @@ test "ModintTest, Constructor":
 test "ModintTest, ConstructorStatic":
   type mint = StaticModInt[11]
 
-  check 1 == mint(true.int).val()
-  check 3 == mint((3.chr).int).val()
+  check 1 == mint.init(true.int).val()
+  check 3 == mint.init((3.chr).int).val()
   check 3 == mint.init((3).int8).val()
   check 3 == mint.init((3).uint8).val()
   check 3 == mint.init((3).int16).val()
@@ -311,8 +314,8 @@ test "ModintTest, ConstructorStatic":
   check 1 == mint.init((-10).int64).val()
   check 1 == mint.init((-10).int).val()
 
-  check 2 == ((1).int32 + mint(1)).val()
-  check 2 == ((1).int16 + mint(1)).val()
+  check 2 == ((1).int32 + mint.init(1)).val()
+  check 2 == ((1).int16 + mint.init(1)).val()
 
   var m:mint
   check 0 == m.val()

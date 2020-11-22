@@ -8,7 +8,7 @@ import std/sequtils, std/sugar
 let N, Q = nextInt()
 let a = newSeqWith(N, nextInt())
 
-var st = initSegTree[int](a, (x: int, y: int)=>x+y, ()=>0)
+var st = initSegTree(a, (x: int, y: int)=>x+y, ()=>0)
 
 for _ in 0 ..< Q:
   let t = nextInt()
