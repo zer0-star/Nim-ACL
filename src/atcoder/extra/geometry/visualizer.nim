@@ -1,39 +1,41 @@
-include "./template.nim"
-include "./polygon.nim"
+import std/math
+import atcoder/header
+import atcoder/extra/geometry/geometry_template
+import atcoder/extra/geometry/polygon
 
 import nigui
 
 const D = 900
 
-type CanvasData = object
-  p: seq[(Point, string, Color)]
-  l: seq[(Line, string, Color)]
-  s: seq[(Segment, string, Color)]
-  c: seq[(Circle, string, Color)]
-  poly: seq[(Polygon, string, Color)]
+type CanvasData[Real] = object
+  p: seq[(Point[Real], string, Color)]
+  l: seq[(Line[Real], string, Color)]
+  s: seq[(Segment[Real], string, Color)]
+  c: seq[(Circle[Real], string, Color)]
+  poly: seq[(Polygon[Real], string, Color)]
   width, height: int
   xmin, ymin: float
   d: float
 
 
-proc convert(self:CanvasData, p:Point):Point =
+proc convert[Real](self:CanvasData[Real], p:Point[Real]):Point[Real] =
   return initPoint((p.re - self.xmin)/self.d * D, (p.im - self.ymin)/self.d * D)
-proc convert(self:CanvasData, c:Circle):Circle =
+proc convert[Real](self:CanvasData[Real], c:Circle[Real]):Circle[Real] =
   return initCircle(self.convert c.p, c.r/self.d*D)
-proc convert(self:CanvasData, l:Line):Line =
+proc convert[Real](self:CanvasData[Real], l:Line[Real]):Line[Real] =
   return initLine(self.convert l.a, self.convert l.b)
-proc convert(self:CanvasData, l:Segment):Segment =
+proc convert[Real](self:CanvasData[Real], l:Segment[Real]):Segment[Real] =
   return initSegment(self.convert l.a, self.convert l.b)
-proc convert(self:CanvasData, p:Polygon):Polygon =
+proc convert[Real](self:CanvasData[Real], p:Polygon[Real]):Polygon[Real] =
   for p in p: result.add(self.convert p)
 
-proc setCanvasSize(self: var CanvasData) =
+proc setCanvasSize[Real](self: var CanvasData[Real]) =
   var
     xmin = float.inf
     xmax = -float.inf
     ymin = float.inf
     ymax = -float.inf
-  proc update(p:Point) =
+  proc update(p:Point[Real]) =
     xmin.min=p.re
     xmax.max=p.re
     ymin.min=p.im
@@ -57,13 +59,13 @@ proc setCanvasSize(self: var CanvasData) =
   self.d = d
   
 
-type Canvas = object
+type Canvas[Real] = object
   Win: Window
   Ctl: Control
-  canvas_data: CanvasData
+  canvas_data: CanvasData[Real]
 
 # initCanvas {{{
-proc init(self: var Canvas) =
+proc init[Real](self: var Canvas[Real]) =
   app.init()
   self = Canvas(Win:newWindow("Canvas"), Ctl:newControl(), canvas_data: CanvasData())
   self.Ctl.widthMode=WidthMode_Fill
@@ -138,18 +140,18 @@ proc init(self: var Canvas) =
 
 # }}}
 
-proc addPoint(self: var Canvas, p:Point, label = "", color = rgb(0, 0, 0)) =
+proc addPoint[Real](self: var Canvas[Real], p:Point[Real], label = "", color = rgb(0, 0, 0)) =
   self.canvas_data.p.add((p, label, color))
-proc addLine(self: var Canvas, l:Line, label = "", color = rgb(0, 0, 0)) =
+proc addLine[Real](self: var Canvas[Real], l:Line[Real], label = "", color = rgb(0, 0, 0)) =
   self.canvas_data.l.add((l, label, color))
-proc addSegment(self: var Canvas, s:Segment, label = "", color = rgb(0, 0, 0)) =
+proc addSegment[Real](self: var Canvas[Real], s:Segment[Real], label = "", color = rgb(0, 0, 0)) =
   self.canvas_data.s.add((s, label, color))
-proc addCircle(self: var Canvas, c:Circle, label = "", color = rgb(0, 0, 0)) =
+proc addCircle[Real](self: var Canvas[Real], c:Circle[Real], label = "", color = rgb(0, 0, 0)) =
   self.canvas_data.c.add((c, label, color))
-proc addPolygon(self: var Canvas, p:Polygon, label = "", color = rgb(0, 0, 0)) =
+proc addPolygon[Real](self: var Canvas[Real], p:Polygon[Real], label = "", color = rgb(0, 0, 0)) =
   self.canvas_data.poly.add((p, label, color))
 
-proc show(self: Canvas) =
+proc show[Real](self: Canvas[Real]) =
   self.Win.show()
   app.run()
 

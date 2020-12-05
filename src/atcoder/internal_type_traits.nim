@@ -74,15 +74,14 @@ when not declared ATCODER_INTERNAL_TYPE_TRAITS_HPP:
   #                                                std::make_unsigned<T>,
   #                                                std::common_type<T>>::type;
   
-  template to_unsigned*(T):typed =
-    (when T is int: uint
+  template to_unsigned*(T:typedesc):typedesc =
+    when T is int: uint
     elif T is int8: uint8
     elif T is int16: uint16
     elif T is int32: uint32
     elif T is int64: uint64
-    else:
-      T
-    )
+    else: T
+    
 #endif
 
 #template <class T>

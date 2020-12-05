@@ -1,4 +1,5 @@
 import "~/git/nim-decimal/decimal/decimal"
+import "~/git/nim-decimal/decimal/decimal_lowlevel"
 import atcoder/extra/other/floatutils
 
 converter toDecimal(a:int):DecimalType = newDecimal(a)
@@ -29,7 +30,9 @@ proc calcPi*[Real]():Real =
 
 proc initPrec*(Real:typedesc[DecimalType], n:int) =
   setPrec(n)
-  DecimalType.getParameters()[] = (n, calcPi[Real](), newDecimal(10)^(-(n - 5)))
+  var INF_VAL = newDecimal()
+  mpd_setspecial(INF_VAL[], MPD_POS, MPD_INF)
+  DecimalType.getParameters()[] = (n, calcPi[Real](), newDecimal(10)^(-(n - 5)), INF_VAL)
 
 proc sin_impl(x:DecimalType):DecimalType =
   result = newDecimal(0)
@@ -112,3 +115,5 @@ proc arctan2*(y, x:DecimalType):DecimalType =
   return y / (a * sqrt(x * x + y * y))
 proc arctan*(x:DecimalType):DecimalType =
   return arctan2(x, newDecimal(1))
+
+proc round*(x:DecimalType):DecimalType = round_to_int(x)

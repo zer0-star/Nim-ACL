@@ -6,10 +6,10 @@ type ll = int
 type ull = uint
 
 test "FenwickTreeTest, Empty":
-  var fw_ll:fenwickTree[ll, ull]
+  var fw_ll:FenwickTree.getType(ll)
   check 0 == fw_ll.sum(0 ..< 0)
 
-  var fw_modint:fenwickTree[modint, modint]
+  var fw_modint:FenwickTree.getType(modint)
   check 0 == fw_modint.sum(0 ..< 0).val()
 
 test "FenwickTreeTest, Assign":

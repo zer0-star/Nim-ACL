@@ -1,7 +1,6 @@
 when not declared ATCODER_DEBUG_HPP:
   const ATCODER_DEBUG_HPP* = 1
   import macros, strformat, terminal
-  
   macro debug*(n: varargs[untyped]): untyped =
   #  var a = "stderr.write "
     var a = ""

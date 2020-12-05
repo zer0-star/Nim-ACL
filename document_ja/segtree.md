@@ -20,7 +20,9 @@
 
 ```nim
 (1) seg = initSegTree[S](n:int, op:(S,S)->S, e:()->S):segtree[S]
+    seg = Segtree.getType(S).init(n:int, op:(S, S)->S, e:()->S):segtree[S]
 (2) seg = initSegTree[S](v:seq[S], op:(S,S)->S, e:()->S):segtree[S]
+    seg = Segtree.getType(S).init(v:seq[S], op:(S, S)->S, e:()->S):segtree[S]
 ```
 
 - 型 `S`

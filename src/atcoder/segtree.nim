@@ -38,13 +38,14 @@ when not declared ATCODER_SEGTREE_HPP:
     result.init(v)
   proc init*[ST:segtree](self: typedesc[ST], n:int):auto =
     self.init(newSeqWith(n, ST.calc_e()))
-  template getSegTreeType*(S:typedesc, op0:static[(S,S)->S], e0:static[()->S]):typedesc =
+  template getType*(ST:typedesc[segtree], S:typedesc, op0:static[(S,S)->S], e0:static[()->S]):typedesc[segtree] =
     segtree[S, (op:op0, e:e0)]
+  template getSegTreeType*(S:typedesc, op0:static[(S,S)->S], e0:static[()->S]):typedesc[segtree] =
+    segtree.getType(S, op0, e0)
   proc initSegTree*[S](v:seq[S], op:static[(S,S)->S], e:static[()->S]):auto =
-    result = getSegTreeType(S, op, e)()
-    result.init(v)
+    segtree.getType(S, op, e).init(v)
   proc initSegTree*[S](n:int, op:static[(S,S)->S], e:static[()->S]):auto =
-    result = getSegTreeType(S, op, e)()
+    result = segtree.getType(S, op, e)()
     result.init(newSeqWith(n, result.type.calc_e()))
 
   proc set*[ST:segtree](self:var ST, p:int, x:ST.S) {.inline.} =
