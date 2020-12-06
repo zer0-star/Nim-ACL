@@ -1,4 +1,3 @@
-# {{{ RandomizedBinarySearchTree
 when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
   const ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP* = 1
   import std/sugar, std/random
@@ -60,6 +59,14 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
   #  return &(pool[ptr++] = Node(key, self.L0));
   
   template clone*[D,L,updateData](t:Node[D, L, updateData]):auto = t
+  proc test*[RBST:RandomizedBinarySearchTree](self: var RBST, n, s:int):bool = 
+    const randMax = 18_446_744_073_709_551_615u64
+    let
+      q = randMax div n.uint64
+      qn = q * n.uint64
+    while true:
+      let x = self.r.next()
+      if x < qn: return x < s.uint64 * q
   
   proc count*[RBST:RandomizedBinarySearchTree](self: RBST, t:Node):auto = (if t != nil: t.cnt else: 0)
   proc sum*[RBST:RandomizedBinarySearchTree](self: RBST, t:Node):auto = (if t != nil: t.sum else: self.D0)
@@ -101,7 +108,8 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
     elif r == nil: return l
   #  when RBST.hasLazy:
     var (l, r) = (l, r)
-    if self.r.rand(l.cnt + r.cnt - 1) < l.cnt:
+#    if self.r.rand(l.cnt + r.cnt - 1) < l.cnt:
+    if self.test(l.cnt + r.cnt, l.cnt):
       when RBST.hasLazy:
         l = self.propagate(l)
       l.r = self.merge(l.r, r)
@@ -211,4 +219,3 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
   proc len*[RBST:RandomizedBinarySearchTree](self: var RBST, t:Node):auto = self.count(t)
   proc empty*[RBST:RandomizedBinarySearchTree](self: var RBST, t:Node):bool = return t == nil
   proc makeset*[RBST:RandomizedBinarySearchTree](self: var RBST):Node[RBST.D, RBST.L, RBST.updateData] = nil 
-  # }}}

@@ -11,7 +11,7 @@ from typing import List
 
 logger = getLogger(__name__)  # type: Logger
 
-atcoder_include = re.compile('\s*(?:include|import)\s*([a-z0-9_,/\s"]*)\s*')
+atcoder_include = re.compile('\s*(?:include|import)\s*([a-zA-Z0-9_,./\s"]*)\s*')
 
 include_guard = re.compile('when\s+not\s+declared\s+ATCODER_[A-Z_]*_HPP')
 atcoder_dir = 'atcoder/'
@@ -28,35 +28,32 @@ def trailingSpace(s:str):
 
 def read_source(s:str, level:int) -> List[str]:
     result = []
-#    if level >= 0:
-#        result.append("when true:")
     for line in s.splitlines():
         if include_guard.match(line):
             result.append(line)
-            continue
-
-        m = atcoder_include.match(line)
-        if m:
-            for f in m.group(1).split(","):
-                f_orig = f = f.strip()
-                if f[0] == '\"':
-                    assert f[-1] == '\"'
-                    f = f[1:-1]
-                if not f.startswith(atcoder_dir):
-                    d = trailingSpace(line)
-                    result.extend([" " * d + "import " + f_orig])
-                else:
-                    if not f.endswith(".nim"):
-                        f = "src/" + f + ".nim"
-                    result.extend(dfs(f, level + 1))
-            continue
-        result.append(line)
+        else:
+            m = atcoder_include.match(line)
+            if m:
+                for f in m.group(1).split(","):
+                    f_orig = f = f.strip()
+                    if f[0] == '\"':
+                        print(f)
+                        assert f[-1] == '\"'
+                        f = f[1:-1]
+                    if not f.startswith(atcoder_dir):
+                        d = trailingSpace(line)
+                        result.extend([" " * d + "import " + f_orig])
+                    else:
+                        f = "src/" + f
+                        if not f.endswith(".nim"):
+                            f += ".nim"
+                        result.extend(dfs(f, level + 1))
+            else:
+                result.append(line)
     if level > 0:
         result.append("  discard")
         result2 = []
-#        print(level)
         for line in result:
-#            result2.append("  " * level + line)
             result2.append("  " + line)
         result = result2
     return result

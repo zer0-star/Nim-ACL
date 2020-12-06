@@ -58,20 +58,18 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
     for i in countdown(size - 1, 1): self.update(i)
   proc init[ST:LazySegtree](self: var ST, n:int) =
     self.init(newSeqWith(n, ST.calc_e()))
-  proc init[ST:LazySegtree](self: typedesc[ST], v:seq[ST.S]):auto =
-    result = ST()
-    result.init(v)
-  proc init[ST:LazySegtree](self: typedesc[ST], n:int):auto =
-    result = ST()
-    result.init(n)
+  proc init[ST:LazySegtree](self: typedesc[ST], v:seq[ST.S]):ST = result.init(v)
+  proc init[ST:LazySegtree](self: typedesc[ST], n:int):ST = result.init(n)
 
-#  LazySegtree(int n) : LazySegtree(std::vector<S>(n, e())) {}
-  proc init_LazySegtree*[S, F](v:seq[S], op:static[(S,S)->S],e:static[()->S],mapping:static[(F,S)->S],composition:static[(F,F)->F],id:static[()->F]):auto =
-    type ST = LazySegtree[S,F,(op:op,e:e,mapping:mapping, composition:composition, id:id)]
-    return ST.init(v)
-  proc init_LazySegtree*[S, F](n:int, op:static[(S,S)->S],e:static[()->S],mapping:static[(F,S)->S],composition:static[(F,F)->F],id:static[()->F]):auto =
-    result = LazySegtree[S,F,(op:op, e:e, mapping:mapping, composition:composition, id:id)]()
-    result.init(newSeqWith(n, result.type.calc_e()))
+  template getType*(ST:typedesc[LazySegtree], S, F:typedesc, op0:static[(S,S)->S],e0:static[()->S],mapping0:static[(F,S)->S],composition0:static[(F,F)->F],id0:static[()->F]):typedesc[LazySegtree] =
+    LazySegtree[S, F, (op:op0, e:e0, mapping:mapping0, composition:composition0, id:id0)]
+  template getLazySegtreeType*(S, F:typedesc, op:static[(S,S)->S],e:static[()->S],mapping:static[(F,S)->S],composition:static[(F,F)->F],id:static[()->F]):typedesc[LazySegtree] =
+    LazySegtree.getType(S, F, op, e, mapping, composition, id)
+
+  proc initLazySegtree*[S, F](v:seq[S], op:static[(S,S)->S],e:static[()->S],mapping:static[(F,S)->S],composition:static[(F,F)->F],id:static[()->F]):auto =
+    LazySegtree.getType(S, F, op, e, mapping, composition, id).init(v)
+  proc initLazySegtree*[S, F](n:int, op:static[(S,S)->S],e:static[()->S],mapping:static[(F,S)->S],composition:static[(F,F)->F],id:static[()->F]):auto =
+    LazySegtree.getType(S, F, op, e, mapping, composition, id).init(n)
 
   proc set*[ST:LazySegtree](self: var ST, p:int, x:ST.S) =
     assert p in 0..<self.n

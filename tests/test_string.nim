@@ -1,7 +1,8 @@
 import std/unittest
 import atcoder/string as string_lib
-import std/sugar, std/algorithm
+import std/sequtils, std/algorithm
 import std/math
+include atcoder/extra/other/internal_sugar
 
 proc `<`(a, b:seq[int]):bool =
   var i = 0
@@ -13,7 +14,7 @@ proc `<`(a, b:seq[int]):bool =
 
 proc sa_naive(s:seq[int]):seq[int] =
   let n = s.len
-  var sa = lc[i | (i <- 0..<n), int]
+  var sa = (0..<n).toSeq
   sa.sort() do (l, r:int) -> int:
     cmp[seq[int]](s[l..^1], s[r..^1])
   return sa
@@ -163,11 +164,17 @@ test "StringTest, SAAllATest":
 
 test "StringTest, SAAllABTest":
   for n in 1..100:
-    var s = lc[i mod 2 | (i <- 0..<n), int]
+#    var s = lc[i mod 2 | (i <- 0..<n), int]
+    let s = collect(newSeq):
+      for i in 0..<n:
+        i mod 2
     check sa_naive(s) == suffix_array(s)
     check sa_naive(s) == suffix_array(s, 3)
   for n in 1..100:
-    var s = lc[1 - i mod 2 | (i <- 0..<n), int]
+#    var s = lc[1 - i mod 2 | (i <- 0..<n), int]
+    let s = collect(newSeq):
+      for i in 0..<n:
+        1 - i mod 2
     check sa_naive(s) == suffix_array(s)
     check sa_naive(s) == suffix_array(s, 3)
 

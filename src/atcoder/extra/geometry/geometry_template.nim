@@ -12,13 +12,13 @@ when not declared ATCODER_GEOMETRY_TEMPLATE_HPP:
   #proc nextPoint():Point = return initPoint(nextFloat(), nextFloat())
   
   proc `*`*[Real](p:Point[Real], d:Real):Point[Real] =
-    return Point(re:p.re * d, im:p.im * d)
+    return Point[Real](re:p.re * d, im:p.im * d)
   
   proc toString*[Real](p:Point[Real]):string = $(p.re) & " " & $(p.im)
   
   # rotate point p counterclockwise by theta rad
   proc rotate*[Real](theta:Real, p:Point):Point =
-    return initPoint(cos(theta) * p.re - sin(theta) * p.im, sin(theta) * p.re + cos(theta) * p.im)
+    return initPoint[Real](cos(theta) * p.re - sin(theta) * p.im, sin(theta) * p.re + cos(theta) * p.im)
   
   proc radianToDegree*[Real](r:Real):Real = r * 180.Real / Real.getPi()
   proc degreeToRadian*[Real](d:Real):Real = d * Real.getPi() / 180.Real
@@ -65,9 +65,9 @@ when not declared ATCODER_GEOMETRY_TEMPLATE_HPP:
   proc initLine*[Real](a,b:Point[Real]):Line[Real] = Line[Real](a:a, b:b)
   proc initLine*[Real](A, B, C:Real):Line[Real] = # Ax + By = C
     var a, b: Point
-    if A =~ 0.Real: a = initPoint(0.Real, C / B); b = initPoint(1.Real, C / B)
-    elif B =~ 0.Real: b = initPoint(C / A, 0.Real); b = initPoint(C / A, 1.Real)
-    else: a = initPoint(0.Real, C / B); b = initPoint(C / A, 0.Real)
+    if A =~ 0.Real: a = initPoint[Real](0.Real, C / B); b = initPoint[Real](1.Real, C / B)
+    elif B =~ 0.Real: b = initPoint[Real](C / A, 0.Real); b = initPoint[Real](C / A, 1.Real)
+    else: a = initPoint[Real](0.Real, C / B); b = initPoint[Real](C / A, 0.Real)
     return initLine(a, b)
   proc `--`*[Real](a, b:Point[Real]):Line[Real] = initLine(a, b)
   
@@ -233,5 +233,5 @@ when not declared ATCODER_GEOMETRY_TEMPLATE_HPP:
       d = abs(c1.p - c2.p)
       a = arccos((c1.r * c1.r + d * d - c2.r * c2.r) / (2 * c1.r * d))
       t = arctan2(c2.p.im - c1.p.im, c2.p.re - c1.p.re)
-    return (c1.p + initPoint(cos(t + a) * c1.r, sin(t + a) * c1.r),
-            c1.p + initPoint(cos(t - a) * c1.r, sin(t - a) * c1.r))
+    return (c1.p + initPoint[Real](cos(t + a) * c1.r, sin(t + a) * c1.r),
+            c1.p + initPoint[Real](cos(t - a) * c1.r, sin(t - a) * c1.r))

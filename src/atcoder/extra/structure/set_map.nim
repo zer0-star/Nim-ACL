@@ -1,42 +1,40 @@
-# OrderedSet[K], OrderedMultiSet[K], OrderedMap[K], OrderedMultiMap[K] {{{
 when not declared ATCODER_SET_MAP_HPP:
   const ATCODER_SET_MAP_HPP* = 1
   import atcoder/extra/structure/randomized_binary_search_tree
-  type OrderedMultiSet*[K] = object
+  type SortedMultiSet*[K, T] = object
     rbst: RandomizedBinarySearchTree[K,void,void,void]
     root: Node[K, void, void]
-  type OrderedSet*[K] = object
+  type SortedSet*[K, T] = object
     rbst: RandomizedBinarySearchTree[K,void,void,void]
     root: Node[K, void, void]
-  type OrderedMultiMap*[K, T] = object
+  type SortedMultiMap*[K, T] = object
     rbst: RandomizedBinarySearchTree[T,void,void,void]
     root: Node[T, void, void]
-  type OrderedMap*[K, T] = object
+  type SortedMap*[K, T] = object
     rbst: RandomizedBinarySearchTree[T,void,void,void]
     root: Node[T, void, void]
-  
-  proc initOrderedMultiSet*[K]():OrderedMultiSet[K] =
-    result.rbst = initRandomizedBinarySearchTree[K]()
+
+  type anySet = SortedSet or SortedMultiSet
+  type anyMap = SortedMap or SortedMultiMap
+
+  type SetOrMap = SortedMultiSet or SortedSet or SortedMultiMap or SortedMap
+
+  template getType*(T:typedesc[anySet], K):typedesc =
+    T[K, K]
+  template getType*(T:typedesc[anyMap], K, V):typedesc =
+    T[K, (K, V)]
+
+  proc init*(T:typedesc[SetOrMap]):T =
+    result.rbst = initRandomizedBinarySearchTree[T.T]()
     result.root = nil
-  proc initOrderedSet*[K]():OrderedSet[K] =
-    result.rbst = initRandomizedBinarySearchTree[K]()
-    result.root = nil
-  proc initOrderedMultiMap*[K, V]():OrderedMultiMap[K, tuple[K:K, V:V]] =
-    result.rbst = initRandomizedBinarySearchTree[(K, V)]()
-    result.root = nil
-  proc initOrderedMap*[K, V]():OrderedMap[K, tuple[K:K, V:V]] =
-    result.rbst = initRandomizedBinarySearchTree[(K, V)]()
-    result.root = nil
-  
+
+  proc initSortedMultiSet*[K]():auto = SortedMultiSet.getType(K).init()
+  proc initSortedSet*[K]():auto = SortedSet.getType(K).init()
+  proc initSortedMultiMap*[K, V]():auto = SortedMultiMap.getType(K, V).init()
+  proc initSortedMap*[K, V]():auto = SortedMap.getType(K, V).init()
+
   #RBST(sz, [&](T x, T y) { return x; }, T()) {}
   
-  type anySet = concept x
-    x is OrderedMultiSet or x is OrderedSet
-  type anyMap = concept x
-    x is OrderedMultiMap or x is OrderedMap
-  
-  type SetOrMap = OrderedMultiSet or OrderedSet or OrderedMultiMap or OrderedMap
-
   template getKey*(self: SetOrMap, t:Node):auto =
     when self.type is anySet: t.key
     else: t.key[0]
@@ -71,15 +69,15 @@ when not declared ATCODER_SET_MAP_HPP:
   proc kth_element*[T:SetOrmap](self: var T, t:Node, k:int):T.T {.inline.} =
     let p = self.rbst.count(t.l)
     if k < p: return self.kth_element(t.l, k)
-    elif k == self.rbst.count(t.l): return t.key
-    return self.kth_element(t.r, k - self.rbst.count(t.l) - 1)
+    elif k > p: return self.kth_element(t.r, k - self.rbst.count(t.l) - 1)
+    else: return t.key
   
   proc kth_element*[T:SetOrMap](self: var T, k:int):T.T {.inline.} =
-    self.kth_element(self.root, k)
+    return self.kth_element(self.root, k)
   
-  proc insert*[K](self: var OrderedMultiSet[K], x:K) {.inline.} =
+  proc insert*[T:SortedMultiSet](self: var T, x:T.K) {.inline.} =
     self.rbst.insert(self.root, self.lower_bound(x), x)
-  proc insert*[K, V](self: var OrderedMultiMap[K, tuple[K:K, V:V]], x:(K, V)) =
+  proc insert*[T:SortedMultiMap](self: var T, x:T.T) =
     self.rbst.insert(self.root, self.lower_bound(x[0]), x)
   
   proc count*[T:SetOrMap](self: var T, x:T.K):int {.inline.} =
@@ -89,20 +87,20 @@ when not declared ATCODER_SET_MAP_HPP:
     if self.count(x) == 0: return
     self.rbst.erase(self.root, self.lower_bound(x))
   
-  proc insert*[K](self: var OrderedSet[K], x:K) {.inline.} =
+  proc insert*[T:SortedSet](self: var T, x:T.K) {.inline.} =
     var t = self.find(x)
     if t != nil: return
     self.rbst.insert(self.root, self.lower_bound(x), x)
-  proc insert*[K, V](self: var OrderedMap[K, tuple[K:K, V:V]], x:(K, V)) {.inline.} =
+  proc insert*[T:SortedMap](self: var T, x:T.T) {.inline.} =
     var t = self.find(x[0])
     if t != nil: t.key = x
     else: self.rbst.insert(self.root, self.lower_bound(x[0]), x)
-  proc `[]`*[K, V](self: var OrderedMap[K, tuple[K:K, V:V]], x:K):auto {.inline.} =
+  proc `[]`*[K, V](self: var SortedMap[K, tuple[K:K, V:V]], x:K):auto {.inline.} =
     var t = self.find(x)
     if t != nil: return t.key[1]
     result = V.default
     self.insert((x, result))
-  proc `[]=`*[K, V](self: var OrderedMap[K, tuple[K:K, V:V]], x:K, v:V) {.inline.} =
+  proc `[]=`*[K, V](self: var SortedMap[K, tuple[K:K, V:V]], x:K, v:V) {.inline.} =
     var t = self.find(x)
     if t != nil:
       t.key[1] = v
@@ -111,4 +109,3 @@ when not declared ATCODER_SET_MAP_HPP:
   
   proc len*(self:var SetOrMap):int {.inline.} = self.rbst.len(self.root)
   proc empty*(self:var SetOrMap):bool {.inline.} = self.rbst.empty(self.root)
-  # }}}

@@ -19,7 +19,9 @@
 
 ```nim
 (1) var seg = initLazySegTree(n:int, op, e, mapping, composition, id)
-(2) var seg = initLazySegTree(v:seq[T], op, e, mapping, composition, id)
+    var seg = LazySegTree.getType(S, F).init(n, op, e, mapping, composition, id)
+(2) var seg = initLazySegTree(v:seq[S], op, e, mapping, composition, id)
+    var seg = LazySegTree.getType(S, F).init(v:seq[S], op, e, mapping, composition, id)
 ```
 
 - モノイドの型 `S`

@@ -7,6 +7,7 @@ when not declared ATCODER_SLICEUTILS_HPP:
     s:Slice[T]
     d:T
   proc reversed*[T](p:Slice[T]):auto = ReversedSlice[T](p)
+  iterator items*(n:int):int = (for i in 0..<n: yield i)
   iterator items*[T](p:ReversedSlice[T]):T =
     var i = Slice[T](p).b
     while true:

@@ -1,4 +1,3 @@
-# combination {{{
 when not defined ATCODER_COMBINATION_HPP:
   const ATCODER_COMBINATION_HPP* = 1
   import atcoder/element_concepts
@@ -26,7 +25,7 @@ when not defined ATCODER_COMBINATION_HPP:
   proc enhance(T:typedesc[FieldElem], k:int):auto {.discardable.} =
     var cmb{.global.} = Combination[T]()
     return cmb.enhance(k)
-  
+
   template zero*(T:typedesc[FieldElem]):T = T(0)
   template zero*[T:FieldElem](cmb:Combination[T]):T = T(0)
   
@@ -38,7 +37,7 @@ when not defined ATCODER_COMBINATION_HPP:
     var p = T.enhance(-1)
     p[].fact_a.setLen(0)
     p[].rfact_a.setLen(0)
-  
+
   template P*(T:CombinationC, n,r:int):auto =
     if r < 0 or n < r: T.zero()
     else: T.fact(n) * T.rfact(n - r)
@@ -55,11 +54,18 @@ when not defined ATCODER_COMBINATION_HPP:
       var a = T(1)
       for i in 0..<r:a *= n - i
       a
-  template C_large*(T:CombinationC, n,r:int):auto =
+  template C_large_impl*(T:CombinationC, n,r:int):auto =
     if r < 0 or n < r: T.zero()
     else: T.P_large(n, r) * T.rfact(r)
+  template C_large*(T:CombinationC, n,r:int):auto =
+    if n >= 0:
+      T.C_large_impl(n, r)
+    else:
+      var N = -n
+      var a = T.C_large_impl(N + r - 1, N - 1)
+      if r mod 2 != 0: a *= -1
+      a
   template H_large*(T:CombinationC, n,r:int):auto =
     if n < 0 or r < 0: T.zero()
     elif r == 0: T.zero() + 1
     else: T.C_large(n + r - 1, r)
-# }}}

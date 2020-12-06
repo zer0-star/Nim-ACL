@@ -3,61 +3,38 @@ when not declared ATCODER_FENWICKTREE_HPP:
   import std/sequtils
   import atcoder/internal_type_traits
 
-  # TODO
-  #include <atcoder/internal_type_traits>
-
   # Reference: https://en.wikipedia.org/wiki/Fenwick_tree
-  type fenwick_tree*[T, U] = object
-    n:int
-    data:seq[U]
-  
-  # TODO
-  #  using U = internal::to_unsigned_t<T>;
-  
-  proc init_fenwick_tree*[T](n:int):auto =
-    type U =
-      (
-      when T is int: uint
-      elif T is int8: uint8
-      elif T is int16: uint16
-      elif T is int32: uint32
-      elif T is int64: uint64
-      else: T
-      )
-    return fenwick_tree[T, U](n:n, data:newSeqWith(n, U(0)))
+  type FenwickTree*[T, U] = object
+    n*:int
+    data*:seq[U]
 
-  proc add*[T, U](self: var fenwick_tree[T, U], p:int, x:T) =
-    type U = 
-      (
-      when T is int: uint
-      elif T is int8: uint8
-      elif T is int16: uint16
-      elif T is int32: uint32
-      elif T is int64: uint64
-      else: T
-      )
+  proc init*(self:typedesc[FenwickTree], n:int):auto =
+    return self(n:n, data:newSeqWith(n, self.U(0)))
+  proc init*(self:var FenwickTree, n:int) =
+    if self.data.len < n: self.data.setLen(n)
+    self.data.fill(0, n - 1, self.U(0))
+    self.n = n
 
+  template getFenwickTreeType*(T:typedesc):typedesc[FenwickTree] =
+    type U = to_unsigned(T)
+    typedesc[FenwickTree[T, U]]
+  template getType*(FT:typedesc[FenwickTree], T:typedesc):typedesc[FenwickTree] =
+    getFenwickTreeType(T)
+  proc initFenwickTree*[T](n:int):auto = FenwickTree.getType(T).init(n)
+
+  proc add*[FT:FenwickTree](self: var FT, p:int, x:FT.T) =
     assert p in 0..<self.n
     var p = p + 1
     while p <= self.n:
-      self.data[p - 1] += U(x)
+      self.data[p - 1] += FT.U(x)
       p += p and -p
-  proc sum[T, U](self: fenwick_tree[T, U], r:int):auto =
-    type U = 
-      (
-      when T is int: uint
-      elif T is int8: uint8
-      elif T is int16: uint16
-      elif T is int32: uint32
-      elif T is int64: uint64
-      else: T
-      )
-    result = U(0)
+  proc sum[FT:FenwickTree](self: FT, r:int):auto =
+    result = FT.U(0)
     var r = r
     while r > 0:
       result += self.data[r - 1]
       r -= r and -r
-  proc sum*[T, U](self: fenwick_tree[T, U], p:Slice[int]):T =
+  proc sum*[FT:FenwickTree](self: FT, p:Slice[int]):FT.T =
     let (l, r) = (p.a, p.b + 1)
     assert 0 <= l and l <= r and r <= self.n
-    return cast[T](self.sum(r) - self.sum(l))
+    return cast[FT.T](self.sum(r) - self.sum(l))
