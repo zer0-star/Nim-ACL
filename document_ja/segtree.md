@@ -19,10 +19,12 @@
 ## コンストラクタ
 
 ```nim
-(1) seg = initSegTree[S](n:int, op:(S,S)->S, e:()->S):segtree[S]
-    seg = Segtree.getType(S).init(n:int, op:(S, S)->S, e:()->S):segtree[S]
-(2) seg = initSegTree[S](v:seq[S], op:(S,S)->S, e:()->S):segtree[S]
-    seg = Segtree.getType(S).init(v:seq[S], op:(S, S)->S, e:()->S):segtree[S]
+(1) var seg = initSegTree[S](n:int, op:(S,S)->S, e:()->S):segtree[S]
+    var seg = SegTreeType(S, op:(S,S)->S, e:()->S).init(n)
+    var seg = SegTree.getType(S, op:(S,S)->S, e:()->S).init(n)
+(2) var seg = initSegTree[S](v:seq[S], op:(S,S)->S, e:()->S):segtree[S]
+    var seg = SegTreeType(S, op:(S,S)->S, e:()->S).init(v)
+    var seg = SegTree.getType(S, op:(S,S)->S, e:()->S).init(v)
 ```
 
 - 型 `S`
@@ -60,6 +62,7 @@ var seg = initSegTree[int](10, seg, e)
 
 ```nim
 seg.set(p:int, x:S):void
+seg[p:int] = x:S
 ```
 
 `a[p]` に `x` を代入します。
@@ -76,6 +79,7 @@ seg.set(p:int, x:S):void
 
 ```nim
 seg.get(p:int):S
+seg[p:int]:S
 ```
 
 `a[p]` を返します。
@@ -92,6 +96,7 @@ seg.get(p:int):S
 
 ```nim
 seg.prod(l..<r):S
+seg[l..<r]:S
 ```
 
 `op(a[l], ..., a[r - 1])` を、モノイドの性質を満たしていると仮定して計算します。$l = r$ のときは `e()` を返します。

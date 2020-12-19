@@ -11,6 +11,7 @@
 
 ```nim
 var fw = initFenwickTree[T](n:int):fenwick_tree[T]
+var fw = FenwickTreeType(T).init(n)
 var fw = FenwickTree.getType(T).init(n)
 ```
 

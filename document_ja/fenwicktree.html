@@ -59,7 +59,9 @@
 </ul>
 <p>を $O(\log N)$ で求めることが出来るデータ構造です。</p>
 <h2>コンストラクタ</h2>
-<pre><code class="nim">fw = initFenwickTree[T](n:int):fenwick_tree[T]
+<pre><code class="nim">var fw = initFenwickTree[T](n:int):fenwick_tree[T]
+var fw = FenwickTreeType(T).init(n)
+var fw = FenwickTree.getType(T).init(n)
 </code></pre>
 
 <ul>
