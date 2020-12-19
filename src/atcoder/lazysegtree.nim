@@ -3,43 +3,43 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
   
   import atcoder/internal_bit
   import std/sugar, std/sequtils, std/algorithm
-  type LazySegtree*[S,F;p:static[tuple]] = object
+  type LazySegTree*[S,F;p:static[tuple]] = object
     n*, size*, log*:int
     d:seq[S]
     lz:seq[F]
 
-  template calc_op[ST:LazySegtree](self:typedesc[ST], a, b:ST.S):auto =
+  template calc_op[ST:LazySegTree](self:typedesc[ST], a, b:ST.S):auto =
     block:
       let op = ST.p.op
       op(a, b)
-  template calc_e[ST:LazySegtree](self:typedesc[ST]):auto =
+  template calc_e[ST:LazySegTree](self:typedesc[ST]):auto =
     block:
       let e = ST.p.e
       e()
-  template calc_mapping[ST:LazySegtree](self:typedesc[ST], a:ST.F, b:ST.S):auto =
+  template calc_mapping[ST:LazySegTree](self:typedesc[ST], a:ST.F, b:ST.S):auto =
     block:
       let mapping = ST.p.mapping
       mapping(a, b)
-  template calc_composition[ST:LazySegtree](self:typedesc[ST], a, b:ST.F):auto =
+  template calc_composition[ST:LazySegTree](self:typedesc[ST], a, b:ST.F):auto =
     block:
       let composition = ST.p.composition
       composition(a, b)
-  template calc_id[ST:LazySegtree](self:typedesc[ST]):auto =
+  template calc_id[ST:LazySegTree](self:typedesc[ST]):auto =
     block:
       let id = ST.p.id
       id()
 
-  proc update[ST:LazySegtree](self:var ST, k:int) =
+  proc update[ST:LazySegTree](self:var ST, k:int) =
     self.d[k] = ST.calc_op(self.d[2 * k], self.d[2 * k + 1])
-  proc all_apply*[ST:LazySegtree](self:var ST, k:int, f:ST.F) =
+  proc all_apply*[ST:LazySegTree](self:var ST, k:int, f:ST.F) =
     self.d[k] = ST.calc_mapping(f, self.d[k])
     if k < self.size: self.lz[k] = ST.calc_composition(f, self.lz[k])
-  proc push*[ST:LazySegtree](self: var ST, k:int) =
+  proc push*[ST:LazySegTree](self: var ST, k:int) =
     self.all_apply(2 * k, self.lz[k])
     self.all_apply(2 * k + 1, self.lz[k])
     self.lz[k] = ST.calc_id()
 
-  proc init[ST:LazySegtree](self:var ST, v:seq[ST.S]) =
+  proc init[ST:LazySegTree](self:var ST, v:seq[ST.S]) =
     let
       n = v.len
       log = ceil_pow2(n)
@@ -56,39 +56,39 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
     else:
       self.lz.fill(0, size - 1, ST.calc_id())
     for i in countdown(size - 1, 1): self.update(i)
-  proc init[ST:LazySegtree](self: var ST, n:int) =
+  proc init[ST:LazySegTree](self: var ST, n:int) =
     self.init(newSeqWith(n, ST.calc_e()))
-  proc init[ST:LazySegtree](self: typedesc[ST], v:seq[ST.S]):ST = result.init(v)
-  proc init[ST:LazySegtree](self: typedesc[ST], n:int):ST = result.init(n)
+  proc init[ST:LazySegTree](self: typedesc[ST], v:seq[ST.S]):ST = result.init(v)
+  proc init[ST:LazySegTree](self: typedesc[ST], n:int):ST = result.init(n)
 
-#  template getType*(ST:typedesc[LazySegtree], S, F:typedesc, op0:static[(S,S)->S],e0:static[()->S],mapping0:static[(F,S)->S],composition0:static[(F,F)->F],id0:static[()->F]):typedesc[LazySegtree] =
-#    LazySegtree[S, F, (op:op0, e:e0, mapping:mapping0, composition:composition0, id:id0)]
-  template LazySegtreeType*(S, F:typedesc, op0:static[(S,S)->S],e0:static[()->S],mapping0:static[(F,S)->S],composition0:static[(F,F)->F],id0:static[()->F]):typedesc[LazySegtree] =
-    LazySegtree[S, F, (op:op0, e:e0, mapping:mapping0, composition:composition0, id:id0)]
-#    LazySegtree.getType(S, F, op, e, mapping, composition, id)
+  template getType*(ST:typedesc[LazySegTree], S, F:typedesc, op0:static[(S,S)->S],e0:static[()->S],mapping0:static[(F,S)->S],composition0:static[(F,F)->F],id0:static[()->F]):typedesc[LazySegTree] =
+    LazySegTree[S, F, (op:op0, e:e0, mapping:mapping0, composition:composition0, id:id0)]
+  template LazySegTreeType*(S, F:typedesc, op0:static[(S,S)->S],e0:static[()->S],mapping0:static[(F,S)->S],composition0:static[(F,F)->F],id0:static[()->F]):typedesc[LazySegTree] =
+    LazySegTree[S, F, (op:op0, e:e0, mapping:mapping0, composition:composition0, id:id0)]
+#    LazySegTree.getType(S, F, op, e, mapping, composition, id)
 
-  proc initLazySegtree*[S, F](v:seq[S], op:static[(S,S)->S],e:static[()->S],mapping:static[(F,S)->S],composition:static[(F,F)->F],id:static[()->F]):auto =
-    LazySegtreeType(S, F, op, e, mapping, composition, id).init(v)
-  proc initLazySegtree*[S, F](n:int, op:static[(S,S)->S],e:static[()->S],mapping:static[(F,S)->S],composition:static[(F,F)->F],id:static[()->F]):auto =
-    LazySegtreeType(S, F, op, e, mapping, composition, id).init(n)
+  proc initLazySegTree*[S, F](v:seq[S], op:static[(S,S)->S],e:static[()->S],mapping:static[(F,S)->S],composition:static[(F,F)->F],id:static[()->F]):auto =
+    LazySegTreeType(S, F, op, e, mapping, composition, id).init(v)
+  proc initLazySegTree*[S, F](n:int, op:static[(S,S)->S],e:static[()->S],mapping:static[(F,S)->S],composition:static[(F,F)->F],id:static[()->F]):auto =
+    LazySegTreeType(S, F, op, e, mapping, composition, id).init(n)
 
-  proc set*[ST:LazySegtree](self: var ST, p:int, x:ST.S) =
+  proc set*[ST:LazySegTree](self: var ST, p:int, x:ST.S) =
     assert p in 0..<self.n
     let p = p + self.size
     for i in countdown(self.log, 1): self.push(p shr i)
     self.d[p] = x
     for i in 1..self.log: self.update(p shr i)
 
-  proc get*[ST:LazySegtree](self: var ST, p:int):ST.S =
+  proc get*[ST:LazySegTree](self: var ST, p:int):ST.S =
     assert p in 0..<self.n
     let p = p + self.size
     for i in countdown(self.log, 1): self.push(p shr i)
     return self.d[p]
 
-  proc `[]=`*[ST:LazySegtree](self: var ST, p:int, x:ST.S) = self.set(p, x)
-  proc `[]`*[ST:LazySegtree](self: var ST, p:int):ST.S = self.get(p)
+  proc `[]=`*[ST:LazySegTree](self: var ST, p:int, x:ST.S) = self.set(p, x)
+  proc `[]`*[ST:LazySegTree](self: var ST, p:int):ST.S = self.get(p)
 
-  proc prod*[ST:LazySegtree](self:var ST, p:Slice[int]):ST.S =
+  proc prod*[ST:LazySegTree](self:var ST, p:Slice[int]):ST.S =
     var (l, r) = (p.a, p.b + 1)
     assert 0 <= l and l <= r and r <= self.n
     if l == r: return ST.calc_e()
@@ -108,17 +108,17 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       r = r shr 1
     return ST.calc_op(sml, smr)
 
-  proc `[]`*[ST:LazySegtree](self: var ST, p:Slice[int]):ST.S = self.prod(p)
+  proc `[]`*[ST:LazySegTree](self: var ST, p:Slice[int]):ST.S = self.prod(p)
 
-  proc all_prod*[ST:LazySegtree](self:ST):auto = self.d[1]
+  proc all_prod*[ST:LazySegTree](self:ST):auto = self.d[1]
 
-  proc apply*[ST:LazySegtree](self: var ST, p:int, f:ST.F) =
+  proc apply*[ST:LazySegTree](self: var ST, p:int, f:ST.F) =
     assert p in 0..<self.n
     let p = p + self.size
     for i in countdown(self.log, 1): self.push(p shr i)
     self.d[p] = ST.calc_mapping(f, self.d[p])
     for i in 1..self.log: self.update(p shr i)
-  proc apply*[ST:LazySegtree](self: var ST, p:Slice[int], f:ST.F) =
+  proc apply*[ST:LazySegTree](self: var ST, p:Slice[int], f:ST.F) =
     var (l, r) = (p.a, p.b + 1)
     assert 0 <= l and l <= r and r <= self.n
     if l == r: return
@@ -145,7 +145,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
 #  template <bool (*g)(S)> int max_right(int l) {
 #    return max_right(l, [](S x) { return g(x); });
 #  }
-  proc max_right*[ST:LazySegtree](self:var ST, l:int, g:(ST.S)->bool):int =
+  proc max_right*[ST:LazySegTree](self:var ST, l:int, g:(ST.S)->bool):int =
     assert l in 0..self.n
     assert g(ST.calc_e())
     if l == self.n: return self.n
@@ -170,7 +170,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
 #  template <bool (*g)(S)> int min_left(int r) {
 #    return min_left(r, [](S x) { return g(x); });
 #  }
-  proc min_left*[ST:LazySegtree](self: var ST, r:int, g:(ST.S)->bool):int =
+  proc min_left*[ST:LazySegTree](self: var ST, r:int, g:(ST.S)->bool):int =
     assert r in 0..self.n
     assert(g(ST.calc_e()))
     if r == 0: return 0
