@@ -15,7 +15,6 @@ when not declared ATCODER_SEGTREE_HPP:
     block:
       let e = ST.p.e
       e()
-
   proc update[ST:segtree](self: var ST, k:int) {.inline.} =
     self.d[k] = ST.calc_op(self.d[2 * k], self.d[2 * k + 1])
 
@@ -38,14 +37,14 @@ when not declared ATCODER_SEGTREE_HPP:
     result.init(v)
   proc init*[ST:segtree](self: typedesc[ST], n:int):auto =
     self.init(newSeqWith(n, ST.calc_e()))
-  template getType*(ST:typedesc[segtree], S:typedesc, op0:static[(S,S)->S], e0:static[()->S]):typedesc[segtree] =
+#  template getType*(ST:typedesc[segtree], S:typedesc, op0:static[(S,S)->S], e0:static[()->S]):typedesc[segtree] =
+#    segtree[S, (op:op0, e:e0)]
+  template SegTreeType*(S:typedesc, op0:static[(S,S)->S], e0:static[()->S]):typedesc[segtree] =
     segtree[S, (op:op0, e:e0)]
-  template getSegTreeType*(S:typedesc, op0:static[(S,S)->S], e0:static[()->S]):typedesc[segtree] =
-    segtree.getType(S, op0, e0)
   proc initSegTree*[S](v:seq[S], op:static[(S,S)->S], e:static[()->S]):auto =
-    segtree.getType(S, op, e).init(v)
+    SegTreeType(S, op, e).init(v)
   proc initSegTree*[S](n:int, op:static[(S,S)->S], e:static[()->S]):auto =
-    result = segtree.getType(S, op, e)()
+    result = SegTreeType(S, op, e)()
     result.init(newSeqWith(n, result.type.calc_e()))
 
   proc set*[ST:segtree](self:var ST, p:int, x:ST.S) {.inline.} =
@@ -70,6 +69,9 @@ when not declared ATCODER_SEGTREE_HPP:
       l = l shr 1
       r = r shr 1
     return ST.calc_op(sml, smr)
+  proc `[]`*[ST:segtree](self:ST, p:int):auto {.inline.} = self.get(p)
+  proc `[]`*[ST:segtree](self:ST, p:Slice[int]):auto {.inline.} = self.prod(p)
+  proc `[]=`*[ST:segtree](self:var ST, p:int, x:ST.S) {.inline.} = self.set(p, x)
 
   proc all_prod*[ST:segtree](self:ST):ST.S = self.d[1]
 

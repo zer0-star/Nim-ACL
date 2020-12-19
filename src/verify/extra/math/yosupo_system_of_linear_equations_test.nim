@@ -3,14 +3,13 @@
 include atcoder/header
 import atcoder/modint
 import atcoder/extra/math/matrix
-import atcoder/extra/math/gaussian_elimination
 import options
 
 type mint = modint998244353
 
 block main:
   let N, M = nextInt()
-  type Mat = getMatrixType(mint)
+  type Mat = MatrixType(mint)
   let
     A:Mat = newSeqWith(N, newSeqWith(M, mint(nextInt())))
     b:Vector[mint] = newSeqWith(N, mint(nextInt()))

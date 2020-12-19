@@ -42,7 +42,9 @@ test "LazySegtreeTest, Invalid":
   var s = initLazySegTree(10, op_ss, e_s, op_ts, op_tt, e_t)
 
   expect AssertionError: discard s.get(-1)
+  expect AssertionError: discard s[-1]
   expect AssertionError: discard s.get(10)
+  expect AssertionError: discard s[10]
 
   expect AssertionError: discard s.prod(-1 ..< -1)
   expect AssertionError: discard s.prod(3 ..< 2)
@@ -55,13 +57,15 @@ test "LazySegtreeTest, NaiveProd":
     var p = newSeq[int](n)
     for i in 0..<n:
       p[i] = (i * i + 100) mod 31
-      seg.set(i, p[i])
+#      seg.set(i, p[i])
+      seg[i] = p[i]
     for l in 0..n:
       for r in l..n:
         var e = -1_000_000_000
         for i in l..<r:
           e = max(e, p[i])
         check e == seg.prod(l ..< r)
+        check e == seg[l ..< r]
 
 test "LazySegtreeTest, Usage":
   var seg = initLazySegTree(newSeqWith(10, 0), op_ss, e_s, op_ts, op_tt, e_t)
@@ -70,4 +74,6 @@ test "LazySegtreeTest, Usage":
   check 5 == seg.all_prod()
   seg.apply(2, -10)
   check -5 == seg.prod(2 ..< 3)
+  check -5 == seg[2 ..< 3]
   check 0 == seg.prod(2 ..< 4)
+  check 0 == seg[2 ..< 4]

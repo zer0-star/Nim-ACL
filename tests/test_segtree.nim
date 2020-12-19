@@ -90,9 +90,11 @@ test "SegtreeTest, One":
   var s = initSegTree(1, op, e)
   check "$" == s.all_prod()
   check "$" == s.get(0)
+  check "$" == s[0]
   check "$" == s.prod(0..<1)
   s.set(0, "dummy")
   check "dummy" == s.get(0)
+  check "dummy" == s[0]
   check "$" == s.prod(0 ..< 0)
   check "dummy" == s.prod(0 ..< 1)
   check "$" == s.prod(1 ..< 1)
@@ -110,10 +112,12 @@ test "SegtreeTest, CompareNaive":
       s &= chr('a'.int + i)
       seg0.set(i, s)
       seg1.set(i, s)
+      seg1[i] = s
 
     for l in 0..n:
       for r in l..n:
         check seg0.prod(l ..< r) == seg1.prod(l .. <r)
+        check seg0.prod(l ..< r) == seg1[l .. <r]
 
     for l in 0..n:
       for r in l..n:

@@ -165,8 +165,8 @@ test "ModintTest, StaticUsage":
   check mint(1) != mint(3)
   check mint(1) == mint(12)
 
-  expect AssertionError:
-    discard mint(3).pow(-1)
+#  expect AssertionError:
+#    discard mint(3).pow(-1)
 
 test "ModintTest, DynamicUsage":
   type mint = modint
@@ -190,8 +190,8 @@ test "ModintTest, DynamicUsage":
   check mint.init(1) != mint.init(3)
   check mint.init(1) == mint.init(12)
 
-  expect AssertionError:
-    discard mint.init(3).pow(-1)
+#  expect AssertionError:
+#    discard mint.init(3).pow(-1)
 
 test "ModintTest, Constructor":
   modint.set_mod(11)

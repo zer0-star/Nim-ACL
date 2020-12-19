@@ -2,14 +2,13 @@ import std/unittest, std/sugar
 
 import atcoder/modint
 import atcoder/extra/math/matrix
-import atcoder/extra/math/gaussian_elimination
 
 type mint = modint998244353
-type M = getMatrixType(mint)
+type M = MatrixType(mint)
 import rationals
-type MR = getMatrixType(Rational[int], ()=>initRational[int](0, 1), ()=>initRational[int](1, 1))
+type MR = MatrixType(Rational[int], ()=>initRational[int](0, 1), ()=>initRational[int](1, 1))
 converter toRational[T](a:T):Rational[T] = initRational[T](a, T(1))
-type MF = getMatrixType(float, ()=>0.0, ()=>1.0, (a:float)=>a<0.00000001)
+type MF = MatrixType(float, ()=>0.0, ()=>1.0, (a:float)=>a<0.00000001)
 
 test "MatrixOperation":
   var A = M.init([[1, 2], [3, 4], [5, 6]])
