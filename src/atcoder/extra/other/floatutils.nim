@@ -10,7 +10,18 @@ when not declared ATCODER_FLOAT_UTILS_HPP:
   proc getINF*(Real:typedesc):Real = Real.getParameters()[].inf
   proc setEPS*(Real:typedesc, x:Real) = Real.getParameters()[].eps = x
 
+  proc valid_range*[Real](l, r:Real):bool =
+    # assert(l <= r)
+    var (l, r) = (l, r)
+    if l > r: swap(l, r)
+    let d = r - l
+    let eps = Real.getEPS
+    if d < eps: return true
+    if l <= Real(0) and Real(0) <= r: return false
+    return d < eps * min(abs(l), abs(r))
+
   # float comp
+  # TODO: relative error
   proc `=~`*[Real](a,b:Real):bool = abs(a - b) < Real.getEPS
   proc `!=~`*[Real](a,b:Real):bool = abs(a - b) > Real.getEPS
   proc `<~`*[Real](a,b:Real):bool = a + Real.getEPS < b
@@ -23,15 +34,6 @@ when not declared ATCODER_FLOAT_UTILS_HPP:
       Real.getParameters()[] = (n, PI.Real, 1e-9.Real, Inf.Real)
     elif Real is float32:
       Real.getParameters()[] = (n, PI.Real, 1e-6.Real, Inf.Real)
-
-  proc valid_range*[Real](l, r:Real):bool =
-    # assert(l <= r)
-    let d = r - l
-    let eps = Real.getEPS
-    if d < eps: return true
-    if l <= Real(0) and Real(0) <= r: return false
-    return d < eps * min(abs(l), abs(r))
-
 
   proc estimateRational*[Real](x:Real, n:int) =
     var m = Real.getInf

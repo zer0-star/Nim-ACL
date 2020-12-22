@@ -11,7 +11,7 @@ when not declared ATCODER_SEQ_ARRAY_UTILS:
 block:
   {a}""")
 
-  template makeArray*(x:int; init):auto =
+  template makeArray*(x:int or Slice[int]; init):auto =
     var v:array[x, init.type]
     when init isnot typedesc:
       for a in v.mitems: a = init

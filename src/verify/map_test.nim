@@ -5,7 +5,7 @@ import atcoder/extra/structure/set_map
 
 proc main() =
   let Q = nextInt()
-  var a = initOrderedMap[int,int]()
+  var a = initSortedMap[int,int]()
   for q in 0..<Q:
     let t = nextInt()
     if t == 0:

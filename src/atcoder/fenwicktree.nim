@@ -15,12 +15,12 @@ when not declared ATCODER_FENWICKTREE_HPP:
     self.data.fill(0, n - 1, self.U(0))
     self.n = n
 
-  template getFenwickTreeType*(T:typedesc):typedesc[FenwickTree] =
+  template FenwickTreeType*(T:typedesc):typedesc[FenwickTree] =
     type U = to_unsigned(T)
     typedesc[FenwickTree[T, U]]
   template getType*(FT:typedesc[FenwickTree], T:typedesc):typedesc[FenwickTree] =
-    getFenwickTreeType(T)
-  proc initFenwickTree*[T](n:int):auto = FenwickTree.getType(T).init(n)
+    FenwickTreeType(T)
+  proc initFenwickTree*[T](n:int):auto = FenwickTreeType(T).init(n)
 
   proc add*[FT:FenwickTree](self: var FT, p:int, x:FT.T) =
     assert p in 0..<self.n

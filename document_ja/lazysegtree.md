@@ -19,9 +19,11 @@
 
 ```nim
 (1) var seg = initLazySegTree(n:int, op, e, mapping, composition, id)
-    var seg = LazySegTree.getType(S, F).init(n, op, e, mapping, composition, id)
+    var seg = LazySegTreeType(S, F, op, e, mapping, composition, id).init(n)
+    var seg = LazySegTree.getType(S, F, op, e, mapping, composition, id).init(n)
 (2) var seg = initLazySegTree(v:seq[S], op, e, mapping, composition, id)
-    var seg = LazySegTree.getType(S, F).init(v:seq[S], op, e, mapping, composition, id)
+    var seg = LazySegTreeType(S, F, op, e, mapping, composition, id).init(v)
+    var seg = LazySegTree.getType(S, F, op, e, mapping, composition, id).init(v)
 ```
 
 - モノイドの型 `S`
@@ -50,6 +52,7 @@
 
 ```nim
 seg.set(p:int, x:S):void
+seg[p:int] = x:S
 ```
 
 `a[p] = x`
@@ -66,6 +69,7 @@ seg.set(p:int, x:S):void
 
 ```nim
 seg.get(p:int):S
+seg[p:int]:S
 ```
 
 `a[p]` を返します。
@@ -82,6 +86,7 @@ seg.get(p:int):S
 
 ```nim
 seg.prod(l..<r):S
+seg[l..<r]:S
 ```
 
 `op(a[l], ..., a[r - 1])` を、モノイドの性質を満たしていると仮定して計算します。$l = r$ のときは `e()` を返します。

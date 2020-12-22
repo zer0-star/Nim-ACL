@@ -15,15 +15,17 @@ when not declared ATCODER_GENERATE_DEFINITIONS_NIM:
 
   template generatePow*(name) {.dirty.} =
     proc pow*(m: name; p: SomeInteger): name {.inline.} =
-      assert (p.type)(0) <= p
-      var
-        p = p.uint
-        m = m
-      result = m.unit()
-      while p > 0'u:
-        if (p and 1'u) != 0'u: result *= m
-        m *= m
-        p = p shr 1'u
+      if (p.type)(0) <= p:
+        var
+          p = p.uint
+          m = m
+        result = m.unit()
+        while p > 0'u:
+          if (p and 1'u) != 0'u: result *= m
+          m *= m
+          p = p shr 1'u
+      else:
+        return pow(m.inv(), -p)
     proc `^`*[T:name](m: T; p: SomeInteger): T {.inline.} = m.pow(p)
 
   macro generateConverter*(name, from_type, to_type) =

@@ -67,7 +67,11 @@
 <p>また、このライブラリはオラクルとして<code>op, e, mapping, composition, id</code>を使用しますが、これらが定数時間で動くものと仮定したときの計算量を記述します。オラクル内部の計算量が $O(f(n))$ である場合はすべての計算量が $O(f(n))$ 倍となります。</p>
 <h2>コンストラクタ</h2>
 <pre><code class="nim">(1) var seg = initLazySegTree(n:int, op, e, mapping, composition, id)
-(2) var seg = initLazySegTree(v:seq[T], op, e, mapping, composition, id)
+    var seg = LazySegTreeType(S, F, op, e, mapping, composition, id).init(n)
+    var seg = LazySegTree.getType(S, F, op, e, mapping, composition, id).init(n)
+(2) var seg = initLazySegTree(v:seq[S], op, e, mapping, composition, id)
+    var seg = LazySegTreeType(S, F, op, e, mapping, composition, id).init(v)
+    var seg = LazySegTree.getType(S, F, op, e, mapping, composition, id).init(v)
 </code></pre>
 
 <ul>
@@ -95,6 +99,7 @@
 </ul>
 <h2>set</h2>
 <pre><code class="nim">seg.set(p:int, x:S):void
+seg[p:int] = x:S
 </code></pre>
 
 <p><code>a[p] = x</code></p>
@@ -108,6 +113,7 @@
 </ul>
 <h2>get</h2>
 <pre><code class="nim">seg.get(p:int):S
+seg[p:int]:S
 </code></pre>
 
 <p><code>a[p]</code> を返します。</p>
@@ -121,6 +127,7 @@
 </ul>
 <h2>prod</h2>
 <pre><code class="nim">seg.prod(l..&lt;r):S
+seg[l..&lt;r]:S
 </code></pre>
 
 <p><code>op(a[l], ..., a[r - 1])</code> を、モノイドの性質を満たしていると仮定して計算します。$l = r$ のときは <code>e()</code> を返します。</p>

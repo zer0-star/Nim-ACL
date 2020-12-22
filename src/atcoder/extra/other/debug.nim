@@ -1,8 +1,8 @@
 when not declared ATCODER_DEBUG_HPP:
   const ATCODER_DEBUG_HPP* = 1
   import macros, strformat, terminal
-  macro debug*(n: varargs[untyped]): untyped =
-  #  var a = "stderr.write "
+  macro debugImpl*(n: varargs[untyped]): untyped =
+    #  var a = "stderr.write "
     var a = ""
     a.add "setForegroundColor fgYellow\n"
     a.add "echo "
@@ -13,3 +13,9 @@ when not declared ATCODER_DEBUG_HPP:
     a.add "\n"
     a.add "resetAttributes()"
     parseStmt(a)
+  template debug*(n: varargs[untyped]): untyped =
+    const EVAL =
+      when declared DEBUG: DEBUG
+      else: true
+    when EVAL:
+      debugImpl(n)
