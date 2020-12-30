@@ -2,13 +2,13 @@ when not declared ATCODER_SET_MAP_HPP:
   const ATCODER_SET_MAP_HPP* = 1
   import atcoder/extra/structure/randomized_binary_search_tree
   type SortedMultiSet*[K, T] = object
-    rbst: RandomizedBinarySearchTree[K,void,RBSTNode[K, void, void], void,void]
+    rbst: RandomizedBinarySearchTree[K,void,RBSTNode[K, void, void], void, void, ()]
   type SortedSet*[K, T] = object
-    rbst: RandomizedBinarySearchTree[K,void,RBSTNode[K, void, void], void,void]
+    rbst: RandomizedBinarySearchTree[K,void,RBSTNode[K, void, void], void, void, ()]
   type SortedMultiMap*[K, T] = object
-    rbst: RandomizedBinarySearchTree[T,void,RBSTNode[T, void, void], void,void]
+    rbst: RandomizedBinarySearchTree[T,void,RBSTNode[T, void, void], void, void, ()]
   type SortedMap*[K, T] = object
-    rbst: RandomizedBinarySearchTree[T,void,RBSTNode[T, void, void], void,void]
+    rbst: RandomizedBinarySearchTree[T,void,RBSTNode[T, void, void], void, void, ()]
 
   type anySet = SortedSet or SortedMultiSet
   type anyMap = SortedMap or SortedMultiMap
