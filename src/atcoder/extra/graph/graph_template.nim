@@ -32,23 +32,23 @@ when not declared ATCODER_GRAPH_TEMPLATE_HPP:
     g[e.dst][^1].rev = r
   proc addBiEdge*[T](g:var Graph[T],src,dst:int,weight:T = 1):void =
     g.addBiEdge(initEdge(src, dst, weight))
-  
+
+  proc addEdge*[T](g:var Graph[T],e:Edge[T]):void =
+    g[e.src].add(e)
+  proc addEdge*[T](g:var Graph[T],src,dst:int,weight:T = T(1)):void =
+    g.addEdge(initEdge(src, dst, weight, -1))
+
   proc initUndirectedGraph*[T](n:int, a,b,c:seq[T]):Graph[T] =
     result = initGraph[T](n)
     for i in 0..<a.len: result.addBiEdge(a[i], b[i], c[i])
   proc initUndirectedGraph*[T](n:int, a,b:seq[T]):Graph[T] =
     result = initGraph[T](n)
     for i in 0..<a.len: result.addBiEdge(a[i], b[i])
-  proc initGraph*[T](n:int, a,b:seq[int],c:seq[T]):Graph[T] =
+  proc initDirectedGraph*[T](n:int, a,b:seq[int],c:seq[T]):Graph[T] =
     result = initGraph[T](n)
     for i in 0..<a.len: result.addEdge(a[i], b[i], c[i])
-  proc initGraph*[T](n:int, a,b:seq[int]):Graph[T] =
+  proc initDirectedGraph*[T](n:int, a,b:seq[int]):Graph[T] =
     result = initGraph[T](n)
     for i in 0..<a.len: result.addEdge(a[i], b[i])
 
-  proc addEdge*[T](g:var Graph[T],e:Edge[T]):void =
-    g[e.src].add(e)
-  proc addEdge*[T](g:var Graph[T],src,dst:int,weight:T = T(1)):void =
-    g.addEdge(initEdge(src, dst, weight, -1))
-  
   proc `<`*[T](l,r:Edge[T]):bool = l.weight < r.weight

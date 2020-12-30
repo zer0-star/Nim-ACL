@@ -42,6 +42,23 @@
 - [`import atcoder/scc`](./scc.html)
 - [`import atcoder/twosat`](./twosat.html)
 
+## エキストラライブラリ
+
+ACLには収録されていないが、使用頻度が高そうなライブラリを追加しました。
+
+### データ構造
+- [`import atcoder/extra/structure/persistent_array`](./extra/persistent_array.html)
+- [`import atcoder/extra/structure/persistent_dsu`](./extra/persistent_dsu.html)
+
+### 数学
+
+
+### グラフ
+
+- [`import atcoder/extra/graph/graph_template`](./extra/graph_template.html)
+- [`import atcoder/extra/graph/dijkstra`](./extra/dijkstra.html)
+
+
 ## 付録
 
 - [Appendix / FAQ](./appendix.html)

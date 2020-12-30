@@ -1,6 +1,6 @@
 when not declared ATCODER_HEADER_HPP:
   const ATCODER_HEADER_HPP* = 1
-  {.hints:off checks:off assertions:on checks:off optimization:speed.}
+  {.hints:off checks:off assertions:on optimization:speed.}
   import std/algorithm as algorithm_lib, std/sequtils as sequils_lib, std/tables as tables_lib, std/macros as macros_lib, std/math as math_lib, std/sets as sets_lib, std/strutils as strutils_lib, std/streams as streams_lib, std/strformat as strformat_lib, std/sugar as sugar_lib
   
   proc scanf*(formatstr: cstring){.header: "<stdio.h>", varargs.}
