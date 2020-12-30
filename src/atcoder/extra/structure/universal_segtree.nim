@@ -54,8 +54,8 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
     static: assert ST.hasLazy
     when ST.hasP:
       let m = self.size shr (k.fastLog2 + 1)
-    self.all_apply(2 * k    , when ST.hasP: self.p(self.lz[k], 0..<m    ) else: self.lz[k])
-    self.all_apply(2 * k + 1, when ST.hasP: self.p(self.lz[k], m..<m + m) else: self.lz[k])
+    self.all_apply(2 * k    , when ST.hasP: ST.calc_p(self.lz[k], 0..<m    ) else: self.lz[k])
+    self.all_apply(2 * k + 1, when ST.hasP: ST.calc_p(self.lz[k], m..<m + m) else: self.lz[k])
     self.lz[k] = ST.calc_id()
 
 #  segtree(int n) : segtree(std::vector<S>(n, e())) {}
@@ -103,7 +103,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
     let e0 = e
     init_lazy_segtree[S,F](newSeqWith(n, e0()), op,e,mapping,composition,id)
   proc init_lazy_segtree*[S,F](v:seq[S], op:static[(S,S)->S],e:static[()->S],mapping:static[(F,S)->S],composition:static[(F,F)->F],id:static[()->F], p:static[(F,Slice[int])->F]):auto =
-    result = segtree[S,F,int](op:op,e:e,mapping:mapping,composition:composition,id:id, p:p)
+    result = segtree[S,F,void,(op:op,e:e,mapping:mapping,composition:composition,id:id, p:p)]()
     result.init(v)
   proc init_lazy_segtree*[S,F](n:int, op:static[(S,S)->S],e:static[()->S],mapping:static[(F,S)->S],composition:static[(F,F)->F],id:static[()->F], p:static[(F,Slice[int])->F]):auto =
     let e0 = e
@@ -164,10 +164,10 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
     when ST.hasLazy:
       for i in countdown(self.log, 1): self.push(p shr i)
     when ST.hasData:
-      self.d[p] = ST.calc_mapping(when ST.hasP: self.p(f, self.getPos(p, p - self.size)) else: f, self.d[p])
+      self.d[p] = ST.calc_mapping(when ST.hasP: ST.calc_p(f, self.getPos(p, p - self.size)) else: f, self.d[p])
       for i in 1..self.log: self.update(p shr i)
     else:
-      self.lz[p] = when ST.hasP: self.p(f, self.getPos(p, p - self.size)) else: f
+      self.lz[p] = when ST.hasP: ST.calc_p(f, self.getPos(p, p - self.size)) else: f
   proc apply*[ST:segtree](self: var ST, p:Slice[int], f:ST.F) =
     var (l, r) = (p.a, p.b + 1)
     assert 0 <= l and l <= r and r <= self.n
@@ -183,8 +183,8 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       block:
         var (l, r) = (l, r)
         while l < r:
-          if (l and 1) != 0: self.all_apply(l, when ST.hasP: self.p(f, self.getPos(l, p.a)) else: f);l.inc
-          if (r and 1) != 0: r.dec;self.all_apply(r, when ST.hasP: self.p(f, self.getPos(r, p.a)) else: f)
+          if (l and 1) != 0: self.all_apply(l, when ST.hasP: ST.calc_p(f, self.getPos(l, p.a)) else: f);l.inc
+          if (r and 1) != 0: r.dec;self.all_apply(r, when ST.hasP: ST.calc_p(f, self.getPos(r, p.a)) else: f)
           l = l shr 1; r = r shr 1
 
     when ST.hasData:

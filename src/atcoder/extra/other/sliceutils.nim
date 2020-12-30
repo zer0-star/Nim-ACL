@@ -6,14 +6,15 @@ when not declared ATCODER_SLICEUTILS_HPP:
   type StepSlice[T] = object
     s:Slice[T]
     d:T
-  proc reversed*[T](p:Slice[T]):auto = ReversedSlice[T](p)
+  proc rev*[T](p:Slice[T]):ReversedSlice[T] = ReversedSlice[T](p)
   iterator items*(n:int):int = (for i in 0..<n: yield i)
   iterator items*[T](p:ReversedSlice[T]):T =
-    var i = Slice[T](p).b
-    while true:
-      yield i
-      if i == Slice[T](p).a:break
-      i.dec
+    if Slice[T](p).b >= Slice[T](p).a:
+      var i = Slice[T](p).b
+      while true:
+        yield i
+        if i == Slice[T](p).a:break
+        i.dec
   proc `>>`*[T](s:Slice[T], d:T):StepSlice[T] =
     assert d != 0
     StepSlice[T](s:s, d:d)
@@ -32,14 +33,14 @@ when not declared ATCODER_SLICEUTILS_HPP:
       if p.d > 0:
         var i = p.low
         let h = p.high
-        while true:
+        while i <= h:
           yield i
           if i == h: break
           i += p.d
       else:
         var i = p.high
         let l = p.low
-        while true:
+        while i >= l:
           yield i
           if i == l: break
           i += p.d

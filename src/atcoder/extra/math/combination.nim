@@ -41,9 +41,17 @@ when not defined ATCODER_COMBINATION_HPP:
   template P*(T:CombinationC, n,r:int):auto =
     if r < 0 or n < r: T.zero()
     else: T.fact(n) * T.rfact(n - r)
-  template C*(T:CombinationC, n,r:int):auto =
+  template C_impl*(T:CombinationC, n, r:int):auto =
     if r < 0 or n < r: T.zero()
     else: T.fact(n) * T.rfact(r) * T.rfact(n - r)
+  template C*(T:CombinationC, n,r:int):auto =
+    if n >= 0:
+      T.C_impl(n, r)
+    else:
+      let N = -n
+      var a = T.C_impl(N + r - 1, N - 1)
+      if r mod 2 != 0: a *= -1
+      a
   template H*(T:CombinationC, n,r:int):auto =
     if n < 0 or r < 0: T.zero()
     elif r == 0: T.zero() + 1
@@ -61,7 +69,7 @@ when not defined ATCODER_COMBINATION_HPP:
     if n >= 0:
       T.C_large_impl(n, r)
     else:
-      var N = -n
+      let N = -n
       var a = T.C_large_impl(N + r - 1, N - 1)
       if r mod 2 != 0: a *= -1
       a

@@ -1,9 +1,7 @@
-# FormalPowerSeries {{{
 when not declared ATCODER_FORMAL_POWER_SERIES:
   const ATCODER_FORMAL_POWER_SERIES* = 1
   
   import std/sequtils, std/strformat, std/options, std/macros, std/tables, std/algorithm
-  
   import atcoder/element_concepts
 
   type FormalPowerSeries*[T:FieldElem] = seq[T]
@@ -316,4 +314,3 @@ proc `{op}`*[T](self: not FormalPowerSeries, r:FormalPowerSeries[T]):FormalPower
       x -= getDiv(x) * M
       x = x.pre(M.len - 1)
       n = n shr 1
-# }}}

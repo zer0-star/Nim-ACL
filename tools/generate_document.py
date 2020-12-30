@@ -74,12 +74,13 @@ if __name__ == "__main__":
     langs = ['en', 'ja']
     for lang in langs:
         logger.info('start converting, lang={}'.format(lang))
-        base_dir : Path = Path('..') / 'document_{}'.format(lang)        
+#        base_dir : Path = Path('..') / 'document_{}'.format(lang)        
+        toml_dir = Path('..') / 'document_{}'.format(lang)
+        for base_dir in [Path('..') / 'document_{}'.format(lang), Path('..') / 'document_{}/extra'.format(lang)]:
+            for md_file in base_dir.glob('*.md'):
+                logger.info('convert {}'.format(md_file))
+                statement = convert(open(md_file).read(), toml_dir)
 
-        for md_file in base_dir.glob('*.md'):
-            logger.info('convert {}'.format(md_file))
-            statement = convert(open(md_file).read(), base_dir)
-
-            html_file = base_dir / (md_file.stem + '.html')
-            with open(html_file, 'w') as f:
-                f.write(statement)
+                html_file = base_dir / (md_file.stem + '.html')
+                with open(html_file, 'w') as f:
+                    f.write(statement)
