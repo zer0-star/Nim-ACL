@@ -1,7 +1,9 @@
 when not declared ATCODER_MATH_HPP:
   const ATCODER_MATH_HPP* = 1
 
-  import atcoder/internal_math, std/math
+  import atcoder/internal_math
+  import std/math as math_lib_of_math
+
   proc pow_mod*(x,n,m:int):int =
     assert 0 <= n and 1 <= m
     if m == 1: return 0

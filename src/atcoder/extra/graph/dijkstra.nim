@@ -3,47 +3,48 @@ when not declared ATCODER_EXTRA_DIJKSTRA_HPP:
   import std/heapqueue, std/sequtils, std/algorithm
   import std/deques
   import atcoder/extra/graph/graph_template
+  import atcoder/extra/other/inf
 
-  proc dijkstra01*[T](g:Graph[T], s:int): (seq[T],seq[int]) = 
+  proc dijkstra01*(g:Graph, s:int): tuple[dist:seq[g.T],prev:seq[int]] = 
     var
       n = g.len
-      dist = newSeqWith(n,T.inf)
+      dist = newSeqWith(n,g.T.inf)
+      Q = initDeque[Edge[g.T]]()
       prev = newSeqWith(n,-1)
-      Q = initDeque[Edge[T]]()
-    dist[s] = T(0)
-    Q.addFirst(initEdge[T](-2,s,T(0)))
+    dist[s] = g.T(0)
+    Q.addFirst(initEdge[g.T](-2,s,g.T(0)))
     while Q.len > 0:
       var e = Q.popFirst()
       if prev[e.dst] != -1: continue
       prev[e.dst] = e.src;
       for f in g[e.dst]:
-        var w = e.weight + f.weight;
+        var w = e.weight + f.weight
         if dist[f.dst] > w:
           dist[f.dst] = w;
           if f.weight == 0:
-            Q.addFirst(initEdge[T](f.src, f.dst, w))
+            Q.addFirst(initEdge(f.src, f.dst, w))
           else:
-            Q.addLast(initEdge[T](f.src, f.dst, w))
+            Q.addLast(initEdge(f.src, f.dst, w))
     return (dist,prev)
 
-  proc dijkstra*[T](g:Graph[T], s:int): (seq[T],seq[int]) = 
+  proc dijkstra*(g:Graph, s:int): tuple[dist:seq[g.T],prev:seq[int]] = 
     var
       n = g.len
-      dist = newSeqWith(n,T.inf)
+      dist = newSeqWith(n,g.T.inf)
+      Q = initHeapQueue[Edge[g.T]]()
       prev = newSeqWith(n,-1)
-      Q = initHeapQueue[Edge[T]]()
-    dist[s] = T(0)
-    Q.push(initEdge[T](-2,s,T(0)))
+    dist[s] = g.T(0)
+    Q.push(initEdge(-2,s,g.T(0)))
     while Q.len > 0:
       var e = Q.pop()
+#      if dist[e.dst] < e.weight: continue
       if prev[e.dst] != -1: continue
       prev[e.dst] = e.src;
       for f in g[e.dst]:
-        var w = e.weight + f.weight;
+        var w = e.weight + f.weight
         if dist[f.dst] > w:
           dist[f.dst] = w;
-          Q.push(initEdge[T](f.src, f.dst, w))
-      discard
+          Q.push(initEdge(f.src, f.dst, w))
     return (dist,prev)
   
   proc path*(prev: seq[int], t:int): seq[int] = 
@@ -52,4 +53,3 @@ when not declared ATCODER_EXTRA_DIJKSTRA_HPP:
       result.add(u)
       u = prev[u]
     result.reverse()
-# }}}

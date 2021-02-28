@@ -63,10 +63,10 @@ when not declared ATCODER_INTERNAL_SUGAR_HPP:
       p = p[1]
   
     checkPragma(p, pragma) # check again after -> transform
-  
 #    since (1, 3):
     block:
-      if p.kind == nnkCall:
+#      if p.kind == nnkCall:
+      if p.kind in {nnkCall, nnkObjConstr}:
         # foo(x, y) => x + y
         kind = nnkProcDef
         name = p[0]
@@ -120,7 +120,7 @@ when not declared ATCODER_INTERNAL_SUGAR_HPP:
     result = newProc(body = b, params = params,
                      pragmas = pragma, name = name,
                      procType = kind)
-  
+
   macro `->`*(p, b: untyped): untyped =
     result = createProcType(p, b)
   

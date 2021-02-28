@@ -3,6 +3,7 @@ when not declared ATCODER_GRAPH_TEMPLATE_HPP:
   import std/sequtils
   
   type
+#    Edge*[T] = ref object
     Edge*[T] = object
       src*,dst*:int
       weight*:T
@@ -12,17 +13,13 @@ when not declared ATCODER_GRAPH_TEMPLATE_HPP:
     Matrix*[T] = seq[seq[T]]
   
   proc initEdge*[T](src,dst:int,weight:T = 1,rev:int = -1):Edge[T] =
-    var e:Edge[T]
-    e.src = src
-    e.dst = dst
-    e.weight = weight
-    e.rev = rev
-    return e
+    return Edge[T](src:src, dst:dst, weight:weight, rev:rev)
   
   proc initGraph*[T](n:int):Graph[T] =
     return newSeqWith(n,newSeq[Edge[T]]())
   
   proc addBiEdge*[T](g:var Graph[T],e:Edge[T]):void =
+#    var e_rev = initEdge[T](e.src, e.dst, e.weight, e.rev)
     var e_rev = e
     swap(e_rev.src, e_rev.dst)
     let (r, s) = (g[e.src].len, g[e.dst].len)

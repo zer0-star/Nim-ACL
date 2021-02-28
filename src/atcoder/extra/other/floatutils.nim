@@ -1,9 +1,11 @@
 when not declared ATCODER_FLOAT_UTILS_HPP:
   const ATCODER_FLOAT_UTILS_HPP* = 1
-  import std/math
+  import std/math as math_lib_floatutils
   proc getParameters*(Real:typedesc):ptr[tuple[n:int, pi, eps, inf:Real]] =
     var p {.global.}:tuple[n:int, pi, eps, inf:Real]
     return p.addr
+
+  converter floatConverter*(a:SomeInteger):float = a.float
 
   proc getPi*(Real:typedesc):Real = Real.getParameters()[].pi
   proc getEPS*(Real:typedesc):Real = Real.getParameters()[].eps

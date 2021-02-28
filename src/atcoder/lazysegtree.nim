@@ -1,8 +1,9 @@
 when not declared ATCODER_LAZYSEGTREE_HPP:
   const ATCODER_LAZYSEGTREE_HPP* = 1
   
-  import atcoder/internal_bit
+  import atcoder/internal_bit, atcoder/rangeutils
   import std/sugar, std/sequtils, std/algorithm
+  {.push inline.}
   type LazySegTree*[S,F;p:static[tuple]] = object
     n*, size*, log*:int
     d:seq[S]
@@ -89,7 +90,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
   proc `[]`*[ST:LazySegTree](self: var ST, p:int):ST.S = self.get(p)
 
   proc prod*[ST:LazySegTree](self:var ST, p:Slice[int]):ST.S =
-    var (l, r) = (p.a, p.b + 1)
+    var (l, r) = p.halfOpenEndpoints
     assert 0 <= l and l <= r and r <= self.n
     if l == r: return ST.calc_e()
 
@@ -119,7 +120,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
     self.d[p] = ST.calc_mapping(f, self.d[p])
     for i in 1..self.log: self.update(p shr i)
   proc apply*[ST:LazySegTree](self: var ST, p:Slice[int], f:ST.F) =
-    var (l, r) = (p.a, p.b + 1)
+    var (l, r) = p.halfOpenEndpoints
     assert 0 <= l and l <= r and r <= self.n
     if l == r: return
 
@@ -191,3 +192,4 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       sm = ST.calc_op(self.d[r], sm)
       if not ((r and -r) != r): break
     return 0
+  {.pop.}

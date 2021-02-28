@@ -2,7 +2,9 @@ when not declared ATCODER_SEGTREE_HPP:
   const ATCODER_SEGTREE_HPP* = 1
   import atcoder/internal_bit
   import std/sugar, std/sequtils, std/algorithm
+  import atcoder/rangeutils
 
+  {.push inline.}
   type SegTree*[S; p:static[tuple]] = object
     n, size, log:int
     d: seq[S]
@@ -58,7 +60,7 @@ when not declared ATCODER_SEGTREE_HPP:
     return self.d[p + self.size]
 
   proc prod*[ST:SegTree](self:ST, p:Slice[int]):ST.S {.inline.} =
-    var (l, r) = (p.a, p.b + 1)
+    var (l, r) = p.halfOpenEndpoints
     assert 0 <= l and l <= r and r <= self.n
     var
       sml, smr = ST.calc_e()
@@ -118,3 +120,4 @@ when not declared ATCODER_SEGTREE_HPP:
       sm = ST.calc_op(self.d[r], sm)
       if not ((r and -r) != r): break
     return 0
+  {.pop.}

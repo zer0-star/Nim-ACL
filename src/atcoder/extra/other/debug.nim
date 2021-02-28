@@ -16,6 +16,6 @@ when not declared ATCODER_DEBUG_HPP:
   template debug*(n: varargs[untyped]): untyped =
     const EVAL =
       when declared DEBUG: DEBUG
-      else: true
+      else: false
     when EVAL:
       debugImpl(n)

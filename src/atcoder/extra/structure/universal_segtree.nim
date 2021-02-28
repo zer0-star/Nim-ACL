@@ -2,18 +2,18 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
   const ATCODER_LAZYSEGTREE_HPP* = 1
   
   import std/sugar, std/sequtils, std/bitops
-  import atcoder/internal_bit
-  type segtree[S,F,useP;p:static[tuple]] = object
+  import atcoder/internal_bit, atcoder/rangeutils
+  type segtree[S,F;useP:static[bool];p:static[tuple]] = object
     n, size, log:int
     when S isnot void:
       d:seq[S]
     when F isnot void:
       lz:seq[F]
-      when useP isnot void:
+      when useP:
         p:(F,Slice[int])->F
   proc hasData(ST:typedesc[segtree]):bool {.compileTime.} = ST.S isnot void
   proc hasLazy(ST:typedesc[segtree]):bool {.compileTime.} = ST.F isnot void
-  proc hasP(ST:typedesc[segtree]):bool {.compileTime.} = ST.useP isnot void
+#  proc hasP(ST:typedesc[segtree]):bool {.compileTime.} = ST.useP
 
   template calc_op[ST:segtree](self:typedesc[ST], a, b:ST.S):auto =
     block:
@@ -52,10 +52,10 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
 
   proc push*[ST:segtree](self: var ST, k:int) =
     static: assert ST.hasLazy
-    when ST.hasP:
+    when ST.useP:
       let m = self.size shr (k.fastLog2 + 1)
-    self.all_apply(2 * k    , when ST.hasP: ST.calc_p(self.lz[k], 0..<m    ) else: self.lz[k])
-    self.all_apply(2 * k + 1, when ST.hasP: ST.calc_p(self.lz[k], m..<m + m) else: self.lz[k])
+    self.all_apply(2 * k    , when ST.useP: ST.calc_p(self.lz[k], 0..<m    ) else: self.lz[k])
+    self.all_apply(2 * k + 1, when ST.useP: ST.calc_p(self.lz[k], m..<m + m) else: self.lz[k])
     self.lz[k] = ST.calc_id()
 
 #  segtree(int n) : segtree(std::vector<S>(n, e())) {}
@@ -84,26 +84,26 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
         for i in 0..<n: self.lz[size + i] = v[i]
 
   proc init_segtree*[S](v:seq[S], op:static[(S,S)->S], e:static[()->S]):auto =
-    result = segtree[S,void,void, (op:op,e:e)]()
+    result = segtree[S,void,false, (op:op,e:e)]()
     result.init(v)
   proc init_segtree*[S](n:int, op:static[(S,S)->S], e:static[()->S]):auto =
     let e0 = e
     var v = newSeqWith(n, e0())
     return init_segtree(v, op, e)
   proc init_dual_segtree*[F](v:seq[F], composition:static[(F,F)->F], id:static[()->F]):auto =
-    result = segtree[void,F,void, (composition:composition,id:id)]()
+    result = segtree[void,F,false, (composition:composition,id:id)]()
     result.init(v)
   proc init_dual_segtree*[F](n:int, composition:static[(F,F)->F], id:static[()->F]):auto =
     let id0 = id
     init_dual_segtree[F](newSeqWith(n, id0()), composition, id)
   proc init_lazy_segtree*[S,F](v:seq[S], op:static[(S,S)->S],e:static[()->S],mapping:static[(F,S)->S],composition:static[(F,F)->F],id:static[()->F]):auto =
-    result = segtree[S,F,void,(op:op,e:e,mapping:mapping,composition:composition,id:id)]()
+    result = segtree[S,F,false,(op:op,e:e,mapping:mapping,composition:composition,id:id)]()
     result.init(v)
   proc init_lazy_segtree*[S,F](n:int, op:static[(S,S)->S],e:static[()->S],mapping:static[(F,S)->S],composition:static[(F,F)->F],id:static[()->F]):auto =
     let e0 = e
     init_lazy_segtree[S,F](newSeqWith(n, e0()), op,e,mapping,composition,id)
   proc init_lazy_segtree*[S,F](v:seq[S], op:static[(S,S)->S],e:static[()->S],mapping:static[(F,S)->S],composition:static[(F,F)->F],id:static[()->F], p:static[(F,Slice[int])->F]):auto =
-    result = segtree[S,F,void,(op:op,e:e,mapping:mapping,composition:composition,id:id, p:p)]()
+    result = segtree[S,F,true,(op:op,e:e,mapping:mapping,composition:composition,id:id, p:p)]()
     result.init(v)
   proc init_lazy_segtree*[S,F](n:int, op:static[(S,S)->S],e:static[()->S],mapping:static[(F,S)->S],composition:static[(F,F)->F],id:static[()->F], p:static[(F,Slice[int])->F]):auto =
     let e0 = e
@@ -133,7 +133,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
 
   proc prod*[ST:segtree](self:var ST, p:Slice[int]):ST.S =
     static: assert ST.hasData
-    var (l, r) = (p.a, p.b + 1)
+    var (l, r) = p.halfOpenEndpoints
     assert 0 <= l and l <= r and r <= self.n
     if l == r: return ST.calc_e()
     l += self.size;r += self.size
@@ -151,7 +151,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
   proc all_prod*[ST:segtree](self:ST):auto = self.d[1]
 
   proc getPos[ST:segtree](self: ST, k:int, base:int):Slice[int] =
-    static: assert ST.hasP
+    static: assert ST.useP
     let
       h = fastLog2(k)
       l = self.size shr h
@@ -164,12 +164,12 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
     when ST.hasLazy:
       for i in countdown(self.log, 1): self.push(p shr i)
     when ST.hasData:
-      self.d[p] = ST.calc_mapping(when ST.hasP: ST.calc_p(f, self.getPos(p, p - self.size)) else: f, self.d[p])
+      self.d[p] = ST.calc_mapping(when ST.useP: ST.calc_p(f, self.getPos(p, p - self.size)) else: f, self.d[p])
       for i in 1..self.log: self.update(p shr i)
     else:
-      self.lz[p] = when ST.hasP: ST.calc_p(f, self.getPos(p, p - self.size)) else: f
+      self.lz[p] = when ST.useP: ST.calc_p(f, self.getPos(p, p - self.size)) else: f
   proc apply*[ST:segtree](self: var ST, p:Slice[int], f:ST.F) =
-    var (l, r) = (p.a, p.b + 1)
+    var (l, r) = p.halfOpenEndpoints
     assert 0 <= l and l <= r and r <= self.n
     if l == r: return
 
@@ -183,8 +183,8 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       block:
         var (l, r) = (l, r)
         while l < r:
-          if (l and 1) != 0: self.all_apply(l, when ST.hasP: ST.calc_p(f, self.getPos(l, p.a)) else: f);l.inc
-          if (r and 1) != 0: r.dec;self.all_apply(r, when ST.hasP: ST.calc_p(f, self.getPos(r, p.a)) else: f)
+          if (l and 1) != 0: self.all_apply(l, when ST.useP: ST.calc_p(f, self.getPos(l, p.a)) else: f);l.inc
+          if (r and 1) != 0: r.dec;self.all_apply(r, when ST.useP: ST.calc_p(f, self.getPos(r, p.a)) else: f)
           l = l shr 1; r = r shr 1
 
     when ST.hasData:

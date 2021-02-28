@@ -1,7 +1,7 @@
 when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
   const ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP* = 1
   {.push inline.}
-  import std/sugar, std/random
+  import std/sugar, std/random, atcoder/rangeutils
   type RBSTNode*[D, L, useSum] = ref object
     cnt*:int
     l*,r*:RBSTNode[D, L, useSum]
@@ -12,7 +12,7 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
       lazy*:L
     id:int
 
-  type RandomizedBinarySearchTree*[D,L,Node,useP,useSum;p:static[tuple]] = object
+  type RandomizedBinarySearchTree*[D,L,Node;useP:static[bool], useSum;p:static[tuple]] = object of RootObj
     root*: Node
     when D isnot void:
       D0:D
@@ -41,7 +41,7 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
   proc hasSum*(t:typedesc[RandomizedBinarySearchTree] or typedesc[RBSTNode]):bool {.compileTime.} = t.useSum isnot void
   #proc hasData*(t:typedesc):bool {.compileTime.} = t.D isnot void
   proc hasLazy*(t:typedesc):bool {.compileTime.} = t.L isnot void
-  proc hasP*(t:typedesc):bool {.compileTime.} = t.useP isnot void
+#  proc hasP*(t:typedesc):bool {.compileTime.} = t.useP isnot void
   #proc isPersistent*(t:typedesc):bool {.compileTime.} = t.Persistent isnot void
 
 
@@ -54,16 +54,16 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
   
   proc initRandomizedBinarySearchTree*[D](seed = 2019):auto =
     type Node = RBSTNode[D, void, void]
-    RandomizedBinarySearchTree[D,void,Node,void,void,()](root:nil, r:initRand(seed), id_max:0)
+    RandomizedBinarySearchTree[D,void,Node,false,void,()](root:nil, r:initRand(seed), id_max:0)
   proc initRandomizedBinarySearchTree*[D](f:static[(D,D)->D], D0:D, seed = 2019):auto =
     type Node = RBSTNode[D, void, int]
-    RandomizedBinarySearchTree[D,void,Node,void,int,(op:f)](root:nil, D0:D0, r:initRand(seed), id_max: 0)
+    RandomizedBinarySearchTree[D,void,Node,false,int,(op:f)](root:nil, D0:D0, r:initRand(seed), id_max: 0)
   proc initRandomizedBinarySearchTree*[D, L](f:static[(D,D)->D], g:static[(L,D)->D], h:static[(L,L)->L], D0:D, L0:L, seed = 2019):auto =
     type Node = RBSTNode[D, L, int]
-    RandomizedBinarySearchTree[D,L,Node,void,int,(op:f,mapping:g,composition:h)](root:nil, D0:D0, L0:L0, r:initRand(seed), id_max: 0)
+    RandomizedBinarySearchTree[D,L,Node,false,int,(op:f,mapping:g,composition:h)](root:nil, D0:D0, L0:L0, r:initRand(seed), id_max: 0)
   proc initRandomizedBinarySearchTree*[D, L](f:static[(D,D)->D], g:static[(L,D)->D], h:static[(L,L)->L], p:static[(L,Slice[int])->L],D0:D,L0:L,seed = 2019):auto =
     type Node = RBSTNode[D, L, int]
-    RandomizedBinarySearchTree[D,L,Node,int,int,(op:f,mapping:g,composition:h,p:p)](root:nil, D0:D0, L0:L0, r:initRand(seed), id_max: 0)
+    RandomizedBinarySearchTree[D,L,Node,true,int,(op:f,mapping:g,composition:h,p:p)](root:nil, D0:D0, L0:L0, r:initRand(seed), id_max: 0)
   
   proc alloc*[RBST](self: var RBST, key:RBST.D):auto =
     when RBST.hasLazy:
@@ -96,23 +96,23 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
     when RBST.hasLazy:
       var t = clone(t)
       if t.lazy != self.L0:
-        when RBST.hasP:
+        when RBST.useP:
           var
             li = 0
             ri = 0
         if t.l != nil:
           t.l = clone(t.l)
           t.l.lazy = RBST.calc_composition(t.lazy, t.l.lazy)
-          when RBST.hasP: ri = li + self.count(t.l)
-          t.l.sum = RBST.calc_mapping(when RBST.hasP: RBST.calc_p(t.lazy, li..<ri) else: t.lazy, t.l.sum)
-        when RBST.hasP: li = ri
-        t.key = RBST.calc_mapping(when RBST.hasP: RBST.calc_p(t.lazy, li..<li+1) else: t.lazy, t.key)
-        when RBST.hasP: li.inc
+          when RBST.useP: ri = li + self.count(t.l)
+          t.l.sum = RBST.calc_mapping(when RBST.useP: RBST.calc_p(t.lazy, li..<ri) else: t.lazy, t.l.sum)
+        when RBST.useP: li = ri
+        t.key = RBST.calc_mapping(when RBST.useP: RBST.calc_p(t.lazy, li..<li+1) else: t.lazy, t.key)
+        when RBST.useP: li.inc
         if t.r != nil:
           t.r = clone(t.r)
           t.r.lazy = RBST.calc_composition(t.lazy, t.r.lazy)
-          when RBST.hasP: ri = li + self.count(t.r)
-          t.r.sum = RBST.calc_mapping(when RBST.hasP: RBST.calc_p(t.lazy, li..<ri) else: t.lazy, t.r.sum)
+          when RBST.useP: ri = li + self.count(t.r)
+          t.r.sum = RBST.calc_mapping(when RBST.useP: RBST.calc_p(t.lazy, li..<ri) else: t.lazy, t.r.sum)
         t.lazy = self.L0
       self.update(t)
     else:
@@ -203,7 +203,7 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
     t = self.merge(x[0], self.split(x[1], 1)[1])
   
   proc prod*[RBST:RandomizedBinarySearchTree](self: var RBST, t:var RBST.Node, p:Slice[int]):auto =
-    let (a, b) = (p.a, p.b + 1)
+    let (a, b) = p.halfOpenEndpoints
     var
       x = self.split(t, a)
       y = self.split(x[1], b - a)
@@ -213,7 +213,7 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
   
   proc apply*[RBST:RandomizedBinarySearchTree](self:var RBST, t:var RBST.Node, s:Slice[int], p:RBST.L) =
     static: assert RBST.hasLazy
-    let (a, b) = (s.a, s.b + 1)
+    let (a, b) = s.halfOpenEndpoints
     var
       x = self.split(t, a)
       y = self.split(x[1], b - a)
@@ -246,3 +246,7 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
   proc len*[RBST:RandomizedBinarySearchTree](self: var RBST):auto = self.len(self.root)
   proc empty*[RBST:RandomizedBinarySearchTree](self: var RBST):bool = self.empty(self.root)
   {.pop.}
+
+
+
+

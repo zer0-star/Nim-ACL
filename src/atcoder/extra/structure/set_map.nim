@@ -2,13 +2,13 @@ when not declared ATCODER_SET_MAP_HPP:
   const ATCODER_SET_MAP_HPP* = 1
   import atcoder/extra/structure/randomized_binary_search_tree
   type SortedMultiSet*[K, T] = object
-    rbst: RandomizedBinarySearchTree[K,void,RBSTNode[K, void, void], void, void, ()]
+    rbst: RandomizedBinarySearchTree[K,void,RBSTNode[K, void, void], false, void, ()]
   type SortedSet*[K, T] = object
-    rbst: RandomizedBinarySearchTree[K,void,RBSTNode[K, void, void], void, void, ()]
+    rbst: RandomizedBinarySearchTree[K,void,RBSTNode[K, void, void], false, void, ()]
   type SortedMultiMap*[K, T] = object
-    rbst: RandomizedBinarySearchTree[T,void,RBSTNode[T, void, void], void, void, ()]
+    rbst: RandomizedBinarySearchTree[T,void,RBSTNode[T, void, void], false, void, ()]
   type SortedMap*[K, T] = object
-    rbst: RandomizedBinarySearchTree[T,void,RBSTNode[T, void, void], void, void, ()]
+    rbst: RandomizedBinarySearchTree[T,void,RBSTNode[T, void, void], false, void, ()]
 
   type anySet = SortedSet or SortedMultiSet
   type anyMap = SortedMap or SortedMultiMap
@@ -22,6 +22,7 @@ when not declared ATCODER_SET_MAP_HPP:
 
   proc init*(T:typedesc[SetOrMap]):T =
     result.rbst = initRandomizedBinarySearchTree[T.T]()
+#    result.rbst = initRandomizedBinarySearchTree[T.T](proc(a, b:T.T):T.T = (0, 0), (0, 0))
     result.rbst.root = nil
 
   proc initSortedMultiSet*[K]():auto = SortedMultiSet.getType(K).init()
@@ -31,11 +32,11 @@ when not declared ATCODER_SET_MAP_HPP:
 
   #RBST(sz, [&](T x, T y) { return x; }, T()) {}
   
-  template getKey*(self: SetOrMap, t:RBSTNode):auto =
+  proc getKey*[T:SetOrMap; Node:RBSTNode](self: T, t:Node):auto =
     when self.type is anySet: t.key
     else: t.key[0]
   
-  proc lower_bound*[T:SetOrMap](self: var T, t:var RBSTNode, x:T.K):int {.inline.}=
+  proc lower_bound*[T:SetOrMap; Node:RBSTNode](self: var T, t:var Node, x:T.K):int {.inline.}=
     if t == nil: return 0
     if x <= self.getKey(t): return self.lower_bound(t.l, x)
     return self.lower_bound(t.r, x) + self.rbst.count(t.l) + 1
@@ -43,13 +44,14 @@ when not declared ATCODER_SET_MAP_HPP:
   proc lower_bound*[T:SetOrMap](self:var T, x:T.K):int {.inline.} =
     self.lower_bound(self.rbst.root, x)
 
-  proc upper_bound*[T:SetOrMap](self: var T, t:var RBSTNode, x:T.K):int {.inline.} =
+  proc upper_bound*[T:SetOrMap; Node:RBSTNode](self: var T, t:var Node, x:T.K):int {.inline.} =
     if t == nil: return 0
     if x < self.getKey(t): return self.upper_bound(t.l, x)
     return self.upper_bound(t.r, x) + self.rbst.count(t.l) + 1
   
-  proc find*[T:SetOrMap](self: var T, t:var RBSTNode, x:T.K):RBSTNode {.inline.}=
-    if t == nil: return nil
+  proc find*[T:SetOrMap, Node:RBSTNode](self: var T, t:var Node, x:T.K):auto {.inline.}=
+#    if t == nil: return nil
+    if t == nil: return t
     if x < self.getKey(t): return self.find(t.l, x)
     elif x > self.getKey(t): return self.find(t.r, x)
     else: return t
@@ -62,12 +64,12 @@ when not declared ATCODER_SET_MAP_HPP:
   proc upper_bound*[T:SetOrMap](self: var T, x:T.K):int {.inline.} =
     self.upper_bound(self.rbst.root, x)
   
-  proc kth_element*[T:SetOrmap](self: var T, t:RBSTNode, k:int):T.T {.inline.} =
+  proc kth_element*[T:SetOrmap; Node:RBSTNode](self: var T, t:Node, k:int):T.T {.inline.} =
     let p = self.rbst.count(t.l)
     if k < p: return self.kth_element(t.l, k)
     elif k > p: return self.kth_element(t.r, k - self.rbst.count(t.l) - 1)
     else: return t.key
-  
+
   proc kth_element*[T:SetOrMap](self: var T, k:int):T.T {.inline.} =
     return self.kth_element(self.rbst.root, k)
   
@@ -75,7 +77,7 @@ when not declared ATCODER_SET_MAP_HPP:
     self.rbst.insert(self.lower_bound(x), x)
   proc insert*[T:SortedMultiMap](self: var T, x:T.T) =
     self.rbst.insert(self.lower_bound(x[0]), x)
-  
+
   proc count*[T:SetOrMap](self: var T, x:T.K):int {.inline.} =
     return self.upper_bound(x) - self.lower_bound(x)
   
@@ -105,3 +107,4 @@ when not declared ATCODER_SET_MAP_HPP:
   
   proc len*(self:var SetOrMap):int {.inline.} = self.rbst.len()
   proc empty*(self:var SetOrMap):bool {.inline.} = self.rbst.empty()
+

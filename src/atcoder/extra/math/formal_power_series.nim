@@ -22,9 +22,36 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
     parseStmt(fmt"""let {a.repr} = if {a.repr} == -1: {b.repr} else: {a.repr}""")
   proc shrink*[T](self: var FormalPowerSeries[T]) =
     while self.len > 0 and self[^1] == 0: discard self.pop()
- 
+
+  # Monomial {{{
+  type Monomial*[T] = object
+    c:T
+    d:int
+  
+  proc initVar*[T](c = 1, d = 1):Monomial[T] = Monomial[T](c:T(c), d:d)
+  
+  proc `^`*[T](f:Monomial[T], n:int):Monomial[T] =
+    result = f
+    result.d *= n
+    if f.c != T(1): result.c = result.c ^ n
+  
+  converter toFPS*[T](f:Monomial[T]):FormalPowerSeries[T] = 
+    result = newSeq[T](f.d + 1)
+    result[f.d] = f.c
+  
+  proc `+`*[T](f, g: Monomial[T]):FormalPowerSeries[T] =
+    return toFPS(f) + toFPS(g)
+  
+  proc `*`*[T](f, g:Monomial[T]):Monomial[T] =
+    result.c = f.c * g.c
+    result.d = f.d + g.d
+  proc `*`*[T](a:T, f:Monomial[T]):Monomial[T] =
+    result = f
+    result.c *= a
+  # }}}
+
   # operators +=, -=, *=, mod=, -, /= {{{
-  proc `+=`*(self: var FormalPowerSeries, r:FormalPowerSeries) =
+  proc `+=`*[T](self: var FormalPowerSeries[T], r:FormalPowerSeries[T]) =
     if r.len > self.len: self.setlen(r.len)
     for i in 0..<r.len: self[i] += r[i]
   proc `+=`*[T](self: var FormalPowerSeries[T], r:T) =
@@ -149,14 +176,14 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
       self = (self.rev().pre(n) * r.rev().inv(n)).pre(n).rev(n)
 
   # operators +, -, *, div, mod {{{
-  macro declareOp(op) =
+  macro declareFormalPowerSeriesOperators(op) =
     fmt"""proc `{op}`*[T](self:FormalPowerSeries[T];r:FormalPowerSeries[T] or T):FormalPowerSeries[T] = result = self;result {op}= r
-proc `{op}`*[T](self: not FormalPowerSeries, r:FormalPowerSeries[T]):FormalPowerSeries[T] = result = initFormalPowerSeries[T](@[T(self)]);result {op}= r""".parseStmt
+proc `{op}`*[T](self: not FormalPowerSeries and not Monomial, r:FormalPowerSeries[T]):FormalPowerSeries[T] = result = initFormalPowerSeries[T](@[T(self)]);result {op}= r""".parseStmt
   
-  declareOp(`+`)
-  declareOp(`-`)
-  declareOp(`*`)
-  declareOp(`/`)
+  declareFormalPowerSeriesOperators(`+`)
+  declareFormalPowerSeriesOperators(`-`)
+  declareFormalPowerSeriesOperators(`*`)
+  declareFormalPowerSeriesOperators(`/`)
   
   proc `div`*[T](self, r:FormalPowerSeries[T]):FormalPowerSeries[T] = result = self;result.`div=` (r)
   proc `mod`*[T](self, r:FormalPowerSeries[T]):FormalPowerSeries[T] = result = self;result.`mod=` (r)
@@ -314,3 +341,4 @@ proc `{op}`*[T](self: not FormalPowerSeries, r:FormalPowerSeries[T]):FormalPower
       x -= getDiv(x) * M
       x = x.pre(M.len - 1)
       n = n shr 1
+

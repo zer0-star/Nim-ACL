@@ -68,7 +68,7 @@ def dfs(f: str, level:int) -> List[str]:
 
     logger.info('include {}'.format(f))
 
-    s = open(str(lib_path / f)).read()
+    s = open(str(lib_path / f), encoding="utf8", errors='ignore').read()
     return read_source(s, level)
 
 if __name__ == "__main__":
@@ -88,12 +88,12 @@ if __name__ == "__main__":
         lib_path = Path(opts.lib)
     elif 'CPLUS_INCLUDE_PATH' in environ:
         lib_path = Path(environ['CPLUS_INCLUDE_PATH'])
-    s = open(opts.source).read()
+    s = open(opts.source, encoding="utf8", errors='ignore').read()
     result = read_source(s, -1)
 
     output = '\n'.join(result) + '\n'
     if opts.console:
         print(output)
     else:
-        with open('combined.nim', 'w') as f:
+        with open('combined.nim', 'w', encoding="utf8", errors='ignore') as f:
             f.write(output)
