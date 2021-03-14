@@ -25,7 +25,7 @@ when not declared ATCODER_MATH_HPP:
     return z[1]
   
   # (rem, mod)
-  proc crt*(r, m:seq[int]):(int,int) =
+  proc crt*(r, m:openArray[int]):(int,int) =
     assert r.len == m.len
     let n = r.len
     # Contracts: 0 <= r0 < m0

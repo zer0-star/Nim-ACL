@@ -17,7 +17,7 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   import atcoder/extra/other/inf
   import atcoder/extra/other/warlus_operator
   import atcoder/extra/other/seq_array_utils
-  import atcoder/extra/other/debug
+  include atcoder/extra/other/debug
   import atcoder/extra/other/reference
   import atcoder/extra/other/floatutils
   import atcoder/extra/other/zip
