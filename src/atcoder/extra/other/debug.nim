@@ -5,11 +5,13 @@ when not declared ATCODER_DEBUG_HPP:
     #  var a = "stderr.write "
     var a = ""
     a.add "setForegroundColor fgYellow\n"
-    a.add "echo "
+    a.add "stdout.write "
+#    a.add "stderr.write "
     for i,x in n:
       a = a & fmt""" "{x.repr} = ", {x.repr} """
       if i < n.len - 1:
         a.add(""", ", ",""")
+    a.add(", \"\\n\"")
     a.add "\n"
     a.add "resetAttributes()"
     parseStmt(a)

@@ -22,8 +22,15 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   import atcoder/extra/other/floatutils
   import atcoder/extra/other/zip
 
-  converter toBool[T:ref object](x:T):bool = x != nil
-  converter toBool[T](x:T):bool = x != T(0)
+#  converter toBool[T:ref object](x:T):bool = x != nil
+#  converter toBool[T](x:T):bool = x != T(0)
+  # misc
+  proc `<`[T](a, b:seq[T]):bool =
+    for i in 0 ..< min(a.len, b.len):
+      if a[i] < b[i]: return true
+      elif a[i] > b[i]: return false
+    if a.len < b.len: return true
+    else: return false
 
   proc ceilDiv*[T:SomeInteger](a, b:T):T =
     assert b != 0

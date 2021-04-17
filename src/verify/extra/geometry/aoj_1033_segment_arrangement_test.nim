@@ -28,24 +28,23 @@ block main:
       if start == ps[i]: si = i
       if goal == ps[i]: gi = i
     assert(si >= 0 and gi >= 0)
-    proc id(x, y:int):int = y * ps.len + x
-    proc rev_id(t:int):(int,int) = (t mod ps.len, t div ps.len)
-    var G = initGraph[float](ps.len^2 + 1)
-    let src = ps.len^2
+    proc id(a:(int, int)):int = a[0] * ps.len + a[1]
+    var G = initGraph[float, (int, int)](ps.len^2 + 1, id)
+    let src = (ps.len, 0)
     for u in 0..<ps.len:
       if u == si: continue
-      G.addEdge(src, id(si, u), 0.0)
+      G.addEdge(src, (si, u), 0.0)
     for u in 0..<ps.len:
       for v in g[u]:
         for w in g[v]:
           let d = phase((ps[w] - ps[v])/(ps[v] - ps[u]))
-          G.addEdge(id(u, v), id(v, w), abs(d))
-    let (dist, _) = G.dijkstra(src)
+          G.addEdge((u, v), (v, w), abs(d))
+    let dist = G.dijkstra(src)
     var ans = float.inf
     for u in 0..<ps.len:
       for v in g[u]:
         if v != gi: continue
-        ans.min= dist[id(u, v)]
+        ans.min= dist[(u, v)]
     if ans.classify == fcInf:
       echo -1
     else:

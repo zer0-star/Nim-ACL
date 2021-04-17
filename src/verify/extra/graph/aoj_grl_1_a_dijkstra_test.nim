@@ -18,9 +18,9 @@ proc main() =
       c = nextInt()
     g.addEdge(a, b, c)
   
-  let dist = dijkstra(g, R)[0]
-  for d in dist:
-    if d == int.inf: echo "INF"
-    else: echo d
+  let dist = dijkstra(g, R)
+  for u in 0..<V:
+    if dist[u] == int.inf: echo "INF"
+    else: echo dist[u]
 
 main()

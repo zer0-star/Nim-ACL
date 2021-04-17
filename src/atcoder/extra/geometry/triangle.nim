@@ -11,6 +11,8 @@ when not declared ATCODER_TRIANGLE_HPP:
       (x, y, z) = (abs(b - c), abs(c - a), abs(a - b))
       p = (a * x + b * y + c * z)/(x + y + z)
     return initCircle(p, initLine(a, b).distance(p))
+  proc incenter*[Real](a, b, c:Point[Real]):Point[Real] =
+    incircle(a, b, c).p
   
   proc excircle*[Real](a,b,c:Point[Real]):array[3, Circle[Real]] =
     let
@@ -19,15 +21,15 @@ when not declared ATCODER_TRIANGLE_HPP:
       pb = (a * x - b * y + c * z)/(x - y + z)
       pc = (a * x + b * y - c * z)/(x + y - z)
     return [initCircle(pa, initLine(b, c).distance(pa)), 
-             initCircle(pb, initLine(c, a).distance(pb)), 
-             initCircle(pc, initLine(a, b).distance(pc))]
+            initCircle(pb, initLine(c, a).distance(pb)), 
+            initCircle(pc, initLine(a, b).distance(pc))]
+  proc excenter*[Real](a, b, c:Point[Real]):array[3, Point[Real]] =
+    let c = excircle(a, b, c)
+    return [c[0].p, c[1].p, c[2].p]
   proc circumcircle*[Real](a,b,c:Point[Real]):Circle[Real] =
-    let
-      x = Real(1)/(b - a).conjugate
-      y = Real(1)/(c - a).conjugate
-      p = (y - x)/(x.conjugate * y - x * y.conjugate) + a
-    return initCircle(p, abs(p-a))
-
+    initCircle(a, b, c)
+  proc circumcenter*[Real](a,b,c:Point[Real]):Point[Real] =
+    initCircle(a, b, c).p
   proc orthocenter*[Real](a,b,c:Point[Real]):Point[Real] =
     return crossPoint(
              initLine(a, a.projection(initLine(b, c))), 

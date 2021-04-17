@@ -4,7 +4,8 @@ when not declared ATCODER_HEAVY_LIGHT_DECOMPOSITION_HPP:
   type HeavyLightDecomposition[T] = object
     sz, in_a, out_a, head, rev, par:seq[int]
   
-  proc initHeavyLightDecomposition*[T](g:Graph[T]):HeavyLightDecomposition[T] =
+  proc initHeavyLightDecomposition*[G:Graph](g:G):HeavyLightDecomposition[G.T] =
+    type T = G.T
     var
       g = g
       sz, in_a, out_a, head, rev, par = newSeq[int](g.len)
@@ -59,7 +60,7 @@ when not declared ATCODER_HEAVY_LIGHT_DECOMPOSITION_HPP:
       v = self.par[self.head[v]]
     return f(f(q(self.in_a[u] + edge, self.in_a[v] + 1), l), r)
 
-  proc add*[T,U](self: HeavyLightDecomposition[T]; u, v:int, q:(int,int)->U, edge:int = 0) =
+  proc add*[T](self: HeavyLightDecomposition[T]; u, v:int, q:(int,int)->void, edge:int = 0) =
     var (u,v) = (u,v)
     while true:
       if self.in_a[u] > self.in_a[v]: swap(u, v)

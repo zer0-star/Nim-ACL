@@ -49,22 +49,21 @@ when not declared ATCODER_SET_MAP_HPP:
     if x < self.getKey(t): return self.upper_bound(t.l, x)
     return self.upper_bound(t.r, x) + self.rbst.count(t.l) + 1
   
-  proc find*[T:SetOrMap, Node:RBSTNode](self: var T, t:var Node, x:T.K):auto {.inline.}=
+  proc findNode*[T:SetOrMap, Node:RBSTNode](self: var T, t:var Node, x:T.K):auto {.inline.}=
 #    if t == nil: return nil
     if t == nil: return t
-    if x < self.getKey(t): return self.find(t.l, x)
-    elif x > self.getKey(t): return self.find(t.r, x)
+    if x < self.getKey(t): return self.findNode(t.l, x)
+    elif x > self.getKey(t): return self.findNode(t.r, x)
     else: return t
-  proc find*[T:SetOrMap](self:var T, x:T.K):auto {.inline.} =
-    self.find(self.rbst.root, x)
-  
+  proc findNode*[T:SetOrMap](self:var T, x:T.K):auto {.inline.} =
+    self.findNode(self.rbst.root, x)
   proc contains*[T:SetOrMap](self: var T, x:T.K):bool {.inline.} =
-    self.find(x) != nil
+    self.findNode(x) != nil
   
   proc upper_bound*[T:SetOrMap](self: var T, x:T.K):int {.inline.} =
     self.upper_bound(self.rbst.root, x)
   
-  proc kth_element*[T:SetOrmap; Node:RBSTNode](self: var T, t:Node, k:int):T.T {.inline.} =
+  proc kth_element*[T:SetOrMap; Node:RBSTNode](self: var T, t:Node, k:int):T.T {.inline.} =
     let p = self.rbst.count(t.l)
     if k < p: return self.kth_element(t.l, k)
     elif k > p: return self.kth_element(t.r, k - self.rbst.count(t.l) - 1)
@@ -72,34 +71,39 @@ when not declared ATCODER_SET_MAP_HPP:
 
   proc kth_element*[T:SetOrMap](self: var T, k:int):T.T {.inline.} =
     return self.kth_element(self.rbst.root, k)
-  
+  proc `{}`*[T:SetOrMap](self: var T, k:int):T.T {.inline.} =
+    return self.kth_element(k)
+
   proc insert*[T:SortedMultiSet](self: var T, x:T.K) {.inline.} =
-    self.rbst.insert(self.lower_bound(x), x)
+    self.rbst.insert(self.upper_bound(x), x)
   proc insert*[T:SortedMultiMap](self: var T, x:T.T) =
-    self.rbst.insert(self.lower_bound(x[0]), x)
+    self.rbst.insert(self.upper_bound(x[0]), x)
 
   proc count*[T:SetOrMap](self: var T, x:T.K):int {.inline.} =
     return self.upper_bound(x) - self.lower_bound(x)
   
-  proc erase_key*[T:SetOrMap](self: var T, x:T.K) {.inline.} =
+  proc erase*[T:SetOrMap](self: var T, x:T.K) {.inline.} =
     if self.count(x) == 0: return
     self.rbst.erase(self.lower_bound(x))
-  
+  proc find*[T:SetOrMap](self:var T, x:T.K):int {.inline.} =
+    if self.count(x) == 0: return -1
+    else: return self.lower_bound(x)
+
   proc insert*[T:SortedSet](self: var T, x:T.K) {.inline.} =
-    var t = self.find(x)
+    var t = self.findNode(x)
     if t != nil: return
-    self.rbst.insert(self.lower_bound(x), x)
+    self.rbst.insert(self.upper_bound(x), x)
   proc insert*[T:SortedMap](self: var T, x:T.T) {.inline.} =
-    var t = self.find(x[0])
+    var t = self.findNode(x[0])
     if t != nil: t.key = x
-    else: self.rbst.insert(self.lower_bound(x[0]), x)
+    else: self.rbst.insert(self.upper_bound(x[0]), x)
   proc `[]`*[K, V](self: var SortedMap[K, tuple[K:K, V:V]], x:K):auto {.inline.} =
-    var t = self.find(x)
+    var t = self.findNode(x)
     if t != nil: return t.key[1]
     result = V.default
     self.insert((x, result))
   proc `[]=`*[K, V](self: var SortedMap[K, tuple[K:K, V:V]], x:K, v:V) {.inline.} =
-    var t = self.find(x)
+    var t = self.findNode(x)
     if t != nil:
       t.key[1] = v
       return

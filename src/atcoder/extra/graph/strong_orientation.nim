@@ -2,7 +2,7 @@ when not declared ATCODER_STRONG_ORIENTATION_HPP:
   const ATCODER_STRONG_ORIENTATION_HPP* = 1
   import atcoder/extra/graph/graph_template
   import std/sequtils
-  proc strong_orienation*[T](g:Graph[T], es:Edges[T]):seq[int] =
+  proc strong_orienation*[G:Graph](g:G, es:Edges[G.T, G.U]):seq[int] =
     let
       N = g.len
       M = es.len

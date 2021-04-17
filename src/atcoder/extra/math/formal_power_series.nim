@@ -7,14 +7,16 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
   type FormalPowerSeries*[T:FieldElem] = seq[T]
 
   template initFormalPowerSeries*[T:FieldElem](n:int):FormalPowerSeries[T] =
-    FormalPowerSeries[T](newSeq[T](n))
+    block:
+      FormalPowerSeries[T](newSeq[T](n))
   template initFormalPowerSeries*[T:FieldElem](data:seq or array):FormalPowerSeries[T] =
-    when data is FormalPowerSeries[T]: data
-    else:
-      var result = newSeq[T](data.len)
-      for i, it in data:
-        result[i] = T.init(it)
-      result
+    block:
+      when data is FormalPowerSeries[T]: data
+      else:
+        var result = newSeq[T](data.len)
+        for i, it in data:
+          result[i] = T(it)
+        result
   template init*[T:FieldElem](self:typedesc[FormalPowerSeries[T]], data:typed):auto =
     initFormalPowerSeries[T](data)
 

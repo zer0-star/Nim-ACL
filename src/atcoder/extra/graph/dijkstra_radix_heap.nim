@@ -4,15 +4,15 @@ when not declared ATCODER_DIJKSTRA_RADIX_HEAP_HPP:
   import atcoder/extra/graph/graph_template
   import atcoder/extra/structure/radix_heap
 
-  proc dijkstra_radix_heap*[T](g:Graph[T], s:int): seq[T] =
+  proc dijkstra_radix_heap*[G:Graph](g:G, s:int): seq[G.T] =
     let n = g.len
     var
-      dist = newSeqWith(n, T.inf)
-      prev = newSeqWith(n,-1)
+      dist = newSeqWith(n, G.T.inf)
+      prev = newSeqWith(n, -1)
 
-    var heap = initRadixHeap[T, Edge[T]]()
+    var heap = initRadixHeap[G.T, Edge[G.T, G.U]]()
     dist[s] = 0
-    heap.push(dist[s], initEdge(-2, s, T(0)))
+    heap.push(dist[s], initEdge(-2, s, G.T(0)))
     while not heap.empty():
       let (cost, p) = heap.pop()
 #      if dist[p.dst] < cost: continue

@@ -8,7 +8,7 @@ import std/options
 proc main() =
   var
     V, E, R = nextInt()
-    edges = newSeq[Edge[int]]()
+    edges = newSeq[Edge[int, int]]()
   for i in 0..<E:
     let a, b, c = nextInt()
     edges.add(initEdge(a,b,c))

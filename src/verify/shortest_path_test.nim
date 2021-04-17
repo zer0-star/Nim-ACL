@@ -15,7 +15,7 @@ proc main() =
       c = nextInt()
     g.addEdge(a, b, c)
   
-  let (dist, prev) = g.dijkstra(s)
+  let dist = g.dijkstra(s)
   if dist[t] == int.inf:
     echo -1
   else:
@@ -25,7 +25,7 @@ proc main() =
     while true:
       ans.add(u)
       if u == s: break
-      u = prev[u]
+      u = dist.prev[u]
     ans.reverse
     echo dist[t], " ", ans.len - 1
     for i in 0..<ans.len - 1:

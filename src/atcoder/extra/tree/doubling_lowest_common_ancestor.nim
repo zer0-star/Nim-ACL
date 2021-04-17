@@ -7,7 +7,8 @@ when not declared ATCODER_LOWEST_COMMON_ANCESTOR_DOUBLING:
     dep:seq[int]
     table:seq[seq[int]]
   
-  proc initDoublingLowestCommonAncestor*[T](g:Graph[T], r = 0):DoublingLowestCommonAncestor[T] =
+  proc initDoublingLowestCommonAncestor*[G:Graph](g:G, r = 0):DoublingLowestCommonAncestor[G.T] =
+    type T = G.T
     var
       LOG = 0
       t = 1

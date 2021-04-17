@@ -2,7 +2,7 @@ import atcoder/extra/graph/graph_template
 import std/os
 
 #dot -Tpng graph.dot -o graph.png
-template graphviz*[T](g:Graph[T], fname = "graph.pdf", base = 0) =
+template graphviz*[G:Graph](g:G, fname = "graph.pdf", base = 0) =
   when declared DEBUG:
     when DEBUG:
       var weighted=false;#,directed=true;

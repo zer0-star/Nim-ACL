@@ -48,7 +48,6 @@ when not declared ATCODER_INTERNAL_SUGAR_HPP:
   macro `=>`*(p, b: untyped): untyped =
     ## Syntax sugar for anonymous procedures.
     ## It also supports pragmas.
-
     var
       params = @[ident"auto"]
       name = newEmptyNode()

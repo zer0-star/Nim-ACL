@@ -1,5 +1,5 @@
 import std/math
-import atcoder/header
+import atcoder/extra/other/floatutils
 import atcoder/extra/geometry/geometry_template
 import atcoder/extra/geometry/polygon
 
@@ -19,7 +19,7 @@ type CanvasData[Real] = object
 
 
 proc convert[Real](self:CanvasData[Real], p:Point[Real]):Point[Real] =
-  return initPoint((p.re - self.xmin)/self.d * D, (p.im - self.ymin)/self.d * D)
+  return initPoint((p.re - self.xmin)/self.d * D, D - (p.im - self.ymin)/self.d * D)
 proc convert[Real](self:CanvasData[Real], c:Circle[Real]):Circle[Real] =
   return initCircle(self.convert c.p, c.r/self.d*D)
 proc convert[Real](self:CanvasData[Real], l:Line[Real]):Line[Real] =
@@ -28,6 +28,8 @@ proc convert[Real](self:CanvasData[Real], l:Segment[Real]):Segment[Real] =
   return initSegment(self.convert l.a, self.convert l.b)
 proc convert[Real](self:CanvasData[Real], p:Polygon[Real]):Polygon[Real] =
   for p in p: result.add(self.convert p)
+
+const MARGIN = 5.0
 
 proc setCanvasSize[Real](self: var CanvasData[Real]) =
   var
@@ -51,8 +53,8 @@ proc setCanvasSize[Real](self: var CanvasData[Real]) =
       r = p[0].r
     update(initPoint(c.re+r,c.im+r))
     update(initPoint(c.re-r,c.im-r))
-  xmin -= 10.0;ymin -= 10.0
-  xmax += 10.0;ymax += 10.0
+  xmin -= MARGIN;ymin -= MARGIN
+  xmax += MARGIN;ymax += MARGIN
   let d = max(xmax - xmin, ymax - ymin)
   self.xmin = xmin
   self.ymin = ymin
@@ -65,20 +67,53 @@ type Canvas[Real] = object
   canvas_data: CanvasData[Real]
 
 # initCanvas {{{
-proc init[Real](self: var Canvas[Real]) =
+proc initCanvas*[Real]():Canvas[Real] =
+  result = Canvas[Real]()
   app.init()
-  self = Canvas(Win:newWindow("Canvas"), Ctl:newControl(), canvas_data: CanvasData())
-  self.Ctl.widthMode=WidthMode_Fill
-  self.Ctl.heightMode=HeightMode_Fill
-  self.Win.add(self.Ctl)
-  self.Win.width = D
-  self.Win.height = D
-  var s = self.canvas_data.addr
+  result = Canvas[Real](Win:newWindow("Canvas"), Ctl:newControl(), canvas_data: CanvasData[Real]())
+  result.Ctl.widthMode = WidthMode_Fill
+  result.Ctl.heightMode = HeightMode_Fill
+  result.Win.add(result.Ctl)
+  result.Win.width = D
+  result.Win.height = D
+  var s = result.canvas_data.addr
 
-  self.Ctl.onClick = proc(c:ClickEvent)=
+  result.Ctl.onClick = proc(c:ClickEvent)=
     echo "Canvas"
 
-  self.Ctl.onDraw = proc(e:DrawEvent) =
+  proc getLineEndpoints(l:Line[Real]):Line[Real] =
+    let D2 = D * 5
+    let v = l.b - l.a
+    let
+      left = initPoint(Real(0), Real(0)) !! initPoint(Real(0), Real(D2))
+      right = initPoint(Real(D2), Real(0)) !! initPoint(Real(D2), Real(D2))
+      bottom = initPoint(Real(0), Real(0)) !! initPoint(Real(D2), Real(0))
+      top = initPoint(Real(0), Real(D2)) !! initPoint(Real(D2), Real(D2))
+      li = intersect(left, l)
+      ri = intersect(right, l)
+      bi = intersect(bottom, l)
+      ti = intersect(top, l)
+    if li:
+      let lp = crossPoint(left, l)
+      if ri:
+        return lp -- crossPoint(right, l)
+      elif bi:
+        return lp -- crossPoint(bottom, l)
+      elif ti:
+        return lp -- crossPoint(top, l)
+    elif ri:
+      let rp = crossPoint(right, l)
+      if ti:
+        return rp -- crossPoint(top, l)
+      elif bi:
+        return rp -- crossPoint(bottom, l)
+    elif bi:
+      let bp = crossPoint(bottom, l)
+      if ti:
+        return bp -- crossPoint(top, l)
+    return l
+
+  result.Ctl.onDraw = proc(e:DrawEvent) =
     let Cv=e.control.canvas
   
     Cv.areaColor=rgb(255,240,180)
@@ -94,10 +129,11 @@ proc init[Real](self: var Canvas[Real]) =
     for (l, label, col) in s[].l:
       let l = s[].convert l
       Cv.lineColor = col
-      Cv.drawLine(l.a.re.int, l.a.im.int, l.b.re.int, l.b.im.int)
+      let l2 = getLineEndpoints(l)
+      Cv.drawLine(l2.a.re.int, l2.a.im.int, l2.b.re.int, l2.b.im.int)
       Cv.textColor = col
       Cv.drawText(label, l.a.re.int + 10, l.a.im.int - 20)
-    for (l, label, col) in s[].l:
+    for (l, label, col) in s[].s:
       let l = s[].convert l
       Cv.lineColor = col
       Cv.drawLine(l.a.re.int, l.a.im.int, l.b.re.int, l.b.im.int)
@@ -120,48 +156,21 @@ proc init[Real](self: var Canvas[Real]) =
       let p = poly[0]
       Cv.textColor = col
       Cv.drawText(label, p.re.int + 10, p.im.int - 20)
-
-#    Cv.textColor=rgb(0,255,0) # green
-#    Cv.fontSize=20
-#    Cv.drawText("text",10,180)
-#  
-#  #  Cv.areaColor=rgb(0,0,255) # blue
-#  #  Cv.drawRectArea(120,120,180,200)
-#  
-#    Cv.lineColor=rgb(255,0,0) # red
-#    Cv.drawLine(30,150,180,40)
-#  
-#    Cv.drawArcOutline(100, 100, 50.0, 1.57, 3.14)
-#    Cv.lineColor=rgb(0, 0, 0) # black
-#    Cv.areaColor=rgb(0, 0, 0) # red
-#    Cv.drawEllipseArea(200, 200, 5, 5)
-#
-##  Cv.drawImage(Img,10,10,65)
-
 # }}}
 
-proc addPoint[Real](self: var Canvas[Real], p:Point[Real], label = "", color = rgb(0, 0, 0)) =
-  self.canvas_data.p.add((p, label, color))
-proc addLine[Real](self: var Canvas[Real], l:Line[Real], label = "", color = rgb(0, 0, 0)) =
-  self.canvas_data.l.add((l, label, color))
-proc addSegment[Real](self: var Canvas[Real], s:Segment[Real], label = "", color = rgb(0, 0, 0)) =
-  self.canvas_data.s.add((s, label, color))
-proc addCircle[Real](self: var Canvas[Real], c:Circle[Real], label = "", color = rgb(0, 0, 0)) =
-  self.canvas_data.c.add((c, label, color))
-proc addPolygon[Real](self: var Canvas[Real], p:Polygon[Real], label = "", color = rgb(0, 0, 0)) =
-  self.canvas_data.poly.add((p, label, color))
+proc add*[Real](self: var Canvas[Real], p:auto, label = "", color = rgb(0, 0, 0)) =
+  when p is Point:
+    self.canvas_data.p.add((p, label, color))
+  elif p is Line:
+    self.canvas_data.l.add((p, label, color))
+  elif p is Segment:
+    self.canvas_data.s.add((p, label, color))
+  elif p is Circle:
+    self.canvas_data.c.add((p, label, color))
+  elif p is Polygon:
+    self.canvas_data.poly.add((p, label, color))
 
-proc show[Real](self: Canvas[Real]) =
+proc show*[Real](self: Canvas[Real]) =
   self.Win.show()
   app.run()
 
-#var d = Canvas()
-#d.init()
-
-#d.addPoint(initPoint(200, 150), "X")
-#d.addPoint(initPoint(233, 150), "Y")
-#d.addLine(initLine(initPoint(222, 333), initPoint(333, 444)))
-#d.addCircle(initCircle(initPoint(100, 100), 50), "C")
-#d.addPolygon(@[initPoint(111, 222), initPoint(222, 222), initPoint(222, 111), initPoint(111, 111)], "P")
-
-#d.show()

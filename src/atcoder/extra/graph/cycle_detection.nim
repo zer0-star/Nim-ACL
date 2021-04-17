@@ -3,11 +3,11 @@ when not declared ATCODER_CYCLE_DETECTION_HPP:
   import atcoder/extra/graph/graph_template
   import options
 
-  proc cycleDetection*[T](g:Graph[T]):Option[seq[Edge[T]]] =
+  proc cycleDetection*[G:Graph](g:G):Option[seq[Edge[G.T, G.U]]] =
     var
       used = newSeq[int](g.len)
-      pre = newSeq[Edge[T]](g.len)
-      circle = newSeq[Edge[T]]()
+      pre = newSeq[Edge[G.T, G.U]](g.len)
+      circle = newSeq[Edge[G.T, G.U]]()
     proc dfs(idx:int):bool =
       used[idx] = 1
       for e in g[idx]:
@@ -28,4 +28,4 @@ when not declared ATCODER_CYCLE_DETECTION_HPP:
       if used[i] == 0 and dfs(i):
         circle.reverse
         return circle.some
-    return seq[Edge[T]].none
+    return seq[Edge[G.T, G.U]].none

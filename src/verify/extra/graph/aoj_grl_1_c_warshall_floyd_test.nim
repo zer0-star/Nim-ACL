@@ -12,16 +12,21 @@ proc main() =
   for i in 0..<E:
     var x, y, z = nextInt()
     mat[x][y] = z
-  mat = warshall_floyd(mat)
+  let dist = warshall_floyd(mat)
   for i in 0..<V:
-    if mat[i][i] < 0:
+    if dist[i][i] < 0:
       echo "NEGATIVE CYCLE"
       return
   for i in 0..<V:
     for j in 0..<V:
       if j > 0: stdout.write " "
-      if mat[i][j] == int.inf: stdout.write "INF"
-      else: stdout.write mat[i][j]
+      if dist[i][j] == int.inf: stdout.write "INF"
+      else:
+        let p = dist.path(i, j)
+        var s = 0
+        for k in 0..<p.len - 1: s += mat[p[k]][p[k + 1]]
+        assert s == dist[i][j]
+        stdout.write dist[i][j]
     echo ""
 
 main()
