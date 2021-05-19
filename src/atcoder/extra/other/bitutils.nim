@@ -22,14 +22,19 @@ when not declared ATCODER_BITUTILS_HPP:
   proc `&`*(a:SomeInteger, b:SomeInteger or openarray[int]):auto = a and b
   proc `|`*(a:SomeInteger, b:SomeInteger or openarray[int]):auto = a or b
 
-  proc bitsToSeq*[B:SomeInteger](b:B): seq[int] =
+  proc `@`*[B:SomeInteger](b:B): seq[int] =
     result = newSeq[int]()
     for i in 0..<(8 * sizeof(B)):
-      if b[i] == 1: result.add(i)
+      if b[i]: result.add(i)
+  proc `@^`*(v:openArray[int]): int =
+    result = 0
+    for i in v:
+      result[i] = 1
+
   proc toBitStr*[B:SomeInteger](b:B, n = -1):string =
     let n = if n == -1: sizeof(B) * 8 else: n
     result = ""
-    for i in countdown(n-1,0):result &= b[i]
+    for i in countdown(n-1,0):result.add if b[i]: '1' else: '0'
   proc allSetBits*[B:SomeInteger](n:int):B =
     if n == 64:
       return not uint64(0)
@@ -51,5 +56,5 @@ when not declared ATCODER_BITUTILS_HPP:
       if not found: break
 
   iterator subsets*[B:SomeInteger](b:B):B =
-    for b in subsets[B](bitsToSeq(b)):
+    for b in subsets[B](@b):
       yield b

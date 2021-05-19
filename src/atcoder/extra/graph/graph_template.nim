@@ -26,7 +26,11 @@ when not declared ATCODER_GRAPH_TEMPLATE_HPP:
   proc `<`*[T, U](a, b:Edge[T, U]):bool = a.weight < b.weight
   
   proc initGraph*[T](n:int):Graph[T, int, TRUE] =
-    return Graph[T, int, TRUE](len:n, adj:newSeqWith(n,newSeq[Edge[T, int]]()))
+    var adj = newSeq[seq[Edge[T, int]]]()
+    for i in 0..<n:
+      adj.add(newSeq[Edge[T, int]]())
+#    return Graph[T, int, TRUE](len:n, adj:newSeqWith(n,newSeq[Edge[T, int]]()))
+    return Graph[T, int, TRUE](len:n, adj:adj)
   proc initGraph*[T, U](n:int, id:proc(u:U):int):Graph[T, U, TRUE] =
     return Graph[T, U, TRUE](len:n, adj:newSeqWith(n,newSeq[Edge[T, U]]()), id:id)
   proc initGraphProc*[T, U](n:int, id:proc(u:U):int, adj:proc(u:U):seq[(U, T)]):Graph[T, U, FALSE] =

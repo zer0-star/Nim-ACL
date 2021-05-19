@@ -104,5 +104,5 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not SparseMonomial, r:Spar
       for (d, v) in b:
         a[i + d] -= q[i] * v
     return (q, a[0..<max_deg])
-  proc `div`*[T:FieldElem](a: FormalPowerSeries[T], b:SparseFormalPowerSeries[T]):auto = a.divModRaw(b)[0]
-  proc `mod`*[T:FieldElem](a: FormalPowerSeries[T], b:SparseFormalPowerSeries[T]):auto = a.divModRaw(b)[1]
+  proc `div`*[T:FieldElem](a: FormalPowerSeries[T], b:SparseFormalPowerSeries[T]):auto = a.divMod(b)[0]
+  proc `mod`*[T:FieldElem](a: FormalPowerSeries[T], b:SparseFormalPowerSeries[T]):auto = a.divMod(b)[1]

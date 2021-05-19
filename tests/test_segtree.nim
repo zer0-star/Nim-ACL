@@ -116,8 +116,8 @@ test "SegtreeTest, CompareNaive":
 
     for l in 0..n:
       for r in l..n:
-        check seg0.prod(l ..< r) == seg1.prod(l .. <r)
-        check seg0.prod(l ..< r) == seg1[l .. <r]
+        check seg0.prod(l ..< r) == seg1.prod(l ..< r)
+        check seg0.prod(l ..< r) == seg1[l ..< r]
 
     for l in 0..n:
       for r in l..n:
@@ -133,6 +133,23 @@ test "SegtreeTest, CompareNaive":
         check seg0.min_left(r, leq_y) ==
           seg1.min_left(r, (x:string) => x.len <= y.len)
 
+test "SegtreeTest, CompareNaiveBackwards":
+  for n in 0..<30:
+    var
+      seg0 = initSegtreeNaive(n, op, e)
+      seg1 = initSegTree(n, op, e)
+    for i in 0..<n:
+      var s = ""
+      s &= chr('a'.int + i)
+      seg0.set(i, s)
+      seg1.set(i, s)
+      seg1[i] = s
+
+    for l in 0..n:
+      for r in l..n:
+        check seg0.prod(l ..< r) == seg1.prod(l .. ^(n - r + 1))
+        check seg0.prod(l ..< r) == seg1[l .. ^(n - r + 1)]
+
 test "SegtreeTest, Assign":
-  var seg0:segtree[string, (op:op, e:e)]
+  var seg0:SegTreeType(string, op, e)
   seg0.init(10)

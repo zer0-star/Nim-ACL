@@ -4,7 +4,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
   import std/sugar, std/sequtils, std/bitops
   import atcoder/internal_bit, atcoder/rangeutils
   type segtree[S,F;useP:static[bool];p:static[tuple]] = object
-    n, size, log:int
+    len, size, log:int
     when S isnot void:
       d:seq[S]
     when F isnot void:
@@ -70,7 +70,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
         n = v.len
         log = ceil_pow2(n)
         size = 1 shl log
-      self.n = n;self.log = log;self.size = size
+      self.len = n;self.log = log;self.size = size
       when ST.hasLazy:
         when ST.hasData:
           self.lz = newSeqWith(size, ST.calc_id())
@@ -111,7 +111,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
 
 #  proc set*[ST:segtree](self: var ST, p:int, x:ST.S or ST.F) =
   proc set*[ST:segtree](self: var ST, p:int, x:auto) =
-    assert p in 0..<self.n
+    assert p in 0..<self.len
     let p = p + self.size
     when ST.hasLazy:
       for i in countdown(self.log, 1): self.push(p shr i)
@@ -120,9 +120,10 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       for i in 1..self.log: self.update(p shr i)
     else:
       self.lz[p] = x
+  proc `[]=`*[ST:segtree](self: var ST, p:int, x:auto) = self.set(p, x)
 
   proc get*[ST:segtree](self: var ST, p:int):auto =
-    assert p in 0..<self.n
+    assert p in 0..<self.len
     let p = p + self.size
     when ST.hasLazy:
       for i in countdown(self.log, 1): self.push(p shr i)
@@ -130,11 +131,12 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       return self.d[p]
     else:
       return self.lz[p]
+  proc `[]`*[ST:segtree](self: var ST, p:int):auto = self.get(p)
 
-  proc prod*[ST:segtree](self:var ST, p:Slice[int]):ST.S =
+  proc prod*[ST:segtree](self:var ST, p:Slice[int] | HSlice[int, BackwardsIndex]):ST.S =
     static: assert ST.hasData
-    var (l, r) = p.halfOpenEndpoints
-    assert 0 <= l and l <= r and r <= self.n
+    var (l, r) = self.halfOpenEndpoints(p)
+    assert 0 <= l and l <= r and r <= self.len
     if l == r: return ST.calc_e()
     l += self.size;r += self.size
     when ST.hasLazy:
@@ -147,6 +149,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       if (r and 1) != 0: r.dec;smr = ST.calc_op(self.d[r], smr)
       l = l shr 1;r = r shr 1
     return ST.calc_op(sml, smr)
+  proc `[]`*[ST:segtree](self:var ST, p:Slice[int] | HSlice[int, BackwardsIndex]):ST.S = self.prod(p)
 
   proc all_prod*[ST:segtree](self:ST):auto = self.d[1]
 
@@ -159,7 +162,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
     return base_n..<base_n + l
 
   proc apply*[ST:segtree](self: var ST, p:int, f:ST.F) =
-    assert p in 0..<self.n
+    assert p in 0..<self.len
     let p = p + self.size
     when ST.hasLazy:
       for i in countdown(self.log, 1): self.push(p shr i)
@@ -168,9 +171,9 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       for i in 1..self.log: self.update(p shr i)
     else:
       self.lz[p] = when ST.useP: ST.calc_p(f, self.getPos(p, p - self.size)) else: f
-  proc apply*[ST:segtree](self: var ST, p:Slice[int], f:ST.F) =
-    var (l, r) = p.halfOpenEndpoints
-    assert 0 <= l and l <= r and r <= self.n
+  proc apply*[ST:segtree](self: var ST, p:Slice[int] | HSlice[int, BackwardsIndex], f:ST.F) =
+    var (l, r) = self.halfOpenEndpoints(p)
+    assert 0 <= l and l <= r and r <= self.len
     if l == r: return
 
     l += self.size
@@ -197,9 +200,9 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
 #  }
   proc max_right*[ST:segtree](self:var ST, l:int, g:(ST.S)->bool):int =
     static: assert ST.hasData
-    assert l in 0..self.n
+    assert l in 0..self.len
     assert g(ST.calc_e())
-    if l == self.n: return self.n
+    if l == self.len: return self.len
     var l = l + self.size
     when ST.hasLazy:
       for i in countdown(self.log, 1): self.push(l shr i)
@@ -218,14 +221,14 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       sm = ST.calc_op(sm, self.d[l])
       l.inc
       if not((l and -l) != l): break
-    return self.n
+    return self.len
 
 #  template <bool (*g)(S)> int min_left(int r) {
 #    return min_left(r, [](S x) { return g(x); });
 #  }
   proc min_left*[ST:segtree](self: var ST, r:int, g:(ST.S)->bool):int =
     static: assert ST.hasData
-    assert r in 0..self.n
+    assert r in 0..self.len
     assert g(ST.calc_e())
     if r == 0: return 0
     var r = r + self.size
@@ -247,13 +250,3 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       sm = ST.calc_op(self.d[r], sm)
       if not ((r and -r) != r): break
     return 0
-
-type T = tuple[new_time:int]
-proc op_tt(l, r:T):T =
-  if l.new_time == -1: return r
-  if r.new_time == -1: return l
-  assert l.new_time > r.new_time
-  return l
-
-proc e_t():T = (-1,)
-var st = initDualSegTree(2, op_tt, e_t)

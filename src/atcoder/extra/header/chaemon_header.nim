@@ -1,6 +1,10 @@
 when not declared ATCODER_CHAEMON_HEADER_HPP:
   const ATCODER_CHAEMON_HEADER_HPP* = 1
-  {.hints:off checks:off warnings:off assertions:on optimization:speed.}
+  {.hints:off warnings:off assertions:on optimization:speed.}
+  when defined MYDEBUG:
+    {.checks:on.}
+  else:
+    {.checks:off.}
   import std/algorithm as algorithm_lib
   import std/sequtils as sequtils_lib
   import std/macros as macros_lib
@@ -9,6 +13,8 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   import std/tables as tables_lib
   import std/strutils as strutils_lib
   import std/strformat as strformat_lib
+  import std/options as options_lib
+  import std/bitops as bitops_lib
 
   import atcoder/extra/other/internal_sugar
   import atcoder/extra/other/reader
