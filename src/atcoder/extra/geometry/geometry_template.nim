@@ -1,5 +1,6 @@
 when not declared ATCODER_GEOMETRY_TEMPLATE_HPP:
   const ATCODER_GEOMETRY_TEMPLATE_HPP* = 1
+  import atcoder/extra/other/static_var
   import atcoder/extra/other/floatutils
   import atcoder/extra/other/internal_complex
   import std/math, std/macros
@@ -20,8 +21,8 @@ when not declared ATCODER_GEOMETRY_TEMPLATE_HPP:
   proc rotate*[Real](theta:Real, p:Point):Point =
     return initPoint[Real](cos(theta) * p.re - sin(theta) * p.im, sin(theta) * p.re + cos(theta) * p.im)
   
-  proc radianToDegree*[Real](r:Real):Real = r * 180.Real / Real.getPi()
-  proc degreeToRadian*[Real](d:Real):Real = d * Real.getPi() / 180.Real
+  proc radianToDegree*[Real](r:Real):Real = r * 180.Real / Real$.pi
+  proc degreeToRadian*[Real](d:Real):Real = d * Real$.pi / 180.Real
   
   # smaller angle of the a-b-c
   proc getAngle*[Real](a,b,c:Point[Real]):Real =
@@ -33,7 +34,7 @@ when not declared ATCODER_GEOMETRY_TEMPLATE_HPP:
       beta = arctan2(w.im, w.re)
     if alpha > beta: swap(alpha, beta)
     let theta = beta - alpha
-    return min(theta, 2.Real * Real.getPi() - theta)
+    return min(theta, 2.Real * Real$.pi - theta)
  
   # comparison functions {{{
   #proc eq(a,b:Real):bool = return abs(b - a) < EPS
@@ -44,13 +45,15 @@ when not declared ATCODER_GEOMETRY_TEMPLATE_HPP:
     if a.re !=~ b.re: return a.re <~ b.re
     elif a.im !=~ b.im: return a.im <~ b.im
     return false
-  proc `<`*[Real](a,b:Point[Real]):bool = return a <~ b
+  proc `>~`*[Real](a,b:Point[Real]):bool = b <~ a
+#  proc `<`*[Real](a,b:Point[Real]):bool = return a <~ b
   
   proc `<=~`*[Real](a,b:Point[Real]):bool =
     if a.re !=~ b.re: return a.re <~ b.re
     elif a.im !=~ b.im: return a.im <~ b.im
     return true
-  proc `<=`*[Real](a,b:Point[Real]):bool = return a <=~ b
+  proc `>=~`*[Real](a,b:Point[Real]):bool = b <=~ a
+#  proc `<=`*[Real](a,b:Point[Real]):bool = return a <=~ b
   # }}}
   
   # Line and Segment {{{

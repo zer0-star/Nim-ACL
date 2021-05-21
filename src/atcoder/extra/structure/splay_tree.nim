@@ -7,7 +7,7 @@ when not declared ATCODER_SPLAY_TREE_HPP:
   template hasLazy(self:typedesc):bool = self.L isnot void
 
   type SplayTreeNode*[D, L; hasRev, hasSum:static[bool]] = ref object
-    sz*:int
+    len*:int
     l*, r*, p*: SplayTreeNode[D, L, hasRev, hasSum]
     key*:D
     when hasSum:
@@ -47,7 +47,7 @@ when not declared ATCODER_SPLAY_TREE_HPP:
     const
       hasRev = ST.hasRev
       hasSum = ST.hasSum
-    result = SplayTreeNode[D, L, hasRev, hasSum](key:key, l:nil,r:nil,p:nil,sz:1)
+    result = SplayTreeNode[D, L, hasRev, hasSum](key:key, l:nil,r:nil,p:nil,len:1)
     when hasRev: result.rev = false
     when hasSum: result.sum = key
     when L isnot void: result.lazy = self.OM0
@@ -77,14 +77,14 @@ when not declared ATCODER_SPLAY_TREE_HPP:
   proc is_root*[T:SplayTree](self:T, t:T.Node):bool =
     return t.p == nil or (t.p.l != t and t.p.r != t)
   
-  proc count*[T:SplayTree](self:T, t:T.Node):int = return if t != nil: t.sz else: 0
+  proc count*[T:SplayTree](self:T, t:T.Node):int = return if t != nil: t.len else: 0
 
   proc update*[T:SplayTree](self:T, t:T.Node):auto {.discardable.} =
-    t.sz = 1
+    t.len = 1
     when T.hasSum:
       t.sum = t.key
-      if t.l != nil: t.sz += t.l.sz; t.sum = T.calc_op(t.l.sum, t.sum)
-      if t.r != nil: t.sz += t.r.sz; t.sum = T.calc_op(t.sum, t.r.sum)
+      if t.l != nil: t.len += t.l.len; t.sum = T.calc_op(t.l.sum, t.sum)
+      if t.r != nil: t.len += t.r.len; t.sum = T.calc_op(t.sum, t.r.sum)
     return t
 
   proc propagate*[T:SplayTree](self:T, t:T.Node, x:T.L) =
@@ -304,7 +304,7 @@ when not declared ATCODER_SPLAY_TREE_HPP:
     return self.initNode(x)
   
   proc prod*[T:SplayTree](self:T, t:var T.Node, s:Slice[int]):T.D =
-    let (a, b) = s.halfOpenEndpoints
+    let (a, b) = self.halfOpenEndpoints(s)
     self.splay(t)
     var x = self.split(t, a)
     var y = self.split(x[1], b - a)
@@ -338,7 +338,7 @@ when not declared ATCODER_SPLAY_TREE_HPP:
 
   proc apply*[T:SplayTree](self:T, t:var T.Node, s:Slice[int], pp:T.L) =
     static: assert T.L isnot void
-    let (a, b) = s.halfOpenEndpoints
+    let (a, b) = self.halfOpenEndpoints(s)
     self.splay(t)
     var
       x = self.split(t, a)

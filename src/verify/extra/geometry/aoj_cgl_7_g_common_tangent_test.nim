@@ -16,6 +16,9 @@ block main:
       ans.add l.a
     else:
       ans.add l.b
-  ans.sort()
+  ans.sort() do (x, y:Point[float]) -> int:
+    if x <~ y: -1
+    elif x >~ y: 1
+    else: 0
   for a in ans:
     echo a.toString()

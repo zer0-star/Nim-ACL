@@ -26,7 +26,10 @@ when not declared ATCODER_CLOSEST_PAIR_HPP:
   #  if ps.len <= 1: throw (0)
     if ps.len <= 1: assert(false)
     var ps = ps
-    ps.sort(cmp[Point[Real]])
+    ps.sort() do (x, y:Point[Real]) -> int:
+      if x <~ y: -1
+      elif x >~ y: 1
+      else: 0
   
     proc compare_y(a, b:Point[Real]):bool =
       return a.im <~ b.im

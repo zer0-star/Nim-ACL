@@ -15,9 +15,9 @@ when not declared ATCODER_FLOAT_UTILS_HPP:
   converter float32Converter*(a:string):float32 = a.parseFloat.float32
 
   staticVar FieldElem:
-    pi:self.type
-    eps:self.type
-    inf:self.type
+    pi:U.type
+    eps:U.type
+    inf:U.type
 
 #  proc getPi*(Real:typedesc):Real = Real.getParameters()[].pi
 #  proc getEPS*(Real:typedesc):Real = Real.getParameters()[].eps
@@ -29,30 +29,30 @@ when not declared ATCODER_FLOAT_UTILS_HPP:
     var (l, r) = (l, r)
     if l > r: swap(l, r)
     let d = r - l
-    let eps = Real:::eps
+    let eps = Real$.eps
     if d < eps: return true
     if l <= Real(0) and Real(0) <= r: return false
     return d < eps * min(abs(l), abs(r))
 
-  # float comp
-  # TODO: relative error
-  proc `=~`*[Real](a,b:Real):bool = abs(a - b) < Real:::eps
-  proc `!=~`*[Real](a,b:Real):bool = abs(a - b) > Real:::eps
-  proc `<~`*[Real](a,b:Real):bool = a + Real:::eps < b
-  proc `>~`*[Real](a,b:Real):bool = a > b + Real:::eps
-  proc `<=~`*[Real](a,b:Real):bool = a < b + Real:::eps
-  proc `>=~`*[Real](a,b:Real):bool = a + Real:::eps > b
-
-  proc initPrec*(Real:typedesc[SomeFloat], n = 0) =
-    Real:::pi = PI.Real
-    Real:::inf = Inf.Real
+  template initPrec*(Real:typedesc) =
+    Real$.pi = PI.Real
+    Real$.inf = Inf.Real
     when Real is float or Real is float64:
-      Real:::eps = 1e-9.Real
+      Real$.eps = 1e-9.Real
     elif Real is float32:
-      Real:::eps = 1e-9.Real
+      Real$.eps = 1e-9.Real
+    # float comp
+    # TODO: relative error
+    proc `=~`*(a,b:Real):bool = abs(a - b) < Real$.eps
+    proc `!=~`*(a,b:Real):bool = abs(a - b) > Real$.eps
+    proc `<~`*(a,b:Real):bool = a + Real$.eps < b
+    proc `>~`*(a,b:Real):bool = a > b + Real$.eps
+    proc `<=~`*(a,b:Real):bool = a < b + Real$.eps
+    proc `>=~`*(a,b:Real):bool = a + Real$.eps > b
 
+  # for OMC
   proc estimateRational*[Real](x:Real, n:int) =
-    var m = Real:::inf
+    var m = Real$.inf
     var q = 1
     while q <= n:
       let p = round(x * q.Real)
@@ -64,5 +64,5 @@ when not declared ATCODER_FLOAT_UTILS_HPP:
     return
 
   float.initPrec()
-  float64.initPrec()
+#  float64.initPrec()
   float32.initPrec()
