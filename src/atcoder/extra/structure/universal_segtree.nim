@@ -110,9 +110,10 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
     init_lazy_segtree[S,F](newSeqWith(n, e0()), op,e,mapping,composition,id,p)
 
 #  proc set*[ST:segtree](self: var ST, p:int, x:ST.S or ST.F) =
-  proc set*[ST:segtree](self: var ST, p:int, x:auto) =
+  proc set*[ST:segtree](self: var ST, p:IndexType, x:auto) =
+    var p = self^^p
     assert p in 0..<self.len
-    let p = p + self.size
+    p += self.size
     when ST.hasLazy:
       for i in countdown(self.log, 1): self.push(p shr i)
     when ST.hasData:
@@ -122,18 +123,19 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       self.lz[p] = x
   proc `[]=`*[ST:segtree](self: var ST, p:int, x:auto) = self.set(p, x)
 
-  proc get*[ST:segtree](self: var ST, p:int):auto =
+  proc get*[ST:segtree](self: var ST, p:IndexType):auto =
+    var p = self^^p
     assert p in 0..<self.len
-    let p = p + self.size
+    p += self.size
     when ST.hasLazy:
       for i in countdown(self.log, 1): self.push(p shr i)
     when ST.hasData:
       return self.d[p]
     else:
       return self.lz[p]
-  proc `[]`*[ST:segtree](self: var ST, p:int):auto = self.get(p)
+  proc `[]`*[ST:segtree](self: var ST, p:IndexType):auto = self.get(p)
 
-  proc prod*[ST:segtree](self:var ST, p:Slice[int] | HSlice[int, BackwardsIndex]):ST.S =
+  proc prod*[ST:segtree](self:var ST, p:RangeType):ST.S =
     static: assert ST.hasData
     var (l, r) = self.halfOpenEndpoints(p)
     assert 0 <= l and l <= r and r <= self.len
@@ -149,7 +151,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       if (r and 1) != 0: r.dec;smr = ST.calc_op(self.d[r], smr)
       l = l shr 1;r = r shr 1
     return ST.calc_op(sml, smr)
-  proc `[]`*[ST:segtree](self:var ST, p:Slice[int] | HSlice[int, BackwardsIndex]):ST.S = self.prod(p)
+  proc `[]`*[ST:segtree](self:var ST, p:RangeType):ST.S = self.prod(p)
 
   proc all_prod*[ST:segtree](self:ST):auto = self.d[1]
 
@@ -161,9 +163,10 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       base_n = (k - (1 shl h)) * l - base
     return base_n..<base_n + l
 
-  proc apply*[ST:segtree](self: var ST, p:int, f:ST.F) =
+  proc apply*[ST:segtree](self: var ST, p:IndexType, f:ST.F) =
+    var p = self^^p
     assert p in 0..<self.len
-    let p = p + self.size
+    p += self.size
     when ST.hasLazy:
       for i in countdown(self.log, 1): self.push(p shr i)
     when ST.hasData:
@@ -171,7 +174,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       for i in 1..self.log: self.update(p shr i)
     else:
       self.lz[p] = when ST.useP: ST.calc_p(f, self.getPos(p, p - self.size)) else: f
-  proc apply*[ST:segtree](self: var ST, p:Slice[int] | HSlice[int, BackwardsIndex], f:ST.F) =
+  proc apply*[ST:segtree](self: var ST, p:RangeType, f:ST.F) =
     var (l, r) = self.halfOpenEndpoints(p)
     assert 0 <= l and l <= r and r <= self.len
     if l == r: return
@@ -198,12 +201,13 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
 #  template <bool (*g)(S)> int max_right(int l) {
 #    return max_right(l, [](S x) { return g(x); });
 #  }
-  proc max_right*[ST:segtree](self:var ST, l:int, g:(ST.S)->bool):int =
+  proc max_right*[ST:segtree](self:var ST, l:IndexType, g:(ST.S)->bool):int =
     static: assert ST.hasData
+    var l = self^^l
     assert l in 0..self.len
     assert g(ST.calc_e())
     if l == self.len: return self.len
-    var l = l + self.size
+    l += self.size
     when ST.hasLazy:
       for i in countdown(self.log, 1): self.push(l shr i)
     var sm = ST.calc_e()
@@ -226,12 +230,13 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
 #  template <bool (*g)(S)> int min_left(int r) {
 #    return min_left(r, [](S x) { return g(x); });
 #  }
-  proc min_left*[ST:segtree](self: var ST, r:int, g:(ST.S)->bool):int =
+  proc min_left*[ST:segtree](self: var ST, r:IndexType, g:(ST.S)->bool):int =
+    var r = self^^r
     static: assert ST.hasData
     assert r in 0..self.len
     assert g(ST.calc_e())
     if r == 0: return 0
-    var r = r + self.size
+    r += self.size
     when ST.hasLazy:
       for i in countdown(self.log, 1): self.push((r - 1) shr i)
     var sm = ST.calc_e()

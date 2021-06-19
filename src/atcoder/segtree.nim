@@ -49,17 +49,19 @@ when not declared ATCODER_SEGTREE_HPP:
     result = SegTreeType(S, op, e)()
     result.init(newSeqWith(n, result.type.calc_e()))
 
-  proc set*[ST:SegTree](self:var ST, p:int, x:ST.S) =
+  proc set*[ST:SegTree](self:var ST, p:IndexType, x:ST.S) =
+    var p = self^^p
     assert p in 0..<self.len
-    var p = p + self.size
+    p += self.size
     self.d[p] = x
     for i in 1..self.log: self.update(p shr i)
 
-  proc get*[ST:SegTree](self:ST, p:int):ST.S =
+  proc get*[ST:SegTree](self:ST, p:IndexType):ST.S =
+    let p = self^^p
     assert p in 0..<self.len
     return self.d[p + self.size]
 
-  proc prod*[ST:SegTree](self:ST, p:Slice[int] | HSlice[int, BackwardsIndex]):ST.S =
+  proc prod*[ST:SegTree](self:ST, p:RangeType):ST.S =
     var (l, r) = self.halfOpenEndpoints(p)
     assert 0 <= l and l <= r and r <= self.len
     var
@@ -71,20 +73,20 @@ when not declared ATCODER_SEGTREE_HPP:
       l = l shr 1
       r = r shr 1
     return ST.calc_op(sml, smr)
-  proc `[]`*[ST:SegTree](self:ST, p:int):auto = self.get(p)
-  proc `[]`*[ST:SegTree](self:ST, p:Slice[int] | HSlice[int, BackwardsIndex]):auto = self.prod(p)
-  proc `[]=`*[ST:SegTree](self:var ST, p:int, x:ST.S) = self.set(p, x)
+  proc `[]`*[ST:SegTree](self:ST, p:IndexType):auto = self.get(p)
+  proc `[]`*[ST:SegTree](self:ST, p:RangeType):auto = self.prod(p)
+  proc `[]=`*[ST:SegTree](self:var ST, p:IndexType, x:ST.S) = self.set(p, x)
 
   proc all_prod*[ST:SegTree](self:ST):ST.S = self.d[1]
 
 #  proc max_right*[ST:SegTree, f:static[proc(s:ST.S):bool]](self:ST, l:int):auto = self.max_right(l, f)
-  proc max_right*[ST:SegTree](self:ST, l:int, f:proc(s:ST.S):bool):int =
+  proc max_right*[ST:SegTree](self:ST, l:IndexType, f:proc(s:ST.S):bool):int =
+    var l = self^^l
     assert l in 0..self.len
     assert f(ST.calc_e())
     if l == self.len: return self.len
-    var
-      l = l + self.size
-      sm = ST.calc_e()
+    l += self.size
+    var sm = ST.calc_e()
     while true:
       while l mod 2 == 0: l = l shr 1
       if not f(ST.calc_op(sm, self.d[l])):
@@ -100,13 +102,13 @@ when not declared ATCODER_SEGTREE_HPP:
     return self.len
 
 #  proc min_left*[ST:SegTree, f:static[proc(s:ST.S):bool]](self:ST, r:int):auto = self.min_left(r, f)
-  proc min_left*[ST:SegTree](self:ST, r:int, f:proc(s:ST.S):bool):int =
+  proc min_left*[ST:SegTree](self:ST, r:IndexType, f:proc(s:ST.S):bool):int =
+    var r = self^^r
     assert r in 0..self.len
     assert f(ST.calc_e())
     if r == 0: return 0
-    var
-      r = r + self.size
-      sm = ST.calc_e()
+    r += self.size
+    var sm = ST.calc_e()
     while true:
       r.dec
       while r > 1 and (r mod 2 != 0): r = r shr 1

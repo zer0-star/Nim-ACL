@@ -15,6 +15,7 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   import std/strformat as strformat_lib
   import std/options as options_lib
   import std/bitops as bitops_lib
+  import std/streams as streams_lib
 
   import atcoder/extra/other/internal_sugar
   import atcoder/extra/other/reader
@@ -27,6 +28,7 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   import atcoder/extra/other/reference
   import atcoder/extra/other/floatutils
   import atcoder/extra/other/zip
+  import atcoder/extra/other/solve_proc
 
 #  converter toBool[T:ref object](x:T):bool = x != nil
 #  converter toBool[T](x:T):bool = x != T(0)

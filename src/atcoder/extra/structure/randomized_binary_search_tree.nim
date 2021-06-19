@@ -85,21 +85,21 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
   
   proc count*[RBST:RandomizedBinarySearchTree](self: RBST, t:RBST.Node):auto = (if t != nil: t.cnt else: 0)
   proc sum*[RBST:RandomizedBinarySearchTree](self: RBST, t:RBST.Node):auto = (if t != nil: t.sum else: self.D0)
-  
+  proc len*[RBST:RandomizedBinarySearchTree](self: var RBST, t:RBST.Node):auto = self.count(t)
+  proc len*[RBST:RandomizedBinarySearchTree](self: var RBST):auto = self.len(self.root)
+
   proc update*[RBST:RandomizedBinarySearchTree](self: RBST, t:var RBST.Node):RBST.Node {.inline.} =
     t.cnt = self.count(t.l) + self.count(t.r) + 1
     when RBST.hasSum:
       t.sum = RBST.calc_op(RBST.calc_op(self.sum(t.l), t.key), self.sum(t.r))
     t
-  
+
   proc propagate*[RBST:RandomizedBinarySearchTree](self: var RBST, t:RBST.Node):auto =
     when RBST.hasLazy:
       var t = clone(t)
       if t.lazy != self.L0:
         when RBST.useP:
-          var
-            li = 0
-            ri = 0
+          var (li, ri) = (0, 0)
         if t.l != nil:
           t.l = clone(t.l)
           t.l.lazy = RBST.calc_composition(t.lazy, t.l.lazy)
@@ -121,9 +121,7 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
   proc merge*[RBST:RandomizedBinarySearchTree](self: var RBST, l, r:RBST.Node):auto =
     if l == nil: return r
     elif r == nil: return l
-  #  when RBST.hasLazy:
     var (l, r) = (l, r)
-#    if self.r.rand(l.cnt + r.cnt - 1) < l.cnt:
     if self.test(l.cnt + r.cnt, l.cnt):
       when RBST.hasLazy:
         l = self.propagate(l)
@@ -157,8 +155,6 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
   
   proc build*[RBST:RandomizedBinarySearchTree](self: var RBST, v:seq[RBST.D]) =
     self.root = self.build(0..<v.len, v)
-  #  ptr = 0;
-  #  return build(0, (int) v.size(), v);
   
   proc to_vec*[RBST:RandomizedBinarySearchTree](self: var RBST, r:RBST.Node, v:var seq[RBST.D], i:var int) =
     if r == nil: return
@@ -169,7 +165,7 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
     v[i] = r.key
     i.inc
   #  *it = r.key;
-    self.to_vec(r.r, v, i);
+    self.to_vec(r.r, v, i)
   
   proc to_vec*[RBST:RandomizedBinarySearchTree](self: var RBST, r:RBST.Node):auto =
     result = newSeq[RBST.D](self.count(r))
@@ -231,7 +227,6 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
     else: self.set(t.r, k - self.count(t.l) - 1, x)
     t = self.update(t)
   
-  proc len*[RBST:RandomizedBinarySearchTree](self: var RBST, t:RBST.Node):auto = self.count(t)
   proc empty*[RBST:RandomizedBinarySearchTree](self: var RBST, t:RBST.Node):bool = return t == nil
   proc makeset*[RBST:RandomizedBinarySearchTree](self: var RBST):RBST.Node = nil 
 
@@ -243,10 +238,5 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
   proc apply*[RBST:RandomizedBinarySearchTree](self:var RBST, s:Slice[int], p:RBST.L) = self.apply(self.root, s, p)
   proc set*[RBST:RandomizedBinarySearchTree](self: var RBST, k:int, x:RBST.D) = self.set(self.root, k, x)
   proc `[]=`*[RBST:RandomizedBinarySearchTree](self: var RBST, k:int, x:RBST.D) = self.set(self.root, k, x)
-  proc len*[RBST:RandomizedBinarySearchTree](self: var RBST):auto = self.len(self.root)
   proc empty*[RBST:RandomizedBinarySearchTree](self: var RBST):bool = self.empty(self.root)
   {.pop.}
-
-
-
-

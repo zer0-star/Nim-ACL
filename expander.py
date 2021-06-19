@@ -10,13 +10,14 @@ from typing import List
 
 logger = getLogger(__name__)  # type: Logger
 
-ATCODER_INCLUDE = re.compile(r'\s*(?:include|import)\s*([a-zA-Z0-9_,./\s"]*)\s*')
+ATCODER_INCLUDE = re.compile(
+        r'\s*(?:include|import)\s*([a-zA-Z0-9_,./\s"]*)\s*')
 
-INCLUDE_GUARD = re.compile(r'when\s+not\s+declared\s+ATCODER_[A-Z_]*_HPP')
+WHEN_STATEMENT = re.compile(r'^\s*when\s+.*:')
 ATCODER_DIR = 'atcoder/'
 
 
-def indent_level(line:str):
+def indent_level(line: str):
     """
     インデント用のスペースがいくつあるかを返す
     """
@@ -25,7 +26,8 @@ def indent_level(line:str):
             return i
     return len(line)
 
-def strip_as(line:str)->str:
+
+def strip_as(line: str) -> str:
     """
     import時のasを取り除く
     """
@@ -34,13 +36,14 @@ def strip_as(line:str)->str:
         line = line[:pos]
     return line
 
-def read_source(source:str, level:int, defined:set, lib_path) -> List[str]:
+
+def read_source(source: str, level: int, defined: set, lib_path) -> List[str]:
     """
     stringで渡されたsourceを読み。import, includeが出てきたら深堀りする
     """
     result = []
     for line in source.splitlines():
-        if INCLUDE_GUARD.match(line):
+        if WHEN_STATEMENT.match(line):
             result.append(line)
         else:
             matched = ATCODER_INCLUDE.match(line)
@@ -71,7 +74,7 @@ def read_source(source:str, level:int, defined:set, lib_path) -> List[str]:
     return result
 
 
-def dfs(f: str, level:int, defined:set, lib_path) -> List[str]:
+def dfs(f: str, level: int, defined: set, lib_path) -> List[str]:
     """
     深さ優先でimport/includeを調べる
     """
@@ -84,6 +87,7 @@ def dfs(f: str, level:int, defined:set, lib_path) -> List[str]:
 
     source = open(str(lib_path / f), encoding="utf8", errors='ignore').read()
     return read_source(source, level, defined, lib_path)
+
 
 def main():
     """
@@ -115,6 +119,7 @@ def main():
     else:
         with open('combined.nim', 'w', encoding="utf8", errors='ignore') as f:
             f.write(output)
+
 
 if __name__ == "__main__":
     main()
