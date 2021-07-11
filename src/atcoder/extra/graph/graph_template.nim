@@ -2,27 +2,45 @@ when not declared ATCODER_GRAPH_TEMPLATE_HPP:
   const ATCODER_GRAPH_TEMPLATE_HPP* = 1
   import std/sequtils
   
+  type TRUE = int
+  type FALSE = void
   type
-    Edge*[T] = object
-      src*,dst*:int
+#    Edge*[T] = ref object
+    Edge*[T, U] = object
+      src*,dst*:U
       weight*:T
       rev*:int
-    Edges*[T] = seq[Edge[T]]
-    Graph*[T] = seq[seq[Edge[T]]]
+    Edges*[T, U] = seq[Edge[T, U]]
+    Graph*[T, U, useSeq] = object
+      len*:int
+      when useSeq isnot void:
+        adj*: seq[seq[Edge[T, U]]]
+      else:
+        adj*: proc(u:U):seq[tuple[dst:U, weight:T]]
+      when U isnot int:
+        id*:proc(u:U):int
     Matrix*[T] = seq[seq[T]]
+
+  proc initEdge*[T, U](src,dst:U,weight:T = 1,rev:int = -1):Edge[T, U] =
+    return Edge[T, U](src:src, dst:dst, weight:weight, rev:rev)
+  proc `<`*[T, U](a, b:Edge[T, U]):bool = a.weight < b.weight
   
-  proc initEdge*[T](src,dst:int,weight:T = 1,rev:int = -1):Edge[T] =
-    var e:Edge[T]
-    e.src = src
-    e.dst = dst
-    e.weight = weight
-    e.rev = rev
-    return e
-  
-  proc initGraph*[T](n:int):Graph[T] =
-    return newSeqWith(n,newSeq[Edge[T]]())
-  
-  proc addBiEdge*[T](g:var Graph[T],e:Edge[T]):void =
+  proc initGraph*(n:int, T:typedesc = int, U:typedesc = int):Graph[T, U, TRUE] =
+    return Graph[T, int, TRUE](len:n, adj:newSeqWith(n, newSeq[Edge[T, U]]()))
+  proc initGraph*[T, U](n:int, id:proc(u:U):int):Graph[T, U, TRUE] =
+    return Graph[T, U, TRUE](len:n, adj:newSeqWith(n,newSeq[Edge[T, U]]()), id:id)
+  proc initGraphProc*[T, U](n:int, id:proc(u:U):int, adj:proc(u:U):seq[(U, T)]):Graph[T, U, FALSE] =
+    return Graph[T, U, FALSE](len:n, adj:adj, id:id)
+
+  template `[]`*[G:Graph](g:G, u:G.U):auto =
+    when G.useSeq is TRUE:
+      when u is int: g.adj[u]
+      else: g.adj[g.id(u)]
+    else:
+      g.adj(u)
+
+  proc addBiEdge*[T, U](g:var Graph[T, U, TRUE],e:Edge[T, U]):void =
+#    var e_rev = initEdge[T](e.src, e.dst, e.weight, e.rev)
     var e_rev = e
     swap(e_rev.src, e_rev.dst)
     let (r, s) = (g[e.src].len, g[e.dst].len)
@@ -30,25 +48,27 @@ when not declared ATCODER_GRAPH_TEMPLATE_HPP:
     g[e.dst].add(e_rev)
     g[e.src][^1].rev = s
     g[e.dst][^1].rev = r
-  proc addBiEdge*[T](g:var Graph[T],src,dst:int,weight:T = 1):void =
+
+  proc addBiEdge*[T, U](g:var Graph[T, U, TRUE],src,dst:U,weight:T = 1):void =
     g.addBiEdge(initEdge(src, dst, weight))
 
-  proc addEdge*[T](g:var Graph[T],e:Edge[T]):void =
-    g[e.src].add(e)
-  proc addEdge*[T](g:var Graph[T],src,dst:int,weight:T = T(1)):void =
-    g.addEdge(initEdge(src, dst, weight, -1))
+  proc addEdge*[T, U](g:var Graph[T, U, TRUE], e:Edge[T, U]) = g[e.src].add(e)
+  proc addEdge*[T, U](g:var Graph[T, U, TRUE], src, dst:U, weight:T = 1):void =
+    g.addEdge(initEdge[T, U](src, dst, weight, -1))
 
-  proc initUndirectedGraph*[T](n:int, a,b,c:seq[T]):Graph[T] =
-    result = initGraph[T](n)
+  proc initUndirectedGraph*[T, U](n:int, a,b:seq[U], c:seq[T]):Graph[T, U, TRUE] =
+    result = initGraph[T](n, U)
     for i in 0..<a.len: result.addBiEdge(a[i], b[i], c[i])
-  proc initUndirectedGraph*[T](n:int, a,b:seq[T]):Graph[T] =
-    result = initGraph[T](n)
+  proc initUndirectedGraph*[U](n:int, a,b:seq[U]):Graph[int, U, TRUE] =
+    result = initGraph[int](n, U)
     for i in 0..<a.len: result.addBiEdge(a[i], b[i])
-  proc initDirectedGraph*[T](n:int, a,b:seq[int],c:seq[T]):Graph[T] =
-    result = initGraph[T](n)
+  proc initDirectedGraph*[T, U](n:int, a,b:seq[U],c:seq[T]):Graph[T, U, TRUE] =
+    result = initGraph[T](n, U)
     for i in 0..<a.len: result.addEdge(a[i], b[i], c[i])
-  proc initDirectedGraph*[T](n:int, a,b:seq[int]):Graph[T] =
-    result = initGraph[T](n)
+  proc initDirectedGraph*[U](n:int, a,b:seq[U]):Graph[int, U, TRUE] =
+    result = initGraph[int](n, U)
     for i in 0..<a.len: result.addEdge(a[i], b[i])
 
-  proc `<`*[T](l,r:Edge[T]):bool = l.weight < r.weight
+  template id*[G:Graph](g:G, u:int):int = 
+    when G.U is int: u
+    else: g.id(u)

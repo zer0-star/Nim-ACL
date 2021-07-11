@@ -1,7 +1,7 @@
 when not declared ATCODER_LOWLINK_HPP:
   const ATCODER_LOWLINK_HPP* = 1
   import atcoder/extra/graph/graph_template
-  proc LowLink*(g:Graph[int]):tuple[articulation:seq[int], bridge:seq[(int,int)]] =
+  proc LowLink*(g:Graph):tuple[articulation:seq[int], bridge:seq[(int,int)]] =
     var
       used = newSeq[bool](g.len)
       ord = newSeq[int](g.len)

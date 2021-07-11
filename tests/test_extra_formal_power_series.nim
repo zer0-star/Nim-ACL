@@ -28,7 +28,7 @@ block:
     let q = p div m
     let r = p mod m
     let ms = @[(0, mint(2)), (1, mint(7)), (2, mint(1)), (3, mint(8))]
-    let dm = p.divModRaw(ms)
+    let dm = p.divMod(ms)
     check q * m + r == p
     check dm[0] == q
     check dm[1] == r
@@ -65,7 +65,7 @@ block:
     let q = p div m
     let r = p mod m
     let ms = @[(0, mint(2)), (1, mint(7)), (2, mint(1)), (3, mint(8))]
-    let dm = p.divModRaw(ms)
+    let dm = p.divMod(ms)
     check q * m + r == p
     check dm[0] == q
     check dm[1] == r
@@ -103,7 +103,7 @@ block:
     let q = p div m
     let r = p mod m
     let ms = @[(0, mint(2)), (1, mint(7)), (2, mint(1)), (3, mint(8))]
-    let dm = p.divModRaw(ms)
+    let dm = p.divMod(ms)
     check q * m + r == p
     check dm[0] == q
     check dm[1] == r

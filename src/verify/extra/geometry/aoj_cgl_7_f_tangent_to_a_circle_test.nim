@@ -11,6 +11,6 @@ block main:
     p = initPoint(nextFloat(), nextFloat())
     c = initCircle(initPoint(nextFloat(), nextFloat()), nextFloat())
   var q = tangent(c, p)
-  if q[0] > q[1]: swap(q[0], q[1])
+  if q[0] >~ q[1]: swap(q[0], q[1])
   echo q[0].toString()
   echo q[1].toString()

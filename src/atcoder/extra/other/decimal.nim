@@ -1,8 +1,10 @@
 import "~/git/nim-decimal/decimal/decimal"
 import "~/git/nim-decimal/decimal/decimal_lowlevel"
 import atcoder/extra/other/floatutils
+import atcoder/extra/other/static_var
 
-converter toDecimal(a:int):DecimalType = newDecimal(a)
+converter toDecimal*(a:int):DecimalType = newDecimal(a)
+converter toDecimal*(s:string):DecimalType = newDecimal(s)
 
 proc calcPi*[Real]():Real =
   var
@@ -32,9 +34,13 @@ proc initPrec*(Real:typedesc[DecimalType], n:int) =
   setPrec(n)
   var INF_VAL = newDecimal()
   mpd_setspecial(INF_VAL[], MPD_POS, MPD_INF)
-  DecimalType.getParameters()[] = (n, calcPi[Real](), newDecimal(10)^(-(n - 5)), INF_VAL)
+  DecimalType:::pi = calcPi[Real]()
+  DecimalType:::eps = newDecimal(10)^(-(n - 5))
+  DecimalType:::inf = INF_VAL
 
-proc sin_impl(x:DecimalType):DecimalType =
+#  DecimalType.getParameters()[] = (n, calcPi[Real](), newDecimal(10)^(-(n - 5)), INF_VAL)
+
+proc sin_impl*(x:DecimalType):DecimalType =
   result = newDecimal(0)
   let mx2 = - x * x
   var
@@ -48,7 +54,7 @@ proc sin_impl(x:DecimalType):DecimalType =
     i += 2
 
 proc sin*(x:DecimalType):DecimalType =
-  let r = rem(x, (DecimalType.getPi() * 2))
+  let r = rem(x, ((DecimalType:::pi) * 2))
   return sin_impl(r)
 
 proc cos_impl(x:DecimalType):DecimalType =
@@ -65,7 +71,7 @@ proc cos_impl(x:DecimalType):DecimalType =
     i += 2
 
 proc cos*(x:DecimalType):DecimalType =
-  let r = rem(x, (DecimalType.getPi() * 2))
+  let r = rem(x, ((DecimalType:::pi) * 2))
   return cos_impl(r)
 
 proc tan*(x:DecimalType):DecimalTYpe = sin(x) / cos(x)
@@ -99,7 +105,7 @@ proc arcsin*(x:DecimalType):DecimalType =
     p /= n
 
 proc arccos*(x:DecimalType):DecimalType =
-  DecimalType.getPi() / newDecimal(2) - arcsin(x)
+  (DecimalType:::pi) / newDecimal(2) - arcsin(x)
 
 proc arctan2*(y, x:DecimalType):DecimalType =
   var

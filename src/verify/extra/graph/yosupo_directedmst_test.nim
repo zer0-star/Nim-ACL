@@ -8,7 +8,7 @@ import std/options, std/sequtils, std/strutils
 proc main() =
   var
     N, M, S = nextInt()
-    edges = newSeq[Edge[int]]()
+    edges = newSeq[Edge[int, int]]()
   for i in 0..<M:
     let a, b, c = nextInt()
     edges.add(initEdge(a,b,c))

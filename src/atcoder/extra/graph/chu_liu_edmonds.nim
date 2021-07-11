@@ -5,7 +5,7 @@ when not declared ATCODER_CHU_LIU_EDMONDS_HPP:
   import atcoder/dsu
   import atcoder/extra/structure/skew_heap
   
-  proc minimumSpanningTreeArborescence*[T](es:Edges[T], V:int, start:int):Option[(T, seq[int])] =
+  proc minimumSpanningTreeArborescence*[T](es:Edges[T, int], V:int, start:int):Option[(T, seq[int])] =
     proc g(a:(T,int), b:T):auto = (a[0] + b, a[1])
     proc h(a:T, b:T):auto = a + b
     var heap = initSkewHeap[(T,int), int](g, h)

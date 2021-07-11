@@ -2,9 +2,9 @@ when not declared ATCODER_TREE_DIAMETER_HPP:
   const ATCODER_TREE_DIAMETER_HPP* = 1
   import atcoder/extra/graph/graph_template
   import std/sequtils
-  proc treeDiameter*[T](g:Graph[T]):(T, seq[int]) =
+  proc treeDiameter*[G:Graph](g:G):(G.T, seq[int]) =
     var next = newSeq[int](g.len)
-    proc dfs(idx, par:int):(T, int) =
+    proc dfs(idx, par:int):(G.T, int) =
       result[1] = idx
       for i,e in g[idx]:
         if e.dst == par: continue

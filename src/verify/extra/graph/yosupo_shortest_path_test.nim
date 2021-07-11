@@ -16,11 +16,11 @@ proc main() =
       c = nextInt()
     g.addEdge(a, b, c)
   
-  let (dist, prev) = g.dijkstra(s)
+  let dist = g.dijkstra(s)
   if dist[t] == int.inf:
     echo -1
   else:
-    let p = prev.path(t)
+    let p = dist.path(t)
     echo dist[t], " ", p.len - 1
     for i in 0..<p.len - 1:
       echo p[i], " ", p[i + 1]

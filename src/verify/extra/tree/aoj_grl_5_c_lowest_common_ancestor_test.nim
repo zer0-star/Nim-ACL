@@ -16,6 +16,6 @@ proc main() =
   let Q = nextInt()
   for i in 0..<Q:
     let x, y = nextInt()
-    echo lca.query(x, y)
+    echo lca.lca(x, y)
 
 main()

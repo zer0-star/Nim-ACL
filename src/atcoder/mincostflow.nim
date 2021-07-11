@@ -3,7 +3,7 @@ when not declared ATCODER_MINCOSTFLOW_HPP:
 
   import std/heapqueue, std/sequtils
 
-  type Edge*[Cap, Cost] = object
+  type MCFEdge*[Cap, Cost] = object
     dst, rev:int
     cap:Cap
     cost:Cost
@@ -11,14 +11,15 @@ when not declared ATCODER_MINCOSTFLOW_HPP:
   type MCFGraph*[Cap, Cost] = object
     n:int
     pos:seq[(int,int)]
-    g:seq[seq[Edge[Cap, Cost]]]
+    g:seq[seq[MCFEdge[Cap, Cost]]]
 
-  type EdgeInfo*[Cap, Cost] = object
+  type MCFEdgeInfo*[Cap, Cost] = object
     src*, dst*:int
     cap*, flow*: Cap
     cost*: Cost
 
-  proc initMCFGraph*[Cap, Cost](n:int):auto = MCFGraph[Cap, Cost](n:n, g:newSeq[seq[Edge[Cap, Cost]]](n))
+  proc initMCFGraph*[Cap, Cost](n:int):auto = MCFGraph[Cap, Cost](n:n, g:newSeq[seq[MCFEdge[Cap, Cost]]](n))
+  proc initMinCostFlow*[Cap, Cost](n:int):auto = MCFGraph[Cap, Cost](n:n, g:newSeq[seq[MCFEdge[Cap, Cost]]](n))
 
   proc add_edge*[Cap, Cost](self: var MCFGraph[Cap, Cost], src:int, dst:int, cap:Cap, cost:Cost):int {.discardable.} =
     assert src in 0..<self.n
@@ -31,20 +32,20 @@ when not declared ATCODER_MINCOSTFLOW_HPP:
       src_id = self.g[src].len
       dst_id = self.g[dst].len
     if src == dst: dst_id.inc
-    self.g[src].add(Edge[Cap, Cost](dst:dst, rev:dst_id, cap:cap, cost:cost))
-    self.g[dst].add(Edge[Cap, Cost](dst:src, rev:src_id, cap:Cap(0), cost: -cost))
+    self.g[src].add(MCFEdge[Cap, Cost](dst:dst, rev:dst_id, cap:cap, cost:cost))
+    self.g[dst].add(MCFEdge[Cap, Cost](dst:src, rev:src_id, cap:Cap(0), cost: -cost))
     return m
 
-  proc get_edge*[Cap, Cost](self: MCFGraph[Cap, Cost], i:int):EdgeInfo[Cap, Cost] =
+  proc get_edge*[Cap, Cost](self: MCFGraph[Cap, Cost], i:int):MCFEdgeInfo[Cap, Cost] =
     let m = self.pos.len
     assert 0 <= i and i < m
     let e = self.g[self.pos[i][0]][self.pos[i][1]]
     let re = self.g[e.dst][e.rev]
-    return EdgeInfo[Cap, Cost](src:self.pos[i][0], dst:e.dst, cap:e.cap + re.cap, flow:re.cap, cost:e.cost)
+    return MCFEdgeInfo[Cap, Cost](src:self.pos[i][0], dst:e.dst, cap:e.cap + re.cap, flow:re.cap, cost:e.cost)
 
-  proc edges*[Cap, Cost](self: MCFGraph[Cap, Cost]):seq[EdgeInfo[Cap, Cost]] =
+  proc edges*[Cap, Cost](self: MCFGraph[Cap, Cost]):seq[MCFEdgeInfo[Cap, Cost]] =
     let m = self.pos.len
-    result = newSeq[EdgeInfo[Cap, Cost]](m)
+    result = newSeq[MCFEdgeInfo[Cap, Cost]](m)
     for i in 0..<m:
       result[i] = self.get_edge(i)
 

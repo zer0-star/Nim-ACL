@@ -1,4 +1,3 @@
-# segment graph {{{
 when not declared ATCODER_SEGMENT_GRAPH_HPP:
   const ATCODER_SEGMENT_GRAPH_HPP* = 1
   import atcoder/extra/other/floatutils
@@ -40,8 +39,10 @@ when not declared ATCODER_SEGMENT_GRAPH_HPP:
   # psをdeduplicateしたい。。。
 #    ps.sort(cmp[Point])
     ps.sort() do (a, b:Point[Real])->int:
-      if a <~ b: return -1
-      elif a >~ b:return 1
+      if a.re <~ b.re: return -1
+      elif a.re >~ b.re: return 1
+      elif a.im <~ b.im: return -1
+      elif a.im >~ b.im: return 1
       else: return 0
     block:
       var h, i = 0
@@ -64,4 +65,3 @@ when not declared ATCODER_SEGMENT_GRAPH_HPP:
         g[vec[j - 1]].add(vec[j])
         g[vec[j]].add(vec[j - 1])
     return (ps, g)
-  # }}}

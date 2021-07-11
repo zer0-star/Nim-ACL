@@ -1,9 +1,8 @@
 when not declared ATCODER_EULERIAN_TRAIL_HPP:
   const ATCODER_EULERIAN_TRAIL_HPP* = 1
-#  import atcoder/extra/graph/graph_template
   import std/sequtils, std/algorithm
   import atcoder/dsu
-  type EulerianTrail[directed:static[bool]] = object
+  type EulerianTrail*[directed:static[bool]] = object
     g:seq[seq[(int,int)]]
     es:seq[(int,int)]
     M:int

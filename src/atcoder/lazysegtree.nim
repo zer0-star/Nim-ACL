@@ -1,10 +1,11 @@
 when not declared ATCODER_LAZYSEGTREE_HPP:
   const ATCODER_LAZYSEGTREE_HPP* = 1
   
-  import atcoder/internal_bit
+  import atcoder/internal_bit, atcoder/rangeutils
   import std/sugar, std/sequtils, std/algorithm
+  {.push inline.}
   type LazySegTree*[S,F;p:static[tuple]] = object
-    n*, size*, log*:int
+    len*, size*, log*:int
     d:seq[S]
     lz:seq[F]
 
@@ -44,7 +45,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       n = v.len
       log = ceil_pow2(n)
       size = 1 shl log
-    (self.n, self.size, self.log) = (n, size, log)
+    (self.len, self.size, self.log) = (n, size, log)
     if self.d.len < 2 * size:
       self.d = newSeqWith(2 * size, ST.calc_e())
     else:
@@ -72,25 +73,27 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
   proc initLazySegTree*[S, F](n:int, op:static[(S,S)->S],e:static[()->S],mapping:static[(F,S)->S],composition:static[(F,F)->F],id:static[()->F]):auto =
     LazySegTreeType(S, F, op, e, mapping, composition, id).init(n)
 
-  proc set*[ST:LazySegTree](self: var ST, p:int, x:ST.S) =
-    assert p in 0..<self.n
-    let p = p + self.size
+  proc set*[ST:LazySegTree](self: var ST, p:IndexType, x:ST.S) =
+    var p = self^^p
+    assert p in 0..<self.len
+    p += self.size
     for i in countdown(self.log, 1): self.push(p shr i)
     self.d[p] = x
     for i in 1..self.log: self.update(p shr i)
 
-  proc get*[ST:LazySegTree](self: var ST, p:int):ST.S =
-    assert p in 0..<self.n
-    let p = p + self.size
+  proc get*[ST:LazySegTree](self: var ST, p:IndexType):ST.S =
+    var p = self^^p
+    assert p in 0..<self.len
+    p += self.size
     for i in countdown(self.log, 1): self.push(p shr i)
     return self.d[p]
 
-  proc `[]=`*[ST:LazySegTree](self: var ST, p:int, x:ST.S) = self.set(p, x)
-  proc `[]`*[ST:LazySegTree](self: var ST, p:int):ST.S = self.get(p)
+  proc `[]=`*[ST:LazySegTree](self: var ST, p:IndexType, x:ST.S) = self.set(p, x)
+  proc `[]`*[ST:LazySegTree](self: var ST, p:IndexType):ST.S = self.get(p)
 
-  proc prod*[ST:LazySegTree](self:var ST, p:Slice[int]):ST.S =
-    var (l, r) = (p.a, p.b + 1)
-    assert 0 <= l and l <= r and r <= self.n
+  proc prod*[ST:LazySegTree](self:var ST, p:RangeType):ST.S =
+    var (l, r) = self.halfOpenEndpoints(p)
+    assert 0 <= l and l <= r and r <= self.len
     if l == r: return ST.calc_e()
 
     l += self.size
@@ -108,19 +111,20 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       r = r shr 1
     return ST.calc_op(sml, smr)
 
-  proc `[]`*[ST:LazySegTree](self: var ST, p:Slice[int]):ST.S = self.prod(p)
+  proc `[]`*[ST:LazySegTree](self: var ST, p:RangeType):ST.S = self.prod(p)
 
   proc all_prod*[ST:LazySegTree](self:ST):auto = self.d[1]
 
-  proc apply*[ST:LazySegTree](self: var ST, p:int, f:ST.F) =
-    assert p in 0..<self.n
-    let p = p + self.size
+  proc apply*[ST:LazySegTree](self: var ST, p:IndexType, f:ST.F) =
+    var p = self^^p
+    assert p in 0..<self.len
+    p += self.size
     for i in countdown(self.log, 1): self.push(p shr i)
     self.d[p] = ST.calc_mapping(f, self.d[p])
     for i in 1..self.log: self.update(p shr i)
-  proc apply*[ST:LazySegTree](self: var ST, p:Slice[int], f:ST.F) =
-    var (l, r) = (p.a, p.b + 1)
-    assert 0 <= l and l <= r and r <= self.n
+  proc apply*[ST:LazySegTree](self: var ST, p:RangeType, f:ST.F) =
+    var (l, r) = self.halfOpenEndpoints(p)
+    assert 0 <= l and l <= r and r <= self.len
     if l == r: return
 
     l += self.size
@@ -145,11 +149,12 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
 #  template <bool (*g)(S)> int max_right(int l) {
 #    return max_right(l, [](S x) { return g(x); });
 #  }
-  proc max_right*[ST:LazySegTree](self:var ST, l:int, g:(ST.S)->bool):int =
-    assert l in 0..self.n
+  proc max_right*[ST:LazySegTree](self:var ST, l:IndexType, g:(ST.S)->bool):int =
+    var l = self^^l
+    assert l in 0..self.len
     assert g(ST.calc_e())
-    if l == self.n: return self.n
-    var l = l + self.size
+    if l == self.len: return self.len
+    l += self.size
     for i in countdown(self.log, 1): self.push(l shr i)
     var sm = ST.calc_e()
     while true:
@@ -165,16 +170,17 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       sm = ST.calc_op(sm, self.d[l])
       l.inc
       if not((l and -l) != l): break
-    return self.n
+    return self.len
 
 #  template <bool (*g)(S)> int min_left(int r) {
 #    return min_left(r, [](S x) { return g(x); });
 #  }
-  proc min_left*[ST:LazySegTree](self: var ST, r:int, g:(ST.S)->bool):int =
-    assert r in 0..self.n
+  proc min_left*[ST:LazySegTree](self: var ST, r:IndexType, g:(ST.S)->bool):int =
+    var r = self^^r
+    assert r in 0..self.len
     assert(g(ST.calc_e()))
     if r == 0: return 0
-    var r = r + self.size
+    r += self.size
     for i in countdown(self.log, 1): self.push((r - 1) shr i)
     var sm = ST.calc_e()
     while true:
@@ -191,3 +197,4 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       sm = ST.calc_op(self.d[r], sm)
       if not ((r and -r) != r): break
     return 0
+  {.pop.}

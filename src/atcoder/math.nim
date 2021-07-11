@@ -1,7 +1,9 @@
 when not declared ATCODER_MATH_HPP:
   const ATCODER_MATH_HPP* = 1
 
-  import atcoder/internal_math, std/math
+  import atcoder/internal_math
+  import std/math as math_lib_of_math
+
   proc pow_mod*(x,n,m:int):int =
     assert 0 <= n and 1 <= m
     if m == 1: return 0
@@ -23,7 +25,7 @@ when not declared ATCODER_MATH_HPP:
     return z[1]
   
   # (rem, mod)
-  proc crt*(r, m:seq[int]):(int,int) =
+  proc crt*(r, m:openArray[int]):(int,int) =
     assert r.len == m.len
     let n = r.len
     # Contracts: 0 <= r0 < m0

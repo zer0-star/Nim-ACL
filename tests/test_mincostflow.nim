@@ -16,7 +16,7 @@ template edge_eq[edge](expect, actual:edge) =
   check expect.cost == actual.cost
 
 proc make_edge_info[Cap, Cost](src, dst:int, cap, flow:Cap, cost:Cost):auto =
-  EdgeInfo[Cap, Cost](src:src, dst:dst, cap:cap, flow:flow, cost:cost)
+  MCFEdgeInfo[Cap, Cost](src:src, dst:dst, cap:cap, flow:flow, cost:cost)
 
 test "MincostflowTest, Simple":
   var g = initMCFGraph[int,int](4)
@@ -27,7 +27,7 @@ test "MincostflowTest, Simple":
   g.add_edge(1, 2, 1, 1)
   let expect = @[(0, 0), (2, 4)]
   check expect == g.slope(0, 3, 10)
-  var e = EdgeInfo[int,int]()
+  var e = MCFEdgeInfo[int,int]()
 
   e = make_edge_info(0, 1, 1, 1, 1)
   edge_eq(e, g.get_edge(0))

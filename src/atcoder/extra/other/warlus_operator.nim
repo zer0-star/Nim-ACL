@@ -3,12 +3,16 @@ when not declared ATCODER_CHAEMON_WARLUS_OPERATOR_HPP:
   import strformat, macros
   proc discardableId*[T](x: T): T {.discardable.} = x
 
+  proc warlusImpl(x, y:string):string =
+    fmt"""when declaredInScope({x}):{'\n'} {x} = {y}{'\n'}else:{'\n'}  var {x} = {y}{'\n'}"""
+
   macro `:=`*(x, y: untyped): untyped =
     var strBody = ""
-    if x.kind == nnkPar:
-      for i,xi in x:
-        strBody &= fmt"""{'\n'}{xi.repr} := {y[i].repr}{'\n'}"""
+    if x.kind == nnkCurly:
+      for i,xi in x: strBody &= warlusImpl(xi.repr, y.repr)
+    elif x.kind == nnkPar:
+      for i,xi in x: strBody &= warlusImpl(xi.repr, y[i].repr)
     else:
-      strBody &= fmt"""{'\n'}when declaredInScope({x.repr}):{'\n'}  {x.repr} = {y.repr}{'\n'}else:{'\n'}  var {x.repr} = {y.repr}{'\n'}"""
-    strBody &= fmt"discardableId({x.repr})"
+      strBody &= warlusImpl(x.repr, y.repr)
+      strBody &= fmt"discardableId({x.repr})"
     parseStmt(strBody)

@@ -3,13 +3,13 @@ when not declared ATCODER_PRIM_HPP:
   import atcoder/extra/graph/graph_template
   import std/heapqueue, std/sequtils
   
-  proc prim*[T](g:Graph[T], s:int = 0):(T, seq[Edge[T]]) =
+  proc prim*[G:Graph](g:G, s:int = 0):(G.T, seq[Edge[G.T, G.U]]) =
     var
-      total = T(0)
+      total = G.T(0)
       used = newSeqWith(g.len, false)
-      que = initHeapQueue[Edge[T]]()
-      es = newSeq[Edge[T]]()
-    que.push(initEdge[T](-1, s, 0))
+      que = initHeapQueue[Edge[G.T, G.U]]()
+      es = newSeq[Edge[G.T, G.U]]()
+    que.push(initEdge(-1, s, g.T(0)))
     while que.len > 0:
       let p = que.pop()
       if used[p.dst]: continue

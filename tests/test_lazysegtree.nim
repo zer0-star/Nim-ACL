@@ -67,6 +67,22 @@ test "LazySegtreeTest, NaiveProd":
         check e == seg.prod(l ..< r)
         check e == seg[l ..< r]
 
+test "LazySegtreeTest, NaiveProdBackwards":
+  for n in 0..50:
+    var seg = initLazySegTree(n, op_ss, e_s, op_ts, op_tt, e_t)
+    var p = newSeq[int](n)
+    for i in 0..<n:
+      p[i] = (i * i + 100) mod 31
+#      seg.set(i, p[i])
+      seg[i] = p[i]
+    for l in 0..n:
+      for r in l..n:
+        var e = -1_000_000_000
+        for i in l..<r:
+          e = max(e, p[i])
+        check e == seg.prod(l .. ^(n - r + 1))
+        check e == seg[l .. ^(n - r + 1)]
+
 test "LazySegtreeTest, Usage":
   var seg = initLazySegTree(newSeqWith(10, 0), op_ss, e_s, op_ts, op_tt, e_t)
   check 0 == seg.all_prod()

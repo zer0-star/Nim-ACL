@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import re
-import sys
 import argparse
 from logging import Logger, basicConfig, getLogger
 from os import getenv, environ
@@ -11,43 +10,59 @@ from typing import List
 
 logger = getLogger(__name__)  # type: Logger
 
-atcoder_include = re.compile('\s*(?:include|import)\s*([a-zA-Z0-9_,./\s"]*)\s*')
+ATCODER_INCLUDE = re.compile(
+        r'\s*(?:include|import)\s*([a-zA-Z0-9_,./\s"]*)\s*')
 
-include_guard = re.compile('when\s+not\s+declared\s+ATCODER_[A-Z_]*_HPP')
-atcoder_dir = 'atcoder/'
+WHEN_STATEMENT = re.compile(r'^\s*when\s+.*:')
+ATCODER_DIR = 'atcoder/'
 
-lib_path = Path.cwd()
 
-defined = set()
-
-def trailingSpace(s:str):
-    for i in range(0, len(s)):
-        if s[i] != ' ':
+def indent_level(line: str):
+    """
+    インデント用のスペースがいくつあるかを返す
+    """
+    for i, _c in enumerate(line):
+        if _c != ' ':
             return i
-    return len(s)
+    return len(line)
 
-def read_source(s:str, level:int) -> List[str]:
+
+def strip_as(line: str) -> str:
+    """
+    import時のasを取り除く
+    """
+    pos = line.find(' as ')
+    if pos != -1:
+        line = line[:pos]
+    return line
+
+
+def read_source(source: str, level: int, defined: set, lib_path) -> List[str]:
+    """
+    stringで渡されたsourceを読み。import, includeが出てきたら深堀りする
+    """
     result = []
-    for line in s.splitlines():
-        if include_guard.match(line):
+    for line in source.splitlines():
+        if WHEN_STATEMENT.match(line):
             result.append(line)
         else:
-            m = atcoder_include.match(line)
-            if m:
-                for f in m.group(1).split(","):
-                    f_orig = f = f.strip()
-                    if f[0] == '\"':
-                        print(f)
-                        assert f[-1] == '\"'
-                        f = f[1:-1]
-                    if not f.startswith(atcoder_dir):
-                        d = trailingSpace(line)
-                        result.extend([" " * d + "import " + f_orig])
+            matched = ATCODER_INCLUDE.match(line)
+            if matched:
+                for fname in matched.group(1).split(","):
+                    fname_orig = fname = fname.strip()
+                    if fname[0] == '\"':
+                        print(fname)
+                        assert fname[-1] == '\"'
+                        fname = fname[1:-1]
+                    if fname.startswith(ATCODER_DIR):
+                        fname = strip_as(fname)
+                        fname = "src/" + fname
+                        if not fname.endswith(".nim"):
+                            fname += ".nim"
+                        result.extend(dfs(fname, level + 1, defined, lib_path))
                     else:
-                        f = "src/" + f
-                        if not f.endswith(".nim"):
-                            f += ".nim"
-                        result.extend(dfs(f, level + 1))
+                        spaces = indent_level(line)
+                        result.extend([" " * spaces + "import " + fname_orig])
             else:
                 result.append(line)
     if level > 0:
@@ -59,19 +74,26 @@ def read_source(s:str, level:int) -> List[str]:
     return result
 
 
-def dfs(f: str, level:int) -> List[str]:
-    global defined
+def dfs(f: str, level: int, defined: set, lib_path) -> List[str]:
+    """
+    深さ優先でimport/includeを調べる
+    """
     if f in defined:
-        logger.info('already included {}, skip'.format(f))
+        logger.info('already included {:s}, skip'.format(f))
         return []
     defined.add(f)
 
-    logger.info('include {}'.format(f))
+    logger.info('include {:s}'.format(f))
 
-    s = open(str(lib_path / f)).read()
-    return read_source(s, level)
+    source = open(str(lib_path / f), encoding="utf8", errors='ignore').read()
+    return read_source(source, level, defined, lib_path)
 
-if __name__ == "__main__":
+
+def main():
+    """
+    メイン関数
+    """
+    lib_path = Path.cwd()
     basicConfig(
         format="%(asctime)s [%(levelname)s] %(message)s",
         datefmt="%H:%M:%S",
@@ -86,14 +108,18 @@ if __name__ == "__main__":
 
     if opts.lib:
         lib_path = Path(opts.lib)
-    elif 'CPLUS_INCLUDE_PATH' in environ:
-        lib_path = Path(environ['CPLUS_INCLUDE_PATH'])
-    s = open(opts.source).read()
-    result = read_source(s, -1)
+    elif 'NIM_INCLUDE_PATH' in environ:
+        lib_path = Path(environ['NIM_INCLUDE_PATH'])
+    source = open(opts.source, encoding="utf8", errors='ignore').read()
+    result = read_source(source, -1, set(), lib_path)
 
     output = '\n'.join(result) + '\n'
     if opts.console:
         print(output)
     else:
-        with open('combined.nim', 'w') as f:
+        with open('combined.nim', 'w', encoding="utf8", errors='ignore') as f:
             f.write(output)
+
+
+if __name__ == "__main__":
+    main()

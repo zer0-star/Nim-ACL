@@ -14,6 +14,6 @@ proc main() =
   let lca = initDoublingLowestCommonAncestor(g, 0)
   for i in 0..<Q:
     let x, y = nextInt()
-    echo lca.query(x, y)
+    echo lca.lca(x, y)
 
 main()

@@ -4,44 +4,45 @@ when not declared ATCODER_MAXFLOW_HPP:
   import atcoder/internal_queue
   import std/algorithm
 
-  type edge[Cap] = object
+  type MFEdge[Cap] = object
     dst, rev:int
     cap:Cap
   
   type MFGraph*[Cap] = object
-    n:int
+    len*:int
     pos:seq[(int,int)]
-    g:seq[seq[edge[Cap]]]
+    g:seq[seq[MFEdge[Cap]]]
   
-  proc init_mf_graph*[Cap](n:int):auto = MFGraph[Cap](n:n, g:newSeq[seq[edge[Cap]]](n))
+  proc init_mf_graph*[Cap](n:int):auto = MFGraph[Cap](len:n, g:newSeq[seq[MFEdge[Cap]]](n))
+  proc initMaxFlow*[Cap](n:int):auto = MFGraph[Cap](len:n, g:newSeq[seq[MFEdge[Cap]]](n))
   
   proc add_edge*[Cap](self: var MFGraph[Cap], src, dst:int, cap:Cap):int {.discardable.}=
-    assert src in 0..<self.n
-    assert dst in 0..<self.n
+    assert src in 0..<self.len
+    assert dst in 0..<self.len
     assert 0.Cap <= cap
     let m = self.pos.len
     self.pos.add((src, self.g[src].len))
     var src_id = self.g[src].len
     var dst_id = self.g[dst].len
     if src == dst: dst_id.inc
-    self.g[src].add(edge[Cap](dst:dst, rev:dst_id, cap:cap))
-    self.g[dst].add(edge[Cap](dst:src, rev:src_id, cap:0))
+    self.g[src].add(MFEdge[Cap](dst:dst, rev:dst_id, cap:cap))
+    self.g[dst].add(MFEdge[Cap](dst:src, rev:src_id, cap:0))
     return m
   
-  type EdgeInfo*[Cap] = object
+  type MFEdgeInfo*[Cap] = object
     src*, dst*:int
     cap*, flow*:Cap
   
-  proc get_edge*[Cap](self: MFGraph[Cap], i:int):EdgeInfo[Cap] =
+  proc get_edge*[Cap](self: MFGraph[Cap], i:int):MFEdgeInfo[Cap] =
     let m = self.pos.len
     assert i in 0..<m
     let e = self.g[self.pos[i][0]][self.pos[i][1]]
     let re = self.g[e.dst][e.rev]
-    return EdgeInfo[Cap](src:self.pos[i][0], dst:e.dst, cap:e.cap + re.cap, flow:re.cap)
+    return MFEdgeInfo[Cap](src:self.pos[i][0], dst:e.dst, cap:e.cap + re.cap, flow:re.cap)
 
-  proc edges*[Cap](self: MFGraph[Cap]):seq[EdgeInfo[Cap]] =
+  proc edges*[Cap](self: MFGraph[Cap]):seq[MFEdgeInfo[Cap]] =
     let m = self.pos.len
-    result = newSeqOfCap[EdgeInfo[Cap]](m)
+    result = newSeqOfCap[MFEdgeInfo[Cap]](m)
     for i in 0..<m:
       result.add(self.get_edge(i))
 
@@ -56,11 +57,11 @@ when not declared ATCODER_MAXFLOW_HPP:
 
 
   proc flow*[Cap](self: var MFGraph[Cap], s, t:int, flow_limit:Cap):Cap =
-    assert s in 0..<self.n
-    assert t in 0..<self.n
+    assert s in 0..<self.len
+    assert t in 0..<self.len
     assert s != t
   
-    var level, iter = newSeq[int](self.n)
+    var level, iter = newSeq[int](self.len)
     var que = init_simple_queue[int]()
 #    internal::simple_queue<int> que;
   
@@ -111,7 +112,7 @@ when not declared ATCODER_MAXFLOW_HPP:
   proc flow*[Cap](self: var MFGraph[Cap], s,t:int):auto = self.flow(s, t, Cap.high)
 
   proc min_cut*[Cap](self:MFGraph[Cap], s:int):seq[bool] =
-    var visited = newSeq[bool](self.n)
+    var visited = newSeq[bool](self.len)
     var que = init_simple_queue[int]()
     que.push(s)
     while not que.empty():

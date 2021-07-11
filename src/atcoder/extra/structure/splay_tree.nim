@@ -2,20 +2,22 @@ when not declared ATCODER_SPLAY_TREE_HPP:
   {.push inline.}
   const ATCODER_SPLAY_TREE_HPP* = 1
 
+  import atcoder/rangeutils
+
   template hasLazy(self:typedesc):bool = self.L isnot void
 
-  type SplayTreeNode*[D, L, hasRev, hasSum] = ref object
-    sz*:int
+  type SplayTreeNode*[D, L; hasRev, hasSum:static[bool]] = ref object
+    len*:int
     l*, r*, p*: SplayTreeNode[D, L, hasRev, hasSum]
     key*:D
-    when hasSum isnot void:
+    when hasSum:
       sum*:D
-    when hasRev isnot void:
+    when hasRev:
       rev*:bool
     when L isnot void:
       lazy*:L
 
-  type SplayTree*[D, L, Node, hasRev, hasSum; p:static[tuple]] = object of RootObj
+  type SplayTree*[D, L, Node; hasRev, hasSum:static[bool]; p:static[tuple]] = object of RootObj
     root*:Node
     M1:D
     when L isnot void:
@@ -42,61 +44,59 @@ when not declared ATCODER_SPLAY_TREE_HPP:
     type 
       D = ST.D
       L = ST.L
+    const
       hasRev = ST.hasRev
       hasSum = ST.hasSum
-    result = SplayTreeNode[D, L, hasRev, hasSum](key:key, l:nil,r:nil,p:nil,sz:1)
-    when hasRev isnot void: result.rev = false
-    when hasSum isnot void: result.sum = key
+    result = SplayTreeNode[D, L, hasRev, hasSum](key:key, l:nil,r:nil,p:nil,len:1)
+    when hasRev: result.rev = false
+    when hasSum: result.sum = key
     when L isnot void: result.lazy = self.OM0
   proc initNode*[ST:SplayTree](self:ST):auto = ST.initNode(ST.D(0))
 
+  template getSplayTreeType(D, L:typedesc, hasRev, hasSum:static[bool]; p:static[tuple]):typedesc =
+    type Node = SplayTreeNode[D, L, hasRev, hasSum]
+    SplayTree[D, L, Node, hasRev, hasSum, p]
+
   proc initSplayTree*[D]():auto =
-    type Node = SplayTreeNode[D, void, void, void]
-    return SplayTree[D, void, Node, void, void, ()](root:nil)
+    getSplayTreeType(D, void, false, false, ())(root:nil)
   proc initSplayTree*[D](f:static[proc(a, b:D):D], M1:D):auto =
-    type Node = SplayTreeNode[D, void, void, int]
-    return SplayTree[D, void, Node, void, int, (op:f)](root:nil, M1:M1)
+    getSplayTreeType(D, void, false, true, (op:f))(root:nil, M1:M1)
   proc initReversibleSplayTree*[D](f:static[proc(a, b:D):D], s:static[proc(a:D):D], M1:D):auto =
-    type Node = SplayTreeNode[D, void, int, int]
-    return SplayTree[D, void, Node, int, int, (op:f, s:s)](root:nil, M1:M1)
+    getSplayTreeType(D, void, true, true, (op:f, s:s))(root:nil, M1:M1)
   proc initReversibleSplayTree*[D](f:static[proc(a, b:D):D], M1:D):auto =
-    type Node = SplayTreeNode[D, void, int, int]
     proc s(a:D):D = a
     return initReversibleSplayTree[D](f, s, M1)
   proc initLazyReversibleSplayTree*[D, L](f:static[proc(a, b:D):D], g:static[proc(b:L, a:D):D], h:static[proc(a, b:L):L], s:static[proc(a:D):D], M1:D, OM0:L):auto =
-    type Node = SplayTreeNode[D, L, int, int]
-    return SplayTree[D, L, Node, int, int, (op:f, mapping:g, composition:h, s:s)](root:nil, M1:M1, OM0:OM0)
+    getSplayTreeType(D, L, true, true, (op:f, mapping:g, composition:h, s:s))(root:nil, M1:M1, OM0:OM0)
   proc initLazyReversibleSplayTree*[D, L](f:static[proc(a, b:D):D], g:static[proc(b:L, a:D):D], h:static[proc(a, b:L):L], M1:D, OM0:L):auto =
-    type Node = SplayTreeNode[D, L, int, int]
     proc s(a:D):D = a
     return initLazyReversibleSplayTree(f, g, h, s, M1, OM0)
   proc initLazySplayTree*[D, L](f:static[proc(a, b:D):D], g:static[proc(b:L, a:D):D], h:static[proc(a, b:L):L], M1:D, OM0:L):auto =
-    type Node = SplayTreeNode[D, L, void, int]
-    return SplayTree[D, L, Node, void, int, (op:f, mapping:g, composition:h)](root:nil, M1:M1, OM0:OM0)
+    getSplayTreeType(D, L, false, true, (op:f, mapping:g, composition:h))(root:nil, M1:M1, OM0:OM0)
 
   proc is_root*[T:SplayTree](self:T, t:T.Node):bool =
     return t.p == nil or (t.p.l != t and t.p.r != t)
   
-  proc count*[T:SplayTree](self:T, t:T.Node):int = return if t != nil: t.sz else: 0
+  proc count*[T:SplayTree](self:T, t:T.Node):int = return if t != nil: t.len else: 0
 
   proc update*[T:SplayTree](self:T, t:T.Node):auto {.discardable.} =
-    t.sz = 1
-    when T.hasSum isnot void:
+    t.len = 1
+    when T.hasSum:
       t.sum = t.key
-      if t.l != nil: t.sz += t.l.sz; t.sum = T.calc_op(t.l.sum, t.sum)
-      if t.r != nil: t.sz += t.r.sz; t.sum = T.calc_op(t.sum, t.r.sum)
+      if t.l != nil: t.len += t.l.len; t.sum = T.calc_op(t.l.sum, t.sum)
+      if t.r != nil: t.len += t.r.len; t.sum = T.calc_op(t.sum, t.r.sum)
     return t
 
   proc propagate*[T:SplayTree](self:T, t:T.Node, x:T.L) =
     static: assert T.L isnot void
     t.key = T.calc_mapping(x, t.key)
-    when T.hasSum isnot void: t.sum = T.calc_mapping(x, t.sum)
+    when T.hasSum: t.sum = T.calc_mapping(x, t.sum)
     t.lazy = T.calc_composition(x, t.lazy)
 
   proc toggle*[T:SplayTree](self:T, t:T.Node) =
-    static: assert T.hasRev isnot void
+    static: assert T.hasRev
     swap(t.l, t.r)
-    when T.hasSum isnot void: t.sum = T.calc_s(t.sum)
+    when T.hasSum: t.sum = T.calc_s(t.sum)
     t.rev = not t.rev
 
   proc push*[T:SplayTree](self:T, t:T.Node) =
@@ -105,7 +105,7 @@ when not declared ATCODER_SPLAY_TREE_HPP:
         if t.l != nil: self.propagate(t.l, t.lazy)
         if t.r != nil: self.propagate(t.r, t.lazy)
         t.lazy = self.OM0
-    when T.hasRev isnot void:
+    when T.hasRev:
       if t.rev:
         if t.l != nil: self.toggle(t.l)
         if t.r != nil: self.toggle(t.r)
@@ -298,13 +298,13 @@ when not declared ATCODER_SPLAY_TREE_HPP:
     t = self.merge(x[0], y[1])
 
   proc sum*[T:SplayTree](self:T, t:T.Node):auto =
-    static: assert T.hasSum isnot void
+    static: assert T.hasSum
     return if t != nil: t.sum else: self.M1
   proc alloc*[T:SplayTree](self:T, x:T.D):auto =
     return self.initNode(x)
   
   proc prod*[T:SplayTree](self:T, t:var T.Node, s:Slice[int]):T.D =
-    let (a, b) = (s.a, s.b + 1)
+    let (a, b) = self.halfOpenEndpoints(s)
     self.splay(t)
     var x = self.split(t, a)
     var y = self.split(x[1], b - a)
@@ -338,7 +338,7 @@ when not declared ATCODER_SPLAY_TREE_HPP:
 
   proc apply*[T:SplayTree](self:T, t:var T.Node, s:Slice[int], pp:T.L) =
     static: assert T.L isnot void
-    let (a, b) = (s.a, s.b + 1)
+    let (a, b) = self.halfOpenEndpoints(s)
     self.splay(t)
     var
       x = self.split(t, a)

@@ -1,7 +1,7 @@
 when not declared ATCODER_BORUVKA_HPP:
   const ATCODER_BORUVKA_HPP* = 1
+  import std/sequtils
   import atcoder/dsu
-  import sequtils
 
   type Boruvka*[T] = object
     V:int

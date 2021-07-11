@@ -36,10 +36,10 @@ when not declared ATCODER_MATRIX_HPP:
     type M = MatrixType(T, z, u)
     return M.init(n, n)
 
-  proc initMatrix*[T:RingElem](n, m:int):T =
+  proc initMatrix*[T:RingElem](n, m:int):auto =
     type M = MatrixType(T)
     return M.init(n, m)
-  proc initMatrix*[T:RingElem](n:int):T =
+  proc initMatrix*[T:RingElem](n:int):auto =
     type M = MatrixType(T)
     return M.init(n, n)
 
@@ -75,7 +75,11 @@ when not declared ATCODER_MATRIX_HPP:
     for i in 0..<n:
       for j in 0..<m:
         self[i][j] += B[i][j]
-  
+  proc `+=`*[T](self: var Vector[T], B:Vector[T]) =
+    let n = self.len
+    for i in 0..<n:
+      self[i] += B[i]
+
   proc `-=`*[M:Matrix](self: var M, B: M) =
     let (n, m) = (self.height, self.width)
     assert n == B.height() and m == B.width()
@@ -106,6 +110,8 @@ when not declared ATCODER_MATRIX_HPP:
     result = self; result -= B
   proc `*`*[M:Matrix](self: M, B:M):auto =
     result = self; result *= B
+  proc `+`*[T](self, B:Vector[T]):auto =
+    result = self; result += B
 
 
   proc equals*[M:Matrix](A, B:M):bool =

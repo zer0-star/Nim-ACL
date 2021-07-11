@@ -64,6 +64,7 @@ test "SegtreeStressTest, NaiveTest":
           check l == res.l
           check r == res.r
           check tm.prod(l ..< r) == res.time
+          check tm.prod(l ..< r) == seg0.prod(l .. ^(n - r + 1)).time
         elif ty == 1:
           let res = seg0.get(l) # TODO: DOWN when l = n
           check l == res.l
