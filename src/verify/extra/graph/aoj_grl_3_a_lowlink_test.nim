@@ -6,7 +6,7 @@ import atcoder/extra/graph/lowlink
 
 proc main() =
   let V,E = nextInt()
-  var g = initGraph[int](V)
+  var g = initGraph(V)
   for i in 0..<E:
     var x,y = nextInt()
     g.addBiEdge(x,y)

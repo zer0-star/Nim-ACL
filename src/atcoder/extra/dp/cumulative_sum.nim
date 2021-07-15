@@ -1,17 +1,19 @@
 when not declared ATCODER_CUMULATIVE_SUM_HPP:
   const ATCODER_CUMULATIVE_SUM_HPP* = 1
   import std/sequtils
+  import atcoder/rangeutils
 
   type CumulativeSum*[T; reverse:static[bool]] = object
-    n: int
+    len: int
     pos: int
     data: seq[T]
 
   proc initCumulativeSum*(n:int, T:typedesc, reverse:static[bool] = false):CumulativeSum[T, reverse] =
-    result = CumulativeSum[T, reverse](data: newSeqWith(n + 1, T.default), pos:0, n:n)
+    result = CumulativeSum[T, reverse](data: newSeqWith(n + 1, T.default), pos:0, len:n)
 
-  proc `[]=`*[T;reverse:static[bool]](self: var CumulativeSum[T, reverse], k:int, x:T) =
-    when reverse: (let k = self.n - k)
+  proc `[]=`*[T;reverse:static[bool]](self: var CumulativeSum[T, reverse], k:IndexType, x:T) =
+    var k = self^^k
+    when reverse: k = self.len - k
     if k < self.pos: doAssert(false)
     if self.data.len < k + 2: self.data.setLen(k + 2)
     self.data[k + 1] = x
@@ -27,8 +29,9 @@ when not declared ATCODER_CUMULATIVE_SUM_HPP:
     if k < 0: return T(0)
     while self.pos < k: self.propagate()
     return self.data[k]
-  proc `[]`*[T;reverse:static[bool]](self: var CumulativeSum[T, reverse], s:Slice[int]):T =
-    when reverse: (let s = self.n - s.b .. self.n - s.a)
+  proc `[]`*[T;reverse:static[bool]](self: var CumulativeSum[T, reverse], s:RangeType):T =
+    var s = s.a .. self^^s.b
+    when reverse: s = self.len - s.b .. self.len - s.a
     if s.a > s.b: return T(0)
     return self.sum(s.b + 1) - self.sum(s.a)
 

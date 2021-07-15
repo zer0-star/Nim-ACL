@@ -9,7 +9,7 @@ import std/options, std/sequtils
 
 proc main() =
   let N, M = nextInt()
-  var g = initGraph[int](N)
+  var g = initGraph(N)
 
   for i in 0..<M:
     var

@@ -1,6 +1,7 @@
 when not declared ATCODER_WARSHALL_FLOYD_HPP:
   const ATCODER_WARSHALL_FLOYD_HPP* = 1
   import std/sequtils
+  import atcoder/extra/other/inf
   type WarshallFloydType*[T] = object
     dist:seq[seq[T]]
     inter:seq[seq[int]]

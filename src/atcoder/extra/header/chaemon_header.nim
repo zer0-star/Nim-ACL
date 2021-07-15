@@ -1,10 +1,10 @@
 when not declared ATCODER_CHAEMON_HEADER_HPP:
   const ATCODER_CHAEMON_HEADER_HPP* = 1
   {.hints:off warnings:off assertions:on optimization:speed.}
-  when defined MYDEBUG:
-    {.checks:on.}
-  else:
-    {.checks:off.}
+  {.checks:off.}
+  when declared(DO_CHECK):
+    when DO_CHECK:
+      {.checks:on.}
   import std/algorithm as algorithm_lib
   import std/sequtils as sequtils_lib
   import std/macros as macros_lib

@@ -6,7 +6,7 @@ import atcoder/extra/tree/tree_diameter
 
 proc main() =
   let N = nextInt()
-  var g = initGraph[int](N)
+  var g = initGraph(N)
   for i in 1..<N:
     let x, y, z = nextInt()
     g.addBiEdge(x,y,z)

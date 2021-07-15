@@ -29,7 +29,7 @@ block main:
       if goal == ps[i]: gi = i
     assert(si >= 0 and gi >= 0)
     proc id(a:(int, int)):int = a[0] * ps.len + a[1]
-    var G = initGraph[float, (int, int)](ps.len^2 + 1, id)
+    var G = initGraph(ps.len^2 + 1, id, float)
     let src = (ps.len, 0)
     for u in 0..<ps.len:
       if u == si: continue

@@ -6,7 +6,7 @@ import atcoder/extra/tree/doubling_lowest_common_ancestor
 
 proc main() =
   let N = nextInt()
-  var g = initGraph[int](N)
+  var g = initGraph(N)
   for i in 0..<N:
     let k = nextInt()
     for j in 0..<k:

@@ -7,15 +7,15 @@ import atcoder/extra/graph/bellman_ford
 proc main() =
   var
     V, E, R = nextInt()
-  var g = initGraph[int](V)
+  var g = initGraph(V)
   for i in 0..<E:
     var a, b, c = nextInt()
     g.addEdge(a,b,c)
-  let (r,dists,_) = bellman_ford(g, R);
-  if not r: echo "NEGATIVE CYCLE"
+  let bf = bellman_ford(g, R);
+  if bf.negative_cycle: echo "NEGATIVE CYCLE"
   else:
-    for dist in dists:
-      if dist == int.inf: echo "INF"
-      else: echo dist
+    for u in 0..<V:
+      if bf[u] == int.inf: echo "INF"
+      else: echo bf[u]
 
 main()

@@ -13,7 +13,7 @@ when not declared ATCODER_GRAPH_TEMPLATE_HPP:
     Edges*[T, U] = seq[Edge[T, U]]
     Graph*[T, U, useSeq] = object
       len*:int
-      when useSeq isnot void:
+      when useSeq is TRUE:
         adj*: seq[seq[Edge[T, U]]]
       else:
         adj*: proc(u:U):seq[tuple[dst:U, weight:T]]
@@ -27,7 +27,7 @@ when not declared ATCODER_GRAPH_TEMPLATE_HPP:
   
   proc initGraph*(n:int, T:typedesc = int, U:typedesc = int):Graph[T, U, TRUE] =
     return Graph[T, int, TRUE](len:n, adj:newSeqWith(n, newSeq[Edge[T, U]]()))
-  proc initGraph*[T, U](n:int, id:proc(u:U):int):Graph[T, U, TRUE] =
+  proc initGraph*[U](n:int, id:proc(u:U):int, T:typedesc = int):Graph[T, U, TRUE] =
     return Graph[T, U, TRUE](len:n, adj:newSeqWith(n,newSeq[Edge[T, U]]()), id:id)
   proc initGraphProc*[T, U](n:int, id:proc(u:U):int, adj:proc(u:U):seq[(U, T)]):Graph[T, U, FALSE] =
     return Graph[T, U, FALSE](len:n, adj:adj, id:id)
@@ -72,3 +72,9 @@ when not declared ATCODER_GRAPH_TEMPLATE_HPP:
   template id*[G:Graph](g:G, u:int):int = 
     when G.U is int: u
     else: g.id(u)
+
+  iterator adj_by_id*[G:Graph](g:G, u:int):auto =
+    when G.useSeq is TRUE:
+      for e in g.adj[u]: yield e
+    else:
+      for e in g.adj(u): yield e

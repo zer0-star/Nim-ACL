@@ -1,6 +1,6 @@
 when not declared ATCODER_SOLVEPROC_HPP:
   const ATCODER_SOLVEPROC_HPP* = 1
-  import std/macros, std/strformat
+  import std/macros, std/strformat, std/algorithm
   proc mainBodyHeader():NimNode =
     result = newStmtList()
     result.add parseStmt "result = \"\""
@@ -10,37 +10,44 @@ when not declared ATCODER_SOLVEPROC_HPP:
     result.add parseStmt(d)
 
   macro solveProc*(head, body:untyped):untyped =
-    var params = @[ident"auto"]
-    var callparams:seq[NimNode]
-    for i in 1..<head.len:
+    var prev_type:NimNode
+    var params:seq[NimNode]
+    for i in countdown(head.len - 1, 1):
       var identDefs = newNimNode(nnkIdentDefs)
-      identDefs.add(head[i][0])
-      callparams.add(head[i][0])
-      identDefs.add(head[i][1])
+      if head[i].kind == nnkExprColonExpr:
+        identDefs.add(head[i][0])
+        prev_type = head[i][1]
+      elif head[i].kind == nnkIdent:
+        identDefs.add(head[i])
+      identDefs.add(prev_type)
       identDefs.add(newEmptyNode())
       params.add(identDefs)
+    params.add(ident"auto")
+    params.reverse()
+    var callparams:seq[NimNode]
+    for i in 1..<params.len:
+      callparams.add(params[i][0])
 #    var mainBody, naiveBody = mainBodyHeader()
     var mainBody, checkBody, naiveBody, testBody, generateBody = newStmtList()
     var hasNaive, hasCheck, hasTest, hasGenerate = false
     for b in body:
       if b.kind == nnkCall:
-        case $b[0]:
-          of "Check":
-            hasCheck = true
-            checkBody.add b[1]
-          of "Naive":
-            hasNaive = true
-            naiveBody.add b[1]
-          of "Test":
-            hasTest = true
-            testBody.add b[1]
-          of "Generate":
-            hasGenerate = true
-            generateBody.add b[1]
-          else:
-            mainBody.add(b)
+        if b[0] == ident"Check":
+          hasCheck = true
+          checkBody.add b[1]
+        elif b[0] == ident"Naive":
+          hasNaive = true
+          naiveBody.add b[1]
+        elif b[0] == ident"Test":
+          hasTest = true
+          testBody.add b[1]
+        elif b[0] == ident"Generate":
+          hasGenerate = true
+          generateBody.add b[1]
+        else:
+          mainBody.add b
       else:
-        mainBody.add(b)
+        mainBody.add b
     mainBody = newStmtList().add newBlockStmt(newEmptyNode(), newStmtList().add(mainBodyHeader()).add(mainBody))
     if hasCheck:
       mainBody.add(checkBody)
@@ -52,7 +59,7 @@ when not declared ATCODER_SOLVEPROC_HPP:
     var identDefs = newNimNode(nnkIdentDefs)
     identDefs.add(ident"output_stdout")
     identDefs.add(newNimNode(nnkBracketExpr).add(ident"static").add(ident"bool"))
-    identDefs.add(ident"false")
+    identDefs.add(ident"true")
     mainParams.add(identDefs)
     var mainProcDef = newNimNode(nnkProcDef).add(ident"solve").add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams)).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())
     result.add(mainProcDef)
@@ -63,24 +70,34 @@ when not declared ATCODER_SOLVEPROC_HPP:
 
     var naiveParams = mainParams
     result.add newProc(name = ident(procName), params = mainParams, body = mainBody, pragmas = discardablePragma)
-    echo mainParams.repr
+#    echo mainParams.repr
     if hasNaive:
       let naiveProcName = procName & "naive"
       naiveBody = mainBodyHeader().add(newBlockStmt(newEmptyNode(), naiveBody))
       result.add newProc(name = ident(naiveProcName), params = naiveParams, body = naiveBody, pragmas = discardablePragma)
-      var b = newNimNode(nnkInfix)
-      var l = newNimNode(nnkCall).add(ident(procName))
-      for c in callparams: l.add(c)
-      var r = newNimNode(nnkCall).add(ident(procName & "_naive"))
-      for c in callparams: r.add(c)
+#      var b = newNimNode(nnkInfix)
+      var test_body = newStmtList()
+      var var_names = newSeq[string]()
+      for procName in [procName, procName & "_naive"]:
+        let var_name = "v" & procName
+        var_names.add(var_name)
+        var l = newNimNode(nnkCall).add(ident(procName))
+        for c in callparams: l.add(c)
+        l.add(ident"false")
+        test_body.add(
+          newNimNode(nnkLetSection).add(
+            newNimNode(nnkIdentDefs).add(ident(var_name)).add(newEmptyNode()).add(l)
+          ))
       var test_params = params
+      var vars = ""
+      for i in 1..<params.len:
+        let p = params[i][0]
+        vars &= &"  {p.repr} = {{{p.repr}}}\\n"
       test_params[0] = ident"bool"
-      b.add(ident("=="))
-      b.add(l)
-      b.add(r)
-      result.add newProc(name = ident"test", params = test_params, body = b, pragmas = discardablePragma)
+      test_body.add parseStmt(&"if vsolve != vsolve_naive: echo &\"test failed for\\n{vars}\", \"[solve]\\n\", vsolve, \"[solve_naive]\\n\", vsolve_naive;doAssert false")
+      result.add newProc(name = ident"test", params = test_params, body = test_body, pragmas = discardablePragma)
     if hasGenerate:
       discard
     if hasTest:
       discard
-    echo result.repr
+#    echo result.repr

@@ -9,7 +9,7 @@ import atcoder/extra/tree/centroid_decomposition
 
 proc main():void =
   let N = nextInt()
-  var g = initGraph[int](N)
+  var g = initGraph(N)
   
   for _ in 0..<N-1:
     let a, b = nextInt()
