@@ -7,7 +7,7 @@ import atcoder/extra/graph/dijkstra
 
 proc main() =
   let N, M, s, t = nextInt()
-  var g = initGraph[int](N)
+  var g = initGraph(N)
 
   for i in 0..<M:
     var

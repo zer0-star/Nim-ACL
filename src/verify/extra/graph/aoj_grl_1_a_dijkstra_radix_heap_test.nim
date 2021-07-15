@@ -9,7 +9,7 @@ proc main() =
     V = nextInt()
     E = nextInt()
     R = nextInt()
-    g = initGraph[int32](V)
+    g = initGraph(V, int32)
 
   for i in 0..<E:
     var
@@ -19,8 +19,8 @@ proc main() =
     g.addEdge(a, b, c)
   
   let dist = dijkstra_radix_heap(g, R)
-  for d in dist:
-    if d == int32.inf: echo "INF"
-    else: echo d
+  for u in 0..<V:
+    if dist[u] == int32.inf: echo "INF"
+    else: echo dist[u]
 
 main()

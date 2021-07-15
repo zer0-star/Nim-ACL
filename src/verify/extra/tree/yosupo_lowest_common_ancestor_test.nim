@@ -7,7 +7,7 @@ import atcoder/extra/tree/doubling_lowest_common_ancestor
 
 proc main() =
   let N, Q = nextInt()
-  var g = initGraph[int](N)
+  var g = initGraph(N)
   for i in 1..<N:
     let p = nextInt()
     g.addBiEdge(i, p)

@@ -8,7 +8,7 @@ import atcoder/extra/graph/kruskal
 proc main() =
   var
     V, E = nextInt()
-    g = initGraph[int](V)
+    g = initGraph(V)
   for i in 0..<E:
     let a, b, c = nextInt()
     g.addBiEdge(a,b,c)
