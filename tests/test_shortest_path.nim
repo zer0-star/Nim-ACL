@@ -89,7 +89,6 @@ test "ShortestPathTestFloat":
       check abs(WF[s][u] - dijkstra[u]) < eps
       check abs(WF[s][u] - BF[u]) < eps
 
-
 test "ShortestPathTestTwoDimensional":
   const N = 7
   proc id(x:(int, int)):int = x[0] * N + x[1]
@@ -123,6 +122,75 @@ test "ShortestPathTestTwoDimensional":
           check WFd == dijkstra[u]
           check WFd == BF[u]
           check WFd == dijkstra_RH[u]
+
+test "ShortestPathTestProc":
+  const N = 7
+  proc id(x:(int, int)):int = x[0] * N + x[1]
+  var g = initGraph(N * N, id)
+  var A = newSeqWith(N * N, newSeqWith(N * N, 0))
+  for x0 in 0..<N:
+    for y0 in 0..<N:
+      let p0 = (x0, y0)
+      let i0 = id(p0)
+      for x1 in 0..<N:
+        for y1 in 0..<N:
+          let p1 = (x1, y1)
+          let i1 = id(p1)
+          if p0 == p1:
+            A[i0][i1] = 0
+          else:
+            let d = rand(0..100)
+            A[i0][i1] = d
+            g.addEdge(p0, p1, d)
+  proc adj(u:(int, int)):auto =
+    result = newSeq[((int, int), int)]()
+    for e in g[u]:
+      result.add((e.dst, e.weight))
+  var g2 = initGraph(N * N, id, adj)
+  var WF = A.warshall_floyd()
+  for x in 0..<N:
+    for y in 0..<N:
+      let s = (x, y)
+      var dijkstra = g2.dijkstra(s)
+      for x1 in 0..<N:
+        for y1 in 0..<N:
+          let u = (x1, y1)
+          let WFd = WF[id(s)][id(u)]
+          check WFd == dijkstra[u]
+
+test "ShortestPathTestIter":
+  const N = 7
+  proc id(x:(int, int)):int = x[0] * N + x[1]
+  var g = initGraph(N * N, id)
+  var A = newSeqWith(N * N, newSeqWith(N * N, 0))
+  for x0 in 0..<N:
+    for y0 in 0..<N:
+      let p0 = (x0, y0)
+      let i0 = id(p0)
+      for x1 in 0..<N:
+        for y1 in 0..<N:
+          let p1 = (x1, y1)
+          let i1 = id(p1)
+          if p0 == p1:
+            A[i0][i1] = 0
+          else:
+            let d = rand(0..100)
+            A[i0][i1] = d
+            g.addEdge(p0, p1, d)
+  iterator adj(u:(int, int)):((int, int), int) {.closure.} =
+    for e in g[u]:
+      yield (e.dst, e.weight)
+  var g2 = initGraph(N * N, id, adj)
+  var WF = A.warshall_floyd()
+  for x in 0..<N:
+    for y in 0..<N:
+      let s = (x, y)
+      var dijkstra = g2.dijkstra(s)
+      for x1 in 0..<N:
+        for y1 in 0..<N:
+          let u = (x1, y1)
+          let WFd = WF[id(s)][id(u)]
+          check WFd == dijkstra[u]
 
 
 test "ShortestPathTest01":

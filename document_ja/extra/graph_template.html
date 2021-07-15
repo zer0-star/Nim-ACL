@@ -53,20 +53,26 @@
         <div class="uk-container">
             <h1>グラフのテンプレート</h1>
 <h2>コンストラクタ</h2>
-<pre><code class="nim">var g = initGraph[T](n:int)
+<pre><code class="nim">var g = initGraph(n:int, T:typedesc)
 </code></pre>
 
-<p>頂点数$n$, 重みの型がTのグラフを作成</p>
+<p>頂点数$n$, 重みの型が$T$のグラフを作成。第2引数の$T$は省略可能で省略した場合はintとなります。</p>
+<pre><code class="nim">var g = initGraph(n:int, id:(U)-&gt;int, T:typedesc)
+</code></pre>
+
+<p>頂点数$n$, ノードの型が$U$, 重み型が$T$のグラフを作成します。
+第2引数のidは$U$からint($n$未満の非負整数)を返す関数で異なるノード$U$ごとに違う値を返さなければなりません。
+$U$の型はid関数によって特定されます。第3引数の$T$は省略可能で省略した場合はintとなります。</p>
 <p><strong>制約</strong></p>
 <ul>
 <li>$0 \leq n \leq 10^8$</li>
 </ul>
 <h2>辺の追加</h2>
-<pre><code class="nim">g.addEdge(u:int, v:int, w:T)
+<pre><code class="nim">g.addEdge(u:U, v:U, w:T)
 </code></pre>
 
 <p>頂点$u$から頂点$v$へ重み$w$の有向辺を追加する。
-$w$は省略可能。省略した場合は1と解釈される。</p>
+$w$は省略可能。省略した場合はT(1)と解釈される。</p>
 <p><strong>制約</strong></p>
 <ul>
 <li>$0 \leq u, v &lt; n$</li>
