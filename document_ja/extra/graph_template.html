@@ -18,7 +18,7 @@
         integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
         onload="renderMathInElement(document.body);"></script>
     <!-- Ace editor-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
 
     <style>
         h2 {
@@ -53,16 +53,25 @@
         <div class="uk-container">
             <h1>グラフのテンプレート</h1>
 <h2>コンストラクタ</h2>
+<p>グラフを作成します。ノードの型を$U$, 重みの型を$T$としています。</p>
 <pre><code class="nim">var g = initGraph(n:int, T:typedesc)
 </code></pre>
 
-<p>頂点数$n$, 重みの型が$T$のグラフを作成。第2引数の$T$は省略可能で省略した場合はintとなります。</p>
-<pre><code class="nim">var g = initGraph(n:int, id:(U)-&gt;int, T:typedesc)
+<p>頂点数$n$, 重みの型が$T$のグラフを作成。第2引数の$T$は省略可能で省略した場合はintとなります。この呼び方においてはノードの型Uはintが自動で指定されます。</p>
+<pre><code class="nim">var g = initGraph(n:int, id:proc(u:U):int, T:typedesc)
 </code></pre>
 
 <p>頂点数$n$, ノードの型が$U$, 重み型が$T$のグラフを作成します。
 第2引数のidは$U$からint($n$未満の非負整数)を返す関数で異なるノード$U$ごとに違う値を返さなければなりません。
+id関数は最短路問題等でノードに紐付けられたデータを一次元の配列として扱うためのもので必須です。
 $U$の型はid関数によって特定されます。第3引数の$T$は省略可能で省略した場合はintとなります。</p>
+<pre><code class="nim">var g = initGraph(n:int, id:proc(u:U):int, adj:proc(u:U):seq[tuple[dst:U, weight:T]])
+var g = initGraph(n:int, id:proc(u:U):int, adj:iterator(u:U):tuple[dst:U, weight:T])
+</code></pre>
+
+<p>隣接点をprocやiterator(adj)で指定できます。この場合、各アルゴリズムで隣接点探索をする際にadjが呼び出されます。
+iteratorはclosureでなくてはなりません。
+この呼び方でグラフを作った場合、辺はadj procやadj iteratorで決められるので、下記のaddEdge関数は使えません。</p>
 <p><strong>制約</strong></p>
 <ul>
 <li>$0 \leq n \leq 10^8$</li>
@@ -77,7 +86,7 @@ $w$は省略可能。省略した場合はT(1)と解釈される。</p>
 <ul>
 <li>$0 \leq u, v &lt; n$</li>
 </ul>
-<pre><code class="nim">g.addBiEdge(u:int, v:int, w:T)
+<pre><code class="nim">g.addBiEdge(u:U, v:U, w:T)
 </code></pre>
 
 <p>頂点$u$と頂点$v$を結ぶ重み$w$の無向辺を追加
@@ -86,7 +95,7 @@ $w$は省略可能。省略した場合は1と解釈される。</p>
 <ul>
 <li>$0 \leq u, v &lt; n$</li>
 </ul>
-<h2>最短経路の取得</h2>
+<h2>配列指定によるグラフ作成</h2>
 <pre><code class="nim">initDirectedGraph[T](n:int, a:seq[int], b:seq[int], w:seq[T])
 </code></pre>
 
