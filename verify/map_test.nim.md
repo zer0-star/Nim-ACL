@@ -46,11 +46,11 @@ data:
     \ echo 0\n\nmain()\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/extra/structure/set_map.nim
+  - atcoder/extra/structure/randomized_binary_search_tree.nim
+  - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   - atcoder/header.nim
-  - atcoder/rangeutils.nim
-  - atcoder/extra/structure/randomized_binary_search_tree.nim
+  - atcoder/extra/structure/set_map.nim
   - atcoder/extra/structure/randomized_binary_search_tree.nim
   - atcoder/extra/structure/set_map.nim
   isVerificationFile: true

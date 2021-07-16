@@ -166,18 +166,18 @@ data:
     \ - 1).ll)\n    b = newSeqWith(1025, rnd.rand(MOD - 1).ll)\n\n  check conv_naive(a,\
     \ b, MOD) == convolution(a, b, MOD)\n"
   dependsOn:
-  - atcoder/internal_math.nim
-  - atcoder/convolution.nim
-  - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/internal_bit.nim
   - atcoder/element_concepts.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/convolution.nim
   - atcoder/internal_bit.nim
   - atcoder/modint.nim
   - atcoder/element_concepts.nim
+  - atcoder/internal_bit.nim
+  - atcoder/convolution.nim
+  - atcoder/modint.nim
+  - atcoder/convolution.nim
   - atcoder/internal_math.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: tests/test_convolution.nim
   requiredBy: []

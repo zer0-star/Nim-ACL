@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
   - icon: ':question:'
@@ -38,8 +38,8 @@ data:
     \ = G.T(0)\n    for e in es:\n      if not uf.same(e.src, e.dst):\n        uf.merge(e.src,\
     \ e.dst)\n        total += e.weight\n        ret.add(e)\n    return (total, ret)\n"
   dependsOn:
-  - atcoder/dsu.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/dsu.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/dsu.nim
   isVerificationFile: false

@@ -58,18 +58,18 @@ data:
     \    let\n      xp, yp = nextFloat()\n      p = initPoint(xp, yp)\n    echo p.reflection(initLine(p1,\
     \ p2)).toString()\n"
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
   - atcoder/header.nim
   - atcoder/element_concepts.nim
+  - atcoder/header.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/floatutils.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_1_b_reflection_test.nim
   requiredBy: []

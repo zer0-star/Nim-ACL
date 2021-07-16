@@ -242,16 +242,16 @@ data:
     \      const offset = [0'u, 0'u, M1M2M3, 2'u * M1M2M3, 3'u * M1M2M3]\n      x\
     \ -= offset[diff mod 5]\n      c[i] = x.int\n    return c\n"
   dependsOn:
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/internal_bit.nim
   - atcoder/element_concepts.nim
-  - atcoder/generate_definitions.nim
   - atcoder/internal_bit.nim
   - atcoder/modint.nim
   - atcoder/element_concepts.nim
+  - atcoder/internal_bit.nim
+  - atcoder/modint.nim
   - atcoder/internal_math.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: atcoder/convolution.nim
   requiredBy:

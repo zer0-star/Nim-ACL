@@ -70,17 +70,17 @@ data:
     \ * ret.inv(i shl 1)) * inv2\n      i = i shl 1\n    return ret.pre(deg).some\n"
   dependsOn:
   - atcoder/extra/math/mod_sqrt.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/math/formal_power_series.nim
+  - atcoder/element_concepts.nim
   - atcoder/modint.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/modint.nim
   - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: atcoder/extra/math/formal_power_series_sqrt.nim
   requiredBy: []

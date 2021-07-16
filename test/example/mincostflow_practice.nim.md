@@ -34,8 +34,8 @@ data:
     \ continue\n  grid[e.src][e.dst - n] = 'X'\n\nfor i in 0..<n:\n  echo grid[i]\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/mincostflow.nim
   - atcoder/header.nim
+  - atcoder/mincostflow.nim
   - atcoder/mincostflow.nim
   isVerificationFile: false
   path: test/example/mincostflow_practice.nim

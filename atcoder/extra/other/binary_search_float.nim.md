@@ -39,11 +39,11 @@ data:
     \ -Real.getInf\n    while not valid_range(l, r):\n      let m = (l + r) / Real(2)\n\
     \      if f(m): l = m\n      else: r = m\n    return l\n"
   dependsOn:
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/element_concepts.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/other/floatutils.nim
   isVerificationFile: false
   path: atcoder/extra/other/binary_search_float.nim

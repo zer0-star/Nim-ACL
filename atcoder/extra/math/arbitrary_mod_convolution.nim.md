@@ -172,19 +172,19 @@ data:
     \ c1, c2, a.len + b.len - 1)\n"
   dependsOn:
   - atcoder/element_concepts.nim
-  - atcoder/internal_math.nim
-  - atcoder/convolution.nim
-  - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
   - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/internal_bit.nim
+  - atcoder/modint.nim
   - atcoder/element_concepts.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/convolution.nim
   - atcoder/internal_bit.nim
+  - atcoder/convolution.nim
   - atcoder/modint.nim
+  - atcoder/convolution.nim
+  - atcoder/internal_math.nim
   - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: atcoder/extra/math/arbitrary_mod_convolution.nim
   requiredBy:

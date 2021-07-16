@@ -78,20 +78,20 @@ data:
 
     '
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/convolution.nim
-  - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/internal_bit.nim
   - atcoder/element_concepts.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/header.nim
-  - atcoder/convolution.nim
   - atcoder/internal_bit.nim
+  - atcoder/header.nim
   - atcoder/modint.nim
   - atcoder/element_concepts.nim
+  - atcoder/internal_bit.nim
+  - atcoder/convolution.nim
+  - atcoder/header.nim
+  - atcoder/modint.nim
+  - atcoder/convolution.nim
   - atcoder/internal_math.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/generate_definitions.nim
   isVerificationFile: true
   path: verify/convolution_test.nim
   requiredBy: []

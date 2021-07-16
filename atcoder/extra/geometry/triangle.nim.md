@@ -61,16 +61,16 @@ data:
     \ =\n    return crossPoint(\n             initLine(a, a.projection(initLine(b,\
     \ c))), \n             initLine(b, b.projection(initLine(a, b))))\n"
   dependsOn:
-  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/floatutils.nim
   isVerificationFile: false
   path: atcoder/extra/geometry/triangle.nim
   requiredBy: []

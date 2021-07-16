@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/chu_liu_edmonds.nim
     title: atcoder/extra/graph/chu_liu_edmonds.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/chu_liu_edmonds.nim
     title: atcoder/extra/graph/chu_liu_edmonds.nim
   - icon: ':question:'
@@ -19,10 +19,10 @@ data:
   - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/skew_heap.nim
     title: atcoder/extra/structure/skew_heap.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/skew_heap.nim
     title: atcoder/extra/structure/skew_heap.nim
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/directedmst
     links:
@@ -52,21 +52,21 @@ data:
     \ = minimumSpanningTreeArborescence[int](edges, N, S).get\n  echo s\n  echo parent.mapIt($it).join(\"\
     \ \")\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/graph/chu_liu_edmonds.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
-  - atcoder/extra/structure/skew_heap.nim
   - atcoder/dsu.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
-  - atcoder/extra/graph/chu_liu_edmonds.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/structure/skew_heap.nim
+  - atcoder/extra/graph/chu_liu_edmonds.nim
   - atcoder/dsu.nim
+  - atcoder/extra/structure/skew_heap.nim
+  - atcoder/extra/graph/chu_liu_edmonds.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_directedmst_test.nim
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/graph/yosupo_directedmst_test.nim
 layout: document

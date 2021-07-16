@@ -32,8 +32,8 @@ data:
     \ \")\n\nmain()\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/extra/dp/slide_min.nim
+  - atcoder/header.nim
   - atcoder/extra/dp/slide_min.nim
   isVerificationFile: true
   path: verify/extra/dp/aoj_dsl_3_d_slidemin_test.nim

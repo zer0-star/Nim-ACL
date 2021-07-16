@@ -62,8 +62,8 @@ data:
     \ r) = self.halfOpenEndpoints(p)\n    assert 0 <= l and l <= r and r <= self.len\n\
     \    return cast[FT.T](self.sum(r) - self.sum(l))\n"
   dependsOn:
-  - atcoder/internal_type_traits.nim
   - atcoder/rangeutils.nim
+  - atcoder/internal_type_traits.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_type_traits.nim
   isVerificationFile: false

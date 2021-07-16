@@ -37,16 +37,16 @@ data:
   - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_sugar.nim
     title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_sugar.nim
     title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_underscored_calls.nim
     title: atcoder/extra/other/internal_underscored_calls.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_underscored_calls.nim
     title: atcoder/extra/other/internal_underscored_calls.nim
   - icon: ':x:'
@@ -166,50 +166,50 @@ data:
     \        lct.expose(vs[V])\n        let ret = vs[V].sum[0]\n        echo ret[0]\
     \ * X + ret[1]\n"
   dependsOn:
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/other/internal_sugar.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/structure/link_cut_tree.nim
-  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/sliceutils.nim
-  - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/reference.nim
   - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/zip.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/other/assignment_operator.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/reader.nim
+  - atcoder/modint.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/rangeutils.nim
+  - atcoder/modint.nim
+  - atcoder/extra/other/zip.nim
+  - atcoder/extra/other/reference.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/extra/structure/link_cut_tree.nim
   - atcoder/extra/other/debug.nim
   - atcoder/extra/other/internal_sugar.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/debug.nim
   - atcoder/extra/structure/link_cut_tree.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/sliceutils.nim
-  - atcoder/extra/structure/splay_tree.nim
   - atcoder/generate_definitions.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/modint.nim
-  - atcoder/extra/other/reference.nim
-  - atcoder/extra/other/zip.nim
-  - atcoder/rangeutils.nim
-  - atcoder/internal_math.nim
+  - atcoder/extra/other/internal_sugar.nim
   - atcoder/extra/other/assignment_operator.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/sliceutils.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/other/zip.nim
+  - atcoder/extra/other/reference.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
   requiredBy: []

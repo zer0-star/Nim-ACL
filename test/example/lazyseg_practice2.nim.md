@@ -49,13 +49,13 @@ data:
     \    l.dec\n    if t == 1:\n      seg.apply(l..<r, true)\n    else:\n      echo\
     \ seg.prod(l..<r).inversion\n"
   dependsOn:
+  - atcoder/internal_bit.nim
   - atcoder/header.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
+  - atcoder/header.nim
+  - atcoder/rangeutils.nim
   - atcoder/lazysegtree.nim
-  - atcoder/internal_bit.nim
-  - atcoder/header.nim
-  - atcoder/rangeutils.nim
-  - atcoder/internal_bit.nim
-  - atcoder/rangeutils.nim
   - atcoder/lazysegtree.nim
   isVerificationFile: false
   path: test/example/lazyseg_practice2.nim

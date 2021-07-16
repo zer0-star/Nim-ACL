@@ -309,28 +309,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/centroid_decomposition_test.nim
     title: verify/extra/graph/centroid_decomposition_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_assignment_problem_test.nim
     title: verify/extra/graph/yosupo_assignment_problem_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_assignment_problem_test.nim
     title: verify/extra/graph/yosupo_assignment_problem_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_bipartite_matching_test.nim
     title: verify/extra/graph/yosupo_bipartite_matching_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_bipartite_matching_test.nim
     title: verify/extra/graph/yosupo_bipartite_matching_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_cycle_detection_test.nim
     title: verify/extra/graph/yosupo_cycle_detection_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_cycle_detection_test.nim
     title: verify/extra/graph/yosupo_cycle_detection_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_directedmst_test.nim
     title: verify/extra/graph/yosupo_directedmst_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_directedmst_test.nim
     title: verify/extra/graph/yosupo_directedmst_test.nim
   - icon: ':x:'

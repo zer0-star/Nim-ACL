@@ -110,10 +110,10 @@ data:
     \  check 2 == ((1).int16 + mint(1)).val()\n\n  var m:mint\n  check 0 == m.val()\n\
     \n"
   dependsOn:
-  - atcoder/generate_definitions.nim
   - atcoder/extra/math/modint_montgomery.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/math/modint_montgomery.nim
+  - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: tests/test_extra_montgomery_modint.nim
   requiredBy: []

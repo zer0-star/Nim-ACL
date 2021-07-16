@@ -44,8 +44,8 @@ data:
     '
   dependsOn:
   - atcoder/header.nim
-  - atcoder/string.nim
   - atcoder/header.nim
+  - atcoder/string.nim
   - atcoder/string.nim
   isVerificationFile: true
   path: verify/suffix_array_test.nim

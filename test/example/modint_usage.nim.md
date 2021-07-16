@@ -48,12 +48,12 @@ data:
     \u3057\u306A\u3044\u3068\u3044\u3051\u307E\u305B\u3093)\nassert mint.raw(3) ==\
     \ 3\n"
   dependsOn:
-  - atcoder/internal_math.nim
   - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
   - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: test/example/modint_usage.nim
   requiredBy: []

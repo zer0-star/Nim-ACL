@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/hopcroft_karp.nim
     title: atcoder/extra/graph/hopcroft_karp.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/hopcroft_karp.nim
     title: atcoder/extra/graph/hopcroft_karp.nim
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/bipartitematching
     links:
@@ -40,7 +40,7 @@ data:
   path: verify/extra/graph/yosupo_bipartite_matching_test.nim
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/graph/yosupo_bipartite_matching_test.nim
 layout: document

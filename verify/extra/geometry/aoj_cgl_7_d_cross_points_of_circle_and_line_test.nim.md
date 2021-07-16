@@ -59,17 +59,17 @@ data:
     \ let l = initLine(p1, p2)\n    var q = crosspoint(c, l)\n    if q[0] >~ q[1]:\
     \ swap(q[0], q[1])\n    echo q[0].toString(), \" \", q[1].toString()\n"
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
   - atcoder/header.nim
   - atcoder/element_concepts.nim
+  - atcoder/header.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/internal_complex.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_7_d_cross_points_of_circle_and_line_test.nim

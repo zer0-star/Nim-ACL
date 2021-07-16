@@ -45,8 +45,8 @@ data:
     \ x:FT.T) =\n    let (l, r) = self.halfOpenEndpoints(p)\n    assert 0 <= l and\
     \ l <= r and r <= self.len\n    self.add(r, x)\n    self.add(l, -x)\n"
   dependsOn:
-  - atcoder/internal_type_traits.nim
   - atcoder/rangeutils.nim
+  - atcoder/internal_type_traits.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_type_traits.nim
   isVerificationFile: false

@@ -51,11 +51,11 @@ data:
     \ 1:\n    grid[i0][j0] = 'v'; grid[i1][j1] = '^'\n  else:\n    grid[i0][j0] =\
     \ '>'; grid[i1][j1] = '<'\n\necho grid.join(\"\\n\")\n"
   dependsOn:
-  - atcoder/header.nim
   - atcoder/maxflow.nim
   - atcoder/internal_queue.nim
-  - atcoder/maxflow.nim
   - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/maxflow.nim
   - atcoder/internal_queue.nim
   isVerificationFile: false
   path: test/example/maxflow_practice.nim

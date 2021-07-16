@@ -110,10 +110,10 @@ data:
     \ p:Slice[int], lower:self.T):self.T =\n    var ret = self.mat.next_value(p, self.get(lower))\n\
     \    return if ret == -1: self.T(-1) else: self.ys[ret]\n"
   dependsOn:
-  - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/rangeutils.nim
+  - atcoder/extra/structure/succinct_indexable_dictionary.nim
   isVerificationFile: false
   path: atcoder/extra/structure/wavelet_matrix.nim
   requiredBy: []

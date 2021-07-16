@@ -6,7 +6,7 @@ data:
     - icon: ':question:'
       path: atcoder/convolution.nim
       title: atcoder/convolution.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/dsu.nim
       title: atcoder/dsu.nim
     - icon: ':warning:'
@@ -135,10 +135,10 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/graph/chromatic_number.nim
       title: atcoder/extra/graph/chromatic_number.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/chu_liu_edmonds.nim
       title: atcoder/extra/graph/chu_liu_edmonds.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/cycle_detection.nim
       title: atcoder/extra/graph/cycle_detection.nim
     - icon: ':question:'
@@ -171,10 +171,10 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/graph/graphviz.nim
       title: atcoder/extra/graph/graphviz.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/hopcroft_karp.nim
       title: atcoder/extra/graph/hopcroft_karp.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/hungarian.nim
       title: atcoder/extra/graph/hungarian.nim
     - icon: ':heavy_check_mark:'
@@ -324,10 +324,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/other/internal_complex.nim
       title: atcoder/extra/other/internal_complex.nim
-    - icon: ':x:'
+    - icon: ':question:'
       path: atcoder/extra/other/internal_sugar.nim
       title: atcoder/extra/other/internal_sugar.nim
-    - icon: ':x:'
+    - icon: ':question:'
       path: atcoder/extra/other/internal_underscored_calls.nim
       title: atcoder/extra/other/internal_underscored_calls.nim
     - icon: ':warning:'
@@ -389,7 +389,7 @@ data:
     - icon: ':x:'
       path: atcoder/extra/structure/set_map.nim
       title: atcoder/extra/structure/set_map.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/structure/skew_heap.nim
       title: atcoder/extra/structure/skew_heap.nim
     - icon: ':x:'
@@ -765,16 +765,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/extra/graph/centroid_decomposition_test.nim
       title: verify/extra/graph/centroid_decomposition_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/graph/yosupo_assignment_problem_test.nim
       title: verify/extra/graph/yosupo_assignment_problem_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/graph/yosupo_bipartite_matching_test.nim
       title: verify/extra/graph/yosupo_bipartite_matching_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/graph/yosupo_cycle_detection_test.nim
       title: verify/extra/graph/yosupo_cycle_detection_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/graph/yosupo_directedmst_test.nim
       title: verify/extra/graph/yosupo_directedmst_test.nim
     - icon: ':x:'
@@ -899,3 +899,6 @@ data:
       title: verify/extra/tree/yosupo_tree_diameter_test.nim
 layout: toppage
 ---
+## ドキュメント
+
+[日本語](./document_ja/)
