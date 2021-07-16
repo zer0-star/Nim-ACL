@@ -101,7 +101,7 @@ test "ModintTest, Increment":
     check 0 == a.val()
     a.dec
     check 10 == a.val()
-# TODO: ++‚Æinc‚Ìd—l‚ğ
+# TODO: ++ã¨incã®ä»•æ§˜ã‚’
 #    a = 8
 #    check 8 == (a.inc).val()
 #    check 9 == (a.inc).val()
@@ -134,7 +134,7 @@ test "ModintTest, Increment":
     check 0 == a.val()
     a.dec
     check 10 == a.val()
-# TODO: ++‚Æinc‚Ìd—l‚ğ
+# TODO: ++ã¨incã®ä»•æ§˜ã‚’
 #    a = 8
 #    check 8 == (a.inc).val()
 #    check 9 == (a.inc).val()
@@ -148,13 +148,13 @@ test "ModintTest, Increment":
 #    check 0 == (a.dec).val()
 #    check 10 == a.val()
 
-# TODO: == ‰‰Zq‚ª”í‚éH
+# TODO: == æ¼”ç®—å­ãŒè¢«ã‚‹ï¼Ÿ
 
 
 test "ModintTest, StaticUsage":
   type mint = modint11
   check 11 == mint.mod()
-# TODO: ƒvƒ‰ƒX•„†‚ª‚È‚¢H
+# TODO: ãƒ—ãƒ©ã‚¹ç¬¦å·ãŒãªã„ï¼Ÿ
 #  check 4 == + mint.init(4)
   check 7 == - mint(4)
 
@@ -179,7 +179,7 @@ test "ModintTest, DynamicUsage":
   check 11 == mint.mod()
   check 4 == (mint.init(3) * mint.init(5)).val()
 
-  #  # TODO: ƒvƒ‰ƒX•„†‚ª‚È‚¢H
+  #  # TODO: ãƒ—ãƒ©ã‚¹ç¬¦å·ãŒãªã„ï¼Ÿ
   ##  check 4 == +mint.init(4)
   check 7 == -mint.init(4)
   #

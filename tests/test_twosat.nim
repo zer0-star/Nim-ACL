@@ -4,7 +4,7 @@ import std/random
 import std/sequtils
 
 test "TwosatTest, Empty":
-# TODO: NIM‚Åempty‚Í–³—H
+# TODO: NIMã§emptyã¯ç„¡ç†ï¼Ÿ
 #  two_sat ts0;
 #  ASSERT_TRUE(ts0.satisfiable());
 #  check std::vector<bool>({}), ts0.answer());

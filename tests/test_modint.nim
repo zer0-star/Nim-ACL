@@ -221,7 +221,7 @@ test "ModintTest, Increment":
 test "ModintTest, StaticUsage":
   type mint = StaticModInt[11]
   check 11 == mint.mod()
-# TODO: ƒvƒ‰ƒX•„†‚ª‚È‚¢H
+# TODO: ãƒ—ãƒ©ã‚¹ç¬¦å·ãŒãªã„ï¼Ÿ
 #  check 4 == + mint.init(4)
   check 7 == - mint.init(4)
 
@@ -253,7 +253,7 @@ test "ModintTest, DynamicUsage":
   check 11 == mint.mod()
   check 4 == (mint.init(3) * mint.init(5)).val()
 
-  # TODO: ƒvƒ‰ƒX•„†‚ª‚È‚¢H
+  # TODO: ãƒ—ãƒ©ã‚¹ç¬¦å·ãŒãªã„ï¼Ÿ
 #  check 4 == +mint.init(4)
   check 7 == -mint.init(4)
 

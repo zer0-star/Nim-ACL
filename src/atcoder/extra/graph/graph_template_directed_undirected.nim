@@ -1,4 +1,4 @@
-# グラフ作るするときに最初から有向、無向グラフ指定するようにしたけど、割と不便なので採用するか考え中
+# 繧ｰ繝ｩ繝穂ｽ懊ｋ縺吶ｋ縺ｨ縺阪↓譛蛻昴°繧画怏蜷代∫┌蜷代げ繝ｩ繝墓欠螳壹☆繧九ｈ縺�縺ｫ縺励◆縺代←縲∝牡縺ｨ荳堺ｾｿ縺ｪ縺ｮ縺ｧ謗｡逕ｨ縺吶ｋ縺玖�縺井ｸｭ
 when not declared ATCODER_GRAPH_TEMPLATE_HPP:
   const ATCODER_GRAPH_TEMPLATE_HPP* = 1
   import std/sequtils

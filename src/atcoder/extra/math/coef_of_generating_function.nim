@@ -6,7 +6,7 @@ when not defined ATCODER_COEF_OF_GENERATING_FUNCTION_HPP:
     num, den: FormalPowerSeries[T]
   proc `//`*[T:FieldElem](P, Q:FormalPowerSeries[T]):RationalFormalPowerSeries[T] =
     RationalFormalPowerSeries[T](num:P, den:Q)
-  # P / Q‚Ì“YšN‚Ì—v‘f‚ğŒvZ
+  # P / Qã®æ·»å­—Nã®è¦ç´ ã‚’è¨ˆç®—
   proc `[]`*[T:FieldElem](r:RationalFormalPowerSeries[T],N:int):T =
     var
       P = r.num

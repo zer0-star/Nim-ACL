@@ -5,7 +5,7 @@ test "DSUTest, Zero":
   var uf = initDSU(0)
   check newSeq[seq[int]]() == uf.groups()
 
-# TODO: Nim‚Åempty‚Í‚Å‚«‚È‚»‚¤
+# TODO: Nimã§emptyã¯ã§ããªãã†
 #test "DSUTest, Empty":
 #  var uf:DSU
 #  check newSeq[seq[int]]() == uf.groups()
