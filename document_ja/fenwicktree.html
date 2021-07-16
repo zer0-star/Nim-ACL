@@ -18,7 +18,7 @@
         integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
         onload="renderMathInElement(document.body);"></script>
     <!-- Ace editor-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
 
     <style>
         h2 {
@@ -38,11 +38,12 @@
                 var editor = ace.edit(e);
                 editor.setOption("maxLines", "Infinity");
                 editor.setReadOnly(true);
-                editor.getSession().setMode("ace/mode/c_cpp");                
+                editor.getSession().setMode("ace/mode/nim");                
             }
         });
     </script>
-</head><body>
+</head>
+<body>
     <div class="uk-navbar-container" uk-navbar>
         <div class="uk-navbar-left">
             <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
@@ -58,7 +59,9 @@
 </ul>
 <p>を $O(\log N)$ で求めることが出来るデータ構造です。</p>
 <h2>コンストラクタ</h2>
-<pre><code class="nim">fw = initFenwickTree[T](n:int):fenwick_tree[T]
+<pre><code class="nim">var fw = initFenwickTree[T](n:int):fenwick_tree[T]
+var fw = FenwickTreeType(T).init(n)
+var fw = FenwickTree.getType(T).init(n)
 </code></pre>
 
 <ul>

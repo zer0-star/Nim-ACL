@@ -3,9 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
-  attributes: {}
+  attributes:
+    links: []
   bundledCode: "#line 1 \"test/expander/include_unusual_format.cpp\"\n#include  <atcoder/dsu>\n\
     #line 3 \"test/expander/include_unusual_format.cpp\"\n#include <cstdio>\n\nusing\
     \ namespace std;\nusing namespace atcoder;\n\nint main() {\n    int n, q;\n  \
@@ -27,7 +29,7 @@ data:
   isVerificationFile: false
   path: test/expander/include_unusual_format.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2020-09-22 23:58:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: test/expander/include_unusual_format.cpp

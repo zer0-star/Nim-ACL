@@ -1,0 +1,144 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
+  _pathExtension: nim
+  _verificationStatusIcon: ':warning:'
+  attributes:
+    links: []
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
+  code: "import atcoder/modint as modint_lib\nimport std/math\nimport std/unittest\n\
+    \nstatic:\n  assert StaticModInt[1].isModInt\n  assert StaticModInt[998244353].isModInt\n\
+    \  assert modint.isModInt\n  assert DynamicModInt[0].isModInt\n  assert not int.isModInt\n\
+    \n  assert StaticModInt[1].is_static_modint\n  assert StaticModInt[998244353].is_static_modint\n\
+    \  assert modint998244353.is_static_modint\n  assert modint1000000007.is_static_modint\n\
+    \  assert not modint.is_static_modint\n  assert not DynamicModInt[0].is_static_modint\n\
+    \  assert not int.is_static_modint\n\n  assert not StaticModInt[1].is_dynamic_modint\n\
+    \  assert not StaticModInt[998244353].is_dynamic_modint\n\n  assert modint.is_dynamic_modint\n\
+    \  assert DynamicModInt[0].is_dynamic_modint\n  assert not int.is_dynamic_modint\n\
+    \n  assert modint is DynamicModInt[-1]\n\n  assert modint998244353.mod() == 998244353\n\
+    \  assert modint1000000007.mod() == 1000000007\n\ntest \"ModintTest, DynamicBorder\"\
+    :\n  type mint = modint\n  const mod_upper = int32.high\n  for m in countdown(mod_upper,\
+    \ mod_upper - 20'i32):\n    mint.set_mod(m)\n    var v = newSeq[int]()\n    for\
+    \ i in 0..<10: \n      v.add(i)\n      v.add(m.int - i)\n      v.add(m.int div\
+    \ 2 + i)\n      v.add(m.int div 2 - i)\n    for a in v:\n      check ((a * a)\
+    \ mod m * a) mod m == (mint.init(a).pow(3)).val()\n      for b in v:\n       \
+    \ check (a + b) mod m == (mint.init(a) + mint.init(b)).val()\n        check (a\
+    \ - b + m) mod m == (mint.init(a) - mint.init(b)).val()\n        check (a * b)\
+    \ mod m == (mint.init(a) * mint.init(b)).val()\n\ntest \"ModintTest, ULL\":\n\
+    \  modint.set_mod(998244353)\n  let m1 = cast[uint](-1)\n  check modint.mod()\
+    \ - 1 != modint.init(m1).val()\n  check 0 != (m1 + modint.init(1)).val()\n  type\
+    \ mint = StaticModInt[998244353]\n  check mint.mod() - 1 != modint.init(m1).val()\n\
+    \  check 0 != (m1 + mint.init(1)).val()\n\nuseStaticModInt(modint1, 1)\n\ntest\
+    \ \"ModintTest, Mod1\":\n  modint.set_mod(1)\n  for i in 0..<100:\n    for j in\
+    \ 0..<100:\n      check (modint.init(i) * modint.init(j)).val() == 0\n  check\
+    \ (modint.init(1234) + modint.init(5678)).val() == 0\n  check (modint.init(1234)\
+    \ - modint.init(5678)).val() == 0\n  check (modint.init(1234) * modint.init(5678)).val()\
+    \ == 0\n  check (modint.init(1234).pow(5678)) == 0\n  check 0 == modint.init(0).inv()\n\
+    \n  check 0 == modint.init(true.int).val()\n\n  type mint = modint1\n  for i in\
+    \ 0..<100:\n    for j in 0..<100:\n      check (mint(i) * mint(j)).val() == 0\n\
+    \  check (mint.init(1234) + mint.init(5678)).val() == 0\n  check (mint.init(1234)\
+    \ - mint.init(5678)).val() == 0\n  check (mint.init(1234) * mint.init(5678)).val()\
+    \ == 0\n  check (mint.init(1234).pow(5678)) == 0\n  check 0 == modint(0).inv()\n\
+    \n  check 0 == mint.init(true.int).val()\n\n##ifndef _MSC_VER\n#\n#TEST(ModintTest,\
+    \ Int128) {\n#  modint.set_mod(998244353);\n#  check 12345678, modint(__int128_t(12345678)).val());\n\
+    #  check 12345678, modint(__uint128_t(12345678)).val());\n#  check 12345678, modint(__int128(12345678)).val());\n\
+    #  check 12345678, modint((unsigned __int128)(12345678)).val());\n#  check modint(2).pow(100).val(),\
+    \ modint(__int128_t(1) << 100).val());\n#  check modint(2).pow(100).val(), modint(__uint128_t(1)\
+    \ << 100).val());\n#  type mint = static_modint<998244353>;\n#  check 12345678,\
+    \ mint(__int128_t(12345678)).val());\n#  check 12345678, mint(__uint128_t(12345678)).val());\n\
+    #  check 12345678, mint(__int128(12345678)).val());\n#  check 12345678, mint((unsigned\
+    \ __int128)(12345678)).val());\n#  check mint(2).pow(100).val(), mint(__int128_t(1)\
+    \ << 100).val());\n#  check mint(2).pow(100).val(), mint(__uint128_t(1) << 100).val());\n\
+    #}\n#\n##endif\n\nuseStaticModInt(modint12, 12)\n\ntest \"ModintTest, Inv\":\n\
+    \  for i in 1..<10:\n    let x = StaticModInt[11].init(i).inv().val()\n    check\
+    \ 1 == (x * i) mod 11\n\n  for i in 1..<11:\n    if gcd(i, 12) != 1: continue\n\
+    \    let x = modint12(i).inv().val()\n    check 1 == (x * i) mod 12\n\n  for i\
+    \ in 1 ..< 100000:\n    let x = StaticModInt[1_000_000_007].init(i).inv().val()\n\
+    \    check 1 == (x * i) mod 1_000_000_007\n\n  for i in 1 ..< 100000:\n    if\
+    \ gcd(i, 1_000_000_008) != 1: continue\n    let x = StaticModInt[1_000_000_008].init(i).inv().val()\n\
+    \    check 1 == (x * i) mod 1_000_000_008\n\n  modint.set_mod(998244353)\n  for\
+    \ i in 1 ..< 100000:\n    let x = modint.init(i).inv().val()\n    check 0 <= x\n\
+    \    check 998244353 - 1 >= x\n    check 1 == x * i mod 998244353\n\n  modint.set_mod(1_000_000_008)\n\
+    \  for i in 1 ..< 100000:\n    if gcd(i, 1_000_000_008) != 1: continue\n    let\
+    \ x = modint.init(i).inv().val()\n    check 1 == (x * i) mod 1_000_000_008\n\n\
+    test \"ModintTest, ConstUsage\":\n  type sint = StaticModInt[11]\n  const a =\
+    \ sint.init(9)\n  check 9 == a.val()\n  type dint = modint\n  dint.set_mod(11)\n\
+    \  let b = dint.init(9)\n  check 9 == b.val()\n\ntest \"ModintTest, Increment\"\
+    :\n  type sint = StaticModInt[11]\n  type dint = modint\n  dint.set_mod(11)\n\n\
+    \  block:\n    var a = sint.init(8)\n    a.inc\n    check 9 == a.val()\n    a.inc\n\
+    \    check 10 == a.val()\n    a.inc\n    check 0 == a.val()\n    a.inc\n    check\
+    \ 1 == a.val()\n    a = sint.init(3)\n    a.dec\n    check 2 == a.val()\n    a.dec\n\
+    \    check 1 == a.val()\n    a.dec\n    check 0 == a.val()\n    a.dec\n    check\
+    \ 10 == a.val()\n# TODO:\n#    a = 8\n#    check 8, (a++).val());\n#    check\
+    \ 9, (a++).val());\n#    check 10, (a++).val());\n#    check 0, (a++).val());\n\
+    #    check 1, a.val());\n#    a = 3;\n#    check 3, (a--).val());\n#    check\
+    \ 2, (a--).val());\n#    check 1, (a--).val());\n#    check 0, (a--).val());\n\
+    #    check 10, a.val());\n\n  block:\n    var a = dint.init(8)\n    a.inc\n  \
+    \  check 9 == a.val()\n    a.inc\n    check 10 == a.val()\n    a.inc\n    check\
+    \ 0 == a.val()\n    a.inc\n    check 1 == a.val()\n    a = dint.init(3)\n    a.dec\n\
+    \    check 2 == a.val()\n    a.dec\n    check 1 == a.val()\n    a.dec\n    check\
+    \ 0 == a.val()\n    a.dec\n    check 10 == a.val()\n# TODO:\n#    a = 8;\n#  \
+    \  check 8, (a++).val());\n#    check 9, (a++).val());\n#    check 10, (a++).val());\n\
+    #    check 0, (a++).val());\n#    check 1, a.val());\n#    a = 3;\n#    check\
+    \ 3, (a--).val());\n#    check 2, (a--).val());\n#    check 1, (a--).val());\n\
+    #    check 0, (a--).val());\n#    check 10, a.val());\n\ntest \"ModintTest, StaticUsage\"\
+    :\n  type mint = StaticModInt[11]\n  check 11 == mint.mod()\n# TODO: \u30D7\u30E9\
+    \u30B9\u7B26\u53F7\u304C\u306A\u3044\uFF1F\n#  check 4 == + mint.init(4)\n  check\
+    \ 7 == - mint.init(4)\n\n#  ASSERT_FALSE(mint(1) == mint(3));\n#  ASSERT_TRUE(mint(1)\
+    \ != mint(3));\n#  ASSERT_TRUE(mint(1) == mint(12));\n#  ASSERT_FALSE(mint(1)\
+    \ != mint(12));\n  check mint.init(1) != mint.init(3)\n  check mint.init(1) ==\
+    \ mint.init(12)\n\n#  expect AssertionError:\n#    discard mint.init(3).pow(-1)\n\
+    \ntest \"ModintTest, DynamicUsage\":\n  check 998244353 == DynamicModInt[12345].mod()\n\
+    \  type mint = modint\n  mint.set_mod(998244353)\n  check 998244353 == mint.mod()\n\
+    \  check 3 == (mint.init(1) + mint.init(2)).val()\n  check 3 == (1 + mint.init(2)).val()\n\
+    \  check 3 == (mint.init(1) + 2).val()\n\n  mint.set_mod(3)\n  check 3 == mint.mod()\n\
+    \  check 1 == (mint.init(2) - mint.init(1)).val()\n  check 0 == (mint.init(1)\
+    \ + mint.init(2)).val()\n\n  mint.set_mod(11)\n  check 11 == mint.mod()\n  check\
+    \ 4 == (mint.init(3) * mint.init(5)).val()\n\n  # TODO: \u30D7\u30E9\u30B9\u7B26\
+    \u53F7\u304C\u306A\u3044\uFF1F\n#  check 4 == +mint.init(4)\n  check 7 == -mint.init(4)\n\
+    \n#  ASSERT_FALSE(mint(1) == mint(3));\n#  ASSERT_TRUE(mint(1) != mint(3));\n\
+    #  ASSERT_TRUE(mint(1) == mint(12));\n#  ASSERT_FALSE(mint(1) != mint(12));\n\
+    \  check mint.init(1) != mint.init(3)\n  check mint.init(1) == mint.init(12)\n\
+    \n#  expect AssertionError:\n#    discard mint.init(3).pow(-1)\n\ntest \"ModintTest,\
+    \ Constructor\":\n  modint.set_mod(11)\n  check 1 == modint(true.int).val()\n\
+    \  check 3 == modint((3.chr).int).val()\n  check 3 == modint.init((3).int8).val()\n\
+    \  check 3 == modint.init((3).uint8).val()\n  check 3 == modint.init((3).int16).val()\n\
+    \  check 3 == modint.init((3).uint16).val()\n  check 3 == modint.init((3).int32).val()\n\
+    \  check 3 == modint.init((3).uint32).val()\n  check 3 == modint.init((3).int64).val()\n\
+    \  check 3 == modint.init((3).uint64).val()\n  check 3 == modint.init((3).int).val()\n\
+    \  check 3 == modint.init((3).uint).val()\n  check 1 == modint.init((-10).int8).val()\n\
+    \  check 1 == modint.init((-10).int16).val()\n  check 1 == modint.init((-10).int32).val()\n\
+    \  check 1 == modint.init((-10).int64).val()\n  check 1 == modint.init((-10).int).val()\n\
+    \n  check 2 == ((1).int32 + modint(1)).val()\n  check 2 == ((1).int16 + modint(1)).val()\n\
+    \n  var m:modint\n  check 0 == m.val()\n\ntest \"ModintTest, ConstructorStatic\"\
+    :\n  type mint = StaticModInt[11]\n\n  check 1 == mint.init(true.int).val()\n\
+    \  check 3 == mint.init((3.chr).int).val()\n  check 3 == mint.init((3).int8).val()\n\
+    \  check 3 == mint.init((3).uint8).val()\n  check 3 == mint.init((3).int16).val()\n\
+    \  check 3 == mint.init((3).uint16).val()\n  check 3 == mint.init((3).int32).val()\n\
+    \  check 3 == mint.init((3).uint32).val()\n  check 3 == mint.init((3).int64).val()\n\
+    \  check 3 == mint.init((3).uint64).val()\n  check 3 == mint.init((3).int).val()\n\
+    \  check 3 == mint.init((3).uint).val()\n  check 1 == mint.init((-10).int8).val()\n\
+    \  check 1 == mint.init((-10).int16).val()\n  check 1 == mint.init((-10).int32).val()\n\
+    \  check 1 == mint.init((-10).int64).val()\n  check 1 == mint.init((-10).int).val()\n\
+    \n  check 2 == ((1).int32 + mint.init(1)).val()\n  check 2 == ((1).int16 + mint.init(1)).val()\n\
+    \n  var m:mint\n  check 0 == m.val()\n\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: tests/test_modint.nim
+  requiredBy: []
+  timestamp: '2021-07-16 23:11:44+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: tests/test_modint.nim
+layout: document
+redirect_from:
+- /library/tests/test_modint.nim
+- /library/tests/test_modint.nim.html
+title: tests/test_modint.nim
+---

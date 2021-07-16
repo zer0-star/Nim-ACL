@@ -14,6 +14,12 @@ data:
   - icon: ':warning:'
     path: test/example/twosat_practice.nim
     title: test/example/twosat_practice.nim
+  - icon: ':warning:'
+    path: tests/test_twosat.nim
+    title: tests/test_twosat.nim
+  - icon: ':warning:'
+    path: tests/test_twosat.nim
+    title: tests/test_twosat.nim
   _extendedVerifiedWith:
   - icon: ':x:'
     path: verify/twosat_test.nim
@@ -21,33 +27,36 @@ data:
   - icon: ':x:'
     path: verify/twosat_test.nim
     title: verify/twosat_test.nim
+  _isVerificationFailed: true
   _pathExtension: nim
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 70, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_TWOSAT_HPP:\n  const ATCODER_TWOSAT_HPP* = 1\n\n\
     \  import atcoder/internal_scc\n  \n  # Reference:\n  # B. Aspvall, M. Plass,\
     \ and R. Tarjan,\n  # A Linear-Time Algorithm for Testing the Truth of Certain\
-    \ Quantified Boolean\n  # Formulas\n  type two_sat* = object\n    n:int\n    answer:seq[bool]\n\
-    \    scc:internal_scc_graph\n\n  proc init_two_sat*(n:int):auto =\n    two_sat(n:n,\
+    \ Quantified Boolean\n  # Formulas\n  type TwoSAT* = object\n    n:int\n    answer:seq[bool]\n\
+    \    scc:internal_scc_graph\n\n  proc init_TwoSAT*(n:int):auto =\n    TwoSAT(n:n,\
     \ answer:newSeq[bool](n), scc:init_internal_scc_graph(2 * n))\n  \n  proc add_clause*(self:var\
-    \ two_sat, i:int, f:bool, j:int, g:bool) =\n    assert i in 0..<self.n\n    assert\
+    \ TwoSAT, i:int, f:bool, j:int, g:bool) =\n    assert i in 0..<self.n\n    assert\
     \ j in 0..<self.n\n    self.scc.add_edge(2 * i + (if f: 0 else: 1), 2 * j + (if\
     \ g: 1 else: 0))\n    self.scc.add_edge(2 * j + (if g: 0 else: 1), 2 * i + (if\
-    \ f: 1 else: 0))\n  proc satisfiable*(self:var two_sat):bool =\n    let id = self.scc.scc_ids()[1]\n\
+    \ f: 1 else: 0))\n  proc satisfiable*(self:var TwoSAT):bool =\n    let id = self.scc.scc_ids()[1]\n\
     \    for i in 0..<self.n:\n      if id[2 * i] == id[2 * i + 1]: return false\n\
     \      self.answer[i] = id[2 * i] < id[2 * i + 1]\n    return true\n  proc answer*(self:\
-    \ two_sat):auto = self.answer\n"
+    \ TwoSAT):auto = self.answer\n"
   dependsOn:
   - atcoder/internal_scc.nim
   - atcoder/internal_scc.nim
   isVerificationFile: false
   path: atcoder/twosat.nim
   requiredBy:
+  - tests/test_twosat.nim
+  - tests/test_twosat.nim
   - test/example/twosat_practice.nim
   - test/example/twosat_practice.nim
   timestamp: '1970-01-01 00:00:00+00:00'

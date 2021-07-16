@@ -2,8 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: atcoder/modint.nim
-    title: atcoder/modint.nim
+    path: atcoder/generate_definitions.nim
+    title: atcoder/generate_definitions.nim
+  - icon: ':question:'
+    path: atcoder/generate_definitions.nim
+    title: atcoder/generate_definitions.nim
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
   - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
@@ -11,23 +17,36 @@ data:
     path: atcoder/modint.nim
     title: atcoder/modint.nim
   - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  _extendedRequiredBy: []
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series_sqrt.nim
+    title: atcoder/extra/math/formal_power_series_sqrt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series_sqrt.nim
+    title: atcoder/extra/math/formal_power_series_sqrt.nim
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: verify/extra/arbitrary_mod_exp_modsqrt_test.nim
-    title: verify/extra/arbitrary_mod_exp_modsqrt_test.nim
+    path: verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
+    title: verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
   - icon: ':x:'
-    path: verify/extra/arbitrary_mod_exp_modsqrt_test.nim
-    title: verify/extra/arbitrary_mod_exp_modsqrt_test.nim
+    path: verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
+    title: verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
+  - icon: ':x:'
+    path: verify/extra/math/sqrt_of_formal_power_series_test.nim
+    title: verify/extra/math/sqrt_of_formal_power_series_test.nim
+  - icon: ':x:'
+    path: verify/extra/math/sqrt_of_formal_power_series_test.nim
+    title: verify/extra/math/sqrt_of_formal_power_series_test.nim
+  _isVerificationFailed: true
   _pathExtension: nim
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 70, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# modSqrt {{{\nwhen not declared ATCODER_MODSQRT_HPP:\n  const ATCODER_MODSQRT_HPP*\
     \ = 1\n  import atcoder/modint\n  import std/options\n  \n  proc modSqrt*[T:ModInt](a:T):Option[T]\
@@ -40,18 +59,24 @@ data:
     \    j.inc\n        t *= t\n      z = z.pow(1 shl (e - j - 1))\n      x *= z\n\
     \      z *= z\n      y *= z\n      e = j\n    return T(x).some\n#}}}\n"
   dependsOn:
-  - atcoder/modint.nim
   - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/generate_definitions.nim
   - atcoder/modint.nim
   - atcoder/internal_math.nim
   isVerificationFile: false
   path: atcoder/extra/math/mod_sqrt.nim
-  requiredBy: []
+  requiredBy:
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/extra/arbitrary_mod_exp_modsqrt_test.nim
-  - verify/extra/arbitrary_mod_exp_modsqrt_test.nim
+  - verify/extra/math/sqrt_of_formal_power_series_test.nim
+  - verify/extra/math/sqrt_of_formal_power_series_test.nim
+  - verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
+  - verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
 documentation_of: atcoder/extra/math/mod_sqrt.nim
 layout: document
 redirect_from:

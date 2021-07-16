@@ -1,47 +1,48 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
+  - icon: ':question:'
     path: atcoder/math.nim
     title: atcoder/math.nim
   - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':question:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':question:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
-  - icon: ':heavy_check_mark:'
     path: atcoder/math.nim
     title: atcoder/math.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: nim
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://yukicoder.me/problems/no/186
     links:
     - https://yukicoder.me/problems/no/186
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 70, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://yukicoder.me/problems/no/186\n\nimport atcoder/header\n\
     import atcoder/math\n\nlet X1, Y1, X2, Y2, X3, Y3 = nextInt()\nvar (y, z) = crt(@[X1,\
     \ X2, X3], @[Y1, Y2, Y3])\nif y == 0 and z == 0:\n  echo -1\nelse:\n  if y ==\
     \ 0: y += z\n  echo y\n"
   dependsOn:
-  - atcoder/math.nim
-  - atcoder/internal_math.nim
-  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/internal_math.nim
   - atcoder/math.nim
+  - atcoder/header.nim
+  - atcoder/math.nim
+  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/crt_test.nim
   requiredBy: []

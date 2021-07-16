@@ -2,29 +2,47 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/example/twosat_practice.nim
-    title: test/example/twosat_practice.nim
-  - icon: ':warning:'
-    path: test/example/twosat_practice.nim
-    title: test/example/twosat_practice.nim
+  - icon: ':question:'
+    path: atcoder/scc.nim
+    title: atcoder/scc.nim
+  - icon: ':question:'
+    path: atcoder/scc.nim
+    title: atcoder/scc.nim
   - icon: ':x:'
     path: atcoder/twosat.nim
     title: atcoder/twosat.nim
   - icon: ':x:'
     path: atcoder/twosat.nim
     title: atcoder/twosat.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/scc.nim
-    title: atcoder/scc.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/scc.nim
-    title: atcoder/scc.nim
+  - icon: ':warning:'
+    path: test/example/twosat_practice.nim
+    title: test/example/twosat_practice.nim
+  - icon: ':warning:'
+    path: test/example/twosat_practice.nim
+    title: test/example/twosat_practice.nim
+  - icon: ':warning:'
+    path: tests/test_scc.nim
+    title: tests/test_scc.nim
+  - icon: ':warning:'
+    path: tests/test_scc.nim
+    title: tests/test_scc.nim
+  - icon: ':warning:'
+    path: tests/test_twosat.nim
+    title: tests/test_twosat.nim
+  - icon: ':warning:'
+    path: tests/test_twosat.nim
+    title: tests/test_twosat.nim
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/scc_test.nim
-    title: verify/scc_test.nim
+    path: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
+    title: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
   - icon: ':heavy_check_mark:'
+    path: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
+    title: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
+  - icon: ':x:'
+    path: verify/scc_test.nim
+    title: verify/scc_test.nim
+  - icon: ':x:'
     path: verify/scc_test.nim
     title: verify/scc_test.nim
   - icon: ':x:'
@@ -33,13 +51,14 @@ data:
   - icon: ':x:'
     path: verify/twosat_test.nim
     title: verify/twosat_test.nim
+  _isVerificationFailed: true
   _pathExtension: nim
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 70, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_INTERNAL_SCC_HPP:\n  const ATCODER_INTERNAL_SCC_HPP*\
     \ = 1\n  \n  import std/sequtils\n  \n  type csr[E] = object\n    start:seq[int]\n\
@@ -75,12 +94,16 @@ data:
   isVerificationFile: false
   path: atcoder/internal_scc.nim
   requiredBy:
-  - test/example/twosat_practice.nim
-  - test/example/twosat_practice.nim
-  - atcoder/twosat.nim
-  - atcoder/twosat.nim
+  - tests/test_twosat.nim
+  - tests/test_twosat.nim
+  - tests/test_scc.nim
+  - tests/test_scc.nim
   - atcoder/scc.nim
   - atcoder/scc.nim
+  - atcoder/twosat.nim
+  - atcoder/twosat.nim
+  - test/example/twosat_practice.nim
+  - test/example/twosat_practice.nim
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -88,6 +111,8 @@ data:
   - verify/scc_test.nim
   - verify/twosat_test.nim
   - verify/twosat_test.nim
+  - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
+  - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
 documentation_of: atcoder/internal_scc.nim
 layout: document
 redirect_from:

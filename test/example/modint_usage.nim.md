@@ -2,8 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: atcoder/modint.nim
-    title: atcoder/modint.nim
+    path: atcoder/generate_definitions.nim
+    title: atcoder/generate_definitions.nim
+  - icon: ':question:'
+    path: atcoder/generate_definitions.nim
+    title: atcoder/generate_definitions.nim
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
   - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
@@ -11,17 +17,18 @@ data:
     path: atcoder/modint.nim
     title: atcoder/modint.nim
   - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: nim
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 70, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "import atcoder/modint\n\ntype mint = StaticModInt[11]\n\nvar\n  a = mint(10)\n\
     \  b:mint = mint(3)\n\n# equal\nassert a == 21\nassert a == -1\nassert -1 == a\n\
@@ -41,10 +48,12 @@ data:
     \u3057\u306A\u3044\u3068\u3044\u3051\u307E\u305B\u3093)\nassert mint.raw(3) ==\
     \ 3\n"
   dependsOn:
-  - atcoder/modint.nim
   - atcoder/internal_math.nim
   - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
   isVerificationFile: false
   path: test/example/modint_usage.nim
   requiredBy: []

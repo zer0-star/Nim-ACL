@@ -18,7 +18,7 @@
         integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
         onload="renderMathInElement(document.body);"></script>
     <!-- Ace editor-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
 
     <style>
         h2 {
@@ -38,11 +38,12 @@
                 var editor = ace.edit(e);
                 editor.setOption("maxLines", "Infinity");
                 editor.setReadOnly(true);
-                editor.getSession().setMode("ace/mode/c_cpp");                
+                editor.getSession().setMode("ace/mode/nim");                
             }
         });
     </script>
-</head><body>
+</head>
+<body>
     <div class="uk-navbar-container" uk-navbar>
         <div class="uk-navbar-left">
             <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
@@ -94,6 +95,19 @@
 <li><a href="./mincostflow.html"><code>import atcoder/mincostflow</code></a></li>
 <li><a href="./scc.html"><code>import atcoder/scc</code></a></li>
 <li><a href="./twosat.html"><code>import atcoder/twosat</code></a></li>
+</ul>
+<h2>エキストラライブラリ</h2>
+<p>ACLには収録されていないが、使用頻度が高そうなライブラリを追加しました。</p>
+<h3>データ構造</h3>
+<ul>
+<li><a href="./extra/persistent_array.html"><code>import atcoder/extra/structure/persistent_array</code></a></li>
+<li><a href="./extra/persistent_dsu.html"><code>import atcoder/extra/structure/persistent_dsu</code></a></li>
+</ul>
+<h3>数学</h3>
+<h3>グラフ</h3>
+<ul>
+<li><a href="./extra/graph_template.html"><code>import atcoder/extra/graph/graph_template</code></a></li>
+<li><a href="./extra/dijkstra.html"><code>import atcoder/extra/graph/dijkstra</code></a></li>
 </ul>
 <h2>付録</h2>
 <ul>

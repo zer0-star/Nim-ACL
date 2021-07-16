@@ -18,7 +18,7 @@
         integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
         onload="renderMathInElement(document.body);"></script>
     <!-- Ace editor-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
 
     <style>
         h2 {
@@ -38,11 +38,12 @@
                 var editor = ace.edit(e);
                 editor.setOption("maxLines", "Infinity");
                 editor.setReadOnly(true);
-                editor.getSession().setMode("ace/mode/c_cpp");                
+                editor.getSession().setMode("ace/mode/nim");                
             }
         });
     </script>
-</head><body>
+</head>
+<body>
     <div class="uk-navbar-container" uk-navbar>
         <div class="uk-navbar-left">
             <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
@@ -65,8 +66,12 @@
 <p>を $O(\log N)$ で行うことが出来ます。詳細な要件は <a href="./appendix.html">Appendix</a> を参照してください。</p>
 <p>また、このライブラリはオラクルとして<code>op, e</code>の2種類を使用しますが、これらが定数時間で動くものと仮定したときの計算量を記述します。オラクル内部の計算量が $O(f(n))$ である場合はすべての計算量が $O(f(n))$ 倍となります。</p>
 <h2>コンストラクタ</h2>
-<pre><code class="nim">(1) seg = initSegTree[S](n:int, op:(S,S)-&gt;S, e:()-&gt;S):segtree[S]
-(2) seg = initSegTree[S](v:seq[S], op:(S,S)-&gt;S, e:()-&gt;S):segtree[S]
+<pre><code class="nim">(1) var seg = initSegTree[S](n:int, op:(S,S)-&gt;S, e:()-&gt;S):segtree[S]
+    var seg = SegTreeType(S, op:(S,S)-&gt;S, e:()-&gt;S).init(n)
+    var seg = SegTree.getType(S, op:(S,S)-&gt;S, e:()-&gt;S).init(n)
+(2) var seg = initSegTree[S](v:seq[S], op:(S,S)-&gt;S, e:()-&gt;S):segtree[S]
+    var seg = SegTreeType(S, op:(S,S)-&gt;S, e:()-&gt;S).init(v)
+    var seg = SegTree.getType(S, op:(S,S)-&gt;S, e:()-&gt;S).init(v)
 </code></pre>
 
 <ul>
@@ -100,6 +105,7 @@ var seg = initSegTree[int](10, seg, e)
 </ul>
 <h2>set</h2>
 <pre><code class="nim">seg.set(p:int, x:S):void
+seg[p:int] = x:S
 </code></pre>
 
 <p><code>a[p]</code> に <code>x</code> を代入します。</p>
@@ -113,6 +119,7 @@ var seg = initSegTree[int](10, seg, e)
 </ul>
 <h2>get</h2>
 <pre><code class="nim">seg.get(p:int):S
+seg[p:int]:S
 </code></pre>
 
 <p><code>a[p]</code> を返します。</p>
@@ -126,6 +133,7 @@ var seg = initSegTree[int](10, seg, e)
 </ul>
 <h2>prod</h2>
 <pre><code class="nim">seg.prod(l..&lt;r):S
+seg[l..&lt;r]:S
 </code></pre>
 
 <p><code>op(a[l], ..., a[r - 1])</code> を、モノイドの性質を満たしていると仮定して計算します。$l = r$ のときは <code>e()</code> を返します。</p>

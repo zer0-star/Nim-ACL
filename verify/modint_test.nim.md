@@ -2,8 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: atcoder/modint.nim
-    title: atcoder/modint.nim
+    path: atcoder/generate_definitions.nim
+    title: atcoder/generate_definitions.nim
+  - icon: ':question:'
+    path: atcoder/generate_definitions.nim
+    title: atcoder/generate_definitions.nim
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
   - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
@@ -11,33 +17,36 @@ data:
     path: atcoder/modint.nim
     title: atcoder/modint.nim
   - icon: ':question:'
-    path: atcoder/internal_math.nim
-    title: atcoder/internal_math.nim
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: https://yukicoder.me/problems/no/741
     links:
     - https://yukicoder.me/problems/no/741
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 70, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://yukicoder.me/problems/no/741\n\nimport atcoder/modint\n\
     import std/strutils, std/sequtils, std/math\n\nlet\n  N = stdin.readLine.parseInt.initModInt()\n\
     \necho (0 ..< 9).mapIt(N + 9 - it).prod / toSeq(1 .. 9).prod\n"
   dependsOn:
-  - atcoder/modint.nim
   - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/generate_definitions.nim
   - atcoder/modint.nim
   - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/modint_test.nim
   requiredBy: []
   timestamp: '2020-09-23 23:13:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/modint_test.nim
 layout: document

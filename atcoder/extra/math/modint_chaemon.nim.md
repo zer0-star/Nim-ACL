@@ -3,13 +3,14 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: nim
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 70, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# ModInt {{{\nwhen not declared ATCODER_MODINT_CHAEMON_HPP:\n  const ATCODER_MODINT_CHAEMON_HPP*\
     \ = 1\n  import std/strformat, std/macros\n  # ModInt[Mod] {{{\n  type ModInt*[Mod:\
@@ -19,13 +20,13 @@ data:
     \ = self.Mod\n  proc getMod[Mod:static[int]](self: typedesc[ModInt[Mod]]):static\
     \ int32 = self.Mod\n   \n  macro declareModInt*(Mod:static[int], t: untyped):untyped\
     \ =\n    var strBody = \"\"\n    strBody &= fmt\"\"\"\ntype {t.repr}* = ModInt[{Mod.repr}]\n\
-    proc init{t.repr}*(a:SomeInteger):{t.repr} = initModInt(a, {Mod.repr})\nproc `$`*(a:{t.repr}):string\
-    \ = $(a.v)\nconverter to{t.repr}*(a:SomeInteger):{t.repr} = initModInt(a, {Mod.repr})\n\
-    \"\"\"\n    parseStmt(strBody)\n   \n  when declared(Mod): declareModInt(Mod,\
-    \ Mint)\n  ##}}}\n   \n  # DynamicModInt {{{\n  type DMint* = object\n    v:int32\n\
-    \   \n  proc setModSub*(self:typedesc[not ModInt], m:int = -1, update = false):int32\
-    \ =\n    {.noSideEffect.}:\n      var DMOD {.global.}:int32\n      if update:\
-    \ DMOD = m.int32\n      return DMOD\n   \n  proc fastMod*(a:int,m:uint32):uint32{.inline.}\
+    proc init{t.repr}*(a:SomeInteger):{t.repr} = initModInt(a, {Mod.repr})\n#proc\
+    \ `$`*(a:{t.repr}):string = $(a.v)\nconverter to{t.repr}*(a:SomeInteger):{t.repr}\
+    \ = initModInt(a, {Mod.repr})\n\"\"\"\n    parseStmt(strBody)\n   \n  when declared(Mod):\
+    \ declareModInt(Mod, Mint)\n  ##}}}\n   \n  # DynamicModInt {{{\n  type DMint*\
+    \ = object\n    v:int32\n   \n  proc setModSub*(self:typedesc[not ModInt], m:int\
+    \ = -1, update = false):int32 =\n    {.noSideEffect.}:\n      var DMOD {.global.}:int32\n\
+    \      if update: DMOD = m.int32\n      return DMOD\n   \n  proc fastMod*(a:int,m:uint32):uint32{.inline.}\
     \ =\n    var\n      minus = false\n      a = a\n    if a < 0:\n      minus = true\n\
     \      a = -a\n    elif a < m.int:\n      return a.uint32\n    var\n      xh =\
     \ (a shr 32).uint32\n      xl = a.uint32\n      d:uint32\n    asm \"\"\"\n   \
@@ -55,7 +56,7 @@ data:
     \  proc `==`*(a:ModIntC, b:SomeIntC):bool = a.v == a.init(b).v\n  proc `!=`*(a:ModIntC,\
     \ b:SomeIntC):bool = a.v != a.init(b).v\n  proc `-`*(self:ModIntC):auto =\n  \
     \  if self.v == 0: return self\n    else: return self.init(self.getMod() - self.v)\n\
-    \  proc `$`*(a:ModIntC):string = return $(a.v)\n   \n  proc `+=`*(self:var ModIntC;\
+    #  proc `$`*(a:ModIntC):string = return $(a.v)\n   \n  proc `+=`*(self:var ModIntC;\
     \ a:SomeIntC) =\n    self.v += self.init(a).v\n    if self.v >= self.getMod():\
     \ self.v -= self.getMod()\n  proc `-=`*(self:var ModIntC, a:SomeIntC) =\n    self.v\
     \ -= self.init(a).v\n    if self.v < 0: self.v += self.getMod()\n  proc `^=`*(self:var\

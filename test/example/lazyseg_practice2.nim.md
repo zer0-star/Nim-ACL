@@ -2,32 +2,39 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: atcoder/internal_bit.nim
-    title: atcoder/internal_bit.nim
+    path: atcoder/header.nim
+    title: atcoder/header.nim
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/lazysegtree.nim
-    title: atcoder/lazysegtree.nim
   - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
   - icon: ':question:'
-    path: atcoder/header.nim
-    title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':x:'
     path: atcoder/lazysegtree.nim
     title: atcoder/lazysegtree.nim
+  - icon: ':x:'
+    path: atcoder/lazysegtree.nim
+    title: atcoder/lazysegtree.nim
+  - icon: ':x:'
+    path: atcoder/rangeutils.nim
+    title: atcoder/rangeutils.nim
+  - icon: ':x:'
+    path: atcoder/rangeutils.nim
+    title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: nim
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 70, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "include atcoder/header\nimport atcoder/lazysegtree\n\nblock:\n  type S =\
     \ tuple[zero, one, inversion:int]\n  # swapping flag\n  type F = bool\n\n  proc\
@@ -42,11 +49,13 @@ data:
     \    l.dec\n    if t == 1:\n      seg.apply(l..<r, true)\n    else:\n      echo\
     \ seg.prod(l..<r).inversion\n"
   dependsOn:
-  - atcoder/internal_bit.nim
   - atcoder/header.nim
   - atcoder/lazysegtree.nim
   - atcoder/internal_bit.nim
   - atcoder/header.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
+  - atcoder/rangeutils.nim
   - atcoder/lazysegtree.nim
   isVerificationFile: false
   path: test/example/lazyseg_practice2.nim

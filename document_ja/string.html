@@ -18,7 +18,7 @@
         integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
         onload="renderMathInElement(document.body);"></script>
     <!-- Ace editor-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
 
     <style>
         h2 {
@@ -38,11 +38,12 @@
                 var editor = ace.edit(e);
                 editor.setOption("maxLines", "Infinity");
                 editor.setReadOnly(true);
-                editor.getSession().setMode("ace/mode/c_cpp");                
+                editor.getSession().setMode("ace/mode/nim");                
             }
         });
     </script>
-</head><body>
+</head>
+<body>
     <div class="uk-navbar-container" uk-navbar>
         <div class="uk-navbar-left">
             <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
@@ -53,7 +54,7 @@
             <h1>String</h1>
 <p>文字列アルゴリズム詰め合わせです。
 文字列に関する様々なアルゴリズムが入っています。</p>
-<p>文字列 <code>s</code> の $a$ 番目から $b - 1$ 番目の要素のsubstringを、<code>s[a..b)</code>と表記します。</p>
+<p>文字列 <code>s</code> の $a$ 番目から $b - 1$ 番目の要素のsubstringを、<code>s[a..&lt;b]</code>と表記します。</p>
 <h2>suffix_array</h2>
 <pre><code class="nim">(1) suffix_array(string s):seq[int]
 (2) suffix_array[T](s:seq[T]):seq[int]

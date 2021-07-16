@@ -1,0 +1,62 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: atcoder/extra/header/chaemon_header.nim
+    title: atcoder/extra/header/chaemon_header.nim
+  - icon: ':x:'
+    path: atcoder/extra/header/chaemon_header.nim
+    title: atcoder/extra/header/chaemon_header.nim
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
+    title: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
+    title: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
+    title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
+    title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
+  _isVerificationFailed: true
+  _pathExtension: nim
+  _verificationStatusIcon: ':x:'
+  attributes:
+    links: []
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
+  code: "when not declared ATCODER_ASSIGNMENT_OPERATOR_HPP:\n  import std/macros,\
+    \ std/strformat\n  const ATCODER_ASSIGNMENT_OPERATOR_HPP* = 1\n  template `>?=`*(x,y:typed):void\
+    \ = x.max= y\n  template `<?=`*(x,y:typed):void = x.min= y\n  proc `//`*[T](x,y:T):T\
+    \ = x div y\n  proc `%`*[T](x,y:T):T = x mod y\n  macro generateAssignmentOperator*(ops:varargs[untyped])\
+    \ =\n    var strBody = \"\"\n    for op in ops:\n      let op = op.repr\n    \
+    \  var op_raw = op\n      if op_raw[0] == '`':\n        op_raw = op_raw[1..^2]\n\
+    \      strBody &= fmt\"\"\"proc `{op_raw}=`*[S, T](a:var S, b:T):auto {{.inline\
+    \ discardable.}} = (mixin {op};a = `{op_raw}`(a, b);return a){'\\n'}\"\"\"\n \
+    \   parseStmt(strBody)\n  generateAssignmentOperator(`mod`, `div`, `and`, `or`,\
+    \ `xor`, `shr`, `shl`, `<<`, `>>`, max, min, `%`, `//`, `&`, `|`, `^`)\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: atcoder/extra/other/assignment_operator.nim
+  requiredBy:
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/chaemon_header.nim
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
+  - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
+  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
+  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
+documentation_of: atcoder/extra/other/assignment_operator.nim
+layout: document
+redirect_from:
+- /library/atcoder/extra/other/assignment_operator.nim
+- /library/atcoder/extra/other/assignment_operator.nim.html
+title: atcoder/extra/other/assignment_operator.nim
+---

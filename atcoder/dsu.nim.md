@@ -2,12 +2,42 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/boruvka.nim
+    title: atcoder/extra/graph/boruvka.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/boruvka.nim
+    title: atcoder/extra/graph/boruvka.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/chu_liu_edmonds.nim
+    title: atcoder/extra/graph/chu_liu_edmonds.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/chu_liu_edmonds.nim
+    title: atcoder/extra/graph/chu_liu_edmonds.nim
+  - icon: ':warning:'
+    path: atcoder/extra/graph/eulerian_trail.nim
+    title: atcoder/extra/graph/eulerian_trail.nim
+  - icon: ':warning:'
+    path: atcoder/extra/graph/eulerian_trail.nim
+    title: atcoder/extra/graph/eulerian_trail.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/kruskal.nim
+    title: atcoder/extra/graph/kruskal.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/kruskal.nim
+    title: atcoder/extra/graph/kruskal.nim
   - icon: ':warning:'
     path: test/example/dsu_practice.nim
     title: test/example/dsu_practice.nim
   - icon: ':warning:'
     path: test/example/dsu_practice.nim
     title: test/example/dsu_practice.nim
+  - icon: ':warning:'
+    path: tests/test_dsu.nim
+    title: tests/test_dsu.nim
+  - icon: ':warning:'
+    path: tests/test_dsu.nim
+    title: tests/test_dsu.nim
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/dsu_test.nim
@@ -15,13 +45,38 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/dsu_test.nim
     title: verify/dsu_test.nim
+  - icon: ':heavy_check_mark:'
+    path: verify/extra/graph/aoj_grl_2_a_2_minimum_spanning_tree_kruskal_test.nim
+    title: verify/extra/graph/aoj_grl_2_a_2_minimum_spanning_tree_kruskal_test.nim
+  - icon: ':heavy_check_mark:'
+    path: verify/extra/graph/aoj_grl_2_a_2_minimum_spanning_tree_kruskal_test.nim
+    title: verify/extra/graph/aoj_grl_2_a_2_minimum_spanning_tree_kruskal_test.nim
+  - icon: ':heavy_check_mark:'
+    path: verify/extra/graph/aoj_grl_2_a_3_boruvka_test.nim
+    title: verify/extra/graph/aoj_grl_2_a_3_boruvka_test.nim
+  - icon: ':heavy_check_mark:'
+    path: verify/extra/graph/aoj_grl_2_a_3_boruvka_test.nim
+    title: verify/extra/graph/aoj_grl_2_a_3_boruvka_test.nim
+  - icon: ':heavy_check_mark:'
+    path: verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
+    title: verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
+  - icon: ':heavy_check_mark:'
+    path: verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
+    title: verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
+  - icon: ':x:'
+    path: verify/extra/graph/yosupo_directedmst_test.nim
+    title: verify/extra/graph/yosupo_directedmst_test.nim
+  - icon: ':x:'
+    path: verify/extra/graph/yosupo_directedmst_test.nim
+    title: verify/extra/graph/yosupo_directedmst_test.nim
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 70, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_DSU_HPP:\n  const ATCODER_DSU_HPP* = 1\n\n  import\
     \ std/sequtils\n\n  type\n    DSU* = ref object\n      n: int\n      par_or_siz:\
@@ -44,13 +99,31 @@ data:
   isVerificationFile: false
   path: atcoder/dsu.nim
   requiredBy:
+  - tests/test_dsu.nim
+  - tests/test_dsu.nim
+  - atcoder/extra/graph/boruvka.nim
+  - atcoder/extra/graph/boruvka.nim
+  - atcoder/extra/graph/eulerian_trail.nim
+  - atcoder/extra/graph/eulerian_trail.nim
+  - atcoder/extra/graph/kruskal.nim
+  - atcoder/extra/graph/kruskal.nim
+  - atcoder/extra/graph/chu_liu_edmonds.nim
+  - atcoder/extra/graph/chu_liu_edmonds.nim
   - test/example/dsu_practice.nim
   - test/example/dsu_practice.nim
   timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/dsu_test.nim
   - verify/dsu_test.nim
+  - verify/extra/graph/yosupo_directedmst_test.nim
+  - verify/extra/graph/yosupo_directedmst_test.nim
+  - verify/extra/graph/aoj_grl_2_a_3_boruvka_test.nim
+  - verify/extra/graph/aoj_grl_2_a_3_boruvka_test.nim
+  - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
+  - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
+  - verify/extra/graph/aoj_grl_2_a_2_minimum_spanning_tree_kruskal_test.nim
+  - verify/extra/graph/aoj_grl_2_a_2_minimum_spanning_tree_kruskal_test.nim
 documentation_of: atcoder/dsu.nim
 layout: document
 redirect_from:

@@ -1,35 +1,36 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: atcoder/scc.nim
-    title: atcoder/scc.nim
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/scc.nim
-    title: atcoder/scc.nim
-  - icon: ':question:'
-    path: atcoder/internal_scc.nim
-    title: atcoder/internal_scc.nim
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
+  - icon: ':question:'
+    path: atcoder/internal_scc.nim
+    title: atcoder/internal_scc.nim
+  - icon: ':question:'
+    path: atcoder/scc.nim
+    title: atcoder/scc.nim
+  - icon: ':question:'
+    path: atcoder/scc.nim
+    title: atcoder/scc.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/scc
     links:
     - https://judge.yosupo.jp/problem/scc
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 70, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/scc\n\ninclude atcoder/header\n\
     include atcoder/scc\n\nblock:\n  let N, M = nextInt()\n  var\n    scc = initSccGraph(N)\n\
@@ -37,17 +38,17 @@ data:
     \ = scc.scc()\n  echo a.len\n  for a in a:\n    echo a.len, \" \", a.join(\" \"\
     )\n"
   dependsOn:
-  - atcoder/scc.nim
   - atcoder/header.nim
   - atcoder/scc.nim
   - atcoder/internal_scc.nim
+  - atcoder/scc.nim
   - atcoder/header.nim
   - atcoder/internal_scc.nim
   isVerificationFile: true
   path: verify/scc_test.nim
   requiredBy: []
   timestamp: '2020-09-23 23:13:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/scc_test.nim
 layout: document

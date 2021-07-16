@@ -3,10 +3,10 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"test/expander/comment_out.cpp\"\n// #include <atcoder/dsu>\n\
     /* #include <atcoder/dsu> */\n/* #include <atcoder/dsu>\n*/\n\nnamespace atcoder\

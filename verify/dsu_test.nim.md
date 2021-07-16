@@ -1,31 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: nim
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/unionfind
     links:
     - https://judge.yosupo.jp/problem/unionfind
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 70, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/nim.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/unionfind\n\nimport\
-    \ atcoder/dsu\nimport std/sequtils, std/strutils\n\nlet\n  nq = stdin.readLine.split.map(parseInt)\n\
-    \nvar\n  uf = initDSU(nq[0])\n\nfor _ in 0 ..< nq[1]:\n  let\n    tuv = stdin.readLine.split.map(parseInt)\n\
-    \n  if tuv[0] == 0:\n    uf.merge(tuv[1], tuv[2])\n  elif tuv[0] == 1:\n    echo(\n\
-    \      if uf.same(tuv[1], tuv[2]):\n        1\n      else:\n        0\n    )\n"
+    \ atcoder/header\nimport atcoder/dsu\n\nlet N, Q = nextInt()\nvar uf = initDSU(N)\n\
+    \nfor _ in 0 ..< Q:\n  let t, u, v = nextInt()\n\n  if t == 0:\n    uf.merge(u,\
+    \ v)\n  elif t == 1:\n    echo(\n      if uf.same(u, v):\n        1\n      else:\n\
+    \        0\n    )\n"
   dependsOn:
+  - atcoder/header.nim
   - atcoder/dsu.nim
+  - atcoder/header.nim
   - atcoder/dsu.nim
   isVerificationFile: true
   path: verify/dsu_test.nim
