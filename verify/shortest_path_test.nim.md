@@ -54,16 +54,16 @@ data:
     \  ans.reverse\n    echo dist[t], \" \", ans.len - 1\n    for i in 0..<ans.len\
     \ - 1:\n      echo ans[i], \" \", ans[i+1]\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/header.nim
-  - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/dijkstra.nim
+  - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/dijkstra.nim
   - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/shortest_path_test.nim
   requiredBy: []

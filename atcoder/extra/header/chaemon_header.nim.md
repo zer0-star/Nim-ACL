@@ -7,22 +7,22 @@ data:
   - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/other/assignment_operator.nim
     title: atcoder/extra/other/assignment_operator.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/other/assignment_operator.nim
     title: atcoder/extra/other/assignment_operator.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/other/debug.nim
     title: atcoder/extra/other/debug.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/other/debug.nim
     title: atcoder/extra/other/debug.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
   - icon: ':question:'
@@ -31,83 +31,71 @@ data:
   - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/other/internal_sugar.nim
     title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/other/internal_sugar.nim
     title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':question:'
-    path: atcoder/extra/other/internal_underscored_calls.nim
-    title: atcoder/extra/other/internal_underscored_calls.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/other/internal_underscored_calls.nim
     title: atcoder/extra/other/internal_underscored_calls.nim
   - icon: ':x:'
+    path: atcoder/extra/other/internal_underscored_calls.nim
+    title: atcoder/extra/other/internal_underscored_calls.nim
+  - icon: ':warning:'
     path: atcoder/extra/other/reader.nim
     title: atcoder/extra/other/reader.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/other/reader.nim
     title: atcoder/extra/other/reader.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/other/reference.nim
     title: atcoder/extra/other/reference.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/other/reference.nim
     title: atcoder/extra/other/reference.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/other/seq_array_utils.nim
     title: atcoder/extra/other/seq_array_utils.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/other/seq_array_utils.nim
     title: atcoder/extra/other/seq_array_utils.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/other/sliceutils.nim
     title: atcoder/extra/other/sliceutils.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/other/sliceutils.nim
     title: atcoder/extra/other/sliceutils.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/other/solve_proc.nim
     title: atcoder/extra/other/solve_proc.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/other/solve_proc.nim
     title: atcoder/extra/other/solve_proc.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/other/warlus_operator.nim
     title: atcoder/extra/other/warlus_operator.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/other/warlus_operator.nim
     title: atcoder/extra/other/warlus_operator.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/other/zip.nim
     title: atcoder/extra/other/zip.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/other/zip.nim
     title: atcoder/extra/other/zip.nim
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-    title: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-  - icon: ':x:'
-    path: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-    title: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-  - icon: ':x:'
-    path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-    title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-  - icon: ':x:'
-    path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-    title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -135,46 +123,42 @@ data:
     \  proc ceilDiv*[T:SomeInteger](a, b:T):T =\n    assert b != 0\n    if b < 0:\
     \ return ceilDiv(-a, -b)\n    result = a.floorDiv(b)\n    if a mod b != 0: result.inc\n"
   dependsOn:
-  - atcoder/extra/other/sliceutils.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/zip.nim
   - atcoder/extra/other/reference.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/extra/other/debug.nim
   - atcoder/extra/other/internal_sugar.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/zip.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/other/internal_sugar.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/zip.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/other/sliceutils.nim
   - atcoder/extra/other/assignment_operator.nim
   - atcoder/element_concepts.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/inf.nim
   - atcoder/extra/other/sliceutils.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/zip.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/reference.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/static_var.nim
   isVerificationFile: false
   path: atcoder/extra/header/chaemon_header.nim
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-  - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: atcoder/extra/header/chaemon_header.nim
 layout: document
 redirect_from:

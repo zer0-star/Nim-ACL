@@ -59,11 +59,11 @@ data:
     \    j.inc\n        t *= t\n      z = z.pow(1 shl (e - j - 1))\n      x *= z\n\
     \      z *= z\n      y *= z\n      e = j\n    return T(x).some\n#}}}\n"
   dependsOn:
-  - atcoder/modint.nim
-  - atcoder/modint.nim
   - atcoder/internal_math.nim
+  - atcoder/modint.nim
   - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
   - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: atcoder/extra/math/mod_sqrt.nim

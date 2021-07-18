@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
   _extendedRequiredBy: []
@@ -35,8 +35,8 @@ data:
     test \"SCCTest, Invalid\":\n  var graph = initSCCGraph(2)\n  expect AssertionError:\n\
     \    graph.add_edge(0, 10)\n"
   dependsOn:
-  - atcoder/internal_scc.nim
   - atcoder/scc.nim
+  - atcoder/internal_scc.nim
   - atcoder/internal_scc.nim
   - atcoder/scc.nim
   isVerificationFile: false

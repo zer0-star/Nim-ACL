@@ -1,102 +1,6 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: atcoder/element_concepts.nim
-    title: atcoder/element_concepts.nim
-  - icon: ':question:'
-    path: atcoder/element_concepts.nim
-    title: atcoder/element_concepts.nim
-  - icon: ':x:'
-    path: atcoder/extra/header/chaemon_header.nim
-    title: atcoder/extra/header/chaemon_header.nim
-  - icon: ':x:'
-    path: atcoder/extra/header/chaemon_header.nim
-    title: atcoder/extra/header/chaemon_header.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/assignment_operator.nim
-    title: atcoder/extra/other/assignment_operator.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/assignment_operator.nim
-    title: atcoder/extra/other/assignment_operator.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/debug.nim
-    title: atcoder/extra/other/debug.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/debug.nim
-    title: atcoder/extra/other/debug.nim
-  - icon: ':question:'
-    path: atcoder/extra/other/floatutils.nim
-    title: atcoder/extra/other/floatutils.nim
-  - icon: ':question:'
-    path: atcoder/extra/other/floatutils.nim
-    title: atcoder/extra/other/floatutils.nim
-  - icon: ':question:'
-    path: atcoder/extra/other/inf.nim
-    title: atcoder/extra/other/inf.nim
-  - icon: ':question:'
-    path: atcoder/extra/other/inf.nim
-    title: atcoder/extra/other/inf.nim
-  - icon: ':question:'
-    path: atcoder/extra/other/internal_sugar.nim
-    title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':question:'
-    path: atcoder/extra/other/internal_sugar.nim
-    title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':question:'
-    path: atcoder/extra/other/internal_underscored_calls.nim
-    title: atcoder/extra/other/internal_underscored_calls.nim
-  - icon: ':question:'
-    path: atcoder/extra/other/internal_underscored_calls.nim
-    title: atcoder/extra/other/internal_underscored_calls.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/reader.nim
-    title: atcoder/extra/other/reader.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/reader.nim
-    title: atcoder/extra/other/reader.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/reference.nim
-    title: atcoder/extra/other/reference.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/reference.nim
-    title: atcoder/extra/other/reference.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/seq_array_utils.nim
-    title: atcoder/extra/other/seq_array_utils.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/seq_array_utils.nim
-    title: atcoder/extra/other/seq_array_utils.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/sliceutils.nim
-    title: atcoder/extra/other/sliceutils.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/sliceutils.nim
-    title: atcoder/extra/other/sliceutils.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/solve_proc.nim
-    title: atcoder/extra/other/solve_proc.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/solve_proc.nim
-    title: atcoder/extra/other/solve_proc.nim
-  - icon: ':question:'
-    path: atcoder/extra/other/static_var.nim
-    title: atcoder/extra/other/static_var.nim
-  - icon: ':question:'
-    path: atcoder/extra/other/static_var.nim
-    title: atcoder/extra/other/static_var.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/warlus_operator.nim
-    title: atcoder/extra/other/warlus_operator.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/warlus_operator.nim
-    title: atcoder/extra/other/warlus_operator.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/zip.nim
-    title: atcoder/extra/other/zip.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/zip.nim
-    title: atcoder/extra/other/zip.nim
   - icon: ':x:'
     path: atcoder/extra/structure/link_cut_tree.nim
     title: atcoder/extra/structure/link_cut_tree.nim
@@ -115,6 +19,12 @@ data:
   - icon: ':question:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
+  - icon: ':question:'
+    path: atcoder/header.nim
+    title: atcoder/header.nim
   - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
@@ -147,9 +57,9 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite\n\
-    \ninclude atcoder/extra/header/chaemon_header\n\nimport atcoder/extra/structure/splay_tree\n\
-    import atcoder/extra/structure/link_cut_tree\n\nimport atcoder/modint\n\ntype\
-    \ mint = modint998244353\n\nblock:\n  let N, Q = nextInt()\n\n  type pii = ((mint,mint),(mint,mint))\n\
+    \ninclude atcoder/header\n\nimport atcoder/extra/structure/splay_tree\nimport\
+    \ atcoder/extra/structure/link_cut_tree\n\nimport atcoder/modint\n\ntype mint\
+    \ = modint998244353\n\nblock:\n  let N, Q = nextInt()\n\n  type pii = ((mint,mint),(mint,mint))\n\
     \  proc f(x,y:(mint, mint)):auto = return (x[0] * y[0], x[1] * y[0] + y[1])\n\
     \  proc ff(a, b:pii):auto = (f(a[0], b[0]), f(b[1], a[1]))\n  proc flip(a:((mint,mint),\
     \ (mint,mint))):auto = (a[1], a[0])\n  var lct = initLinkCutTree(ff, flip, ((mint(0),\
@@ -166,50 +76,20 @@ data:
     \        lct.expose(vs[V])\n        let ret = vs[V].sum[0]\n        echo ret[0]\
     \ * X + ret[1]\n"
   dependsOn:
-  - atcoder/extra/other/sliceutils.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/rangeutils.nim
-  - atcoder/modint.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/rangeutils.nim
-  - atcoder/modint.nim
-  - atcoder/extra/other/zip.nim
-  - atcoder/extra/other/reference.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
   - atcoder/extra/structure/link_cut_tree.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/internal_sugar.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/debug.nim
+  - atcoder/header.nim
+  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/modint.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
   - atcoder/extra/structure/link_cut_tree.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/other/internal_sugar.nim
-  - atcoder/extra/other/assignment_operator.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/solve_proc.nim
   - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
   - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/sliceutils.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/other/zip.nim
-  - atcoder/extra/other/reference.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
   requiredBy: []

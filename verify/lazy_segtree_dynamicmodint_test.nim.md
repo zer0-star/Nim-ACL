@@ -68,20 +68,20 @@ data:
     \ if t == 0:\n    let l, r, c, d = nextInt()\n    seg.apply(l..<r, (mint(c), mint(d)))\n\
     \  else:\n    let l, r = nextInt()\n    echo seg.prod(l..<r)[0]\n"
   dependsOn:
-  - atcoder/internal_bit.nim
   - atcoder/header.nim
-  - atcoder/modint.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
-  - atcoder/header.nim
+  - atcoder/internal_bit.nim
+  - atcoder/internal_math.nim
   - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
   - atcoder/rangeutils.nim
+  - atcoder/modint.nim
   - atcoder/lazysegtree.nim
-  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
   - atcoder/lazysegtree.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/lazy_segtree_dynamicmodint_test.nim
   requiredBy: []

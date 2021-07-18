@@ -84,8 +84,8 @@ data:
     \ = a.divMod(b)[1]\n"
   dependsOn:
   - atcoder/element_concepts.nim
-  - atcoder/extra/math/formal_power_series.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/math/formal_power_series.nim
   - atcoder/extra/math/formal_power_series.nim
   isVerificationFile: false
   path: atcoder/extra/math/formal_power_series_sparse.nim

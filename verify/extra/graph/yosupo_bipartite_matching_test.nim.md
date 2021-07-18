@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/graph/hopcroft_karp.nim
     title: atcoder/extra/graph/hopcroft_karp.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/graph/hopcroft_karp.nim
     title: atcoder/extra/graph/hopcroft_karp.nim
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/bipartitematching
     links:
@@ -32,15 +32,15 @@ data:
     \    let u, v = nextInt()\n    g.addEdge(u, v)\n  \n  let p = g.maximum_matching()\n\
     \  echo p.len\n  for p in p:\n    echo p[0], \" \", p[1]\n\nmain()\n"
   dependsOn:
-  - atcoder/header.nim
   - atcoder/extra/graph/hopcroft_karp.nim
   - atcoder/header.nim
   - atcoder/extra/graph/hopcroft_karp.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_bipartite_matching_test.nim
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/graph/yosupo_bipartite_matching_test.nim
 layout: document

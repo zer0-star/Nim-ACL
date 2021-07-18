@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
   - icon: ':x:'
@@ -42,11 +42,11 @@ data:
     \ if answer[i]:\n      echo x[i]\n    else:\n      echo y[i]\n"
   dependsOn:
   - atcoder/header.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_scc.nim
+  - atcoder/twosat.nim
+  - atcoder/twosat.nim
   - atcoder/header.nim
-  - atcoder/internal_scc.nim
-  - atcoder/twosat.nim
-  - atcoder/internal_scc.nim
-  - atcoder/twosat.nim
   isVerificationFile: false
   path: test/example/twosat_practice.nim
   requiredBy: []

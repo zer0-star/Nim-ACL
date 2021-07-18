@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/other/internal_sugar.nim
     title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/other/internal_sugar.nim
     title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/other/internal_underscored_calls.nim
     title: atcoder/extra/other/internal_underscored_calls.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/other/internal_underscored_calls.nim
     title: atcoder/extra/other/internal_underscored_calls.nim
   _extendedRequiredBy: []
@@ -107,8 +107,8 @@ data:
   dependsOn:
   - atcoder/extra/other/internal_sugar.nim
   - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
   - atcoder/extra/other/internal_sugar.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
   isVerificationFile: false
   path: tests/test_string.nim
   requiredBy: []

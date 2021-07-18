@@ -59,8 +59,8 @@ data:
     \    result = BellmanFordResult[G.T, G.U](negative_cycle:negative_cycle, dist:dist,\
     \ prev:prev)\n    when G.U isnot int: result.id = g.id\n"
   dependsOn:
-  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/other/inf.nim
   isVerificationFile: false

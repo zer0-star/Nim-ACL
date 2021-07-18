@@ -19,10 +19,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/polygon.nim
     title: atcoder/extra/geometry/polygon.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
   - icon: ':heavy_check_mark:'
@@ -31,10 +31,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/internal_complex.nim
     title: atcoder/extra/other/internal_complex.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
   - icon: ':question:'
@@ -62,20 +62,20 @@ data:
     \  p = newSeqWith(n, initPoint(nextFloat(), nextFloat()))\n  echo fmt\"{p.area():.1f}\"\
     \n"
   dependsOn:
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/element_concepts.nim
-  - atcoder/header.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/geometry/polygon.nim
   - atcoder/header.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/other/static_var.nim
+  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/geometry/polygon.nim
   - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/geometry/polygon.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/header.nim
+  - atcoder/extra/other/static_var.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_3_a_area_test.nim
   requiredBy: []

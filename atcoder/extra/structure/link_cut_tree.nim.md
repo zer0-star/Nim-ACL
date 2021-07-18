@@ -62,8 +62,8 @@ data:
     \ s, M1)\n\n  proc alloc*[ST](self:LinkCutTree[ST], x:ST.D):ST.Node =\n    return\
     \ initNode(self.splay_tree, x)\n"
   dependsOn:
-  - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
+  - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
   isVerificationFile: false

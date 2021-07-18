@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
   _extendedRequiredBy:

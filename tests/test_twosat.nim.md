@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
   - icon: ':x:'
@@ -51,8 +51,8 @@ data:
     \ != expect[y]\n"
   dependsOn:
   - atcoder/internal_scc.nim
-  - atcoder/twosat.nim
   - atcoder/internal_scc.nim
+  - atcoder/twosat.nim
   - atcoder/twosat.nim
   isVerificationFile: false
   path: tests/test_twosat.nim

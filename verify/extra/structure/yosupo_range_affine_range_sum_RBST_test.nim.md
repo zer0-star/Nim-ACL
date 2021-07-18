@@ -63,17 +63,17 @@ data:
     \ let l, r = nextInt()\n    echo seg.prod(l..<r)[0]\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/modint.nim
+  - atcoder/rangeutils.nim
   - atcoder/extra/structure/randomized_binary_search_tree.nim
-  - atcoder/rangeutils.nim
+  - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
   - atcoder/rangeutils.nim
   - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/structure/randomized_binary_search_tree.nim
   - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/structure/randomized_binary_search_tree.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/generate_definitions.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
   requiredBy: []

@@ -117,10 +117,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/convolution_test.nim
     title: verify/convolution_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/centroid_decomposition_test.nim
     title: verify/extra/graph/centroid_decomposition_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/centroid_decomposition_test.nim
     title: verify/extra/graph/centroid_decomposition_test.nim
   - icon: ':x:'

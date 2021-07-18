@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
   - icon: ':question:'
@@ -40,8 +40,8 @@ data:
   dependsOn:
   - atcoder/extra/graph/graph_template.nim
   - atcoder/dsu.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/dsu.nim
+  - atcoder/extra/graph/graph_template.nim
   isVerificationFile: false
   path: atcoder/extra/graph/kruskal.nim
   requiredBy: []

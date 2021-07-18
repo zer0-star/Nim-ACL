@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/lowlink.nim
     title: atcoder/extra/graph/lowlink.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/lowlink.nim
     title: atcoder/extra/graph/lowlink.nim
   - icon: ':question:'
@@ -41,9 +41,9 @@ data:
   - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
   - atcoder/extra/graph/lowlink.nim
-  - atcoder/header.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/lowlink.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_3_a_lowlink_test.nim
   requiredBy: []

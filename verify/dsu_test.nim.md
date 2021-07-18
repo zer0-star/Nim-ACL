@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
   - icon: ':question:'
@@ -34,8 +34,8 @@ data:
   dependsOn:
   - atcoder/header.nim
   - atcoder/dsu.nim
-  - atcoder/header.nim
   - atcoder/dsu.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/dsu_test.nim
   requiredBy: []

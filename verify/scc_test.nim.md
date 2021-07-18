@@ -7,16 +7,16 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
   _extendedRequiredBy: []
@@ -39,11 +39,11 @@ data:
     )\n"
   dependsOn:
   - atcoder/header.nim
+  - atcoder/scc.nim
   - atcoder/internal_scc.nim
+  - atcoder/internal_scc.nim
+  - atcoder/scc.nim
   - atcoder/header.nim
-  - atcoder/scc.nim
-  - atcoder/internal_scc.nim
-  - atcoder/scc.nim
   isVerificationFile: true
   path: verify/scc_test.nim
   requiredBy: []

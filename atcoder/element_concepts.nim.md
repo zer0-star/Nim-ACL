@@ -50,10 +50,10 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/geometry/visualizer.nim
     title: atcoder/extra/geometry/visualizer.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/header/chaemon_header.nim
     title: atcoder/extra/header/chaemon_header.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/header/chaemon_header.nim
     title: atcoder/extra/header/chaemon_header.nim
   - icon: ':x:'
@@ -140,10 +140,10 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/other/decimal.nim
     title: atcoder/extra/other/decimal.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
   - icon: ':warning:'
@@ -315,10 +315,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
     title: verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/centroid_decomposition_test.nim
     title: verify/extra/graph/centroid_decomposition_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/centroid_decomposition_test.nim
     title: verify/extra/graph/centroid_decomposition_test.nim
   - icon: ':x:'
@@ -393,18 +393,6 @@ data:
   - icon: ':x:'
     path: verify/extra/math/yukicoder_factorial_test.nim
     title: verify/extra/math/yukicoder_factorial_test.nim
-  - icon: ':x:'
-    path: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-    title: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-  - icon: ':x:'
-    path: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-    title: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-  - icon: ':x:'
-    path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-    title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-  - icon: ':x:'
-    path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-    title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   _isVerificationFailed: true
   _pathExtension: nim
   _verificationStatusIcon: ':question:'
@@ -537,10 +525,6 @@ data:
   - verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
   - verify/extra/geometry/aoj_cgl_7_e_cross_points_of_circles_test.nim
   - verify/extra/geometry/aoj_cgl_7_e_cross_points_of_circles_test.nim
-  - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-  - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   - verify/extra/math/yukicoder_factorial_test.nim
   - verify/extra/math/yukicoder_factorial_test.nim
   - verify/extra/math/exp_of_formal_power_series_test.nim

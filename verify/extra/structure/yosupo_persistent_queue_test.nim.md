@@ -37,8 +37,8 @@ data:
   dependsOn:
   - atcoder/header.nim
   - atcoder/extra/structure/persistent_array.nim
-  - atcoder/header.nim
   - atcoder/extra/structure/persistent_array.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_persistent_queue_test.nim
   requiredBy: []

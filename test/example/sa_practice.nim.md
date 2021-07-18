@@ -29,9 +29,9 @@ data:
     \ sa):\n  answer -= x\necho answer\n"
   dependsOn:
   - atcoder/header.nim
+  - atcoder/string.nim
+  - atcoder/string.nim
   - atcoder/header.nim
-  - atcoder/string.nim
-  - atcoder/string.nim
   isVerificationFile: false
   path: test/example/sa_practice.nim
   requiredBy: []

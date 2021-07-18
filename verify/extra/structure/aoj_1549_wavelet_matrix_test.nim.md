@@ -50,12 +50,12 @@ data:
   dependsOn:
   - atcoder/header.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/extra/structure/wavelet_matrix.nim
-  - atcoder/header.nim
+  - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
   requiredBy: []

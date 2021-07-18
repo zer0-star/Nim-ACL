@@ -63,8 +63,8 @@ data:
     \    return cast[FT.T](self.sum(r) - self.sum(l))\n"
   dependsOn:
   - atcoder/rangeutils.nim
-  - atcoder/internal_type_traits.nim
   - atcoder/rangeutils.nim
+  - atcoder/internal_type_traits.nim
   - atcoder/internal_type_traits.nim
   isVerificationFile: false
   path: atcoder/fenwicktree.nim

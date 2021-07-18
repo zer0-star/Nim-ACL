@@ -42,14 +42,14 @@ data:
     \ p, x = nextInt()\n    fw.add(p, x)\n  else:\n    let l, r = nextInt()\n    echo\
     \ fw.sum(l..<r)\n"
   dependsOn:
-  - atcoder/header.nim
   - atcoder/rangeutils.nim
-  - atcoder/internal_type_traits.nim
   - atcoder/header.nim
+  - atcoder/fenwicktree.nim
   - atcoder/rangeutils.nim
   - atcoder/fenwicktree.nim
   - atcoder/internal_type_traits.nim
-  - atcoder/fenwicktree.nim
+  - atcoder/internal_type_traits.nim
+  - atcoder/header.nim
   isVerificationFile: false
   path: test/example/fenwick_practice.nim
   requiredBy: []

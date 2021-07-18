@@ -6,7 +6,7 @@ data:
     - icon: ':question:'
       path: atcoder/convolution.nim
       title: atcoder/convolution.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/dsu.nim
       title: atcoder/dsu.nim
     - icon: ':warning:'
@@ -36,7 +36,7 @@ data:
     - icon: ':warning:'
       path: atcoder/internal_queue.nim
       title: atcoder/internal_queue.nim
-    - icon: ':question:'
+    - icon: ':x:'
       path: atcoder/internal_scc.nim
       title: atcoder/internal_scc.nim
     - icon: ':x:'
@@ -63,7 +63,7 @@ data:
     - icon: ':x:'
       path: atcoder/rangeutils.nim
       title: atcoder/rangeutils.nim
-    - icon: ':question:'
+    - icon: ':x:'
       path: atcoder/scc.nim
       title: atcoder/scc.nim
     - icon: ':x:'
@@ -135,10 +135,10 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/graph/chromatic_number.nim
       title: atcoder/extra/graph/chromatic_number.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/graph/chu_liu_edmonds.nim
       title: atcoder/extra/graph/chu_liu_edmonds.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/graph/cycle_detection.nim
       title: atcoder/extra/graph/cycle_detection.nim
     - icon: ':question:'
@@ -171,16 +171,16 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/graph/graphviz.nim
       title: atcoder/extra/graph/graphviz.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/graph/hopcroft_karp.nim
       title: atcoder/extra/graph/hopcroft_karp.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/graph/hungarian.nim
       title: atcoder/extra/graph/hungarian.nim
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/kruskal.nim
       title: atcoder/extra/graph/kruskal.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/graph/lowlink.nim
       title: atcoder/extra/graph/lowlink.nim
     - icon: ':x:'
@@ -200,7 +200,7 @@ data:
       title: atcoder/extra/graph/warshall_floyd.nim
   - name: atcoder/extra/header
     pages:
-    - icon: ':x:'
+    - icon: ':warning:'
       path: atcoder/extra/header/chaemon_header.nim
       title: atcoder/extra/header/chaemon_header.nim
   - name: atcoder/extra/math
@@ -282,7 +282,7 @@ data:
       title: atcoder/extra/math/particular_mod_convolution.nim
   - name: atcoder/extra/other
     pages:
-    - icon: ':x:'
+    - icon: ':warning:'
       path: atcoder/extra/other/assignment_operator.nim
       title: atcoder/extra/other/assignment_operator.nim
     - icon: ':warning:'
@@ -300,7 +300,7 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/other/compress.nim
       title: atcoder/extra/other/compress.nim
-    - icon: ':x:'
+    - icon: ':warning:'
       path: atcoder/extra/other/debug.nim
       title: atcoder/extra/other/debug.nim
     - icon: ':warning:'
@@ -312,7 +312,7 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/other/direction.nim
       title: atcoder/extra/other/direction.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/other/floatutils.nim
       title: atcoder/extra/other/floatutils.nim
     - icon: ':question:'
@@ -324,40 +324,40 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/other/internal_complex.nim
       title: atcoder/extra/other/internal_complex.nim
-    - icon: ':question:'
+    - icon: ':x:'
       path: atcoder/extra/other/internal_sugar.nim
       title: atcoder/extra/other/internal_sugar.nim
-    - icon: ':question:'
+    - icon: ':x:'
       path: atcoder/extra/other/internal_underscored_calls.nim
       title: atcoder/extra/other/internal_underscored_calls.nim
     - icon: ':warning:'
       path: atcoder/extra/other/listutils.nim
       title: atcoder/extra/other/listutils.nim
-    - icon: ':x:'
+    - icon: ':warning:'
       path: atcoder/extra/other/reader.nim
       title: atcoder/extra/other/reader.nim
-    - icon: ':x:'
+    - icon: ':warning:'
       path: atcoder/extra/other/reference.nim
       title: atcoder/extra/other/reference.nim
-    - icon: ':x:'
+    - icon: ':warning:'
       path: atcoder/extra/other/seq_array_utils.nim
       title: atcoder/extra/other/seq_array_utils.nim
-    - icon: ':x:'
+    - icon: ':warning:'
       path: atcoder/extra/other/sliceutils.nim
       title: atcoder/extra/other/sliceutils.nim
-    - icon: ':x:'
+    - icon: ':warning:'
       path: atcoder/extra/other/solve_proc.nim
       title: atcoder/extra/other/solve_proc.nim
     - icon: ':warning:'
       path: atcoder/extra/other/special_judge.nim
       title: atcoder/extra/other/special_judge.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/other/static_var.nim
       title: atcoder/extra/other/static_var.nim
-    - icon: ':x:'
+    - icon: ':warning:'
       path: atcoder/extra/other/warlus_operator.nim
       title: atcoder/extra/other/warlus_operator.nim
-    - icon: ':x:'
+    - icon: ':warning:'
       path: atcoder/extra/other/zip.nim
       title: atcoder/extra/other/zip.nim
   - name: atcoder/extra/structure
@@ -389,7 +389,7 @@ data:
     - icon: ':x:'
       path: atcoder/extra/structure/set_map.nim
       title: atcoder/extra/structure/set_map.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/structure/skew_heap.nim
       title: atcoder/extra/structure/skew_heap.nim
     - icon: ':x:'
@@ -418,7 +418,7 @@ data:
       title: atcoder/extra/structure/weighted_union_find.nim
   - name: atcoder/extra/tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/tree/centroid_decomposition.nim
       title: atcoder/extra/tree/centroid_decomposition.nim
     - icon: ':x:'
@@ -756,25 +756,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/extra/graph/aoj_grl_3_a_lowlink_test.nim
       title: verify/extra/graph/aoj_grl_3_a_lowlink_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
       title: verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
       title: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/graph/centroid_decomposition_test.nim
       title: verify/extra/graph/centroid_decomposition_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/graph/yosupo_assignment_problem_test.nim
       title: verify/extra/graph/yosupo_assignment_problem_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/graph/yosupo_bipartite_matching_test.nim
       title: verify/extra/graph/yosupo_bipartite_matching_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/graph/yosupo_cycle_detection_test.nim
       title: verify/extra/graph/yosupo_cycle_detection_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/graph/yosupo_directedmst_test.nim
       title: verify/extra/graph/yosupo_directedmst_test.nim
     - icon: ':x:'

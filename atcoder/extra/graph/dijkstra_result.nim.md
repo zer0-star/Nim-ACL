@@ -64,10 +64,11 @@ data:
     \ = 1\n  import std/algorithm\n  type DijkstraResult*[T, U] = object\n    dist*:\
     \ seq[T]\n    prev*: seq[U]\n    when U isnot int:\n      id*: proc(u:U):int\n\
     \  proc `[]`*[T, U](d:DijkstraResult[T, U], u:U):T =\n    let u = when U isnot\
-    \ int: d.id(u) else: u\n    d.dist[u]\n  proc path*[T, U](d:DijkstraResult[T,\
-    \ U], t:U): seq[U] = \n    var u = t\n    while u >= 0:\n      result.add(u)\n\
-    #      if u == d.s: break\n      if u == d.prev[u]: break\n      u = d.prev[u]\n\
-    \    result.reverse()\n"
+    \ int: d.id(u) else: u\n    d.dist[u]\n  proc prev*[T, U](d:DijkstraResult[T,\
+    \ U], u:U):U =\n    let u = when U isnot int: d.id(u) else: u\n    d.prev[u]\n\
+    \  proc path*[T, U](d:DijkstraResult[T, U], t:U): seq[U] = \n    var u = t\n \
+    \   while u >= 0:\n      result.add(u)\n#      if u == d.s: break\n      if u\
+    \ == d.prev[u]: break\n      u = d.prev[u]\n    result.reverse()\n"
   dependsOn: []
   isVerificationFile: false
   path: atcoder/extra/graph/dijkstra_result.nim

@@ -26,10 +26,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/warshall_floyd.nim
     title: atcoder/extra/graph/warshall_floyd.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/header/chaemon_header.nim
     title: atcoder/extra/header/chaemon_header.nim
-  - icon: ':x:'
+  - icon: ':warning:'
     path: atcoder/extra/header/chaemon_header.nim
     title: atcoder/extra/header/chaemon_header.nim
   - icon: ':warning:'
@@ -75,18 +75,6 @@ data:
   - icon: ':x:'
     path: verify/extra/graph/yosupo_shortest_path_test.nim
     title: verify/extra/graph/yosupo_shortest_path_test.nim
-  - icon: ':x:'
-    path: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-    title: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-  - icon: ':x:'
-    path: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-    title: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-  - icon: ':x:'
-    path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-    title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-  - icon: ':x:'
-    path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-    title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   - icon: ':x:'
     path: verify/shortest_path_test.nim
     title: verify/shortest_path_test.nim
@@ -145,10 +133,6 @@ data:
   - verify/extra/graph/aoj_grl_1_c_warshall_floyd_test.nim
   - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
   - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
-  - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-  - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
 documentation_of: atcoder/extra/other/inf.nim
 layout: document
 redirect_from:

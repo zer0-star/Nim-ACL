@@ -7,23 +7,23 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C
     links:
@@ -41,16 +41,16 @@ data:
     main()\n"
   dependsOn:
   - atcoder/header.nim
+  - atcoder/scc.nim
   - atcoder/internal_scc.nim
+  - atcoder/internal_scc.nim
+  - atcoder/scc.nim
   - atcoder/header.nim
-  - atcoder/scc.nim
-  - atcoder/internal_scc.nim
-  - atcoder/scc.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
 layout: document

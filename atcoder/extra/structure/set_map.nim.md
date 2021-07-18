@@ -94,8 +94,8 @@ data:
     \ SetOrMap):int {.inline.} = self.rbst.len()\n  proc empty*(self:var SetOrMap):bool\
     \ {.inline.} = self.rbst.empty()\n\n"
   dependsOn:
-  - atcoder/extra/structure/randomized_binary_search_tree.nim
   - atcoder/rangeutils.nim
+  - atcoder/extra/structure/randomized_binary_search_tree.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/randomized_binary_search_tree.nim
   isVerificationFile: false

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
   _extendedRequiredBy:
@@ -15,10 +15,10 @@ data:
     path: tests/test_scc.nim
     title: tests/test_scc.nim
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
     title: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
     title: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: verify/scc_test.nim
   _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -51,7 +51,7 @@ data:
   - tests/test_scc.nim
   - tests/test_scc.nim
   timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/scc_test.nim
   - verify/scc_test.nim

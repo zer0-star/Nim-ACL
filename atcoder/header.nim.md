@@ -291,46 +291,46 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/aoj_grl_3_a_lowlink_test.nim
     title: verify/extra/graph/aoj_grl_3_a_lowlink_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
     title: verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
     title: verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
     title: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
     title: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/centroid_decomposition_test.nim
     title: verify/extra/graph/centroid_decomposition_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/centroid_decomposition_test.nim
     title: verify/extra/graph/centroid_decomposition_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/yosupo_assignment_problem_test.nim
     title: verify/extra/graph/yosupo_assignment_problem_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/yosupo_assignment_problem_test.nim
     title: verify/extra/graph/yosupo_assignment_problem_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/yosupo_bipartite_matching_test.nim
     title: verify/extra/graph/yosupo_bipartite_matching_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/yosupo_bipartite_matching_test.nim
     title: verify/extra/graph/yosupo_bipartite_matching_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/yosupo_cycle_detection_test.nim
     title: verify/extra/graph/yosupo_cycle_detection_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/yosupo_cycle_detection_test.nim
     title: verify/extra/graph/yosupo_cycle_detection_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/yosupo_directedmst_test.nim
     title: verify/extra/graph/yosupo_directedmst_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/yosupo_directedmst_test.nim
     title: verify/extra/graph/yosupo_directedmst_test.nim
   - icon: ':x:'
@@ -478,6 +478,12 @@ data:
     path: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
     title: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
   - icon: ':x:'
+    path: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
+    title: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
+    title: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_persistent_queue_test.nim
     title: verify/extra/structure/yosupo_persistent_queue_test.nim
   - icon: ':x:'
@@ -489,6 +495,12 @@ data:
   - icon: ':x:'
     path: verify/extra/structure/yosupo_persistent_unionfind_test.nim
     title: verify/extra/structure/yosupo_persistent_unionfind_test.nim
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
+    title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
+    title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   - icon: ':x:'
     path: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
     title: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
@@ -631,19 +643,19 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_HEADER_HPP:\n  const ATCODER_HEADER_HPP* = 1\n\
-    \  {.hints:off checks:off assertions:on optimization:speed.}\n  import std/algorithm\
-    \ as algorithm_lib, std/sequtils as sequils_lib, std/tables as tables_lib, std/macros\
-    \ as macros_lib, std/math as math_lib, std/sets as sets_lib, std/strutils as strutils_lib,\
-    \ std/streams as streams_lib, std/strformat as strformat_lib\n  \n  proc scanf*(formatstr:\
-    \ cstring){.header: \"<stdio.h>\", varargs.}\n  proc getchar*(): char {.header:\
-    \ \"<stdio.h>\", varargs.}\n  proc nextInt*(base:int = 0): int =\n    scanf(\"\
-    %lld\",addr result)\n    result -= base\n  proc nextFloat*(): float = scanf(\"\
-    %lf\",addr result)\n  proc nextString*(): string =\n    var get = false;result\
-    \ = \"\"\n    while true:\n      var c = getchar()\n      if int(c) > int(' '):\
-    \ get = true;result.add(c)\n      elif get: break\n  template `max=`*(x,y:typed):void\
-    \ = x = max(x,y)\n  template `min=`*(x,y:typed):void = x = min(x,y)\n  template\
-    \ inf*(T): untyped = \n    when T is SomeFloat: T(Inf)\n    elif T is SomeInteger:\
-    \ T.high div 2\n    else: assert(false)\n"
+    \  {.hints:off checks:off assertions:on optimization:speed.}\n  {. warning[UnusedImport]:off\
+    \ .}\n  import std/algorithm as algorithm_lib, std/sequtils as sequils_lib, std/tables\
+    \ as tables_lib, std/macros as macros_lib, std/math as math_lib, std/sets as sets_lib,\
+    \ std/strutils as strutils_lib, std/streams as streams_lib, std/strformat as strformat_lib\n\
+    \n  proc scanf*(formatstr: cstring){.header: \"<stdio.h>\", varargs.}\n  proc\
+    \ getchar*(): char {.header: \"<stdio.h>\", varargs.}\n  proc nextInt*(base:int\
+    \ = 0): int =\n    scanf(\"%lld\",addr result)\n    result -= base\n  proc nextFloat*():\
+    \ float = scanf(\"%lf\",addr result)\n  proc nextString*(): string =\n    var\
+    \ get = false;result = \"\"\n    while true:\n      var c = getchar()\n      if\
+    \ int(c) > int(' '): get = true;result.add(c)\n      elif get: break\n  template\
+    \ `max=`*(x,y:typed):void = x = max(x,y)\n  template `min=`*(x,y:typed):void =\
+    \ x = min(x,y)\n  template inf*(T): untyped = \n    when T is SomeFloat: T(Inf)\n\
+    \    elif T is SomeInteger: T.high div 2\n    else: assert(false)\n"
   dependsOn: []
   isVerificationFile: false
   path: atcoder/header.nim
@@ -791,6 +803,10 @@ data:
   - verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
   - verify/extra/geometry/aoj_cgl_7_e_cross_points_of_circles_test.nim
   - verify/extra/geometry/aoj_cgl_7_e_cross_points_of_circles_test.nim
+  - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
+  - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
+  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
+  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   - verify/extra/structure/extra_segtree_test.nim
   - verify/extra/structure/extra_segtree_test.nim
   - verify/extra/structure/yosupo_queue_operate_all_composite_test.nim

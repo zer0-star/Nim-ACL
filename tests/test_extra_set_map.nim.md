@@ -49,8 +49,8 @@ data:
     \ a{1} == (\"four\", 4)\n  check a{2} == (\"one\", 100)\n  check a{3} == (\"one\"\
     , 1)\n  check a{4} == (\"one\", 3)\n  check a{5} == (\"three\", 3)\n"
   dependsOn:
-  - atcoder/extra/structure/randomized_binary_search_tree.nim
   - atcoder/rangeutils.nim
+  - atcoder/extra/structure/randomized_binary_search_tree.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/set_map.nim
   - atcoder/extra/structure/randomized_binary_search_tree.nim

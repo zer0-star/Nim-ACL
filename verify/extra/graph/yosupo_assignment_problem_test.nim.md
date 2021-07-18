@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/graph/hungarian.nim
     title: atcoder/extra/graph/hungarian.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/graph/hungarian.nim
     title: atcoder/extra/graph/hungarian.nim
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/assignment
     links:
@@ -31,15 +31,15 @@ data:
     \    N = nextInt()\n    a = newSeqWith(N, newSeqWith(N, nextInt()))\n  let (X,\
     \ p) = a.hungarian()\n  echo X\n  echo p.mapIt($it).join(\" \")\n\nmain()\n"
   dependsOn:
-  - atcoder/header.nim
+  - atcoder/extra/graph/hungarian.nim
   - atcoder/header.nim
   - atcoder/extra/graph/hungarian.nim
-  - atcoder/extra/graph/hungarian.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_assignment_problem_test.nim
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/graph/yosupo_assignment_problem_test.nim
 layout: document

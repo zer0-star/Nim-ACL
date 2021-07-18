@@ -41,10 +41,10 @@ data:
   dependsOn:
   - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
+  - atcoder/extra/tree/heavy_light_decomposition.nim
+  - atcoder/extra/tree/heavy_light_decomposition.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
-  - atcoder/extra/tree/heavy_light_decomposition.nim
-  - atcoder/extra/tree/heavy_light_decomposition.nim
   isVerificationFile: true
   path: verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim
   requiredBy: []

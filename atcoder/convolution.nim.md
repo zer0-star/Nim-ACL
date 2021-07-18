@@ -87,10 +87,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/convolution_test.nim
     title: verify/convolution_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/centroid_decomposition_test.nim
     title: verify/extra/graph/centroid_decomposition_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/centroid_decomposition_test.nim
     title: verify/extra/graph/centroid_decomposition_test.nim
   - icon: ':x:'
@@ -244,13 +244,13 @@ data:
   dependsOn:
   - atcoder/element_concepts.nim
   - atcoder/internal_bit.nim
-  - atcoder/modint.nim
-  - atcoder/element_concepts.nim
   - atcoder/internal_bit.nim
+  - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_math.nim
   - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
   - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: atcoder/convolution.nim

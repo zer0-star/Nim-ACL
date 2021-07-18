@@ -44,14 +44,14 @@ data:
     \ l.dec\n    echo seg.prod(l..<r)\n  elif t == 3:\n    let p = nextInt() - 1\n\
     \    target = nextInt()\n    echo seg.max_right(p, f) + 1\n"
   dependsOn:
-  - atcoder/internal_bit.nim
-  - atcoder/header.nim
-  - atcoder/rangeutils.nim
-  - atcoder/internal_bit.nim
+  - atcoder/segtree.nim
   - atcoder/header.nim
   - atcoder/rangeutils.nim
   - atcoder/segtree.nim
-  - atcoder/segtree.nim
+  - atcoder/internal_bit.nim
+  - atcoder/internal_bit.nim
+  - atcoder/rangeutils.nim
+  - atcoder/header.nim
   isVerificationFile: false
   path: test/example/segtree_practice.nim
   requiredBy: []

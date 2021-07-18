@@ -148,16 +148,16 @@ data:
   dependsOn:
   - atcoder/element_concepts.nim
   - atcoder/internal_bit.nim
-  - atcoder/modint.nim
-  - atcoder/element_concepts.nim
   - atcoder/internal_bit.nim
-  - atcoder/convolution.nim
+  - atcoder/internal_math.nim
   - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
   - atcoder/convolution.nim
-  - atcoder/internal_math.nim
-  - atcoder/internal_math.nim
+  - atcoder/element_concepts.nim
+  - atcoder/modint.nim
   - atcoder/generate_definitions.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/convolution.nim
   isVerificationFile: false
   path: atcoder/extra/math/particular_mod_convolution.nim
   requiredBy:
