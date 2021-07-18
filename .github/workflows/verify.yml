@@ -35,8 +35,8 @@ jobs:
       - name: Run nimble test
         run: nimble test
 
+#          mv src/* ./
       - run: |
-        #          mv src/* ./
           mkdir -p .verify-helper/docs/static/
           mv document_ja/ .verify-helper/docs/static/
 
