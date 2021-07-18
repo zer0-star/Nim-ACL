@@ -33,7 +33,7 @@ when not declared ATCODER_GRAPH_TEMPLATE_HPP:
   proc initGraph*(n:int, T:typedesc = int, U:typedesc = int):Graph[T, U, ADJTYPE_SEQ] =
     return Graph[T, int, ADJTYPE_SEQ](len:n, adj:newSeqWith(n, newSeq[Edge[T, U]]()))
   proc initGraph*[U](n:int, id:proc(u:U):int, T:typedesc = int):Graph[T, U, ADJTYPE_SEQ] =
-    return Graph[T, U, SEQ](len:n, adj:newSeqWith(n,newSeq[Edge[T, U]]()), id:id)
+    return Graph[T, U, ADJTYPE_SEQ](len:n, adj:newSeqWith(n,newSeq[Edge[T, U]]()), id:id)
   proc initGraph*[T, U](n:int, id:proc(u:U):int, adj:proc(u:U):seq[(U, T)]):Graph[T, U, ADJTYPE_PROC] =
     return Graph[T, U, ADJTYPE_PROC](len:n, adj:adj, id:id)
   proc initGraph*[T, U](n:int, id:proc(u:U):int, adj_iter:iterator(u:U):(U, T)):Graph[T, U, ADJTYPE_ITER] =
