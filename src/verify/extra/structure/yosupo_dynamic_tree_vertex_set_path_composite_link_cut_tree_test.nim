@@ -1,6 +1,6 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite
 
-include atcoder/extra/header/chaemon_header
+include atcoder/header
 
 import atcoder/extra/structure/splay_tree
 import atcoder/extra/structure/link_cut_tree

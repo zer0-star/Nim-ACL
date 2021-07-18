@@ -9,6 +9,9 @@ when not declared ATCODER_DIJKSTRA_RESULT_HPP:
   proc `[]`*[T, U](d:DijkstraResult[T, U], u:U):T =
     let u = when U isnot int: d.id(u) else: u
     d.dist[u]
+  proc prev*[T, U](d:DijkstraResult[T, U], u:U):U =
+    let u = when U isnot int: d.id(u) else: u
+    d.prev[u]
   proc path*[T, U](d:DijkstraResult[T, U], t:U): seq[U] = 
     var u = t
     while u >= 0:

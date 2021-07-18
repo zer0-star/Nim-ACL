@@ -1,10 +1,10 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/point_set_range_composite
 
-include atcoder/extra/header/chaemon_header
+include atcoder/header
 
 import atcoder/extra/structure/splay_tree
-
 import atcoder/modint
+import atcoder/extra/other/internal_sugar
 
 type mint = modint998244353
 
