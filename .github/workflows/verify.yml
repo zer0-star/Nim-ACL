@@ -35,8 +35,8 @@ jobs:
       - name: Run nimble test
         run: nimble test
 
-      # mv src/* ./
       - run: |
+          mv src/* ./
           mkdir -p .verify-helper/docs/static/
           mv document_ja/ .verify-helper/docs/static/
 
@@ -45,5 +45,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
           GH_PAT: ${{ secrets.GH_PAT }}
-          #        run: oj-verify all
-        run: cd src && mkdir .verify-helper && oj-verify all
+        run: oj-verify all
+        #        run: cd src && mkdir .verify-helper && oj-verify all
