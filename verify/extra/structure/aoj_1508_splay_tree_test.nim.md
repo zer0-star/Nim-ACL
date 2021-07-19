@@ -46,12 +46,12 @@ data:
     \ r)\n        # type 3\n#        st.erase(st.get_node(y))\n#        st.insert(y,\
     \ z)\n"
   dependsOn:
+  - atcoder/rangeutils.nim
+  - atcoder/header.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/splay_tree.nim
   - atcoder/header.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/rangeutils.nim
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/structure/aoj_1508_splay_tree_test.nim
   requiredBy: []

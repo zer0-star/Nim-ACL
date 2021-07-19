@@ -44,10 +44,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/kruskal.nim
     title: atcoder/extra/graph/kruskal.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/lowlink.nim
     title: atcoder/extra/graph/lowlink.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/lowlink.nim
     title: atcoder/extra/graph/lowlink.nim
   - icon: ':heavy_check_mark:'
@@ -68,10 +68,10 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/graph/topological_sort.nim
     title: atcoder/extra/graph/topological_sort.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/centroid_decomposition.nim
     title: atcoder/extra/tree/centroid_decomposition.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/centroid_decomposition.nim
     title: atcoder/extra/tree/centroid_decomposition.nim
   - icon: ':x:'
@@ -147,16 +147,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/aoj_grl_3_a_lowlink_test.nim
     title: verify/extra/graph/aoj_grl_3_a_lowlink_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
     title: verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
     title: verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/centroid_decomposition_test.nim
     title: verify/extra/graph/centroid_decomposition_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/centroid_decomposition_test.nim
     title: verify/extra/graph/centroid_decomposition_test.nim
   - icon: ':x:'

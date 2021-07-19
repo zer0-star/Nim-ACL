@@ -94,9 +94,9 @@ data:
     \ G.U](dist:dist, prev:prev)\n    when G.U isnot int: result.id = g.id\n"
   dependsOn:
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/dijkstra_result.nim
   isVerificationFile: false

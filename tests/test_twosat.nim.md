@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
   - icon: ':x:'
@@ -50,9 +50,9 @@ data:
     \ == expect[y]\n      else:\n        check actual[x] == expect[x] or actual[y]\
     \ != expect[y]\n"
   dependsOn:
-  - atcoder/internal_scc.nim
-  - atcoder/internal_scc.nim
   - atcoder/twosat.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_scc.nim
   - atcoder/twosat.nim
   isVerificationFile: false
   path: tests/test_twosat.nim

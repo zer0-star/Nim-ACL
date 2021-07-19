@@ -105,10 +105,10 @@ data:
     \      for i in 0..<n:\n        s[i] = g mod 2\n        g = g div 2\n      check\
     \ z_naive(s) == z_algorithm(s)\n"
   dependsOn:
-  - atcoder/extra/other/internal_sugar.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
   - atcoder/extra/other/internal_underscored_calls.nim
   - atcoder/extra/other/internal_sugar.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/extra/other/internal_sugar.nim
   isVerificationFile: false
   path: tests/test_string.nim
   requiredBy: []

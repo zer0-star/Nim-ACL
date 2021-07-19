@@ -100,8 +100,8 @@ data:
   dependsOn:
   - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: false
   path: atcoder/segtree.nim
   requiredBy:

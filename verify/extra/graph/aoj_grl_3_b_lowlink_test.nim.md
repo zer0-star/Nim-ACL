@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/lowlink.nim
     title: atcoder/extra/graph/lowlink.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/lowlink.nim
     title: atcoder/extra/graph/lowlink.nim
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B
     links:
@@ -41,15 +41,15 @@ data:
   dependsOn:
   - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
+  - atcoder/header.nim
   - atcoder/extra/graph/lowlink.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/lowlink.nim
-  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
 layout: document

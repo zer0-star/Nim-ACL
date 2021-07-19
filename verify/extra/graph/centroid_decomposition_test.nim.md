@@ -19,10 +19,10 @@ data:
   - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/centroid_decomposition.nim
     title: atcoder/extra/tree/centroid_decomposition.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/centroid_decomposition.nim
     title: atcoder/extra/tree/centroid_decomposition.nim
   - icon: ':question:'
@@ -57,9 +57,9 @@ data:
     title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
     links:
@@ -85,29 +85,29 @@ data:
     \      for i,d in d:ans[i] += d;base[i] += d\n\n  dfs(c)\n  echo ans[1..^1].join(\"\
     \ \")\n\nmain()\n"
   dependsOn:
-  - atcoder/internal_bit.nim
+  - atcoder/header.nim
   - atcoder/modint.nim
+  - atcoder/element_concepts.nim
+  - atcoder/internal_bit.nim
+  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
+  - atcoder/convolution.nim
   - atcoder/header.nim
+  - atcoder/modint.nim
+  - atcoder/extra/tree/centroid_decomposition.nim
+  - atcoder/element_concepts.nim
   - atcoder/internal_bit.nim
   - atcoder/internal_math.nim
-  - atcoder/convolution.nim
-  - atcoder/header.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/element_concepts.nim
-  - atcoder/internal_math.nim
+  - atcoder/extra/tree/centroid_decomposition.nim
   - atcoder/convolution.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/tree/centroid_decomposition.nim
-  - atcoder/extra/tree/centroid_decomposition.nim
-  - atcoder/modint.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/generate_definitions.nim
   isVerificationFile: true
   path: verify/extra/graph/centroid_decomposition_test.nim
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/graph/centroid_decomposition_test.nim
 layout: document

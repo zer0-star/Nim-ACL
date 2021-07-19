@@ -46,13 +46,13 @@ data:
     \  else:\n    let l, r = nextInt()\n    echo st.prod(l..<r)\n"
   dependsOn:
   - atcoder/segtree.nim
-  - atcoder/header.nim
   - atcoder/rangeutils.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/internal_bit.nim
   - atcoder/segtree.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
-  - atcoder/header.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: true
   path: verify/segtree_test.nim
   requiredBy: []

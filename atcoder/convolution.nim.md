@@ -87,10 +87,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/convolution_test.nim
     title: verify/convolution_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/centroid_decomposition_test.nim
     title: verify/extra/graph/centroid_decomposition_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/centroid_decomposition_test.nim
     title: verify/extra/graph/centroid_decomposition_test.nim
   - icon: ':x:'
@@ -242,15 +242,15 @@ data:
     \      const offset = [0'u, 0'u, M1M2M3, 2'u * M1M2M3, 3'u * M1M2M3]\n      x\
     \ -= offset[diff mod 5]\n      c[i] = x.int\n    return c\n"
   dependsOn:
-  - atcoder/element_concepts.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
-  - atcoder/element_concepts.nim
   - atcoder/internal_math.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
   - atcoder/generate_definitions.nim
   - atcoder/modint.nim
+  - atcoder/modint.nim
+  - atcoder/element_concepts.nim
+  - atcoder/internal_bit.nim
+  - atcoder/internal_math.nim
+  - atcoder/element_concepts.nim
+  - atcoder/internal_bit.nim
   - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: atcoder/convolution.nim

@@ -33,10 +33,10 @@ data:
     let es = g.edges()\nfor e in es:\n  if e.src == s or e.dst == t or e.flow == 0:\
     \ continue\n  grid[e.src][e.dst - n] = 'X'\n\nfor i in 0..<n:\n  echo grid[i]\n"
   dependsOn:
-  - atcoder/mincostflow.nim
   - atcoder/header.nim
   - atcoder/mincostflow.nim
   - atcoder/header.nim
+  - atcoder/mincostflow.nim
   isVerificationFile: false
   path: test/example/mincostflow_practice.nim
   requiredBy: []

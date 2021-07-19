@@ -43,13 +43,13 @@ data:
     \ fw.sum(l..<r)\n"
   dependsOn:
   - atcoder/rangeutils.nim
+  - atcoder/internal_type_traits.nim
   - atcoder/header.nim
   - atcoder/fenwicktree.nim
+  - atcoder/internal_type_traits.nim
+  - atcoder/header.nim
   - atcoder/rangeutils.nim
   - atcoder/fenwicktree.nim
-  - atcoder/internal_type_traits.nim
-  - atcoder/internal_type_traits.nim
-  - atcoder/header.nim
   isVerificationFile: false
   path: test/example/fenwick_practice.nim
   requiredBy: []

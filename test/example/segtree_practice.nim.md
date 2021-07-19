@@ -45,13 +45,13 @@ data:
     \    target = nextInt()\n    echo seg.max_right(p, f) + 1\n"
   dependsOn:
   - atcoder/segtree.nim
-  - atcoder/header.nim
   - atcoder/rangeutils.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/internal_bit.nim
   - atcoder/segtree.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
-  - atcoder/header.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: false
   path: test/example/segtree_practice.nim
   requiredBy: []

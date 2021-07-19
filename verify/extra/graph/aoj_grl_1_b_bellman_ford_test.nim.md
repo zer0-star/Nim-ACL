@@ -47,13 +47,13 @@ data:
     main()\n"
   dependsOn:
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/bellman_ford.nim
   - atcoder/header.nim
-  - atcoder/extra/other/inf.nim
+  - atcoder/header.nim
+  - atcoder/extra/graph/bellman_ford.nim
+  - atcoder/extra/graph/bellman_ford.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/bellman_ford.nim
   - atcoder/extra/other/inf.nim
-  - atcoder/header.nim
+  - atcoder/extra/other/inf.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_1_b_bellman_ford_test.nim
   requiredBy: []

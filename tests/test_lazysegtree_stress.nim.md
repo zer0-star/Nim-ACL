@@ -79,10 +79,10 @@ data:
     \    tm.action(l ..< r, now)\n"
   dependsOn:
   - atcoder/rangeutils.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
   - atcoder/lazysegtree.nim
+  - atcoder/internal_bit.nim
   - atcoder/lazysegtree.nim
   isVerificationFile: false
   path: tests/test_lazysegtree_stress.nim

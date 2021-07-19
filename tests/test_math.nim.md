@@ -96,10 +96,10 @@ data:
     \ % m);\n#    // x == n^i\n#    if (x == 1) return false;\n#  }\n#  x = (int)((long\
     \ long)(x)*g % m);\n#  assert(x == 1);\n#  return true;\n#}\n"
   dependsOn:
-  - atcoder/math.nim
-  - atcoder/internal_math.nim
   - atcoder/internal_math.nim
   - atcoder/math.nim
+  - atcoder/math.nim
+  - atcoder/internal_math.nim
   isVerificationFile: false
   path: tests/test_math.nim
   requiredBy: []

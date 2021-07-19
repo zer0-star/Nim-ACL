@@ -117,10 +117,10 @@ data:
   dependsOn:
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/universal_segtree.nim
-  - atcoder/internal_bit.nim
+  - atcoder/extra/structure/universal_segtree.nim
   - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: false
   path: tests/test_extra_universal_segtree_stress.nim
   requiredBy: []

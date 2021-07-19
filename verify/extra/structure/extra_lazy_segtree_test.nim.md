@@ -70,18 +70,18 @@ data:
   dependsOn:
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/universal_segtree.nim
-  - atcoder/header.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
-  - atcoder/rangeutils.nim
-  - atcoder/modint.nim
   - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
   - atcoder/extra/structure/universal_segtree.nim
   - atcoder/header.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/header.nim
+  - atcoder/rangeutils.nim
+  - atcoder/modint.nim
+  - atcoder/internal_bit.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
+  - atcoder/generate_definitions.nim
   isVerificationFile: true
   path: verify/extra/structure/extra_lazy_segtree_test.nim
   requiredBy: []

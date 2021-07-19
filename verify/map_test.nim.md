@@ -45,14 +45,14 @@ data:
     \ = v\n    else:\n      let k = nextInt()\n      if k in a: echo a[k]\n      else:\
     \ echo 0\n\nmain()\n"
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/rangeutils.nim
   - atcoder/extra/structure/randomized_binary_search_tree.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/set_map.nim
-  - atcoder/extra/structure/randomized_binary_search_tree.nim
-  - atcoder/extra/structure/set_map.nim
   - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/extra/structure/set_map.nim
+  - atcoder/extra/structure/set_map.nim
+  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/randomized_binary_search_tree.nim
   isVerificationFile: true
   path: verify/map_test.nim
   requiredBy: []

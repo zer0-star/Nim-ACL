@@ -36,7 +36,7 @@ data:
     - icon: ':warning:'
       path: atcoder/internal_queue.nim
       title: atcoder/internal_queue.nim
-    - icon: ':x:'
+    - icon: ':question:'
       path: atcoder/internal_scc.nim
       title: atcoder/internal_scc.nim
     - icon: ':x:'
@@ -63,7 +63,7 @@ data:
     - icon: ':x:'
       path: atcoder/rangeutils.nim
       title: atcoder/rangeutils.nim
-    - icon: ':x:'
+    - icon: ':question:'
       path: atcoder/scc.nim
       title: atcoder/scc.nim
     - icon: ':x:'
@@ -171,16 +171,16 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/graph/graphviz.nim
       title: atcoder/extra/graph/graphviz.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/hopcroft_karp.nim
       title: atcoder/extra/graph/hopcroft_karp.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/hungarian.nim
       title: atcoder/extra/graph/hungarian.nim
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/kruskal.nim
       title: atcoder/extra/graph/kruskal.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/lowlink.nim
       title: atcoder/extra/graph/lowlink.nim
     - icon: ':x:'
@@ -418,7 +418,7 @@ data:
       title: atcoder/extra/structure/weighted_union_find.nim
   - name: atcoder/extra/tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/tree/centroid_decomposition.nim
       title: atcoder/extra/tree/centroid_decomposition.nim
     - icon: ':x:'
@@ -756,19 +756,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/extra/graph/aoj_grl_3_a_lowlink_test.nim
       title: verify/extra/graph/aoj_grl_3_a_lowlink_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
       title: verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
       title: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/graph/centroid_decomposition_test.nim
       title: verify/extra/graph/centroid_decomposition_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/graph/yosupo_assignment_problem_test.nim
       title: verify/extra/graph/yosupo_assignment_problem_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/graph/yosupo_bipartite_matching_test.nim
       title: verify/extra/graph/yosupo_bipartite_matching_test.nim
     - icon: ':x:'

@@ -64,11 +64,11 @@ data:
     \    result = ModInt(1)\n    for i in 0..<sn: result *= vs[i]\n    for i in sn\
     \ * sn + 1..n: result *= i\n"
   dependsOn:
-  - atcoder/element_concepts.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/extra/math/combination.nim
   - atcoder/extra/math/combination.nim
+  - atcoder/element_concepts.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/math/formal_power_series.nim
   isVerificationFile: false
   path: atcoder/extra/math/factorial.nim

@@ -71,11 +71,11 @@ data:
     \ (ret, parent).some\n"
   dependsOn:
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/structure/skew_heap.nim
   - atcoder/dsu.nim
+  - atcoder/extra/structure/skew_heap.nim
+  - atcoder/extra/structure/skew_heap.nim
   - atcoder/dsu.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/structure/skew_heap.nim
   isVerificationFile: false
   path: atcoder/extra/graph/chu_liu_edmonds.nim
   requiredBy: []

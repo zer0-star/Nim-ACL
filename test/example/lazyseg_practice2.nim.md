@@ -51,12 +51,12 @@ data:
   dependsOn:
   - atcoder/rangeutils.nim
   - atcoder/header.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
-  - atcoder/rangeutils.nim
-  - atcoder/lazysegtree.nim
-  - atcoder/lazysegtree.nim
   - atcoder/header.nim
+  - atcoder/internal_bit.nim
+  - atcoder/lazysegtree.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
+  - atcoder/lazysegtree.nim
   isVerificationFile: false
   path: test/example/lazyseg_practice2.nim
   requiredBy: []

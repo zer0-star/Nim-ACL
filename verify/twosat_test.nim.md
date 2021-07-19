@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
   - icon: ':x:'
@@ -44,11 +44,11 @@ data:
     \ -(i + 1), \" \"\n    echo 0\n  else:\n    echo \"s UNSATISFIABLE\"\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/internal_scc.nim
-  - atcoder/internal_scc.nim
-  - atcoder/twosat.nim
   - atcoder/twosat.nim
   - atcoder/header.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_scc.nim
+  - atcoder/twosat.nim
   isVerificationFile: true
   path: verify/twosat_test.nim
   requiredBy: []

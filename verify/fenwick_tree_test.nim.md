@@ -46,13 +46,13 @@ data:
     \ nextInt()\n    echo st.sum(l..<r)\n"
   dependsOn:
   - atcoder/rangeutils.nim
+  - atcoder/internal_type_traits.nim
   - atcoder/header.nim
   - atcoder/fenwicktree.nim
+  - atcoder/internal_type_traits.nim
+  - atcoder/header.nim
   - atcoder/rangeutils.nim
   - atcoder/fenwicktree.nim
-  - atcoder/internal_type_traits.nim
-  - atcoder/internal_type_traits.nim
-  - atcoder/header.nim
   isVerificationFile: true
   path: verify/fenwick_tree_test.nim
   requiredBy: []

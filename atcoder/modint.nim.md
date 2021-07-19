@@ -105,10 +105,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/convolution_test.nim
     title: verify/convolution_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/centroid_decomposition_test.nim
     title: verify/extra/graph/centroid_decomposition_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/centroid_decomposition_test.nim
     title: verify/extra/graph/centroid_decomposition_test.nim
   - icon: ':x:'
@@ -315,8 +315,8 @@ data:
     \ 1000000007)\n  useDynamicModInt(modint, -1)\n"
   dependsOn:
   - atcoder/internal_math.nim
-  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: atcoder/modint.nim

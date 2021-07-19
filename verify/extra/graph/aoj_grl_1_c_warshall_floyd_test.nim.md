@@ -46,10 +46,10 @@ data:
   dependsOn:
   - atcoder/header.nim
   - atcoder/extra/graph/warshall_floyd.nim
-  - atcoder/extra/other/inf.nim
+  - atcoder/header.nim
   - atcoder/extra/graph/warshall_floyd.nim
   - atcoder/extra/other/inf.nim
-  - atcoder/header.nim
+  - atcoder/extra/other/inf.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_1_c_warshall_floyd_test.nim
   requiredBy: []
