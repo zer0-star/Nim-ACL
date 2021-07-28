@@ -34,9 +34,9 @@ proc initPrec*(Real:typedesc[DecimalType], n:int) =
   setPrec(n)
   var INF_VAL = newDecimal()
   mpd_setspecial(INF_VAL[], MPD_POS, MPD_INF)
-  DecimalType:::pi = calcPi[Real]()
-  DecimalType:::eps = newDecimal(10)^(-(n - 5))
-  DecimalType:::inf = INF_VAL
+  DecimalType$.pi = calcPi[Real]()
+  DecimalType$.eps = newDecimal(10)^(-(n - 5))
+  DecimalType$.inf = INF_VAL
 
 #  DecimalType.getParameters()[] = (n, calcPi[Real](), newDecimal(10)^(-(n - 5)), INF_VAL)
 
@@ -54,7 +54,7 @@ proc sin_impl*(x:DecimalType):DecimalType =
     i += 2
 
 proc sin*(x:DecimalType):DecimalType =
-  let r = rem(x, ((DecimalType:::pi) * 2))
+  let r = rem(x, ((DecimalType$.pi) * 2))
   return sin_impl(r)
 
 proc cos_impl(x:DecimalType):DecimalType =
@@ -71,7 +71,7 @@ proc cos_impl(x:DecimalType):DecimalType =
     i += 2
 
 proc cos*(x:DecimalType):DecimalType =
-  let r = rem(x, ((DecimalType:::pi) * 2))
+  let r = rem(x, ((DecimalType$.pi) * 2))
   return cos_impl(r)
 
 proc tan*(x:DecimalType):DecimalTYpe = sin(x) / cos(x)
@@ -105,7 +105,7 @@ proc arcsin*(x:DecimalType):DecimalType =
     p /= n
 
 proc arccos*(x:DecimalType):DecimalType =
-  (DecimalType:::pi) / newDecimal(2) - arcsin(x)
+  (DecimalType$.pi) / newDecimal(2) - arcsin(x)
 
 proc arctan2*(y, x:DecimalType):DecimalType =
   var

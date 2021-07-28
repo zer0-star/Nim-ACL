@@ -17,7 +17,8 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   import std/bitops as bitops_lib
   import std/streams as streams_lib
 
-  import atcoder/extra/other/internal_sugar
+#  import atcoder/extra/other/internal_sugar
+  import std/sugar
   import atcoder/extra/other/reader
   import atcoder/extra/other/sliceutils
   import atcoder/extra/other/assignment_operator

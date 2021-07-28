@@ -15,6 +15,7 @@ ATCODER_INCLUDE = re.compile(
 
 WHEN_STATEMENT = re.compile(r'^\s*when\s+.*:')
 ATCODER_DIR = 'atcoder/'
+INDENT_WIDTH = 2
 
 
 def indent_level(line: str):
@@ -37,10 +38,23 @@ def strip_as(line: str) -> str:
     return line
 
 
-def read_source(source: str, level: int, defined: set, lib_path) -> List[str]:
+def read_source(f: str, prefix: str, defined: set, lib_path, start=True) -> List[str]:
     """
     stringで渡されたsourceを読み。import, includeが出てきたら深堀りする
+    深さ優先でimport/includeを調べる
     """
+    if f in defined:
+        logger.info('already included {:s}, skip'.format(f))
+        return []
+    defined.add(f)
+
+    logger.info('include {:s}'.format(f))
+    
+    if start:
+        source = open(f, encoding="utf8", errors='ignore').read()
+    else:
+        source = open(str(lib_path / f), encoding="utf8", errors='ignore').read()
+
     result = []
     for line in source.splitlines():
         if WHEN_STATEMENT.match(line):
@@ -59,34 +73,36 @@ def read_source(source: str, level: int, defined: set, lib_path) -> List[str]:
                         fname = "src/" + fname
                         if not fname.endswith(".nim"):
                             fname += ".nim"
-                        result.extend(dfs(fname, level + 1, defined, lib_path))
+                        spaces = indent_level(line)
+                        print(fname)
+                        print(spaces)
+                        result.extend(read_source(fname, " " * spaces, defined, lib_path, False))
                     else:
                         spaces = indent_level(line)
                         result.extend([" " * spaces + "import " + fname_orig])
             else:
                 result.append(line)
-    if level > 0:
-        result.append("  discard")
-        result2 = []
-        for line in result:
-            result2.append("  " + line)
-        result = result2
+    result.append("  discard")
+    result2 = []
+    for line in result:
+        result2.append(prefix + line)
+    result = result2
     return result
 
 
-def dfs(f: str, level: int, defined: set, lib_path) -> List[str]:
-    """
-    深さ優先でimport/includeを調べる
-    """
-    if f in defined:
-        logger.info('already included {:s}, skip'.format(f))
-        return []
-    defined.add(f)
-
-    logger.info('include {:s}'.format(f))
-
-    source = open(str(lib_path / f), encoding="utf8", errors='ignore').read()
-    return read_source(source, level, defined, lib_path)
+#def dfs(f: str, level: int, defined: set, lib_path) -> List[str]:
+#    """
+#    深さ優先でimport/includeを調べる
+#    """
+#    if f in defined:
+#        logger.info('already included {:s}, skip'.format(f))
+#        return []
+#    defined.add(f)
+#
+#    logger.info('include {:s}'.format(f))
+#
+#    source = open(str(lib_path / f), encoding="utf8", errors='ignore').read()
+#    return read_source(source, level, defined, lib_path)
 
 
 def main():
@@ -110,8 +126,8 @@ def main():
         lib_path = Path(opts.lib)
     elif 'NIM_INCLUDE_PATH' in environ:
         lib_path = Path(environ['NIM_INCLUDE_PATH'])
-    source = open(opts.source, encoding="utf8", errors='ignore').read()
-    result = read_source(source, -1, set(), lib_path)
+#    source = open(opts.source, encoding="utf8", errors='ignore').read()
+    result = read_source(opts.source, "", set(), lib_path)
 
     output = '\n'.join(result) + '\n'
     if opts.console:
