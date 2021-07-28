@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_sugar.nim
     title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_sugar.nim
     title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_underscored_calls.nim
     title: atcoder/extra/other/internal_underscored_calls.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_underscored_calls.nim
     title: atcoder/extra/other/internal_underscored_calls.nim
   - icon: ':x:'
@@ -73,22 +73,22 @@ data:
     \     seg.set(p, (a, b))\n    else:\n      let l, r = nextInt()\n      let x =\
     \ nextInt().mint\n      let ret = seg.prod(l..<r)\n      echo ret[0] * x + ret[1]\n"
   dependsOn:
-  - atcoder/rangeutils.nim
+  - atcoder/extra/other/internal_sugar.nim
   - atcoder/internal_math.nim
   - atcoder/header.nim
   - atcoder/extra/structure/splay_tree.nim
-  - atcoder/generate_definitions.nim
   - atcoder/modint.nim
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/header.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/rangeutils.nim
   - atcoder/extra/other/internal_underscored_calls.nim
   - atcoder/modint.nim
   - atcoder/internal_math.nim
-  - atcoder/extra/other/internal_sugar.nim
+  - atcoder/generate_definitions.nim
   - atcoder/extra/other/internal_sugar.nim
   - atcoder/generate_definitions.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   requiredBy: []

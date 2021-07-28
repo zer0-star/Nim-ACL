@@ -112,8 +112,8 @@ data:
   dependsOn:
   - atcoder/extra/math/modint_montgomery.nim
   - atcoder/generate_definitions.nim
-  - atcoder/extra/math/modint_montgomery.nim
   - atcoder/generate_definitions.nim
+  - atcoder/extra/math/modint_montgomery.nim
   isVerificationFile: false
   path: tests/test_extra_montgomery_modint.nim
   requiredBy: []

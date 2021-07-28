@@ -101,8 +101,8 @@ data:
   dependsOn:
   - atcoder/internal_queue.nim
   - atcoder/maxflow.nim
-  - atcoder/maxflow.nim
   - atcoder/internal_queue.nim
+  - atcoder/maxflow.nim
   isVerificationFile: false
   path: tests/test_maxflow.nim
   requiredBy: []

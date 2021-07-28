@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_sugar.nim
     title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_sugar.nim
     title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_underscored_calls.nim
     title: atcoder/extra/other/internal_underscored_calls.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_underscored_calls.nim
     title: atcoder/extra/other/internal_underscored_calls.nim
   - icon: ':x:'
@@ -44,14 +44,14 @@ data:
     \nvar st = initSparseTable(a, f)\n\nfor _ in 0..<Q:\n  let l, r = nextInt()\n\
     \  echo st[l..<r]\n"
   dependsOn:
+  - atcoder/extra/other/internal_sugar.nim
   - atcoder/header.nim
-  - atcoder/header.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/extra/structure/sparse_table.nim
   - atcoder/extra/other/internal_underscored_calls.nim
   - atcoder/extra/other/internal_sugar.nim
-  - atcoder/extra/other/internal_sugar.nim
   - atcoder/extra/structure/sparse_table.nim
-  - atcoder/extra/structure/sparse_table.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_staticrmq_test.nim
   requiredBy: []

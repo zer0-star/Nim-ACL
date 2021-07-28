@@ -91,15 +91,16 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_INF_HPP:\n  const ATCODER_INF_HPP* = 1\n  template\
-    \ inf*(T): untyped = \n    when T is SomeFloat: T(Inf)\n    elif T is SomeInteger:\
-    \ T.high div 2\n    else:\n      static: assert(false)\n  proc `*!`*[T:SomeInteger](a,\
-    \ b:T):T =\n    if a == T(0) or b == T(0): return T(0)\n    var sgn = T(1)\n \
-    \   if a < T(0): sgn = -sgn\n    if b < T(0): sgn = -sgn\n    let a = abs(a)\n\
-    \    let b = abs(b)\n    if b > T.inf div a: result = T.inf\n    else: result\
-    \ = min(T.inf, a * b)\n    result *= sgn\n  proc `+!`*[T:SomeInteger](a, b:T):T\
-    \ =\n    result = a + b\n    result = min(T.inf, result)\n    result = max(-T.inf,\
-    \ result)\n  proc `-!`*[T:SomeInteger](a, b:T):T =\n    result = a - b\n    result\
-    \ = min(T.inf, result)\n    result = max(-T.inf, result)\n"
+    \ inf*(T:typedesc): untyped = \n    when T is SomeFloat: T(Inf)\n    elif T is\
+    \ SomeInteger: T.high div 2\n    else:\n      static: assert(false)\n  proc `\u221E\
+    `*(T:typedesc):T = T.inf\n  proc `*!`*[T:SomeInteger](a, b:T):T =\n    if a ==\
+    \ T(0) or b == T(0): return T(0)\n    var sgn = T(1)\n    if a < T(0): sgn = -sgn\n\
+    \    if b < T(0): sgn = -sgn\n    let a = abs(a)\n    let b = abs(b)\n    if b\
+    \ > T.inf div a: result = T.inf\n    else: result = min(T.inf, a * b)\n    result\
+    \ *= sgn\n  proc `+!`*[T:SomeInteger](a, b:T):T =\n    result = a + b\n    result\
+    \ = min(T.inf, result)\n    result = max(-T.inf, result)\n  proc `-!`*[T:SomeInteger](a,\
+    \ b:T):T =\n    result = a - b\n    result = min(T.inf, result)\n    result =\
+    \ max(-T.inf, result)\n"
   dependsOn: []
   isVerificationFile: false
   path: atcoder/extra/other/inf.nim

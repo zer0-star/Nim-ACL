@@ -28,10 +28,10 @@ data:
     \  sa = suffix_array(s)\nvar answer = s.len * (s.len + 1) div 2\nfor x in lcp_array(s,\
     \ sa):\n  answer -= x\necho answer\n"
   dependsOn:
-  - atcoder/header.nim
+  - atcoder/string.nim
   - atcoder/header.nim
   - atcoder/string.nim
-  - atcoder/string.nim
+  - atcoder/header.nim
   isVerificationFile: false
   path: test/example/sa_practice.nim
   requiredBy: []

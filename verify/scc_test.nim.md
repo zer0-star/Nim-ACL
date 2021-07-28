@@ -39,11 +39,11 @@ data:
     )\n"
   dependsOn:
   - atcoder/header.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_scc.nim
+  - atcoder/scc.nim
   - atcoder/header.nim
   - atcoder/scc.nim
-  - atcoder/internal_scc.nim
-  - atcoder/scc.nim
-  - atcoder/internal_scc.nim
   isVerificationFile: true
   path: verify/scc_test.nim
   requiredBy: []

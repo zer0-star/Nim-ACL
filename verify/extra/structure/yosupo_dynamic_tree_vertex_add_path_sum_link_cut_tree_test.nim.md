@@ -51,14 +51,14 @@ data:
     \      else:\n        let U, V = nextInt()\n        lct.evert(vs[U])\n       \
     \ lct.expose(vs[V])\n        echo vs[V].sum\n"
   dependsOn:
-  - atcoder/rangeutils.nim
-  - atcoder/header.nim
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/structure/splay_tree.nim
   - atcoder/header.nim
   - atcoder/extra/structure/link_cut_tree.nim
-  - atcoder/extra/structure/link_cut_tree.nim
+  - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
+  - atcoder/header.nim
+  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/link_cut_tree.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
   requiredBy: []

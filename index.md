@@ -138,7 +138,7 @@ data:
     - icon: ':question:'
       path: atcoder/extra/graph/chu_liu_edmonds.nim
       title: atcoder/extra/graph/chu_liu_edmonds.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/cycle_detection.nim
       title: atcoder/extra/graph/cycle_detection.nim
     - icon: ':question:'
@@ -324,10 +324,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/other/internal_complex.nim
       title: atcoder/extra/other/internal_complex.nim
-    - icon: ':x:'
+    - icon: ':question:'
       path: atcoder/extra/other/internal_sugar.nim
       title: atcoder/extra/other/internal_sugar.nim
-    - icon: ':x:'
+    - icon: ':question:'
       path: atcoder/extra/other/internal_underscored_calls.nim
       title: atcoder/extra/other/internal_underscored_calls.nim
     - icon: ':warning:'
@@ -362,6 +362,12 @@ data:
       title: atcoder/extra/other/zip.nim
   - name: atcoder/extra/structure
     pages:
+    - icon: ':x:'
+      path: atcoder/extra/structure/binary_tree_node_utils.nim
+      title: atcoder/extra/structure/binary_tree_node_utils.nim
+    - icon: ':x:'
+      path: atcoder/extra/structure/binary_tree_utils.nim
+      title: atcoder/extra/structure/binary_tree_utils.nim
     - icon: ':warning:'
       path: atcoder/extra/structure/dual_fenwicktree.nim
       title: atcoder/extra/structure/dual_fenwicktree.nim
@@ -371,6 +377,9 @@ data:
     - icon: ':x:'
       path: atcoder/extra/structure/link_cut_tree.nim
       title: atcoder/extra/structure/link_cut_tree.nim
+    - icon: ':warning:'
+      path: atcoder/extra/structure/old_randomized_binary_search_tree.nim
+      title: atcoder/extra/structure/old_randomized_binary_search_tree.nim
     - icon: ':warning:'
       path: atcoder/extra/structure/partially_persistent_dsu.nim
       title: atcoder/extra/structure/partially_persistent_dsu.nim
@@ -384,11 +393,17 @@ data:
       path: atcoder/extra/structure/radix_heap.nim
       title: atcoder/extra/structure/radix_heap.nim
     - icon: ':x:'
-      path: atcoder/extra/structure/randomized_binary_search_tree.nim
-      title: atcoder/extra/structure/randomized_binary_search_tree.nim
+      path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+      title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+    - icon: ':x:'
+      path: atcoder/extra/structure/red_black_tree.nim
+      title: atcoder/extra/structure/red_black_tree.nim
     - icon: ':x:'
       path: atcoder/extra/structure/set_map.nim
       title: atcoder/extra/structure/set_map.nim
+    - icon: ':warning:'
+      path: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+      title: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
     - icon: ':question:'
       path: atcoder/extra/structure/skew_heap.nim
       title: atcoder/extra/structure/skew_heap.nim
@@ -771,7 +786,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/extra/graph/yosupo_bipartite_matching_test.nim
       title: verify/extra/graph/yosupo_bipartite_matching_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/graph/yosupo_cycle_detection_test.nim
       title: verify/extra/graph/yosupo_cycle_detection_test.nim
     - icon: ':x:'

@@ -2,16 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: atcoder/extra/header/chaemon_header.nim
-    title: atcoder/extra/header/chaemon_header.nim
-  - icon: ':warning:'
-    path: atcoder/extra/header/chaemon_header.nim
-    title: atcoder/extra/header/chaemon_header.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_sugar.nim
     title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_sugar.nim
     title: atcoder/extra/other/internal_sugar.nim
   - icon: ':warning:'
@@ -21,10 +15,10 @@ data:
     path: tests/test_string.nim
     title: tests/test_string.nim
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_cycle_detection_test.nim
     title: verify/extra/graph/yosupo_cycle_detection_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_cycle_detection_test.nim
     title: verify/extra/graph/yosupo_cycle_detection_test.nim
   - icon: ':x:'
@@ -47,7 +41,7 @@ data:
     title: verify/extra/structure/yosupo_staticrmq_test.nim
   _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -75,12 +69,10 @@ data:
   requiredBy:
   - tests/test_string.nim
   - tests/test_string.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/other/internal_sugar.nim
   - atcoder/extra/other/internal_sugar.nim
   timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/extra/graph/yosupo_cycle_detection_test.nim
   - verify/extra/graph/yosupo_cycle_detection_test.nim

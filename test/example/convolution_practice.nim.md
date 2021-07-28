@@ -59,20 +59,20 @@ data:
     \ mint(nextInt()))\n  b = newSeqWith(m, mint(nextInt()))\n  c = convolution(a,\
     \ b)\n\necho c.join(\" \")\n"
   dependsOn:
+  - atcoder/element_concepts.nim
   - atcoder/internal_math.nim
   - atcoder/header.nim
-  - atcoder/generate_definitions.nim
   - atcoder/modint.nim
+  - atcoder/internal_bit.nim
+  - atcoder/convolution.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_bit.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/element_concepts.nim
   - atcoder/convolution.nim
   - atcoder/header.nim
-  - atcoder/modint.nim
-  - atcoder/convolution.nim
-  - atcoder/element_concepts.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
-  - atcoder/element_concepts.nim
-  - atcoder/internal_bit.nim
-  - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: test/example/convolution_practice.nim
   requiredBy: []

@@ -69,8 +69,8 @@ data:
   dependsOn:
   - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
-  - atcoder/lazysegtree.nim
   - atcoder/rangeutils.nim
+  - atcoder/lazysegtree.nim
   - atcoder/internal_bit.nim
   - atcoder/lazysegtree.nim
   isVerificationFile: false

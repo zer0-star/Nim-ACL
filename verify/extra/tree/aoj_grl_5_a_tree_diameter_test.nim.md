@@ -38,12 +38,12 @@ data:
     \    let x, y, z = nextInt()\n    g.addBiEdge(x,y,z)\n  echo g.treeDiameter()[0]\n\
     \nmain()\n"
   dependsOn:
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/header.nim
   - atcoder/extra/tree/tree_diameter.nim
   - atcoder/header.nim
-  - atcoder/extra/graph/graph_template.nim
+  - atcoder/header.nim
   - atcoder/extra/tree/tree_diameter.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
   isVerificationFile: true
   path: verify/extra/tree/aoj_grl_5_a_tree_diameter_test.nim
   requiredBy: []

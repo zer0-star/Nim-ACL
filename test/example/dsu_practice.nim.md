@@ -29,10 +29,10 @@ data:
     \ d.merge(u, v)\n  else:\n    if d.same(u, v):\n      echo 1\n    else:\n    \
     \  echo 0\n\n"
   dependsOn:
-  - atcoder/header.nim
   - atcoder/dsu.nim
   - atcoder/header.nim
   - atcoder/dsu.nim
+  - atcoder/header.nim
   isVerificationFile: false
   path: test/example/dsu_practice.nim
   requiredBy: []

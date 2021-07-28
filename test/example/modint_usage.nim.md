@@ -49,10 +49,10 @@ data:
     \ 3\n"
   dependsOn:
   - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
   - atcoder/modint.nim
   - atcoder/modint.nim
   - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
   - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: test/example/modint_usage.nim

@@ -88,8 +88,8 @@ data:
   - atcoder/segtree.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
-  - atcoder/segtree.nim
   - atcoder/rangeutils.nim
+  - atcoder/segtree.nim
   - atcoder/internal_bit.nim
   isVerificationFile: false
   path: tests/test_segtree.nim

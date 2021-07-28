@@ -86,23 +86,23 @@ data:
     \ \")\n\nmain()\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/modint.nim
-  - atcoder/element_concepts.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/extra/tree/centroid_decomposition.nim
   - atcoder/convolution.nim
+  - atcoder/extra/tree/centroid_decomposition.nim
+  - atcoder/internal_bit.nim
+  - atcoder/generate_definitions.nim
   - atcoder/header.nim
-  - atcoder/modint.nim
-  - atcoder/extra/tree/centroid_decomposition.nim
   - atcoder/element_concepts.nim
   - atcoder/internal_bit.nim
   - atcoder/internal_math.nim
-  - atcoder/extra/tree/centroid_decomposition.nim
-  - atcoder/convolution.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/generate_definitions.nim
+  - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/modint.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/convolution.nim
   isVerificationFile: true
   path: verify/extra/graph/centroid_decomposition_test.nim
   requiredBy: []

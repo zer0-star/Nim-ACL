@@ -87,10 +87,10 @@ data:
     :\n  for i in 0..<1000:\n    let x = int32.high.int - i\n    if not is_prime_constexpr(x):\
     \ continue\n    check is_primitive_root(x, (primitive_root_constexpr(x)))\n"
   dependsOn:
-  - atcoder/math.nim
   - atcoder/internal_math.nim
   - atcoder/math.nim
   - atcoder/internal_math.nim
+  - atcoder/math.nim
   isVerificationFile: false
   path: tests/test_internal_math.nim
   requiredBy: []

@@ -1,12 +1,6 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
-    path: atcoder/extra/structure/randomized_binary_search_tree.nim
-    title: atcoder/extra/structure/randomized_binary_search_tree.nim
-  - icon: ':x:'
-    path: atcoder/extra/structure/randomized_binary_search_tree.nim
-    title: atcoder/extra/structure/randomized_binary_search_tree.nim
   - icon: ':question:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
@@ -31,12 +25,6 @@ data:
   - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
-  - icon: ':x:'
-    path: atcoder/rangeutils.nim
-    title: atcoder/rangeutils.nim
-  - icon: ':x:'
-    path: atcoder/rangeutils.nim
-    title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -62,18 +50,14 @@ data:
     \ r, c, d = nextInt()\n    seg.apply(l..<r, (mint(c), mint(d)))\n  else:\n   \
     \ let l, r = nextInt()\n    echo seg.prod(l..<r)[0]\n"
   dependsOn:
-  - atcoder/extra/structure/randomized_binary_search_tree.nim
-  - atcoder/rangeutils.nim
   - atcoder/internal_math.nim
   - atcoder/header.nim
-  - atcoder/generate_definitions.nim
   - atcoder/modint.nim
-  - atcoder/header.nim
   - atcoder/modint.nim
-  - atcoder/rangeutils.nim
   - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
-  - atcoder/extra/structure/randomized_binary_search_tree.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
   requiredBy: []

@@ -7,35 +7,11 @@ data:
   - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  _extendedRequiredBy:
-  - icon: ':x:'
-    path: atcoder/extra/structure/set_map.nim
-    title: atcoder/extra/structure/set_map.nim
-  - icon: ':x:'
-    path: atcoder/extra/structure/set_map.nim
-    title: atcoder/extra/structure/set_map.nim
-  - icon: ':warning:'
-    path: tests/test_extra_set_map.nim
-    title: tests/test_extra_set_map.nim
-  - icon: ':warning:'
-    path: tests/test_extra_set_map.nim
-    title: tests/test_extra_set_map.nim
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-    title: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-  - icon: ':x:'
-    path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-    title: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-  - icon: ':x:'
-    path: verify/map_test.nim
-    title: verify/map_test.nim
-  - icon: ':x:'
-    path: verify/map_test.nim
-    title: verify/map_test.nim
-  _isVerificationFailed: true
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -166,23 +142,15 @@ data:
   - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   isVerificationFile: false
-  path: atcoder/extra/structure/randomized_binary_search_tree.nim
-  requiredBy:
-  - tests/test_extra_set_map.nim
-  - tests/test_extra_set_map.nim
-  - atcoder/extra/structure/set_map.nim
-  - atcoder/extra/structure/set_map.nim
+  path: atcoder/extra/structure/old_randomized_binary_search_tree.nim
+  requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - verify/map_test.nim
-  - verify/map_test.nim
-  - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-  - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-documentation_of: atcoder/extra/structure/randomized_binary_search_tree.nim
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: atcoder/extra/structure/old_randomized_binary_search_tree.nim
 layout: document
 redirect_from:
-- /library/atcoder/extra/structure/randomized_binary_search_tree.nim
-- /library/atcoder/extra/structure/randomized_binary_search_tree.nim.html
-title: atcoder/extra/structure/randomized_binary_search_tree.nim
+- /library/atcoder/extra/structure/old_randomized_binary_search_tree.nim
+- /library/atcoder/extra/structure/old_randomized_binary_search_tree.nim.html
+title: atcoder/extra/structure/old_randomized_binary_search_tree.nim
 ---

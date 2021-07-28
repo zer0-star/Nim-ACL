@@ -31,18 +31,6 @@ data:
   - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/internal_sugar.nim
-    title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/internal_sugar.nim
-    title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/internal_underscored_calls.nim
-    title: atcoder/extra/other/internal_underscored_calls.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/internal_underscored_calls.nim
-    title: atcoder/extra/other/internal_underscored_calls.nim
   - icon: ':warning:'
     path: atcoder/extra/other/reader.nim
     title: atcoder/extra/other/reader.nim
@@ -109,9 +97,9 @@ data:
     \ std/macros as macros_lib\n  import std/math as math_lib\n  import std/sets as\
     \ sets_lib\n  import std/tables as tables_lib\n  import std/strutils as strutils_lib\n\
     \  import std/strformat as strformat_lib\n  import std/options as options_lib\n\
-    \  import std/bitops as bitops_lib\n  import std/streams as streams_lib\n\n  import\
-    \ atcoder/extra/other/internal_sugar\n  import atcoder/extra/other/reader\n  import\
-    \ atcoder/extra/other/sliceutils\n  import atcoder/extra/other/assignment_operator\n\
+    \  import std/bitops as bitops_lib\n  import std/streams as streams_lib\n\n# \
+    \ import atcoder/extra/other/internal_sugar\n  import std/sugar\n  import atcoder/extra/other/reader\n\
+    \  import atcoder/extra/other/sliceutils\n  import atcoder/extra/other/assignment_operator\n\
     \  import atcoder/extra/other/inf\n  import atcoder/extra/other/warlus_operator\n\
     \  import atcoder/extra/other/seq_array_utils\n  include atcoder/extra/other/debug\n\
     \  import atcoder/extra/other/reference\n  import atcoder/extra/other/floatutils\n\
@@ -123,36 +111,32 @@ data:
     \  proc ceilDiv*[T:SomeInteger](a, b:T):T =\n    assert b != 0\n    if b < 0:\
     \ return ceilDiv(-a, -b)\n    result = a.floorDiv(b)\n    if a mod b != 0: result.inc\n"
   dependsOn:
-  - atcoder/extra/other/zip.nim
-  - atcoder/extra/other/zip.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/reference.nim
-  - atcoder/extra/other/reference.nim
-  - atcoder/extra/other/assignment_operator.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/sliceutils.nim
-  - atcoder/extra/other/sliceutils.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/zip.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/sliceutils.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/internal_sugar.nim
-  - atcoder/extra/other/internal_sugar.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/reference.nim
+  - atcoder/extra/other/zip.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/other/sliceutils.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/reference.nim
+  - atcoder/extra/other/reader.nim
   isVerificationFile: false
   path: atcoder/extra/header/chaemon_header.nim
   requiredBy: []

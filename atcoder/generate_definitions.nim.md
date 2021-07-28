@@ -271,20 +271,22 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_GENERATE_DEFINITIONS_NIM:\n  const ATCODER_GENERATE_DEFINITIONS_NIM*\
-    \ = 1\n  import std/strformat, std/macros\n\n  template generateDefinitions*(name,\
-    \ l, r, typeObj, typeBase, body: untyped): untyped {.dirty.} =\n    proc name*(l,\
-    \ r: typeObj): auto {.inline.} =\n      type T = l.type\n      body\n    proc\
-    \ name*(l: typeBase; r: typeObj): auto {.inline.} =\n      type T = r.type\n \
-    \     body\n    proc name*(l: typeObj; r: typeBase): auto {.inline.} =\n     \
-    \ type T = l.type\n      body\n\n  template generatePow*(name) {.dirty.} =\n \
-    \   proc pow*(m: name; p: SomeInteger): name {.inline.} =\n      if (p.type)(0)\
-    \ <= p:\n        var\n          p = p.uint\n          m = m\n        result =\
-    \ m.unit()\n        while p > 0'u:\n          if (p and 1'u) != 0'u: result *=\
-    \ m\n          m *= m\n          p = p shr 1'u\n      else:\n        return pow(m.inv(),\
-    \ -p)\n    proc `^`*[T:name](m: T; p: SomeInteger): T {.inline.} = m.pow(p)\n\n\
-    \  macro generateConverter*(name, from_type, to_type) =\n    parseStmt(fmt\"\"\
-    \"type {name.repr}* = {to_type.repr}{'\\n'}converter to{name.repr}OfGenerateConverter*(a:{from_type}):{name.repr}\
-    \ {{.used.}} = {name.repr}.init(a){'\\n'}\"\"\")\n"
+    \ = 1\n  import std/strformat, std/macros\n\n  type hasInv* = concept x\n    var\
+    \ t: x\n    t.inv()\n\n  template generateDefinitions*(name, l, r, typeObj, typeBase,\
+    \ body: untyped): untyped {.dirty.} =\n    proc name*(l, r: typeObj): auto {.inline.}\
+    \ =\n      type T = l.type\n      body\n    proc name*(l: typeBase; r: typeObj):\
+    \ auto {.inline.} =\n      type T = r.type\n      body\n    proc name*(l: typeObj;\
+    \ r: typeBase): auto {.inline.} =\n      type T = l.type\n      body\n\n  template\
+    \ generatePow*(name) {.dirty.} =\n    proc pow*(m: name; p: SomeInteger): name\
+    \ {.inline.} =\n      when name is hasInv:\n        if p < 0: return pow(m.inv(),\
+    \ -p)\n      else:\n        assert p >= 0\n      if (p.type)(0) <= p:\n      \
+    \  var\n          p = p.uint\n          m = m\n        result = m.unit()\n   \
+    \     while p > 0'u:\n          if (p and 1'u) != 0'u: result *= m\n         \
+    \ m *= m\n          p = p shr 1'u\n    proc `^`*[T:name](m: T; p: SomeInteger):\
+    \ T {.inline.} = m.pow(p)\n\n  macro generateConverter*(name, from_type, to_type)\
+    \ =\n    parseStmt(fmt\"\"\"type {name.repr}* = {to_type.repr}{'\\n'}converter\
+    \ to{name.repr}OfGenerateConverter*(a:{from_type}):{name.repr} {{.used.}} = {name.repr}.init(a){'\\\
+    n'}\"\"\")\n"
   dependsOn: []
   isVerificationFile: false
   path: atcoder/generate_definitions.nim

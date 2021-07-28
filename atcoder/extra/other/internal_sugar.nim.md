@@ -1,19 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_underscored_calls.nim
     title: atcoder/extra/other/internal_underscored_calls.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_underscored_calls.nim
     title: atcoder/extra/other/internal_underscored_calls.nim
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: atcoder/extra/header/chaemon_header.nim
-    title: atcoder/extra/header/chaemon_header.nim
-  - icon: ':warning:'
-    path: atcoder/extra/header/chaemon_header.nim
-    title: atcoder/extra/header/chaemon_header.nim
   - icon: ':warning:'
     path: tests/test_string.nim
     title: tests/test_string.nim
@@ -21,10 +15,10 @@ data:
     path: tests/test_string.nim
     title: tests/test_string.nim
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_cycle_detection_test.nim
     title: verify/extra/graph/yosupo_cycle_detection_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_cycle_detection_test.nim
     title: verify/extra/graph/yosupo_cycle_detection_test.nim
   - icon: ':x:'
@@ -47,7 +41,7 @@ data:
     title: verify/extra/structure/yosupo_staticrmq_test.nim
   _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/nim-lang/Nim/pull/8531#issuecomment-410436458
@@ -159,10 +153,8 @@ data:
   requiredBy:
   - tests/test_string.nim
   - tests/test_string.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/chaemon_header.nim
   timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/extra/graph/yosupo_cycle_detection_test.nim
   - verify/extra/graph/yosupo_cycle_detection_test.nim

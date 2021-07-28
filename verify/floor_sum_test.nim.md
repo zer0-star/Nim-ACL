@@ -37,11 +37,11 @@ data:
     \  let N, M, A, B = nextInt()\n  echo floor_sum(N, M, A, B)\n"
   dependsOn:
   - atcoder/internal_math.nim
-  - atcoder/header.nim
   - atcoder/math.nim
   - atcoder/header.nim
-  - atcoder/math.nim
   - atcoder/internal_math.nim
+  - atcoder/math.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/floor_sum_test.nim
   requiredBy: []

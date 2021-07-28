@@ -41,27 +41,27 @@ data:
     \    swap(na, a)\n    swap(nb, b)\n    swap(nc, c)\n    swap(nd, d)\n  return\
     \ prev\n\nproc initPrec*(Real:typedesc[DecimalType], n:int) =\n  setPrec(n)\n\
     \  var INF_VAL = newDecimal()\n  mpd_setspecial(INF_VAL[], MPD_POS, MPD_INF)\n\
-    \  DecimalType:::pi = calcPi[Real]()\n  DecimalType:::eps = newDecimal(10)^(-(n\
-    \ - 5))\n  DecimalType:::inf = INF_VAL\n\n#  DecimalType.getParameters()[] = (n,\
+    \  DecimalType$.pi = calcPi[Real]()\n  DecimalType$.eps = newDecimal(10)^(-(n\
+    \ - 5))\n  DecimalType$.inf = INF_VAL\n\n#  DecimalType.getParameters()[] = (n,\
     \ calcPi[Real](), newDecimal(10)^(-(n - 5)), INF_VAL)\n\nproc sin_impl*(x:DecimalType):DecimalType\
     \ =\n  result = newDecimal(0)\n  let mx2 = - x * x\n  var\n    i = 1\n    p =\
     \ x\n  while true:\n    var next = result + p\n    if next == result: break\n\
     \    result = next.move()\n    p *= mx2 / ((i + 1) * (i + 2))\n    i += 2\n\n\
-    proc sin*(x:DecimalType):DecimalType =\n  let r = rem(x, ((DecimalType:::pi) *\
+    proc sin*(x:DecimalType):DecimalType =\n  let r = rem(x, ((DecimalType$.pi) *\
     \ 2))\n  return sin_impl(r)\n\nproc cos_impl(x:DecimalType):DecimalType =\n  result\
     \ = newDecimal(0)\n  let mx2 = - x * x\n  var\n    i = 0\n    p = newDecimal(1)\n\
     \  while true:\n    var next = result + p\n    if next == result: break\n    result\
     \ = next.move()\n    p *= mx2 / ((i + 1) * (i + 2))\n    i += 2\n\nproc cos*(x:DecimalType):DecimalType\
-    \ =\n  let r = rem(x, ((DecimalType:::pi) * 2))\n  return cos_impl(r)\n\nproc\
-    \ tan*(x:DecimalType):DecimalTYpe = sin(x) / cos(x)\n\nproc sinh*(x:DecimalType):DecimalType\
-    \ =\n  return (exp(x) - exp(-x)) / newDecimal(2)\n\nproc cosh*(x:DecimalType):DecimalType\
-    \ =\n  return (exp(x) + exp(-x)) / newDecimal(2)\n\nproc hypot*(x, y:DecimalType):DecimalType\
+    \ =\n  let r = rem(x, ((DecimalType$.pi) * 2))\n  return cos_impl(r)\n\nproc tan*(x:DecimalType):DecimalTYpe\
+    \ = sin(x) / cos(x)\n\nproc sinh*(x:DecimalType):DecimalType =\n  return (exp(x)\
+    \ - exp(-x)) / newDecimal(2)\n\nproc cosh*(x:DecimalType):DecimalType =\n  return\
+    \ (exp(x) + exp(-x)) / newDecimal(2)\n\nproc hypot*(x, y:DecimalType):DecimalType\
     \ = sqrt(x * x + y * y)\n\nproc pow*(a, b:DecimalType):DecimalType = a ^ b\n\n\
     proc arcsin*(x:DecimalType):DecimalType =\n  result = newDecimal(0)\n  var\n \
     \   n = 0\n    p = x\n    t = 1 / newDecimal(2)\n    x2 = x * x\n  while true:\n\
     \    var next = result + p / (2 * n + 1)\n    if next == result: break\n    swap(next,\
     \ result)\n\n    p *= t\n    p *= x2\n    t += 1\n    n.inc\n    p /= n\n\nproc\
-    \ arccos*(x:DecimalType):DecimalType =\n  (DecimalType:::pi) / newDecimal(2) -\
+    \ arccos*(x:DecimalType):DecimalType =\n  (DecimalType$.pi) / newDecimal(2) -\
     \ arcsin(x)\n\nproc arctan2*(y, x:DecimalType):DecimalType =\n  var\n    a = x\
     \ / sqrt(x * x + y * y)\n    b = newDecimal(1)\n  while true:\n    var\n     \
     \ na = (a + b) / 2\n      nb = sqrt(na * b)\n    if na == a:break\n    a = na.move\n\
@@ -69,12 +69,12 @@ data:
     \ =\n  return arctan2(x, newDecimal(1))\n\nproc round*(x:DecimalType):DecimalType\
     \ = round_to_int(x)\n"
   dependsOn:
-  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/other/floatutils.nim
-  - atcoder/element_concepts.nim
-  - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/other/decimal.nim
   requiredBy: []

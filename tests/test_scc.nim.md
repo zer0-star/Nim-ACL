@@ -35,10 +35,10 @@ data:
     test \"SCCTest, Invalid\":\n  var graph = initSCCGraph(2)\n  expect AssertionError:\n\
     \    graph.add_edge(0, 10)\n"
   dependsOn:
-  - atcoder/scc.nim
+  - atcoder/internal_scc.nim
   - atcoder/internal_scc.nim
   - atcoder/scc.nim
-  - atcoder/internal_scc.nim
+  - atcoder/scc.nim
   isVerificationFile: false
   path: tests/test_scc.nim
   requiredBy: []

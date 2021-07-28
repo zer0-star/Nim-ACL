@@ -20,18 +20,30 @@ data:
   - icon: ':x:'
     path: atcoder/extra/structure/link_cut_tree.nim
     title: atcoder/extra/structure/link_cut_tree.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/old_randomized_binary_search_tree.nim
+    title: atcoder/extra/structure/old_randomized_binary_search_tree.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/old_randomized_binary_search_tree.nim
+    title: atcoder/extra/structure/old_randomized_binary_search_tree.nim
   - icon: ':x:'
-    path: atcoder/extra/structure/randomized_binary_search_tree.nim
-    title: atcoder/extra/structure/randomized_binary_search_tree.nim
+    path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+    title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - icon: ':x:'
-    path: atcoder/extra/structure/randomized_binary_search_tree.nim
-    title: atcoder/extra/structure/randomized_binary_search_tree.nim
+    path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+    title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - icon: ':x:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
   - icon: ':x:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+    title: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+    title: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
   - icon: ':x:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
@@ -178,12 +190,6 @@ data:
     path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
     title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   - icon: ':x:'
-    path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-    title: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-  - icon: ':x:'
-    path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-    title: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-  - icon: ':x:'
     path: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
     title: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
   - icon: ':x:'
@@ -268,16 +274,20 @@ data:
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/extra/structure/wavelet_matrix.nim
   - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+  - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
   - atcoder/extra/structure/universal_segtree.nim
   - atcoder/extra/structure/universal_segtree.nim
   - atcoder/extra/structure/link_cut_tree.nim
   - atcoder/extra/structure/link_cut_tree.nim
+  - atcoder/extra/structure/old_randomized_binary_search_tree.nim
+  - atcoder/extra/structure/old_randomized_binary_search_tree.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - atcoder/extra/structure/dual_fenwicktree.nim
   - atcoder/extra/structure/dual_fenwicktree.nim
   - atcoder/extra/structure/set_map.nim
   - atcoder/extra/structure/set_map.nim
-  - atcoder/extra/structure/randomized_binary_search_tree.nim
-  - atcoder/extra/structure/randomized_binary_search_tree.nim
   - test/example/fenwick_practice.nim
   - test/example/fenwick_practice.nim
   - test/example/lazyseg_practice2.nim
@@ -313,8 +323,6 @@ data:
   - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
   - verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
   - verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
-  - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-  - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
   - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
   - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
   - verify/extra/structure/aoj_1508_splay_tree_test.nim

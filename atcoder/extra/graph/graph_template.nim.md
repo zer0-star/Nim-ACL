@@ -14,10 +14,10 @@ data:
   - icon: ':question:'
     path: atcoder/extra/graph/chu_liu_edmonds.nim
     title: atcoder/extra/graph/chu_liu_edmonds.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/cycle_detection.nim
     title: atcoder/extra/graph/cycle_detection.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/cycle_detection.nim
     title: atcoder/extra/graph/cycle_detection.nim
   - icon: ':question:'
@@ -159,10 +159,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/centroid_decomposition_test.nim
     title: verify/extra/graph/centroid_decomposition_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_cycle_detection_test.nim
     title: verify/extra/graph/yosupo_cycle_detection_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_cycle_detection_test.nim
     title: verify/extra/graph/yosupo_cycle_detection_test.nim
   - icon: ':x:'

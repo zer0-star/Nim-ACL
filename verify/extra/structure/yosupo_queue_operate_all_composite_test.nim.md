@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_sugar.nim
     title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_sugar.nim
     title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_underscored_calls.nim
     title: atcoder/extra/other/internal_underscored_calls.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_underscored_calls.nim
     title: atcoder/extra/other/internal_underscored_calls.nim
   - icon: ':x:'
@@ -65,20 +65,20 @@ data:
     \  else:\n    let x = nextInt().mint\n    let (b, a) = swa.fold_all()\n    echo\
     \ a * x + b\n\n"
   dependsOn:
+  - atcoder/extra/other/internal_sugar.nim
   - atcoder/internal_math.nim
   - atcoder/header.nim
-  - atcoder/generate_definitions.nim
   - atcoder/modint.nim
-  - atcoder/header.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
   - atcoder/extra/other/internal_underscored_calls.nim
   - atcoder/modint.nim
   - atcoder/internal_math.nim
-  - atcoder/extra/other/internal_sugar.nim
-  - atcoder/extra/other/internal_sugar.nim
-  - atcoder/extra/structure/sliding_window_aggregation.nim
   - atcoder/extra/structure/sliding_window_aggregation.nim
   - atcoder/generate_definitions.nim
+  - atcoder/extra/other/internal_sugar.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/header.nim
+  - atcoder/extra/structure/sliding_window_aggregation.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
   requiredBy: []
