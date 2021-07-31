@@ -59,20 +59,20 @@ data:
     \ nextInt())\n\nlet c = convolution[998244353, int](a, b)\n# or: c = convolution<998244353>(a,\
     \ b)\n\necho c.join(\" \")\n"
   dependsOn:
-  - atcoder/element_concepts.nim
-  - atcoder/internal_math.nim
-  - atcoder/header.nim
-  - atcoder/modint.nim
-  - atcoder/internal_bit.nim
-  - atcoder/convolution.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
   - atcoder/internal_bit.nim
+  - atcoder/modint.nim
+  - atcoder/convolution.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
+  - atcoder/element_concepts.nim
   - atcoder/generate_definitions.nim
+  - atcoder/internal_bit.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
   - atcoder/element_concepts.nim
   - atcoder/convolution.nim
-  - atcoder/header.nim
   isVerificationFile: false
   path: test/example/convolution_int_practice.nim
   requiredBy: []

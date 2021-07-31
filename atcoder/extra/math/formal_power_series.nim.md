@@ -261,43 +261,43 @@ data:
   isVerificationFile: false
   path: atcoder/extra/math/formal_power_series.nim
   requiredBy:
-  - tests/test_extra_formal_power_series_float.nim
-  - tests/test_extra_formal_power_series_float.nim
-  - tests/test_extra_formal_power_series.nim
-  - tests/test_extra_formal_power_series.nim
-  - atcoder/extra/math/composition.nim
-  - atcoder/extra/math/composition.nim
-  - atcoder/extra/math/formal_power_series_sqrt.nim
-  - atcoder/extra/math/formal_power_series_sqrt.nim
-  - atcoder/extra/math/coef_of_generating_function.nim
-  - atcoder/extra/math/coef_of_generating_function.nim
   - atcoder/extra/math/formal_power_series_sparse.nim
   - atcoder/extra/math/formal_power_series_sparse.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/composition.nim
   - atcoder/extra/math/factorial.nim
   - atcoder/extra/math/factorial.nim
+  - atcoder/extra/math/coef_of_generating_function.nim
+  - atcoder/extra/math/coef_of_generating_function.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - tests/test_extra_formal_power_series.nim
+  - tests/test_extra_formal_power_series.nim
+  - tests/test_extra_formal_power_series_float.nim
+  - tests/test_extra_formal_power_series_float.nim
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/extra/math/yukicoder_factorial_test.nim
-  - verify/extra/math/yukicoder_factorial_test.nim
-  - verify/extra/math/exp_of_formal_power_series_test.nim
-  - verify/extra/math/exp_of_formal_power_series_test.nim
+  - verify/extra/math/sqrt_of_formal_power_series_test.nim
+  - verify/extra/math/sqrt_of_formal_power_series_test.nim
+  - verify/extra/math/arbitrary_mod_convolution_test.nim
+  - verify/extra/math/arbitrary_mod_convolution_test.nim
   - verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
   - verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
   - verify/extra/math/log_of_formal_power_series_test.nim
   - verify/extra/math/log_of_formal_power_series_test.nim
-  - verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - verify/extra/math/inv_of_formal_power_series_test.nim
-  - verify/extra/math/inv_of_formal_power_series_test.nim
   - verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
   - verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
+  - verify/extra/math/exp_of_formal_power_series_test.nim
+  - verify/extra/math/exp_of_formal_power_series_test.nim
+  - verify/extra/math/inv_of_formal_power_series_test.nim
+  - verify/extra/math/inv_of_formal_power_series_test.nim
+  - verify/extra/math/yukicoder_factorial_test.nim
+  - verify/extra/math/yukicoder_factorial_test.nim
+  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
+  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
   - verify/extra/math/pow_of_formal_power_series_test.nim
   - verify/extra/math/pow_of_formal_power_series_test.nim
-  - verify/extra/math/arbitrary_mod_convolution_test.nim
-  - verify/extra/math/arbitrary_mod_convolution_test.nim
 documentation_of: atcoder/extra/math/formal_power_series.nim
 layout: document
 redirect_from:

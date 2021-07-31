@@ -50,15 +50,15 @@ data:
     \  let N = nextInt()\n  var a = newSeqWith(2^N, mint(nextInt()))\n  var b = newSeqWith(2^N,\
     \ mint(nextInt()))\n  echo AndConvolution(a, b).join(\" \")\n\nmain()\n"
   dependsOn:
-  - atcoder/internal_math.nim
-  - atcoder/header.nim
+  - atcoder/generate_definitions.nim
   - atcoder/extra/math/bitwise_convolution.nim
   - atcoder/modint.nim
-  - atcoder/modint.nim
   - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/header.nim
   - atcoder/generate_definitions.nim
   - atcoder/header.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
   - atcoder/extra/math/bitwise_convolution.nim
   isVerificationFile: true
   path: verify/extra/math/yosupo_bitwise_and_convolution_test.nim

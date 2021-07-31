@@ -99,31 +99,31 @@ data:
   isVerificationFile: false
   path: atcoder/dsu.nim
   requiredBy:
-  - tests/test_dsu.nim
-  - tests/test_dsu.nim
+  - atcoder/extra/graph/chu_liu_edmonds.nim
+  - atcoder/extra/graph/chu_liu_edmonds.nim
+  - atcoder/extra/graph/kruskal.nim
+  - atcoder/extra/graph/kruskal.nim
   - atcoder/extra/graph/boruvka.nim
   - atcoder/extra/graph/boruvka.nim
   - atcoder/extra/graph/eulerian_trail.nim
   - atcoder/extra/graph/eulerian_trail.nim
-  - atcoder/extra/graph/kruskal.nim
-  - atcoder/extra/graph/kruskal.nim
-  - atcoder/extra/graph/chu_liu_edmonds.nim
-  - atcoder/extra/graph/chu_liu_edmonds.nim
+  - tests/test_dsu.nim
+  - tests/test_dsu.nim
   - test/example/dsu_practice.nim
   - test/example/dsu_practice.nim
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/dsu_test.nim
-  - verify/dsu_test.nim
-  - verify/extra/graph/yosupo_directedmst_test.nim
-  - verify/extra/graph/yosupo_directedmst_test.nim
-  - verify/extra/graph/aoj_grl_2_a_3_boruvka_test.nim
-  - verify/extra/graph/aoj_grl_2_a_3_boruvka_test.nim
   - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
   - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
   - verify/extra/graph/aoj_grl_2_a_2_minimum_spanning_tree_kruskal_test.nim
   - verify/extra/graph/aoj_grl_2_a_2_minimum_spanning_tree_kruskal_test.nim
+  - verify/extra/graph/aoj_grl_2_a_3_boruvka_test.nim
+  - verify/extra/graph/aoj_grl_2_a_3_boruvka_test.nim
+  - verify/extra/graph/yosupo_directedmst_test.nim
+  - verify/extra/graph/yosupo_directedmst_test.nim
+  - verify/dsu_test.nim
+  - verify/dsu_test.nim
 documentation_of: atcoder/dsu.nim
 layout: document
 redirect_from:

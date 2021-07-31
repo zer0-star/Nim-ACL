@@ -55,10 +55,10 @@ data:
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
-  - verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
   - verify/extra/graph/aoj_grl_3_a_lowlink_test.nim
   - verify/extra/graph/aoj_grl_3_a_lowlink_test.nim
+  - verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
+  - verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
 documentation_of: atcoder/extra/graph/lowlink.nim
 layout: document
 redirect_from:

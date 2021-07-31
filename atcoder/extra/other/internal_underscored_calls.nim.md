@@ -67,21 +67,21 @@ data:
   isVerificationFile: false
   path: atcoder/extra/other/internal_underscored_calls.nim
   requiredBy:
-  - tests/test_string.nim
-  - tests/test_string.nim
   - atcoder/extra/other/internal_sugar.nim
   - atcoder/extra/other/internal_sugar.nim
+  - tests/test_string.nim
+  - tests/test_string.nim
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/extra/graph/yosupo_cycle_detection_test.nim
-  - verify/extra/graph/yosupo_cycle_detection_test.nim
-  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-  - verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
-  - verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
   - verify/extra/structure/yosupo_staticrmq_test.nim
   - verify/extra/structure/yosupo_staticrmq_test.nim
+  - verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
+  - verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
+  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
+  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
+  - verify/extra/graph/yosupo_cycle_detection_test.nim
+  - verify/extra/graph/yosupo_cycle_detection_test.nim
 documentation_of: atcoder/extra/other/internal_underscored_calls.nim
 layout: document
 redirect_from:

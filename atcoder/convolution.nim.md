@@ -242,31 +242,31 @@ data:
     \      const offset = [0'u, 0'u, M1M2M3, 2'u * M1M2M3, 3'u * M1M2M3]\n      x\
     \ -= offset[diff mod 5]\n      c[i] = x.int\n    return c\n"
   dependsOn:
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_bit.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
   - atcoder/element_concepts.nim
-  - atcoder/internal_math.nim
-  - atcoder/internal_bit.nim
-  - atcoder/modint.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
   - atcoder/internal_bit.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
   - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/convolution.nim
   requiredBy:
-  - tests/test_convolution.nim
-  - tests/test_convolution.nim
-  - tests/test_extra_formal_power_series.nim
-  - tests/test_extra_formal_power_series.nim
   - atcoder/extra/math/composition.nim
   - atcoder/extra/math/composition.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/extra/math/ntt.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/ntt.nim
+  - tests/test_extra_formal_power_series.nim
+  - tests/test_extra_formal_power_series.nim
+  - tests/test_convolution.nim
+  - tests/test_convolution.nim
   - test/example/convolution_practice.nim
   - test/example/convolution_practice.nim
   - test/example/convolution_int_practice.nim
@@ -274,32 +274,32 @@ data:
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/convolution_test.nim
-  - verify/convolution_test.nim
-  - verify/extra/graph/centroid_decomposition_test.nim
-  - verify/extra/graph/centroid_decomposition_test.nim
-  - verify/extra/math/yukicoder_factorial_test.nim
-  - verify/extra/math/yukicoder_factorial_test.nim
-  - verify/extra/math/exp_of_formal_power_series_test.nim
-  - verify/extra/math/exp_of_formal_power_series_test.nim
   - verify/extra/math/convolution_montgomery_test.nim
   - verify/extra/math/convolution_montgomery_test.nim
+  - verify/extra/math/sqrt_of_formal_power_series_test.nim
+  - verify/extra/math/sqrt_of_formal_power_series_test.nim
+  - verify/extra/math/arbitrary_mod_convolution_test.nim
+  - verify/extra/math/arbitrary_mod_convolution_test.nim
   - verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
   - verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
   - verify/extra/math/log_of_formal_power_series_test.nim
   - verify/extra/math/log_of_formal_power_series_test.nim
-  - verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - verify/extra/math/inv_of_formal_power_series_test.nim
-  - verify/extra/math/inv_of_formal_power_series_test.nim
   - verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
   - verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
+  - verify/extra/math/exp_of_formal_power_series_test.nim
+  - verify/extra/math/exp_of_formal_power_series_test.nim
+  - verify/extra/math/inv_of_formal_power_series_test.nim
+  - verify/extra/math/inv_of_formal_power_series_test.nim
+  - verify/extra/math/yukicoder_factorial_test.nim
+  - verify/extra/math/yukicoder_factorial_test.nim
+  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
+  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
   - verify/extra/math/pow_of_formal_power_series_test.nim
   - verify/extra/math/pow_of_formal_power_series_test.nim
-  - verify/extra/math/arbitrary_mod_convolution_test.nim
-  - verify/extra/math/arbitrary_mod_convolution_test.nim
+  - verify/extra/graph/centroid_decomposition_test.nim
+  - verify/extra/graph/centroid_decomposition_test.nim
+  - verify/convolution_test.nim
+  - verify/convolution_test.nim
 documentation_of: atcoder/convolution.nim
 layout: document
 redirect_from:

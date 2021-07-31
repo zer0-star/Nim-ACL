@@ -96,29 +96,33 @@ data:
     \ == self.End or self.getKey(t) != x: return\n    T.Tree(self).erase(t)\n  proc\
     \ erase*[T:SomeSortedTree](self: var T, t:T.Node) =\n    T.Tree(self).erase(t)\n\
     \  proc kth_element*[T:SomeSortedTree](self: var T, t:T.Node, k:int):T.Node =\n\
-    \    let p = t.l.cnt\n    if k < p: return self.kth_element(t.l, k)\n    elif\
-    \ k > p: return self.kth_element(t.r, k - p - 1)\n    else: return t\n  \n  proc\
-    \ kth_element*[T:SomeSortedTree](self: var T, k:int):T.Node =\n    return self.kth_element(T.Tree(self).root,\
-    \ k)\n  proc `{}`*[T:SomeSortedTree](self: var T, k:int):T.Node =\n    return\
-    \ self.kth_element(k)\n\n  iterator items*[T:SomeSortedSet or SomeSortedMultiSet](self:T):T.K\
-    \ =\n    var it = self.Begin\n    while it != self.End:\n      yield it.key\n\
+    #    static:\n#      assert T.Tree.Countable isnot void\n    let p = t.l.cnt\n\
+    \    if k < p: return self.kth_element(t.l, k)\n    elif k > p: return self.kth_element(t.r,\
+    \ k - p - 1)\n    else: return t\n  \n  proc kth_element*[T:SomeSortedTree](self:\
+    \ var T, k:int):T.Node =\n    return self.kth_element(T.Tree(self).root, k)\n\
+    \  proc `{}`*[T:SomeSortedTree](self: var T, k:int):T.Node =\n    return self.kth_element(k)\n\
+    \n  proc index*[T:SomeSortedTree](self:T, t:T.Node):int =\n#    static:\n#   \
+    \   assert T.Tree.Countable isnot void\n    return index(t)\n  proc distance*[T:SomeSortedTree](self:T,\
+    \ t1, t2:T.Node):int =\n#    static:\n#      assert T.Tree.Countable isnot void\n\
+    \    return index(t2) - index(t1)\n\n  iterator items*[T:SomeSortedSet or SomeSortedMultiSet](self:T):T.K\
+    \ =\n    var it = self.begin\n    while it != self.End:\n      yield it.key\n\
     \      it.inc\n  iterator pairs*[T:SomeSortedMap or SomeSortedMultiMap](self:T):(T.K,\
-    \ T.V) =\n    var it = self.Begin\n    while it != self.End:\n      yield it.key\n\
-    \      it.inc\n\n\n"
+    \ T.V) =\n    var it = self.begin\n    while it != self.End:\n      yield it.key\n\
+    \      it.inc\n  proc `end`*[Tree:SomeSortedTree](self:Tree):Tree.Node = self.End\n"
   dependsOn:
   - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/binary_tree_utils.nim
   requiredBy:
-  - tests/test_extra_set_map.nim
-  - tests/test_extra_set_map.nim
   - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
   - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - atcoder/extra/structure/set_map.nim
   - atcoder/extra/structure/set_map.nim
+  - tests/test_extra_set_map.nim
+  - tests/test_extra_set_map.nim
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:

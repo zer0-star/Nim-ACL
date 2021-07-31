@@ -58,7 +58,7 @@ data:
     \  const USE_RED_BLACK_TREE = true\n  {.push discardable inline.}\n  include atcoder/extra/structure/binary_tree_utils\n\
     \  type MULTI_TRUE = int32\n  type MULTI_FALSE = void\n  type SortedTree*[Tree,\
     \ Node, multi, K, V; p:static[tuple]] = object of Tree\n#    comp*: proc(a, b:K):bool\n\
-    \    End*: Node\n\n  when USE_RED_BLACK_TREE:\n    import atcoder/extra/structure/red_black_tree\n\
+    \    End*: Node\n\n  when USE_RED_BLACK_TREE:\n    include atcoder/extra/structure/red_black_tree\n\
     \    type\n      SortedSetType*[K, Countable; p:static[tuple]] = SortedTree[RedBlackTree[K,\
     \ Countable], RedBlackTreeNode[K, Countable], MULTI_FALSE, K, void, p]\n     \
     \ SortedMultiSetType*[K, Countable; p:static[tuple]] = SortedTree[RedBlackTree[K,\
@@ -76,7 +76,7 @@ data:
     \n#    type SetOrMap = SortedMultiSet or SortedSet or SortedMultiMap or SortedMap\
     \ or CountableSortedMultiSet or CountableSortedSet or CountableSortedMultiMap\
     \ or CountableSortedMap or SortedTree\n    type SetOrMap = SortedMultiSetType\
-    \ or SortedSetType or SortedMultiMapType or SortedMapType\n    proc init[Tree:SetOrMap](self:\
+    \ or SortedSetType or SortedMultiMapType or SortedMapType\n    proc init*[Tree:SetOrMap](self:\
     \ var Tree) =\n      when Tree.V is void:\n        type T = Tree.K\n      else:\n\
     \        type T = (Tree.K, Tree.V)\n      type Countable = Tree.Tree.Countable\n\
     \      var End = RedBlackTreeNode[T, Countable](color: Color.black, id: -2)\n\
@@ -91,18 +91,19 @@ data:
     \          node = stack.pop()\n          when T.V is void:\n            result\
     \ &= $(node.key) & \" \"\n          else:\n            result &= $(node.key[0])\
     \ & \":\" & $(node.key[1])\n          result &= \",\"\n          node = node.r\n\
-    \      result &= \"}\"\n\n  else:\n    import atcoder/extra/structure/randomized_binary_search_tree_with_parent\n\
-    \ \n    type SortedSetType*[K, Countable, comp] = SortedTree[RandomizedBinarySearchTree[K],\
-    \ RBSTNode[K, void, MULTI_FALSE], MULTI_FALSE, K, void, comp]\n    type SortedMultiSetType*[K,\
-    \ Countable, comp] = SortedTree[RandomizedBinarySearchTree[K], RBSTNode[K, void,\
-    \ MULTI_FALSE], MULTI_TRUE, K, void, comp]\n    type SortedMapType*[K, V, Countable,\
-    \ comp] = SortedTree[RandomizedBinarySearchTree[(K, V)], RBSTNode[(K, V), void,\
-    \ MULTI_FALSE], MULTI_FALSE, K, V, comp]\n    type SortedMultiMapType*[K, V, Countable,\
-    \ comp] = SortedTree[RandomizedBinarySearchTree[(K, V)], RBSTNode[(K, V), void,\
-    \ MULTI_FALSE], MULTI_TRUE, K, V, comp]\n  \n    type SetOrMap = SortedMultiSetType\
-    \ or SortedSetType or SortedMultiMapType or SortedMapType\n  \n    proc init*[T:SetOrMap](self:\
-    \ var T, comp: proc(a, b:T.K):bool = nil) =\n      T.Tree(self).setRBST()\n  \
-    \    var end_node = T.Tree(self).Node(cnt: 1, p:nil, id: -1)\n      end_node.l\
+    \      result &= \"}\"\n\n  else:\n    include atcoder/extra/structure/randomized_binary_search_tree_with_parent\n\
+    \ \n    type SortedSetType*[K, Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[K],\
+    \ RBSTNode[K, void, void], MULTI_FALSE, K, void, p]\n    type SortedMultiSetType*[K,\
+    \ Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[K], RBSTNode[K,\
+    \ void, void], MULTI_TRUE, K, void, p]\n    type SortedMapType*[K, V, Countable;\
+    \ p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[(K, V)], RBSTNode[(K,\
+    \ V), void, void], MULTI_FALSE, K, V, p]\n    type SortedMultiMapType*[K, V, Countable;\
+    \ p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[(K, V)], RBSTNode[(K,\
+    \ V), void, void], MULTI_TRUE, K, V, p]\n  \n    type SetOrMap = SortedMultiSetType\
+    \ or SortedSetType or SortedMultiMapType or SortedMapType\n  \n    proc init*[Tree:SetOrMap](self:\
+    \ var Tree) =\n      when Tree.V is void:\n        type T = Tree.K\n      else:\n\
+    \        type T = (Tree.K, Tree.V)\n      Tree.Tree(self).setRBST()\n      var\
+    \ end_node = RBSTNode[T, void, void](cnt: 1, p:nil, id: -1)\n      end_node.l\
     \ = self.leaf; end_node.r = self.leaf;\n      self.End = end_node\n      self.root\
     \ = self.End\n  \n#    proc initSortedMultiSet*[K](comp:static[proc(a, b:T.K):bool]\
     \ = nil):SortedMultiSet[K] =\n#      result.init(comp)\n#    proc initSortedSet*[K](comp:proc(a,\
@@ -111,17 +112,18 @@ data:
     #    proc initSortedMap*[K, V](comp:proc(a, b:T.K):bool = nil):SortedMap[K, V]\
     \ =\n#      result.init(comp)\n  \n  #  RBST(sz, [&](T x, T y) { return x; },\
     \ T()) {}\n    \n    proc `*`*[Node:RBSTNode](it:Node):auto = it.key\n  \n   \
-    \ proc len*(self:SetOrMap):int = self.len()\n    proc empty*(self:var SetOrMap):bool\
-    \ = self.empty()\n    proc check_tree*(self:SetOrMap) =\n      doAssert self.len\
-    \ + 1 == self.check_tree()\n  \n    proc `$`*(self: SetOrMap):string = self.Tree(self).to_string(self.root)\n\
-    \  {.pop.}\n\n\n  template SortedSet*(K:typedesc, f:static[proc(a, b:K):bool]\
-    \ = nil):typedesc = SortedSetType[K, void, (f,)]\n  template SortedMultiSet*(K:typedesc,\
-    \ f:static[proc(a, b:K):bool] = nil):typedesc = SortedMultiSetType[K, void, (f,)]\n\
-    \  template SortedMap*(K:typedesc; V:typedesc[not void], f:static[proc(a, b:K):bool]\
-    \ = nil):typedesc = SortedMapType[K, V, void, (f,)]\n  template SortedMultiMap*(K:typedesc;\
-    \ V:typedesc[not void], f:static[proc(a, b:K):bool] = nil):typedesc = SortedMultiMapType[K,\
-    \ V, void, (f,)]\n  template CountableSortedSet*(K:typedesc, f:static[proc(a,\
-    \ b:K):bool] = nil):typedesc = SortedSetType[K, int, (f,)]\n  template CountableSortedMultiSet*(K:typedesc,\
+    \ proc len*[Tree:SetOrMap](self:Tree):int = Tree.Tree(self).len() - 1\n    proc\
+    \ empty*[Tree:SetOrMap](self:Tree):bool = self.len() == 0\n    proc check_tree*(self:SetOrMap)\
+    \ =\n      doAssert self.len + 1 == self.check_tree()\n  \n    proc `$`*(self:\
+    \ SetOrMap):string = self.Tree(self).to_string(self.root)\n  {.pop.}\n\n\n  template\
+    \ SortedSet*(K:typedesc, f:static[proc(a, b:K):bool] = nil):typedesc = SortedSetType[K,\
+    \ void, (f,)]\n  template SortedMultiSet*(K:typedesc, f:static[proc(a, b:K):bool]\
+    \ = nil):typedesc = SortedMultiSetType[K, void, (f,)]\n  template SortedMap*(K:typedesc;\
+    \ V:typedesc[not void], f:static[proc(a, b:K):bool] = nil):typedesc = SortedMapType[K,\
+    \ V, void, (f,)]\n  template SortedMultiMap*(K:typedesc; V:typedesc[not void],\
+    \ f:static[proc(a, b:K):bool] = nil):typedesc = SortedMultiMapType[K, V, void,\
+    \ (f,)]\n  template CountableSortedSet*(K:typedesc, f:static[proc(a, b:K):bool]\
+    \ = nil):typedesc = SortedSetType[K, int, (f,)]\n  template CountableSortedMultiSet*(K:typedesc,\
     \ f:static[proc(a, b:K):bool] = nil):typedesc = SortedMultiSetType[K, int, (f,)]\n\
     \  template CountableSortedMap*(K:typedesc; V:typedesc[not void], f:static[proc(a,\
     \ b:K):bool] = nil):typedesc = SortedMapType[K, V, int, (f,)]\n  template CountableSortedMultiMap*(K:typedesc;\
@@ -134,22 +136,22 @@ data:
     \ =\n    var r: SortedMultiSetType[K, when isCountable: int else: void, (comp,)]\n\
     \    r.init()\n    return r\n  proc initSortedMap*(K:typedesc, V:typedesc[not\
     \ void], isCountable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto\
-    \ =\n    var r: SortedMapType[K, V, when isCOuntable: int else: void, (comp,)]\n\
+    \ =\n    var r: SortedMapType[K, V, when isCountable: int else: void, (comp,)]\n\
     \    r.init()\n    return r\n  proc initSortedMultiMap*(K:typedesc, V:typedesc[not\
     \ void], isCountable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto\
     \ =\n    var r: SortedMultiMapType[K, V, when isCountable: int else: void, (comp,)]\n\
     \    r.init()\n    return r\n"
   dependsOn:
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/red_black_tree.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/rangeutils.nim
-  - atcoder/rangeutils.nim
-  - atcoder/extra/structure/red_black_tree.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/extra/structure/red_black_tree.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/set_map.nim
   requiredBy:

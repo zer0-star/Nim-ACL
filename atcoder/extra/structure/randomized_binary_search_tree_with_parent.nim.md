@@ -62,9 +62,9 @@ data:
     \ type RBST_FALSE = void\n  type RBSTNode*[D, L, useSum] = ref object\n    cnt*:int\n\
     \    l*,r*:RBSTNode[D, L, useSum]\n    p*:RBSTNode[D, L, useSum]\n    key*:D\n\
     \    when useSum isnot void:\n      sum*:D\n    when L isnot void:\n      lazy*:L\n\
-    \    id*:int\n\n  type RBSTType*[D,L,Node,useP, useSum;p] = object of RootObj\n\
-    \    root*, leaf*: Node\n    when D isnot void:\n      D0:D\n    when L isnot\
-    \ void:\n      L0:L\n    r:Rand\n    id_max:int\n  type RandomizedBinarySearchTree*[D]\
+    \    id*:int\n\n  type RBSTType*[D,L,Node,useP, useSum;p:static[tuple]] = object\
+    \ of RootObj\n    root*, leaf*: Node\n    when D isnot void:\n      D0:D\n   \
+    \ when L isnot void:\n      L0:L\n    r:Rand\n    id_max:int\n  type RandomizedBinarySearchTree*[D]\
     \ = RBSTType[D,void,RBSTNode[D,void,RBST_FALSE],RBST_FALSE,RBST_FALSE,()]\n  type\
     \ LazyRandomizedBinarySearchTree*[D,L,useP,useSum] = RBSTType[D,L,RBSTNode[D,L,useSum],useP,useSum,()]\n\
     \n  type SomeRBST* = RBSTType or RandomizedBinarySearchTree or LazyRandomizedBinarySearchTree\n\
@@ -201,8 +201,7 @@ data:
     \ self.propagate(t)\n    if k < t.l.cnt: self.set(t.l, k, x)\n    elif k == t.l.cnt:\n\
     \      t.key = x\n      t.sum = x\n    else: self.set(t.r, k - t.l.cnt - 1, x)\n\
     \    t = self.update(t)\n  \n  proc empty*[RBST:SomeRBST](self: var RBST, t:RBST.Node):bool\
-    \ = return t == self.leaf\n#  proc makeset*[RBST:SomeRBST](self: var RBST):RBST.Node\
-    \ = self.leaf\n\n\n  proc insert_index*[RBST:SomeRBST](self: var RBST, k:int,\
+    \ = self.len == 0\n\n\n  proc insert_index*[RBST:SomeRBST](self: var RBST, k:int,\
     \ v:RBST.D) = self.insert_index(self.root, k, v)\n  proc insert*[RBST:SomeRBST](self:\
     \ var RBST, p:RBST.Node, v:RBST.D):RBST.Node {.discardable.} =\n    self.insert(self.root,\
     \ p, v)\n  proc erase_index*[RBST:SomeRBST](self: var RBST, k:int) = self.erase_index(self.root,\
@@ -220,21 +219,21 @@ data:
     \  proc check_tree*[RBST:SomeRBST](self: RBST):int {.discardable.} =\n    doAssert\
     \ self.root.p == nil\n    self.check_tree(self.root)\n  {.pop.}\n"
   dependsOn:
-  - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/rangeutils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   requiredBy:
-  - tests/test_extra_set_map.nim
-  - tests/test_extra_set_map.nim
   - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
   - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
   - atcoder/extra/structure/set_map.nim
   - atcoder/extra/structure/set_map.nim
+  - tests/test_extra_set_map.nim
+  - tests/test_extra_set_map.nim
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:

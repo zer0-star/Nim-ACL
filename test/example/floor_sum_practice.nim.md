@@ -33,11 +33,11 @@ data:
   code: "import atcoder/header\nimport atcoder/math\n\nlet t = nextInt()\nfor i in\
     \ 0..<t:\n  let n, m, a, b = nextInt()\n  echo floor_sum(n, m, a, b)\n"
   dependsOn:
-  - atcoder/internal_math.nim
   - atcoder/math.nim
+  - atcoder/internal_math.nim
   - atcoder/header.nim
-  - atcoder/internal_math.nim
   - atcoder/math.nim
+  - atcoder/internal_math.nim
   - atcoder/header.nim
   isVerificationFile: false
   path: test/example/floor_sum_practice.nim

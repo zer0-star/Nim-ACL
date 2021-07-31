@@ -53,10 +53,10 @@ data:
   isVerificationFile: false
   path: atcoder/extra/structure/radix_heap.nim
   requiredBy:
-  - tests/test_shortest_path.nim
-  - tests/test_shortest_path.nim
   - atcoder/extra/graph/dijkstra_radix_heap.nim
   - atcoder/extra/graph/dijkstra_radix_heap.nim
+  - tests/test_shortest_path.nim
+  - tests/test_shortest_path.nim
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

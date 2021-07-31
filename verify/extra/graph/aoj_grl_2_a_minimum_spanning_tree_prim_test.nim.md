@@ -39,9 +39,9 @@ data:
     \ prim(g)[0]\n\nmain()\n"
   dependsOn:
   - atcoder/extra/graph/prim.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/header.nim
   - atcoder/extra/graph/prim.nim
+  - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
   isVerificationFile: true

@@ -65,11 +65,11 @@ data:
     \ * sn + 1..n: result *= i\n"
   dependsOn:
   - atcoder/extra/math/combination.nim
-  - atcoder/element_concepts.nim
+  - atcoder/extra/math/formal_power_series.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/math/combination.nim
-  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/math/factorial.nim
   requiredBy: []

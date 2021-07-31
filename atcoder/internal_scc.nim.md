@@ -94,25 +94,25 @@ data:
   isVerificationFile: false
   path: atcoder/internal_scc.nim
   requiredBy:
+  - atcoder/twosat.nim
+  - atcoder/twosat.nim
+  - atcoder/scc.nim
+  - atcoder/scc.nim
   - tests/test_twosat.nim
   - tests/test_twosat.nim
   - tests/test_scc.nim
   - tests/test_scc.nim
-  - atcoder/scc.nim
-  - atcoder/scc.nim
-  - atcoder/twosat.nim
-  - atcoder/twosat.nim
   - test/example/twosat_practice.nim
   - test/example/twosat_practice.nim
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/scc_test.nim
-  - verify/scc_test.nim
   - verify/twosat_test.nim
   - verify/twosat_test.nim
   - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
   - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
+  - verify/scc_test.nim
+  - verify/scc_test.nim
 documentation_of: atcoder/internal_scc.nim
 layout: document
 redirect_from:

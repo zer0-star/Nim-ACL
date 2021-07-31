@@ -53,10 +53,10 @@ data:
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/scc_test.nim
-  - verify/scc_test.nim
   - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
   - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
+  - verify/scc_test.nim
+  - verify/scc_test.nim
 documentation_of: atcoder/scc.nim
 layout: document
 redirect_from:

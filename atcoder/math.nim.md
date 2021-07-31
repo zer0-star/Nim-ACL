@@ -84,10 +84,10 @@ data:
   isVerificationFile: false
   path: atcoder/math.nim
   requiredBy:
-  - tests/test_internal_math.nim
-  - tests/test_internal_math.nim
   - tests/test_math.nim
   - tests/test_math.nim
+  - tests/test_internal_math.nim
+  - tests/test_internal_math.nim
   - test/example/floor_sum_practice.nim
   - test/example/floor_sum_practice.nim
   timestamp: '1970-01-01 00:00:00+00:00'

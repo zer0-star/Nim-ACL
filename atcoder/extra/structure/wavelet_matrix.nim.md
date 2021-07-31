@@ -112,8 +112,8 @@ data:
   dependsOn:
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/rangeutils.nim
-  - atcoder/rangeutils.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - atcoder/rangeutils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/wavelet_matrix.nim
   requiredBy: []
@@ -122,10 +122,10 @@ data:
   verifiedWith:
   - verify/extra/structure/yosupo_range_kth_smallest_test.nim
   - verify/extra/structure/yosupo_range_kth_smallest_test.nim
-  - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
-  - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
   - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
   - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
+  - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
+  - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
 documentation_of: atcoder/extra/structure/wavelet_matrix.nim
 layout: document
 redirect_from:

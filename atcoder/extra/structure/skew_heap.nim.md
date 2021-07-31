@@ -63,10 +63,10 @@ data:
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/extra/graph/yosupo_directedmst_test.nim
-  - verify/extra/graph/yosupo_directedmst_test.nim
   - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
   - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
+  - verify/extra/graph/yosupo_directedmst_test.nim
+  - verify/extra/graph/yosupo_directedmst_test.nim
 documentation_of: atcoder/extra/structure/skew_heap.nim
 layout: document
 redirect_from:

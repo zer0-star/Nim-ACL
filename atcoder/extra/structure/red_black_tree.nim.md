@@ -110,29 +110,29 @@ data:
     \ = Color.black\n          self.rotateLeft(parent)\n          child = self.root\n\
     \          parent = child.p\n      else:\n        var sib = parent.l\n       \
     \ if sib.color == Color.red:\n          sib.color = Color.black\n          parent.color\
-    \ = Color.red\n          self.rotateRight(parent)\n          sib = parent.l\n\
-    \  \n        if sib.r.color == Color.black and sib.l.color == Color.black:\n \
-    \         sib.color = Color.red\n          child = parent\n          parent =\
-    \ child.p\n        else:\n          if sib.l.color == Color.black:\n         \
-    \   sib.r.color = Color.black\n            sib.color = Color.red\n           \
-    \ self.rotateLeft(sib)\n            sib = parent.l\n          sib.color = parent.color\n\
-    \          parent.color = Color.black\n          sib.l.color = Color.black\n \
-    \         self.rotateRight(parent)\n          child = self.root\n          parent\
-    \ = child.p\n    child.color = Color.black\n\n\n  \n  proc write*[T:RedBlackTree](rbt:\
-    \ T, self: T.Node, h = 0) =\n    for i in 0..<h: stderr.write \" | \"\n    if\
-    \ self == rbt.leaf:\n      stderr.write \"*\\n\"\n    else:\n      stderr.write\
-    \ \"id: \",self.id, \" key: \", self.key, \" color: \", self.color, \" cnt: \"\
-    , self.cnt, \" \"\n  #    if self.key == T.K.inf: stderr.write \"inf\"\n     \
-    \ if self.p != nil: stderr.write \" parent: \", self.p.id\n      else: stderr.write\
-    \ \" parent: nil\"\n      stderr.write \"\\n\"\n      if h >= 200:\n        stderr.write\
-    \ \"too deep!!!\\n\"\n        assert false\n        return\n      rbt.write(self.l,\
-    \ h + 1)\n      rbt.write(self.r, h + 1)\n  \n  proc write*[T:RedBlackTree](self:\
-    \ T) =\n    stderr.write \"======= RB-TREE =============\\n\"\n    self.write(self.root,\
-    \ 0)\n    stderr.write \"======= END ==========\\n\"\n  \n  proc erase*[T:RedBlackTree](self:\
-    \ var T, node: T.Node) =\n    # TODO\n#    if node == nil:\n#      echo \"warning:\
-    \ erase nil\"\n#    if node == self.End or node == nil or node.isLeaf: return\n\
-    \    var node = node\n  \n    self.size.dec\n  \n    if node.l != self.leaf and\
-    \ node.r != self.leaf:\n      let pred = node.pred\n      swap(node.color, pred.color)\n\
+    \ = Color.red\n          self.rotateRight(parent)\n          sib = parent.l\n\n\
+    \        if sib.r.color == Color.black and sib.l.color == Color.black:\n     \
+    \     sib.color = Color.red\n          child = parent\n          parent = child.p\n\
+    \        else:\n          if sib.l.color == Color.black:\n            sib.r.color\
+    \ = Color.black\n            sib.color = Color.red\n            self.rotateLeft(sib)\n\
+    \            sib = parent.l\n          sib.color = parent.color\n          parent.color\
+    \ = Color.black\n          sib.l.color = Color.black\n          self.rotateRight(parent)\n\
+    \          child = self.root\n          parent = child.p\n    child.color = Color.black\n\
+    \n\n  \n  proc write*[T:RedBlackTree](rbt: T, self: T.Node, h = 0) =\n    for\
+    \ i in 0..<h: stderr.write \" | \"\n    if self == rbt.leaf:\n      stderr.write\
+    \ \"*\\n\"\n    else:\n      stderr.write \"id: \",self.id, \" key: \", self.key,\
+    \ \" color: \", self.color, \" cnt: \", self.cnt, \" \"\n  #    if self.key ==\
+    \ T.K.inf: stderr.write \"inf\"\n      if self.p != nil: stderr.write \" parent:\
+    \ \", self.p.id\n      else: stderr.write \" parent: nil\"\n      stderr.write\
+    \ \"\\n\"\n      if h >= 200:\n        stderr.write \"too deep!!!\\n\"\n     \
+    \   assert false\n        return\n      rbt.write(self.l, h + 1)\n      rbt.write(self.r,\
+    \ h + 1)\n  \n  proc write*[T:RedBlackTree](self: T) =\n    stderr.write \"=======\
+    \ RB-TREE =============\\n\"\n    self.write(self.root, 0)\n    stderr.write \"\
+    ======= END ==========\\n\"\n  \n  proc erase*[T:RedBlackTree](self: var T, node:\
+    \ T.Node) =\n    # TODO\n#    if node == nil:\n#      echo \"warning: erase nil\"\
+    \n#    if node == self.End or node == nil or node.isLeaf: return\n    var node\
+    \ = node\n  \n    self.size.dec\n  \n    if node.l != self.leaf and node.r !=\
+    \ self.leaf:\n      let pred = node.pred\n      swap(node.color, pred.color)\n\
     \      when T.Countable isnot void:\n        swap(node.cnt, pred.cnt)\n      #\
     \ swap node and pred\n      if node.l == pred:\n        let tmp = pred.r\n   \
     \     pred.r = node.r\n        if node.l != self.leaf:\n          node.l.p = pred\n\
@@ -163,7 +163,8 @@ data:
     \        node.p.r = self.leaf\n      when T.Countable isnot void:\n        self.update_parents(node.p)\n\
     \      if node.color == Color.black:\n        self.fixErase(self.leaf, node.p)\n\
     \  # }}}\n  \n  proc len*[T:RedBlackTree](self: T): int =\n    return self.size\n\
-    \  \n  iterator iterOrder*[T:RedBlackTree](self: T): auto =\n    var node = self.root\n\
+    \  proc empty*[T:RedBlackTree](self: T): bool =\n    return self.len == 0\n  \n\
+    \  iterator iterOrder*[T:RedBlackTree](self: T): auto =\n    var node = self.root\n\
     \    var stack: seq[T.Node] = @[]\n    while stack.len() != 0 or node != self.leaf:\n\
     \      if node != self.leaf:\n        stack.add(node)\n        node = node.l\n\
     \      else:\n        node = stack.pop()\n        if node == self.End: break\n\
@@ -174,10 +175,10 @@ data:
   isVerificationFile: false
   path: atcoder/extra/structure/red_black_tree.nim
   requiredBy:
-  - tests/test_extra_set_map.nim
-  - tests/test_extra_set_map.nim
   - atcoder/extra/structure/set_map.nim
   - atcoder/extra/structure/set_map.nim
+  - tests/test_extra_set_map.nim
+  - tests/test_extra_set_map.nim
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:

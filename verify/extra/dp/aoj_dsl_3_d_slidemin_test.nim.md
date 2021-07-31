@@ -31,8 +31,8 @@ data:
     \  let\n    N, L = nextInt()\n    a = newSeqWith(N, nextInt())\n  echo a.slideMin(L).join(\"\
     \ \")\n\nmain()\n"
   dependsOn:
-  - atcoder/header.nim
   - atcoder/extra/dp/slide_min.nim
+  - atcoder/header.nim
   - atcoder/extra/dp/slide_min.nim
   - atcoder/header.nim
   isVerificationFile: true

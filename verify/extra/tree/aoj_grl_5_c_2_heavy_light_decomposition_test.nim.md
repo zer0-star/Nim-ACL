@@ -40,9 +40,9 @@ data:
     \ i in 0..<Q:\n    let u, v = nextInt()\n    echo tree.lca(u, v)\n\nmain()\n"
   dependsOn:
   - atcoder/extra/tree/heavy_light_decomposition.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/header.nim
   - atcoder/extra/tree/heavy_light_decomposition.nim
+  - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
   isVerificationFile: true

@@ -61,10 +61,10 @@ data:
   verifiedWith:
   - verify/extra/structure/yosupo_range_kth_smallest_test.nim
   - verify/extra/structure/yosupo_range_kth_smallest_test.nim
-  - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
-  - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
   - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
   - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
+  - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
+  - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
 documentation_of: atcoder/extra/structure/succinct_indexable_dictionary.nim
 layout: document
 redirect_from:

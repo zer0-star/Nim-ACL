@@ -41,10 +41,10 @@ data:
   dependsOn:
   - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
   - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
   - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/graph_template.nim
   isVerificationFile: true
   path: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
   requiredBy: []

@@ -41,12 +41,12 @@ data:
     \ continue\n      ret[X[i]] = min(ret[X[i]], (Z[i], Y[i]))\n      ret[Y[i]] =\
     \ min(ret[Y[i]], (Z[i], X[i]))\n  echo mst.build(f)\n\nmain()\n"
   dependsOn:
-  - atcoder/dsu.nim
-  - atcoder/header.nim
   - atcoder/extra/graph/boruvka.nim
   - atcoder/dsu.nim
-  - atcoder/extra/graph/boruvka.nim
   - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/dsu.nim
+  - atcoder/extra/graph/boruvka.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_2_a_3_boruvka_test.nim
   requiredBy: []

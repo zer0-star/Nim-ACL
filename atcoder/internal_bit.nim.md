@@ -280,95 +280,95 @@ data:
   isVerificationFile: false
   path: atcoder/internal_bit.nim
   requiredBy:
-  - tests/test_convolution.nim
-  - tests/test_convolution.nim
-  - tests/test_extra_universal_segtree_stress.nim
-  - tests/test_extra_universal_segtree_stress.nim
-  - tests/test_segtree.nim
-  - tests/test_segtree.nim
-  - tests/test_lazysegtree.nim
-  - tests/test_lazysegtree.nim
-  - tests/test_bit.nim
-  - tests/test_bit.nim
-  - tests/test_extra_formal_power_series_float.nim
-  - tests/test_extra_formal_power_series_float.nim
-  - tests/test_extra_formal_power_series.nim
-  - tests/test_extra_formal_power_series.nim
-  - tests/test_lazysegtree_stress.nim
-  - tests/test_lazysegtree_stress.nim
-  - atcoder/lazysegtree.nim
-  - atcoder/lazysegtree.nim
-  - atcoder/convolution.nim
-  - atcoder/convolution.nim
-  - atcoder/segtree.nim
-  - atcoder/segtree.nim
   - atcoder/dynamic_lazysegtree.nim
   - atcoder/dynamic_lazysegtree.nim
   - atcoder/dynamic_segtree.nim
   - atcoder/dynamic_segtree.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/fft.nim
+  - atcoder/extra/math/fft.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/ntt.nim
   - atcoder/extra/structure/universal_segtree.nim
   - atcoder/extra/structure/universal_segtree.nim
   - atcoder/extra/structure/universal_segtree_backup.nim
   - atcoder/extra/structure/universal_segtree_backup.nim
-  - atcoder/extra/math/composition.nim
-  - atcoder/extra/math/composition.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/fft.nim
-  - atcoder/extra/math/fft.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/convolution.nim
+  - atcoder/convolution.nim
+  - atcoder/segtree.nim
+  - atcoder/segtree.nim
+  - atcoder/lazysegtree.nim
+  - atcoder/lazysegtree.nim
+  - tests/test_segtree.nim
+  - tests/test_segtree.nim
+  - tests/test_extra_formal_power_series.nim
+  - tests/test_extra_formal_power_series.nim
+  - tests/test_lazysegtree.nim
+  - tests/test_lazysegtree.nim
+  - tests/test_extra_universal_segtree_stress.nim
+  - tests/test_extra_universal_segtree_stress.nim
+  - tests/test_lazysegtree_stress.nim
+  - tests/test_lazysegtree_stress.nim
+  - tests/test_bit.nim
+  - tests/test_bit.nim
+  - tests/test_convolution.nim
+  - tests/test_convolution.nim
+  - tests/test_extra_formal_power_series_float.nim
+  - tests/test_extra_formal_power_series_float.nim
   - test/example/convolution_practice.nim
   - test/example/convolution_practice.nim
   - test/example/lazyseg_practice2.nim
   - test/example/lazyseg_practice2.nim
-  - test/example/segtree_practice.nim
-  - test/example/segtree_practice.nim
-  - test/example/convolution_int_practice.nim
-  - test/example/convolution_int_practice.nim
   - test/example/lazyseg_practice1.nim
   - test/example/lazyseg_practice1.nim
+  - test/example/convolution_int_practice.nim
+  - test/example/convolution_int_practice.nim
+  - test/example/segtree_practice.nim
+  - test/example/segtree_practice.nim
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/convolution_test.nim
-  - verify/convolution_test.nim
   - verify/lazy_segtree_test.nim
   - verify/lazy_segtree_test.nim
   - verify/lazy_segtree_dynamicmodint_test.nim
   - verify/lazy_segtree_dynamicmodint_test.nim
   - verify/segtree_test.nim
   - verify/segtree_test.nim
-  - verify/extra/graph/centroid_decomposition_test.nim
-  - verify/extra/graph/centroid_decomposition_test.nim
-  - verify/extra/structure/extra_segtree_test.nim
-  - verify/extra/structure/extra_segtree_test.nim
-  - verify/extra/structure/extra_lazy_segtree_test.nim
-  - verify/extra/structure/extra_lazy_segtree_test.nim
-  - verify/extra/math/yukicoder_factorial_test.nim
-  - verify/extra/math/yukicoder_factorial_test.nim
-  - verify/extra/math/exp_of_formal_power_series_test.nim
-  - verify/extra/math/exp_of_formal_power_series_test.nim
   - verify/extra/math/convolution_montgomery_test.nim
   - verify/extra/math/convolution_montgomery_test.nim
+  - verify/extra/math/sqrt_of_formal_power_series_test.nim
+  - verify/extra/math/sqrt_of_formal_power_series_test.nim
+  - verify/extra/math/arbitrary_mod_convolution_test.nim
+  - verify/extra/math/arbitrary_mod_convolution_test.nim
   - verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
   - verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
   - verify/extra/math/log_of_formal_power_series_test.nim
   - verify/extra/math/log_of_formal_power_series_test.nim
-  - verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - verify/extra/math/inv_of_formal_power_series_test.nim
-  - verify/extra/math/inv_of_formal_power_series_test.nim
   - verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
   - verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
+  - verify/extra/math/exp_of_formal_power_series_test.nim
+  - verify/extra/math/exp_of_formal_power_series_test.nim
+  - verify/extra/math/inv_of_formal_power_series_test.nim
+  - verify/extra/math/inv_of_formal_power_series_test.nim
+  - verify/extra/math/yukicoder_factorial_test.nim
+  - verify/extra/math/yukicoder_factorial_test.nim
+  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
+  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
   - verify/extra/math/pow_of_formal_power_series_test.nim
   - verify/extra/math/pow_of_formal_power_series_test.nim
-  - verify/extra/math/arbitrary_mod_convolution_test.nim
-  - verify/extra/math/arbitrary_mod_convolution_test.nim
+  - verify/extra/structure/extra_segtree_test.nim
+  - verify/extra/structure/extra_segtree_test.nim
+  - verify/extra/structure/extra_lazy_segtree_test.nim
+  - verify/extra/structure/extra_lazy_segtree_test.nim
+  - verify/extra/graph/centroid_decomposition_test.nim
+  - verify/extra/graph/centroid_decomposition_test.nim
+  - verify/convolution_test.nim
+  - verify/convolution_test.nim
 documentation_of: atcoder/internal_bit.nim
 layout: document
 redirect_from:

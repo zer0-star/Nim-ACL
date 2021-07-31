@@ -85,12 +85,12 @@ data:
     \ .. ^(n - r + 1)]\n\ntest \"SegtreeTest, Assign\":\n  var seg0:SegTreeType(string,\
     \ op, e)\n  seg0.init(10)\n"
   dependsOn:
+  - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
   - atcoder/segtree.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
-  - atcoder/rangeutils.nim
   - atcoder/segtree.nim
-  - atcoder/internal_bit.nim
   isVerificationFile: false
   path: tests/test_segtree.nim
   requiredBy: []

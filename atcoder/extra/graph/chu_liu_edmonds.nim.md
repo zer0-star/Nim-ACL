@@ -71,21 +71,21 @@ data:
     \ (ret, parent).some\n"
   dependsOn:
   - atcoder/dsu.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/structure/skew_heap.nim
   - atcoder/extra/structure/skew_heap.nim
   - atcoder/dsu.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/graph_template.nim
   isVerificationFile: false
   path: atcoder/extra/graph/chu_liu_edmonds.nim
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/extra/graph/yosupo_directedmst_test.nim
-  - verify/extra/graph/yosupo_directedmst_test.nim
   - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
   - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
+  - verify/extra/graph/yosupo_directedmst_test.nim
+  - verify/extra/graph/yosupo_directedmst_test.nim
 documentation_of: atcoder/extra/graph/chu_liu_edmonds.nim
 layout: document
 redirect_from:

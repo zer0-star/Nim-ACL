@@ -58,10 +58,10 @@ data:
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/extra/structure/yosupo_persistent_unionfind_test.nim
-  - verify/extra/structure/yosupo_persistent_unionfind_test.nim
   - verify/extra/structure/yosupo_persistent_queue_test.nim
   - verify/extra/structure/yosupo_persistent_queue_test.nim
+  - verify/extra/structure/yosupo_persistent_unionfind_test.nim
+  - verify/extra/structure/yosupo_persistent_unionfind_test.nim
 documentation_of: atcoder/extra/structure/persistent_array.nim
 layout: document
 redirect_from:

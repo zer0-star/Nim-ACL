@@ -99,10 +99,10 @@ data:
     \ == dual\n    check -flow == v_flow[s]\n    check flow == v_flow[t]\n    for\
     \ i in 0..<n:\n      if i == s or i == t: continue\n      check 0 == v_flow[i]\n"
   dependsOn:
-  - atcoder/internal_queue.nim
   - atcoder/maxflow.nim
   - atcoder/internal_queue.nim
   - atcoder/maxflow.nim
+  - atcoder/internal_queue.nim
   isVerificationFile: false
   path: tests/test_maxflow.nim
   requiredBy: []

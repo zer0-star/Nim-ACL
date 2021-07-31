@@ -56,11 +56,11 @@ data:
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_BINARY_TREE_NODE_UTILS_HPP:\n  const ATCODER_BINARY_TREE_NODE_UTILS_HPP*\
     \ = 1\n  type BinaryTreeNode* = concept x, type T\n    x.l is T\n    x.r is T\n\
-    \    x.p is T\n  type BinaryTree* = concept x, type T\n    x.Node is BinaryTreeNode\n\
-    \    x.root is x.Node\n\n  proc greater_func*[K](a,b:K):bool = a < b\n\n  proc\
-    \ isLeaf*[Node:BinaryTreeNode](self:Node):bool =\n    return self.l == self\n\n\
-    \  proc leftMost*[Node:BinaryTreeNode](self: Node):Node =\n    if self.l.isLeaf:\
-    \ return self\n    else: return self.l.leftMost\n  proc rightMost*[Node:BinaryTreeNode](self:\
+    \    x.p is T\n#    T.Countable\n  type BinaryTree* = concept x, type T\n    x.Node\
+    \ is BinaryTreeNode\n    x.root is x.Node\n\n  proc greater_func*[K](a,b:K):bool\
+    \ = a < b\n\n  proc isLeaf*[Node:BinaryTreeNode](self:Node):bool =\n    return\
+    \ self.l == self\n\n  proc leftMost*[Node:BinaryTreeNode](self: Node):Node =\n\
+    \    if self.l.isLeaf: return self\n    else: return self.l.leftMost\n  proc rightMost*[Node:BinaryTreeNode](self:\
     \ Node): Node =\n    if self.r.isLeaf: return self\n    else: return self.r.rightMost\n\
     \  proc parentLeft*[Node:BinaryTreeNode](node: Node): Node =\n    var node = node\n\
     \    while true:\n      if node.p == nil: return nil\n      elif node.p.l == node:\
@@ -69,7 +69,7 @@ data:
     \ return nil\n      elif node.p.r == node: return node.p\n      node = node.p\n\
     \  proc front*[Tree:BinaryTree](self: Tree): Tree.Node = self.root.leftMost\n\
     \  proc tail*[Tree:BinaryTree](self: Tree): Tree.Node =  self.root.rightMost\n\
-    \  proc Begin*[Tree:BinaryTree](self:Tree):Tree.Node = self.root.leftMost\n\n\
+    \  proc begin*[Tree:BinaryTree](self:Tree):Tree.Node = self.root.leftMost\n\n\
     \  proc succ*[Node:BinaryTreeNode](node: Node): Node =\n    if not node.r.isLeaf:\
     \ return node.r.leftMost\n    else: return node.parentLeft\n  proc pred*[Node:BinaryTreeNode](node:\
     \ Node): Node =\n    if not node.l.isLeaf: return node.l.rightMost\n    else:\
@@ -78,23 +78,28 @@ data:
     \ var Node) =\n    var node2 = node.pred\n    swap node, node2\n  proc `+=`*[Node:BinaryTreeNode](node:\
     \ var Node, n:int) =\n    if n < 0: node -= (-n)\n    for i in 0..<n: node.inc\n\
     \  proc `-=`*[Node:BinaryTreeNode](node: var Node, n:int) =\n    if n < 0: node\
-    \ += (-n)\n    for i in 0..<n: node.dec\n\n\n"
+    \ += (-n)\n    for i in 0..<n: node.dec\n\n  proc index*[Node:BinaryTreeNode](t:Node):int\
+    \ =\n#    static:\n#      assert Node.Countable isnot void\n    result = t.l.cnt\n\
+    \    var (t, p) = (t, t.p)\n    while p != nil:\n      if p.r == t: result +=\
+    \ p.l.cnt + 1\n      t = t.p\n      p = p.p\n  proc distance*[Node:BinaryTreeNode](t1,\
+    \ t2:Node):int =\n#    static:\n#      assert Node.Countable isnot void\n    return\
+    \ t2.index - t1.index\n"
   dependsOn: []
   isVerificationFile: false
   path: atcoder/extra/structure/binary_tree_node_utils.nim
   requiredBy:
-  - tests/test_extra_set_map.nim
-  - tests/test_extra_set_map.nim
-  - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
-  - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/red_black_tree.nim
   - atcoder/extra/structure/red_black_tree.nim
+  - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+  - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/set_map.nim
   - atcoder/extra/structure/set_map.nim
+  - tests/test_extra_set_map.nim
+  - tests/test_extra_set_map.nim
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:

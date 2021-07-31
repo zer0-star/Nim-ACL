@@ -89,28 +89,28 @@ data:
     \ j * A\n      if jA > T: break\n      p[jA] += mint(ct[A]) / j * sgn\n      sgn\
     \ = -sgn\n  let q = p.exp()[1..T]\n  echo q.join(\" \")\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/header.nim
-  - atcoder/convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/header.nim
   - atcoder/extra/math/ntt.nim
-  - atcoder/element_concepts.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/extra/math/formal_power_series.nim
+  - atcoder/convolution.nim
+  - atcoder/internal_math.nim
   - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/internal_math.nim
   - atcoder/extra/math/ntt.nim
+  - atcoder/header.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/element_concepts.nim
+  - atcoder/convolution.nim
+  - atcoder/generate_definitions.nim
   - atcoder/modint.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/modint.nim
-  - atcoder/convolution.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
   - atcoder/extra/math/formal_power_series.nim
+  - atcoder/element_concepts.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/modint.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
   requiredBy: []

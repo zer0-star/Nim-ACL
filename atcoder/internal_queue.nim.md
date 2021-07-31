@@ -43,10 +43,10 @@ data:
   isVerificationFile: false
   path: atcoder/internal_queue.nim
   requiredBy:
-  - tests/test_maxflow.nim
-  - tests/test_maxflow.nim
   - atcoder/maxflow.nim
   - atcoder/maxflow.nim
+  - tests/test_maxflow.nim
+  - tests/test_maxflow.nim
   - test/example/maxflow_practice.nim
   - test/example/maxflow_practice.nim
   timestamp: '1970-01-01 00:00:00+00:00'

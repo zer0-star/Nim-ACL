@@ -122,19 +122,19 @@ data:
   isVerificationFile: false
   path: atcoder/string.nim
   requiredBy:
-  - test/example/sa_usage.nim
-  - test/example/sa_usage.nim
   - test/example/sa_practice.nim
   - test/example/sa_practice.nim
+  - test/example/sa_usage.nim
+  - test/example/sa_usage.nim
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/suffix_array_test.nim
-  - verify/suffix_array_test.nim
   - verify/lcp_array_test.nim
   - verify/lcp_array_test.nim
   - verify/z_algorithm_test.nim
   - verify/z_algorithm_test.nim
+  - verify/suffix_array_test.nim
+  - verify/suffix_array_test.nim
 documentation_of: atcoder/string.nim
 layout: document
 redirect_from:

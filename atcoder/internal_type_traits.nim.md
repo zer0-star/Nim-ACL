@@ -96,12 +96,12 @@ data:
   isVerificationFile: false
   path: atcoder/internal_type_traits.nim
   requiredBy:
-  - tests/test_fenwicktree.nim
-  - tests/test_fenwicktree.nim
-  - atcoder/fenwicktree.nim
-  - atcoder/fenwicktree.nim
   - atcoder/extra/structure/dual_fenwicktree.nim
   - atcoder/extra/structure/dual_fenwicktree.nim
+  - atcoder/fenwicktree.nim
+  - atcoder/fenwicktree.nim
+  - tests/test_fenwicktree.nim
+  - tests/test_fenwicktree.nim
   - test/example/fenwick_practice.nim
   - test/example/fenwick_practice.nim
   timestamp: '1970-01-01 00:00:00+00:00'
