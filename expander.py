@@ -14,7 +14,7 @@ ATCODER_INCLUDE = re.compile(
         r'\s*(?:include|import)\s*([a-zA-Z0-9_,./\s"]*)\s*')
 
 WHEN_STATEMENT = re.compile(r'^\s*when\s+.*:')
-ATCODER_DIR = 'atcoder/'
+ATCODER_DIR = re.compile('^(?:atcoder|lib)\/')
 INDENT_WIDTH = 2
 
 
@@ -68,7 +68,7 @@ def read_source(f: str, prefix: str, defined: set, lib_path, start=True) -> List
                         print(fname)
                         assert fname[-1] == '\"'
                         fname = fname[1:-1]
-                    if fname.startswith(ATCODER_DIR):
+                    if ATCODER_DIR.match(fname):
                         fname = strip_as(fname)
                         fname = "src/" + fname
                         if not fname.endswith(".nim"):
@@ -82,7 +82,8 @@ def read_source(f: str, prefix: str, defined: set, lib_path, start=True) -> List
                         result.extend([" " * spaces + "import " + fname_orig])
             else:
                 result.append(line)
-    result.append("  discard")
+    if not start:
+        result.append("  discard")
     result2 = []
     for line in result:
         result2.append(prefix + line)

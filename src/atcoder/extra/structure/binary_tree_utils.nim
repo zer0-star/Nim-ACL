@@ -114,6 +114,8 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
   proc erase*[T:SomeSortedTree](self: var T, t:T.Node) =
     T.Tree(self).erase(t)
   proc kth_element*[T:SomeSortedTree](self: var T, t:T.Node, k:int):T.Node =
+#    static:
+#      assert T.Tree.Countable isnot void
     let p = t.l.cnt
     if k < p: return self.kth_element(t.l, k)
     elif k > p: return self.kth_element(t.r, k - p - 1)
@@ -124,15 +126,23 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
   proc `{}`*[T:SomeSortedTree](self: var T, k:int):T.Node =
     return self.kth_element(k)
 
+  proc index*[T:SomeSortedTree](self:T, t:T.Node):int =
+#    static:
+#      assert T.Tree.Countable isnot void
+    return index(t)
+  proc distance*[T:SomeSortedTree](self:T, t1, t2:T.Node):int =
+#    static:
+#      assert T.Tree.Countable isnot void
+    return index(t2) - index(t1)
+
   iterator items*[T:SomeSortedSet or SomeSortedMultiSet](self:T):T.K =
-    var it = self.Begin
+    var it = self.begin
     while it != self.End:
       yield it.key
       it.inc
   iterator pairs*[T:SomeSortedMap or SomeSortedMultiMap](self:T):(T.K, T.V) =
-    var it = self.Begin
+    var it = self.begin
     while it != self.End:
       yield it.key
       it.inc
-
-
+  proc `end`*[Tree:SomeSortedTree](self:Tree):Tree.Node = self.End

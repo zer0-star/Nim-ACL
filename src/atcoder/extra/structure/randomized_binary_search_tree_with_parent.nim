@@ -18,7 +18,7 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
       lazy*:L
     id*:int
 
-  type RBSTType*[D,L,Node,useP, useSum;p] = object of RootObj
+  type RBSTType*[D,L,Node,useP, useSum;p:static[tuple]] = object of RootObj
     root*, leaf*: Node
     when D isnot void:
       D0:D
@@ -312,8 +312,7 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
     else: self.set(t.r, k - t.l.cnt - 1, x)
     t = self.update(t)
   
-  proc empty*[RBST:SomeRBST](self: var RBST, t:RBST.Node):bool = return t == self.leaf
-#  proc makeset*[RBST:SomeRBST](self: var RBST):RBST.Node = self.leaf
+  proc empty*[RBST:SomeRBST](self: var RBST, t:RBST.Node):bool = self.len == 0
 
 
   proc insert_index*[RBST:SomeRBST](self: var RBST, k:int, v:RBST.D) = self.insert_index(self.root, k, v)

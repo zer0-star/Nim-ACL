@@ -10,7 +10,23 @@ when not declared ATCODER_DEVISOR_HPP:
         if i * i != n: result.add(n div i)
       i += 1
     result.sort()
-  proc divisor*(f:openArray[(int,int)]):seq[int] =
+  proc prime_factorization*(n:int):seq[(int, int)] =
+    var
+      n = n
+      p = 2
+    while true:
+      if p * p > n:
+        if n > 1:
+          result.add((n, 1))
+        break
+      if n mod p == 0:
+        var e = 0
+        while n mod p == 0:
+          e.inc;n = n div p
+        result.add((p, e))
+      if p == 2: p = 3
+      else: p += 2
+  proc divisor*(f:openArray[(int,int)]):seq[int] = # prime_factorization => divisor
     result = @[1]
     for (p, e) in f:
       let s = result.len
@@ -22,7 +38,7 @@ when not declared ATCODER_DEVISOR_HPP:
           j.inc
         t *= p
     result.sort()
-  proc divisor*(f:openArray[int]):seq[int] =
+  proc divisor*(f:openArray[int]):seq[int] = # primes => divisor
     var f = sorted(f)
     var v = newSeq[(int,int)]()
     var i = 0

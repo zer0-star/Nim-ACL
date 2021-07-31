@@ -186,7 +186,7 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
           parent.color = Color.red
           self.rotateRight(parent)
           sib = parent.l
-  
+
         if sib.r.color == Color.black and sib.l.color == Color.black:
           sib.color = Color.red
           child = parent
@@ -325,6 +325,8 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
   
   proc len*[T:RedBlackTree](self: T): int =
     return self.size
+  proc empty*[T:RedBlackTree](self: T): bool =
+    return self.len == 0
   
   iterator iterOrder*[T:RedBlackTree](self: T): auto =
     var node = self.root

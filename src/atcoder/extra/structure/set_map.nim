@@ -10,7 +10,7 @@ when not declared ATCODER_SET_MAP_HPP:
     End*: Node
 
   when USE_RED_BLACK_TREE:
-    import atcoder/extra/structure/red_black_tree
+    include atcoder/extra/structure/red_black_tree
     type
       SortedSetType*[K, Countable; p:static[tuple]] = SortedTree[RedBlackTree[K, Countable], RedBlackTreeNode[K, Countable], MULTI_FALSE, K, void, p]
       SortedMultiSetType*[K, Countable; p:static[tuple]] = SortedTree[RedBlackTree[K, Countable], RedBlackTreeNode[K, Countable], MULTI_TRUE, K, void, p]
@@ -28,7 +28,7 @@ when not declared ATCODER_SET_MAP_HPP:
 
 #    type SetOrMap = SortedMultiSet or SortedSet or SortedMultiMap or SortedMap or CountableSortedMultiSet or CountableSortedSet or CountableSortedMultiMap or CountableSortedMap or SortedTree
     type SetOrMap = SortedMultiSetType or SortedSetType or SortedMultiMapType or SortedMapType
-    proc init[Tree:SetOrMap](self: var Tree) =
+    proc init*[Tree:SetOrMap](self: var Tree) =
       when Tree.V is void:
         type T = Tree.K
       else:
@@ -66,18 +66,22 @@ when not declared ATCODER_SET_MAP_HPP:
       result &= "}"
 
   else:
-    import atcoder/extra/structure/randomized_binary_search_tree_with_parent
+    include atcoder/extra/structure/randomized_binary_search_tree_with_parent
  
-    type SortedSetType*[K, Countable, comp] = SortedTree[RandomizedBinarySearchTree[K], RBSTNode[K, void, MULTI_FALSE], MULTI_FALSE, K, void, comp]
-    type SortedMultiSetType*[K, Countable, comp] = SortedTree[RandomizedBinarySearchTree[K], RBSTNode[K, void, MULTI_FALSE], MULTI_TRUE, K, void, comp]
-    type SortedMapType*[K, V, Countable, comp] = SortedTree[RandomizedBinarySearchTree[(K, V)], RBSTNode[(K, V), void, MULTI_FALSE], MULTI_FALSE, K, V, comp]
-    type SortedMultiMapType*[K, V, Countable, comp] = SortedTree[RandomizedBinarySearchTree[(K, V)], RBSTNode[(K, V), void, MULTI_FALSE], MULTI_TRUE, K, V, comp]
+    type SortedSetType*[K, Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[K], RBSTNode[K, void, void], MULTI_FALSE, K, void, p]
+    type SortedMultiSetType*[K, Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[K], RBSTNode[K, void, void], MULTI_TRUE, K, void, p]
+    type SortedMapType*[K, V, Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[(K, V)], RBSTNode[(K, V), void, void], MULTI_FALSE, K, V, p]
+    type SortedMultiMapType*[K, V, Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[(K, V)], RBSTNode[(K, V), void, void], MULTI_TRUE, K, V, p]
   
     type SetOrMap = SortedMultiSetType or SortedSetType or SortedMultiMapType or SortedMapType
   
-    proc init*[T:SetOrMap](self: var T, comp: proc(a, b:T.K):bool = nil) =
-      T.Tree(self).setRBST()
-      var end_node = T.Tree(self).Node(cnt: 1, p:nil, id: -1)
+    proc init*[Tree:SetOrMap](self: var Tree) =
+      when Tree.V is void:
+        type T = Tree.K
+      else:
+        type T = (Tree.K, Tree.V)
+      Tree.Tree(self).setRBST()
+      var end_node = RBSTNode[T, void, void](cnt: 1, p:nil, id: -1)
       end_node.l = self.leaf; end_node.r = self.leaf;
       self.End = end_node
       self.root = self.End
@@ -95,8 +99,8 @@ when not declared ATCODER_SET_MAP_HPP:
     
     proc `*`*[Node:RBSTNode](it:Node):auto = it.key
   
-    proc len*(self:SetOrMap):int = self.len()
-    proc empty*(self:var SetOrMap):bool = self.empty()
+    proc len*[Tree:SetOrMap](self:Tree):int = Tree.Tree(self).len() - 1
+    proc empty*[Tree:SetOrMap](self:Tree):bool = self.len() == 0
     proc check_tree*(self:SetOrMap) =
       doAssert self.len + 1 == self.check_tree()
   
@@ -124,7 +128,7 @@ when not declared ATCODER_SET_MAP_HPP:
     r.init()
     return r
   proc initSortedMap*(K:typedesc, V:typedesc[not void], isCountable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
-    var r: SortedMapType[K, V, when isCOuntable: int else: void, (comp,)]
+    var r: SortedMapType[K, V, when isCountable: int else: void, (comp,)]
     r.init()
     return r
   proc initSortedMultiMap*(K:typedesc, V:typedesc[not void], isCountable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =

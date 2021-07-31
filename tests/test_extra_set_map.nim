@@ -4,27 +4,11 @@ import std/algorithm, std/sequtils, std/sets, std/tables
 import random, sugar
 # TODO: includeじゃないとだめなの治す
 include atcoder/extra/structure/set_map
-{.checks:on.}
-
-#block:
-#  type S[T:static[bool], p] = object
-#    a:int
-#    when T:
-#      b:int
-#  
-#  var a:S[false, (3, 4)]
-#  var b:S[true, (4, 5)]
-#  
-#  echo a
-#  echo b
-#  
-#  proc f():auto =
-#    result = S[true, (5, 6)](a:12, b:13)
-#  
-#  echo f()
+#{.checks:on.}
 
 test "sortedSet, int":
   var a = initSortedSet(int)
+  assert a.empty()
   a.insert(3)
   a.insert(1)
   a.insert(4)
@@ -37,6 +21,7 @@ test "sortedSet, int":
 
 test "CountableSortedSet, int":
   var a = initSortedSet(int, true)
+  assert a.empty()
   a.insert(3)
   a.insert(1)
   a.insert(4)
@@ -48,11 +33,15 @@ test "CountableSortedSet, int":
   check *a{1} == 3
   check *a{2} == 4
   check *a{3} == 5
+  for i in 0..<a.len:
+    check a{i}.index == i
   a.erase(4)
   check 4 notin a
   check *a{0} == 1
   check *a{1} == 3
   check *a{2} == 5
+  for i in 0..<a.len:
+    check a{i}.index == i
   check 3 in a
   a.erase(3)
   check 3 notin a
@@ -62,6 +51,7 @@ test "CountableSortedSet, int":
 test "CountableSortedSet, int, reverse":
   proc f(a, b:int):bool = a > b
   var a = initSortedSet(int, true, f)
+  assert a.empty()
 #  var a = initSortedSet(int, true)
   a.insert(3)
   a.insert(1)
@@ -74,11 +64,15 @@ test "CountableSortedSet, int, reverse":
   check *a{1} == 4
   check *a{2} == 3
   check *a{3} == 1
+  for i in 0..<a.len:
+    check a{i}.index == i
   a.erase(4)
   check 4 notin a
   check *a{0} == 5
   check *a{1} == 3
   check *a{2} == 1
+  for i in 0..<a.len:
+    check a{i}.index == i
   check 3 in a
   a.erase(3)
   check 3 notin a
@@ -87,6 +81,7 @@ test "CountableSortedSet, int, reverse":
 
 test "sortedMap, strind, int":
   var a = initSortedMap(string, int)
+  assert a.empty()
   a["three"] = 3
   a["one"] = 2
   a["four"] = 4
@@ -100,6 +95,7 @@ test "sortedMap, strind, int":
 
 test "sortedMultiSet, int":
   var a = initSortedMultiSet(int)
+  assert a.empty()
   a.insert(3)
   a.insert(1)
   a.insert(4)
@@ -114,6 +110,7 @@ test "sortedMultiSet, int":
 
 test "sortedMultiMap, string, int":
   var a = initSortedMultiMap(string, int, isCountable = false)
+  assert a.empty()
   a.insert(("three", 3))
   a.insert(("one", 100))
   a.insert(("four", 4))
@@ -134,6 +131,7 @@ test "sortedSet, int":
   var rnd = initRand(2021)
 #  var st = initSortedSet(int)
   var st = SortedSet(int).default
+  assert st.empty()
   var v = newSeq[int]()
   for i in 0..1000:
     let t = rnd.rand(1..2)
@@ -161,6 +159,7 @@ test "sortedSet, int":
 test "sortedMap, int":
   var rnd = initRand(2021)
   var st = initSortedMap(int, int, true)
+  assert st.empty()
   var v = initTable[int, int]()
   for i in 0..1000:
     let t = rnd.rand(1..2)
@@ -190,10 +189,12 @@ test "sortedMap, int":
   v3.sort
   for i in 0..<v.len:
     check v3[i] == *st{i}
+    check st{i}.index == i
 
 test "sortedMultiSet, int":
   var rnd = initRand(2021)
   var st = initSortedMultiSet(int, true)
+  assert st.empty()
   var v = newSeq[int]()
   for i in 0..1000:
     let t = rnd.rand(1..2)
@@ -219,10 +220,12 @@ test "sortedMultiSet, int":
     assert v == v2
   for i in 0..<v.len:
     check v[i] == *st{i}
+    check st{i}.index == i
 
 test "sortedMultiMap, int":
   var rnd = initRand(2021)
   var st = initSortedMultiMap(int, int)
+  assert st.empty()
   var v = newSeq[(int, int)]()
   var s = 0
   for i in 0..1000:
@@ -250,6 +253,7 @@ test "sortedMultiMap, int":
 
 test "sortedMapMultiDimension, int":
   var st = initSortedMap(int, SortedMap(int, SortedMap(int, SortedMap(int, int))))
+  assert st.empty()
   const B = 10
   for i in 0..<B:
     for j in 0..<B:
