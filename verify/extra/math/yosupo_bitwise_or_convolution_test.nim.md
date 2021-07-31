@@ -53,16 +53,16 @@ data:
     \  var b = newSeqWith(2^N, mint(nextInt())).bit_invert\n  echo OrConvolution(a,\
     \ b).bit_invert.join(\" \")\n\nmain()\n"
   dependsOn:
+  - atcoder/header.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/math/bitwise_convolution.nim
   - atcoder/modint.nim
   - atcoder/internal_math.nim
-  - atcoder/header.nim
   - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
   - atcoder/internal_math.nim
-  - atcoder/header.nim
+  - atcoder/modint.nim
   - atcoder/extra/math/bitwise_convolution.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/math/yosupo_bitwise_or_convolution_test.nim
   requiredBy: []

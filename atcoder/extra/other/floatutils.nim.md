@@ -241,8 +241,8 @@ data:
   dependsOn:
   - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/other/floatutils.nim
   requiredBy:

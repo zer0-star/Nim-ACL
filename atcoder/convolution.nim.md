@@ -243,14 +243,14 @@ data:
     \ -= offset[diff mod 5]\n      c[i] = x.int\n    return c\n"
   dependsOn:
   - atcoder/generate_definitions.nim
-  - atcoder/internal_bit.nim
   - atcoder/modint.nim
-  - atcoder/internal_math.nim
   - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
   - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
   - atcoder/internal_bit.nim
   - atcoder/modint.nim
-  - atcoder/internal_math.nim
   - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/convolution.nim

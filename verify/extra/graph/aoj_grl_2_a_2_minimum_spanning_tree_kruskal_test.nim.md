@@ -44,14 +44,14 @@ data:
     \    g = initGraph(V)\n  for i in 0..<E:\n    let a, b, c = nextInt()\n    g.addBiEdge(a,b,c)\n\
     \  echo kruskal(g)[0]\n\nmain()\n"
   dependsOn:
+  - atcoder/header.nim
   - atcoder/dsu.nim
   - atcoder/extra/graph/kruskal.nim
   - atcoder/extra/graph/kruskal.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/dsu.nim
+  - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_2_a_2_minimum_spanning_tree_kruskal_test.nim
   requiredBy: []

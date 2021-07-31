@@ -78,12 +78,12 @@ data:
     \     else:\n          now.inc\n          seg0.apply(l ..< r, (now,))\n      \
     \    tm.action(l ..< r, now)\n"
   dependsOn:
+  - atcoder/rangeutils.nim
   - atcoder/lazysegtree.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
-  - atcoder/lazysegtree.nim
-  - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
+  - atcoder/lazysegtree.nim
   isVerificationFile: false
   path: tests/test_lazysegtree_stress.nim
   requiredBy: []

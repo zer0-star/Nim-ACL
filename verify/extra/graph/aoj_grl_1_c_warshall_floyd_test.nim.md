@@ -44,11 +44,11 @@ data:
     \ mat[p[k]][p[k + 1]]\n        assert s == dist[i][j]\n        stdout.write dist[i][j]\n\
     \    echo \"\"\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/graph/warshall_floyd.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/warshall_floyd.nim
-  - atcoder/extra/other/inf.nim
   - atcoder/header.nim
+  - atcoder/extra/graph/warshall_floyd.nim
+  - atcoder/extra/graph/warshall_floyd.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_1_c_warshall_floyd_test.nim

@@ -111,32 +111,32 @@ data:
     \  proc ceilDiv*[T:SomeInteger](a, b:T):T =\n    assert b != 0\n    if b < 0:\
     \ return ceilDiv(-a, -b)\n    result = a.floorDiv(b)\n    if a mod b != 0: result.inc\n"
   dependsOn:
-  - atcoder/extra/other/zip.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/reference.nim
   - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/sliceutils.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/zip.nim
-  - atcoder/extra/other/seq_array_utils.nim
   - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/solve_proc.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/other/reference.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/sliceutils.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/reader.nim
   - atcoder/extra/other/floatutils.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/sliceutils.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/zip.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/reference.nim
   - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/sliceutils.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/zip.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/inf.nim
   isVerificationFile: false
   path: atcoder/extra/header/chaemon_header.nim
   requiredBy: []

@@ -45,13 +45,13 @@ data:
     \  echo st[l..<r]\n"
   dependsOn:
   - atcoder/extra/other/internal_sugar.nim
+  - atcoder/header.nim
   - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/extra/structure/sparse_table.nim
   - atcoder/extra/other/internal_sugar.nim
   - atcoder/extra/structure/sparse_table.nim
-  - atcoder/header.nim
-  - atcoder/header.nim
+  - atcoder/extra/structure/sparse_table.nim
   - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_staticrmq_test.nim
   requiredBy: []

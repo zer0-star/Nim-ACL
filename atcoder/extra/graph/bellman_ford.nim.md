@@ -60,8 +60,8 @@ data:
     \ prev:prev)\n    when G.U isnot int: result.id = g.id\n"
   dependsOn:
   - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
   isVerificationFile: false
   path: atcoder/extra/graph/bellman_ford.nim

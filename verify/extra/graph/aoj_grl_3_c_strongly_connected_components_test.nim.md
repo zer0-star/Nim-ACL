@@ -41,11 +41,11 @@ data:
     main()\n"
   dependsOn:
   - atcoder/scc.nim
-  - atcoder/internal_scc.nim
   - atcoder/header.nim
+  - atcoder/internal_scc.nim
   - atcoder/scc.nim
-  - atcoder/header.nim
   - atcoder/internal_scc.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
   requiredBy: []

@@ -42,10 +42,10 @@ data:
     \        for i in countup(0, QQ1.len - 1, 2): Q.add(QQ1[i])\n      N = N div 2\n\
     \    result += P[0]\n"
   dependsOn:
-  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/element_concepts.nim
-  - atcoder/element_concepts.nim
+  - atcoder/extra/math/formal_power_series.nim
   isVerificationFile: false
   path: atcoder/extra/math/coef_of_generating_function.nim
   requiredBy: []

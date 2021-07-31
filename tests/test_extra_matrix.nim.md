@@ -67,12 +67,12 @@ data:
   - atcoder/generate_definitions.nim
   - atcoder/extra/math/matrix.nim
   - atcoder/modint.nim
+  - atcoder/element_concepts.nim
   - atcoder/internal_math.nim
   - atcoder/extra/math/matrix.nim
-  - atcoder/element_concepts.nim
   - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
   - atcoder/internal_math.nim
+  - atcoder/modint.nim
   - atcoder/element_concepts.nim
   isVerificationFile: false
   path: tests/test_extra_matrix.nim

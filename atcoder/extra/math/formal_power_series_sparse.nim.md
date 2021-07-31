@@ -83,10 +83,10 @@ data:
     \ = a.divMod(b)[0]\n  proc `mod`*[T:FieldElem](a: FormalPowerSeries[T], b:SparseFormalPowerSeries[T]):auto\
     \ = a.divMod(b)[1]\n"
   dependsOn:
-  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/element_concepts.nim
-  - atcoder/element_concepts.nim
+  - atcoder/extra/math/formal_power_series.nim
   isVerificationFile: false
   path: atcoder/extra/math/formal_power_series_sparse.nim
   requiredBy:

@@ -40,8 +40,8 @@ data:
   - atcoder/modint.nim
   - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
   - atcoder/internal_math.nim
+  - atcoder/modint.nim
   isVerificationFile: true
   path: verify/modint_test.nim
   requiredBy: []

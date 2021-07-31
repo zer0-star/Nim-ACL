@@ -33,8 +33,8 @@ data:
   dependsOn:
   - atcoder/header.nim
   - atcoder/extra/graph/hungarian.nim
-  - atcoder/extra/graph/hungarian.nim
   - atcoder/header.nim
+  - atcoder/extra/graph/hungarian.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_assignment_problem_test.nim
   requiredBy: []

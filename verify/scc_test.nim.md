@@ -39,8 +39,8 @@ data:
     )\n"
   dependsOn:
   - atcoder/scc.nim
-  - atcoder/internal_scc.nim
   - atcoder/header.nim
+  - atcoder/internal_scc.nim
   - atcoder/scc.nim
   - atcoder/internal_scc.nim
   - atcoder/header.nim

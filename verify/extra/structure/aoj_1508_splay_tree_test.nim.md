@@ -47,9 +47,9 @@ data:
     \ z)\n"
   dependsOn:
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/splay_tree.nim
   - atcoder/header.nim
   - atcoder/rangeutils.nim
+  - atcoder/extra/structure/splay_tree.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/header.nim
   isVerificationFile: true

@@ -52,8 +52,8 @@ data:
   - atcoder/modint.nim
   - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
   - atcoder/internal_math.nim
+  - atcoder/modint.nim
   isVerificationFile: false
   path: test/example/modint_usage.nim
   requiredBy: []

@@ -58,17 +58,17 @@ data:
     \ initSegment(p[2], p[3]))\n"
   dependsOn:
   - atcoder/extra/other/internal_complex.nim
+  - atcoder/header.nim
   - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/header.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/other/floatutils.nim
-  - atcoder/header.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/other/static_var.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_2_d_distance_test.nim
   requiredBy: []

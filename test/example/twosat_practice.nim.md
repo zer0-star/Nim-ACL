@@ -41,11 +41,11 @@ data:
     No\"\nelse:\n  echo \"Yes\"\n  let answer = ts.answer\n  for i in 0..<n:\n   \
     \ if answer[i]:\n      echo x[i]\n    else:\n      echo y[i]\n"
   dependsOn:
-  - atcoder/twosat.nim
-  - atcoder/internal_scc.nim
   - atcoder/header.nim
+  - atcoder/internal_scc.nim
   - atcoder/twosat.nim
   - atcoder/internal_scc.nim
+  - atcoder/twosat.nim
   - atcoder/header.nim
   isVerificationFile: false
   path: test/example/twosat_practice.nim

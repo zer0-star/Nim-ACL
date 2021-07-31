@@ -167,17 +167,17 @@ data:
     \ b, MOD) == convolution(a, b, MOD)\n"
   dependsOn:
   - atcoder/generate_definitions.nim
-  - atcoder/internal_bit.nim
   - atcoder/modint.nim
   - atcoder/convolution.nim
-  - atcoder/internal_math.nim
   - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
   - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
   - atcoder/internal_bit.nim
   - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/element_concepts.nim
   - atcoder/convolution.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: false
   path: tests/test_convolution.nim
   requiredBy: []

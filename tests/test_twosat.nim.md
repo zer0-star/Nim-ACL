@@ -50,8 +50,8 @@ data:
     \ == expect[y]\n      else:\n        check actual[x] == expect[x] or actual[y]\
     \ != expect[y]\n"
   dependsOn:
-  - atcoder/twosat.nim
   - atcoder/internal_scc.nim
+  - atcoder/twosat.nim
   - atcoder/internal_scc.nim
   - atcoder/twosat.nim
   isVerificationFile: false
