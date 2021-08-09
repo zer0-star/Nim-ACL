@@ -35,10 +35,10 @@ data:
     \    else:\n      echo a[head]\n      head.inc\n    S[i] = (a, head, tail)\n\n\
     main()\n"
   dependsOn:
-  - atcoder/extra/structure/persistent_array.nim
-  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/extra/structure/persistent_array.nim
+  - atcoder/extra/structure/persistent_array.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_persistent_queue_test.nim
   requiredBy: []

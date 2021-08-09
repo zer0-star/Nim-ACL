@@ -55,8 +55,8 @@ data:
   - atcoder/modint.nim
   - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
-  - atcoder/internal_math.nim
   - atcoder/modint.nim
+  - atcoder/internal_math.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim

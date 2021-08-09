@@ -79,11 +79,11 @@ data:
     #    }\n#  }\n#}\n#\n##endif\n"
   dependsOn:
   - atcoder/internal_type_traits.nim
+  - atcoder/fenwicktree.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_type_traits.nim
+  - atcoder/fenwicktree.nim
   - atcoder/rangeutils.nim
-  - atcoder/fenwicktree.nim
-  - atcoder/fenwicktree.nim
   isVerificationFile: false
   path: tests/test_fenwicktree.nim
   requiredBy: []

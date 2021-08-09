@@ -46,14 +46,14 @@ data:
     \   let a = st.get(p)\n    st.set(p, a + x)\n  else:\n    let l, r = nextInt()\n\
     \    echo st.prod(l..<r)\n"
   dependsOn:
-  - atcoder/rangeutils.nim
   - atcoder/header.nim
+  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
-  - atcoder/extra/structure/universal_segtree.nim
-  - atcoder/internal_bit.nim
-  - atcoder/extra/structure/universal_segtree.nim
   - atcoder/header.nim
+  - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/rangeutils.nim
   isVerificationFile: true
   path: verify/extra/structure/extra_segtree_test.nim
   requiredBy: []

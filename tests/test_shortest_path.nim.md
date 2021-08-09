@@ -136,22 +136,22 @@ data:
     \  for s in 0..<N:\n    var dijkstra = g.dijkstra01(s)\n    for u in 0..<N:\n\
     \      check WF[s][u] == dijkstra[u]\n"
   dependsOn:
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/dijkstra_radix_heap.nim
   - atcoder/extra/graph/dijkstra.nim
-  - atcoder/extra/structure/radix_heap.nim
-  - atcoder/extra/graph/warshall_floyd.nim
-  - atcoder/extra/graph/dijkstra.nim
-  - atcoder/extra/graph/dijkstra_radix_heap.nim
-  - atcoder/extra/graph/warshall_floyd.nim
   - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/structure/radix_heap.nim
-  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/graph/bellman_ford.nim
+  - atcoder/extra/structure/radix_heap.nim
   - atcoder/extra/graph/bellman_ford.nim
-  - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/dijkstra.nim
+  - atcoder/extra/graph/dijkstra_radix_heap.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/warshall_floyd.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/warshall_floyd.nim
+  - atcoder/extra/graph/dijkstra_radix_heap.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/inf.nim
   isVerificationFile: false
   path: tests/test_shortest_path.nim
   requiredBy: []

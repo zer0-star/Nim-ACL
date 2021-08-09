@@ -89,8 +89,8 @@ data:
   dependsOn:
   - atcoder/math.nim
   - atcoder/internal_math.nim
-  - atcoder/internal_math.nim
   - atcoder/math.nim
+  - atcoder/internal_math.nim
   isVerificationFile: false
   path: tests/test_internal_math.nim
   requiredBy: []

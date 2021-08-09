@@ -36,8 +36,8 @@ data:
     \    graph.add_edge(0, 10)\n"
   dependsOn:
   - atcoder/scc.nim
-  - atcoder/internal_scc.nim
   - atcoder/scc.nim
+  - atcoder/internal_scc.nim
   - atcoder/internal_scc.nim
   isVerificationFile: false
   path: tests/test_scc.nim

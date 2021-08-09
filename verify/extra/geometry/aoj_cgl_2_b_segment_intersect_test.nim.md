@@ -59,17 +59,17 @@ data:
     \ s1.intersect(s2): echo 1\n    else: echo 0\n"
   dependsOn:
   - atcoder/header.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/internal_complex.nim
   - atcoder/header.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/element_concepts.nim
+  - atcoder/extra/geometry/geometry_template.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_2_b_segment_intersect_test.nim
   requiredBy: []

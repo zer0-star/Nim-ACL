@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
   - icon: ':question:'
@@ -32,8 +32,8 @@ data:
     \ v)\n  elif t == 1:\n    echo(\n      if uf.same(u, v):\n        1\n      else:\n\
     \        0\n    )\n"
   dependsOn:
-  - atcoder/header.nim
   - atcoder/dsu.nim
+  - atcoder/header.nim
   - atcoder/dsu.nim
   - atcoder/header.nim
   isVerificationFile: true

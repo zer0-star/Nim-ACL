@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
   _extendedRequiredBy: []

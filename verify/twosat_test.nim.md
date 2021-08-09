@@ -44,11 +44,11 @@ data:
     \ -(i + 1), \" \"\n    echo 0\n  else:\n    echo \"s UNSATISFIABLE\"\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/internal_scc.nim
   - atcoder/twosat.nim
   - atcoder/internal_scc.nim
   - atcoder/twosat.nim
   - atcoder/header.nim
+  - atcoder/internal_scc.nim
   isVerificationFile: true
   path: verify/twosat_test.nim
   requiredBy: []

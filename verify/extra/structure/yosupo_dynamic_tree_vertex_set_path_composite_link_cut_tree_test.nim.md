@@ -77,19 +77,19 @@ data:
     \ * X + ret[1]\n"
   dependsOn:
   - atcoder/extra/structure/link_cut_tree.nim
-  - atcoder/rangeutils.nim
   - atcoder/header.nim
   - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/rangeutils.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/structure/splay_tree.nim
   - atcoder/extra/structure/link_cut_tree.nim
-  - atcoder/extra/structure/splay_tree.nim
   - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/rangeutils.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
   - atcoder/header.nim
+  - atcoder/rangeutils.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
   requiredBy: []

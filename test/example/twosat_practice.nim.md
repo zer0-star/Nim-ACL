@@ -42,11 +42,11 @@ data:
     \ if answer[i]:\n      echo x[i]\n    else:\n      echo y[i]\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/internal_scc.nim
   - atcoder/twosat.nim
   - atcoder/internal_scc.nim
   - atcoder/twosat.nim
   - atcoder/header.nim
+  - atcoder/internal_scc.nim
   isVerificationFile: false
   path: test/example/twosat_practice.nim
   requiredBy: []

@@ -106,8 +106,8 @@ data:
     \ z_naive(s) == z_algorithm(s)\n"
   dependsOn:
   - atcoder/extra/other/internal_sugar.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
   - atcoder/extra/other/internal_sugar.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
   - atcoder/extra/other/internal_underscored_calls.nim
   isVerificationFile: false
   path: tests/test_string.nim

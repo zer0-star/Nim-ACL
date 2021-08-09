@@ -37,39 +37,38 @@ data:
     \       result.append(line)\n        else:\n            matched = ATCODER_INCLUDE.match(line)\n\
     \            if matched:\n                for fname in matched.group(1).split(\"\
     ,\"):\n                    fname_orig = fname = fname.strip()\n              \
-    \      if fname[0] == '\\\"':\n                        print(fname)\n        \
-    \                assert fname[-1] == '\\\"'\n                        fname = fname[1:-1]\n\
-    \                    if ATCODER_DIR.match(fname):\n                        fname\
-    \ = strip_as(fname)\n                        fname = \"src/\" + fname\n      \
-    \                  if not fname.endswith(\".nim\"):\n                        \
-    \    fname += \".nim\"\n                        spaces = indent_level(line)\n\
-    \                        print(fname)\n                        print(spaces)\n\
-    \                        result.extend(read_source(fname, \" \" * spaces, defined,\
-    \ lib_path, False))\n                    else:\n                        spaces\
-    \ = indent_level(line)\n                        result.extend([\" \" * spaces\
-    \ + \"import \" + fname_orig])\n            else:\n                result.append(line)\n\
-    \    if not start:\n        result.append(\"  discard\")\n    result2 = []\n \
-    \   for line in result:\n        result2.append(prefix + line)\n    result = result2\n\
-    \    return result\n\n\n#def dfs(f: str, level: int, defined: set, lib_path) ->\
-    \ List[str]:\n#    \"\"\"\n#    \u6DF1\u3055\u512A\u5148\u3067import/include\u3092\
-    \u8ABF\u3079\u308B\n#    \"\"\"\n#    if f in defined:\n#        logger.info('already\
-    \ included {:s}, skip'.format(f))\n#        return []\n#    defined.add(f)\n#\n\
-    #    logger.info('include {:s}'.format(f))\n#\n#    source = open(str(lib_path\
-    \ / f), encoding=\"utf8\", errors='ignore').read()\n#    return read_source(source,\
-    \ level, defined, lib_path)\n\n\ndef main():\n    \"\"\"\n    \u30E1\u30A4\u30F3\
-    \u95A2\u6570\n    \"\"\"\n    lib_path = Path.cwd()\n    basicConfig(\n      \
-    \  format=\"%(asctime)s [%(levelname)s] %(message)s\",\n        datefmt=\"%H:%M:%S\"\
-    ,\n        level=getenv('LOG_LEVEL', 'INFO'),\n    )\n    parser = argparse.ArgumentParser(description='Expander')\n\
-    \    parser.add_argument('source', help='Source File')\n    parser.add_argument('-c',\
-    \ '--console',\n                        action='store_true', help='Print to Console')\n\
-    \    parser.add_argument('--lib', help='Path to Atcoder Library')\n    opts =\
-    \ parser.parse_args()\n\n    if opts.lib:\n        lib_path = Path(opts.lib)\n\
-    \    elif 'NIM_INCLUDE_PATH' in environ:\n        lib_path = Path(environ['NIM_INCLUDE_PATH'])\n\
-    #    source = open(opts.source, encoding=\"utf8\", errors='ignore').read()\n \
-    \   result = read_source(opts.source, \"\", set(), lib_path)\n\n    output = '\\\
-    n'.join(result) + '\\n'\n    if opts.console:\n        print(output)\n    else:\n\
-    \        with open('combined.nim', 'w', encoding=\"utf8\", errors='ignore') as\
-    \ f:\n            f.write(output)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+    \      if fname[0] == '\\\"':\n                        assert fname[-1] == '\\\
+    \"'\n                        fname = fname[1:-1]\n                    if ATCODER_DIR.match(fname):\n\
+    \                        fname = strip_as(fname)\n                        fname\
+    \ = \"src/\" + fname\n                        if not fname.endswith(\".nim\"):\n\
+    \                            fname += \".nim\"\n                        spaces\
+    \ = indent_level(line)\n                        result.extend(read_source(fname,\
+    \ \" \" * spaces, defined, lib_path, False))\n                    else:\n    \
+    \                    spaces = indent_level(line)\n                        result.extend([\"\
+    \ \" * spaces + \"import \" + fname_orig])\n            else:\n              \
+    \  result.append(line)\n    if not start:\n        result.append(\"  discard\"\
+    )\n    result2 = []\n    for line in result:\n        result2.append(prefix +\
+    \ line)\n    result = result2\n    return result\n\n\n#def dfs(f: str, level:\
+    \ int, defined: set, lib_path) -> List[str]:\n#    \"\"\"\n#    \u6DF1\u3055\u512A\
+    \u5148\u3067import/include\u3092\u8ABF\u3079\u308B\n#    \"\"\"\n#    if f in\
+    \ defined:\n#        logger.info('already included {:s}, skip'.format(f))\n# \
+    \       return []\n#    defined.add(f)\n#\n#    logger.info('include {:s}'.format(f))\n\
+    #\n#    source = open(str(lib_path / f), encoding=\"utf8\", errors='ignore').read()\n\
+    #    return read_source(source, level, defined, lib_path)\n\n\ndef main():\n \
+    \   \"\"\"\n    \u30E1\u30A4\u30F3\u95A2\u6570\n    \"\"\"\n    lib_path = Path.cwd()\n\
+    \    basicConfig(\n        format=\"%(asctime)s [%(levelname)s] %(message)s\"\
+    ,\n        datefmt=\"%H:%M:%S\",\n        level=getenv('LOG_LEVEL', 'INFO'),\n\
+    \    )\n    parser = argparse.ArgumentParser(description='Expander')\n    parser.add_argument('source',\
+    \ help='Source File')\n    parser.add_argument('-c', '--console',\n          \
+    \              action='store_true', help='Print to Console')\n    parser.add_argument('--lib',\
+    \ help='Path to Atcoder Library')\n    opts = parser.parse_args()\n\n    if opts.lib:\n\
+    \        lib_path = Path(opts.lib)\n    elif 'NIM_INCLUDE_PATH' in environ:\n\
+    \        lib_path = Path(environ['NIM_INCLUDE_PATH'])\n#    source = open(opts.source,\
+    \ encoding=\"utf8\", errors='ignore').read()\n    result = read_source(opts.source,\
+    \ \"\", set(), lib_path)\n\n    output = '\\n'.join(result) + '\\n'\n    if opts.console:\n\
+    \        print(output)\n    else:\n        with open('combined.nim', 'w', encoding=\"\
+    utf8\", errors='ignore') as f:\n            f.write(output)\n\n\nif __name__ ==\
+    \ \"__main__\":\n    main()\n"
   dependsOn: []
   isVerificationFile: false
   path: expander.py

@@ -115,12 +115,12 @@ data:
     \     else:\n          now.inc\n          seg0.apply(l ..< r, (now,))\n      \
     \    tm.action(l ..< r, now)\n"
   dependsOn:
-  - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
   - atcoder/extra/structure/universal_segtree.nim
-  - atcoder/internal_bit.nim
   - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/rangeutils.nim
   isVerificationFile: false
   path: tests/test_extra_universal_segtree_stress.nim
   requiredBy: []

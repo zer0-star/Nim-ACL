@@ -281,7 +281,7 @@ data:
     \        var v = v.int\n        if 0 <= v:\n          if v < T.mod: return T(a:v.uint32)\n\
     \          else: return T(a:(v mod T.mod).uint32)\n        else:\n          v\
     \ = v mod T.mod\n          if v < 0: v += T.mod\n          return T(a:v.uint32)\n\
-    \  proc unit*[T:ModInt](t:typedesc[T] or T):T = T.init(1)\n  template initModInt*(v:\
+    \  proc unit*[T:ModInt](t:typedesc[T] or T):T = T.init(1)\n\n  template initModInt*(v:\
     \ SomeInteger or ModInt; M: static[int] = 1_000_000_007): auto =\n    StaticModInt[M].init(v)\n\
     \n# TODO\n#  converter toModInt[M:static[int]](n:SomeInteger):StaticModInt[M]\
     \ {.inline.} = initModInt(n, M)\n\n#  proc initModIntRaw*(v: SomeInteger; M: static[int]\
@@ -315,8 +315,8 @@ data:
     \ 1000000007)\n  useDynamicModInt(modint, -1)\n"
   dependsOn:
   - atcoder/generate_definitions.nim
-  - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
   isVerificationFile: false
   path: atcoder/modint.nim

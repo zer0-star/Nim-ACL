@@ -122,27 +122,27 @@ data:
     \ = 3782\r\n      b = 9265\r\n    let u = (powMod(p, a, m) * powMod(p, b, m) mod\
     \ m)[0..<m.len-1]\r\n    let v = powMod(p, a + b, m)\r\n    check u == v\r\n"
   dependsOn:
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/extra/math/ntt.nim
   - atcoder/extra/math/formal_power_series_sparse.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/modint.nim
+  - atcoder/extra/math/formal_power_series_sparse.nim
   - atcoder/element_concepts.nim
-  - atcoder/generate_definitions.nim
   - atcoder/convolution.nim
-  - atcoder/extra/math/formal_power_series.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/formal_power_series_sparse.nim
-  - atcoder/modint.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
   - atcoder/convolution.nim
   isVerificationFile: false
   path: tests/test_extra_formal_power_series.nim

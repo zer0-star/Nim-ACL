@@ -14,10 +14,12 @@ data:
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_DIRECTION:\n  const ATCODER_DIRECTION* = 1\n  let\
     \ dir4* = [(1, 0), (0, 1), (-1, 0), (0, -1)]\n  let dir8* = [(1, 0), (1, 1), (0,\
-    \ 1), (-1, 1), (-1, 0), (-1, -1), (0, -1), (1, -1)]\n  \n  iterator neighbor*(p:(int,\
-    \ int), d:openArray[(int, int)], \n    limit = ((int.low..int.high), (int.low..int.high))):(int,\
-    \ int) =\n    for d in d:\n      let (i, j) = (p[0] + d[0], p[1] + d[1])\n   \
-    \   if i notin limit[0] or j notin limit[1]: continue\n      yield (i, j)\n"
+    \ 1), (-1, 1), (-1, 0), (-1, -1), (0, -1), (1, -1)]\n\n  iterator neighbor*(p:(int,\
+    \ int), d:openArray[(int, int)]):(int, int) =\n    for d in d:\n      let (i,\
+    \ j) = (p[0] + d[0], p[1] + d[1])\n      yield (i, j)\n  iterator neighbor*(p:(int,\
+    \ int), d:openArray[(int, int)], limit:(Slice[int], Slice[int])):(int, int) =\n\
+    \    for (i, j) in p.neighbor(d):\n      if i notin limit[0] or j notin limit[1]:\
+    \ continue\n      yield (i, j)\n"
   dependsOn: []
   isVerificationFile: false
   path: atcoder/extra/other/direction.nim

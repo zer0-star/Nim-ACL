@@ -48,8 +48,8 @@ data:
     \ mainBody.add(checkBody)\n    result = newStmtList()\n    let procName = $head[0]\n\
     \    var discardablePragma = newNimNode(nnkPragma).add(ident(\"discardable\"))\n\
     \    var mainParams = params\n    mainParams[0] = ident\"string\"\n    var identDefs\
-    \ = newNimNode(nnkIdentDefs)\n    identDefs.add(ident\"output_stdout\")\n    identDefs.add(newNimNode(nnkBracketExpr).add(ident\"\
-    static\").add(ident\"bool\"))\n    identDefs.add(ident\"true\")\n    mainParams.add(identDefs)\n\
+    \ = newNimNode(nnkIdentDefs).add(ident\"output_stdout\").add(newNimNode(nnkBracketExpr).add(ident\"\
+    static\").add(ident\"bool\")).add(ident\"true\")\n#    mainParams.add(identDefs)\n\
     \    var mainProcDef = newNimNode(nnkProcDef).add(ident\"solve\").add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams)).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())\n\
     \    result.add(mainProcDef)\n    if hasNaive:\n      var naiveProcDef = newNimNode(nnkProcDef).add(ident\"\
     solve_naive\").add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams)).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())\n\
@@ -72,7 +72,7 @@ data:
     \", \\\"[solve]\\\\n\\\", vsolve, \\\"[solve_naive]\\\\n\\\", vsolve_naive;doAssert\
     \ false\")\n      result.add newProc(name = ident\"test\", params = test_params,\
     \ body = test_body, pragmas = discardablePragma)\n    if hasGenerate:\n      discard\n\
-    \    if hasTest:\n      discard\n#    echo result.repr\n"
+    \    if hasTest:\n      discard\n    echo result.repr\n"
   dependsOn: []
   isVerificationFile: false
   path: atcoder/extra/other/solve_proc.nim

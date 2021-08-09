@@ -8,10 +8,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/bellman_ford.nim
     title: atcoder/extra/graph/bellman_ford.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/chu_liu_edmonds.nim
     title: atcoder/extra/graph/chu_liu_edmonds.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/chu_liu_edmonds.nim
     title: atcoder/extra/graph/chu_liu_edmonds.nim
   - icon: ':heavy_check_mark:'
@@ -165,10 +165,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_cycle_detection_test.nim
     title: verify/extra/graph/yosupo_cycle_detection_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_directedmst_test.nim
     title: verify/extra/graph/yosupo_directedmst_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_directedmst_test.nim
     title: verify/extra/graph/yosupo_directedmst_test.nim
   - icon: ':x:'

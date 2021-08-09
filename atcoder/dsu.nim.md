@@ -8,10 +8,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/boruvka.nim
     title: atcoder/extra/graph/boruvka.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/chu_liu_edmonds.nim
     title: atcoder/extra/graph/chu_liu_edmonds.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/chu_liu_edmonds.nim
     title: atcoder/extra/graph/chu_liu_edmonds.nim
   - icon: ':warning:'
@@ -63,15 +63,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
     title: verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_directedmst_test.nim
     title: verify/extra/graph/yosupo_directedmst_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_directedmst_test.nim
     title: verify/extra/graph/yosupo_directedmst_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -112,7 +112,7 @@ data:
   - test/example/dsu_practice.nim
   - test/example/dsu_practice.nim
   timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
   - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim

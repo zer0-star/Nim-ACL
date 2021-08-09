@@ -40,10 +40,10 @@ data:
   dependsOn:
   - atcoder/header.nim
   - atcoder/extra/tree/tree_diameter.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/tree/tree_diameter.nim
-  - atcoder/header.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/tree/yosupo_tree_diameter_test.nim
   requiredBy: []

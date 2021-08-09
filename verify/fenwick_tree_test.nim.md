@@ -45,14 +45,14 @@ data:
     \ t == 0:\n    let p, x = nextInt()\n    st.add(p, x)\n  else:\n    let l, r =\
     \ nextInt()\n    echo st.sum(l..<r)\n"
   dependsOn:
-  - atcoder/internal_type_traits.nim
-  - atcoder/rangeutils.nim
   - atcoder/header.nim
   - atcoder/internal_type_traits.nim
+  - atcoder/fenwicktree.nim
   - atcoder/rangeutils.nim
+  - atcoder/internal_type_traits.nim
   - atcoder/fenwicktree.nim
   - atcoder/header.nim
-  - atcoder/fenwicktree.nim
+  - atcoder/rangeutils.nim
   isVerificationFile: true
   path: verify/fenwick_tree_test.nim
   requiredBy: []

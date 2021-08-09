@@ -37,24 +37,24 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_MATRIX_HPP:\n  const ATCODER_MATRIX_HPP* = 1\n\
-    \  import std/sequtils, std/sugar\n  import atcoder/element_concepts, atcoder/generate_definitions\n\
+    \  import std/sequtils\n  import atcoder/element_concepts, atcoder/generate_definitions\n\
     \n  type Matrix*[T; p:static[tuple]] = seq[seq[T]]\n  type Vector*[T] = seq[T]\n\
     \n  proc height*(self: Matrix):int = self.len\n  proc width*(self: Matrix):int\
     \ = self[0].len\n  template getZero*[M:Matrix](self:typedesc[M] or M):auto =\n\
-    \    block:\n      let zero = M.p.zero\n      zero()\n  template getUnit*[M:Matrix](self:typedesc[M]\
-    \ or M):auto =\n    block:\n      let unit = M.p.unit\n      unit()\n  template\
+    \    block:\n      let zero = M.p[0]\n      zero()\n  template getUnit*[M:Matrix](self:typedesc[M]\
+    \ or M):auto =\n    block:\n      let unit = M.p[1]\n      unit()\n  template\
     \ isZero*[M:Matrix](self:typedesc[M] or M, a:M.T):bool =\n    block:\n      let\
-    \ isZero = M.p.isZero\n      isZero(a)\n\n  proc init*[M:Matrix](self:typedesc[M]\
+    \ isZero = M.p[2]\n      isZero(a)\n\n  proc init*[M:Matrix](self:typedesc[M]\
     \ or M, n, m:int):M =\n    result = newSeqWith(n, newSeqWith(m, M.getZero()))\n\
     \  proc init*[M:Matrix](self:typedesc[M] or M, n:int):M = M.init(n, n)\n\n  template\
-    \ MatrixType*(T:typedesc):auto = Matrix[T, (zero:()=>T(0), unit:()=>T(1), isZero:(a:T)=>(a\
-    \ == T(0)))]\n  template MatrixType*(T:typedesc, z0:static[()->T], u0:static[()->T]):auto\
-    \ = Matrix[T, (zero:z0, unit:u0, isZero:(a:T)=>(a == z0()))]\n  template MatrixType*(T:typedesc,\
-    \ z0:static[()->T], u0:static[()->T], iz0:static[(T)->bool]):auto = Matrix[T,\
-    \ (zero:z0, unit:u0, isZero:iz0)]\n\n  proc initMatrix*[T:RingElem](n, m:int,\
-    \ z:static[()->T], u:static[()->T]):auto =\n    type M = MatrixType(T, z, u)\n\
-    \    return M.init(n, m)\n  proc initMatrix*[T:RingElem](n:int, z:static[()->T],\
-    \ u:static[()->T]):auto = \n    type M = MatrixType(T, z, u)\n    return M.init(n,\
+    \ MatrixType*(T:typedesc, zero:static[proc():T], unit:static[proc():T], isZero:static[proc(a:T):bool]):auto\
+    \ = Matrix[T, (zero, unit, isZero)]\n  template MatrixType*(T:typedesc):auto =\n\
+    \    MatrixType(T, zero = proc():T = T(0), unit = proc():T = T(1), isZero = (a:T)=>(a\
+    \ == T(0)))\n  template MatrixType*(T:typedesc, zero:static[proc():T], unit:static[proc():T]):auto\
+    \ =\n    MatrixType(T, zero, unit, proc(a:T):bool = (a == zero()))\n\n  proc initMatrix*[T:RingElem](n,\
+    \ m:int, z:static[proc():T], u:static[proc():T]):auto =\n    type M = MatrixType(T,\
+    \ z, u)\n    return M.init(n, m)\n  proc initMatrix*[T:RingElem](n:int, z:static[proc():T],\
+    \ u:static[proc():T]):auto = \n    type M = MatrixType(T, z, u)\n    return M.init(n,\
     \ n)\n\n  proc initMatrix*[T:RingElem](n, m:int):auto =\n    type M = MatrixType(T)\n\
     \    return M.init(n, m)\n  proc initMatrix*[T:RingElem](n:int):auto =\n    type\
     \ M = MatrixType(T)\n    return M.init(n, n)\n\n  proc init*[M:Matrix](self:M\

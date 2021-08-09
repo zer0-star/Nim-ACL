@@ -36,9 +36,9 @@ data:
   - atcoder/header.nim
   - atcoder/math.nim
   - atcoder/internal_math.nim
+  - atcoder/math.nim
   - atcoder/internal_math.nim
   - atcoder/header.nim
-  - atcoder/math.nim
   isVerificationFile: false
   path: test/example/floor_sum_practice.nim
   requiredBy: []

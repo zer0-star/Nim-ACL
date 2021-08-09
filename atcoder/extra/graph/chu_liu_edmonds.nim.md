@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
   - icon: ':question:'
@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/skew_heap.nim
     title: atcoder/extra/structure/skew_heap.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/skew_heap.nim
     title: atcoder/extra/structure/skew_heap.nim
   _extendedRequiredBy: []
@@ -27,15 +27,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
     title: verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_directedmst_test.nim
     title: verify/extra/graph/yosupo_directedmst_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_directedmst_test.nim
     title: verify/extra/graph/yosupo_directedmst_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -71,16 +71,16 @@ data:
     \ (ret, parent).some\n"
   dependsOn:
   - atcoder/dsu.nim
-  - atcoder/extra/structure/skew_heap.nim
-  - atcoder/extra/structure/skew_heap.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/structure/skew_heap.nim
   - atcoder/dsu.nim
-  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/structure/skew_heap.nim
   isVerificationFile: false
   path: atcoder/extra/graph/chu_liu_edmonds.nim
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
   - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim

@@ -9,6 +9,12 @@ data:
     title: atcoder/extra/other/internal_underscored_calls.nim
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: atcoder/extra/header/chaemon_header.nim
+    title: atcoder/extra/header/chaemon_header.nim
+  - icon: ':warning:'
+    path: atcoder/extra/header/chaemon_header.nim
+    title: atcoder/extra/header/chaemon_header.nim
+  - icon: ':warning:'
     path: tests/test_string.nim
     title: tests/test_string.nim
   - icon: ':warning:'
@@ -151,6 +157,8 @@ data:
   isVerificationFile: false
   path: atcoder/extra/other/internal_sugar.nim
   requiredBy:
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/chaemon_header.nim
   - tests/test_string.nim
   - tests/test_string.nim
   timestamp: '1970-01-01 00:00:00+00:00'

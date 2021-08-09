@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
   - icon: ':question:'
@@ -29,10 +29,10 @@ data:
     \ d.merge(u, v)\n  else:\n    if d.same(u, v):\n      echo 1\n    else:\n    \
     \  echo 0\n\n"
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/dsu.nim
   - atcoder/dsu.nim
   - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/dsu.nim
   isVerificationFile: false
   path: test/example/dsu_practice.nim
   requiredBy: []

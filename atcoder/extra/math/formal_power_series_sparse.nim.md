@@ -85,8 +85,8 @@ data:
   dependsOn:
   - atcoder/element_concepts.nim
   - atcoder/extra/math/formal_power_series.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/math/formal_power_series.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/math/formal_power_series_sparse.nim
   requiredBy:

@@ -147,17 +147,17 @@ data:
     \ a, b:seq[T]):auto {.inline.} = convolution(a, b)\n"
   dependsOn:
   - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
-  - atcoder/convolution.nim
   - atcoder/element_concepts.nim
+  - atcoder/modint.nim
   - atcoder/internal_math.nim
-  - atcoder/internal_bit.nim
   - atcoder/generate_definitions.nim
-  - atcoder/internal_math.nim
+  - atcoder/convolution.nim
   - atcoder/internal_bit.nim
   - atcoder/modint.nim
-  - atcoder/convolution.nim
   - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
+  - atcoder/convolution.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: false
   path: atcoder/extra/math/particular_mod_convolution.nim
   requiredBy:

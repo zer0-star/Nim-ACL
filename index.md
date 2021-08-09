@@ -6,7 +6,7 @@ data:
     - icon: ':question:'
       path: atcoder/convolution.nim
       title: atcoder/convolution.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/dsu.nim
       title: atcoder/dsu.nim
     - icon: ':warning:'
@@ -135,7 +135,7 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/graph/chromatic_number.nim
       title: atcoder/extra/graph/chromatic_number.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/chu_liu_edmonds.nim
       title: atcoder/extra/graph/chu_liu_edmonds.nim
     - icon: ':heavy_check_mark:'
@@ -404,7 +404,7 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
       title: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/structure/skew_heap.nim
       title: atcoder/extra/structure/skew_heap.nim
     - icon: ':x:'
@@ -789,7 +789,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/extra/graph/yosupo_cycle_detection_test.nim
       title: verify/extra/graph/yosupo_cycle_detection_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/graph/yosupo_directedmst_test.nim
       title: verify/extra/graph/yosupo_directedmst_test.nim
     - icon: ':x:'
