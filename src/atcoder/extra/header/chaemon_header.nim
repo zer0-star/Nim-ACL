@@ -1,10 +1,17 @@
 when not declared ATCODER_CHAEMON_HEADER_HPP:
   const ATCODER_CHAEMON_HEADER_HPP* = 1
   {.hints:off warnings:off assertions:on optimization:speed.}
-  {.checks:off.}
   when declared(DO_CHECK):
     when DO_CHECK:
+      static: echo "check is on"
       {.checks:on.}
+    else:
+      static: echo "check is off"
+      {.checks:off.}
+  else:
+    static: echo "check is on"
+    {.checks:on.}
+
   import std/algorithm as algorithm_lib
   import std/sequtils as sequtils_lib
   import std/macros as macros_lib
@@ -17,8 +24,8 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   import std/bitops as bitops_lib
   import std/streams as streams_lib
 
-#  import atcoder/extra/other/internal_sugar
-  import std/sugar
+  import atcoder/extra/other/internal_sugar
+#  import std/sugar
   import atcoder/extra/other/reader
   import atcoder/extra/other/sliceutils
   import atcoder/extra/other/assignment_operator

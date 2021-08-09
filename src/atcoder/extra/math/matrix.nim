@@ -1,6 +1,6 @@
 when not declared ATCODER_MATRIX_HPP:
   const ATCODER_MATRIX_HPP* = 1
-  import std/sequtils, std/sugar
+  import std/sequtils
   import atcoder/element_concepts, atcoder/generate_definitions
 
   type Matrix*[T; p:static[tuple]] = seq[seq[T]]
@@ -10,29 +10,31 @@ when not declared ATCODER_MATRIX_HPP:
   proc width*(self: Matrix):int = self[0].len
   template getZero*[M:Matrix](self:typedesc[M] or M):auto =
     block:
-      let zero = M.p.zero
+      let zero = M.p[0]
       zero()
   template getUnit*[M:Matrix](self:typedesc[M] or M):auto =
     block:
-      let unit = M.p.unit
+      let unit = M.p[1]
       unit()
   template isZero*[M:Matrix](self:typedesc[M] or M, a:M.T):bool =
     block:
-      let isZero = M.p.isZero
+      let isZero = M.p[2]
       isZero(a)
 
   proc init*[M:Matrix](self:typedesc[M] or M, n, m:int):M =
     result = newSeqWith(n, newSeqWith(m, M.getZero()))
   proc init*[M:Matrix](self:typedesc[M] or M, n:int):M = M.init(n, n)
 
-  template MatrixType*(T:typedesc):auto = Matrix[T, (zero:()=>T(0), unit:()=>T(1), isZero:(a:T)=>(a == T(0)))]
-  template MatrixType*(T:typedesc, z0:static[()->T], u0:static[()->T]):auto = Matrix[T, (zero:z0, unit:u0, isZero:(a:T)=>(a == z0()))]
-  template MatrixType*(T:typedesc, z0:static[()->T], u0:static[()->T], iz0:static[(T)->bool]):auto = Matrix[T, (zero:z0, unit:u0, isZero:iz0)]
+  template MatrixType*(T:typedesc, zero:static[proc():T], unit:static[proc():T], isZero:static[proc(a:T):bool]):auto = Matrix[T, (zero, unit, isZero)]
+  template MatrixType*(T:typedesc):auto =
+    MatrixType(T, zero = proc():T = T(0), unit = proc():T = T(1), isZero = (a:T)=>(a == T(0)))
+  template MatrixType*(T:typedesc, zero:static[proc():T], unit:static[proc():T]):auto =
+    MatrixType(T, zero, unit, proc(a:T):bool = (a == zero()))
 
-  proc initMatrix*[T:RingElem](n, m:int, z:static[()->T], u:static[()->T]):auto =
+  proc initMatrix*[T:RingElem](n, m:int, z:static[proc():T], u:static[proc():T]):auto =
     type M = MatrixType(T, z, u)
     return M.init(n, m)
-  proc initMatrix*[T:RingElem](n:int, z:static[()->T], u:static[()->T]):auto = 
+  proc initMatrix*[T:RingElem](n:int, z:static[proc():T], u:static[proc():T]):auto = 
     type M = MatrixType(T, z, u)
     return M.init(n, n)
 

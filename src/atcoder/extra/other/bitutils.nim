@@ -19,8 +19,10 @@ when not declared ATCODER_BITUTILS_HPP:
   proc `and`*[B:SomeInteger](b:B, v:openArray[int]):B = b and seqToBits[B](v)
   proc `or`*[B:SomeInteger](b:B, v:openArray[int]):B = b or seqToBits[B](v)
   proc `xor`*[B:SomeInteger](b:B, v:openArray[int]):B = b xor seqToBits[B](v)
-  proc `&`*(a:SomeInteger, b:SomeInteger or openarray[int]):auto = a and b
-  proc `|`*(a:SomeInteger, b:SomeInteger or openarray[int]):auto = a or b
+  proc `&`*[B:SomeInteger](a:B, b:openarray[int]):auto = a and b
+  proc `|`*[B:SomeInteger](a:B, b:openarray[int]):auto = a or b
+  proc `&`*(a:SomeInteger, b:SomeInteger):auto = a and b
+  proc `|`*(a:SomeInteger, b:SomeInteger):auto = a or b
 
   proc `@`*[B:SomeInteger](b:B): seq[int] =
     result = newSeq[int]()

@@ -56,11 +56,8 @@ when not declared ATCODER_SOLVEPROC_HPP:
     var discardablePragma = newNimNode(nnkPragma).add(ident("discardable"))
     var mainParams = params
     mainParams[0] = ident"string"
-    var identDefs = newNimNode(nnkIdentDefs)
-    identDefs.add(ident"output_stdout")
-    identDefs.add(newNimNode(nnkBracketExpr).add(ident"static").add(ident"bool"))
-    identDefs.add(ident"true")
-    mainParams.add(identDefs)
+    var identDefs = newNimNode(nnkIdentDefs).add(ident"output_stdout").add(newNimNode(nnkBracketExpr).add(ident"static").add(ident"bool")).add(ident"true")
+#    mainParams.add(identDefs)
     var mainProcDef = newNimNode(nnkProcDef).add(ident"solve").add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams)).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())
     result.add(mainProcDef)
     if hasNaive:
@@ -100,4 +97,4 @@ when not declared ATCODER_SOLVEPROC_HPP:
       discard
     if hasTest:
       discard
-#    echo result.repr
+    echo result.repr

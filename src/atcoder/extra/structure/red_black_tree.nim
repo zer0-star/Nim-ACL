@@ -2,7 +2,7 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
   const ATCODER_RED_BLACK_TREE_HPP* = 1
   import std/sugar
 #  {.experimental: "codeReordering".}
-  {.push inline.}
+  {.push inline, discardable.}
   type
     Color* = enum red, black
     RedBlackTreeNode*[K; Countable] = ref object
@@ -28,22 +28,13 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
     result.key = key
     self.next_id += 1
 
-  proc initRedBlackTree*[K](root:RedBlackTreeNode[K, false] = nil): RedBlackTree[K, false] =
+  proc initRedBlackTree*[K](root:RedBlackTreeNode[K, void] = nil): RedBlackTree[K, void] =
     var leaf = RedBlackTreeNode[K](color: Color.black, id: -1)
     leaf.l = leaf;leaf.r = leaf
     result = RedBlackTree[K](root: root, next_id: 0, leaf:leaf)
-  proc initCountableRedBlackTree*[K](root:RedBlackTreeNode[K, true] = nil): RedBlackTree[K, true] =
+  proc initCountableRedBlackTree*[K](root:RedBlackTreeNode[K, int] = nil): RedBlackTree[K, int] =
     result = initRedBlackTree[K](root)
     result.cnt = 1
-
-#  proc isLeaf*[Node:RedBlackTreeNode](self: Node):bool =
-#    assert self != nil
-    #### type1
-  #  result = self.l == self
-  #  if result: assert(self.r == self)
-    #### type 2
-#    return self.id == -1
-
 
   include atcoder/extra/structure/binary_tree_node_utils
 
@@ -68,7 +59,7 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
     parent.p = right
     self.update(parent)
     self.update(right)
-#    self.update(right.p)
+
   proc rotateRight[T:RedBlackTree](self: var T, parent: T.Node) =
     if parent == nil: return
     var left = parent.l
@@ -82,7 +73,6 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
     parent.p = left
     self.update(parent)
     self.update(left)
-#    self.update(left.p)
 
   # insert {{{
   proc fixInsert[T:RedBlackTree](self: var T, node: T.Node) =
@@ -205,8 +195,6 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
           parent = child.p
     child.color = Color.black
 
-
-  
   proc write*[T:RedBlackTree](rbt: T, self: T.Node, h = 0) =
     for i in 0..<h: stderr.write " | "
     if self == rbt.leaf:
@@ -228,63 +216,74 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
     stderr.write "======= RB-TREE =============\n"
     self.write(self.root, 0)
     stderr.write "======= END ==========\n"
+  proc checkTree*[T:RedBlackTree](self: T) =
+    doAssert self.root.color == Color.black
+    var black_ct_s = initHashSet[int]()
+    proc checkTreeSub(node:T.Node, black_ct:int) =
+      var black_ct = black_ct
+      if node.color == Color.black: black_ct.inc
+      if node == self.leaf:
+        black_ct_s.incl(black_ct)
+        return
+      if node.color == Color.red:
+        doAssert node.l.color == Color.black and node.r.color == Color.black
+      checkTreeSub(node.l, black_ct)
+      checkTreeSub(node.r, black_ct)
+    checkTreeSub(self.root, 0)
+    doAssert black_ct_s.len == 1
+
   
-  proc erase*[T:RedBlackTree](self: var T, node: T.Node) =
-    # TODO
-#    if node == nil:
-#      echo "warning: erase nil"
-#    if node == self.End or node == nil or node.isLeaf: return
+  proc erase*[T:RedBlackTree](self: var T, node: T.Node):T.Node =
     var node = node
-  
     self.size.dec
-  
+    var succ = node.succ
     if node.l != self.leaf and node.r != self.leaf:
-      let pred = node.pred
-      swap(node.color, pred.color)
+      swap(node.color, succ.color)
       when T.Countable isnot void:
-        swap(node.cnt, pred.cnt)
-      # swap node and pred
-      if node.l == pred:
-        let tmp = pred.r
-        pred.r = node.r
+        swap(node.cnt, succ.cnt)
+      # swap node and succ
+      if node.r == succ:
+        let tmp = succ.l
+        succ.l = node.l
         if node.l != self.leaf:
-          node.l.p = pred
+          node.l.p = succ
         if node.r != self.leaf:
-          node.r.p = pred
-        node.l = pred.l
-        node.r = tmp
-        pred.l = node
-        pred.p = node.p
-        node.p = pred
-        if pred.p != nil:
-          if pred.p.l == node:
-            pred.p.l = pred
-          if pred.p.r == node:
-            pred.p.r = pred
+          node.r.p = succ
+        node.l = tmp
+        node.r = succ.r
+        succ.r = node
+        succ.p = node.p
+        node.p = succ
+        if succ.p != nil:
+          if succ.p.l == node:
+            succ.p.l = succ
+          if succ.p.r == node:
+            succ.p.r = succ
       else:
-        swap(node.p, pred.p)
-        swap(node.l, pred.l)
-        swap(node.r, pred.r)
+        swap(node.p, succ.p)
+        swap(node.l, succ.l)
+        swap(node.r, succ.r)
         if node.p != nil:
-          if node.p.l == pred:
+          if node.p.l == succ:
             node.p.l = node
-          if node.p.r == pred:
+          if node.p.r == succ:
             node.p.r = node
         if node.l != self.leaf:
           node.l.p = node
         if node.r != self.leaf:
           node.r.p = node
-        if pred.p != nil:
-          if pred.p.l == node:
-            pred.p.l = pred
-          if pred.p.r == node:
-            pred.p.r = pred
-        if pred.l != self.leaf:
-          pred.l.p = pred
-        if pred.r != self.leaf:
-          pred.r.p = pred
+        if succ.p != nil:
+          if succ.p.l == node:
+            succ.p.l = succ
+          if succ.p.r == node:
+            succ.p.r = succ
+        if succ.l != self.leaf:
+          succ.l.p = succ
+        if succ.r != self.leaf:
+          succ.r.p = succ
       if self.root == node:
-        self.root = pred
+        self.root = succ
+
   #    self.write()
   #    node.key = pred.key
   #    node.value = pred.value
@@ -321,6 +320,7 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
         self.update_parents(node.p)
       if node.color == Color.black:
         self.fixErase(self.leaf, node.p)
+    return succ
   # }}}
   
   proc len*[T:RedBlackTree](self: T): int =

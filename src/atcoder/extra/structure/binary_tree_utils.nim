@@ -1,6 +1,7 @@
 when not declared ATCODER_BINARY_TREE_UTILS_HPP:
   const ATCODER_BINARY_TREE_UTILS_HPP* = 1
   include atcoder/extra/structure/binary_tree_node_utils
+  {.push discardable inline.}
   type SomeSortedTree* = concept x, type T
     T.Tree is BinaryTree
     T.K is typedesc
@@ -46,7 +47,7 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
       if t2.isLeaf: return t
       else: return t2
 
-  proc lower_bound*[T:SomeSortedTree](self:var T, x:T.K):auto =
+  proc lower_bound*[T:SomeSortedTree](self:var T, x:T.K):T.Node =
     assert self.root != nil
     self.lower_bound(self.root, x)
 
@@ -77,20 +78,24 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
   proc contains*[T:SomeSortedTree](self: var T, x:T.K):bool =
     self.find(x) != self.End
 
-  proc insert*[T:SomeSortedMultiSet](self: var T, x:T.K) =
+  proc insert*[T:SomeSortedMultiSet](self: var T, x:T.K):T.Node =
     T.Tree(self).insert(self.upper_bound(x), x)
-  proc insert*[T:SomeSortedMultiMap](self: var T, x:(T.K, T.V)) =
+  proc insert*[T:SomeSortedMultiMap](self: var T, x:(T.K, T.V)):T.Node =
     T.Tree(self).insert(self.upper_bound(x[0]), x)
 
-  proc insert*[T:SomeSortedSet](self: var T, x:T.K) =
+  proc insert*[T:SomeSortedSet](self: var T, x:T.K):T.Node =
     var t = self.lower_bound(x)
-    if t != self.End and t.key == x: return
-    T.Tree(self).insert(t, x)
-  proc insert*[T:SomeSortedMap](self: var T, x:(T.K, T.V)) =
+    if t != self.End and t.key == x: return t
+    else: return T.Tree(self).insert(t, x)
+  proc insert*[T:SomeSortedMap](self: var T, x:(T.K, T.V)):T.Node =
     var it = self.lower_bound(x[0])
-    if it != self.End and it.key[0] == x[0]: it.key[1] = x[1]
-    else:
-      T.Tree(self).insert(it, x)
+    if it != self.End and it.key[0] == x[0]: it.key[1] = x[1]; return it
+    else: return T.Tree(self).insert(it, x)
+  proc incl*[T:SomeSortedSet | SomeSortedMultiSet](self:var T, x:T.K):T.Node =
+    self.insert(x)
+  proc incl*[T:SomeSortedMap | SomeSortedMultiMap](self:var T, x:(T.K, T.V)):T.Node =
+    self.insert(x)
+
   template getAddr*[T:SomeSortedMap](self:var T, x:T.K):auto =
     mixin default
     var t = self.lower_bound(x)
@@ -106,13 +111,15 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
     var t = self.getAddr(x)
     t[] = v
 
-  proc erase*[T:SomeSortedTree](self: var T, x:T.K) =
+  proc erase*[T:SomeSortedTree](self: var T, x:T.K):T.Node =
     mixin erase
     var t = self.lower_bound(x)
-    if t == self.End or self.getKey(t) != x: return
-    T.Tree(self).erase(t)
-  proc erase*[T:SomeSortedTree](self: var T, t:T.Node) =
-    T.Tree(self).erase(t)
+    if t == self.End or self.getKey(t) != x: return self.End
+    else: return T.Tree(self).erase(t)
+  proc erase*[T:SomeSortedTree](self: var T, t:T.Node):T.Node = T.Tree(self).erase(t)
+  proc excl*[T:SomeSortedTree](self: var T, x:T.K):T.Node = self.erase(x)
+  proc excl*[T:SomeSortedTree](self: var T, t:T.Node):T.Node = self.erase(t)
+
   proc kth_element*[T:SomeSortedTree](self: var T, t:T.Node, k:int):T.Node =
 #    static:
 #      assert T.Tree.Countable isnot void
@@ -146,3 +153,4 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
       yield it.key
       it.inc
   proc `end`*[Tree:SomeSortedTree](self:Tree):Tree.Node = self.End
+  {.pop.}

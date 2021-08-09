@@ -26,6 +26,7 @@ when not declared ATCODER_DEVISOR_HPP:
         result.add((p, e))
       if p == 2: p = 3
       else: p += 2
+  # どこかにバグがあるかも? https://atcoder.jp/contests/abc212/submissions/24699873
   proc divisor*(f:openArray[(int,int)]):seq[int] = # prime_factorization => divisor
     result = @[1]
     for (p, e) in f:

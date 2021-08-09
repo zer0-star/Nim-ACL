@@ -58,6 +58,7 @@ when not declared ATCODER_MODINT_HPP:
           if v < 0: v += T.mod
           return T(a:v.uint32)
   proc unit*[T:ModInt](t:typedesc[T] or T):T = T.init(1)
+
   template initModInt*(v: SomeInteger or ModInt; M: static[int] = 1_000_000_007): auto =
     StaticModInt[M].init(v)
 

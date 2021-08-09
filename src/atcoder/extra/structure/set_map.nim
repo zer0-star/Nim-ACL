@@ -2,11 +2,11 @@ when not declared ATCODER_SET_MAP_HPP:
   const ATCODER_SET_MAP_HPP* = 1
   const USE_RED_BLACK_TREE = true
   {.push discardable inline.}
+  import std/strutils
   include atcoder/extra/structure/binary_tree_utils
   type MULTI_TRUE = int32
   type MULTI_FALSE = void
   type SortedTree*[Tree, Node, multi, K, V; p:static[tuple]] = object of Tree
-#    comp*: proc(a, b:K):bool
     End*: Node
 
   when USE_RED_BLACK_TREE:
@@ -17,16 +17,6 @@ when not declared ATCODER_SET_MAP_HPP:
       SortedMapType*[K; V:not void; Countable; p:static[tuple]] = SortedTree[RedBlackTree[(K, V), Countable], RedBlackTreeNode[(K, V), Countable], MULTI_FALSE, K, V, p]
       SortedMultiMapType*[K; V:not void; Countable; p:static[tuple]] = SortedTree[RedBlackTree[(K, V), Countable], RedBlackTreeNode[(K, V), Countable], MULTI_TRUE, K, V, p]
 
-#      SortedSet*[K] = SortedSetType[K, void]
-#      SortedMultiSet*[K] = SortedMultiSetType[K, void]
-#      SortedMap*[K; V:not void] = SortedMapType[K, V, void]
-#      SortedMultiMap*[K; V:not void] = SortedMultiMapType[K, V, void]
-#      CountableSortedSet*[K] = SortedSetType[K, int]
-#      CountableSortedMultiSet*[K] = SortedMultiSetType[K, int]
-#      CountableSortedMap*[K; V:not void] = SortedMapType[K, V, int]
-#      CountableSortedMultiMap*[K; V:not void] = SortedMultiMapType[K, V, int]
-
-#    type SetOrMap = SortedMultiSet or SortedSet or SortedMultiMap or SortedMap or CountableSortedMultiSet or CountableSortedSet or CountableSortedMultiMap or CountableSortedMap or SortedTree
     type SetOrMap = SortedMultiSetType or SortedSetType or SortedMultiMapType or SortedMapType
     proc init*[Tree:SetOrMap](self: var Tree) =
       when Tree.V is void:
@@ -45,25 +35,6 @@ when not declared ATCODER_SET_MAP_HPP:
       self.End = End
       self.leaf = leaf
       self.next_id = 0
-
-    proc `$`*[T:SetOrMap](self: T): string =
-      result = "{"
-      var node = self.root
-      var stack: seq[T.Node] = @[]
-      while stack.len() != 0 or not node.isLeaf:
-        if not node.isLeaf:
-          if node != self.End:
-            stack.add(node)
-          node = node.l
-        else:
-          node = stack.pop()
-          when T.V is void:
-            result &= $(node.key) & " "
-          else:
-            result &= $(node.key[0]) & ":" & $(node.key[1])
-          result &= ","
-          node = node.r
-      result &= "}"
 
   else:
     include atcoder/extra/structure/randomized_binary_search_tree_with_parent
@@ -86,15 +57,6 @@ when not declared ATCODER_SET_MAP_HPP:
       self.End = end_node
       self.root = self.End
   
-#    proc initSortedMultiSet*[K](comp:static[proc(a, b:T.K):bool] = nil):SortedMultiSet[K] =
-#      result.init(comp)
-#    proc initSortedSet*[K](comp:proc(a, b:T.K):bool = nil):SortedSet[K] =
-#      result.init(comp)
-#    proc initSortedMultiMap*[K, V](comp:proc(a, b:T.K):bool = nil):SortedMultiMap[K, V] =
-#      result.init(comp)
-#    proc initSortedMap*[K, V](comp:proc(a, b:T.K):bool = nil):SortedMap[K, V] =
-#      result.init(comp)
-  
   #  RBST(sz, [&](T x, T y) { return x; }, T()) {}
     
     proc `*`*[Node:RBSTNode](it:Node):auto = it.key
@@ -104,34 +66,56 @@ when not declared ATCODER_SET_MAP_HPP:
     proc check_tree*(self:SetOrMap) =
       doAssert self.len + 1 == self.check_tree()
   
-    proc `$`*(self: SetOrMap):string = self.Tree(self).to_string(self.root)
+#    proc `$`*(self: SetOrMap):string = self.Tree(self).to_string(self.root)
   {.pop.}
 
-
-  template SortedSet*(K:typedesc, f:static[proc(a, b:K):bool] = nil):typedesc = SortedSetType[K, void, (f,)]
-  template SortedMultiSet*(K:typedesc, f:static[proc(a, b:K):bool] = nil):typedesc = SortedMultiSetType[K, void, (f,)]
-  template SortedMap*(K:typedesc; V:typedesc[not void], f:static[proc(a, b:K):bool] = nil):typedesc = SortedMapType[K, V, void, (f,)]
-  template SortedMultiMap*(K:typedesc; V:typedesc[not void], f:static[proc(a, b:K):bool] = nil):typedesc = SortedMultiMapType[K, V, void, (f,)]
-  template CountableSortedSet*(K:typedesc, f:static[proc(a, b:K):bool] = nil):typedesc = SortedSetType[K, int, (f,)]
-  template CountableSortedMultiSet*(K:typedesc, f:static[proc(a, b:K):bool] = nil):typedesc = SortedMultiSetType[K, int, (f,)]
-  template CountableSortedMap*(K:typedesc; V:typedesc[not void], f:static[proc(a, b:K):bool] = nil):typedesc = SortedMapType[K, V, int, (f,)]
-  template CountableSortedMultiMap*(K:typedesc; V:typedesc[not void], f:static[proc(a, b:K):bool] = nil):typedesc = SortedMultiMapType[K, V, int, (f,)]
+  template SortedSet*(K:typedesc, countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):typedesc =
+    SortedSetType[K, when countable: int else: void, (comp,)]
+  template SortedMultiSet*(K:typedesc, countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):typedesc =
+    SortedMultiSetType[K, when countable: int else: void, (comp,)]
+  template SortedMap*(K:typedesc; V:typedesc[not void], countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):typedesc =
+    SortedMapType[K, V, when countable: int else: void, (comp,)]
+  template SortedMultiMap*(K:typedesc; V:typedesc[not void], countable: static[bool] = false, comp:static[proc(a, b:K):bool] = nil):typedesc =
+    SortedMultiMapType[K, V, when countable: static[bool] = false, (comp,)]
 
   proc default*[T:SetOrMap](self:typedesc[T]):T =
     result.init()
-  proc initSortedSet*(K:typedesc, isCountable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
-    var r: SortedSetType[K, when isCountable: int else: void, (comp,)]
+  proc initSortedSet*(K:typedesc, countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
+    var r: SortedSetType[K, when countable: int else: void, (comp,)]
     r.init()
     return r
-  proc initSortedMultiSet*(K:typedesc, isCountable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
-    var r: SortedMultiSetType[K, when isCountable: int else: void, (comp,)]
+  proc initSortedMultiSet*(K:typedesc, countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
+    var r: SortedMultiSetType[K, when countable: int else: void, (comp,)]
     r.init()
     return r
-  proc initSortedMap*(K:typedesc, V:typedesc[not void], isCountable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
-    var r: SortedMapType[K, V, when isCountable: int else: void, (comp,)]
+  proc initSortedMap*(K:typedesc, V:typedesc[not void], countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
+    var r: SortedMapType[K, V, when countable: int else: void, (comp,)]
     r.init()
     return r
-  proc initSortedMultiMap*(K:typedesc, V:typedesc[not void], isCountable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
-    var r: SortedMultiMapType[K, V, when isCountable: int else: void, (comp,)]
+  proc initSortedMultiMap*(K:typedesc, V:typedesc[not void], countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
+    var r: SortedMultiMapType[K, V, when countable: int else: void, (comp,)]
     r.init()
     return r
+
+  proc `$`*(self: SetOrMap): string =
+    var a = newSeq[string]()
+    var node = self.root
+    var stack: seq[self.Node] = @[]
+    while stack.len() != 0 or not node.isLeaf:
+      if not node.isLeaf:
+        if node != self.End:
+          stack.add(node)
+        node = node.l
+      else:
+        node = stack.pop()
+        when self.V is void:
+          var k = ""
+          k.addQuoted(node.key)
+          a &= k
+        else:
+          var k, v = ""
+          k.addQuoted(node.key[0])
+          v.addQuoted(node.key[1])
+          a &= k & ": " & v
+        node = node.r
+    return "{" & a.join(", ") & "}"

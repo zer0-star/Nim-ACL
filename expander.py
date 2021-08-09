@@ -65,7 +65,6 @@ def read_source(f: str, prefix: str, defined: set, lib_path, start=True) -> List
                 for fname in matched.group(1).split(","):
                     fname_orig = fname = fname.strip()
                     if fname[0] == '\"':
-                        print(fname)
                         assert fname[-1] == '\"'
                         fname = fname[1:-1]
                     if ATCODER_DIR.match(fname):
@@ -74,8 +73,6 @@ def read_source(f: str, prefix: str, defined: set, lib_path, start=True) -> List
                         if not fname.endswith(".nim"):
                             fname += ".nim"
                         spaces = indent_level(line)
-                        print(fname)
-                        print(spaces)
                         result.extend(read_source(fname, " " * spaces, defined, lib_path, False))
                     else:
                         spaces = indent_level(line)
