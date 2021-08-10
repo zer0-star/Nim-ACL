@@ -122,6 +122,6 @@ when not declared ATCODER_MONTGOMERY_MODINT_HPP:
   template useDynamicMontgomery*(name, M) =
     generateConverter(name, int, DynamicLazyMontgomeryModInt[M])
 
-  useStaticMontgomery(modint998244353, 998244353)
-  useStaticMontgomery(modint1000000007, 1000000007)
-  useDynamicMontgomery(modint, -1)
+  useStaticMontgomery(modint_montgomery_998244353, 998244353)
+  useStaticMontgomery(modint_montgomery_1000000007, 1000000007)
+  useDynamicMontgomery(modint_montgomery, -1)

@@ -48,6 +48,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
         now *= sum_e[bsf(not s)]
   
   proc butterfly_inv*[mint:FiniteFieldElem](a:var seq[mint]) =
+    mixin val
     const g = primitive_root[mint.mod]()
     let
       n = a.len

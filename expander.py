@@ -38,71 +38,6 @@ def strip_as(line: str) -> str:
     return line
 
 
-def read_source(f: str, prefix: str, defined: set, lib_path, start=True) -> List[str]:
-    """
-    stringで渡されたsourceを読み。import, includeが出てきたら深堀りする
-    深さ優先でimport/includeを調べる
-    """
-    if f in defined:
-        logger.info('already included {:s}, skip'.format(f))
-        return []
-    defined.add(f)
-
-    logger.info('include {:s}'.format(f))
-    
-    if start:
-        source = open(f, encoding="utf8", errors='ignore').read()
-    else:
-        source = open(str(lib_path / f), encoding="utf8", errors='ignore').read()
-
-    result = []
-    for line in source.splitlines():
-        if WHEN_STATEMENT.match(line):
-            result.append(line)
-        else:
-            matched = ATCODER_INCLUDE.match(line)
-            if matched:
-                for fname in matched.group(1).split(","):
-                    fname_orig = fname = fname.strip()
-                    if fname[0] == '\"':
-                        assert fname[-1] == '\"'
-                        fname = fname[1:-1]
-                    if ATCODER_DIR.match(fname):
-                        fname = strip_as(fname)
-                        fname = "src/" + fname
-                        if not fname.endswith(".nim"):
-                            fname += ".nim"
-                        spaces = indent_level(line)
-                        result.extend(read_source(fname, " " * spaces, defined, lib_path, False))
-                    else:
-                        spaces = indent_level(line)
-                        result.extend([" " * spaces + "import " + fname_orig])
-            else:
-                result.append(line)
-    if not start:
-        result.append("  discard")
-    result2 = []
-    for line in result:
-        result2.append(prefix + line)
-    result = result2
-    return result
-
-
-#def dfs(f: str, level: int, defined: set, lib_path) -> List[str]:
-#    """
-#    深さ優先でimport/includeを調べる
-#    """
-#    if f in defined:
-#        logger.info('already included {:s}, skip'.format(f))
-#        return []
-#    defined.add(f)
-#
-#    logger.info('include {:s}'.format(f))
-#
-#    source = open(str(lib_path / f), encoding="utf8", errors='ignore').read()
-#    return read_source(source, level, defined, lib_path)
-
-
 def main():
     """
     メイン関数
@@ -117,6 +52,8 @@ def main():
     parser.add_argument('source', help='Source File')
     parser.add_argument('-c', '--console',
                         action='store_true', help='Print to Console')
+    parser.add_argument('-s', '--single-line',
+                        action='store_true', help='Single line import')
     parser.add_argument('--lib', help='Path to Atcoder Library')
     opts = parser.parse_args()
 
@@ -125,7 +62,73 @@ def main():
     elif 'NIM_INCLUDE_PATH' in environ:
         lib_path = Path(environ['NIM_INCLUDE_PATH'])
 #    source = open(opts.source, encoding="utf8", errors='ignore').read()
-    result = read_source(opts.source, "", set(), lib_path)
+    
+    def read_source(f: str, prefix: str, defined: set, lib_path, start=True) -> List[str]:
+        """
+        stringで渡されたsourceを読み。import, includeが出てきたら深堀りする
+        深さ優先でimport/includeを調べる
+        """
+        if f in defined:
+            logger.info('already included {:s}, skip'.format(f))
+            return []
+        defined.add(f)
+    
+        logger.info('include {:s}'.format(f))
+        
+        if start:
+            source = open(f, encoding="utf8", errors='ignore').read()
+        else:
+            source = open(str(lib_path / f), encoding="utf8", errors='ignore').read()
+    
+        result = []
+        for line in source.splitlines():
+            if WHEN_STATEMENT.match(line):
+                result.append(line)
+            else:
+                matched = ATCODER_INCLUDE.match(line)
+                if matched:
+                    for fname in matched.group(1).split(","):
+                        fname_orig = fname = fname.strip()
+                        if fname[0] == '\"':
+                            assert fname[-1] == '\"'
+                            fname = fname[1:-1]
+                        if ATCODER_DIR.match(fname):
+                            fname = strip_as(fname)
+                            real_fname = fname
+                            fname = "src/" + fname
+                            if not fname.endswith(".nim"):
+                                fname += ".nim"
+                            spaces = indent_level(line)
+                            s = read_source(fname, " " * spaces, defined,
+                                            lib_path, False)
+                            if opts.single_line and start:
+                                s0 = ""
+                                for l in s:
+                                    l = l.replace("\\", "\\\\")
+                                    l = l.replace("\"", "\\\"")
+                                    s0 += l
+                                    s0 += '\\n'
+                                result.append("ImportExpand {} <=== \"{}\"".format(real_fname, s0))
+                            else:
+                                import_message = "#[" + " " * spaces + line.strip() + "]#"
+                                result.append(import_message)
+                                result.extend(s)
+                        else:
+                            spaces = indent_level(line)
+                            result.extend([" " * spaces + "import " + fname_orig])
+                else:
+                    result.append(line)
+        if not start:
+            result.append("  discard")
+        result2 = []
+        for line in result:
+            result2.append(prefix + line)
+        result = result2
+        return result
+    result = []
+    if opts.single_line:
+        result.append("import macros;macro ImportExpand(s:untyped):untyped = parseStmt($s[2])")
+    result.extend(read_source(opts.source, "", set(), lib_path))
 
     output = '\n'.join(result) + '\n'
     if opts.console:

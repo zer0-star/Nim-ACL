@@ -83,7 +83,8 @@ when not declared ATCODER_GRAPH_TEMPLATE_HPP:
   iterator adj*[T, U](g:Graph[T, U, ADJTYPE_ITER], u:U):tuple[dst:U, weight:T] =
     var iter:type(g.adj_iter)
     iter.deepCopy(g.adj_iter)
-    for e in iter(u): yield e
+    for e in iter(u):
+      yield e
 
   iterator adj_by_id*[G:Graph](g:G, u:int):auto =
     when G.adjType is ADJTYPE_SEQ:
