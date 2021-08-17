@@ -56,23 +56,22 @@ when not declared ATCODER_SOLVEPROC_HPP:
     var discardablePragma = newNimNode(nnkPragma).add(ident("discardable"))
     var mainParams = params
     mainParams[0] = ident"string"
+#    var identDefsSub = newNimNode(nnkIdentDefs).add(ident"output_stdout").add(newNimNode(nnkBracketExpr).add(ident"static").add(ident"bool")).add(ident"true")
     var identDefs = newNimNode(nnkIdentDefs).add(ident"output_stdout").add(newNimNode(nnkBracketExpr).add(ident"static").add(ident"bool")).add(ident"true")
-#    mainParams.add(identDefs)
+#    var identDefs = newNimNode(nnkIdentDefs).add(ident"output_stdout").add(newNimNode(nnkBracketExpr).add(ident"static").add(ident"bool")).add(newEmptyNode())
+    mainParams.add(identDefs)
     var mainProcDef = newNimNode(nnkProcDef).add(ident"solve").add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams)).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())
     result.add(mainProcDef)
     if hasNaive:
       var naiveProcDef = newNimNode(nnkProcDef).add(ident"solve_naive").add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams)).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())
       result.add(naiveProcDef)
 
-
     var naiveParams = mainParams
     result.add newProc(name = ident(procName), params = mainParams, body = mainBody, pragmas = discardablePragma)
-#    echo mainParams.repr
     if hasNaive:
       let naiveProcName = procName & "naive"
       naiveBody = mainBodyHeader().add(newBlockStmt(newEmptyNode(), naiveBody))
       result.add newProc(name = ident(naiveProcName), params = naiveParams, body = naiveBody, pragmas = discardablePragma)
-#      var b = newNimNode(nnkInfix)
       var test_body = newStmtList()
       var var_names = newSeq[string]()
       for procName in [procName, procName & "_naive"]:
@@ -97,4 +96,3 @@ when not declared ATCODER_SOLVEPROC_HPP:
       discard
     if hasTest:
       discard
-    echo result.repr

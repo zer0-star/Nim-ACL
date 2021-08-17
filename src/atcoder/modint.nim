@@ -9,7 +9,9 @@ when not declared ATCODER_MODINT_HPP:
     DynamicModInt*[T: static[int]] = object
       a:uint32
 
-  type ModInt* = StaticModInt or DynamicModInt
+#  type ModInt* = StaticModInt or DynamicModInt
+  type ModInt* = concept x, type T
+    T is StaticModInt or T is DynamicModInt
 
   proc isStaticModInt*(T:typedesc):bool = T is StaticModInt
   proc isDynamicModInt*(T:typedesc):bool = T is DynamicModInt
@@ -23,10 +25,10 @@ when not declared ATCODER_MODINT_HPP:
     return Barrett_of_DynamicModInt.addr
   proc getMod*[T:static[int]](t:typedesc[DynamicModInt[T]]):uint32 {.inline.} =
     (t.getBarrett)[].m.uint32
-  proc setMod*[T:static[int]](t:typedesc[DynamicModInt[T]], M:SomeInteger){.used inline.} =
+  proc setMod*[T:static[int]](t:typedesc[DynamicModInt[T]], M:SomeInteger){.inline.} =
     (t.getBarrett)[] = initBarrett(M.uint)
 
-  proc `$`*(m: ModInt): string {.inline.} = $(m.val())
+  proc `$`*(m: StaticModInt or DynamicModInt): string {.inline.} = $(m.val())
 
   template umod*[T:ModInt](self: typedesc[T] or T):uint32 =
     when T is typedesc:
@@ -38,7 +40,7 @@ when not declared ATCODER_MODINT_HPP:
         static: assert false
     else: T.umod
 
-  proc `mod`*[T:ModInt](self:typedesc[T] or T):int = T.umod.int
+  template `mod`*[T:ModInt](self:typedesc[T] or T):int = T.umod.int
 
   proc init*[T:ModInt](t:typedesc[T], v: SomeInteger or T): auto {.inline.} =
     when v is T: return v

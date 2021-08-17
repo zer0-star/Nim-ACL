@@ -21,12 +21,12 @@ static:
 #  assert not int.is_dynamic_modint
 #
 
-  assert modint998244353.mod() == 998244353
-  assert modint1000000007.mod() == 1000000007
+  assert modint_montgomery_998244353.mod() == 998244353
+  assert modint_montgomery_1000000007.mod() == 1000000007
 
 test "ModintTest, ULL":
   let m1 = cast[uint](-1)
-  type mint = modint998244353
+  type mint = modint_montgomery_998244353
   check 0 != (m1 + mint.init(1)).val()
 
 #test "ModintTest, Mod1":
@@ -64,7 +64,7 @@ test "ModintTest, Inv":
     check 1 == (x * i) mod 11
 
   for i in 1 ..< 100000:
-    let x = modint1000000007.init(i).inv().val()
+    let x = modint_montgomery1000000007.init(i).inv().val()
     check 1 == (x * i) mod 1_000_000_007
 
 test "ModintTest, ConstUsage":
@@ -72,14 +72,14 @@ test "ModintTest, ConstUsage":
 #  type sint = StaticModInt[11]
   const a = sint.init(9)
   check 9 == a.val()
-  type dint = modint
+  type dint = modint_montgomery
   dint.set_mod(11)
   let b = dint.init(9)
   check 9 == b.val()
 
 test "ModintTest, Increment":
   type sint = modint11
-  type dint = modint
+  type dint = modint_montgomery
   dint.set_mod(11)
 
   block:
@@ -169,7 +169,7 @@ test "ModintTest, StaticUsage":
 #    discard mint(3).pow(-1)
 
 test "ModintTest, DynamicUsage":
-  type mint = modint
+  type mint = modint_montgomery
   mint.set_mod(3)
   check 3 == mint.mod()
   check 1 == (mint.init(2) - mint.init(1)).val()
@@ -194,29 +194,30 @@ test "ModintTest, DynamicUsage":
 #    discard mint.init(3).pow(-1)
 
 test "ModintTest, Constructor":
-  modint.set_mod(11)
-  check 1 == modint(true.int).val()
-  check 3 == modint((3.chr).int).val()
-  check 3 == modint.init((3).int8).val()
-  check 3 == modint.init((3).uint8).val()
-  check 3 == modint.init((3).int16).val()
-  check 3 == modint.init((3).uint16).val()
-  check 3 == modint.init((3).int32).val()
-  check 3 == modint.init((3).uint32).val()
-  check 3 == modint.init((3).int64).val()
-  check 3 == modint.init((3).uint64).val()
-  check 3 == modint.init((3).int).val()
-  check 3 == modint.init((3).uint).val()
-  check 1 == modint.init((-10).int8).val()
-  check 1 == modint.init((-10).int16).val()
-  check 1 == modint.init((-10).int32).val()
-  check 1 == modint.init((-10).int64).val()
-  check 1 == modint.init((-10).int).val()
+  type mint = modint_montgomery
+  mint.setMod(11)
+  check 1 == mint(true.int).val()
+  check 3 == mint((3.chr).int).val()
+  check 3 == mint.init((3).int8).val()
+  check 3 == mint.init((3).uint8).val()
+  check 3 == mint.init((3).int16).val()
+  check 3 == mint.init((3).uint16).val()
+  check 3 == mint.init((3).int32).val()
+  check 3 == mint.init((3).uint32).val()
+  check 3 == mint.init((3).int64).val()
+  check 3 == mint.init((3).uint64).val()
+  check 3 == mint.init((3).int).val()
+  check 3 == mint.init((3).uint).val()
+  check 1 == mint.init((-10).int8).val()
+  check 1 == mint.init((-10).int16).val()
+  check 1 == mint.init((-10).int32).val()
+  check 1 == mint.init((-10).int64).val()
+  check 1 == mint.init((-10).int).val()
 
-  check 2 == ((1).int32 + modint(1)).val()
-  check 2 == ((1).int16 + modint(1)).val()
+  check 2 == ((1).int32 + modint_montgomery(1)).val()
+  check 2 == ((1).int16 + modint_montgomery(1)).val()
 
-  var m:modint
+  var m:modint_montgomery
   check 0 == m.val()
 
 test "ModintTest, ConstructorStatic":

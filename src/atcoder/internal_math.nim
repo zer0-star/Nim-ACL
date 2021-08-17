@@ -156,3 +156,25 @@ inline unsigned long long calc_mul(const unsigned long long &a, const unsigned l
       g.inc
   proc primitive_root*[m:static[int]]():auto =
     primitive_root_constexpr(m)
+
+  # @param n `n < 2^32`
+  # @param m `1 <= m < 2^32`
+  # @return sum_{i=0}^{n-1} floor((ai + b) / m) (mod 2^64)
+  proc floor_sum_unsigned*(n, m, a, b:uint):uint =
+    result = 0
+    var (n, m, a, b) = (n, m, a, b)
+    while true:
+      if a >= m:
+        result += n * (n - 1) div 2 * (a div m)
+        a = a mod m
+      if b >= m:
+        result += n * (b div m)
+        b = b mod m
+
+      let y_max = a * n + b
+      if y_max < m: break
+      # y_max < m * (n + 1)
+      # floor(y_max / m) <= n
+      n = y_max div m
+      b = y_max mod m
+      swap(m, a)

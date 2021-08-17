@@ -80,22 +80,26 @@ when not declared ATCODER_SET_MAP_HPP:
 
   proc default*[T:SetOrMap](self:typedesc[T]):T =
     result.init()
-  proc initSortedSet*(K:typedesc, countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
-    var r: SortedSetType[K, when countable: int else: void, (comp,)]
-    r.init()
-    return r
-  proc initSortedMultiSet*(K:typedesc, countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
-    var r: SortedMultiSetType[K, when countable: int else: void, (comp,)]
-    r.init()
-    return r
-  proc initSortedMap*(K:typedesc, V:typedesc[not void], countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
-    var r: SortedMapType[K, V, when countable: int else: void, (comp,)]
-    r.init()
-    return r
-  proc initSortedMultiMap*(K:typedesc, V:typedesc[not void], countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
-    var r: SortedMultiMapType[K, V, when countable: int else: void, (comp,)]
-    r.init()
-    return r
+  template initSortedSet*(K:typedesc, countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
+    block:
+      var r: SortedSetType[K, when countable: int else: void, (comp,)]
+      r.init()
+      r
+  template initSortedMultiSet*(K:typedesc, countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
+    block:
+      var r: SortedMultiSetType[K, when countable: int else: void, (comp,)]
+      r.init()
+      r
+  template initSortedMap*(K:typedesc, V:typedesc[not void], countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
+    block:
+      var r: SortedMapType[K, V, when countable: int else: void, (comp,)]
+      r.init()
+      r
+  template initSortedMultiMap*(K:typedesc, V:typedesc[not void], countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
+    block:
+      var r: SortedMultiMapType[K, V, when countable: int else: void, (comp,)]
+      r.init()
+      r
 
   proc `$`*(self: SetOrMap): string =
     var a = newSeq[string]()

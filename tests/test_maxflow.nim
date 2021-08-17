@@ -30,16 +30,16 @@ test "MaxflowTest, Simple":
   check 4 == g.add_edge(1, 2, 1)
   check 2 == g.flow(0, 3)
 
-  var e:MFEdgeInfo[int]
-  e = MFEdgeInfo[int](src:0, dst:1, cap:1, flow:1)
+  var e:MFEdge[int]
+  e = MFEdge[int](src:0, dst:1, cap:1, flow:1)
   edge_eq(e, g.get_edge(0))
-  e = MFEdgeInfo[int](src:0, dst:2, cap:1, flow:1)
+  e = MFEdge[int](src:0, dst:2, cap:1, flow:1)
   edge_eq(e, g.get_edge(1))
-  e = MFEdgeInfo[int](src:1, dst:3, cap:1, flow:1)
+  e = MFEdge[int](src:1, dst:3, cap:1, flow:1)
   edge_eq(e, g.get_edge(2))
-  e = MFEdgeInfo[int](src:2, dst:3, cap:1, flow:1)
+  e = MFEdge[int](src:2, dst:3, cap:1, flow:1)
   edge_eq(e, g.get_edge(3))
-  e = MFEdgeInfo[int](src:1, dst:2, cap:1, flow:0)
+  e = MFEdge[int](src:1, dst:2, cap:1, flow:0)
   edge_eq(e, g.get_edge(4))
 
   check @[true, false, false, false] == g.min_cut(0)
@@ -55,16 +55,16 @@ test "MaxflowTest, NotSimple":
   check 6 == g.add_edge(1, 1, 7)
   check 15 == g.flow(0, 1)
 
-  var e: MFEdgeInfo[int]
-  e = MFEdgeInfo[int](src:0, dst:1, cap:1, flow:1)
+  var e: MFEdge[int]
+  e = MFEdge[int](src:0, dst:1, cap:1, flow:1)
   edge_eq(e, g.get_edge(0))
-  e = MFEdgeInfo[int](src:0, dst:1, cap:2, flow:2)
+  e = MFEdge[int](src:0, dst:1, cap:2, flow:2)
   edge_eq(e, g.get_edge(1))
-  e = MFEdgeInfo[int](src:0, dst:1, cap:3, flow:3)
+  e = MFEdge[int](src:0, dst:1, cap:3, flow:3)
   edge_eq(e, g.get_edge(2))
-  e = MFEdgeInfo[int](src:0, dst:1, cap:4, flow:4)
+  e = MFEdge[int](src:0, dst:1, cap:4, flow:4)
   edge_eq(e, g.get_edge(3))
-  e = MFEdgeInfo[int](src:0, dst:1, cap:5, flow:5)
+  e = MFEdge[int](src:0, dst:1, cap:5, flow:5)
   edge_eq(e, g.get_edge(4))
 
   check @[true, false] == g.min_cut(0)
@@ -75,16 +75,16 @@ test "MaxflowTest, Cut":
   check 1 == g.add_edge(1, 2, 1)
   check 1 == g.flow(0, 2)
 
-  var e:MFEdgeInfo[int]
-  e = MFEdgeInfo[int](src:0, dst:1, cap:2, flow:1)
+  var e:MFEdge[int]
+  e = MFEdge[int](src:0, dst:1, cap:2, flow:1)
   edge_eq(e, g.get_edge(0))
-  e = MFEdgeInfo[int](src:1, dst:2, cap:1, flow:1)
+  e = MFEdge[int](src:1, dst:2, cap:1, flow:1)
   edge_eq(e, g.get_edge(1))
 
   check @[true, true, false] == g.min_cut(0)
 
 test "MaxflowTest, Twice":
-  var e:MFEdgeInfo[int]
+  var e:MFEdge[int]
   
   var g = init_mf_graph[int](3)
   check 0 == g.add_edge(0, 1, 1)
@@ -93,38 +93,38 @@ test "MaxflowTest, Twice":
   
   check 2 == g.flow(0, 2)
 
-  e = MFEdgeInfo[int](src:0, dst:1, cap:1, flow:1)
+  e = MFEdge[int](src:0, dst:1, cap:1, flow:1)
   edge_eq(e, g.get_edge(0))
-  e = MFEdgeInfo[int](src:0, dst:2, cap:1, flow:1)
+  e = MFEdge[int](src:0, dst:2, cap:1, flow:1)
   edge_eq(e, g.get_edge(1))
-  e = MFEdgeInfo[int](src:1, dst:2, cap:1, flow:1)
+  e = MFEdge[int](src:1, dst:2, cap:1, flow:1)
   edge_eq(e, g.get_edge(2))
 
   g.change_edge(0, 100, 10)
-  e = MFEdgeInfo[int](src:0, dst:1, cap:100, flow:10)
+  e = MFEdge[int](src:0, dst:1, cap:100, flow:10)
   edge_eq(e, g.get_edge(0))
 
   check 0 == g.flow(0, 2)
   check 90 == g.flow(0, 1)
 
-  e = MFEdgeInfo[int](src:0, dst:1, cap:100, flow:100)
+  e = MFEdge[int](src:0, dst:1, cap:100, flow:100)
   edge_eq(e, g.get_edge(0))
-  e = MFEdgeInfo[int](src:0, dst:2, cap:1, flow:1)
+  e = MFEdge[int](src:0, dst:2, cap:1, flow:1)
   edge_eq(e, g.get_edge(1))
-  e = MFEdgeInfo[int](src:1, dst:2, cap:1, flow:1)
+  e = MFEdge[int](src:1, dst:2, cap:1, flow:1)
   edge_eq(e, g.get_edge(2))
 
   check 2 == g.flow(2, 0)
 
-  e = MFEdgeInfo[int](src:0, dst:1, cap:100, flow:99)
+  e = MFEdge[int](src:0, dst:1, cap:100, flow:99)
   edge_eq(e, g.get_edge(0))
-  e = MFEdgeInfo[int](src:0, dst:2, cap:1, flow:0)
+  e = MFEdge[int](src:0, dst:2, cap:1, flow:0)
   edge_eq(e, g.get_edge(1))
-  e = MFEdgeInfo[int](src:1, dst:2, cap:1, flow:0)
+  e = MFEdge[int](src:1, dst:2, cap:1, flow:0)
   edge_eq(e, g.get_edge(2))
 
 test "MaxflowTest, Bound":
-  var e:MFEdgeInfo[int32]
+  var e:MFEdge[int32]
 
   const INF = int32.high
   var g = init_mf_graph[int32](3)
@@ -134,15 +134,15 @@ test "MaxflowTest, Bound":
 
   check INF == g.flow(0, 2)
 
-  e = MFEdgeInfo[int32](src:0, dst:1, cap:INF, flow:0.int32)
+  e = MFEdge[int32](src:0, dst:1, cap:INF, flow:0.int32)
   edge_eq(e, g.get_edge(0))
-  e = MFEdgeInfo[int32](src:1, dst:0, cap:INF, flow:0.int32)
+  e = MFEdge[int32](src:1, dst:0, cap:INF, flow:0.int32)
   edge_eq(e, g.get_edge(1))
-  e = MFEdgeInfo[int32](src:0, dst:2, cap:INF, flow:INF)
+  e = MFEdge[int32](src:0, dst:2, cap:INF, flow:INF)
   edge_eq(e, g.get_edge(2))
 
 test "MaxflowTest, BoundUint":
-  var e:MFEdgeInfo[uint32]
+  var e:MFEdge[uint32]
 
   const INF = uint32.high
   var g = init_mf_graph[uint32](3)
@@ -152,11 +152,11 @@ test "MaxflowTest, BoundUint":
 
   check INF == g.flow(0, 2)
 
-  e = MFEdgeInfo[uint32](src:0, dst:1, cap:INF, flow:0.uint32)
+  e = MFEdge[uint32](src:0, dst:1, cap:INF, flow:0.uint32)
   edge_eq(e, g.get_edge(0))
-  e = MFEdgeInfo[uint32](src:1, dst:0, cap:INF, flow:0.uint32)
+  e = MFEdge[uint32](src:1, dst:0, cap:INF, flow:0.uint32)
   edge_eq(e, g.get_edge(1))
-  e = MFEdgeInfo[uint32](src:0, dst:2, cap:INF, flow:INF)
+  e = MFEdge[uint32](src:0, dst:2, cap:INF, flow:INF)
   edge_eq(e, g.get_edge(2))
 
 # https://github.com/atcoder/ac-library/issues/1
@@ -164,7 +164,7 @@ test "MaxflowTest, SelfLoop":
   var g = init_mf_graph[int](3)
   check 0 == g.add_edge(0, 0, 100)
 
-  let e = MFEdgeInfo[int](src:0, dst:0, cap:100, flow:0)
+  let e = MFEdge[int](src:0, dst:0, cap:100, flow:0)
   edge_eq(e, g.get_edge(0))
 
 test "MaxflowTest, Invalid":

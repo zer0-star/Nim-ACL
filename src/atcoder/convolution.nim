@@ -5,119 +5,202 @@ when not declared ATCODER_CONVOLUTION_HPP:
   import atcoder/internal_math, atcoder/internal_bit
   import atcoder/element_concepts
 
-#  template <class mint, internal::is_static_modint_t<mint>* = nullptr>
-  proc butterfly*[mint:FiniteFieldElem](a:var seq[mint]) =
+
+#  template <class mint,
+#            int g = internal::primitive_root<mint::mod()>,
+#            internal::is_static_modint_t<mint>* = nullptr>
+  type fft_info*[mint:FiniteFieldElem; g, rank2:static[int]] = object
+#    static constexpr int rank2 = bsf_constexpr(mint::mod() - 1);
+    root, iroot: array[rank2 + 1, mint]
+
+    #std::array<mint, rank2 + 1> root;   # root[i]^(2^i) == 1
+    #std::array<mint, rank2 + 1> iroot;  # root[i] * iroot[i] == 1
+    rate2, irate2: array[max(0, rank2 - 2 + 1), mint]
+    #std::array<mint, std::max(0, rank2 - 2 + 1)> rate2;
+    #std::array<mint, std::max(0, rank2 - 2 + 1)> irate2;
+    rate3, irate3: array[max(0, rank2 - 3 + 1), mint]
+  
+    #std::array<mint, std::max(0, rank2 - 3 + 1)> rate3;
+    #std::array<mint, std::max(0, rank2 - 3 + 1)> irate3;
+  
+  proc initFFTInfo*[mint:FiniteFieldElem]():auto =
     const g = primitive_root[mint.mod]()
-    let
-      n = a.len
-      h = ceil_pow2(n)
-    var
-      first {.global.} = true
-      sum_e {.global.} :array[30, mint]   # sum_e[i] = ies[0] * ... * ies[i - 1] * es[i]
-    if first:
-      first = false
-      var es, ies:array[30, mint] # es[i]^(2^(2+i)) == 1
-      let cnt2 = bsf(mint.mod - 1)
-      mixin inv, init
+    const rank2 = bsf(mint.mod - 1)
+    var root, iroot:array[rank2 + 1, mint]
+    var rate2, irate2: array[max(0, rank2 - 2 + 1), mint]
+    var rate3, irate3: array[max(0, rank2 - 3 + 1), mint]
+    mixin init, inv
+
+    root[rank2] = mint.init(g).pow((mint.mod - 1) shr rank2)
+    iroot[rank2] = root[rank2].inv()
+    for i in countdown(rank2 - 1, 0):
+      root[i] = root[i + 1] * root[i + 1];
+      iroot[i] = iroot[i + 1] * iroot[i + 1];
+  
+    block:
       var
-        e = mint.init(g).pow((mint.mod - 1) shr cnt2)
-        ie = e.inv()
-      for i in countdown(cnt2, 2):
-        # e^(2^i) == 1
-        es[i - 2] = e
-        ies[i - 2] = ie
-        e *= e
-        ie *= ie
-      var now = mint.init(1)
-      for i in 0..cnt2 - 2:
-        sum_e[i] = es[i] * now
-        now *= ies[i]
-    for ph in 1..h:
-      let
-        w = 1 shl (ph - 1)
-        p = 1 shl (h - ph)
-      var now = mint.init(1)
-      for s in 0..<w:
-        let offset = s shl (h - ph + 1)
-        for i in 0..<p:
+        prod = mint.init(1)
+        iprod = mint.init(1)
+      for i in 0..rank2 - 2:
+        rate2[i] = root[i + 2] * prod
+        irate2[i] = iroot[i + 2] * iprod
+        prod *= iroot[i + 2]
+        iprod *= root[i + 2]
+    block:
+      var
+        prod = mint.init(1)
+        iprod = mint.init(1)
+      for i in 0..rank2 - 3:
+        rate3[i] = root[i + 3] * prod;
+        irate3[i] = iroot[i + 3] * iprod;
+        prod *= iroot[i + 3];
+        iprod *= root[i + 3];
+    return fft_info[mint, g, rank2](root:root, iroot:iroot, rate2:rate2, irate2:irate2, rate3: rate3, irate3:irate3)
+  
+  proc butterfly*[mint:FiniteFieldElem](a:var seq[mint]) =
+    mixin init
+    let n = a.len
+    let h = ceil_pow2(n)
+
+    const info = initFFTInfo[mint]()
+
+    var len = 0  # a[i, i+(n>>len), i+2*(n>>len), ..] is transformed
+    while len < h:
+      if h - len == 1:
+        let p = 1 shl (h - len - 1)
+        var rot = mint.init(1)
+        for s in 0..<(1 shl len):
+          var offset = s shl (h - len)
+          for i in 0..<p:
+            let l = a[i + offset]
+            let r = a[i + offset + p] * rot
+            a[i + offset] = l + r
+            a[i + offset + p] = l - r
+          if s + 1 != (1 shl len):
+            rot *= info.rate2[bsf(not s.uint)]
+        len.inc
+      else:
+        # 4-base
+        let p = 1 shl (h - len - 2)
+        var
+          rot = mint.init(1)
+          imag = info.root[2]
+        for s in 0..<(1 shl len):
           let
-            l = a[i + offset]
-            r = a[i + offset + p] * now
-          a[i + offset] = l + r
-          a[i + offset + p] = l - r
-        now *= sum_e[bsf(not s)]
+            rot2 = rot * rot
+            rot3 = rot2 * rot
+            offset = s shl (h - len)
+          for i in 0..<p:
+            let
+              mod2 = (mint.mod() * mint.mod()).uint
+              a0 = (a[i + offset].val()).uint
+              a1 = (a[i + offset + p].val() * rot.val()).uint
+              a2 = (a[i + offset + 2 * p].val() * rot2.val()).uint
+              a3 = (a[i + offset + 3 * p].val() * rot3.val()).uint
+              a1na3imag = (mint.init(a1 + mod2 - a3).val() * imag.val()).uint
+              na2 = mod2 - a2
+            a[i + offset] = mint.init(a0 + a2 + a1 + a3)
+            a[i + offset + 1 * p] = mint.init(a0 + a2 + (2.uint * mod2 - (a1 + a3)))
+            a[i + offset + 2 * p] = mint.init(a0 + na2 + a1na3imag)
+            a[i + offset + 3 * p] = mint.init(a0 + na2 + (mod2 - a1na3imag))
+          if s + 1 != (1 shl len):
+            rot *= info.rate3[bsf(not s.uint)]
+        len += 2
   
   proc butterfly_inv*[mint:FiniteFieldElem](a:var seq[mint]) =
-    mixin val
-    const g = primitive_root[mint.mod]()
-    let
-      n = a.len
-      h = ceil_pow2(n)
-    var
-      first{.global.} = true
-      sum_ie{.global.}:array[30, mint]  # sum_ie[i] = es[0] * ... * es[i - 1] * ies[i]
-    mixin inv, init
-    if first:
-      first = false
-      var es, ies: array[30, mint] # es[i]^(2^(2+i)) == 1
-      let cnt2 = bsf(mint.mod - 1)
-      var
-        e = mint.init(g).pow((mint.mod - 1) shr cnt2)
-        ie = e.inv()
-      for i in countdown(cnt2, 2):
-        # e^(2^i) == 1
-        es[i - 2] = e
-        ies[i - 2] = ie
-        e *= e
-        ie *= ie
-      var now = mint.init(1)
-      for i in 0..cnt2 - 2:
-        sum_ie[i] = ies[i] * now
-        now *= es[i]
-    for ph in countdown(h, 1):
-      let
-        w = 1 shl (ph - 1)
-        p = 1 shl (h - ph)
-      var inow = mint.init(1)
-      for s in 0..<w:
-        let offset = s shl (h - ph + 1)
-        for i in 0..<p:
-          let
-            l = a[i + offset]
-            r = a[i + offset + p]
-          a[i + offset] = l + r
-          a[i + offset + p] = mint.init((mint.mod + l.val - r.val) * inow.val)
-        inow *= sum_ie[bsf(not s)]
+    let n = a.len
+    let h = ceilpow2(n)
+    mixin init
 
-#  template <class mint, internal::is_static_modint_t<mint>* = nullptr>
-  proc convolution*[mint:FiniteFieldElem](a, b:seq[mint]):seq[mint] =
-    var
-      n = a.len
-      m = b.len
-    mixin inv, init
-    if n == 0 or m == 0: return newSeq[mint]()
-    var (a, b) = (a, b)
-    if min(n, m) <= 60:
-      if n < m:
-        swap(n, m)
-        swap(a, b)
-      var ans = newSeq[mint](n + m - 1)
+    const info = initFFTInfo[mint]()
+  
+    var len = h;  # a[i, i+(n>>len), i+2*(n>>len), ..] is transformed
+    while len > 0:
+      if len == 1:
+        let p = 1 shl (h - len)
+        var irot = mint.init(1)
+        for s in 0..<(1 shl (len - 1)):
+          let offset = s shl (h - len + 1)
+          for i in 0..<p:
+            let
+              l = a[i + offset]
+              r = a[i + offset + p]
+            a[i + offset] = l + r
+            a[i + offset + p] = mint.init((mint.mod() + l.val() - r.val()) * irot.val())
+          if s + 1 != (1 shl (len - 1)):
+            irot *= info.irate2[bsf(not s.uint)]
+        len.dec
+      else:
+        # 4-base
+        let p = 1 shl (h - len);
+        var irot = mint.init(1)
+        let iimag = info.iroot[2]
+        for s in 0..<(1 shl (len - 2)):
+          let
+            irot2 = irot * irot
+            irot3 = irot2 * irot
+            offset = s shl (h - len + 2)
+          for i in 0..<p:
+            let
+              a0 = a[i + offset + 0 * p].val().uint
+              a1 = a[i + offset + 1 * p].val().uint
+              a2 = a[i + offset + 2 * p].val().uint
+              a3 = a[i + offset + 3 * p].val().uint
+              a2na3iimag = mint.init((mint.mod.uint + a2 - a3) * iimag.val().uint).val().uint
+  
+            a[i + offset] = mint.init(a0 + a1 + a2 + a3)
+            a[i + offset + 1 * p] = mint.init((a0 + (mint.mod().uint - a1) + a2na3iimag) * irot.val().uint)
+            a[i + offset + 2 * p] = mint.init((a0 + a1 + (mint.mod().uint - a2) + (mint.mod().uint - a3)) * irot2.val().uint)
+            a[i + offset + 3 * p] = mint.init((a0 + (mint.mod().uint - a1) + (mint.mod().uint - a2na3iimag)) * irot3.val().uint)
+          if s + 1 != (1 shl (len - 2)):
+            irot *= info.irate3[bsf(not s.uint)]
+        len -= 2
+
+  proc convolution_naive*[mint:FiniteFieldElem](a, b:seq[mint]):seq[mint] =
+    let (n, m) = (a.len, b.len)
+    result = newSeq[mint](n + m - 1)
+#    result = newSeqWith(n + m - 1, mint(0))
+    if n < m:
+      for j in 0..<m:
+        for i in 0..<n:
+          result[i + j] += a[i] * b[j]
+    else:
       for i in 0..<n:
         for j in 0..<m:
-          ans[i + j] += a[i] * b[j]
-      return ans
-    let z = 1 shl ceil_pow2(n + m - 1)
-    a.setlen(z)
+          result[i + j] += a[i] * b[j]
+
+  proc convolution_fft*[mint:FiniteFieldElem](a, b:seq[mint]):seq[mint] =
+    mixin init, inv
+    let
+      (n, m) = (a.len, b.len)
+      z = 1 shl ceil_pow2(n + m - 1)
+    var (a, b) = (a, b)
+    a.setLen(z)
     butterfly(a)
-    b.setlen(z)
+    b.setLen(z)
     butterfly(b)
     for i in 0..<z:
-      a[i] *= b[i]
+      a[i] *= b[i];
     butterfly_inv(a)
-    a.setlen(n + m - 1)
+    a.setLen(n + m - 1)
     let iz = mint.init(z).inv()
-    for i in 0..<n+m-1: a[i] *= iz
+    for i in 0..<n + m - 1: a[i] *= iz
     return a
+
+  proc convolution*[mint:FiniteFieldElem](a, b:seq[mint]):seq[mint] =
+    let (n, m) = (a.len, b.len)
+    if n == 0 or m == 0: return
+    if min(n, m) <= 60: return convolution_naive(a, b)
+    return convolution_fft(a, b)
+  
+#  template <class mint, internal::is_static_modint_t<mint>* = nullptr>
+#  std::vector<mint> convolution(const std::vector<mint>& a,
+#                                const std::vector<mint>& b) {
+#    int n = int(a.size()), m = int(b.size());
+#    if (!n || !m) return {};
+#    if (std::min(n, m) <= 60) return convolution_naive(a, b);
+#    return internal::convolution_fft(a, b);
+#  }
 
 
   import atcoder/modint

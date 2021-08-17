@@ -4,7 +4,7 @@ import atcoder/header, atcoder/extra/math/modint_montgomery
 import atcoder/convolution
 import sequtils, strutils
 
-type mint = modint998244353
+type mint = modint_montgomery_998244353
 
 let N, M = nextInt()
 let a = newSeqWith(N, mint(nextInt()))

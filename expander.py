@@ -108,7 +108,9 @@ def main():
                                     l = l.replace("\"", "\\\"")
                                     s0 += l
                                     s0 += '\\n'
-                                result.append("ImportExpand {} <=== \"{}\"".format(real_fname, s0))
+                                url = "https://github.com/zer0-star/Nim-ACL/tree/master/src/{}.nim".format(real_fname.replace("lib/", "atcoder/extra/"))
+                                result.append("# see {}".format(url))
+                                result.append("ImportExpand \"{}\" <=== \"{}\"".format(real_fname, s0))
                             else:
                                 import_message = "#[" + " " * spaces + line.strip() + "]#"
                                 result.append(import_message)

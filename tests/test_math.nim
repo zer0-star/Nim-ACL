@@ -23,7 +23,8 @@ type ull = uint
 proc floor_sum_naive(n, m, a, b:ll):ll =
   var sum = 0.ll
   for i in 0..<n:
-    sum += (a * i + b) div m
+    let z = a * i + b
+    sum += (z - z.floorMod(m)) div m
   return sum
 
 #bool is_prime_naive(ll n) {
@@ -77,8 +78,8 @@ test "MathTest, InvModZero":
 test "MathTest, FloorSum":
   for n in 0..<20:
     for m in 1..<20:
-      for a in 0..<20:
-        for b in 0..<20:
+      for a in -20..<20:
+        for b in -20..<20:
           check floor_sum_naive(n, m, a, b) == floor_sum(n, m, a, b)
 
 test "MathTest, CRTHand":
