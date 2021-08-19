@@ -7,6 +7,13 @@ ACLで実装されているものはexpander含めてすべてNimに変換して
 Nim-ACLによるimport, includeをすべて展開します。コマンドは本家ACLのものと同じです。
 Nim-ACLはatcoderのジャッジ環境では呼び出せませんがexpanderで展開することで、atcoderでもコンパイル可能なコードを生成することが可能です。
 online-judge-tools, atcoder-toolsなどの自動提出機能のあるツールと合わせて展開と提出を同時に行うようにすると便利です。
+### expanderのオプション
+```
+usage: expander.py [-h] [-c] [-s] [--lib LIB] source
+　--lib LIB     ライブラリへのパス(srcがあるディレクトリ)を表示します。本家ACLのものと同じです。
+  -s            展開した部分が一行で表示され、提出ソースコードが読みやすくなります。NimおよびNim-ACL利用者を増やすためにもこのオプションを有効にしていただけたら嬉しいです。
+```
+
 
 ## extra
 ACLにないがよく使いそうなライブラリを独自に実装しています。

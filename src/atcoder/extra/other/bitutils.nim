@@ -42,7 +42,7 @@ when not declared ATCODER_BITUTILS_HPP:
       return not uint64(0)
     else:
       return (B(1) shl B(n)) - B(1)
-  iterator subsets*[B:SomeInteger](v:seq[int]):B =
+  iterator subsets*(v:seq[int], B:typedesc[SomeInteger] = int):B =
     var s = B(0)
     yield s
     while true:

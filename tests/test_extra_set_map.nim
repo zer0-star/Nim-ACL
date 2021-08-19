@@ -88,7 +88,7 @@ test "CountableSortedSet, int, reverse":
   a.insert(5)
   a.checkTree()
   check 4 in a
-  check a.find(4) == a.end()
+  check a.find(4) != a.end()
   check 2 notin a
   check a.find(2) == a.end()
   check *a{0} == 5

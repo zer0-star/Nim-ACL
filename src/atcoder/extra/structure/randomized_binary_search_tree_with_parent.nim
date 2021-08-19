@@ -55,11 +55,12 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
       t.useSum isnot RBST_FALSE
   #proc hasData*(t:typedesc):bool {.compileTime.} = t.D isnot void
   proc hasLazy*[RBST:SomeRBST](t:typedesc[RBST]):bool {.compileTime.} =
-    when t isnot RandomizedBinarySearchTree:
-      # TODO
-      return false
-    else:
-      t.L isnot void
+    t.L isnot void
+#    when t isnot RandomizedBinarySearchTree:
+#      # TODO
+#      return false
+#    else:
+#      t.L isnot void
 #  proc hasP*(t:typedesc):bool {.compileTime.} = t.useP isnot void
   #proc isPersistent*(t:typedesc):bool {.compileTime.} = t.Persistent isnot void
   proc isLeaf*[Node:RBSTNode](node:Node):bool =

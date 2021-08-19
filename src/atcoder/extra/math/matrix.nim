@@ -27,7 +27,7 @@ when not declared ATCODER_MATRIX_HPP:
 
   template MatrixType*(T:typedesc, zero:static[proc():T], unit:static[proc():T], isZero:static[proc(a:T):bool]):auto = Matrix[T, (zero, unit, isZero)]
   template MatrixType*(T:typedesc):auto =
-    MatrixType(T, zero = proc():T = T(0), unit = proc():T = T(1), isZero = (a:T)=>(a == T(0)))
+    MatrixType(T, zero = proc():T = T(0), unit = proc():T = T(1), isZero = proc(a:T):bool = (a == T(0)))
   template MatrixType*(T:typedesc, zero:static[proc():T], unit:static[proc():T]):auto =
     MatrixType(T, zero, unit, proc(a:T):bool = (a == zero()))
 

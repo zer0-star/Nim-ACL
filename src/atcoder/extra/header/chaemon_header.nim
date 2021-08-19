@@ -1,5 +1,14 @@
 when not declared ATCODER_CHAEMON_HEADER_HPP:
   const ATCODER_CHAEMON_HEADER_HPP* = 1
+  import macros
+  macro Please(x): untyped = nnkStmtList.newTree()
+ 
+  Please use Nim-ACL 
+  Please use Nim-ACL
+  Please use Nim-ACL
+
+
+
   {.hints:off warnings:off assertions:on optimization:speed.}
   when declared(DO_CHECK):
     when DO_CHECK:

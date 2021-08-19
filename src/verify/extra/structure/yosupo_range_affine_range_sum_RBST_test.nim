@@ -2,7 +2,7 @@
 import atcoder/header, atcoder/modint
 import std/sequtils
 
-import atcoder/extra/structure/randomized_binary_search_tree
+import atcoder/extra/structure/randomized_binary_search_tree_with_parent
 
 type mint = modint998244353
 let n, q = nextInt()
