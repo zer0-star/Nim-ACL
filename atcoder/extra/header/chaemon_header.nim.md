@@ -7,6 +7,18 @@ data:
   - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
+  - icon: ':question:'
+    path: atcoder/element_concepts.nim
+    title: atcoder/element_concepts.nim
+  - icon: ':question:'
+    path: atcoder/element_concepts.nim
+    title: atcoder/element_concepts.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/assignment_operator.nim
+    title: atcoder/extra/other/assignment_operator.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/assignment_operator.nim
+    title: atcoder/extra/other/assignment_operator.nim
   - icon: ':warning:'
     path: atcoder/extra/other/assignment_operator.nim
     title: atcoder/extra/other/assignment_operator.nim
@@ -19,6 +31,18 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/other/debug.nim
     title: atcoder/extra/other/debug.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/debug.nim
+    title: atcoder/extra/other/debug.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/debug.nim
+    title: atcoder/extra/other/debug.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/floatutils.nim
+    title: atcoder/extra/other/floatutils.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/floatutils.nim
+    title: atcoder/extra/other/floatutils.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
@@ -32,11 +56,29 @@ data:
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
   - icon: ':question:'
+    path: atcoder/extra/other/inf.nim
+    title: atcoder/extra/other/inf.nim
+  - icon: ':question:'
+    path: atcoder/extra/other/inf.nim
+    title: atcoder/extra/other/inf.nim
+  - icon: ':question:'
     path: atcoder/extra/other/internal_sugar.nim
     title: atcoder/extra/other/internal_sugar.nim
   - icon: ':question:'
     path: atcoder/extra/other/internal_sugar.nim
     title: atcoder/extra/other/internal_sugar.nim
+  - icon: ':question:'
+    path: atcoder/extra/other/internal_sugar.nim
+    title: atcoder/extra/other/internal_sugar.nim
+  - icon: ':question:'
+    path: atcoder/extra/other/internal_sugar.nim
+    title: atcoder/extra/other/internal_sugar.nim
+  - icon: ':question:'
+    path: atcoder/extra/other/internal_underscored_calls.nim
+    title: atcoder/extra/other/internal_underscored_calls.nim
+  - icon: ':question:'
+    path: atcoder/extra/other/internal_underscored_calls.nim
+    title: atcoder/extra/other/internal_underscored_calls.nim
   - icon: ':question:'
     path: atcoder/extra/other/internal_underscored_calls.nim
     title: atcoder/extra/other/internal_underscored_calls.nim
@@ -50,11 +92,29 @@ data:
     path: atcoder/extra/other/reader.nim
     title: atcoder/extra/other/reader.nim
   - icon: ':warning:'
+    path: atcoder/extra/other/reader.nim
+    title: atcoder/extra/other/reader.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/reader.nim
+    title: atcoder/extra/other/reader.nim
+  - icon: ':warning:'
     path: atcoder/extra/other/reference.nim
     title: atcoder/extra/other/reference.nim
   - icon: ':warning:'
     path: atcoder/extra/other/reference.nim
     title: atcoder/extra/other/reference.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/reference.nim
+    title: atcoder/extra/other/reference.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/reference.nim
+    title: atcoder/extra/other/reference.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/seq_array_utils.nim
+    title: atcoder/extra/other/seq_array_utils.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/seq_array_utils.nim
+    title: atcoder/extra/other/seq_array_utils.nim
   - icon: ':warning:'
     path: atcoder/extra/other/seq_array_utils.nim
     title: atcoder/extra/other/seq_array_utils.nim
@@ -68,11 +128,29 @@ data:
     path: atcoder/extra/other/sliceutils.nim
     title: atcoder/extra/other/sliceutils.nim
   - icon: ':warning:'
+    path: atcoder/extra/other/sliceutils.nim
+    title: atcoder/extra/other/sliceutils.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/sliceutils.nim
+    title: atcoder/extra/other/sliceutils.nim
+  - icon: ':warning:'
     path: atcoder/extra/other/solve_proc.nim
     title: atcoder/extra/other/solve_proc.nim
   - icon: ':warning:'
     path: atcoder/extra/other/solve_proc.nim
     title: atcoder/extra/other/solve_proc.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/solve_proc.nim
+    title: atcoder/extra/other/solve_proc.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/solve_proc.nim
+    title: atcoder/extra/other/solve_proc.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/static_var.nim
+    title: atcoder/extra/other/static_var.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/static_var.nim
+    title: atcoder/extra/other/static_var.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
@@ -85,6 +163,18 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/other/warlus_operator.nim
     title: atcoder/extra/other/warlus_operator.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/warlus_operator.nim
+    title: atcoder/extra/other/warlus_operator.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/warlus_operator.nim
+    title: atcoder/extra/other/warlus_operator.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/zip.nim
+    title: atcoder/extra/other/zip.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/zip.nim
+    title: atcoder/extra/other/zip.nim
   - icon: ':warning:'
     path: atcoder/extra/other/zip.nim
     title: atcoder/extra/other/zip.nim
@@ -103,7 +193,9 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_CHAEMON_HEADER_HPP:\n  const ATCODER_CHAEMON_HEADER_HPP*\
-    \ = 1\n  {.hints:off warnings:off assertions:on optimization:speed.}\n  when declared(DO_CHECK):\n\
+    \ = 1\n  import macros\n  macro Please(x): untyped = nnkStmtList.newTree()\n \n\
+    \  Please use Nim-ACL \n  Please use Nim-ACL\n  Please use Nim-ACL\n\n\n\n  {.hints:off\
+    \ warnings:off assertions:on optimization:speed.}\n  when declared(DO_CHECK):\n\
     \    when DO_CHECK:\n      static: echo \"check is on\"\n      {.checks:on.}\n\
     \    else:\n      static: echo \"check is off\"\n      {.checks:off.}\n  else:\n\
     \    static: echo \"check is on\"\n    {.checks:on.}\n\n  import std/algorithm\
@@ -125,36 +217,66 @@ data:
     \    assert b != 0\n    if b < 0: return ceilDiv(-a, -b)\n    result = a.floorDiv(b)\n\
     \    if a mod b != 0: result.inc\n"
   dependsOn:
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/zip.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/zip.nim
-  - atcoder/extra/other/reference.nim
-  - atcoder/extra/other/reference.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/assignment_operator.nim
   - atcoder/extra/other/sliceutils.nim
-  - atcoder/extra/other/sliceutils.nim
-  - atcoder/extra/other/internal_sugar.nim
-  - atcoder/extra/other/internal_sugar.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
   - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/zip.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/reference.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/internal_sugar.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/sliceutils.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/zip.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/reference.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/internal_sugar.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/sliceutils.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/zip.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/reference.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/internal_sugar.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/sliceutils.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/zip.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/reference.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/internal_sugar.nim
+  - atcoder/extra/other/warlus_operator.nim
   isVerificationFile: false
   path: atcoder/extra/header/chaemon_header.nim
   requiredBy: []

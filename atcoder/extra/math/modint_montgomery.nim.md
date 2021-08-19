@@ -7,6 +7,12 @@ data:
   - icon: ':question:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
+  - icon: ':question:'
+    path: atcoder/generate_definitions.nim
+    title: atcoder/generate_definitions.nim
+  - icon: ':question:'
+    path: atcoder/generate_definitions.nim
+    title: atcoder/generate_definitions.nim
   _extendedRequiredBy:
   - icon: ':warning:'
     path: tests/test_extra_montgomery_modint.nim
@@ -86,10 +92,12 @@ data:
     \ = $(m.val())\n  proc `-`*[T:LazyMontgomeryModInt](self:T):T = T.init(0) - self\n\
     \n  template useStaticMontgomery*(name, M) =\n    generateConverter(name, int,\
     \ StaticLazyMontgomeryModInt[M])\n  template useDynamicMontgomery*(name, M) =\n\
-    \    generateConverter(name, int, DynamicLazyMontgomeryModInt[M])\n\n  useStaticMontgomery(modint998244353,\
-    \ 998244353)\n  useStaticMontgomery(modint1000000007, 1000000007)\n  useDynamicMontgomery(modint,\
-    \ -1)\n"
+    \    generateConverter(name, int, DynamicLazyMontgomeryModInt[M])\n\n  useStaticMontgomery(modint_montgomery_998244353,\
+    \ 998244353)\n  useStaticMontgomery(modint_montgomery_1000000007, 1000000007)\n\
+    \  useDynamicMontgomery(modint_montgomery, -1)\n"
   dependsOn:
+  - atcoder/generate_definitions.nim
+  - atcoder/generate_definitions.nim
   - atcoder/generate_definitions.nim
   - atcoder/generate_definitions.nim
   isVerificationFile: false

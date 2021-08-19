@@ -7,12 +7,30 @@ data:
   - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
+  - icon: ':question:'
+    path: atcoder/element_concepts.nim
+    title: atcoder/element_concepts.nim
+  - icon: ':question:'
+    path: atcoder/element_concepts.nim
+    title: atcoder/element_concepts.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/floatutils.nim
+    title: atcoder/extra/other/floatutils.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/floatutils.nim
+    title: atcoder/extra/other/floatutils.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/static_var.nim
+    title: atcoder/extra/other/static_var.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/static_var.nim
+    title: atcoder/extra/other/static_var.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
@@ -72,9 +90,15 @@ data:
   - atcoder/element_concepts.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/other/decimal.nim
   requiredBy: []

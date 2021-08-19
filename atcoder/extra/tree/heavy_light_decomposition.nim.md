@@ -7,6 +7,12 @@ data:
   - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/graph_template.nim
+    title: atcoder/extra/graph/graph_template.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/graph_template.nim
+    title: atcoder/extra/graph/graph_template.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
@@ -61,6 +67,8 @@ data:
     \      v = self.par[self.head[v]]\n    q(self.in_a[u] + edge.int, self.in_a[v]\
     \ + 1)\n"
   dependsOn:
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   isVerificationFile: false

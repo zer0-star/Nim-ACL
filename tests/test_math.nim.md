@@ -30,25 +30,25 @@ data:
     \n#ll pow_mod_naive(ll x, ull n, uint32 mod) {\n#  ull y = (x % mod + mod) % mod;\n\
     #  ull z = 1;\n#  for (ull i = 0; i < n; i++) {\n#    z = (z * y) % mod;\n#  }\n\
     #  return z % mod;\n#}\n\nproc floor_sum_naive(n, m, a, b:ll):ll =\n  var sum\
-    \ = 0.ll\n  for i in 0..<n:\n    sum += (a * i + b) div m\n  return sum\n\n#bool\
-    \ is_prime_naive(ll n) {\n#  assert(0 <= n && n <= std::numeric_limits<int>::max());\n\
-    #  if (n == 0 || n == 1) return false;\n#  for (ll i = 2; i * i <= n; i++) {\n\
-    #    if (n % i == 0) return false;\n#  }\n#  return true;\n#}\n\ntest \"MathTest,\
-    \ PowMod\":\n  proc naive(x, n, m:ll):ll =\n    var\n      y = floorMod(x, m)\n\
-    \      z = 1 mod m\n    for i in 0..<n:\n      z = (z * y) mod m\n    return z\n\
-    \  for a in -100..100:\n    for b in 0..100:\n      for c in 1..100:\n       \
-    \ check naive(a, b, c) == pow_mod(a, b, c)\n\ntest \"MathTest, InvBoundHand\"\
-    :\n  let\n    minll = ll.low\n    maxll = ll.high\n  check inv_mod(-1, maxll)\
-    \ == inv_mod(minll, maxll)\n  check 1 == inv_mod(maxll, maxll - 1)\n  check maxll\
-    \ - 1 == inv_mod(maxll - 1, maxll)\n  check 2 == inv_mod(maxll div 2 + 1, maxll)\n\
-    \ntest \"MathTest, InvMod\":\n  for a in -100..100:\n    for b in 1..1000:\n \
-    \     if gcd(floorMod(a, b), b) != 1: continue\n      let c = inv_mod(a, b)\n\
-    \      check 0 <= c\n      check c < b\n      check 1 mod b == ((a * c) mod b\
-    \ + b) mod b\n\ntest \"MathTest, InvModZero\":\n  check 0 == inv_mod(0, 1)\n \
-    \ for i in 0..<10:\n    check 0 == inv_mod(i, 1)\n    check 0 == inv_mod(-i, 1)\n\
-    \    check 0 == inv_mod(ll.low + i, 1)\n    check 0 == inv_mod(ll.high - i, 1)\n\
-    \ntest \"MathTest, FloorSum\":\n  for n in 0..<20:\n    for m in 1..<20:\n   \
-    \   for a in 0..<20:\n        for b in 0..<20:\n          check floor_sum_naive(n,\
+    \ = 0.ll\n  for i in 0..<n:\n    let z = a * i + b\n    sum += (z - z.floorMod(m))\
+    \ div m\n  return sum\n\n#bool is_prime_naive(ll n) {\n#  assert(0 <= n && n <=\
+    \ std::numeric_limits<int>::max());\n#  if (n == 0 || n == 1) return false;\n\
+    #  for (ll i = 2; i * i <= n; i++) {\n#    if (n % i == 0) return false;\n#  }\n\
+    #  return true;\n#}\n\ntest \"MathTest, PowMod\":\n  proc naive(x, n, m:ll):ll\
+    \ =\n    var\n      y = floorMod(x, m)\n      z = 1 mod m\n    for i in 0..<n:\n\
+    \      z = (z * y) mod m\n    return z\n  for a in -100..100:\n    for b in 0..100:\n\
+    \      for c in 1..100:\n        check naive(a, b, c) == pow_mod(a, b, c)\n\n\
+    test \"MathTest, InvBoundHand\":\n  let\n    minll = ll.low\n    maxll = ll.high\n\
+    \  check inv_mod(-1, maxll) == inv_mod(minll, maxll)\n  check 1 == inv_mod(maxll,\
+    \ maxll - 1)\n  check maxll - 1 == inv_mod(maxll - 1, maxll)\n  check 2 == inv_mod(maxll\
+    \ div 2 + 1, maxll)\n\ntest \"MathTest, InvMod\":\n  for a in -100..100:\n   \
+    \ for b in 1..1000:\n      if gcd(floorMod(a, b), b) != 1: continue\n      let\
+    \ c = inv_mod(a, b)\n      check 0 <= c\n      check c < b\n      check 1 mod\
+    \ b == ((a * c) mod b + b) mod b\n\ntest \"MathTest, InvModZero\":\n  check 0\
+    \ == inv_mod(0, 1)\n  for i in 0..<10:\n    check 0 == inv_mod(i, 1)\n    check\
+    \ 0 == inv_mod(-i, 1)\n    check 0 == inv_mod(ll.low + i, 1)\n    check 0 == inv_mod(ll.high\
+    \ - i, 1)\n\ntest \"MathTest, FloorSum\":\n  for n in 0..<20:\n    for m in 1..<20:\n\
+    \      for a in -20..<20:\n        for b in -20..<20:\n          check floor_sum_naive(n,\
     \ m, a, b) == floor_sum(n, m, a, b)\n\ntest \"MathTest, CRTHand\":\n  let res\
     \ = crt(@[1, 2, 1], @[2, 3, 2])\n  check 5 == res[0]\n  check 6 == res[1]\n\n\
     test \"MathTest, CRT2\":\n  for a in 1..20:\n    for b in 1..20:\n      for c\
@@ -96,14 +96,14 @@ data:
     \ % m);\n#    // x == n^i\n#    if (x == 1) return false;\n#  }\n#  x = (int)((long\
     \ long)(x)*g % m);\n#  assert(x == 1);\n#  return true;\n#}\n"
   dependsOn:
-  - atcoder/math.nim
+  - atcoder/internal_math.nim
   - atcoder/internal_math.nim
   - atcoder/math.nim
-  - atcoder/internal_math.nim
+  - atcoder/math.nim
   isVerificationFile: false
   path: tests/test_math.nim
   requiredBy: []
-  timestamp: '2020-09-25 22:39:15+09:00'
+  timestamp: '2021-08-18 01:50:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: tests/test_math.nim

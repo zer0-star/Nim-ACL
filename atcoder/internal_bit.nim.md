@@ -27,11 +27,29 @@ data:
     path: atcoder/extra/math/arbitrary_mod_convolution.nim
     title: atcoder/extra/math/arbitrary_mod_convolution.nim
   - icon: ':x:'
+    path: atcoder/extra/math/arbitrary_mod_convolution.nim
+    title: atcoder/extra/math/arbitrary_mod_convolution.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/arbitrary_mod_convolution.nim
+    title: atcoder/extra/math/arbitrary_mod_convolution.nim
+  - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
   - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/composition.nim
+    title: atcoder/extra/math/composition.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/composition.nim
+    title: atcoder/extra/math/composition.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/fft.nim
+    title: atcoder/extra/math/fft.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/fft.nim
+    title: atcoder/extra/math/fft.nim
   - icon: ':warning:'
     path: atcoder/extra/math/fft.nim
     title: atcoder/extra/math/fft.nim
@@ -45,6 +63,18 @@ data:
     path: atcoder/extra/math/ntt.nim
     title: atcoder/extra/math/ntt.nim
   - icon: ':x:'
+    path: atcoder/extra/math/ntt.nim
+    title: atcoder/extra/math/ntt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/ntt.nim
+    title: atcoder/extra/math/ntt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/particular_mod_convolution.nim
+    title: atcoder/extra/math/particular_mod_convolution.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/particular_mod_convolution.nim
+    title: atcoder/extra/math/particular_mod_convolution.nim
+  - icon: ':x:'
     path: atcoder/extra/math/particular_mod_convolution.nim
     title: atcoder/extra/math/particular_mod_convolution.nim
   - icon: ':x:'
@@ -56,6 +86,18 @@ data:
   - icon: ':x:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/universal_segtree.nim
+    title: atcoder/extra/structure/universal_segtree.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/universal_segtree.nim
+    title: atcoder/extra/structure/universal_segtree.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/universal_segtree_backup.nim
+    title: atcoder/extra/structure/universal_segtree_backup.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/universal_segtree_backup.nim
+    title: atcoder/extra/structure/universal_segtree_backup.nim
   - icon: ':warning:'
     path: atcoder/extra/structure/universal_segtree_backup.nim
     title: atcoder/extra/structure/universal_segtree_backup.nim
@@ -304,6 +346,20 @@ data:
   - atcoder/segtree.nim
   - atcoder/lazysegtree.nim
   - atcoder/lazysegtree.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/fft.nim
+  - atcoder/extra/math/fft.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/extra/structure/universal_segtree_backup.nim
+  - atcoder/extra/structure/universal_segtree_backup.nim
   - tests/test_segtree.nim
   - tests/test_segtree.nim
   - tests/test_extra_formal_power_series.nim

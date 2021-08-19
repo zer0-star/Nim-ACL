@@ -66,19 +66,19 @@ data:
     \ (c.mint, d.mint));\n  else:\n    let l, r = nextInt()\n    echo seg.prod(l..<r).a.val()\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
-  - atcoder/lazysegtree.nim
-  - atcoder/internal_math.nim
-  - atcoder/internal_bit.nim
-  - atcoder/rangeutils.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/internal_bit.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
   - atcoder/header.nim
-  - atcoder/rangeutils.nim
+  - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/modint.nim
   - atcoder/lazysegtree.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_math.nim
+  - atcoder/lazysegtree.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_bit.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: false
   path: test/example/lazyseg_practice1.nim
   requiredBy: []

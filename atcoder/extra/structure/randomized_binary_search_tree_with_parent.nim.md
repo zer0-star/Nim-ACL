@@ -8,11 +8,29 @@ data:
     path: atcoder/extra/structure/binary_tree_node_utils.nim
     title: atcoder/extra/structure/binary_tree_node_utils.nim
   - icon: ':x:'
+    path: atcoder/extra/structure/binary_tree_node_utils.nim
+    title: atcoder/extra/structure/binary_tree_node_utils.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/binary_tree_node_utils.nim
+    title: atcoder/extra/structure/binary_tree_node_utils.nim
+  - icon: ':x:'
     path: atcoder/extra/structure/binary_tree_utils.nim
     title: atcoder/extra/structure/binary_tree_utils.nim
   - icon: ':x:'
     path: atcoder/extra/structure/binary_tree_utils.nim
     title: atcoder/extra/structure/binary_tree_utils.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/binary_tree_utils.nim
+    title: atcoder/extra/structure/binary_tree_utils.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/binary_tree_utils.nim
+    title: atcoder/extra/structure/binary_tree_utils.nim
+  - icon: ':x:'
+    path: atcoder/rangeutils.nim
+    title: atcoder/rangeutils.nim
+  - icon: ':x:'
+    path: atcoder/rangeutils.nim
+    title: atcoder/rangeutils.nim
   - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
@@ -26,6 +44,18 @@ data:
   - icon: ':x:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/set_map.nim
+    title: atcoder/extra/structure/set_map.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/set_map.nim
+    title: atcoder/extra/structure/set_map.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+    title: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+    title: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
   - icon: ':warning:'
     path: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
     title: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
@@ -39,6 +69,12 @@ data:
     path: tests/test_extra_set_map.nim
     title: tests/test_extra_set_map.nim
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
+    title: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
+    title: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
   - icon: ':x:'
     path: verify/map_test.nim
     title: verify/map_test.nim
@@ -79,11 +115,11 @@ data:
     \ isnot RandomizedBinarySearchTree:\n      return false\n    else:\n      t.useSum\
     \ isnot RBST_FALSE\n  #proc hasData*(t:typedesc):bool {.compileTime.} = t.D isnot\
     \ void\n  proc hasLazy*[RBST:SomeRBST](t:typedesc[RBST]):bool {.compileTime.}\
-    \ =\n    when t isnot RandomizedBinarySearchTree:\n      # TODO\n      return\
-    \ false\n    else:\n      t.L isnot void\n#  proc hasP*(t:typedesc):bool {.compileTime.}\
-    \ = t.useP isnot void\n  #proc isPersistent*(t:typedesc):bool {.compileTime.}\
-    \ = t.Persistent isnot void\n  proc isLeaf*[Node:RBSTNode](node:Node):bool =\n\
-    \    return node.l == node\n\n  proc initNode*[RBST:SomeRBST](self:RBST, k:RBST.D,\
+    \ =\n    t.L isnot void\n#    when t isnot RandomizedBinarySearchTree:\n#    \
+    \  # TODO\n#      return false\n#    else:\n#      t.L isnot void\n#  proc hasP*(t:typedesc):bool\
+    \ {.compileTime.} = t.useP isnot void\n  #proc isPersistent*(t:typedesc):bool\
+    \ {.compileTime.} = t.Persistent isnot void\n  proc isLeaf*[Node:RBSTNode](node:Node):bool\
+    \ =\n    return node.l == node\n\n  proc initNode*[RBST:SomeRBST](self:RBST, k:RBST.D,\
     \ p:RBST.L, id:int, cnt:int):auto =\n    result = RBSTNode[RBST.D, RBST.L, RBST.useSum](cnt:cnt,\
     \ key:k, lazy:p, l:self.leaf, r:self.leaf, p:nil , id:id)\n    when RBST.hasSum:\
     \ result.sum = k\n  proc initNode*[RBST:SomeRBST](self:RBST, k:RBST.D, id:int,\
@@ -225,9 +261,19 @@ data:
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   requiredBy:
+  - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+  - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+  - atcoder/extra/structure/set_map.nim
+  - atcoder/extra/structure/set_map.nim
   - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
   - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
   - atcoder/extra/structure/set_map.nim
@@ -237,6 +283,8 @@ data:
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
+  - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
   - verify/map_test.nim
   - verify/map_test.nim
 documentation_of: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim

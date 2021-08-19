@@ -8,6 +8,12 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/graph/dijkstra_multi_dimensional.nim
     title: atcoder/extra/graph/dijkstra_multi_dimensional.nim
+  - icon: ':warning:'
+    path: atcoder/extra/graph/dijkstra_multi_dimensional.nim
+    title: atcoder/extra/graph/dijkstra_multi_dimensional.nim
+  - icon: ':warning:'
+    path: atcoder/extra/graph/dijkstra_multi_dimensional.nim
+    title: atcoder/extra/graph/dijkstra_multi_dimensional.nim
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: nim
@@ -80,6 +86,8 @@ data:
   isVerificationFile: false
   path: atcoder/extra/structure/internal_heapqueue.nim
   requiredBy:
+  - atcoder/extra/graph/dijkstra_multi_dimensional.nim
+  - atcoder/extra/graph/dijkstra_multi_dimensional.nim
   - atcoder/extra/graph/dijkstra_multi_dimensional.nim
   - atcoder/extra/graph/dijkstra_multi_dimensional.nim
   timestamp: '1970-01-01 00:00:00+00:00'

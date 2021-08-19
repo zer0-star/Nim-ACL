@@ -7,12 +7,30 @@ data:
   - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
+  - icon: ':question:'
+    path: atcoder/element_concepts.nim
+    title: atcoder/element_concepts.nim
+  - icon: ':question:'
+    path: atcoder/element_concepts.nim
+    title: atcoder/element_concepts.nim
   - icon: ':x:'
     path: atcoder/extra/math/formal_power_series.nim
     title: atcoder/extra/math/formal_power_series.nim
   - icon: ':x:'
     path: atcoder/extra/math/formal_power_series.nim
     title: atcoder/extra/math/formal_power_series.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series.nim
+    title: atcoder/extra/math/formal_power_series.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series.nim
+    title: atcoder/extra/math/formal_power_series.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/mod_sqrt.nim
+    title: atcoder/extra/math/mod_sqrt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/mod_sqrt.nim
+    title: atcoder/extra/math/mod_sqrt.nim
   - icon: ':x:'
     path: atcoder/extra/math/mod_sqrt.nim
     title: atcoder/extra/math/mod_sqrt.nim
@@ -26,11 +44,29 @@ data:
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
   - icon: ':question:'
+    path: atcoder/generate_definitions.nim
+    title: atcoder/generate_definitions.nim
+  - icon: ':question:'
+    path: atcoder/generate_definitions.nim
+    title: atcoder/generate_definitions.nim
+  - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
   - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
+  - icon: ':question:'
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
+  - icon: ':question:'
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
   - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
@@ -69,18 +105,30 @@ data:
     \ T(2)\n    var i = 1\n    while i < deg:\n      ret = (ret + self.pre(i shl 1)\
     \ * ret.inv(i shl 1)) * inv2\n      i = i shl 1\n    return ret.pre(deg).some\n"
   dependsOn:
-  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/mod_sqrt.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/math/mod_sqrt.nim
   - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/internal_math.nim
   - atcoder/modint.nim
-  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
   - atcoder/element_concepts.nim
-  - atcoder/modint.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/extra/math/formal_power_series.nim
   - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/formal_power_series.nim
   isVerificationFile: false
   path: atcoder/extra/math/formal_power_series_sqrt.nim
   requiredBy: []

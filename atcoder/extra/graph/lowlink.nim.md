@@ -7,6 +7,12 @@ data:
   - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/graph_template.nim
+    title: atcoder/extra/graph/graph_template.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/graph_template.nim
+    title: atcoder/extra/graph/graph_template.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -47,6 +53,8 @@ data:
     \    var k = 0\n    for i in 0..<g.len:\n      if not used[i]: k = dfs(i, k, -1)\n\
     \    return (articulation, bridge)\n"
   dependsOn:
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   isVerificationFile: false

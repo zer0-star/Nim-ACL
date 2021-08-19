@@ -8,6 +8,12 @@ data:
   - icon: ':x:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/wavelet_matrix.nim
+    title: atcoder/extra/structure/wavelet_matrix.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/wavelet_matrix.nim
+    title: atcoder/extra/structure/wavelet_matrix.nim
   _extendedVerifiedWith:
   - icon: ':x:'
     path: verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
@@ -54,6 +60,8 @@ data:
   isVerificationFile: false
   path: atcoder/extra/structure/succinct_indexable_dictionary.nim
   requiredBy:
+  - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/extra/structure/wavelet_matrix.nim
   - atcoder/extra/structure/wavelet_matrix.nim
   - atcoder/extra/structure/wavelet_matrix.nim
   timestamp: '1970-01-01 00:00:00+00:00'

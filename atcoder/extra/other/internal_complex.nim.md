@@ -9,11 +9,29 @@ data:
     path: atcoder/extra/geometry/closest_pair.nim
     title: atcoder/extra/geometry/closest_pair.nim
   - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/closest_pair.nim
+    title: atcoder/extra/geometry/closest_pair.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/closest_pair.nim
+    title: atcoder/extra/geometry/closest_pair.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/geometry_template.nim
+    title: atcoder/extra/geometry/geometry_template.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/geometry_template.nim
+    title: atcoder/extra/geometry/geometry_template.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/polygon.nim
+    title: atcoder/extra/geometry/polygon.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/polygon.nim
+    title: atcoder/extra/geometry/polygon.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/polygon.nim
     title: atcoder/extra/geometry/polygon.nim
@@ -27,6 +45,18 @@ data:
     path: atcoder/extra/geometry/segment_graph.nim
     title: atcoder/extra/geometry/segment_graph.nim
   - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/segment_graph.nim
+    title: atcoder/extra/geometry/segment_graph.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/segment_graph.nim
+    title: atcoder/extra/geometry/segment_graph.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/tangent.nim
+    title: atcoder/extra/geometry/tangent.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/tangent.nim
+    title: atcoder/extra/geometry/tangent.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/tangent.nim
     title: atcoder/extra/geometry/tangent.nim
   - icon: ':heavy_check_mark:'
@@ -38,6 +68,18 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/geometry/triangle.nim
     title: atcoder/extra/geometry/triangle.nim
+  - icon: ':warning:'
+    path: atcoder/extra/geometry/triangle.nim
+    title: atcoder/extra/geometry/triangle.nim
+  - icon: ':warning:'
+    path: atcoder/extra/geometry/triangle.nim
+    title: atcoder/extra/geometry/triangle.nim
+  - icon: ':warning:'
+    path: atcoder/extra/geometry/visualizer.nim
+    title: atcoder/extra/geometry/visualizer.nim
+  - icon: ':warning:'
+    path: atcoder/extra/geometry/visualizer.nim
+    title: atcoder/extra/geometry/visualizer.nim
   - icon: ':warning:'
     path: atcoder/extra/geometry/visualizer.nim
     title: atcoder/extra/geometry/visualizer.nim
@@ -308,6 +350,20 @@ data:
   isVerificationFile: false
   path: atcoder/extra/other/internal_complex.nim
   requiredBy:
+  - atcoder/extra/geometry/tangent.nim
+  - atcoder/extra/geometry/tangent.nim
+  - atcoder/extra/geometry/closest_pair.nim
+  - atcoder/extra/geometry/closest_pair.nim
+  - atcoder/extra/geometry/segment_graph.nim
+  - atcoder/extra/geometry/segment_graph.nim
+  - atcoder/extra/geometry/polygon.nim
+  - atcoder/extra/geometry/polygon.nim
+  - atcoder/extra/geometry/triangle.nim
+  - atcoder/extra/geometry/triangle.nim
+  - atcoder/extra/geometry/visualizer.nim
+  - atcoder/extra/geometry/visualizer.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/geometry/tangent.nim
   - atcoder/extra/geometry/tangent.nim
   - atcoder/extra/geometry/closest_pair.nim

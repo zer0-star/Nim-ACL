@@ -8,6 +8,12 @@ data:
     path: atcoder/header.nim
     title: atcoder/header.nim
   - icon: ':question:'
+    path: atcoder/internal_csr.nim
+    title: atcoder/internal_csr.nim
+  - icon: ':question:'
+    path: atcoder/internal_csr.nim
+    title: atcoder/internal_csr.nim
+  - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
   - icon: ':question:'
@@ -40,12 +46,14 @@ data:
     \    let a,b = nextInt()\n    echo if belongs[a] == belongs[b]: 1 else: 0\n\n\
     main()\n"
   dependsOn:
-  - atcoder/scc.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/scc.nim
+  - atcoder/scc.nim
   - atcoder/internal_scc.nim
-  - atcoder/header.nim
+  - atcoder/internal_csr.nim
   - atcoder/internal_scc.nim
+  - atcoder/internal_csr.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
   requiredBy: []

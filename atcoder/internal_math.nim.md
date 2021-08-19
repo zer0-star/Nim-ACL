@@ -15,11 +15,29 @@ data:
     path: atcoder/extra/math/arbitrary_mod_convolution.nim
     title: atcoder/extra/math/arbitrary_mod_convolution.nim
   - icon: ':x:'
+    path: atcoder/extra/math/arbitrary_mod_convolution.nim
+    title: atcoder/extra/math/arbitrary_mod_convolution.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/arbitrary_mod_convolution.nim
+    title: atcoder/extra/math/arbitrary_mod_convolution.nim
+  - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
   - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/composition.nim
+    title: atcoder/extra/math/composition.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/composition.nim
+    title: atcoder/extra/math/composition.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series_sqrt.nim
+    title: atcoder/extra/math/formal_power_series_sqrt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series_sqrt.nim
+    title: atcoder/extra/math/formal_power_series_sqrt.nim
   - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
@@ -33,11 +51,29 @@ data:
     path: atcoder/extra/math/mod_sqrt.nim
     title: atcoder/extra/math/mod_sqrt.nim
   - icon: ':x:'
+    path: atcoder/extra/math/mod_sqrt.nim
+    title: atcoder/extra/math/mod_sqrt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/mod_sqrt.nim
+    title: atcoder/extra/math/mod_sqrt.nim
+  - icon: ':x:'
     path: atcoder/extra/math/ntt.nim
     title: atcoder/extra/math/ntt.nim
   - icon: ':x:'
     path: atcoder/extra/math/ntt.nim
     title: atcoder/extra/math/ntt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/ntt.nim
+    title: atcoder/extra/math/ntt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/ntt.nim
+    title: atcoder/extra/math/ntt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/particular_mod_convolution.nim
+    title: atcoder/extra/math/particular_mod_convolution.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/particular_mod_convolution.nim
+    title: atcoder/extra/math/particular_mod_convolution.nim
   - icon: ':x:'
     path: atcoder/extra/math/particular_mod_convolution.nim
     title: atcoder/extra/math/particular_mod_convolution.nim
@@ -363,7 +399,14 @@ data:
     \   var ok = true\n      for i in 0..<cnt:\n        if pow_mod_constexpr(g, (m\
     \ - 1) div divs[i], m) == 1:\n          ok = false\n          break\n      if\
     \ ok: return g\n      g.inc\n  proc primitive_root*[m:static[int]]():auto =\n\
-    \    primitive_root_constexpr(m)\n"
+    \    primitive_root_constexpr(m)\n\n  # @param n `n < 2^32`\n  # @param m `1 <=\
+    \ m < 2^32`\n  # @return sum_{i=0}^{n-1} floor((ai + b) / m) (mod 2^64)\n  proc\
+    \ floor_sum_unsigned*(n, m, a, b:uint):uint =\n    result = 0\n    var (n, m,\
+    \ a, b) = (n, m, a, b)\n    while true:\n      if a >= m:\n        result += n\
+    \ * (n - 1) div 2 * (a div m)\n        a = a mod m\n      if b >= m:\n       \
+    \ result += n * (b div m)\n        b = b mod m\n\n      let y_max = a * n + b\n\
+    \      if y_max < m: break\n      # y_max < m * (n + 1)\n      # floor(y_max /\
+    \ m) <= n\n      n = y_max div m\n      b = y_max mod m\n      swap(m, a)\n"
   dependsOn: []
   isVerificationFile: false
   path: atcoder/internal_math.nim
@@ -388,6 +431,18 @@ data:
   - atcoder/convolution.nim
   - atcoder/modint.nim
   - atcoder/modint.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/ntt.nim
   - tests/test_math.nim
   - tests/test_math.nim
   - tests/test_internal_math.nim

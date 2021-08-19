@@ -8,11 +8,29 @@ data:
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
   - icon: ':question:'
+    path: atcoder/extra/graph/dijkstra_result.nim
+    title: atcoder/extra/graph/dijkstra_result.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/dijkstra_result.nim
+    title: atcoder/extra/graph/dijkstra_result.nim
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
   - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/graph_template.nim
+    title: atcoder/extra/graph/graph_template.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/graph_template.nim
+    title: atcoder/extra/graph/graph_template.nim
+  - icon: ':question:'
+    path: atcoder/extra/other/inf.nim
+    title: atcoder/extra/other/inf.nim
+  - icon: ':question:'
+    path: atcoder/extra/other/inf.nim
+    title: atcoder/extra/other/inf.nim
   - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
@@ -93,12 +111,18 @@ data:
     \          Q.push(initDijkstraObj(e.dst, f.dst, w))\n    result = DijkstraResult[G.T,\
     \ G.U](dist:dist, prev:prev)\n    when G.U isnot int: result.id = g.id\n"
   dependsOn:
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
   isVerificationFile: false
   path: atcoder/extra/graph/dijkstra.nim
   requiredBy:

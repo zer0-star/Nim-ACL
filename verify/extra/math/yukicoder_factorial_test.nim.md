@@ -108,32 +108,32 @@ data:
 
     '
   dependsOn:
-  - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/internal_bit.nim
+  - atcoder/header.nim
   - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/factorial.nim
-  - atcoder/extra/math/factorial.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
-  - atcoder/extra/math/ntt.nim
   - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/factorial.nim
+  - atcoder/convolution.nim
+  - atcoder/extra/math/combination.nim
+  - atcoder/generate_definitions.nim
   - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/extra/math/ntt.nim
-  - atcoder/header.nim
-  - atcoder/element_concepts.nim
-  - atcoder/convolution.nim
-  - atcoder/header.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/combination.nim
-  - atcoder/extra/math/combination.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/element_concepts.nim
   - atcoder/internal_bit.nim
+  - atcoder/header.nim
+  - atcoder/extra/math/factorial.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
   - atcoder/convolution.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/combination.nim
+  - atcoder/element_concepts.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: true
   path: verify/extra/math/yukicoder_factorial_test.nim
   requiredBy: []

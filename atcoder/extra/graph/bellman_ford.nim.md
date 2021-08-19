@@ -8,6 +8,18 @@ data:
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
   - icon: ':question:'
+    path: atcoder/extra/graph/graph_template.nim
+    title: atcoder/extra/graph/graph_template.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/graph_template.nim
+    title: atcoder/extra/graph/graph_template.nim
+  - icon: ':question:'
+    path: atcoder/extra/other/inf.nim
+    title: atcoder/extra/other/inf.nim
+  - icon: ':question:'
+    path: atcoder/extra/other/inf.nim
+    title: atcoder/extra/other/inf.nim
+  - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
   - icon: ':question:'
@@ -59,10 +71,14 @@ data:
     \    result = BellmanFordResult[G.T, G.U](negative_cycle:negative_cycle, dist:dist,\
     \ prev:prev)\n    when G.U isnot int: result.id = g.id\n"
   dependsOn:
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/other/inf.nim
   - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
   isVerificationFile: false
   path: atcoder/extra/graph/bellman_ford.nim
   requiredBy:

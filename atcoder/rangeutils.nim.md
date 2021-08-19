@@ -9,6 +9,18 @@ data:
     path: atcoder/extra/dp/cumulative_sum.nim
     title: atcoder/extra/dp/cumulative_sum.nim
   - icon: ':warning:'
+    path: atcoder/extra/dp/cumulative_sum.nim
+    title: atcoder/extra/dp/cumulative_sum.nim
+  - icon: ':warning:'
+    path: atcoder/extra/dp/cumulative_sum.nim
+    title: atcoder/extra/dp/cumulative_sum.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/dual_fenwicktree.nim
+    title: atcoder/extra/structure/dual_fenwicktree.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/dual_fenwicktree.nim
+    title: atcoder/extra/structure/dual_fenwicktree.nim
+  - icon: ':warning:'
     path: atcoder/extra/structure/dual_fenwicktree.nim
     title: atcoder/extra/structure/dual_fenwicktree.nim
   - icon: ':warning:'
@@ -20,6 +32,18 @@ data:
   - icon: ':x:'
     path: atcoder/extra/structure/link_cut_tree.nim
     title: atcoder/extra/structure/link_cut_tree.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/link_cut_tree.nim
+    title: atcoder/extra/structure/link_cut_tree.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/link_cut_tree.nim
+    title: atcoder/extra/structure/link_cut_tree.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/old_randomized_binary_search_tree.nim
+    title: atcoder/extra/structure/old_randomized_binary_search_tree.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/old_randomized_binary_search_tree.nim
+    title: atcoder/extra/structure/old_randomized_binary_search_tree.nim
   - icon: ':warning:'
     path: atcoder/extra/structure/old_randomized_binary_search_tree.nim
     title: atcoder/extra/structure/old_randomized_binary_search_tree.nim
@@ -33,11 +57,29 @@ data:
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - icon: ':x:'
+    path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+    title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+    title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - icon: ':x:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
   - icon: ':x:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/set_map.nim
+    title: atcoder/extra/structure/set_map.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/set_map.nim
+    title: atcoder/extra/structure/set_map.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+    title: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+    title: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
   - icon: ':warning:'
     path: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
     title: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
@@ -51,11 +93,29 @@ data:
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
   - icon: ':x:'
+    path: atcoder/extra/structure/splay_tree.nim
+    title: atcoder/extra/structure/splay_tree.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/splay_tree.nim
+    title: atcoder/extra/structure/splay_tree.nim
+  - icon: ':x:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
   - icon: ':x:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/universal_segtree.nim
+    title: atcoder/extra/structure/universal_segtree.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/universal_segtree.nim
+    title: atcoder/extra/structure/universal_segtree.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/wavelet_matrix.nim
+    title: atcoder/extra/structure/wavelet_matrix.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/wavelet_matrix.nim
+    title: atcoder/extra/structure/wavelet_matrix.nim
   - icon: ':x:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
@@ -190,6 +250,12 @@ data:
     path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
     title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   - icon: ':x:'
+    path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
+    title: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
+    title: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
     title: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
   - icon: ':x:'
@@ -276,6 +342,26 @@ data:
   - atcoder/segtree.nim
   - atcoder/lazysegtree.nim
   - atcoder/lazysegtree.nim
+  - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+  - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+  - atcoder/extra/structure/dual_fenwicktree.nim
+  - atcoder/extra/structure/dual_fenwicktree.nim
+  - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/link_cut_tree.nim
+  - atcoder/extra/structure/link_cut_tree.nim
+  - atcoder/extra/structure/old_randomized_binary_search_tree.nim
+  - atcoder/extra/structure/old_randomized_binary_search_tree.nim
+  - atcoder/extra/structure/set_map.nim
+  - atcoder/extra/structure/set_map.nim
+  - atcoder/extra/dp/cumulative_sum.nim
+  - atcoder/extra/dp/cumulative_sum.nim
   - tests/test_segtree.nim
   - tests/test_segtree.nim
   - tests/test_lazysegtree.nim
@@ -313,6 +399,8 @@ data:
   - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
   - verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
   - verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
+  - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
+  - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
   - verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
   - verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
   - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim

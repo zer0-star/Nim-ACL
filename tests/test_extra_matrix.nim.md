@@ -64,15 +64,15 @@ data:
     \  check A.inv() * A == A.unit()\n\ntest \"MatrixInvFloat\":\n  var A = MF.init([[3,\
     \ 1, 1, 2], [5, 1, 3, 4], [2, 0, 1, 0], [1, 3, 2, 1]])\n  check (A.inv() * A).equals(A.unit())\n"
   dependsOn:
-  - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
   - atcoder/extra/math/matrix.nim
+  - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/math/matrix.nim
   isVerificationFile: false
   path: tests/test_extra_matrix.nim

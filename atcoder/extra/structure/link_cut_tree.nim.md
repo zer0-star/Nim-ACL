@@ -8,6 +8,18 @@ data:
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
   - icon: ':x:'
+    path: atcoder/extra/structure/splay_tree.nim
+    title: atcoder/extra/structure/splay_tree.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/splay_tree.nim
+    title: atcoder/extra/structure/splay_tree.nim
+  - icon: ':x:'
+    path: atcoder/rangeutils.nim
+    title: atcoder/rangeutils.nim
+  - icon: ':x:'
+    path: atcoder/rangeutils.nim
+    title: atcoder/rangeutils.nim
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   - icon: ':x:'
@@ -62,6 +74,10 @@ data:
     \ s, M1)\n\n  proc alloc*[ST](self:LinkCutTree[ST], x:ST.D):ST.Node =\n    return\
     \ initNode(self.splay_tree, x)\n"
   dependsOn:
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim

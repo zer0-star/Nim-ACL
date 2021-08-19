@@ -7,6 +7,12 @@ data:
   - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
+  - icon: ':question:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':question:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -121,6 +127,8 @@ data:
     \ r + 1 - self.size\n      sm = self.op(self.d[r], sm)\n      if not ((r and -r)\
     \ != r): break\n    return 0\n"
   dependsOn:
+  - atcoder/internal_bit.nim
+  - atcoder/internal_bit.nim
   - atcoder/internal_bit.nim
   - atcoder/internal_bit.nim
   isVerificationFile: false

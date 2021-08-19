@@ -8,6 +8,12 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/header/chaemon_header.nim
     title: atcoder/extra/header/chaemon_header.nim
+  - icon: ':warning:'
+    path: atcoder/extra/header/chaemon_header.nim
+    title: atcoder/extra/header/chaemon_header.nim
+  - icon: ':warning:'
+    path: atcoder/extra/header/chaemon_header.nim
+    title: atcoder/extra/header/chaemon_header.nim
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: nim
@@ -31,6 +37,8 @@ data:
   isVerificationFile: false
   path: atcoder/extra/other/debug.nim
   requiredBy:
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
   timestamp: '1970-01-01 00:00:00+00:00'

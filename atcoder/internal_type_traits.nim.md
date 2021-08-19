@@ -8,6 +8,12 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/structure/dual_fenwicktree.nim
     title: atcoder/extra/structure/dual_fenwicktree.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/dual_fenwicktree.nim
+    title: atcoder/extra/structure/dual_fenwicktree.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/dual_fenwicktree.nim
+    title: atcoder/extra/structure/dual_fenwicktree.nim
   - icon: ':x:'
     path: atcoder/fenwicktree.nim
     title: atcoder/fenwicktree.nim
@@ -100,6 +106,8 @@ data:
   - atcoder/extra/structure/dual_fenwicktree.nim
   - atcoder/fenwicktree.nim
   - atcoder/fenwicktree.nim
+  - atcoder/extra/structure/dual_fenwicktree.nim
+  - atcoder/extra/structure/dual_fenwicktree.nim
   - tests/test_fenwicktree.nim
   - tests/test_fenwicktree.nim
   - test/example/fenwick_practice.nim

@@ -15,11 +15,29 @@ data:
     path: atcoder/extra/geometry/closest_pair.nim
     title: atcoder/extra/geometry/closest_pair.nim
   - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/closest_pair.nim
+    title: atcoder/extra/geometry/closest_pair.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/closest_pair.nim
+    title: atcoder/extra/geometry/closest_pair.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/geometry_template.nim
+    title: atcoder/extra/geometry/geometry_template.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/geometry_template.nim
+    title: atcoder/extra/geometry/geometry_template.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/polygon.nim
+    title: atcoder/extra/geometry/polygon.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/polygon.nim
+    title: atcoder/extra/geometry/polygon.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/polygon.nim
     title: atcoder/extra/geometry/polygon.nim
@@ -33,6 +51,18 @@ data:
     path: atcoder/extra/geometry/segment_graph.nim
     title: atcoder/extra/geometry/segment_graph.nim
   - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/segment_graph.nim
+    title: atcoder/extra/geometry/segment_graph.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/segment_graph.nim
+    title: atcoder/extra/geometry/segment_graph.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/tangent.nim
+    title: atcoder/extra/geometry/tangent.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/tangent.nim
+    title: atcoder/extra/geometry/tangent.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/tangent.nim
     title: atcoder/extra/geometry/tangent.nim
   - icon: ':heavy_check_mark:'
@@ -45,11 +75,29 @@ data:
     path: atcoder/extra/geometry/triangle.nim
     title: atcoder/extra/geometry/triangle.nim
   - icon: ':warning:'
+    path: atcoder/extra/geometry/triangle.nim
+    title: atcoder/extra/geometry/triangle.nim
+  - icon: ':warning:'
+    path: atcoder/extra/geometry/triangle.nim
+    title: atcoder/extra/geometry/triangle.nim
+  - icon: ':warning:'
     path: atcoder/extra/geometry/visualizer.nim
     title: atcoder/extra/geometry/visualizer.nim
   - icon: ':warning:'
     path: atcoder/extra/geometry/visualizer.nim
     title: atcoder/extra/geometry/visualizer.nim
+  - icon: ':warning:'
+    path: atcoder/extra/geometry/visualizer.nim
+    title: atcoder/extra/geometry/visualizer.nim
+  - icon: ':warning:'
+    path: atcoder/extra/geometry/visualizer.nim
+    title: atcoder/extra/geometry/visualizer.nim
+  - icon: ':warning:'
+    path: atcoder/extra/header/chaemon_header.nim
+    title: atcoder/extra/header/chaemon_header.nim
+  - icon: ':warning:'
+    path: atcoder/extra/header/chaemon_header.nim
+    title: atcoder/extra/header/chaemon_header.nim
   - icon: ':warning:'
     path: atcoder/extra/header/chaemon_header.nim
     title: atcoder/extra/header/chaemon_header.nim
@@ -62,6 +110,18 @@ data:
   - icon: ':x:'
     path: atcoder/extra/math/arbitrary_mod_convolution.nim
     title: atcoder/extra/math/arbitrary_mod_convolution.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/arbitrary_mod_convolution.nim
+    title: atcoder/extra/math/arbitrary_mod_convolution.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/arbitrary_mod_convolution.nim
+    title: atcoder/extra/math/arbitrary_mod_convolution.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/coef_of_generating_function.nim
+    title: atcoder/extra/math/coef_of_generating_function.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/coef_of_generating_function.nim
+    title: atcoder/extra/math/coef_of_generating_function.nim
   - icon: ':warning:'
     path: atcoder/extra/math/coef_of_generating_function.nim
     title: atcoder/extra/math/coef_of_generating_function.nim
@@ -74,6 +134,18 @@ data:
   - icon: ':x:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/combination.nim
+    title: atcoder/extra/math/combination.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/combination.nim
+    title: atcoder/extra/math/combination.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/combination_table.nim
+    title: atcoder/extra/math/combination_table.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/combination_table.nim
+    title: atcoder/extra/math/combination_table.nim
   - icon: ':warning:'
     path: atcoder/extra/math/combination_table.nim
     title: atcoder/extra/math/combination_table.nim
@@ -87,6 +159,18 @@ data:
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
   - icon: ':x:'
+    path: atcoder/extra/math/composition.nim
+    title: atcoder/extra/math/composition.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/composition.nim
+    title: atcoder/extra/math/composition.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/factorial.nim
+    title: atcoder/extra/math/factorial.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/factorial.nim
+    title: atcoder/extra/math/factorial.nim
+  - icon: ':x:'
     path: atcoder/extra/math/factorial.nim
     title: atcoder/extra/math/factorial.nim
   - icon: ':x:'
@@ -98,6 +182,18 @@ data:
   - icon: ':x:'
     path: atcoder/extra/math/formal_power_series.nim
     title: atcoder/extra/math/formal_power_series.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series.nim
+    title: atcoder/extra/math/formal_power_series.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series.nim
+    title: atcoder/extra/math/formal_power_series.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/formal_power_series_sparse.nim
+    title: atcoder/extra/math/formal_power_series_sparse.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/formal_power_series_sparse.nim
+    title: atcoder/extra/math/formal_power_series_sparse.nim
   - icon: ':warning:'
     path: atcoder/extra/math/formal_power_series_sparse.nim
     title: atcoder/extra/math/formal_power_series_sparse.nim
@@ -111,6 +207,30 @@ data:
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
   - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series_sqrt.nim
+    title: atcoder/extra/math/formal_power_series_sqrt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series_sqrt.nim
+    title: atcoder/extra/math/formal_power_series_sqrt.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/lagrange_polynomial.nim
+    title: atcoder/extra/math/lagrange_polynomial.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/lagrange_polynomial.nim
+    title: atcoder/extra/math/lagrange_polynomial.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/lagrange_polynomial.nim
+    title: atcoder/extra/math/lagrange_polynomial.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/lagrange_polynomial.nim
+    title: atcoder/extra/math/lagrange_polynomial.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/matrix.nim
+    title: atcoder/extra/math/matrix.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/matrix.nim
+    title: atcoder/extra/math/matrix.nim
+  - icon: ':x:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
   - icon: ':x:'
@@ -122,6 +242,18 @@ data:
   - icon: ':x:'
     path: atcoder/extra/math/ntt.nim
     title: atcoder/extra/math/ntt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/ntt.nim
+    title: atcoder/extra/math/ntt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/ntt.nim
+    title: atcoder/extra/math/ntt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/particular_mod_convolution.nim
+    title: atcoder/extra/math/particular_mod_convolution.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/particular_mod_convolution.nim
+    title: atcoder/extra/math/particular_mod_convolution.nim
   - icon: ':x:'
     path: atcoder/extra/math/particular_mod_convolution.nim
     title: atcoder/extra/math/particular_mod_convolution.nim
@@ -135,11 +267,29 @@ data:
     path: atcoder/extra/other/binary_search_float.nim
     title: atcoder/extra/other/binary_search_float.nim
   - icon: ':warning:'
+    path: atcoder/extra/other/binary_search_float.nim
+    title: atcoder/extra/other/binary_search_float.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/binary_search_float.nim
+    title: atcoder/extra/other/binary_search_float.nim
+  - icon: ':warning:'
     path: atcoder/extra/other/decimal.nim
     title: atcoder/extra/other/decimal.nim
   - icon: ':warning:'
     path: atcoder/extra/other/decimal.nim
     title: atcoder/extra/other/decimal.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/decimal.nim
+    title: atcoder/extra/other/decimal.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/decimal.nim
+    title: atcoder/extra/other/decimal.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/floatutils.nim
+    title: atcoder/extra/other/floatutils.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/floatutils.nim
+    title: atcoder/extra/other/floatutils.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
@@ -420,6 +570,8 @@ data:
   - atcoder/extra/math/formal_power_series_sparse.nim
   - atcoder/extra/math/matrix.nim
   - atcoder/extra/math/matrix.nim
+  - atcoder/extra/math/lagrange_polynomial.nim
+  - atcoder/extra/math/lagrange_polynomial.nim
   - atcoder/extra/math/composition.nim
   - atcoder/extra/math/composition.nim
   - atcoder/extra/math/formal_power_series.nim
@@ -464,6 +616,54 @@ data:
   - atcoder/extra/geometry/geometry_template.nim
   - atcoder/convolution.nim
   - atcoder/convolution.nim
+  - atcoder/extra/math/formal_power_series_sparse.nim
+  - atcoder/extra/math/formal_power_series_sparse.nim
+  - atcoder/extra/math/matrix.nim
+  - atcoder/extra/math/matrix.nim
+  - atcoder/extra/math/lagrange_polynomial.nim
+  - atcoder/extra/math/lagrange_polynomial.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/factorial.nim
+  - atcoder/extra/math/factorial.nim
+  - atcoder/extra/math/coef_of_generating_function.nim
+  - atcoder/extra/math/coef_of_generating_function.nim
+  - atcoder/extra/math/combination_table.nim
+  - atcoder/extra/math/combination_table.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/combination.nim
+  - atcoder/extra/math/combination.nim
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/other/binary_search_float.nim
+  - atcoder/extra/other/binary_search_float.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/decimal.nim
+  - atcoder/extra/other/decimal.nim
+  - atcoder/extra/geometry/tangent.nim
+  - atcoder/extra/geometry/tangent.nim
+  - atcoder/extra/geometry/closest_pair.nim
+  - atcoder/extra/geometry/closest_pair.nim
+  - atcoder/extra/geometry/segment_graph.nim
+  - atcoder/extra/geometry/segment_graph.nim
+  - atcoder/extra/geometry/polygon.nim
+  - atcoder/extra/geometry/polygon.nim
+  - atcoder/extra/geometry/triangle.nim
+  - atcoder/extra/geometry/triangle.nim
+  - atcoder/extra/geometry/visualizer.nim
+  - atcoder/extra/geometry/visualizer.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/geometry/geometry_template.nim
   - tests/test_extra_formal_power_series.nim
   - tests/test_extra_formal_power_series.nim
   - tests/test_extra_matrix.nim

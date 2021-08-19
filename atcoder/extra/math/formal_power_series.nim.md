@@ -7,6 +7,12 @@ data:
   - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
+  - icon: ':question:'
+    path: atcoder/element_concepts.nim
+    title: atcoder/element_concepts.nim
+  - icon: ':question:'
+    path: atcoder/element_concepts.nim
+    title: atcoder/element_concepts.nim
   _extendedRequiredBy:
   - icon: ':warning:'
     path: atcoder/extra/math/coef_of_generating_function.nim
@@ -14,6 +20,18 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/math/coef_of_generating_function.nim
     title: atcoder/extra/math/coef_of_generating_function.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/coef_of_generating_function.nim
+    title: atcoder/extra/math/coef_of_generating_function.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/coef_of_generating_function.nim
+    title: atcoder/extra/math/coef_of_generating_function.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/composition.nim
+    title: atcoder/extra/math/composition.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/composition.nim
+    title: atcoder/extra/math/composition.nim
   - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
@@ -26,12 +44,30 @@ data:
   - icon: ':x:'
     path: atcoder/extra/math/factorial.nim
     title: atcoder/extra/math/factorial.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/factorial.nim
+    title: atcoder/extra/math/factorial.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/factorial.nim
+    title: atcoder/extra/math/factorial.nim
   - icon: ':warning:'
     path: atcoder/extra/math/formal_power_series_sparse.nim
     title: atcoder/extra/math/formal_power_series_sparse.nim
   - icon: ':warning:'
     path: atcoder/extra/math/formal_power_series_sparse.nim
     title: atcoder/extra/math/formal_power_series_sparse.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/formal_power_series_sparse.nim
+    title: atcoder/extra/math/formal_power_series_sparse.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/formal_power_series_sparse.nim
+    title: atcoder/extra/math/formal_power_series_sparse.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series_sqrt.nim
+    title: atcoder/extra/math/formal_power_series_sqrt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series_sqrt.nim
+    title: atcoder/extra/math/formal_power_series_sqrt.nim
   - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
@@ -258,9 +294,21 @@ data:
   dependsOn:
   - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
+  - atcoder/element_concepts.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/math/formal_power_series.nim
   requiredBy:
+  - atcoder/extra/math/formal_power_series_sparse.nim
+  - atcoder/extra/math/formal_power_series_sparse.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/factorial.nim
+  - atcoder/extra/math/factorial.nim
+  - atcoder/extra/math/coef_of_generating_function.nim
+  - atcoder/extra/math/coef_of_generating_function.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
   - atcoder/extra/math/formal_power_series_sparse.nim
   - atcoder/extra/math/formal_power_series_sparse.nim
   - atcoder/extra/math/composition.nim

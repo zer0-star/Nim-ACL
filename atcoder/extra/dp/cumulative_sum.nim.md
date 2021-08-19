@@ -7,6 +7,12 @@ data:
   - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
+  - icon: ':x:'
+    path: atcoder/rangeutils.nim
+    title: atcoder/rangeutils.nim
+  - icon: ':x:'
+    path: atcoder/rangeutils.nim
+    title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -45,6 +51,8 @@ data:
     \ s = self.len - s.b .. self.len - s.a\n    if s.a > s.b: return T(0)\n    return\
     \ self.sum(s.b + 1) - self.sum(s.a)\n"
   dependsOn:
+  - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   isVerificationFile: false

@@ -8,6 +8,18 @@ data:
     path: atcoder/extra/structure/succinct_indexable_dictionary.nim
     title: atcoder/extra/structure/succinct_indexable_dictionary.nim
   - icon: ':x:'
+    path: atcoder/extra/structure/succinct_indexable_dictionary.nim
+    title: atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/succinct_indexable_dictionary.nim
+    title: atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - icon: ':x:'
+    path: atcoder/rangeutils.nim
+    title: atcoder/rangeutils.nim
+  - icon: ':x:'
+    path: atcoder/rangeutils.nim
+    title: atcoder/rangeutils.nim
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   - icon: ':x:'
@@ -111,8 +123,12 @@ data:
     \    return if ret == -1: self.T(-1) else: self.ys[ret]\n"
   dependsOn:
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/wavelet_matrix.nim

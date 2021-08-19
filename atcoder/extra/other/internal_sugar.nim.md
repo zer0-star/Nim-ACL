@@ -7,7 +7,19 @@ data:
   - icon: ':question:'
     path: atcoder/extra/other/internal_underscored_calls.nim
     title: atcoder/extra/other/internal_underscored_calls.nim
+  - icon: ':question:'
+    path: atcoder/extra/other/internal_underscored_calls.nim
+    title: atcoder/extra/other/internal_underscored_calls.nim
+  - icon: ':question:'
+    path: atcoder/extra/other/internal_underscored_calls.nim
+    title: atcoder/extra/other/internal_underscored_calls.nim
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: atcoder/extra/header/chaemon_header.nim
+    title: atcoder/extra/header/chaemon_header.nim
+  - icon: ':warning:'
+    path: atcoder/extra/header/chaemon_header.nim
+    title: atcoder/extra/header/chaemon_header.nim
   - icon: ':warning:'
     path: atcoder/extra/header/chaemon_header.nim
     title: atcoder/extra/header/chaemon_header.nim
@@ -154,9 +166,13 @@ data:
   dependsOn:
   - atcoder/extra/other/internal_underscored_calls.nim
   - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
   isVerificationFile: false
   path: atcoder/extra/other/internal_sugar.nim
   requiredBy:
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
   - tests/test_string.nim

@@ -7,6 +7,12 @@ data:
   - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
+  - icon: ':question:'
+    path: atcoder/extra/other/inf.nim
+    title: atcoder/extra/other/inf.nim
+  - icon: ':question:'
+    path: atcoder/extra/other/inf.nim
+    title: atcoder/extra/other/inf.nim
   _extendedRequiredBy:
   - icon: ':warning:'
     path: tests/test_shortest_path.nim
@@ -46,6 +52,8 @@ data:
     \ u:int):seq[T] = self.dist[u]\n  proc `[]`*[T](self: WarshallFloydType[T], s,\
     \ t:int):T = self.dist[s][t]\n"
   dependsOn:
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/other/inf.nim
   - atcoder/extra/other/inf.nim
   isVerificationFile: false

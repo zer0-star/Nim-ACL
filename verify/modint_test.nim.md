@@ -36,12 +36,12 @@ data:
     import std/strutils, std/sequtils, std/math\n\nlet\n  N = stdin.readLine.parseInt.initModInt()\n\
     \necho (0 ..< 9).mapIt(N + 9 - it).prod / toSeq(1 .. 9).prod\n"
   dependsOn:
-  - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
   - atcoder/modint.nim
+  - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/modint_test.nim
   requiredBy: []

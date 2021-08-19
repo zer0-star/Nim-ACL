@@ -8,6 +8,18 @@ data:
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
   - icon: ':question:'
+    path: atcoder/element_concepts.nim
+    title: atcoder/element_concepts.nim
+  - icon: ':question:'
+    path: atcoder/element_concepts.nim
+    title: atcoder/element_concepts.nim
+  - icon: ':question:'
+    path: atcoder/generate_definitions.nim
+    title: atcoder/generate_definitions.nim
+  - icon: ':question:'
+    path: atcoder/generate_definitions.nim
+    title: atcoder/generate_definitions.nim
+  - icon: ':question:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
   - icon: ':question:'
@@ -49,8 +61,8 @@ data:
     \  proc init*[M:Matrix](self:typedesc[M] or M, n:int):M = M.init(n, n)\n\n  template\
     \ MatrixType*(T:typedesc, zero:static[proc():T], unit:static[proc():T], isZero:static[proc(a:T):bool]):auto\
     \ = Matrix[T, (zero, unit, isZero)]\n  template MatrixType*(T:typedesc):auto =\n\
-    \    MatrixType(T, zero = proc():T = T(0), unit = proc():T = T(1), isZero = (a:T)=>(a\
-    \ == T(0)))\n  template MatrixType*(T:typedesc, zero:static[proc():T], unit:static[proc():T]):auto\
+    \    MatrixType(T, zero = proc():T = T(0), unit = proc():T = T(1), isZero = proc(a:T):bool\
+    \ = (a == T(0)))\n  template MatrixType*(T:typedesc, zero:static[proc():T], unit:static[proc():T]):auto\
     \ =\n    MatrixType(T, zero, unit, proc(a:T):bool = (a == zero()))\n\n  proc initMatrix*[T:RingElem](n,\
     \ m:int, z:static[proc():T], u:static[proc():T]):auto =\n    type M = MatrixType(T,\
     \ z, u)\n    return M.init(n, m)\n  proc initMatrix*[T:RingElem](n:int, z:static[proc():T],\
@@ -127,8 +139,12 @@ data:
     \    assert ids == (0..<n).toSeq\n    for i in 0..<n:\n      for j in 0..<n:\n\
     \        result[i][j] = G[i][j + n]\n\n  generatePow(Matrix)\n"
   dependsOn:
+  - atcoder/element_concepts.nim
+  - atcoder/generate_definitions.nim
   - atcoder/generate_definitions.nim
   - atcoder/element_concepts.nim
+  - atcoder/element_concepts.nim
+  - atcoder/generate_definitions.nim
   - atcoder/generate_definitions.nim
   - atcoder/element_concepts.nim
   isVerificationFile: false

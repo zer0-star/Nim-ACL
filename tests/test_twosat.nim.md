@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: atcoder/internal_csr.nim
+    title: atcoder/internal_csr.nim
+  - icon: ':question:'
+    path: atcoder/internal_csr.nim
+    title: atcoder/internal_csr.nim
+  - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
   - icon: ':question:'
@@ -52,8 +58,10 @@ data:
   dependsOn:
   - atcoder/twosat.nim
   - atcoder/internal_scc.nim
-  - atcoder/twosat.nim
+  - atcoder/internal_csr.nim
   - atcoder/internal_scc.nim
+  - atcoder/internal_csr.nim
+  - atcoder/twosat.nim
   isVerificationFile: false
   path: tests/test_twosat.nim
   requiredBy: []

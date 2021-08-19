@@ -57,17 +57,17 @@ data:
     \   r2 = nextFloat()\n    c2 = initCircle(p2, r2)\n  echo intersect(c1, c2)\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/internal_complex.nim
   - atcoder/header.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_7_a_circle_intersection_test.nim
   requiredBy: []

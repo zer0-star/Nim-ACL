@@ -71,13 +71,13 @@ data:
     \ m0 * m1 / g = lcm(m0, m1)\n      let x = (r1 - r0) div g mod u1 * im mod u1\n\
     \  \n      # |r0| + |m0 * x|\n      # < m0 + m0 * (u1 - 1)\n      # = m0 + m0\
     \ * m1 / g - m0\n      # = lcm(m0, m1)\n      r0 += x * m0\n      m0 *= u1  #\
-    \ -> lcm(m0, m1)\n      if r0 < 0: r0 += m0\n    return (r0, m0)\n\n  proc floor_sum*(n,\
-    \ m, a, b:int):int =\n    var\n      ans = 0\n      (a, b) = (a, b)\n    if a\
-    \ >= m:\n      ans += (n - 1) * n * (a div m) div 2\n      a = a mod m\n    if\
-    \ b >= m:\n      ans += n * (b div m)\n      b = b mod m\n    let\n      y_max\
-    \ = (a * n + b) div m\n      x_max = y_max * m - b\n    if y_max == 0: return\
-    \ ans\n    ans += (n - (x_max + a - 1) div a) * y_max\n    ans += floor_sum(y_max,\
-    \ a, m, (a - x_max mod a) mod a)\n    return ans\n"
+    \ -> lcm(m0, m1)\n      if r0 < 0: r0 += m0\n    return (r0, m0)\n\nproc floor_sum*(n,\
+    \ m, a, b:int):int =\n  assert n in 0..<(1 shl 32)\n  assert m in 1..<(1 shl 32)\n\
+    \  var (a, b) = (a, b)\n  var ans = 0.uint\n  if a < 0:\n    var a2:uint = floorMod(a,\
+    \ m).uint\n    ans -= n.uint * (n - 1).uint div 2 * ((a2 - a.uint) div m.uint)\n\
+    \    a = a2.int\n  if b < 0:\n    var b2:uint = floorMod(b, m).uint\n    ans -=\
+    \ n.uint * ((b2 - b.uint) div m.uint)\n    b = b2.int\n  return (ans + floor_sum_unsigned(n.uint,\
+    \ m.uint, a.uint, b.uint)).int\n"
   dependsOn:
   - atcoder/internal_math.nim
   - atcoder/internal_math.nim

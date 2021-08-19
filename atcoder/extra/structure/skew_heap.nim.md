@@ -2,10 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/chu_liu_edmonds.nim
     title: atcoder/extra/graph/chu_liu_edmonds.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: atcoder/extra/graph/chu_liu_edmonds.nim
+    title: atcoder/extra/graph/chu_liu_edmonds.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/chu_liu_edmonds.nim
+    title: atcoder/extra/graph/chu_liu_edmonds.nim
+  - icon: ':question:'
     path: atcoder/extra/graph/chu_liu_edmonds.nim
     title: atcoder/extra/graph/chu_liu_edmonds.nim
   _extendedVerifiedWith:
@@ -15,15 +21,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
     title: verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/yosupo_directedmst_test.nim
     title: verify/extra/graph/yosupo_directedmst_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/yosupo_directedmst_test.nim
     title: verify/extra/graph/yosupo_directedmst_test.nim
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -60,8 +66,10 @@ data:
   requiredBy:
   - atcoder/extra/graph/chu_liu_edmonds.nim
   - atcoder/extra/graph/chu_liu_edmonds.nim
+  - atcoder/extra/graph/chu_liu_edmonds.nim
+  - atcoder/extra/graph/chu_liu_edmonds.nim
   timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
   - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim

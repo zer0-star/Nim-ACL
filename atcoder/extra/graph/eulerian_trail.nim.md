@@ -1,10 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: atcoder/dsu.nim
+    title: atcoder/dsu.nim
+  - icon: ':question:'
+    path: atcoder/dsu.nim
+    title: atcoder/dsu.nim
+  - icon: ':question:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
   _extendedRequiredBy: []
@@ -52,6 +58,8 @@ data:
     \      result.add(self.go(if latte == -1: vs[0] else: latte))\n      if result[^1].len\
     \ == 0: discard result.pop()\n"
   dependsOn:
+  - atcoder/dsu.nim
+  - atcoder/dsu.nim
   - atcoder/dsu.nim
   - atcoder/dsu.nim
   isVerificationFile: false

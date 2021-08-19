@@ -10,7 +10,8 @@ var a = initSortedSet(T, countable:static[bool]=false, comp:proc(a, b:T):bool=ni
 var a:SortedSet(T,countable=false,comp:proc(a,b:T):bool=nil); a.init()
 ```
 
-- SortedSetの構造を作ります。Tはキーの型、countableはインデックスによるランダムアクセス(後述)を可能にするかどうか, compは比較関数です。countable, compは省略可能で省略した場合はそれぞれfalse, 通常の比較関数が渡されます。
+- SortedSetの構造を作ります。Tはキーの型、countableはインデックスによるランダムアクセス(後述)を可能にするかどうか, compは比較関数です。countable, compは省略可能で省略した場合はそれぞれfalse, 通常の比較関数(<)が渡されます。省略する場合は型Tに比較関数<が定義されている必要があることに注意してください。
+後者のコロンによる呼び出しの場合、init()関数を呼ぶまで初期化されておらず下記の挿入・削除等の処理を呼ぶと未定義動作(RE)になりますのでご注意ください。
 
 ### 先頭と末尾
 ```nim

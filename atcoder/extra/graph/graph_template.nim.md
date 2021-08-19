@@ -9,11 +9,29 @@ data:
     path: atcoder/extra/graph/bellman_ford.nim
     title: atcoder/extra/graph/bellman_ford.nim
   - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/bellman_ford.nim
+    title: atcoder/extra/graph/bellman_ford.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/bellman_ford.nim
+    title: atcoder/extra/graph/bellman_ford.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/chu_liu_edmonds.nim
+    title: atcoder/extra/graph/chu_liu_edmonds.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/chu_liu_edmonds.nim
+    title: atcoder/extra/graph/chu_liu_edmonds.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/chu_liu_edmonds.nim
+    title: atcoder/extra/graph/chu_liu_edmonds.nim
+  - icon: ':question:'
     path: atcoder/extra/graph/chu_liu_edmonds.nim
     title: atcoder/extra/graph/chu_liu_edmonds.nim
   - icon: ':heavy_check_mark:'
-    path: atcoder/extra/graph/chu_liu_edmonds.nim
-    title: atcoder/extra/graph/chu_liu_edmonds.nim
+    path: atcoder/extra/graph/cycle_detection.nim
+    title: atcoder/extra/graph/cycle_detection.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/cycle_detection.nim
+    title: atcoder/extra/graph/cycle_detection.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/cycle_detection.nim
     title: atcoder/extra/graph/cycle_detection.nim
@@ -26,12 +44,30 @@ data:
   - icon: ':question:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/dijkstra.nim
+    title: atcoder/extra/graph/dijkstra.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/dijkstra.nim
+    title: atcoder/extra/graph/dijkstra.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra_radix_heap.nim
     title: atcoder/extra/graph/dijkstra_radix_heap.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra_radix_heap.nim
     title: atcoder/extra/graph/dijkstra_radix_heap.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/dijkstra_radix_heap.nim
+    title: atcoder/extra/graph/dijkstra_radix_heap.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/dijkstra_radix_heap.nim
+    title: atcoder/extra/graph/dijkstra_radix_heap.nim
+  - icon: ':warning:'
+    path: atcoder/extra/graph/graphviz.nim
+    title: atcoder/extra/graph/graphviz.nim
+  - icon: ':warning:'
+    path: atcoder/extra/graph/graphviz.nim
+    title: atcoder/extra/graph/graphviz.nim
   - icon: ':warning:'
     path: atcoder/extra/graph/graphviz.nim
     title: atcoder/extra/graph/graphviz.nim
@@ -45,11 +81,29 @@ data:
     path: atcoder/extra/graph/kruskal.nim
     title: atcoder/extra/graph/kruskal.nim
   - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/kruskal.nim
+    title: atcoder/extra/graph/kruskal.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/kruskal.nim
+    title: atcoder/extra/graph/kruskal.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/lowlink.nim
     title: atcoder/extra/graph/lowlink.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/lowlink.nim
     title: atcoder/extra/graph/lowlink.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/lowlink.nim
+    title: atcoder/extra/graph/lowlink.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/lowlink.nim
+    title: atcoder/extra/graph/lowlink.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/prim.nim
+    title: atcoder/extra/graph/prim.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/prim.nim
+    title: atcoder/extra/graph/prim.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/prim.nim
     title: atcoder/extra/graph/prim.nim
@@ -63,6 +117,18 @@ data:
     path: atcoder/extra/graph/strong_orientation.nim
     title: atcoder/extra/graph/strong_orientation.nim
   - icon: ':warning:'
+    path: atcoder/extra/graph/strong_orientation.nim
+    title: atcoder/extra/graph/strong_orientation.nim
+  - icon: ':warning:'
+    path: atcoder/extra/graph/strong_orientation.nim
+    title: atcoder/extra/graph/strong_orientation.nim
+  - icon: ':warning:'
+    path: atcoder/extra/graph/topological_sort.nim
+    title: atcoder/extra/graph/topological_sort.nim
+  - icon: ':warning:'
+    path: atcoder/extra/graph/topological_sort.nim
+    title: atcoder/extra/graph/topological_sort.nim
+  - icon: ':warning:'
     path: atcoder/extra/graph/topological_sort.nim
     title: atcoder/extra/graph/topological_sort.nim
   - icon: ':warning:'
@@ -74,6 +140,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/centroid_decomposition.nim
     title: atcoder/extra/tree/centroid_decomposition.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/tree/centroid_decomposition.nim
+    title: atcoder/extra/tree/centroid_decomposition.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/tree/centroid_decomposition.nim
+    title: atcoder/extra/tree/centroid_decomposition.nim
+  - icon: ':x:'
+    path: atcoder/extra/tree/doubling_lowest_common_ancestor.nim
+    title: atcoder/extra/tree/doubling_lowest_common_ancestor.nim
+  - icon: ':x:'
+    path: atcoder/extra/tree/doubling_lowest_common_ancestor.nim
+    title: atcoder/extra/tree/doubling_lowest_common_ancestor.nim
   - icon: ':x:'
     path: atcoder/extra/tree/doubling_lowest_common_ancestor.nim
     title: atcoder/extra/tree/doubling_lowest_common_ancestor.nim
@@ -86,6 +164,18 @@ data:
   - icon: ':x:'
     path: atcoder/extra/tree/heavy_light_decomposition.nim
     title: atcoder/extra/tree/heavy_light_decomposition.nim
+  - icon: ':x:'
+    path: atcoder/extra/tree/heavy_light_decomposition.nim
+    title: atcoder/extra/tree/heavy_light_decomposition.nim
+  - icon: ':x:'
+    path: atcoder/extra/tree/heavy_light_decomposition.nim
+    title: atcoder/extra/tree/heavy_light_decomposition.nim
+  - icon: ':x:'
+    path: atcoder/extra/tree/tree_diameter.nim
+    title: atcoder/extra/tree/tree_diameter.nim
+  - icon: ':x:'
+    path: atcoder/extra/tree/tree_diameter.nim
+    title: atcoder/extra/tree/tree_diameter.nim
   - icon: ':x:'
     path: atcoder/extra/tree/tree_diameter.nim
     title: atcoder/extra/tree/tree_diameter.nim
@@ -165,10 +255,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_cycle_detection_test.nim
     title: verify/extra/graph/yosupo_cycle_detection_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/yosupo_directedmst_test.nim
     title: verify/extra/graph/yosupo_directedmst_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/graph/yosupo_directedmst_test.nim
     title: verify/extra/graph/yosupo_directedmst_test.nim
   - icon: ':x:'
@@ -263,13 +353,43 @@ data:
     \    for i in 0..<a.len: result.addEdge(a[i], b[i])\n\n  template id*[G:Graph](g:G,\
     \ u:int):int = \n    when G.U is int: u\n    else: g.id(u)\n\n  iterator adj*[T,\
     \ U](g:Graph[T, U, ADJTYPE_ITER], u:U):tuple[dst:U, weight:T] =\n    var iter:type(g.adj_iter)\n\
-    \    iter.deepCopy(g.adj_iter)\n    for e in iter(u): yield e\n\n  iterator adj_by_id*[G:Graph](g:G,\
-    \ u:int):auto =\n    when G.adjType is ADJTYPE_SEQ:\n      for e in g.adj[u]:\
-    \ yield e\n    else:\n      for e in g.adj(u): yield e\n"
+    \    iter.deepCopy(g.adj_iter)\n    for e in iter(u):\n      yield e\n\n  iterator\
+    \ adj_by_id*[G:Graph](g:G, u:int):auto =\n    when G.adjType is ADJTYPE_SEQ:\n\
+    \      for e in g.adj[u]: yield e\n    else:\n      for e in g.adj(u): yield e\n"
   dependsOn: []
   isVerificationFile: false
   path: atcoder/extra/graph/graph_template.nim
   requiredBy:
+  - atcoder/extra/tree/heavy_light_decomposition.nim
+  - atcoder/extra/tree/heavy_light_decomposition.nim
+  - atcoder/extra/tree/tree_diameter.nim
+  - atcoder/extra/tree/tree_diameter.nim
+  - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
+  - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
+  - atcoder/extra/tree/centroid_decomposition.nim
+  - atcoder/extra/tree/centroid_decomposition.nim
+  - atcoder/extra/graph/chu_liu_edmonds.nim
+  - atcoder/extra/graph/chu_liu_edmonds.nim
+  - atcoder/extra/graph/topological_sort.nim
+  - atcoder/extra/graph/topological_sort.nim
+  - atcoder/extra/graph/kruskal.nim
+  - atcoder/extra/graph/kruskal.nim
+  - atcoder/extra/graph/dijkstra.nim
+  - atcoder/extra/graph/dijkstra.nim
+  - atcoder/extra/graph/graphviz.nim
+  - atcoder/extra/graph/graphviz.nim
+  - atcoder/extra/graph/strong_orientation.nim
+  - atcoder/extra/graph/strong_orientation.nim
+  - atcoder/extra/graph/bellman_ford.nim
+  - atcoder/extra/graph/bellman_ford.nim
+  - atcoder/extra/graph/cycle_detection.nim
+  - atcoder/extra/graph/cycle_detection.nim
+  - atcoder/extra/graph/dijkstra_radix_heap.nim
+  - atcoder/extra/graph/dijkstra_radix_heap.nim
+  - atcoder/extra/graph/prim.nim
+  - atcoder/extra/graph/prim.nim
+  - atcoder/extra/graph/lowlink.nim
+  - atcoder/extra/graph/lowlink.nim
   - atcoder/extra/tree/heavy_light_decomposition.nim
   - atcoder/extra/tree/heavy_light_decomposition.nim
   - atcoder/extra/tree/tree_diameter.nim

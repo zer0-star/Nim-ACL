@@ -55,14 +55,14 @@ data:
     \n  let u = (powMod(p, a, m) * powMod(p, b, m) mod m)[0..<m.len-1]\r\n  let v\
     \ = powMod(p, a + b, m)\r\n  check EQUAL(u, v)\r\n"
   dependsOn:
-  - atcoder/extra/math/fft.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/fft.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/extra/math/fft.nim
+  - atcoder/internal_bit.nim
   - atcoder/element_concepts.nim
   - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
+  - atcoder/extra/math/formal_power_series.nim
   isVerificationFile: false
   path: tests/test_extra_formal_power_series_float.nim
   requiredBy: []

@@ -50,13 +50,13 @@ data:
     \ seg.prod(l..<r).inversion\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/lazysegtree.nim
-  - atcoder/internal_bit.nim
-  - atcoder/rangeutils.nim
-  - atcoder/internal_bit.nim
   - atcoder/header.nim
   - atcoder/rangeutils.nim
   - atcoder/lazysegtree.nim
+  - atcoder/lazysegtree.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: false
   path: test/example/lazyseg_practice2.nim
   requiredBy: []

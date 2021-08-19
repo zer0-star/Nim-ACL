@@ -67,12 +67,12 @@ data:
     \  seg.apply(2, -10)\n  check -5 == seg.prod(2 ..< 3)\n  check -5 == seg[2 ..<\
     \ 3]\n  check 0 == seg.prod(2 ..< 4)\n  check 0 == seg[2 ..< 4]\n"
   dependsOn:
-  - atcoder/lazysegtree.nim
-  - atcoder/internal_bit.nim
-  - atcoder/rangeutils.nim
-  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
   - atcoder/lazysegtree.nim
+  - atcoder/lazysegtree.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: false
   path: tests/test_lazysegtree.nim
   requiredBy: []

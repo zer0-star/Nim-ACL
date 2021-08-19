@@ -7,6 +7,18 @@ data:
   - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
+  - icon: ':question:'
+    path: atcoder/element_concepts.nim
+    title: atcoder/element_concepts.nim
+  - icon: ':question:'
+    path: atcoder/element_concepts.nim
+    title: atcoder/element_concepts.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/floatutils.nim
+    title: atcoder/extra/other/floatutils.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/floatutils.nim
+    title: atcoder/extra/other/floatutils.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
@@ -19,6 +31,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/internal_complex.nim
     title: atcoder/extra/other/internal_complex.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/internal_complex.nim
+    title: atcoder/extra/other/internal_complex.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/internal_complex.nim
+    title: atcoder/extra/other/internal_complex.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/static_var.nim
+    title: atcoder/extra/other/static_var.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/static_var.nim
+    title: atcoder/extra/other/static_var.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
@@ -33,6 +57,18 @@ data:
     path: atcoder/extra/geometry/closest_pair.nim
     title: atcoder/extra/geometry/closest_pair.nim
   - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/closest_pair.nim
+    title: atcoder/extra/geometry/closest_pair.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/closest_pair.nim
+    title: atcoder/extra/geometry/closest_pair.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/polygon.nim
+    title: atcoder/extra/geometry/polygon.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/polygon.nim
+    title: atcoder/extra/geometry/polygon.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/polygon.nim
     title: atcoder/extra/geometry/polygon.nim
   - icon: ':heavy_check_mark:'
@@ -45,6 +81,18 @@ data:
     path: atcoder/extra/geometry/segment_graph.nim
     title: atcoder/extra/geometry/segment_graph.nim
   - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/segment_graph.nim
+    title: atcoder/extra/geometry/segment_graph.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/segment_graph.nim
+    title: atcoder/extra/geometry/segment_graph.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/tangent.nim
+    title: atcoder/extra/geometry/tangent.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/tangent.nim
+    title: atcoder/extra/geometry/tangent.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/tangent.nim
     title: atcoder/extra/geometry/tangent.nim
   - icon: ':heavy_check_mark:'
@@ -56,6 +104,18 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/geometry/triangle.nim
     title: atcoder/extra/geometry/triangle.nim
+  - icon: ':warning:'
+    path: atcoder/extra/geometry/triangle.nim
+    title: atcoder/extra/geometry/triangle.nim
+  - icon: ':warning:'
+    path: atcoder/extra/geometry/triangle.nim
+    title: atcoder/extra/geometry/triangle.nim
+  - icon: ':warning:'
+    path: atcoder/extra/geometry/visualizer.nim
+    title: atcoder/extra/geometry/visualizer.nim
+  - icon: ':warning:'
+    path: atcoder/extra/geometry/visualizer.nim
+    title: atcoder/extra/geometry/visualizer.nim
   - icon: ':warning:'
     path: atcoder/extra/geometry/visualizer.nim
     title: atcoder/extra/geometry/visualizer.nim
@@ -338,15 +398,35 @@ data:
   dependsOn:
   - atcoder/element_concepts.nim
   - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/other/floatutils.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/geometry/geometry_template.nim
   requiredBy:
+  - atcoder/extra/geometry/tangent.nim
+  - atcoder/extra/geometry/tangent.nim
+  - atcoder/extra/geometry/closest_pair.nim
+  - atcoder/extra/geometry/closest_pair.nim
+  - atcoder/extra/geometry/segment_graph.nim
+  - atcoder/extra/geometry/segment_graph.nim
+  - atcoder/extra/geometry/polygon.nim
+  - atcoder/extra/geometry/polygon.nim
+  - atcoder/extra/geometry/triangle.nim
+  - atcoder/extra/geometry/triangle.nim
+  - atcoder/extra/geometry/visualizer.nim
+  - atcoder/extra/geometry/visualizer.nim
   - atcoder/extra/geometry/tangent.nim
   - atcoder/extra/geometry/tangent.nim
   - atcoder/extra/geometry/closest_pair.nim

@@ -1,10 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: atcoder/dsu.nim
+    title: atcoder/dsu.nim
+  - icon: ':question:'
+    path: atcoder/dsu.nim
+    title: atcoder/dsu.nim
+  - icon: ':question:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
   _extendedRequiredBy: []
@@ -36,6 +42,8 @@ data:
     \ v[i][1])\n          result += v[i][0]\n          con = true\n      if not con:\
     \ return self.inf\n"
   dependsOn:
+  - atcoder/dsu.nim
+  - atcoder/dsu.nim
   - atcoder/dsu.nim
   - atcoder/dsu.nim
   isVerificationFile: false

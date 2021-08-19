@@ -8,6 +8,12 @@ data:
     path: atcoder/header.nim
     title: atcoder/header.nim
   - icon: ':question:'
+    path: atcoder/internal_csr.nim
+    title: atcoder/internal_csr.nim
+  - icon: ':question:'
+    path: atcoder/internal_csr.nim
+    title: atcoder/internal_csr.nim
+  - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
   - icon: ':question:'
@@ -38,12 +44,14 @@ data:
     \ = scc.scc()\n  echo a.len\n  for a in a:\n    echo a.len, \" \", a.join(\" \"\
     )\n"
   dependsOn:
-  - atcoder/scc.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/scc.nim
+  - atcoder/scc.nim
   - atcoder/internal_scc.nim
-  - atcoder/header.nim
+  - atcoder/internal_csr.nim
   - atcoder/internal_scc.nim
+  - atcoder/internal_csr.nim
   isVerificationFile: true
   path: verify/scc_test.nim
   requiredBy: []

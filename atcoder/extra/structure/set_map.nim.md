@@ -8,6 +8,18 @@ data:
     path: atcoder/extra/structure/binary_tree_node_utils.nim
     title: atcoder/extra/structure/binary_tree_node_utils.nim
   - icon: ':x:'
+    path: atcoder/extra/structure/binary_tree_node_utils.nim
+    title: atcoder/extra/structure/binary_tree_node_utils.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/binary_tree_node_utils.nim
+    title: atcoder/extra/structure/binary_tree_node_utils.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/binary_tree_utils.nim
+    title: atcoder/extra/structure/binary_tree_utils.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/binary_tree_utils.nim
+    title: atcoder/extra/structure/binary_tree_utils.nim
+  - icon: ':x:'
     path: atcoder/extra/structure/binary_tree_utils.nim
     title: atcoder/extra/structure/binary_tree_utils.nim
   - icon: ':x:'
@@ -20,11 +32,29 @@ data:
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - icon: ':x:'
+    path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+    title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+    title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - icon: ':x:'
     path: atcoder/extra/structure/red_black_tree.nim
     title: atcoder/extra/structure/red_black_tree.nim
   - icon: ':x:'
     path: atcoder/extra/structure/red_black_tree.nim
     title: atcoder/extra/structure/red_black_tree.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/red_black_tree.nim
+    title: atcoder/extra/structure/red_black_tree.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/red_black_tree.nim
+    title: atcoder/extra/structure/red_black_tree.nim
+  - icon: ':x:'
+    path: atcoder/rangeutils.nim
+    title: atcoder/rangeutils.nim
+  - icon: ':x:'
+    path: atcoder/rangeutils.nim
+    title: atcoder/rangeutils.nim
   - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
@@ -106,36 +136,47 @@ data:
     \ V:typedesc[not void], countable: static[bool] = false, comp:static[proc(a, b:K):bool]\
     \ = nil):typedesc =\n    SortedMultiMapType[K, V, when countable: static[bool]\
     \ = false, (comp,)]\n\n  proc default*[T:SetOrMap](self:typedesc[T]):T =\n   \
-    \ result.init()\n  proc initSortedSet*(K:typedesc, countable:static[bool] = false,\
-    \ comp:static[proc(a, b:K):bool] = nil):auto =\n    var r: SortedSetType[K, when\
-    \ countable: int else: void, (comp,)]\n    r.init()\n    return r\n  proc initSortedMultiSet*(K:typedesc,\
-    \ countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =\n\
-    \    var r: SortedMultiSetType[K, when countable: int else: void, (comp,)]\n \
-    \   r.init()\n    return r\n  proc initSortedMap*(K:typedesc, V:typedesc[not void],\
-    \ countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =\n\
-    \    var r: SortedMapType[K, V, when countable: int else: void, (comp,)]\n   \
-    \ r.init()\n    return r\n  proc initSortedMultiMap*(K:typedesc, V:typedesc[not\
-    \ void], countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto\
-    \ =\n    var r: SortedMultiMapType[K, V, when countable: int else: void, (comp,)]\n\
-    \    r.init()\n    return r\n\n  proc `$`*(self: SetOrMap): string =\n    var\
-    \ a = newSeq[string]()\n    var node = self.root\n    var stack: seq[self.Node]\
-    \ = @[]\n    while stack.len() != 0 or not node.isLeaf:\n      if not node.isLeaf:\n\
-    \        if node != self.End:\n          stack.add(node)\n        node = node.l\n\
-    \      else:\n        node = stack.pop()\n        when self.V is void:\n     \
-    \     var k = \"\"\n          k.addQuoted(node.key)\n          a &= k\n      \
-    \  else:\n          var k, v = \"\"\n          k.addQuoted(node.key[0])\n    \
-    \      v.addQuoted(node.key[1])\n          a &= k & \": \" & v\n        node =\
-    \ node.r\n    return \"{\" & a.join(\", \") & \"}\"\n"
+    \ result.init()\n  template initSortedSet*(K:typedesc, countable:static[bool]\
+    \ = false, comp:static[proc(a, b:K):bool] = nil):auto =\n    block:\n      var\
+    \ r: SortedSetType[K, when countable: int else: void, (comp,)]\n      r.init()\n\
+    \      r\n  template initSortedMultiSet*(K:typedesc, countable:static[bool] =\
+    \ false, comp:static[proc(a, b:K):bool] = nil):auto =\n    block:\n      var r:\
+    \ SortedMultiSetType[K, when countable: int else: void, (comp,)]\n      r.init()\n\
+    \      r\n  template initSortedMap*(K:typedesc, V:typedesc[not void], countable:static[bool]\
+    \ = false, comp:static[proc(a, b:K):bool] = nil):auto =\n    block:\n      var\
+    \ r: SortedMapType[K, V, when countable: int else: void, (comp,)]\n      r.init()\n\
+    \      r\n  template initSortedMultiMap*(K:typedesc, V:typedesc[not void], countable:static[bool]\
+    \ = false, comp:static[proc(a, b:K):bool] = nil):auto =\n    block:\n      var\
+    \ r: SortedMultiMapType[K, V, when countable: int else: void, (comp,)]\n     \
+    \ r.init()\n      r\n\n  proc `$`*(self: SetOrMap): string =\n    var a = newSeq[string]()\n\
+    \    var node = self.root\n    var stack: seq[self.Node] = @[]\n    while stack.len()\
+    \ != 0 or not node.isLeaf:\n      if not node.isLeaf:\n        if node != self.End:\n\
+    \          stack.add(node)\n        node = node.l\n      else:\n        node =\
+    \ stack.pop()\n        when self.V is void:\n          var k = \"\"\n        \
+    \  k.addQuoted(node.key)\n          a &= k\n        else:\n          var k, v\
+    \ = \"\"\n          k.addQuoted(node.key[0])\n          v.addQuoted(node.key[1])\n\
+    \          a &= k & \": \" & v\n        node = node.r\n    return \"{\" & a.join(\"\
+    , \") & \"}\"\n"
   dependsOn:
   - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/extra/structure/red_black_tree.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/rangeutils.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/red_black_tree.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/red_black_tree.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/red_black_tree.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/red_black_tree.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/set_map.nim

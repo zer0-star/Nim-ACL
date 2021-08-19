@@ -7,6 +7,24 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
+  - icon: ':question:'
+    path: atcoder/internal_csr.nim
+    title: atcoder/internal_csr.nim
+  - icon: ':question:'
+    path: atcoder/internal_csr.nim
+    title: atcoder/internal_csr.nim
+  - icon: ':warning:'
+    path: atcoder/internal_heap.nim
+    title: atcoder/internal_heap.nim
+  - icon: ':warning:'
+    path: atcoder/internal_heap.nim
+    title: atcoder/internal_heap.nim
+  - icon: ':warning:'
+    path: atcoder/internal_queue.nim
+    title: atcoder/internal_queue.nim
+  - icon: ':warning:'
+    path: atcoder/internal_queue.nim
+    title: atcoder/internal_queue.nim
   - icon: ':warning:'
     path: atcoder/mincostflow.nim
     title: atcoder/mincostflow.nim
@@ -34,9 +52,15 @@ data:
     \ continue\n  grid[e.src][e.dst - n] = 'X'\n\nfor i in 0..<n:\n  echo grid[i]\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/mincostflow.nim
   - atcoder/header.nim
   - atcoder/mincostflow.nim
+  - atcoder/mincostflow.nim
+  - atcoder/internal_heap.nim
+  - atcoder/internal_heap.nim
+  - atcoder/internal_csr.nim
+  - atcoder/internal_queue.nim
+  - atcoder/internal_csr.nim
+  - atcoder/internal_queue.nim
   isVerificationFile: false
   path: test/example/mincostflow_practice.nim
   requiredBy: []

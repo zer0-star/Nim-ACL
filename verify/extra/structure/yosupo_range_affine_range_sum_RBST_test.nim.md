@@ -1,6 +1,24 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':x:'
+    path: atcoder/extra/structure/binary_tree_node_utils.nim
+    title: atcoder/extra/structure/binary_tree_node_utils.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/binary_tree_node_utils.nim
+    title: atcoder/extra/structure/binary_tree_node_utils.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/binary_tree_utils.nim
+    title: atcoder/extra/structure/binary_tree_utils.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/binary_tree_utils.nim
+    title: atcoder/extra/structure/binary_tree_utils.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+    title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+    title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - icon: ':question:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
@@ -25,6 +43,12 @@ data:
   - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
+  - icon: ':x:'
+    path: atcoder/rangeutils.nim
+    title: atcoder/rangeutils.nim
+  - icon: ':x:'
+    path: atcoder/rangeutils.nim
+    title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -39,7 +63,7 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/range_affine_range_sum\n\
-    import atcoder/header, atcoder/modint\nimport std/sequtils\n\nimport atcoder/extra/structure/randomized_binary_search_tree\n\
+    import atcoder/header, atcoder/modint\nimport std/sequtils\n\nimport atcoder/extra/structure/randomized_binary_search_tree_with_parent\n\
     \ntype mint = modint998244353\nlet n, q = nextInt()\nlet a = newSeqWith(n, (mint(nextInt()),\
     \ 1))\n\ntype S = tuple[a:mint, size:int]\ntype F = tuple[a:mint, b:mint]\n\n\
     proc op(l, r:S):S = (l.a + r.a, l.size + r.size)\nproc e():S = (mint(0), 0)\n\
@@ -51,13 +75,21 @@ data:
     \ let l, r = nextInt()\n    echo seg.prod(l..<r)[0]\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/header.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
   requiredBy: []

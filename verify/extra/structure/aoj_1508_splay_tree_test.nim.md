@@ -47,10 +47,10 @@ data:
     \ z)\n"
   dependsOn:
   - atcoder/header.nim
+  - atcoder/header.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
-  - atcoder/header.nim
   - atcoder/rangeutils.nim
   isVerificationFile: true
   path: verify/extra/structure/aoj_1508_splay_tree_test.nim

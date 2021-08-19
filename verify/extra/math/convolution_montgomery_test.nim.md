@@ -72,7 +72,7 @@ data:
     import sequtils, strutils
 
 
-    type mint = modint998244353
+    type mint = modint_montgomery_998244353
 
 
     let N, M = nextInt()
@@ -87,22 +87,22 @@ data:
 
     '
   dependsOn:
-  - atcoder/extra/math/modint_montgomery.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/header.nim
-  - atcoder/element_concepts.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/modint_montgomery.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/modint.nim
-  - atcoder/element_concepts.nim
-  - atcoder/internal_math.nim
   - atcoder/header.nim
   - atcoder/convolution.nim
+  - atcoder/header.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/modint_montgomery.nim
   - atcoder/internal_bit.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/convolution.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/modint_montgomery.nim
   isVerificationFile: true
   path: verify/extra/math/convolution_montgomery_test.nim
   requiredBy: []

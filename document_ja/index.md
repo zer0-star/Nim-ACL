@@ -47,7 +47,7 @@
 ACLには収録されていないが、使用頻度が高そうなライブラリを追加しました。
 
 ### データ構造
-- [`SortedSetとSortedMap(C++のset, mapと同機能)`](./sorted_set_map.html)
+- [`SortedSetとSortedMap(C++のset, mapと同機能)`](./extra/sorted_set_map.html)
 - Skew Heap
 - dual fenwick tree
 - Splay Tree

@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: atcoder/internal_csr.nim
+    title: atcoder/internal_csr.nim
+  - icon: ':question:'
+    path: atcoder/internal_csr.nim
+    title: atcoder/internal_csr.nim
+  - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
   - icon: ':question:'
@@ -44,7 +50,9 @@ data:
     \ dst)\n\n  proc scc*(self:SCCGraph):auto = self.internal.scc()\n"
   dependsOn:
   - atcoder/internal_scc.nim
+  - atcoder/internal_csr.nim
   - atcoder/internal_scc.nim
+  - atcoder/internal_csr.nim
   isVerificationFile: false
   path: atcoder/scc.nim
   requiredBy:

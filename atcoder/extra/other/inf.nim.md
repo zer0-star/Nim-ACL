@@ -8,6 +8,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/bellman_ford.nim
     title: atcoder/extra/graph/bellman_ford.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/bellman_ford.nim
+    title: atcoder/extra/graph/bellman_ford.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/bellman_ford.nim
+    title: atcoder/extra/graph/bellman_ford.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/dijkstra.nim
+    title: atcoder/extra/graph/dijkstra.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/dijkstra.nim
+    title: atcoder/extra/graph/dijkstra.nim
   - icon: ':question:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
@@ -21,11 +33,29 @@ data:
     path: atcoder/extra/graph/dijkstra_radix_heap.nim
     title: atcoder/extra/graph/dijkstra_radix_heap.nim
   - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/dijkstra_radix_heap.nim
+    title: atcoder/extra/graph/dijkstra_radix_heap.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/dijkstra_radix_heap.nim
+    title: atcoder/extra/graph/dijkstra_radix_heap.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/warshall_floyd.nim
     title: atcoder/extra/graph/warshall_floyd.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/warshall_floyd.nim
     title: atcoder/extra/graph/warshall_floyd.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/warshall_floyd.nim
+    title: atcoder/extra/graph/warshall_floyd.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/warshall_floyd.nim
+    title: atcoder/extra/graph/warshall_floyd.nim
+  - icon: ':warning:'
+    path: atcoder/extra/header/chaemon_header.nim
+    title: atcoder/extra/header/chaemon_header.nim
+  - icon: ':warning:'
+    path: atcoder/extra/header/chaemon_header.nim
+    title: atcoder/extra/header/chaemon_header.nim
   - icon: ':warning:'
     path: atcoder/extra/header/chaemon_header.nim
     title: atcoder/extra/header/chaemon_header.nim
@@ -105,6 +135,16 @@ data:
   isVerificationFile: false
   path: atcoder/extra/other/inf.nim
   requiredBy:
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/graph/dijkstra.nim
+  - atcoder/extra/graph/dijkstra.nim
+  - atcoder/extra/graph/warshall_floyd.nim
+  - atcoder/extra/graph/warshall_floyd.nim
+  - atcoder/extra/graph/bellman_ford.nim
+  - atcoder/extra/graph/bellman_ford.nim
+  - atcoder/extra/graph/dijkstra_radix_heap.nim
+  - atcoder/extra/graph/dijkstra_radix_heap.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/graph/dijkstra.nim

@@ -27,11 +27,29 @@ data:
     path: atcoder/extra/math/arbitrary_mod_convolution.nim
     title: atcoder/extra/math/arbitrary_mod_convolution.nim
   - icon: ':x:'
+    path: atcoder/extra/math/arbitrary_mod_convolution.nim
+    title: atcoder/extra/math/arbitrary_mod_convolution.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/arbitrary_mod_convolution.nim
+    title: atcoder/extra/math/arbitrary_mod_convolution.nim
+  - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
   - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/composition.nim
+    title: atcoder/extra/math/composition.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/composition.nim
+    title: atcoder/extra/math/composition.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series_sqrt.nim
+    title: atcoder/extra/math/formal_power_series_sqrt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series_sqrt.nim
+    title: atcoder/extra/math/formal_power_series_sqrt.nim
   - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
@@ -45,11 +63,29 @@ data:
     path: atcoder/extra/math/mod_sqrt.nim
     title: atcoder/extra/math/mod_sqrt.nim
   - icon: ':x:'
+    path: atcoder/extra/math/mod_sqrt.nim
+    title: atcoder/extra/math/mod_sqrt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/mod_sqrt.nim
+    title: atcoder/extra/math/mod_sqrt.nim
+  - icon: ':x:'
     path: atcoder/extra/math/ntt.nim
     title: atcoder/extra/math/ntt.nim
   - icon: ':x:'
     path: atcoder/extra/math/ntt.nim
     title: atcoder/extra/math/ntt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/ntt.nim
+    title: atcoder/extra/math/ntt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/ntt.nim
+    title: atcoder/extra/math/ntt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/particular_mod_convolution.nim
+    title: atcoder/extra/math/particular_mod_convolution.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/particular_mod_convolution.nim
+    title: atcoder/extra/math/particular_mod_convolution.nim
   - icon: ':x:'
     path: atcoder/extra/math/particular_mod_convolution.nim
     title: atcoder/extra/math/particular_mod_convolution.nim
@@ -261,7 +297,8 @@ data:
   code: "when not declared ATCODER_MODINT_HPP:\n  const ATCODER_MODINT_HPP* = 1\n\
     \  import std/macros, std/strformat\n  import atcoder/generate_definitions\n\n\
     \  type\n    StaticModInt*[M: static[int]] = object\n      a:uint32\n    DynamicModInt*[T:\
-    \ static[int]] = object\n      a:uint32\n\n  type ModInt* = StaticModInt or DynamicModInt\n\
+    \ static[int]] = object\n      a:uint32\n\n#  type ModInt* = StaticModInt or DynamicModInt\n\
+    \  type ModInt* = concept x, type T\n    T is StaticModInt or T is DynamicModInt\n\
     \n  proc isStaticModInt*(T:typedesc):bool = T is StaticModInt\n  proc isDynamicModInt*(T:typedesc):bool\
     \ = T is DynamicModInt\n  proc isModInt*(T:typedesc):bool = T.isStaticModInt or\
     \ T.isDynamicModInt\n  proc isStatic*(T:typedesc[ModInt]):bool = T is StaticModInt\n\
@@ -269,18 +306,19 @@ data:
     \ Barrett =\n    var Barrett_of_DynamicModInt {.global.} = initBarrett(998244353.uint)\n\
     \    return Barrett_of_DynamicModInt.addr\n  proc getMod*[T:static[int]](t:typedesc[DynamicModInt[T]]):uint32\
     \ {.inline.} =\n    (t.getBarrett)[].m.uint32\n  proc setMod*[T:static[int]](t:typedesc[DynamicModInt[T]],\
-    \ M:SomeInteger){.used inline.} =\n    (t.getBarrett)[] = initBarrett(M.uint)\n\
-    \n  proc `$`*(m: ModInt): string {.inline.} = $(m.val())\n\n  template umod*[T:ModInt](self:\
-    \ typedesc[T] or T):uint32 =\n    when T is typedesc:\n      when T is StaticModInt:\n\
-    \        T.M.uint32\n      elif T is DynamicModInt:\n        T.getMod()\n    \
-    \  else:\n        static: assert false\n    else: T.umod\n\n  proc `mod`*[T:ModInt](self:typedesc[T]\
-    \ or T):int = T.umod.int\n\n  proc init*[T:ModInt](t:typedesc[T], v: SomeInteger\
-    \ or T): auto {.inline.} =\n    when v is T: return v\n    else:\n      when v\
-    \ is SomeUnsignedInt:\n        if v.uint < T.umod:\n          return T(a:v.uint32)\n\
-    \        else:\n          return T(a:(v.uint mod T.umod.uint).uint32)\n      else:\n\
-    \        var v = v.int\n        if 0 <= v:\n          if v < T.mod: return T(a:v.uint32)\n\
-    \          else: return T(a:(v mod T.mod).uint32)\n        else:\n          v\
-    \ = v mod T.mod\n          if v < 0: v += T.mod\n          return T(a:v.uint32)\n\
+    \ M:SomeInteger){.inline.} =\n    (t.getBarrett)[] = initBarrett(M.uint)\n\n \
+    \ proc `$`*(m: StaticModInt or DynamicModInt): string {.inline.} = $(m.val())\n\
+    \n  template umod*[T:ModInt](self: typedesc[T] or T):uint32 =\n    when T is typedesc:\n\
+    \      when T is StaticModInt:\n        T.M.uint32\n      elif T is DynamicModInt:\n\
+    \        T.getMod()\n      else:\n        static: assert false\n    else: T.umod\n\
+    \n  template `mod`*[T:ModInt](self:typedesc[T] or T):int = T.umod.int\n\n  proc\
+    \ init*[T:ModInt](t:typedesc[T], v: SomeInteger or T): auto {.inline.} =\n   \
+    \ when v is T: return v\n    else:\n      when v is SomeUnsignedInt:\n       \
+    \ if v.uint < T.umod:\n          return T(a:v.uint32)\n        else:\n       \
+    \   return T(a:(v.uint mod T.umod.uint).uint32)\n      else:\n        var v =\
+    \ v.int\n        if 0 <= v:\n          if v < T.mod: return T(a:v.uint32)\n  \
+    \        else: return T(a:(v mod T.mod).uint32)\n        else:\n          v =\
+    \ v mod T.mod\n          if v < 0: v += T.mod\n          return T(a:v.uint32)\n\
     \  proc unit*[T:ModInt](t:typedesc[T] or T):T = T.init(1)\n\n  template initModInt*(v:\
     \ SomeInteger or ModInt; M: static[int] = 1_000_000_007): auto =\n    StaticModInt[M].init(v)\n\
     \n# TODO\n#  converter toModInt[M:static[int]](n:SomeInteger):StaticModInt[M]\
@@ -314,10 +352,10 @@ data:
     \n  useStaticModInt(modint998244353, 998244353)\n  useStaticModInt(modint1000000007,\
     \ 1000000007)\n  useDynamicModInt(modint, -1)\n"
   dependsOn:
-  - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: atcoder/modint.nim
   requiredBy:
@@ -335,6 +373,18 @@ data:
   - atcoder/extra/math/ntt.nim
   - atcoder/convolution.nim
   - atcoder/convolution.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/ntt.nim
   - tests/test_extra_formal_power_series.nim
   - tests/test_extra_formal_power_series.nim
   - tests/test_extra_matrix.nim

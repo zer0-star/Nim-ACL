@@ -15,11 +15,29 @@ data:
     path: atcoder/extra/math/arbitrary_mod_convolution.nim
     title: atcoder/extra/math/arbitrary_mod_convolution.nim
   - icon: ':x:'
+    path: atcoder/extra/math/arbitrary_mod_convolution.nim
+    title: atcoder/extra/math/arbitrary_mod_convolution.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/arbitrary_mod_convolution.nim
+    title: atcoder/extra/math/arbitrary_mod_convolution.nim
+  - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
   - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/composition.nim
+    title: atcoder/extra/math/composition.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/composition.nim
+    title: atcoder/extra/math/composition.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series_sqrt.nim
+    title: atcoder/extra/math/formal_power_series_sqrt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series_sqrt.nim
+    title: atcoder/extra/math/formal_power_series_sqrt.nim
   - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
@@ -33,6 +51,18 @@ data:
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
   - icon: ':x:'
+    path: atcoder/extra/math/matrix.nim
+    title: atcoder/extra/math/matrix.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/matrix.nim
+    title: atcoder/extra/math/matrix.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/mod_sqrt.nim
+    title: atcoder/extra/math/mod_sqrt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/mod_sqrt.nim
+    title: atcoder/extra/math/mod_sqrt.nim
+  - icon: ':x:'
     path: atcoder/extra/math/mod_sqrt.nim
     title: atcoder/extra/math/mod_sqrt.nim
   - icon: ':x:'
@@ -45,11 +75,29 @@ data:
     path: atcoder/extra/math/modint_montgomery.nim
     title: atcoder/extra/math/modint_montgomery.nim
   - icon: ':x:'
+    path: atcoder/extra/math/modint_montgomery.nim
+    title: atcoder/extra/math/modint_montgomery.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/modint_montgomery.nim
+    title: atcoder/extra/math/modint_montgomery.nim
+  - icon: ':x:'
     path: atcoder/extra/math/ntt.nim
     title: atcoder/extra/math/ntt.nim
   - icon: ':x:'
     path: atcoder/extra/math/ntt.nim
     title: atcoder/extra/math/ntt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/ntt.nim
+    title: atcoder/extra/math/ntt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/ntt.nim
+    title: atcoder/extra/math/ntt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/particular_mod_convolution.nim
+    title: atcoder/extra/math/particular_mod_convolution.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/particular_mod_convolution.nim
+    title: atcoder/extra/math/particular_mod_convolution.nim
   - icon: ':x:'
     path: atcoder/extra/math/particular_mod_convolution.nim
     title: atcoder/extra/math/particular_mod_convolution.nim
@@ -311,6 +359,22 @@ data:
   - atcoder/convolution.nim
   - atcoder/modint.nim
   - atcoder/modint.nim
+  - atcoder/extra/math/matrix.nim
+  - atcoder/extra/math/matrix.nim
+  - atcoder/extra/math/modint_montgomery.nim
+  - atcoder/extra/math/modint_montgomery.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/ntt.nim
   - tests/test_extra_montgomery_modint.nim
   - tests/test_extra_montgomery_modint.nim
   - tests/test_extra_formal_power_series.nim

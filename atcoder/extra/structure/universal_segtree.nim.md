@@ -7,6 +7,18 @@ data:
   - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
+  - icon: ':question:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':question:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':x:'
+    path: atcoder/rangeutils.nim
+    title: atcoder/rangeutils.nim
+  - icon: ':x:'
+    path: atcoder/rangeutils.nim
+    title: atcoder/rangeutils.nim
   - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
@@ -161,10 +173,14 @@ data:
     \   return r + 1 - self.size\n      sm = ST.calc_op(self.d[r], sm)\n      if not\
     \ ((r and -r) != r): break\n    return 0\n"
   dependsOn:
-  - atcoder/internal_bit.nim
+  - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
+  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: false
   path: atcoder/extra/structure/universal_segtree.nim
   requiredBy:

@@ -7,6 +7,12 @@ data:
   - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/graph_template.nim
+    title: atcoder/extra/graph/graph_template.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/graph_template.nim
+    title: atcoder/extra/graph/graph_template.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
@@ -41,6 +47,8 @@ data:
     \      u = p[1]\n    while true:\n      ans.add(u)\n      let idx = next[u]\n\
     \      if idx == -1:break\n      u = g[u][idx].dst\n    return (q[0], ans)\n"
   dependsOn:
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   isVerificationFile: false

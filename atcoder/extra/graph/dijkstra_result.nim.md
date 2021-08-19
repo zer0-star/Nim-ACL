@@ -8,6 +8,18 @@ data:
   - icon: ':question:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/dijkstra.nim
+    title: atcoder/extra/graph/dijkstra.nim
+  - icon: ':question:'
+    path: atcoder/extra/graph/dijkstra.nim
+    title: atcoder/extra/graph/dijkstra.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/dijkstra_radix_heap.nim
+    title: atcoder/extra/graph/dijkstra_radix_heap.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/dijkstra_radix_heap.nim
+    title: atcoder/extra/graph/dijkstra_radix_heap.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra_radix_heap.nim
     title: atcoder/extra/graph/dijkstra_radix_heap.nim
@@ -73,6 +85,10 @@ data:
   isVerificationFile: false
   path: atcoder/extra/graph/dijkstra_result.nim
   requiredBy:
+  - atcoder/extra/graph/dijkstra.nim
+  - atcoder/extra/graph/dijkstra.nim
+  - atcoder/extra/graph/dijkstra_radix_heap.nim
+  - atcoder/extra/graph/dijkstra_radix_heap.nim
   - atcoder/extra/graph/dijkstra.nim
   - atcoder/extra/graph/dijkstra.nim
   - atcoder/extra/graph/dijkstra_radix_heap.nim

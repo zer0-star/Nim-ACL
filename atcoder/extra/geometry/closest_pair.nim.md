@@ -7,6 +7,18 @@ data:
   - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
+  - icon: ':question:'
+    path: atcoder/element_concepts.nim
+    title: atcoder/element_concepts.nim
+  - icon: ':question:'
+    path: atcoder/element_concepts.nim
+    title: atcoder/element_concepts.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/geometry_template.nim
+    title: atcoder/extra/geometry/geometry_template.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/geometry/geometry_template.nim
+    title: atcoder/extra/geometry/geometry_template.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
@@ -20,11 +32,29 @@ data:
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
   - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/floatutils.nim
+    title: atcoder/extra/other/floatutils.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/floatutils.nim
+    title: atcoder/extra/other/floatutils.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/internal_complex.nim
     title: atcoder/extra/other/internal_complex.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/internal_complex.nim
     title: atcoder/extra/other/internal_complex.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/internal_complex.nim
+    title: atcoder/extra/other/internal_complex.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/internal_complex.nim
+    title: atcoder/extra/other/internal_complex.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/static_var.nim
+    title: atcoder/extra/other/static_var.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/static_var.nim
+    title: atcoder/extra/other/static_var.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
@@ -75,14 +105,24 @@ data:
   dependsOn:
   - atcoder/element_concepts.nim
   - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/floatutils.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/geometry/closest_pair.nim
   requiredBy: []

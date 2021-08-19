@@ -7,6 +7,12 @@ data:
   - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
+  - icon: ':question:'
+    path: atcoder/element_concepts.nim
+    title: atcoder/element_concepts.nim
+  - icon: ':question:'
+    path: atcoder/element_concepts.nim
+    title: atcoder/element_concepts.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -44,6 +50,8 @@ data:
     \ n,r:int):auto =\n    if r < 0 or n < r: T.zero()\n    elif n - r >= r:\n   \
     \   T.C(n, r) * T.fact(r)\n    else:\n      T.C(n, r) * T.fact(n - r)\n"
   dependsOn:
+  - atcoder/element_concepts.nim
+  - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   isVerificationFile: false

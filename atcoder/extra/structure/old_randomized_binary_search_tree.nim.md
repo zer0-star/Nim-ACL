@@ -7,6 +7,12 @@ data:
   - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
+  - icon: ':x:'
+    path: atcoder/rangeutils.nim
+    title: atcoder/rangeutils.nim
+  - icon: ':x:'
+    path: atcoder/rangeutils.nim
+    title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -139,6 +145,8 @@ data:
     \ var RBST, k:int, x:RBST.D) = self.set(self.root, k, x)\n  proc empty*[RBST:RandomizedBinarySearchTree](self:\
     \ var RBST):bool = self.empty(self.root)\n  {.pop.}\n"
   dependsOn:
+  - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   isVerificationFile: false

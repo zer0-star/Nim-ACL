@@ -8,6 +8,12 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/header/chaemon_header.nim
     title: atcoder/extra/header/chaemon_header.nim
+  - icon: ':warning:'
+    path: atcoder/extra/header/chaemon_header.nim
+    title: atcoder/extra/header/chaemon_header.nim
+  - icon: ':warning:'
+    path: atcoder/extra/header/chaemon_header.nim
+    title: atcoder/extra/header/chaemon_header.nim
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: nim
@@ -47,24 +53,27 @@ data:
     \ newStmtList().add(mainBodyHeader()).add(mainBody))\n    if hasCheck:\n     \
     \ mainBody.add(checkBody)\n    result = newStmtList()\n    let procName = $head[0]\n\
     \    var discardablePragma = newNimNode(nnkPragma).add(ident(\"discardable\"))\n\
-    \    var mainParams = params\n    mainParams[0] = ident\"string\"\n    var identDefs\
+    \    var mainParams = params\n    mainParams[0] = ident\"string\"\n#    var identDefsSub\
     \ = newNimNode(nnkIdentDefs).add(ident\"output_stdout\").add(newNimNode(nnkBracketExpr).add(ident\"\
-    static\").add(ident\"bool\")).add(ident\"true\")\n#    mainParams.add(identDefs)\n\
-    \    var mainProcDef = newNimNode(nnkProcDef).add(ident\"solve\").add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams)).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())\n\
+    static\").add(ident\"bool\")).add(ident\"true\")\n    var identDefs = newNimNode(nnkIdentDefs).add(ident\"\
+    output_stdout\").add(newNimNode(nnkBracketExpr).add(ident\"static\").add(ident\"\
+    bool\")).add(ident\"true\")\n#    var identDefs = newNimNode(nnkIdentDefs).add(ident\"\
+    output_stdout\").add(newNimNode(nnkBracketExpr).add(ident\"static\").add(ident\"\
+    bool\")).add(newEmptyNode())\n    mainParams.add(identDefs)\n    var mainProcDef\
+    \ = newNimNode(nnkProcDef).add(ident\"solve\").add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams)).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())\n\
     \    result.add(mainProcDef)\n    if hasNaive:\n      var naiveProcDef = newNimNode(nnkProcDef).add(ident\"\
     solve_naive\").add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams)).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())\n\
-    \      result.add(naiveProcDef)\n\n\n    var naiveParams = mainParams\n    result.add\
+    \      result.add(naiveProcDef)\n\n    var naiveParams = mainParams\n    result.add\
     \ newProc(name = ident(procName), params = mainParams, body = mainBody, pragmas\
-    \ = discardablePragma)\n#    echo mainParams.repr\n    if hasNaive:\n      let\
-    \ naiveProcName = procName & \"naive\"\n      naiveBody = mainBodyHeader().add(newBlockStmt(newEmptyNode(),\
+    \ = discardablePragma)\n    if hasNaive:\n      let naiveProcName = procName &\
+    \ \"naive\"\n      naiveBody = mainBodyHeader().add(newBlockStmt(newEmptyNode(),\
     \ naiveBody))\n      result.add newProc(name = ident(naiveProcName), params =\
-    \ naiveParams, body = naiveBody, pragmas = discardablePragma)\n#      var b =\
-    \ newNimNode(nnkInfix)\n      var test_body = newStmtList()\n      var var_names\
-    \ = newSeq[string]()\n      for procName in [procName, procName & \"_naive\"]:\n\
-    \        let var_name = \"v\" & procName\n        var_names.add(var_name)\n  \
-    \      var l = newNimNode(nnkCall).add(ident(procName))\n        for c in callparams:\
-    \ l.add(c)\n        l.add(ident\"false\")\n        test_body.add(\n          newNimNode(nnkLetSection).add(\n\
-    \            newNimNode(nnkIdentDefs).add(ident(var_name)).add(newEmptyNode()).add(l)\n\
+    \ naiveParams, body = naiveBody, pragmas = discardablePragma)\n      var test_body\
+    \ = newStmtList()\n      var var_names = newSeq[string]()\n      for procName\
+    \ in [procName, procName & \"_naive\"]:\n        let var_name = \"v\" & procName\n\
+    \        var_names.add(var_name)\n        var l = newNimNode(nnkCall).add(ident(procName))\n\
+    \        for c in callparams: l.add(c)\n        l.add(ident\"false\")\n      \
+    \  test_body.add(\n          newNimNode(nnkLetSection).add(\n            newNimNode(nnkIdentDefs).add(ident(var_name)).add(newEmptyNode()).add(l)\n\
     \          ))\n      var test_params = params\n      var vars = \"\"\n      for\
     \ i in 1..<params.len:\n        let p = params[i][0]\n        vars &= &\"  {p.repr}\
     \ = {{{p.repr}}}\\\\n\"\n      test_params[0] = ident\"bool\"\n      test_body.add\
@@ -72,11 +81,13 @@ data:
     \", \\\"[solve]\\\\n\\\", vsolve, \\\"[solve_naive]\\\\n\\\", vsolve_naive;doAssert\
     \ false\")\n      result.add newProc(name = ident\"test\", params = test_params,\
     \ body = test_body, pragmas = discardablePragma)\n    if hasGenerate:\n      discard\n\
-    \    if hasTest:\n      discard\n    echo result.repr\n"
+    \    if hasTest:\n      discard\n"
   dependsOn: []
   isVerificationFile: false
   path: atcoder/extra/other/solve_proc.nim
   requiredBy:
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
   timestamp: '1970-01-01 00:00:00+00:00'

@@ -7,7 +7,19 @@ data:
   - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
+  - icon: ':x:'
+    path: atcoder/rangeutils.nim
+    title: atcoder/rangeutils.nim
+  - icon: ':x:'
+    path: atcoder/rangeutils.nim
+    title: atcoder/rangeutils.nim
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: atcoder/extra/structure/link_cut_tree.nim
+    title: atcoder/extra/structure/link_cut_tree.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/link_cut_tree.nim
+    title: atcoder/extra/structure/link_cut_tree.nim
   - icon: ':x:'
     path: atcoder/extra/structure/link_cut_tree.nim
     title: atcoder/extra/structure/link_cut_tree.nim
@@ -217,9 +229,13 @@ data:
   dependsOn:
   - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/splay_tree.nim
   requiredBy:
+  - atcoder/extra/structure/link_cut_tree.nim
+  - atcoder/extra/structure/link_cut_tree.nim
   - atcoder/extra/structure/link_cut_tree.nim
   - atcoder/extra/structure/link_cut_tree.nim
   timestamp: '1970-01-01 00:00:00+00:00'

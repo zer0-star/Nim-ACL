@@ -33,12 +33,12 @@ data:
     \ =\n    let n = if n == -1: sizeof(B) * 8 else: n\n    result = \"\"\n    for\
     \ i in countdown(n-1,0):result.add if b[i]: '1' else: '0'\n  proc allSetBits*[B:SomeInteger](n:int):B\
     \ =\n    if n == 64:\n      return not uint64(0)\n    else:\n      return (B(1)\
-    \ shl B(n)) - B(1)\n  iterator subsets*[B:SomeInteger](v:seq[int]):B =\n    var\
-    \ s = B(0)\n    yield s\n    while true:\n      var found = false\n      for i\
-    \ in v:\n        if not s.testBit(i):\n          found = true\n          s.setBit(i)\n\
-    \          yield s\n          break\n        else:\n          s[i] = 0\n     \
-    \ if not found: break\n\n  iterator subsets*[B:SomeInteger](b:B):B =\n    for\
-    \ b in subsets[B](@b):\n      yield b\n"
+    \ shl B(n)) - B(1)\n  iterator subsets*(v:seq[int], B:typedesc[SomeInteger] =\
+    \ int):B =\n    var s = B(0)\n    yield s\n    while true:\n      var found =\
+    \ false\n      for i in v:\n        if not s.testBit(i):\n          found = true\n\
+    \          s.setBit(i)\n          yield s\n          break\n        else:\n  \
+    \        s[i] = 0\n      if not found: break\n\n  iterator subsets*[B:SomeInteger](b:B):B\
+    \ =\n    for b in subsets[B](@b):\n      yield b\n"
   dependsOn: []
   isVerificationFile: false
   path: atcoder/extra/other/bitutils.nim

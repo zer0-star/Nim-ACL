@@ -7,6 +7,12 @@ data:
   - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
+  - icon: ':question:'
+    path: atcoder/element_concepts.nim
+    title: atcoder/element_concepts.nim
+  - icon: ':question:'
+    path: atcoder/element_concepts.nim
+    title: atcoder/element_concepts.nim
   _extendedRequiredBy:
   - icon: ':x:'
     path: atcoder/extra/math/factorial.nim
@@ -14,6 +20,24 @@ data:
   - icon: ':x:'
     path: atcoder/extra/math/factorial.nim
     title: atcoder/extra/math/factorial.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/factorial.nim
+    title: atcoder/extra/math/factorial.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/factorial.nim
+    title: atcoder/extra/math/factorial.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/lagrange_polynomial.nim
+    title: atcoder/extra/math/lagrange_polynomial.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/lagrange_polynomial.nim
+    title: atcoder/extra/math/lagrange_polynomial.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/lagrange_polynomial.nim
+    title: atcoder/extra/math/lagrange_polynomial.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/lagrange_polynomial.nim
+    title: atcoder/extra/math/lagrange_polynomial.nim
   _extendedVerifiedWith:
   - icon: ':x:'
     path: verify/extra/math/yukicoder_factorial_test.nim
@@ -67,9 +91,17 @@ data:
   dependsOn:
   - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
+  - atcoder/element_concepts.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/math/combination.nim
   requiredBy:
+  - atcoder/extra/math/lagrange_polynomial.nim
+  - atcoder/extra/math/lagrange_polynomial.nim
+  - atcoder/extra/math/factorial.nim
+  - atcoder/extra/math/factorial.nim
+  - atcoder/extra/math/lagrange_polynomial.nim
+  - atcoder/extra/math/lagrange_polynomial.nim
   - atcoder/extra/math/factorial.nim
   - atcoder/extra/math/factorial.nim
   timestamp: '1970-01-01 00:00:00+00:00'

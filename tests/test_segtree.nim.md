@@ -86,11 +86,11 @@ data:
     \ op, e)\n  seg0.init(10)\n"
   dependsOn:
   - atcoder/segtree.nim
-  - atcoder/rangeutils.nim
-  - atcoder/internal_bit.nim
   - atcoder/segtree.nim
-  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: false
   path: tests/test_segtree.nim
   requiredBy: []

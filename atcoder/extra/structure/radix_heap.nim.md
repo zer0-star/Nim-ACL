@@ -8,6 +8,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra_radix_heap.nim
     title: atcoder/extra/graph/dijkstra_radix_heap.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/dijkstra_radix_heap.nim
+    title: atcoder/extra/graph/dijkstra_radix_heap.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/graph/dijkstra_radix_heap.nim
+    title: atcoder/extra/graph/dijkstra_radix_heap.nim
   - icon: ':warning:'
     path: tests/test_shortest_path.nim
     title: tests/test_shortest_path.nim
@@ -53,6 +59,8 @@ data:
   isVerificationFile: false
   path: atcoder/extra/structure/radix_heap.nim
   requiredBy:
+  - atcoder/extra/graph/dijkstra_radix_heap.nim
+  - atcoder/extra/graph/dijkstra_radix_heap.nim
   - atcoder/extra/graph/dijkstra_radix_heap.nim
   - atcoder/extra/graph/dijkstra_radix_heap.nim
   - tests/test_shortest_path.nim

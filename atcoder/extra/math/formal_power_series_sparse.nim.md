@@ -7,6 +7,18 @@ data:
   - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
+  - icon: ':question:'
+    path: atcoder/element_concepts.nim
+    title: atcoder/element_concepts.nim
+  - icon: ':question:'
+    path: atcoder/element_concepts.nim
+    title: atcoder/element_concepts.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series.nim
+    title: atcoder/extra/math/formal_power_series.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series.nim
+    title: atcoder/extra/math/formal_power_series.nim
   - icon: ':x:'
     path: atcoder/extra/math/formal_power_series.nim
     title: atcoder/extra/math/formal_power_series.nim
@@ -85,8 +97,12 @@ data:
   dependsOn:
   - atcoder/element_concepts.nim
   - atcoder/extra/math/formal_power_series.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/formal_power_series.nim
   isVerificationFile: false
   path: atcoder/extra/math/formal_power_series_sparse.nim
   requiredBy:

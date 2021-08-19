@@ -7,6 +7,12 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/structure/internal_heapqueue.nim
     title: atcoder/extra/structure/internal_heapqueue.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/internal_heapqueue.nim
+    title: atcoder/extra/structure/internal_heapqueue.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/internal_heapqueue.nim
+    title: atcoder/extra/structure/internal_heapqueue.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -47,6 +53,8 @@ data:
     \ in vis: continue\n        vis.incl p\n      for dp2 in g.adj(d, p):\n      \
     \  let (d2, p2) = dp2\n        set_push(d2, p2)\n\n    return dist\n# }}}\n\n\n"
   dependsOn:
+  - atcoder/extra/structure/internal_heapqueue.nim
+  - atcoder/extra/structure/internal_heapqueue.nim
   - atcoder/extra/structure/internal_heapqueue.nim
   - atcoder/extra/structure/internal_heapqueue.nim
   isVerificationFile: false

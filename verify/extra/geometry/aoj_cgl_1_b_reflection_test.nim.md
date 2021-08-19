@@ -59,17 +59,17 @@ data:
     \ p2)).toString()\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/internal_complex.nim
   - atcoder/header.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_1_b_reflection_test.nim
   requiredBy: []

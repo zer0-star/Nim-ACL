@@ -7,6 +7,12 @@ data:
   - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
+  - icon: ':question:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
+  - icon: ':question:'
+    path: atcoder/internal_bit.nim
+    title: atcoder/internal_bit.nim
   _extendedRequiredBy:
   - icon: ':warning:'
     path: tests/test_extra_formal_power_series_float.nim
@@ -78,6 +84,8 @@ data:
     \    r = ifft(dot(a.fft(), b.fft(), T), T)\n    r.setLen(n + m - 1)\n    return\
     \ r.mapIt(it.T)\n#}}}\n"
   dependsOn:
+  - atcoder/internal_bit.nim
+  - atcoder/internal_bit.nim
   - atcoder/internal_bit.nim
   - atcoder/internal_bit.nim
   isVerificationFile: false

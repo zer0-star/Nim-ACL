@@ -7,7 +7,19 @@ data:
   - icon: ':x:'
     path: atcoder/extra/structure/binary_tree_node_utils.nim
     title: atcoder/extra/structure/binary_tree_node_utils.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/binary_tree_node_utils.nim
+    title: atcoder/extra/structure/binary_tree_node_utils.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/binary_tree_node_utils.nim
+    title: atcoder/extra/structure/binary_tree_node_utils.nim
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: atcoder/extra/structure/set_map.nim
+    title: atcoder/extra/structure/set_map.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/set_map.nim
+    title: atcoder/extra/structure/set_map.nim
   - icon: ':x:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
@@ -176,9 +188,13 @@ data:
   dependsOn:
   - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/red_black_tree.nim
   requiredBy:
+  - atcoder/extra/structure/set_map.nim
+  - atcoder/extra/structure/set_map.nim
   - atcoder/extra/structure/set_map.nim
   - atcoder/extra/structure/set_map.nim
   - tests/test_extra_set_map.nim

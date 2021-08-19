@@ -8,11 +8,29 @@ data:
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
   - icon: ':question:'
+    path: atcoder/generate_definitions.nim
+    title: atcoder/generate_definitions.nim
+  - icon: ':question:'
+    path: atcoder/generate_definitions.nim
+    title: atcoder/generate_definitions.nim
+  - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
   - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
+  - icon: ':question:'
+    path: atcoder/internal_math.nim
+    title: atcoder/internal_math.nim
+  - icon: ':question:'
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
+  - icon: ':question:'
+    path: atcoder/modint.nim
+    title: atcoder/modint.nim
   - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
@@ -20,6 +38,12 @@ data:
     path: atcoder/modint.nim
     title: atcoder/modint.nim
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series_sqrt.nim
+    title: atcoder/extra/math/formal_power_series_sqrt.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/formal_power_series_sqrt.nim
+    title: atcoder/extra/math/formal_power_series_sqrt.nim
   - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
@@ -59,15 +83,23 @@ data:
     \    j.inc\n        t *= t\n      z = z.pow(1 shl (e - j - 1))\n      x *= z\n\
     \      z *= z\n      y *= z\n      e = j\n    return T(x).some\n#}}}\n"
   dependsOn:
-  - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
   - atcoder/modint.nim
+  - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
   - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: atcoder/extra/math/mod_sqrt.nim
   requiredBy:
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
   - atcoder/extra/math/formal_power_series_sqrt.nim
   - atcoder/extra/math/formal_power_series_sqrt.nim
   timestamp: '1970-01-01 00:00:00+00:00'

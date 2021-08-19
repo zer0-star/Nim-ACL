@@ -8,6 +8,12 @@ data:
   - icon: ':x:'
     path: atcoder/extra/structure/persistent_dsu.nim
     title: atcoder/extra/structure/persistent_dsu.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/persistent_dsu.nim
+    title: atcoder/extra/structure/persistent_dsu.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/persistent_dsu.nim
+    title: atcoder/extra/structure/persistent_dsu.nim
   _extendedVerifiedWith:
   - icon: ':x:'
     path: verify/extra/structure/yosupo_persistent_queue_test.nim
@@ -53,6 +59,8 @@ data:
   isVerificationFile: false
   path: atcoder/extra/structure/persistent_array.nim
   requiredBy:
+  - atcoder/extra/structure/persistent_dsu.nim
+  - atcoder/extra/structure/persistent_dsu.nim
   - atcoder/extra/structure/persistent_dsu.nim
   - atcoder/extra/structure/persistent_dsu.nim
   timestamp: '1970-01-01 00:00:00+00:00'

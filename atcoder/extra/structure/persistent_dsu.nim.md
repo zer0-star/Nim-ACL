@@ -7,6 +7,12 @@ data:
   - icon: ':x:'
     path: atcoder/extra/structure/persistent_array.nim
     title: atcoder/extra/structure/persistent_array.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/persistent_array.nim
+    title: atcoder/extra/structure/persistent_array.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/persistent_array.nim
+    title: atcoder/extra/structure/persistent_array.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
@@ -37,6 +43,8 @@ data:
     \ = x\n    else:\n      self.data[y] = u + v\n      self.data[x] = y\n    return\
     \ self\n"
   dependsOn:
+  - atcoder/extra/structure/persistent_array.nim
+  - atcoder/extra/structure/persistent_array.nim
   - atcoder/extra/structure/persistent_array.nim
   - atcoder/extra/structure/persistent_array.nim
   isVerificationFile: false
