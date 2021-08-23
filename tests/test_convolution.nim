@@ -285,7 +285,7 @@ test "ConvolutionTest, ConvLLBound":
     M1M2 = MOD1 * MOD2
   for i in -1000..1000:
     let
-      a = @[ll(0.uint - M1M2 - M1M3 - M2M3 + i.uint)]
+      a = @[cast[ll](0.uint - M1M2 - M1M3 - M2M3 + i.uint)]
       b = @[1]
 
     check a == convolution_ll(a, b)

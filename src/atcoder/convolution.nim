@@ -264,9 +264,10 @@ when not declared ATCODER_CONVOLUTION_HPP:
       #   ((1) mod MOD1) mod 5 = 2
       #   ((2) mod MOD1) mod 5 = 3
       #   ((3) mod MOD1) mod 5 = 4
-      var diff = c1[i] - floorMod(x.int, MOD1.int)
+#      var diff = c1[i] - floorMod(x.int, MOD1.int)
+      var diff = c1[i] - floorMod(cast[int](x), MOD1.int)
       if diff < 0: diff += MOD1.int
       const offset = [0'u, 0'u, M1M2M3, 2'u * M1M2M3, 3'u * M1M2M3]
       x -= offset[diff mod 5]
-      c[i] = x.int
+      c[i] = cast[int](x)
     return c
