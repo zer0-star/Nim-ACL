@@ -135,6 +135,7 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
   declareSparseFormalPowerSeriesOperators(`*`)
 
   proc divMod*[T](a: FormalPowerSeries[T], b:SparseFormalPowerSeries[T]):(FormalPowerSeries[T], FormalPowerSeries[T]) =
+    mixin inv
     var a = a
     let
       max_deg = b[^1][0]

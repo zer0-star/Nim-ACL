@@ -2,7 +2,6 @@ import std/unittest
 import atcoder/modint
 import atcoder/extra/math/ntt
 import atcoder/extra/math/formal_power_series
-import atcoder/extra/math/formal_power_series_sparse
 
 block:
   type mint = modint998244353

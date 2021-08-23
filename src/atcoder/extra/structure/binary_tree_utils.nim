@@ -145,8 +145,6 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
     return index(t2) - index(t1)
 
   iterator items*[T:SomeSortedSet or SomeSortedMultiSet](self:T):T.K =
-    static:
-      echo T is BinaryTree
     var it = self.begin
     while it != self.End:
       yield it.key

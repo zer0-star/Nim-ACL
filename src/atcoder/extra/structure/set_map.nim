@@ -120,9 +120,3 @@ when not declared ATCODER_SET_MAP_HPP:
           a &= k & ": " & v
         node = node.r
     return "{" & a.join(", ") & "}"
-
-
-when isMainModule:
-  var s = initSortedSet(int)
-  s.insert(4)
-  echo s

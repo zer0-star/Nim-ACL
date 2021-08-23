@@ -82,4 +82,4 @@ proc floor_sum*(n, m, a, b:int):int =
     var b2:uint = floorMod(b, m).uint
     ans -= n.uint * ((b2 - b.uint) div m.uint)
     b = b2.int
-  return (ans + floor_sum_unsigned(n.uint, m.uint, a.uint, b.uint)).int
+  return cast[int](ans + floor_sum_unsigned(n.uint, m.uint, a.uint, b.uint))
