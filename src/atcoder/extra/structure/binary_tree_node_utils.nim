@@ -6,8 +6,8 @@ when not declared ATCODER_BINARY_TREE_NODE_UTILS_HPP:
     x.p is T
 #    T.Countable
   type BinaryTree* = concept x, type T
-    x.Node is BinaryTreeNode
-    x.root is x.Node
+    T.Node is BinaryTreeNode
+    x.root is T.Node
 
   proc greater_func*[K](a,b:K):bool = a < b
 

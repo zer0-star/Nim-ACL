@@ -1,6 +1,6 @@
 when not declared ATCODER_SOLVEPROC_HPP:
   const ATCODER_SOLVEPROC_HPP* = 1
-  import std/macros, std/strformat, std/algorithm
+  import std/macros, std/strformat, std/algorithm, std/sequtils
   proc mainBodyHeader():NimNode =
     result = newStmtList()
     result.add parseStmt "result = \"\""
@@ -58,16 +58,17 @@ when not declared ATCODER_SOLVEPROC_HPP:
     mainParams[0] = ident"string"
 #    var identDefsSub = newNimNode(nnkIdentDefs).add(ident"output_stdout").add(newNimNode(nnkBracketExpr).add(ident"static").add(ident"bool")).add(ident"true")
     var identDefs = newNimNode(nnkIdentDefs).add(ident"output_stdout").add(newNimNode(nnkBracketExpr).add(ident"static").add(ident"bool")).add(ident"true")
+    proc copy(a:seq[NimNode]):seq[NimNode] = a.mapIt(it.copy)
 #    var identDefs = newNimNode(nnkIdentDefs).add(ident"output_stdout").add(newNimNode(nnkBracketExpr).add(ident"static").add(ident"bool")).add(newEmptyNode())
     mainParams.add(identDefs)
-    var mainProcDef = newNimNode(nnkProcDef).add(ident"solve").add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams)).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())
+    var mainProcDef = newNimNode(nnkProcDef).add(ident"solve").add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams.copy())).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())
     result.add(mainProcDef)
     if hasNaive:
-      var naiveProcDef = newNimNode(nnkProcDef).add(ident"solve_naive").add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams)).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())
+      var naiveProcDef = newNimNode(nnkProcDef).add(ident"solve_naive").add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams.copy())).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())
       result.add(naiveProcDef)
 
-    var naiveParams = mainParams
-    result.add newProc(name = ident(procName), params = mainParams, body = mainBody, pragmas = discardablePragma)
+    var naiveParams = mainParams.copy()
+    result.add newProc(name = ident(procName), params = mainParams.copy(), body = mainBody, pragmas = discardablePragma)
     if hasNaive:
       let naiveProcName = procName & "naive"
       naiveBody = mainBodyHeader().add(newBlockStmt(newEmptyNode(), naiveBody))

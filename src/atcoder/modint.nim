@@ -9,9 +9,9 @@ when not declared ATCODER_MODINT_HPP:
     DynamicModInt*[T: static[int]] = object
       a:uint32
 
-#  type ModInt* = StaticModInt or DynamicModInt
-  type ModInt* = concept x, type T
-    T is StaticModInt or T is DynamicModInt
+  type ModInt* = StaticModInt or DynamicModInt
+#  type ModInt* = concept x, type T
+#    T is StaticModInt or T is DynamicModInt
 
   proc isStaticModInt*(T:typedesc):bool = T is StaticModInt
   proc isDynamicModInt*(T:typedesc):bool = T is DynamicModInt

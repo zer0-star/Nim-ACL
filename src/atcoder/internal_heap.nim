@@ -25,13 +25,10 @@ when not declared ATCODER_INTERNAL_HEAP:
         elif v[c0] > v[i]:
           swap(v[i], v[c0])
           i = c0
-        else:
-          break
+        else: break
       elif c0 in p:
         if v[c0] > v[i]:
           swap(v[i], v[c0])
           i = c0
-        else:
-          break
-      else:
-        break
+        else: break
+      else: break

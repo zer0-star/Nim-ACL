@@ -157,6 +157,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
         len -= 2
 
   proc convolution_naive*[mint:FiniteFieldElem](a, b:seq[mint]):seq[mint] =
+    mixin `+=`
     let (n, m) = (a.len, b.len)
     result = newSeq[mint](n + m - 1)
 #    result = newSeqWith(n + m - 1, mint(0))

@@ -6,7 +6,8 @@ when not declared ATCODER_SET_MAP_HPP:
   include atcoder/extra/structure/binary_tree_utils
   type MULTI_TRUE = int32
   type MULTI_FALSE = void
-  type SortedTree*[Tree, Node, multi, K, V; p:static[tuple]] = object of Tree
+  type SortedTree*[Tree, Node, multi, K, V; p:static[tuple]] = object
+    tree*: Tree
     End*: Node
 
   when USE_RED_BLACK_TREE:
@@ -23,18 +24,14 @@ when not declared ATCODER_SET_MAP_HPP:
         type T = Tree.K
       else:
         type T = (Tree.K, Tree.V)
-      type Countable = Tree.Tree.Countable
-      var End = RedBlackTreeNode[T, Countable](color: Color.black, id: -2)
-      var leaf = RedBlackTreeNode[T, Countable](color: Color.black, id: -1)
-      leaf.l = leaf; leaf.r = leaf
-      End.p = nil
-      End.l = leaf; End.r = leaf
+      type Node = Tree.Node
+      var End = Node(id: -2)
       when Tree.Tree.Countable isnot void:
-        leaf.cnt = 0
-      self.root = End
+        End.cnt = 1
       self.End = End
-      self.leaf = leaf
-      self.next_id = 0
+      self.tree.init(End)
+    proc empty*[Tree:SetOrMap](self:Tree):bool = self.tree.empty()
+    proc len*[Tree:SetOrMap](self:Tree):int = self.tree.len()
 
   else:
     include atcoder/extra/structure/randomized_binary_search_tree_with_parent
@@ -51,23 +48,23 @@ when not declared ATCODER_SET_MAP_HPP:
         type T = Tree.K
       else:
         type T = (Tree.K, Tree.V)
-      Tree.Tree(self).setRBST()
-      var end_node = RBSTNode[T, void, void](cnt: 1, p:nil, id: -1)
-      end_node.l = self.leaf; end_node.r = self.leaf;
-      self.End = end_node
-      self.root = self.End
+      var End = Tree.Node(id: -2)
+      End.cnt = 1 # be carefull!!!!!!!!!!!!!!!
+      self.End = End
+      self.tree.init(End)
+#      end_node.l = self.leaf; end_node.r = self.leaf;
   
   #  RBST(sz, [&](T x, T y) { return x; }, T()) {}
     
     proc `*`*[Node:RBSTNode](it:Node):auto = it.key
   
-    proc len*[Tree:SetOrMap](self:Tree):int = Tree.Tree(self).len() - 1
+    proc len*[Tree:SetOrMap](self:Tree):int = self.tree.len() - 1
     proc empty*[Tree:SetOrMap](self:Tree):bool = self.len() == 0
-    proc check_tree*(self:SetOrMap) =
-      doAssert self.len + 1 == self.check_tree()
+#      doAssert self.len + 1 == self.tree.check_tree()
   
 #    proc `$`*(self: SetOrMap):string = self.Tree(self).to_string(self.root)
   {.pop.}
+  proc check_tree*(self:SetOrMap) = self.tree.check_tree
 
   template SortedSet*(K:typedesc, countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):typedesc =
     SortedSetType[K, when countable: int else: void, (comp,)]
@@ -103,7 +100,7 @@ when not declared ATCODER_SET_MAP_HPP:
 
   proc `$`*(self: SetOrMap): string =
     var a = newSeq[string]()
-    var node = self.root
+    var node = self.tree.root
     var stack: seq[self.Node] = @[]
     while stack.len() != 0 or not node.isLeaf:
       if not node.isLeaf:
@@ -123,3 +120,9 @@ when not declared ATCODER_SET_MAP_HPP:
           a &= k & ": " & v
         node = node.r
     return "{" & a.join(", ") & "}"
+
+
+when isMainModule:
+  var s = initSortedSet(int)
+  s.insert(4)
+  echo s

@@ -9,40 +9,161 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
   template initFormalPowerSeries*[T:FieldElem](n:int):FormalPowerSeries[T] =
     block:
       FormalPowerSeries[T](newSeq[T](n))
-  template initFormalPowerSeries*[T:FieldElem](data:seq or array):FormalPowerSeries[T] =
+  template initFormalPowerSeries*[T:FieldElem;U: not T](data:openArray[U]):FormalPowerSeries[T] =
     block:
-      when data is FormalPowerSeries[T]: data
-      else:
-        var result = newSeq[T](data.len)
-        for i, it in data:
-          result[i] = T(it)
-        result
+      var result = newSeq[T](data.len)
+      for i, it in data:
+        result[i] = T(it)
+      result
+  template initFormalPowerSeries*[T:FieldElem](data:openArray[T]):FormalPowerSeries[T] =
+    block:
+      data
+
   template init*[T:FieldElem](self:typedesc[FormalPowerSeries[T]], data:typed):auto =
     initFormalPowerSeries[T](data)
+
+#  include atcoder/extra/math/formal_power_series_sparse
+
+  # {{{ sparseFormalPowerSeries
+
+  type SparseFormalPowerSeries*[T:FieldElem] = seq[tuple[d:int, c:T]] # sorted ascending order
+
+#  converter toSparseFormalPowerSeries*[XI, T](a:array[XI, (int, T)]):SparseFormalPowerSeries[T] = a.toSeq()
+
+  # SparseMonomial {{{
+  type Monomial*[T] = object
+    c:T
+    d:int
+  
+  proc initVar*[T](c = 1, d = 1):SparseFormalPowerSeries[T] = @[(d:d, c:T(c))]
+  
+  proc `^`*[T](f:SparseFormalPowerSeries[T], n:int):SparseFormalPowerSeries[T] =
+    assert f.len == 1
+    result.add(f[0])
+    result[0].d *= n
+    if f[0].c != T.init(1): result[0].c = result[0].c ^ n
+  
+#  converter toSFPS*[T](f:Monomial[T]):SparseFormalPowerSeries[T] = @[(f.d,f.c)]
+
+#  proc `+`*[T](f, g: Monomial[T]):SparseFormalPowerSeries[T] =
+#    return toSFPS(f) + toSFPS(g)
+
+  # }}}
+
+  converter toSFPS*[T](f:Table[int, T]):SparseFormalPowerSeries[T] =
+    for d, c in f:
+      result.add((d, c))
+    result.sort do (x, y:(int, T)) -> int:
+      cmp(x[0], y[0])
+
+#  converter toSFPS*[T](a:T):SparseFormalPowerSeries[T] = @[(0, a)]
+  proc deg*[T](a:SparseFormalPowerSeries[T]):int = a[^1].d
+  proc `+=`*[T](a:var SparseFormalPowerSeries[T], b:SparseFormalPowerSeries[T]) =
+    var r:SparseFormalPowerSeries[T]
+    var i, j = 0
+    while i < a.len or j < b.len:
+      if i < a.len and j < b.len and a[i].d == b[j].d:
+        r.add((a[i].d, a[i].c + b[j].c))
+        i.inc;j.inc
+      else:
+        if j == b.len or (i < a.len and a[i].d < b[j].d):
+          r.add(a[i]);i.inc
+        else:
+          r.add(b[j]);j.inc
+    swap(r, a)
+  proc `+=`*[T](a:var SparseFormalPowerSeries[T], b:T) = a += @[(0, b)]
+  proc `+=`*[T](a:var FormalPowerSeries[T], b:SparseFormalPowerSeries[T]) =
+    for p in b:
+      while a.len <= p.d: a.add(T.init(0))
+      a[p.d] += p.c
+  proc `-=`*[T](a:var SparseFormalPowerSeries[T], b:SparseFormalPowerSeries[T]) =
+    var r:SparseFormalPowerSeries[T]
+    var i, j = 0
+    while i < a.len or j < b.len:
+      if i < a.len and j < b.len and a[i].d == b[j].d:
+        r.add((a[i].d, a[i].c - b[j].c))
+        i.inc;j.inc
+      else:
+        if j == b.len or (i < a.len and a[i].d < b[j].d):
+          r.add(a[i]);i.inc
+        else:
+          r.add((b[j].d, -b[j].c));j.inc
+    swap(r, a)
+  proc `-=`*[T](a:var SparseFormalPowerSeries[T], b:T) = a -= @[(0, b)]
+  proc `-=`*[T](a:var FormalPowerSeries[T], b:SparseFormalPowerSeries[T]) =
+    for p in b:
+      while a.len <= p.d: a.add(T.init(0))
+      a[p.d] -= p.c
+
+  proc `*`*[T](a:FormalPowerSeries[T], b:SparseFormalPowerSeries[T], deg = -1):FormalPowerSeries[T] =
+    var deg = deg
+    if deg == -1:
+      let bdeg = b[^1][0]
+      deg = a.len + bdeg
+    result = initFormalPowerSeries[T](deg)
+    for i in 0..<a.len:
+      for (j, c) in b:
+        let k = i + j
+        if k < deg: result[k] += a[i] * c
+  proc `*=`*[T](a:var SparseFormalPowerSeries[T], b:SparseFormalPowerSeries[T], deg = -1) =
+    var r = initTable[int,T]()
+    for (i, c0) in a:
+      for (j, c1) in b:
+        let k = i + j
+        if deg != -1 and k >= deg: continue
+        if k notin r: r[k] = T.init(0)
+        r[k] += c0 * c1
+    var rs = SparseFormalPowerSeries[T](r)
+    swap(rs, a)
+  proc `*=`*[T](a:var SparseFormalPowerSeries[T], b:T) =
+    for (i, c) in a.mitems:
+      c = c * b
+  proc `*`*[T](a:SparseFormalPowerSeries[T], b:T):SparseFormalPowerSeries[T] =
+    result = a
+    result *= b
+  proc `*`*[T](b:T, a:var SparseFormalPowerSeries[T]):SparseFormalPowerSeries[T] =
+    result = a
+    for (i, c) in result.mitems:
+      c = b * c
+
+  macro declareSparseFormalPowerSeriesOperators(op) =
+    fmt"""proc `{op}`*[T](self:SparseFormalPowerSeries[T];r:SparseFormalPowerSeries[T] or T):SparseFormalPowerSeries[T] = result = self;result {op}= r
+proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseFormalPowerSeries[T]):SparseFormalPowerSeries[T] = result = @[(0, T(self))];result {op}= r""".parsestmt
+
+  declareSparseFormalPowerSeriesOperators(`+`)
+  declareSparseFormalPowerSeriesOperators(`-`)
+  declareSparseFormalPowerSeriesOperators(`*`)
+
+  proc divMod*[T](a: FormalPowerSeries[T], b:SparseFormalPowerSeries[T]):(FormalPowerSeries[T], FormalPowerSeries[T]) =
+    var a = a
+    let
+      max_deg = b[^1][0]
+      inv_max_coef = b[^1][1].inv
+    var q = initFormalPowerSeries[T](a.len - max_deg)
+    for i in countdown(q.len - 1, 0):
+      q[i] = a[i + max_deg] * inv_max_coef
+      for (d, v) in b:
+        a[i + d] -= q[i] * v
+    return (q, a[0..<max_deg])
+  proc `div`*[T:FieldElem](a: FormalPowerSeries[T], b:SparseFormalPowerSeries[T]):auto = a.divMod(b)[0]
+  proc `mod`*[T:FieldElem](a: FormalPowerSeries[T], b:SparseFormalPowerSeries[T]):auto = a.divMod(b)[1]
+  # }}}
 
   macro revise*(a, b) =
     parseStmt(fmt"""let {a.repr} = if {a.repr} == -1: {b.repr} else: {a.repr}""")
   proc shrink*[T](self: var FormalPowerSeries[T]) =
     while self.len > 0 and self[^1] == 0: discard self.pop()
 
-  # Monomial {{{
-  type Monomial*[T] = object
-    c:T
-    d:int
-  
-  proc initVar*[T](c = 1, d = 1):Monomial[T] = Monomial[T](c:T(c), d:d)
-  
-  proc `^`*[T](f:Monomial[T], n:int):Monomial[T] =
-    result = f
-    result.d *= n
-    if f.c != T(1): result.c = result.c ^ n
-  
   converter toFPS*[T](f:Monomial[T]):FormalPowerSeries[T] = 
     result = newSeq[T](f.d + 1)
     result[f.d] = f.c
-  
-  proc `+`*[T](f, g: Monomial[T]):FormalPowerSeries[T] =
-    return toFPS(f) + toFPS(g)
+  converter toFPS*[T](f:SparseFormalPowerSeries[T]):FormalPowerSeries[T] = 
+    let d = f.deg
+    result = initFormalPowerSeries[T](newSeqWith(d + 1, T.init(0)))
+    for p in f: result[p.d] += p.c
+
+#  proc `+`*[T](f, g: Monomial[T]):FormalPowerSeries[T] =
+#    return toFPS(f) + toFPS(g)
   
   proc `*`*[T](f, g:Monomial[T]):Monomial[T] =
     result.c = f.c * g.c
@@ -50,6 +171,9 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
   proc `*`*[T](a:T, f:Monomial[T]):Monomial[T] =
     result = f
     result.c *= a
+  proc `*`*[T](a:SomeInteger, f:Monomial[T]):Monomial[T] =
+    result = f
+    result.c *= T.init(a)
   # }}}
 
   # operators +=, -=, *=, mod=, -, /= {{{

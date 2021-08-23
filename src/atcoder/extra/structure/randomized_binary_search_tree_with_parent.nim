@@ -49,10 +49,10 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
       s(a, b)
 
   proc hasSum*[RBST:SomeRBST](t:typedesc[RBST]):bool {.compileTime.} =
-    when t isnot RandomizedBinarySearchTree:
-      return false
-    else:
+    when t is RBSTType or t is LazyRandomizedBinarySearchTree:
       t.useSum isnot RBST_FALSE
+    elif t is RandomizedBinarySearchTree:
+      false
   #proc hasData*(t:typedesc):bool {.compileTime.} = t.D isnot void
   proc hasLazy*[RBST:SomeRBST](t:typedesc[RBST]):bool {.compileTime.} =
     t.L isnot void
@@ -63,8 +63,8 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
 #      t.L isnot void
 #  proc hasP*(t:typedesc):bool {.compileTime.} = t.useP isnot void
   #proc isPersistent*(t:typedesc):bool {.compileTime.} = t.Persistent isnot void
-  proc isLeaf*[Node:RBSTNode](node:Node):bool =
-    return node.l == node
+#  proc isLeaf*[Node:RBSTNode](node:Node):bool =
+#    return node.l == node
 
   proc initNode*[RBST:SomeRBST](self:RBST, k:RBST.D, p:RBST.L, id:int, cnt:int):auto =
     result = RBSTNode[RBST.D, RBST.L, RBST.useSum](cnt:cnt, key:k, lazy:p, l:self.leaf, r:self.leaf, p:nil , id:id)
@@ -80,32 +80,37 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
     self.id_max.inc
   #  return &(pool[ptr++] = Node(key, self.L0));
 
-  proc setRBST*[RBST:SomeRBST](self: var RBST, seed = 2019) =
+  proc init*[RBST:SomeRBST](self: var RBST, root: RBST.Node = nil, seed = 2019) =
     # leaf
-    var leaf = RBST.Node(cnt:0, p:nil, id: -2)
+    var leaf = RBST.Node(cnt:0, p:nil, id: -1)
     leaf.l = leaf;leaf.r = leaf
     self.leaf = leaf
-
-    self.root = self.leaf
+    if root == nil:
+      self.root = self.leaf
+    else:
+      self.root = root
+      self.root.l = self.leaf
+      self.root.r = self.leaf
+    self.root.p = nil
     self.r = initRand(seed)
     self.id_max = 0
 
   proc initRandomizedBinarySearchTree*[D](seed = 2019):auto =
     type Node = RBSTNode[D, void, void]
     result = RBSTType[D,void,Node,false,void,()]()
-    result.setRBST()
+    result.init()
   proc initRandomizedBinarySearchTree*[D](f:static[(D,D)->D], D0:D, seed = 2019):auto =
     type Node = RBSTNode[D, void, int]
     result = RBSTType[D,void,Node,false,int,(op:f)](D0:D0)
-    result.setRBST()
+    result.init()
   proc initRandomizedBinarySearchTree*[D, L](f:static[(D,D)->D], g:static[(L,D)->D], h:static[(L,L)->L], D0:D, L0:L, seed = 2019):auto =
     type Node = RBSTNode[D, L, int]
     result = RBSTType[D,L,Node,false,int,(op:f,mapping:g,composition:h)](D0:D0, L0:L0)
-    result.setRBST()
+    result.init()
   proc initRandomizedBinarySearchTree*[D, L](f:static[(D,D)->D], g:static[(L,D)->D], h:static[(L,L)->L], p:static[(L,Slice[int])->L],D0:D,L0:L,seed = 2019):auto =
     type Node = RBSTNode[D, L, int]
     result = RBSTType[D,L,Node,true,int,(op:f,mapping:g,composition:h,p:p)](D0:D0, L0:L0)
-    result.setRBST()
+    result.init()
 
   template clone*[D,L,useSum](t:RBSTNode[D, L, useSum]):auto = t
   proc test*[RBST:SomeRBST](self: var RBST, n, s:int):bool = 
@@ -315,13 +320,18 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
   
   proc empty*[RBST:SomeRBST](self: var RBST, t:RBST.Node):bool = self.len == 0
 
-
-  proc insert_index*[RBST:SomeRBST](self: var RBST, k:int, v:RBST.D) = self.insert_index(self.root, k, v)
+  proc insert_index*[RBST:SomeRBST](self: var RBST, k:int, v:RBST.D):RBST.Node {.discardable.} =
+    result = self.insert_index(self.root, k, v)
+    self.root.p = nil
   proc insert*[RBST:SomeRBST](self: var RBST, p:RBST.Node, v:RBST.D):RBST.Node {.discardable.} =
-    self.insert(self.root, p, v)
-  proc erase_index*[RBST:SomeRBST](self: var RBST, k:int) = self.erase_index(self.root, k)
+    result = self.insert(self.root, p, v)
+    self.root.p = nil
+  proc erase_index*[RBST:SomeRBST](self: var RBST, k:int):RBST.Node {.discardable.} =
+    result = self.erase_index(self.root, k)
+    self.root.p = nil
   proc erase*[RBST:SomeRBST](self: var RBST, p:RBST.Node):RBST.Node {.discardable.} =
-    self.erase(self.root, p)
+    result = self.erase(self.root, p)
+    self.root.p = nil
   proc prod*[RBST:SomeRBST](self: var RBST, p:Slice[int]):auto = self.prod(self.root, p)
   proc `[]`*[RBST:SomeRBST](self: var RBST, p:Slice[int]):auto = self.prod(self.root, p)
   proc apply*[RBST:SomeRBST](self:var RBST, s:Slice[int], p:RBST.L) = self.apply(self.root, s, p)

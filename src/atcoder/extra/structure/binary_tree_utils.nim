@@ -26,6 +26,7 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
     T is SomeSortedTree
     T.V isnot void
     T.multi isnot void
+  proc begin*[T:SomeSortedTree](self: T):T.Node = self.tree.begin()
 
   proc getKey*[T:SomeSortedTree](self: T, t:T.Node):auto =
     when T.V is void: t.key
@@ -39,7 +40,8 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
       comp(x, y)
 
   proc lower_bound*[T:SomeSortedTree](self: var T, t:var T.Node, x:T.K):T.Node =
-    if t.isLeaf: return t
+    if t.isLeaf:
+      return t
     if t != self.End and self.calc_comp(self.getKey(t), x):
       return self.lower_bound(t.r, x)
     else:
@@ -48,8 +50,8 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
       else: return t2
 
   proc lower_bound*[T:SomeSortedTree](self:var T, x:T.K):T.Node =
-    assert self.root != nil
-    self.lower_bound(self.root, x)
+    assert self.tree.root != nil
+    self.lower_bound(self.tree.root, x)
 
   proc upper_bound*[T:SomeSortedTree](self: var T, t:var T.Node, x:T.K):T.Node =
     if t.isLeaf: return t
@@ -61,8 +63,8 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
       return self.upper_bound(t.r, x)
 
   proc upper_bound*[T:SomeSortedTree](self: var T, x:T.K):T.Node =
-    assert self.root != nil
-    self.upper_bound(self.root, x)
+    assert self.tree.root != nil
+    self.upper_bound(self.tree.root, x)
 
 #  proc find*[T:SomeSortedTree](self: var T, t:var T.Node, x:T.K):T.Node =
 #    echo "find:  ", t.key
@@ -79,18 +81,18 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
     self.find(x) != self.End
 
   proc insert*[T:SomeSortedMultiSet](self: var T, x:T.K):T.Node =
-    T.Tree(self).insert(self.upper_bound(x), x)
+    self.tree.insert(self.upper_bound(x), x)
   proc insert*[T:SomeSortedMultiMap](self: var T, x:(T.K, T.V)):T.Node =
-    T.Tree(self).insert(self.upper_bound(x[0]), x)
+    self.tree.insert(self.upper_bound(x[0]), x)
 
   proc insert*[T:SomeSortedSet](self: var T, x:T.K):T.Node =
     var t = self.lower_bound(x)
     if t != self.End and t.key == x: return t
-    else: return T.Tree(self).insert(t, x)
+    else: return self.tree.insert(t, x)
   proc insert*[T:SomeSortedMap](self: var T, x:(T.K, T.V)):T.Node =
     var it = self.lower_bound(x[0])
     if it != self.End and it.key[0] == x[0]: it.key[1] = x[1]; return it
-    else: return T.Tree(self).insert(it, x)
+    else: return self.tree.insert(it, x)
   proc incl*[T:SomeSortedSet | SomeSortedMultiSet](self:var T, x:T.K):T.Node =
     self.insert(x)
   proc incl*[T:SomeSortedMap | SomeSortedMultiMap](self:var T, x:(T.K, T.V)):T.Node =
@@ -101,7 +103,7 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
     var t = self.lower_bound(x)
     if t == self.End or t.key[0] != x:
       var v = T.V.default
-      t = T.Tree(self).insert(t, (x, v))
+      t = self.tree.insert(t, (x, v))
     t.key[1].addr
 
   template `[]`*[T:SomeSortedMap](self: var T, x:T.K):auto =
@@ -115,8 +117,8 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
     mixin erase
     var t = self.lower_bound(x)
     if t == self.End or self.getKey(t) != x: return self.End
-    else: return T.Tree(self).erase(t)
-  proc erase*[T:SomeSortedTree](self: var T, t:T.Node):T.Node = T.Tree(self).erase(t)
+    else: return self.tree.erase(t)
+  proc erase*[T:SomeSortedTree](self: var T, t:T.Node):T.Node = self.tree.erase(t)
   proc excl*[T:SomeSortedTree](self: var T, x:T.K):T.Node = self.erase(x)
   proc excl*[T:SomeSortedTree](self: var T, t:T.Node):T.Node = self.erase(t)
 
@@ -129,7 +131,7 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
     else: return t
   
   proc kth_element*[T:SomeSortedTree](self: var T, k:int):T.Node =
-    return self.kth_element(T.Tree(self).root, k)
+    return self.kth_element(self.tree.root, k)
   proc `{}`*[T:SomeSortedTree](self: var T, k:int):T.Node =
     return self.kth_element(k)
 
@@ -143,6 +145,8 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
     return index(t2) - index(t1)
 
   iterator items*[T:SomeSortedSet or SomeSortedMultiSet](self:T):T.K =
+    static:
+      echo T is BinaryTree
     var it = self.begin
     while it != self.End:
       yield it.key

@@ -27,14 +27,22 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
     result = self.newNode(parent)
     result.key = key
     self.next_id += 1
+  proc init*[T:RedBlackTree](self:var T, root: var T.Node) =
+    self.leaf = self.Node(color: Color.black, id: -1)
+    self.leaf.l = self.leaf
+    self.leaf.r = self.leaf
+    when T.Countable isnot void:
+      self.leaf.cnt = 0
+    if root != nil:
+      self.root = root
+      self.root.l = self.leaf
+      self.root.r = self.leaf
+      self.root.p = nil
+      self.root.color = Color.black
+    self.next_id = 0
 
-  proc initRedBlackTree*[K](root:RedBlackTreeNode[K, void] = nil): RedBlackTree[K, void] =
-    var leaf = RedBlackTreeNode[K](color: Color.black, id: -1)
-    leaf.l = leaf;leaf.r = leaf
-    result = RedBlackTree[K](root: root, next_id: 0, leaf:leaf)
-  proc initCountableRedBlackTree*[K](root:RedBlackTreeNode[K, int] = nil): RedBlackTree[K, int] =
-    result = initRedBlackTree[K](root)
-    result.cnt = 1
+#  proc initRedBlackTree*[K](root:RedBlackTreeNode[K, void]): RedBlackTree[K, void] = result.init()
+#  proc initCountableRedBlackTree*[K](root:RedBlackTreeNode[K, int]): RedBlackTree[K, int] = result.init()
 
   include atcoder/extra/structure/binary_tree_node_utils
 
@@ -200,12 +208,14 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
     if self == rbt.leaf:
       stderr.write "*\n"
     else:
-      stderr.write "id: ",self.id, " key: ", self.key, " color: ", self.color, " cnt: ", self.cnt, " "
+      stderr.write "id: ",self.id, " key: ", self.key, " color: ", self.color
+      when T.Countable isnot void:
+        stderr.write " cnt: ", self.cnt, " "
   #    if self.key == T.K.inf: stderr.write "inf"
       if self.p != nil: stderr.write " parent: ", self.p.id
       else: stderr.write " parent: nil"
       stderr.write "\n"
-      if h >= 200:
+      if h >= 5:
         stderr.write "too deep!!!\n"
         assert false
         return
