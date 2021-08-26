@@ -132,7 +132,7 @@ def main():
                                     l = l.replace("\"", "\\\"")
                                     s0 += l
                                     s0 += '\\n'
-                                url = "https://github.com/zer0-star/Nim-ACL/tree/master/src/{}.nim".format(fname.replace("lib/", "atcoder/extra/"))
+                                url = "https://github.com/zer0-star/Nim-ACL/tree/master/{}".format(fname.replace("lib/", "atcoder/extra/"))
                                 result.append("# see {}".format(url))
                                 result.append("ImportExpand \"{}\" <=== \"{}\"".format(fname, s0))
                                 result.append("")
