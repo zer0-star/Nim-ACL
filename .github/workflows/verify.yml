@@ -46,4 +46,4 @@ jobs:
           YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
           GH_PAT: ${{ secrets.GH_PAT }}
             #run: oj-verify all
-        run: cd src && mkdir .verify-helper && oj-verify all
+        run: mkdir .verify-helper && oj-verify all
