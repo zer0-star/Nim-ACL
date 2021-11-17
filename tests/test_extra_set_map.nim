@@ -7,7 +7,7 @@ import atcoder/extra/structure/set_map
 #{.checks:on.}
 
 test "sortedSet, int":
-  var a = initSortedSet(int)
+  var a = initSortedSet[int]()
   check a.empty()
   a.checkTree()
   a.insert(3)
@@ -31,7 +31,7 @@ test "sortedSet, int":
   a.checkTree()
 
 test "CountableSortedSet, int":
-  var a = initSortedSet(int, true)
+  var a = initSortedSet[int](true)
   check a.empty()
   a.checkTree()
   a.insert(3)
@@ -73,7 +73,7 @@ test "CountableSortedSet, int":
 
 test "CountableSortedSet, int, reverse":
   proc f(a, b:int):bool = a > b
-  var a = initSortedSet(int, true, f)
+  var a = initSortedSet[int](true, f)
   check a.empty()
 #  var a = initSortedSet(int, true)
   a.checkTree()
@@ -113,7 +113,7 @@ test "CountableSortedSet, int, reverse":
   check *a{1} == 1
 
 test "sortedMap, strind, int":
-  var a = initSortedMap(string, int)
+  var a = initSortedMap[string, int]()
   check a.empty()
   a["three"] = 3
   a.checkTree()
@@ -133,7 +133,7 @@ test "sortedMap, strind, int":
   check "four" notin a
 
 test "sortedMultiSet, int":
-  var a = initSortedMultiSet(int)
+  var a = initSortedMultiSet[int]()
   a.checkTree()
   check a.empty()
   a.insert(3)
@@ -154,7 +154,7 @@ test "sortedMultiSet, int":
   check 1 notin a
 
 test "sortedMultiMap, string, int":
-  var a = initSortedMultiMap(string, int, countable = false)
+  var a = initSortedMultiMap[string, int](countable = false)
   check a.empty()
   a.checkTree()
   a.insert(("three", 3))
@@ -215,7 +215,7 @@ test "sortedSet, int":
 
 test "sortedMap, int":
   var rnd = initRand(2021)
-  var st = initSortedMap(int, int, true)
+  var st = initSortedMap[int, int](true)
   check st.empty()
   st.checkTree()
   var v = initTable[int, int]()
@@ -252,7 +252,7 @@ test "sortedMap, int":
 
 test "sortedMultiSet, int":
   var rnd = initRand(2021)
-  var st = initSortedMultiSet(int, true)
+  var st = initSortedMultiSet[int](true)
   check st.empty()
   var v = newSeq[int]()
   for i in 0..1000:
@@ -284,7 +284,7 @@ test "sortedMultiSet, int":
 
 test "sortedMultiMap, int":
   var rnd = initRand(2021)
-  var st = initSortedMultiMap(int, int)
+  var st = initSortedMultiMap[int, int]()
   check st.empty()
   var v = newSeq[(int, int)]()
   var s = 0
@@ -313,7 +313,7 @@ test "sortedMultiMap, int":
     check v == v2
 
 test "sortedMapMultiDimension, int":
-  var st = initSortedMap(int, SortedMap(int, SortedMap(int, SortedMap(int, int))))
+  var st = initSortedMap[int, SortedMap(int, SortedMap(int, SortedMap(int, int)))]()
   check st.empty()
   const B = 10
   for i in 0..<B:
