@@ -27,9 +27,8 @@ proc initDualCumulativeSum2D*[T](X, Y:int):DualCumulativeSum2D[T] =
 #      result.add(i,j,data[i][j])
 #  result.build()
 
-proc add*[T](self:var DualCumulativeSum2D[T]; p:(Slice[int], Slice[int]), z:T) =
+proc add*[T](self:var DualCumulativeSum2D[T]; rx, ry: Slice[int], z:T) =
   assert not self.built
-  let (rx, ry) = p
   let (gx, gy) = (rx.b + 1, ry.b + 1)
   let (sx, sy) = (rx.a, ry.a)
   self.data[gx][gy] += z
@@ -46,10 +45,9 @@ proc build*[T](self:var DualCumulativeSum2D[T]) =
     for i in 0..<self.data.len:
       self.data[i][j] += self.data[i][j - 1]
 
-proc `[]`*[T](self: DualCumulativeSum2D[T], p:(int, int)):T =
+proc `[]`*[T](self: DualCumulativeSum2D[T], x:int, y:int):T =
   assert(self.built)
 #  let (x, y) = (x + 1, y + 1)
-  let (x, y) = p
   if x >= self.data.len or y >= self.data[0].len: return T(0)
   return self.data[x][y]
 

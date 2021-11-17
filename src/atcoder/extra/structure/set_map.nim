@@ -1,6 +1,20 @@
 when not declared ATCODER_SET_MAP_HPP:
   const ATCODER_SET_MAP_HPP* = 1
+  #type BinaryTreeType = enum
+  #  RedBlack, 
+  #  Splay, 
+  #  Randomized
+  #const SetMapType = BinaryTreeType.RedBlack
+# red black
   const USE_RED_BLACK_TREE = true
+  const USE_SPLAY_TREE = false
+# splay
+#  const USE_RED_BLACK_TREE = false
+#  const USE_SPLAY_TREE = true
+# RBST
+#  const USE_RED_BLACK_TREE = false
+#  const USE_SPLAY_TREE = false
+
   {.push discardable inline.}
   import std/strutils
   include atcoder/extra/structure/binary_tree_utils
@@ -32,11 +46,31 @@ when not declared ATCODER_SET_MAP_HPP:
       self.tree.init(End)
     proc empty*[Tree:SetOrMap](self:Tree):bool = self.tree.empty()
     proc len*[Tree:SetOrMap](self:Tree):int = self.tree.len()
+  elif USE_SPLAY_TREE:
+    include atcoder/extra/structure/splay_tree
+    type
+      SortedSetType*[K, Countable; p:static[tuple]] = SortedTree[SplayTree[K], SplayTreeNode[K, void, void, void], MULTI_FALSE, K, void, p]
+      SortedMultiSetType*[K, Countable; p:static[tuple]] = SortedTree[SplayTree[K], SplayTreeNode[K, void, void, void], MULTI_TRUE, K, void, p]
+      SortedMapType*[K; V:not void; Countable; p:static[tuple]] = SortedTree[SplayTree[(K, V)], SplayTreeNode[(K, V), void, void, void], MULTI_FALSE, K, V, p]
+      SortedMultiMapType*[K; V:not void; Countable; p:static[tuple]] = SortedTree[SplayTree[(K, V)], SplayTreeNode[(K, V), void, void, void], MULTI_TRUE, K, V, p]
+
+    type SetOrMap = SortedMultiSetType or SortedSetType or SortedMultiMapType or SortedMapType
+    proc init*[Tree:SetOrMap](self: var Tree) =
+      when Tree.V is void:
+        type T = Tree.K
+      else:
+        type T = (Tree.K, Tree.V)
+      var End = Tree.Node(id: -2)
+      End.cnt = 1 # be carefull!!!!!!!!!!!!!!!
+      self.End = End
+      self.tree.init(End)
+    proc len*[Tree:SetOrMap](self:Tree):int = self.tree.root.cnt - 1
+    proc empty*[Tree:SetOrMap](self:Tree):bool = self.len == 0
 
   else:
     include atcoder/extra/structure/randomized_binary_search_tree_with_parent
  
-    type SortedSetType*[K, Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[K], RBSTNode[K, void, void], MULTI_FALSE, K, void, p]
+    type SortedSetType*[K, Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[K], RandomizedBinarySearchTree[K].Node, MULTI_FALSE, K, void, p]
     type SortedMultiSetType*[K, Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[K], RBSTNode[K, void, void], MULTI_TRUE, K, void, p]
     type SortedMapType*[K, V, Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[(K, V)], RBSTNode[(K, V), void, void], MULTI_FALSE, K, V, p]
     type SortedMultiMapType*[K, V, Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[(K, V)], RBSTNode[(K, V), void, void], MULTI_TRUE, K, V, p]
@@ -56,8 +90,6 @@ when not declared ATCODER_SET_MAP_HPP:
   
   #  RBST(sz, [&](T x, T y) { return x; }, T()) {}
     
-    proc `*`*[Node:RBSTNode](it:Node):auto = it.key
-  
     proc len*[Tree:SetOrMap](self:Tree):int = self.tree.len() - 1
     proc empty*[Tree:SetOrMap](self:Tree):bool = self.len() == 0
 #      doAssert self.len + 1 == self.tree.check_tree()
@@ -77,22 +109,22 @@ when not declared ATCODER_SET_MAP_HPP:
 
   proc default*[T:SetOrMap](self:typedesc[T]):T =
     result.init()
-  template initSortedSet*(K:typedesc, countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
+  template initSortedSet*[K](countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
     block:
       var r: SortedSetType[K, when countable: int else: void, (comp,)]
       r.init()
       r
-  template initSortedMultiSet*(K:typedesc, countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
+  template initSortedMultiSet*[K](countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
     block:
       var r: SortedMultiSetType[K, when countable: int else: void, (comp,)]
       r.init()
       r
-  template initSortedMap*(K:typedesc, V:typedesc[not void], countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
+  template initSortedMap*[K; V:not void](countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
     block:
       var r: SortedMapType[K, V, when countable: int else: void, (comp,)]
       r.init()
       r
-  template initSortedMultiMap*(K:typedesc, V:typedesc[not void], countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
+  template initSortedMultiMap*[K; V:not void](countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
     block:
       var r: SortedMultiMapType[K, V, when countable: int else: void, (comp,)]
       r.init()

@@ -2,12 +2,13 @@ when not declared ATCODER_LINK_CUT_TREE_HPP:
   const ATCODER_LINK_CUT_TREE_HPP* = 1
   import atcoder/extra/structure/splay_tree
 
-  type LinkCutTree*[ST:SplayTree] = object
+  type LinkCutTree*[ST:SplayTreeType] = object
     splay_tree*:ST
+  template leaf[ST:LinkCutTree](self:ST):auto = self.splay_tree.leaf
 
   proc expose*[ST](self:LinkCutTree[ST], t:ST.Node):auto {.discardable.} =
     var
-      rp:ST.Node = nil
+      rp:ST.Node = self.leaf
       cur = t
     while cur != nil:
       self.splay_tree.splay(cur)
@@ -28,7 +29,7 @@ when not declared ATCODER_LINK_CUT_TREE_HPP:
   proc cut*[ST](self:LinkCutTree[ST], child:ST.Node) =
     self.expose(child)
     var parent = child.l
-    child.l = nil
+    child.l = self.leaf
     parent.p = nil
     self.splay_tree.update(child)
   
@@ -44,12 +45,12 @@ when not declared ATCODER_LINK_CUT_TREE_HPP:
 
   proc get_kth*[ST](self:LinkCutTree[ST], x:ST.Node, k:int):auto =
     self.expose(x)
-    while x != nil:
+    while x != self.leaf:
       self.push(x)
-      if x.r != nil and x.r.sz > k:
+      if x.r != self.leaf and x.r.sz > k:
         x = x.r;
       else:
-        if x.r != nil: k -= x.r.sz
+        if x.r != self.leaf: k -= x.r.sz
         if k == 0: return x
         k -= 1
         x = x.l
@@ -57,7 +58,7 @@ when not declared ATCODER_LINK_CUT_TREE_HPP:
 
   proc get_root*[ST](self:LinkCutTree[ST], x:ST.Node):auto =
     self.expose(x)
-    while x.l != nil:
+    while x.l != self.leaf:
       self.splay_tree.push(x)
       x = x.l
     return x
@@ -68,5 +69,5 @@ when not declared ATCODER_LINK_CUT_TREE_HPP:
     proc s(a:T):T = a
     return initLinkCutTree[T](f, s, M1)
 
-  proc alloc*[ST](self:LinkCutTree[ST], x:ST.D):ST.Node =
+  proc alloc*[ST](self:var LinkCutTree[ST], x:ST.D):ST.Node =
     return initNode(self.splay_tree, x)

@@ -3,7 +3,7 @@
 include atcoder/header
 import atcoder/extra/structure/set_map
 
-var st = initSortedSet(int)
+var st = initSortedSet[int]()
 
 let N, Q = nextInt()
 let T = nextString()

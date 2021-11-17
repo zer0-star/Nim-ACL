@@ -7,8 +7,6 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   Please use Nim-ACL
   Please use Nim-ACL
 
-
-
   {.hints:off warnings:off assertions:on optimization:speed.}
   when declared(DO_CHECK):
     when DO_CHECK:
@@ -47,8 +45,14 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   import atcoder/extra/other/zip
   import atcoder/extra/other/solve_proc
 
-#  converter toBool[T:ref object](x:T):bool = x != nil
-#  converter toBool[T](x:T):bool = x != T(0)
+  when declared USE_DEFAULT_TABLE:
+    when USE_DEFAULT_TABLE:
+      proc `[]`[A, B](self: var Table[A, B], key: A): var B =
+        discard self.hasKeyOrPut(key, B.default)
+        tables_lib.`[]`(self, key)
+
+  converter toBool[T:ref object](x:T):bool = x != nil
+  converter toBool[T](x:T):bool = x != T(0)
   # misc
   proc `<`[T](a, b:seq[T]):bool =
     for i in 0 ..< min(a.len, b.len):
@@ -62,3 +66,5 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
     if b < 0: return ceilDiv(-a, -b)
     result = a.floorDiv(b)
     if a mod b != 0: result.inc
+
+  template `/^`*[T:SomeInteger](a, b:T):T = ceilDiv(a, b)

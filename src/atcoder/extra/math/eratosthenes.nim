@@ -44,3 +44,4 @@ when not declared ATCODER_ERATOSTHENES_HPP:
   proc getPrime*(self:var Eratosthenes, i:int):int =
     while i >= self.prime.len: self.expand()
     return self.prime[i]
+  proc `[]`*(self:var Eratosthenes, i:int):int = self.getPrime(i)

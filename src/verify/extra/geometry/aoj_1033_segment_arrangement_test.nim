@@ -39,7 +39,7 @@ block main:
         for w in g[v]:
           let d = phase((ps[w] - ps[v])/(ps[v] - ps[u]))
           G.addEdge((u, v), (v, w), abs(d))
-    let dist = G.dijkstra(src)
+    var dist = G.dijkstra(src)
     var ans = float.inf
     for u in 0..<ps.len:
       for v in g[u]:

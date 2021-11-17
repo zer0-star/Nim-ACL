@@ -18,9 +18,9 @@ block:
 #    echo st.count(root)
     case x:
       of 0:
-        var (p, q, r) = st.split3(st.root, y, z + 1)
+        var (p, q, r) = st.split_index3(st.root, y, z + 1)
         let d = z + 1 - y
-        var (q0, q1) = st.split(q, d - 1)
+        var (q0, q1) = st.split_index(q, d - 1)
 #        doAssert st.count(q) == d
         st.root = st.merge(p, q1, q0, r)
       of 1:

@@ -16,7 +16,7 @@ proc main() =
       c = nextInt()
     g.addEdge(a, b, c)
   
-  let dist = g.dijkstra(s)
+  var dist = g.dijkstra(s)
   if dist[t] == int.inf:
     echo -1
   else:

@@ -1,9 +1,10 @@
 when not declared ATCODER_EXTRA_DIJKSTRA_HPP:
   const ATCODER_EXTRA_DIJKSTRA_HPP* = 1
   import std/heapqueue, std/sequtils
-  import std/deques, std/options, std/sets
+  import std/deques, std/options, std/sets, std/tables
   import atcoder/extra/graph/graph_template
   import atcoder/extra/other/inf
+
 
   type DijkstraObj*[T, U] = object
     src*, dst*: U
@@ -15,62 +16,64 @@ when not declared ATCODER_EXTRA_DIJKSTRA_HPP:
   include atcoder/extra/graph/dijkstra_result
 
   proc dijkstra01*[G:Graph](g:G, s:G.U or seq[G.U]): auto = 
+    var default_val: tuple[dist:G.T, prev_set:bool, prev:G.U]
+    default_val.dist = G.T.inf
+    default_val.prev_set = false
     var
-      n = g.len
-      dist = newSeqWith(n,G.T.inf)
+      a = initNodeArray(g, default_val, g.len)
       Q = initDeque[DijkstraObj[G.T, G.U]]()
-      prev_set = newSeqWith(n, false)
-      prev = newSeq[G.U](n)
     when s is G.U:
-      dist[g.id(s)] = G.T(0)
+      var p = a[s]
+      p[].dist = G.T(0)
       Q.addFirst(DijkstraObj[G.T, G.U](dst:s, weight:G.T(0)))
     else:
       for s in s:
-        dist[g.id(s)] = G.T(0)
+        var p = a[s]
+        p[].dist = G.T(0)
         Q.addFirst(DijkstraObj[G.T, G.U](dst:s, weight:G.T(0)))
     while Q.len > 0:
       var e = Q.popFirst()
-      let u = g.id(e.dst)
-      if prev_set[u]: continue
-      prev_set[u] = true
-      prev[u] = e.src
+      var p = a[e.dst]
+      if p[].prev_set: continue
+      p[].prev_set = true
+      p[].prev = e.src
       for f in g[e.dst]:
         var w = e.weight + f.weight
-        let v = g.id(f.dst)
-        if dist[v] > w:
-          dist[v] = w;
+        var p = a[f.dst]
+        if p[].dist > w:
+          p[].dist = w;
           if f.weight == 0:
             Q.addFirst(initDijkstraObj(e.dst, f.dst, w))
           else:
             Q.addLast(initDijkstraObj(e.dst, f.dst, w))
-    result = DijkstraResult[G.T, G.U](dist:dist, prev:prev)
-    when G.U isnot int: result.id = g.id
+    result = DijkstraResult[G.T, G.U, G.useId](a:a)
 
-  proc dijkstra*[G:Graph](g:G, s:G.U or seq[G.U]): auto = 
+  proc dijkstra*[G:Graph](g:var G, s:G.U or seq[G.U]): auto = 
+    var default_val: tuple[dist:G.T, prev_set:bool, prev:G.U]
+    default_val.dist = G.T.inf
+    default_val.prev_set = false
     var
-      n = g.len
-      dist = newSeqWith(n,g.T.inf)
+      a = initNodeArray(g, default_val, g.len)
       Q = initHeapQueue[DijkstraObj[G.T, G.U]]()
-      prev_set = newSeqWith(n, false)
-      prev = newSeq[G.U](n)
     when s is G.U:
-      dist[g.id(s)] = g.T(0)
+      var p = a[s]
+      p[].dist = g.T(0)
       Q.push(initDijkstraObj(s,s,g.T(0)))
     else:
       for s in s:
-        dist[g.id(s)] = g.T(0)
+        var p = a[s]
+        p[].dist = g.T(0)
         Q.push(initDijkstraObj(s,s,g.T(0)))
     while Q.len > 0:
       var e = Q.pop()
-      let eid = g.id(e.dst)
-      if prev_set[eid]: continue
-      prev_set[eid] = true
-      prev[eid] = e.src
+      var p = a[e.dst]
+      if p.prev_set: continue
+      p[].prev_set = true
+      p[].prev = e.src
       for f in g[e.dst]:
         var w = e.weight + f.weight
-        let fid = g.id(f.dst)
-        if dist[fid] > w:
-          dist[fid] = w;
+        var p = a[f.dst]
+        if p[].dist > w:
+          p[].dist = w;
           Q.push(initDijkstraObj(e.dst, f.dst, w))
-    result = DijkstraResult[G.T, G.U](dist:dist, prev:prev)
-    when G.U isnot int: result.id = g.id
+    result = DijkstraResult[G.T, G.U, G.useId](a:a)

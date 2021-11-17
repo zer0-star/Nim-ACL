@@ -26,6 +26,9 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
     T is SomeSortedTree
     T.V isnot void
     T.multi isnot void
+  type hasSplay* = concept x, type T
+    var t:T.Node
+    x.tree.splay(t)
   proc begin*[T:SomeSortedTree](self: T):T.Node = self.tree.begin()
 
   proc getKey*[T:SomeSortedTree](self: T, t:T.Node):auto =
@@ -51,7 +54,10 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
 
   proc lower_bound*[T:SomeSortedTree](self:var T, x:T.K):T.Node =
     assert self.tree.root != nil
-    self.lower_bound(self.tree.root, x)
+    result = self.lower_bound(self.tree.root, x)
+    when T is hasSplay:
+      self.tree.splay(result)
+      self.tree.root = result
 
   proc upper_bound*[T:SomeSortedTree](self: var T, t:var T.Node, x:T.K):T.Node =
     if t.isLeaf: return t
@@ -64,7 +70,10 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
 
   proc upper_bound*[T:SomeSortedTree](self: var T, x:T.K):T.Node =
     assert self.tree.root != nil
-    self.upper_bound(self.tree.root, x)
+    result = self.upper_bound(self.tree.root, x)
+    when T is hasSplay:
+      self.tree.splay(result)
+      self.tree.root = result
 
 #  proc find*[T:SomeSortedTree](self: var T, t:var T.Node, x:T.K):T.Node =
 #    echo "find:  ", t.key

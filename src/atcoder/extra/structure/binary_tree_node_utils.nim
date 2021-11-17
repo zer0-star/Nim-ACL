@@ -68,3 +68,11 @@ when not declared ATCODER_BINARY_TREE_NODE_UTILS_HPP:
 #    static:
 #      assert Node.Countable isnot void
     return t2.index - t1.index
+  proc `*`*[Node:BinaryTreeNode](node:Node):auto = node.key
+  iterator items*[Node:BinaryTreeNode](s:Slice[Node]):Node =
+    var it = s.a
+    while true:
+      yield it
+      if it == s.b: return
+      it.inc
+

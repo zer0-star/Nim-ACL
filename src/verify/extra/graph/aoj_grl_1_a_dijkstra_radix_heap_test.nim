@@ -18,7 +18,7 @@ proc main() =
       c = nextInt().int32
     g.addEdge(a, b, c)
   
-  let dist = dijkstra_radix_heap(g, R)
+  var dist = dijkstra_radix_heap(g, R)
   for u in 0..<V:
     if dist[u] == int32.inf: echo "INF"
     else: echo dist[u]

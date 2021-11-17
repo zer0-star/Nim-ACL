@@ -46,7 +46,6 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
 
   include atcoder/extra/structure/binary_tree_node_utils
 
-  proc `*`*[T:RedBlackTreeNode](node:T):auto = node.key
   template update*[T:RedBlackTree](self:T, node: T.Node) =
     when T.Countable isnot void:
       if node == self.leaf or node == nil: return

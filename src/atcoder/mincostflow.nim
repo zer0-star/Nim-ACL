@@ -48,13 +48,13 @@ when not declared ATCODER_MINCOSTFLOW_HPP:
 
     ## dual_dist[i] = (dual[i], dist[i])
     var
-      dual_dist = newSeq[(Cap, Cost)](self.n)
+      dual_dist = newSeq[tuple[dual, dist:Cost]](self.n)
       prev_e = newSeq[int](self.n)
       vis = newSeq[bool](self.n)
       que_min = newSeq[int]()
       que = newSeq[MCFQ[Cost]]()
     proc dual_ref(g:csr[MCFInternalEdge[Cap, Cost]]):bool =
-      for i in 0..<self.n: dual_dist[i][1] = Cost.high
+      for i in 0..<self.n: dual_dist[i].dist = Cost.high
       vis.fill(false)
       que_min.setLen(0)
       que.setLen(0)
@@ -62,7 +62,7 @@ when not declared ATCODER_MINCOSTFLOW_HPP:
       # que[0..heap_r) was heapified
       var heap_r = 0
 
-      dual_dist[s][1] = 0
+      dual_dist[s].dist = 0
       que_min.add(s)
       while que_min.len > 0 or que.len > 0:
         var v:int
@@ -88,11 +88,10 @@ when not declared ATCODER_MINCOSTFLOW_HPP:
           if e.cap == Cap(0): continue
           ## |-dual[e.to] + dual[v]| <= (n-1)C
           ## cost <= C - -(n-1)C + 0 = nC
-          let cost = e.cost - dual_dist[e.dst][0] + dual_v
-          # overflow!!!!!!!!!!!!!!!!1
-          if dual_dist[e.dst][1] - dist_v > cost:
+          let cost = e.cost - dual_dist[e.dst].dual + dual_v
+          if dual_dist[e.dst].dist - dist_v > cost:
             let dist_to = dist_v + cost
-            dual_dist[e.dst][1] = dist_to
+            dual_dist[e.dst].dist = dist_to
             prev_e[e.dst] = e.rev
             if dist_to == dist_v:
               que_min.add(e.dst)
@@ -108,7 +107,7 @@ when not declared ATCODER_MINCOSTFLOW_HPP:
         #     (shortest(s, v) + dual[s] - dual[v]) = - shortest(s,
         #     t) + dual[t] + shortest(s, v) = shortest(s, v) -
         #     shortest(s, t) >= 0 - (n-1)C
-        dual_dist[v][0] -= dual_dist[t][1] - dual_dist[v][1]
+        dual_dist[v].dual -= dual_dist[t].dist - dual_dist[v].dist
       return true
     var
       flow:Cap = 0
@@ -130,7 +129,7 @@ when not declared ATCODER_MINCOSTFLOW_HPP:
           e[].cap += c
           g.elist[e[].rev].cap -= c
           v = g.elist[prev_e[v]].dst
-      let d = -dual_dist[s][0]
+      let d = -dual_dist[s].dual
       flow += c
       cost += c * d
       if prev_cost_per_flow == d:
