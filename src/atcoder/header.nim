@@ -22,3 +22,4 @@ when not declared ATCODER_HEADER_HPP:
     when T is SomeFloat: T(Inf)
     elif T is SomeInteger: T.high div 2
     else: assert(false)
+
