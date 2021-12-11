@@ -1,2 +1,2 @@
 src/.bundle
-src/.verify-helper/*
+src/.verify-helper/cache/*
