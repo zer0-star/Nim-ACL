@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
     links:
@@ -46,19 +46,19 @@ data:
     \   let a = st.get(p)\n    st.set(p, a + x)\n  else:\n    let l, r = nextInt()\n\
     \    echo st.prod(l..<r)\n"
   dependsOn:
-  - atcoder/extra/structure/universal_segtree.nim
-  - atcoder/header.nim
-  - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
-  - atcoder/rangeutils.nim
-  - atcoder/header.nim
   - atcoder/internal_bit.nim
   - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
   isVerificationFile: true
   path: verify/extra/structure/extra_segtree_test.nim
   requiredBy: []
-  timestamp: '2021-07-18 17:05:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-11 23:59:27+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/structure/extra_segtree_test.nim
 layout: document

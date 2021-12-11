@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/dp/dual_cumulative_sum_2d.nim
     title: atcoder/extra/dp/dual_cumulative_sum_2d.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
@@ -45,16 +45,16 @@ data:
     \ i in 0..<N:\n  var d = cs2[T[i]..U[i], L[i]..R[i]]\n  if d < A[i]: ans.inc\n\
     \necho ans\n"
   dependsOn:
-  - atcoder/header.nim
+  - atcoder/extra/dp/cumulative_sum_2d.nim
+  - atcoder/extra/dp/cumulative_sum_2d.nim
   - atcoder/extra/dp/dual_cumulative_sum_2d.nim
   - atcoder/extra/dp/dual_cumulative_sum_2d.nim
   - atcoder/header.nim
-  - atcoder/extra/dp/cumulative_sum_2d.nim
-  - atcoder/extra/dp/cumulative_sum_2d.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/dp/cumulative_sum_2D_test.nim
   requiredBy: []
-  timestamp: '2021-11-18 02:51:01+09:00'
+  timestamp: '2021-12-11 23:59:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/dp/cumulative_sum_2D_test.nim

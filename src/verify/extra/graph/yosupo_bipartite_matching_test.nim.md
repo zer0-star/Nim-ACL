@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/hopcroft_karp.nim
     title: atcoder/extra/graph/hopcroft_karp.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
@@ -32,14 +32,14 @@ data:
     \    let u, v = nextInt()\n    g.addEdge(u, v)\n  \n  let p = g.maximum_matching()\n\
     \  echo p.len\n  for p in p:\n    echo p[0], \" \", p[1]\n\nmain()\n"
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/extra/graph/hopcroft_karp.nim
   - atcoder/extra/graph/hopcroft_karp.nim
   - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/extra/graph/hopcroft_karp.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_bipartite_matching_test.nim
   requiredBy: []
-  timestamp: '2021-07-18 17:05:28+09:00'
+  timestamp: '2021-12-11 23:59:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/graph/yosupo_bipartite_matching_test.nim

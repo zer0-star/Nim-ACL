@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/bitwise_convolution.nim
     title: atcoder/extra/math/bitwise_convolution.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/bitwise_convolution.nim
     title: atcoder/extra/math/bitwise_convolution.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
     links:
@@ -50,21 +50,21 @@ data:
     \  let N = nextInt()\n  var a = newSeqWith(2^N, mint(nextInt()))\n  var b = newSeqWith(2^N,\
     \ mint(nextInt()))\n  echo AndConvolution(a, b).join(\" \")\n\nmain()\n"
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/extra/math/bitwise_convolution.nim
+  - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
+  - atcoder/extra/math/bitwise_convolution.nim
   - atcoder/generate_definitions.nim
   - atcoder/header.nim
   - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/bitwise_convolution.nim
   - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/header.nim
+  - atcoder/extra/math/bitwise_convolution.nim
+  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/extra/math/yosupo_bitwise_and_convolution_test.nim
   requiredBy: []
-  timestamp: '2021-08-23 19:10:29+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-11 23:59:27+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/math/yosupo_bitwise_and_convolution_test.nim
 layout: document

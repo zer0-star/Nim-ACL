@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/dp/slide_min.nim
     title: atcoder/extra/dp/slide_min.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
@@ -31,14 +31,14 @@ data:
     \  let\n    N, L = nextInt()\n    a = newSeqWith(N, nextInt())\n  echo a.slideMin(L).join(\"\
     \ \")\n\nmain()\n"
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/extra/dp/slide_min.nim
   - atcoder/extra/dp/slide_min.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/dp/aoj_dsl_3_d_slidemin_test.nim
   requiredBy: []
-  timestamp: '2021-07-18 17:05:28+09:00'
+  timestamp: '2021-12-11 23:59:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/dp/aoj_dsl_3_d_slidemin_test.nim

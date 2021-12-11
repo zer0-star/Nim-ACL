@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
   - icon: ':heavy_check_mark:'
@@ -60,14 +60,14 @@ data:
   - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/floatutils.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/floatutils.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/other/binary_search_float.nim

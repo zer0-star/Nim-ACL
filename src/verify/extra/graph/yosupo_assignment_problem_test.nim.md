@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/hungarian.nim
     title: atcoder/extra/graph/hungarian.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
@@ -31,14 +31,14 @@ data:
     \    N = nextInt()\n    a = newSeqWith(N, newSeqWith(N, nextInt()))\n  let (X,\
     \ p) = a.hungarian()\n  echo X\n  echo p.mapIt($it).join(\" \")\n\nmain()\n"
   dependsOn:
-  - atcoder/header.nim
   - atcoder/extra/graph/hungarian.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/extra/graph/hungarian.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_assignment_problem_test.nim
   requiredBy: []
-  timestamp: '2021-07-18 17:05:28+09:00'
+  timestamp: '2021-12-11 23:59:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/graph/yosupo_assignment_problem_test.nim

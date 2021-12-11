@@ -7,16 +7,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/warshall_floyd.nim
     title: atcoder/extra/graph/warshall_floyd.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
@@ -45,15 +45,15 @@ data:
     \    echo \"\"\n\nmain()\n"
   dependsOn:
   - atcoder/extra/graph/warshall_floyd.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/header.nim
   - atcoder/extra/graph/warshall_floyd.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/inf.nim
   - atcoder/header.nim
+  - atcoder/extra/other/inf.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_1_c_warshall_floyd_test.nim
   requiredBy: []
-  timestamp: '2021-07-29 00:52:13+09:00'
+  timestamp: '2021-12-11 23:59:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/graph/aoj_grl_1_c_warshall_floyd_test.nim

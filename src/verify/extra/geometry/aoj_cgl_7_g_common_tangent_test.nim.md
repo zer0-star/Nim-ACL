@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
   - icon: ':heavy_check_mark:'
@@ -37,10 +37,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
@@ -66,24 +66,24 @@ data:
     \      ans.add l.b\n  ans.sort() do (x, y:Point[float]) -> int:\n    if x <~ y:\
     \ -1\n    elif x >~ y: 1\n    else: 0\n  for a in ans:\n    echo a.toString()\n"
   dependsOn:
-  - atcoder/header.nim
   - atcoder/extra/other/static_var.nim
+  - atcoder/extra/geometry/tangent.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/geometry/tangent.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/other/internal_complex.nim
+  - atcoder/header.nim
   - atcoder/element_concepts.nim
   - atcoder/header.nim
+  - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/geometry/tangent.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/internal_complex.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim
   requiredBy: []
-  timestamp: '2021-07-18 17:05:28+09:00'
+  timestamp: '2021-12-11 23:59:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim

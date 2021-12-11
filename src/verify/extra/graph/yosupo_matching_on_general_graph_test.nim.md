@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/gabow_edmonds.nim
     title: atcoder/extra/graph/gabow_edmonds.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/gabow_edmonds.nim
     title: atcoder/extra/graph/gabow_edmonds.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/general_matching
     links:
@@ -32,15 +32,15 @@ data:
     \    let u, v = nextInt()\n    g.addEdge(u, v)\n  \n  let p = g.maxMatching()\n\
     \  echo p.len\n  for p in p:\n    echo p[0], \" \", p[1]\n\nmain()\n"
   dependsOn:
-  - atcoder/header.nim
   - atcoder/extra/graph/gabow_edmonds.nim
+  - atcoder/header.nim
   - atcoder/extra/graph/gabow_edmonds.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_matching_on_general_graph_test.nim
   requiredBy: []
-  timestamp: '2021-07-18 17:05:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-11 23:59:27+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/graph/yosupo_matching_on_general_graph_test.nim
 layout: document

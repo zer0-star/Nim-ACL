@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/doubling_lowest_common_ancestor.nim
     title: atcoder/extra/tree/doubling_lowest_common_ancestor.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/doubling_lowest_common_ancestor.nim
     title: atcoder/extra/tree/doubling_lowest_common_ancestor.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/lca
     links:
@@ -39,17 +39,17 @@ data:
     \ 0)\n  for i in 0..<Q:\n    let x, y = nextInt()\n    echo lca.lca(x, y)\n\n\
     main()\n"
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
+  - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
   - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
   isVerificationFile: true
   path: verify/extra/tree/yosupo_lowest_common_ancestor_test.nim
   requiredBy: []
-  timestamp: '2021-11-18 02:47:29+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-11 23:59:27+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/tree/yosupo_lowest_common_ancestor_test.nim
 layout: document

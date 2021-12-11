@@ -1,77 +1,77 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/convolution.nim
     title: atcoder/convolution.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/convolution.nim
     title: atcoder/convolution.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/arbitrary_mod_convolution.nim
     title: atcoder/extra/math/arbitrary_mod_convolution.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/arbitrary_mod_convolution.nim
     title: atcoder/extra/math/arbitrary_mod_convolution.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/formal_power_series.nim
     title: atcoder/extra/math/formal_power_series.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/formal_power_series.nim
     title: atcoder/extra/math/formal_power_series.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/ntt.nim
     title: atcoder/extra/math/ntt.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/ntt.nim
     title: atcoder/extra/math/ntt.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/particular_mod_convolution.nim
     title: atcoder/extra/math/particular_mod_convolution.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/particular_mod_convolution.nim
     title: atcoder/extra/math/particular_mod_convolution.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/inv_of_formal_power_series
     links:
@@ -87,33 +87,33 @@ data:
     \  for i in 0..<N:\n    p[i] = mint(nextInt())\n  let q = p.inv()\n  echo q.join(\"\
     \ \")\n\n\nmain()\n"
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/convolution.nim
-  - atcoder/modint.nim
-  - atcoder/header.nim
-  - atcoder/internal_bit.nim
+  - atcoder/generate_definitions.nim
   - atcoder/extra/math/formal_power_series.nim
+  - atcoder/header.nim
+  - atcoder/modint.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/modint.nim
+  - atcoder/element_concepts.nim
   - atcoder/convolution.nim
+  - atcoder/header.nim
+  - atcoder/internal_math.nim
   - atcoder/internal_bit.nim
   - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/element_concepts.nim
+  - atcoder/convolution.nim
+  - atcoder/internal_bit.nim
   - atcoder/internal_math.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/element_concepts.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/modint.nim
   isVerificationFile: true
   path: verify/extra/math/inv_of_formal_power_series_test.nim
   requiredBy: []
-  timestamp: '2021-12-11 18:27:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-11 23:59:27+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/math/inv_of_formal_power_series_test.nim
 layout: document
