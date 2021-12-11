@@ -1,9 +1,7 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/point_add_range_sum
 
 import atcoder/header
-import atcoder/fenwicktree
-
-import std/sequtils
+import atcoder/fenwicktree, std/sequtils
 
 let N, Q = nextInt()
 let a = newSeqWith(N, nextInt())
