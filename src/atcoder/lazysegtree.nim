@@ -35,6 +35,8 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
   proc all_apply*[ST:LazySegTree](self:var ST, k:int, f:ST.F) =
     self.d[k] = ST.calc_mapping(f, self.d[k])
     if k < self.size: self.lz[k] = ST.calc_composition(f, self.lz[k])
+  proc all_apply*[ST:LazySegTree](self:var ST, f:ST.F) =
+    self.all_apply(1, f)
   proc push*[ST:LazySegTree](self: var ST, k:int) =
     self.all_apply(2 * k, self.lz[k])
     self.all_apply(2 * k + 1, self.lz[k])

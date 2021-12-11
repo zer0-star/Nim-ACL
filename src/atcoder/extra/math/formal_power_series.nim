@@ -5,6 +5,7 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
   import atcoder/element_concepts
 
   type FormalPowerSeries*[T:FieldElem] = seq[T]
+  type poly*[T:FieldElem] = FormalPowerSeries[T]
 
   template initFormalPowerSeries*[T:FieldElem](n:int):FormalPowerSeries[T] =
     block:
@@ -14,7 +15,7 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
       var result = newSeq[T](data.len)
       for i, it in data:
         result[i] = T(it)
-      result
+      FormalPowerSeries[T](result)
   template initFormalPowerSeries*[T:FieldElem](data:openArray[T]):FormalPowerSeries[T] =
     block:
       data
@@ -443,6 +444,9 @@ proc `{op}`*[T](self: not FormalPowerSeries and not Monomial, r:FormalPowerSerie
       r += w * v
       w *= x
     return r
+#  {.experimental: "callOperator".}
+#  template `()`*[T](self: FormalPowerSeries[T], x:T):T = self.eval(x)
+#  proc `()`*[T](self: FormalPowerSeries[T], x:T):T = self.eval(x)
 
   proc powMod*[T](self: FormalPowerSeries[T], n:int, M:FormalPowerSeries[T]):auto =
     assert M[^1] != T(0)

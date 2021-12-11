@@ -1,11 +1,11 @@
 when not declared ATCODER_TREE_DIAMETER_HPP:
   const ATCODER_TREE_DIAMETER_HPP* = 1
   import atcoder/extra/graph/graph_template
-  import std/sequtils
-  proc treeDiameter*[G:Graph](g:G):(G.T, seq[int]) =
+
+  proc treeDiameter*[G:Graph](g:G):tuple[len:G.T, path:seq[G.U]] =
     var next = newSeq[int](g.len)
     proc dfs(idx, par:int):(G.T, int) =
-      result[1] = idx
+      result = (G.T(0), idx)
       for i,e in g[idx]:
         if e.dst == par: continue
         var cost = dfs(e.dst, idx)
@@ -14,7 +14,7 @@ when not declared ATCODER_TREE_DIAMETER_HPP:
           next[idx] = i
           result = cost
     let p = dfs(0, -1)
-    next = newSeqWith(g.len, -1)
+    next.fill(-1)
     let q = dfs(p[1], -1)
     var
       ans = newSeq[int]()
@@ -25,3 +25,9 @@ when not declared ATCODER_TREE_DIAMETER_HPP:
       if idx == -1:break
       u = g[u][idx].dst
     return (q[0], ans)
+  proc centroid*[U](path:seq[U]):seq[U] =
+    let u = path.len div 2
+    if path.len mod 2 == 0:
+      @[path[u - 1], path[u]]
+    else:
+      @[path[u]]

@@ -9,7 +9,7 @@ when not declared ATCODER_BITUTILS_HPP:
     result = 0
     for x in v: result = (result or (B(1) shl B(x)))
 
-  proc `[]`*[B:SomeInteger](b:B,n:int):bool = (if b.testBit(n): 1 else: 0)
+  proc `[]`*[B:SomeInteger](b:B,n:int):int = (if b.testBit(n): 1 else: 0)
   proc `[]`*[B:SomeInteger](b:B,s:Slice[int]):int = (b shr s.a) mod (B(1) shl (s.b - s.a + 1))
   
   proc `[]=`*[B:SomeInteger](b:var B,n:int,t:int) =

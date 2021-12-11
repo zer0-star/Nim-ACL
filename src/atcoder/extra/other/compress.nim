@@ -12,4 +12,5 @@ when not declared ATCODER_COMPRESS_HPP:
   proc id*[T](c:Compress[T], a:T):int =
     result = c.binarySearch(a)
     assert result != -1, "Error: No such value: " & $a
+  proc `{}`*[T](c:Compress[T], a:T):int = c.id(a)
   proc val*[T](c:Compress[T], i:int):T = c[i]
