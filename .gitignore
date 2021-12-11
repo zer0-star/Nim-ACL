@@ -1,2 +1,3 @@
 src/.bundle
-src/.verify-helper/*
+src/.verify-helper/cache/*
+src/.verify-helper/markdown/*
