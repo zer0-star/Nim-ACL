@@ -10,7 +10,6 @@ let a = newSeqWith(N, nextInt())
 
 var st = initFenwickTree[int](N)
 
-
 for i in 0..<N: st.add(i, a[i])
 for _ in 0 ..< Q:
   let t = nextInt()
