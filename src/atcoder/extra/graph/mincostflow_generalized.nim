@@ -206,3 +206,16 @@ when not declared ATCODER_MINCOSTFLOW_HPP:
   proc flow*[Cap, Cost, graphType](self:var MCFGraph[Cap, Cost, graphType], s, t:int):tuple[cap:Cap, cost:Cost] = self.flow(s, t, Cap.high)
   proc slope*[Cap, Cost, graphType](self:var MCFGraph[Cap, Cost, graphType], s, t:int):seq[tuple[cap:Cap, cost:Cost]] = self.slope(s, t, Cap.high)
 
+  #### chaemon added
+  proc reset*[Cap, Cost, graphType](self: var MCFGraph[Cap, Cost, graphType]) =
+    for e in self.edges.mitems:
+      e.flow = 0
+
+  proc set_edge*[Cap, Cost, graphType](self: var MCFGraph[Cap, Cost, graphType], i:int, cap:Cap, cost:Cost) =
+    assert 0 <= cap
+    assert 0 <= cost
+    var m = self.edges.len
+    assert i in 0 ..< m
+    edges[i].cap = cap
+    edges[i].cost = cost
+

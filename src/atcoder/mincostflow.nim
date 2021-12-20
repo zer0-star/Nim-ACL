@@ -171,9 +171,19 @@ when not declared ATCODER_MINCOSTFLOW_HPP:
     for i in 0..<m:
       let e = g.elist[edge_idx[i]]
       self.edges[i].flow = self.edges[i].cap - e.cap
-
   proc flow*[Cap, Cost](self:var MCFGraph[Cap, Cost], s, t:int, flow_limit:Cap):tuple[cap:Cap, cost:Cost] = self.slope(s, t, flow_limit)[^1]
   proc flow*[Cap, Cost](self:var MCFGraph[Cap, Cost], s, t:int):tuple[cap:Cap, cost:Cost] = self.flow(s, t, Cap.high)
   proc slope*[Cap, Cost](self:var MCFGraph[Cap, Cost], s, t:int):seq[tuple[cap:Cap, cost:Cost]] = self.slope(s, t, Cap.high)
 
+  #### chaemon added
+  proc reset*[Cap, Cost](self: var MCFGraph[Cap, Cost]) =
+    for e in self.edges.mitems:
+      e.flow = 0
 
+  proc set_edge*[Cap, Cost](self: var MCFGraph[Cap, Cost], i:int, cap:Cap, cost:Cost) =
+    assert 0 <= cap
+    assert 0 <= cost
+    var m = self.edges.len
+    assert i in 0 ..< m
+    edges[i].cap = cap
+    edges[i].cost = cost
