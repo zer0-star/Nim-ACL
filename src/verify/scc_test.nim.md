@@ -34,9 +34,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/scc
     links:
     - https://judge.yosupo.jp/problem/scc
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/scc\n\ninclude atcoder/header\n\
     include atcoder/scc\n\nblock:\n  let N, M = nextInt()\n  var\n    scc = initSccGraph(N)\n\
@@ -44,14 +44,14 @@ data:
     \ = scc.scc()\n  echo a.len\n  for a in a:\n    echo a.len, \" \", a.join(\" \"\
     )\n"
   dependsOn:
-  - atcoder/scc.nim
-  - atcoder/internal_csr.nim
-  - atcoder/internal_scc.nim
   - atcoder/internal_csr.nim
   - atcoder/header.nim
+  - atcoder/internal_csr.nim
+  - atcoder/scc.nim
   - atcoder/internal_scc.nim
   - atcoder/header.nim
   - atcoder/scc.nim
+  - atcoder/internal_scc.nim
   isVerificationFile: true
   path: verify/scc_test.nim
   requiredBy: []

@@ -40,9 +40,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/shortest_path
     links:
     - https://judge.yosupo.jp/problem/shortest_path
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/shortest_path\n\n\
     include atcoder/header\nimport atcoder/extra/graph/graph_template\nimport atcoder/extra/graph/dijkstra\n\
@@ -54,16 +54,16 @@ data:
     \  ans.reverse\n    echo dist[t], \" \", ans.len - 1\n    for i in 0..<ans.len\
     \ - 1:\n      echo ans[i], \" \", ans[i+1]\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/extra/graph/dijkstra.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/header.nim
   - atcoder/extra/graph/dijkstra.nim
   - atcoder/header.nim
-  - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/graph/dijkstra.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/header.nim
+  - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/other/inf.nim
   isVerificationFile: true
   path: verify/shortest_path_test.nim
   requiredBy: []

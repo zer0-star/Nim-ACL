@@ -28,9 +28,9 @@ data:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A\n\
     \ninclude atcoder/header\nimport atcoder/extra/graph/boruvka\n\nproc main() =\n\
@@ -42,11 +42,11 @@ data:
     \ min(ret[Y[i]], (Z[i], X[i]))\n  echo mst.build(f)\n\nmain()\n"
   dependsOn:
   - atcoder/dsu.nim
-  - atcoder/extra/graph/boruvka.nim
   - atcoder/header.nim
   - atcoder/extra/graph/boruvka.nim
-  - atcoder/header.nim
+  - atcoder/extra/graph/boruvka.nim
   - atcoder/dsu.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_2_a_3_boruvka_test.nim
   requiredBy: []

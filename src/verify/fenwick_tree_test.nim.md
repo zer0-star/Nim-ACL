@@ -34,9 +34,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
     links:
     - https://judge.yosupo.jp/problem/point_add_range_sum
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/point_add_range_sum\n\
     \nimport atcoder/header, atcoder/fenwicktree\nimport std/sequtils\n\nlet N, Q\
@@ -45,13 +45,13 @@ data:
     \ t == 0:\n    let p, x = nextInt()\n    st.add(p, x)\n  else:\n    let l, r =\
     \ nextInt()\n    echo st.sum(l..<r)\n"
   dependsOn:
-  - atcoder/rangeutils.nim
-  - atcoder/fenwicktree.nim
-  - atcoder/header.nim
-  - atcoder/fenwicktree.nim
   - atcoder/header.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_type_traits.nim
+  - atcoder/fenwicktree.nim
+  - atcoder/rangeutils.nim
+  - atcoder/fenwicktree.nim
+  - atcoder/header.nim
   - atcoder/internal_type_traits.nim
   isVerificationFile: true
   path: verify/fenwick_tree_test.nim

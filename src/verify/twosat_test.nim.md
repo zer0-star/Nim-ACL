@@ -34,9 +34,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/two_sat
     links:
     - https://judge.yosupo.jp/problem/two_sat
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/two_sat\n\ninclude\
     \ atcoder/header\nimport atcoder/twosat\n\nblock:\n  let\n    p, cnf = nextString()\
@@ -50,13 +50,13 @@ data:
     \ -(i + 1), \" \"\n    echo 0\n  else:\n    echo \"s UNSATISFIABLE\"\n"
   dependsOn:
   - atcoder/internal_csr.nim
-  - atcoder/twosat.nim
-  - atcoder/twosat.nim
-  - atcoder/internal_scc.nim
   - atcoder/header.nim
   - atcoder/internal_csr.nim
   - atcoder/internal_scc.nim
+  - atcoder/twosat.nim
+  - atcoder/internal_scc.nim
   - atcoder/header.nim
+  - atcoder/twosat.nim
   isVerificationFile: true
   path: verify/twosat_test.nim
   requiredBy: []

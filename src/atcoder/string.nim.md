@@ -26,9 +26,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_STRING_HPP:\n  const ATCODER_STRING_HPP* = 1\n\n\
     \  import std/algorithm, std/sequtils\n\n  proc sa_naive*(s:seq[int]):seq[int]\
@@ -113,12 +113,12 @@ data:
   timestamp: '2020-09-24 19:39:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/lcp_array_test.nim
+  - verify/lcp_array_test.nim
   - verify/suffix_array_test.nim
   - verify/suffix_array_test.nim
   - verify/z_algorithm_test.nim
   - verify/z_algorithm_test.nim
-  - verify/lcp_array_test.nim
-  - verify/lcp_array_test.nim
 documentation_of: atcoder/string.nim
 layout: document
 redirect_from:

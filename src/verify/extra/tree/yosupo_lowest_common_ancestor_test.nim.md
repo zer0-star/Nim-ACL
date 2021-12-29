@@ -28,9 +28,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/lca
     links:
     - https://judge.yosupo.jp/problem/lca
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/lca\n\ninclude atcoder/header\n\
     import atcoder/extra/graph/graph_template\n\nimport atcoder/extra/tree/doubling_lowest_common_ancestor\n\
@@ -39,12 +39,12 @@ data:
     \ 0)\n  for i in 0..<Q:\n    let x, y = nextInt()\n    echo lca.lca(x, y)\n\n\
     main()\n"
   dependsOn:
+  - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
   - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
   - atcoder/header.nim
-  - atcoder/header.nim
-  - atcoder/extra/graph/graph_template.nim
   isVerificationFile: true
   path: verify/extra/tree/yosupo_lowest_common_ancestor_test.nim
   requiredBy: []

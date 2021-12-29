@@ -68,9 +68,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# modSqrt {{{\nwhen not declared ATCODER_MODSQRT_HPP:\n  const ATCODER_MODSQRT_HPP*\
     \ = 1\n  import atcoder/modint\n  import std/options\n  \n  proc modSqrt*[T:ModInt](a:T):Option[T]\
@@ -83,18 +83,18 @@ data:
     \    j.inc\n        t *= t\n      z = z.pow(1 shl (e - j - 1))\n      x *= z\n\
     \      z *= z\n      y *= z\n      e = j\n    return T(x).some\n#}}}\n"
   dependsOn:
-  - atcoder/generate_definitions.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
   - atcoder/modint.nim
   - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
   - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
   - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
   - atcoder/modint.nim
   - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: atcoder/extra/math/mod_sqrt.nim
   requiredBy:

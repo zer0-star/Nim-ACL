@@ -32,9 +32,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_MINCOSTFLOW_HPP:\n  const ATCODER_MINCOSTFLOW_HPP*\
     \ = 1\n\n  import std/heapqueue, std/algorithm\n  import atcoder/internal_csr,\
@@ -109,23 +109,27 @@ data:
     \        g.elist[edge_idx[i]].rev = redge_idx[i];\n        g.elist[redge_idx[i]].rev\
     \ = edge_idx[i];\n      g\n\n    result = self.slope(g, s, t, flow_limit)\n\n\
     \    for i in 0..<m:\n      let e = g.elist[edge_idx[i]]\n      self.edges[i].flow\
-    \ = self.edges[i].cap - e.cap\n\n  proc flow*[Cap, Cost](self:var MCFGraph[Cap,\
+    \ = self.edges[i].cap - e.cap\n  proc flow*[Cap, Cost](self:var MCFGraph[Cap,\
     \ Cost], s, t:int, flow_limit:Cap):tuple[cap:Cap, cost:Cost] = self.slope(s, t,\
     \ flow_limit)[^1]\n  proc flow*[Cap, Cost](self:var MCFGraph[Cap, Cost], s, t:int):tuple[cap:Cap,\
     \ cost:Cost] = self.flow(s, t, Cap.high)\n  proc slope*[Cap, Cost](self:var MCFGraph[Cap,\
     \ Cost], s, t:int):seq[tuple[cap:Cap, cost:Cost]] = self.slope(s, t, Cap.high)\n\
-    \n\n"
+    \n  #### chaemon added\n  proc reset*[Cap, Cost](self: var MCFGraph[Cap, Cost])\
+    \ =\n    for e in self.edges.mitems:\n      e.flow = 0\n\n  proc set_edge*[Cap,\
+    \ Cost](self: var MCFGraph[Cap, Cost], i:int, cap:Cap, cost:Cost) =\n    assert\
+    \ 0 <= cap\n    assert 0 <= cost\n    var m = self.edges.len\n    assert i in\
+    \ 0 ..< m\n    edges[i].cap = cap\n    edges[i].cost = cost\n"
   dependsOn:
+  - atcoder/internal_heap.nim
+  - atcoder/internal_csr.nim
   - atcoder/internal_queue.nim
-  - atcoder/internal_csr.nim
-  - atcoder/internal_csr.nim
   - atcoder/internal_heap.nim
-  - atcoder/internal_heap.nim
+  - atcoder/internal_csr.nim
   - atcoder/internal_queue.nim
   isVerificationFile: false
   path: atcoder/mincostflow.nim
   requiredBy: []
-  timestamp: '2021-11-18 02:47:29+09:00'
+  timestamp: '2021-12-21 01:39:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/min_cost_flow_test.nim

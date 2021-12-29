@@ -34,9 +34,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
     links:
     - https://judge.yosupo.jp/problem/range_kth_smallest
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/range_kth_smallest\n\
     \ninclude atcoder/header\n\nimport atcoder/extra/structure/wavelet_matrix\n\n\
@@ -44,13 +44,13 @@ data:
     \ 18)\nfor i in 0..<Q:\n  let a, b, c = nextInt()\n  echo mat.kth_smallest(a ..<\
     \ b, c)\n"
   dependsOn:
-  - atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - atcoder/extra/structure/wavelet_matrix.nim
-  - atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - atcoder/extra/structure/wavelet_matrix.nim
-  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/rangeutils.nim
+  - atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/header.nim
   - atcoder/rangeutils.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_range_kth_smallest_test.nim

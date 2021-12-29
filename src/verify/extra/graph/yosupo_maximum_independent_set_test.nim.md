@@ -22,9 +22,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/maximum_independent_set
     links:
     - https://judge.yosupo.jp/problem/maximum_independent_set
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/maximum_independent_set\n\
     \ninclude atcoder/header\n\ninclude atcoder/extra/graph/maximum_independent_set\n\
@@ -35,8 +35,8 @@ data:
     \ \" \"\n  echo \"\"\n\nmain()\n"
   dependsOn:
   - atcoder/extra/graph/maximum_independent_set.nim
-  - atcoder/extra/graph/maximum_independent_set.nim
   - atcoder/header.nim
+  - atcoder/extra/graph/maximum_independent_set.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_maximum_independent_set_test.nim

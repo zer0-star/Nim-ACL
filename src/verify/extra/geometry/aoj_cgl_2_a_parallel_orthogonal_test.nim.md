@@ -46,9 +46,9 @@ data:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A\n\
     \ninclude atcoder/header\nimport atcoder/extra/geometry/geometry_template\n\n\
@@ -59,17 +59,17 @@ data:
     \ echo 2\n    elif s1.orthogonal(s2): echo 1\n    else: echo 0\n"
   dependsOn:
   - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/header.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/floatutils.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/header.nim
+  - atcoder/extra/other/internal_complex.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/other/internal_complex.nim
-  - atcoder/header.nim
   - atcoder/extra/other/floatutils.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/header.nim
+  - atcoder/extra/other/static_var.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_2_a_parallel_orthogonal_test.nim
   requiredBy: []

@@ -14,15 +14,63 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/header/chaemon_header.nim
     title: atcoder/extra/header/chaemon_header.nim
+  - icon: ':warning:'
+    path: atcoder/extra/template/atcoder-tools_template.nim
+    title: atcoder/extra/template/atcoder-tools_template.nim
+  - icon: ':warning:'
+    path: atcoder/extra/template/atcoder-tools_template.nim
+    title: atcoder/extra/template/atcoder-tools_template.nim
+  - icon: ':warning:'
+    path: atcoder/extra/template/atcoder-tools_template.nim
+    title: atcoder/extra/template/atcoder-tools_template.nim
+  - icon: ':warning:'
+    path: atcoder/extra/template/atcoder-tools_template.nim
+    title: atcoder/extra/template/atcoder-tools_template.nim
+  - icon: ':warning:'
+    path: atcoder/extra/template/atcoder-tools_template_global.nim
+    title: atcoder/extra/template/atcoder-tools_template_global.nim
+  - icon: ':warning:'
+    path: atcoder/extra/template/atcoder-tools_template_global.nim
+    title: atcoder/extra/template/atcoder-tools_template_global.nim
+  - icon: ':warning:'
+    path: atcoder/extra/template/atcoder-tools_template_global.nim
+    title: atcoder/extra/template/atcoder-tools_template_global.nim
+  - icon: ':warning:'
+    path: atcoder/extra/template/atcoder-tools_template_global.nim
+    title: atcoder/extra/template/atcoder-tools_template_global.nim
+  - icon: ':warning:'
+    path: atcoder/extra/template/template.nim
+    title: atcoder/extra/template/template.nim
+  - icon: ':warning:'
+    path: atcoder/extra/template/template.nim
+    title: atcoder/extra/template/template.nim
+  - icon: ':warning:'
+    path: atcoder/extra/template/template.nim
+    title: atcoder/extra/template/template.nim
+  - icon: ':warning:'
+    path: atcoder/extra/template/template.nim
+    title: atcoder/extra/template/template.nim
+  - icon: ':warning:'
+    path: atcoder/extra/template/vim_template.nim
+    title: atcoder/extra/template/vim_template.nim
+  - icon: ':warning:'
+    path: atcoder/extra/template/vim_template.nim
+    title: atcoder/extra/template/vim_template.nim
+  - icon: ':warning:'
+    path: atcoder/extra/template/vim_template.nim
+    title: atcoder/extra/template/vim_template.nim
+  - icon: ':warning:'
+    path: atcoder/extra/template/vim_template.nim
+    title: atcoder/extra/template/vim_template.nim
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: nim
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_SEQ_ARRAY_UTILS:\n  const ATCODER_SEQ_ARRAY_UTILS*\
     \ = 1\n  import std/strformat, std/macros, std/sequtils\n  template makeSeq*(x:int;\
@@ -49,8 +97,24 @@ data:
   requiredBy:
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/template/template.nim
+  - atcoder/extra/template/template.nim
+  - atcoder/extra/template/vim_template.nim
+  - atcoder/extra/template/vim_template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/template/template.nim
+  - atcoder/extra/template/template.nim
+  - atcoder/extra/template/vim_template.nim
+  - atcoder/extra/template/vim_template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/atcoder-tools_template_global.nim
   timestamp: '2021-04-18 04:42:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

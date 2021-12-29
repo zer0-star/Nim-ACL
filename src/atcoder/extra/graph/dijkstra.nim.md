@@ -68,9 +68,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_EXTRA_DIJKSTRA_HPP:\n  const ATCODER_EXTRA_DIJKSTRA_HPP*\
     \ = 1\n  import std/heapqueue, std/sequtils\n  import std/deques, std/options,\
@@ -106,31 +106,31 @@ data:
     \ f.dst, w))\n    result = DijkstraResult[G.T, G.U, G.useId](a:a)\n"
   dependsOn:
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/inf.nim
   isVerificationFile: false
   path: atcoder/extra/graph/dijkstra.nim
   requiredBy: []
   timestamp: '2021-11-18 02:47:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
-  - verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
-  - verify/extra/graph/yosupo_shortest_path_test.nim
-  - verify/extra/graph/yosupo_shortest_path_test.nim
-  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
-  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
   - verify/shortest_path_test.nim
   - verify/shortest_path_test.nim
+  - verify/extra/graph/yosupo_shortest_path_test.nim
+  - verify/extra/graph/yosupo_shortest_path_test.nim
+  - verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
+  - verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
+  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
+  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
 documentation_of: atcoder/extra/graph/dijkstra.nim
 layout: document
 redirect_from:
