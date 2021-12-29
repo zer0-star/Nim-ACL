@@ -31,10 +31,10 @@ data:
     \  let\n    N, L = nextInt()\n    a = newSeqWith(N, nextInt())\n  echo a.slideMin(L).join(\"\
     \ \")\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/dp/slide_min.nim
-  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/extra/dp/slide_min.nim
+  - atcoder/extra/dp/slide_min.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/dp/aoj_dsl_3_d_slidemin_test.nim
   requiredBy: []

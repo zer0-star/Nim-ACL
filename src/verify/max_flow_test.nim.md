@@ -37,11 +37,11 @@ data:
     \  var mf = initMaxFlow[int](V)\n  for i in 0..<E:\n    let a, b, c = nextInt()\n\
     \    mf.addEdge(a, b, c)\n  echo mf.flow(0, V - 1)\n"
   dependsOn:
-  - atcoder/maxflow.nim
-  - atcoder/internal_queue.nim
-  - atcoder/maxflow.nim
   - atcoder/internal_queue.nim
   - atcoder/header.nim
+  - atcoder/maxflow.nim
+  - atcoder/maxflow.nim
+  - atcoder/internal_queue.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/max_flow_test.nim

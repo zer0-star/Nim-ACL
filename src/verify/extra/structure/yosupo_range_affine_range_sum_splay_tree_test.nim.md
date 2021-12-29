@@ -62,18 +62,18 @@ data:
     \    seg.apply(l..<r, (mint(c), mint(d)))\n  else:\n    let l, r = nextInt()\n\
     \    echo seg.prod(l..<r)[0]\n"
   dependsOn:
-  - atcoder/generate_definitions.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/modint.nim
-  - atcoder/header.nim
-  - atcoder/rangeutils.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
   - atcoder/rangeutils.nim
   - atcoder/header.nim
   - atcoder/internal_math.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/rangeutils.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
   requiredBy: []

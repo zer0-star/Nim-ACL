@@ -46,12 +46,12 @@ data:
     \    let a,b = nextInt()\n    echo if belongs[a] == belongs[b]: 1 else: 0\n\n\
     main()\n"
   dependsOn:
-  - atcoder/scc.nim
-  - atcoder/internal_scc.nim
   - atcoder/header.nim
+  - atcoder/scc.nim
   - atcoder/internal_csr.nim
   - atcoder/internal_scc.nim
   - atcoder/scc.nim
+  - atcoder/internal_scc.nim
   - atcoder/internal_csr.nim
   - atcoder/header.nim
   isVerificationFile: true

@@ -121,29 +121,29 @@ data:
     \  \n  \n  \n"
   dependsOn:
   - atcoder/internal_heap.nim
-  - atcoder/scc.nim
+  - atcoder/internal_queue.nim
   - atcoder/internal_heap.nim
-  - atcoder/extra/graph/mincostflow_generalized.nim
-  - atcoder/internal_queue.nim
-  - atcoder/internal_scc.nim
-  - atcoder/extra/graph/mincostflow_generalized.nim
-  - atcoder/internal_csr.nim
-  - atcoder/internal_queue.nim
-  - atcoder/internal_scc.nim
   - atcoder/internal_csr.nim
   - atcoder/scc.nim
+  - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/internal_scc.nim
+  - atcoder/scc.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_csr.nim
+  - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/internal_queue.nim
   - atcoder/internal_heap.nim
-  - atcoder/scc.nim
+  - atcoder/internal_queue.nim
   - atcoder/internal_heap.nim
-  - atcoder/extra/graph/mincostflow_generalized.nim
-  - atcoder/internal_queue.nim
-  - atcoder/internal_scc.nim
-  - atcoder/extra/graph/mincostflow_generalized.nim
-  - atcoder/internal_csr.nim
-  - atcoder/internal_queue.nim
-  - atcoder/internal_scc.nim
   - atcoder/internal_csr.nim
   - atcoder/scc.nim
+  - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/internal_scc.nim
+  - atcoder/scc.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_csr.nim
+  - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/internal_queue.nim
   isVerificationFile: false
   path: atcoder/extra/graph/mincostflow_lowerbound.nim
   requiredBy: []

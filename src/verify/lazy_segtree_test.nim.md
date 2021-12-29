@@ -69,19 +69,19 @@ data:
     \ r = nextInt()\n    echo seg.prod(l..<r)[0]\n"
   dependsOn:
   - atcoder/internal_bit.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/rangeutils.nim
+  - atcoder/header.nim
+  - atcoder/internal_math.nim
   - atcoder/lazysegtree.nim
+  - atcoder/rangeutils.nim
   - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/lazysegtree.nim
+  - atcoder/internal_math.nim
   - atcoder/internal_bit.nim
-  - atcoder/lazysegtree.nim
-  - atcoder/header.nim
+  - atcoder/generate_definitions.nim
   - atcoder/modint.nim
-  - atcoder/rangeutils.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/rangeutils.nim
   - atcoder/header.nim
-  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/lazy_segtree_test.nim
   requiredBy: []

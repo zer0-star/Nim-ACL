@@ -74,21 +74,21 @@ data:
     \ nextInt().mint\n      let ret = seg.prod(l..<r)\n      echo ret[0] * x + ret[1]\n"
   dependsOn:
   - atcoder/extra/other/internal_sugar.nim
+  - atcoder/rangeutils.nim
+  - atcoder/header.nim
   - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/rangeutils.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/modint.nim
   - atcoder/extra/other/internal_sugar.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
   - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/modint.nim
   - atcoder/extra/other/internal_underscored_calls.nim
   - atcoder/header.nim
-  - atcoder/modint.nim
-  - atcoder/rangeutils.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/rangeutils.nim
-  - atcoder/header.nim
-  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   requiredBy: []

@@ -223,38 +223,38 @@ data:
     \ a, b, p)\n  proc multiply*[T:FiniteFieldElem](a, b:seq[T]):seq[T] =\n    convolution(get_fft_type(T),\
     \ a, b)\n"
   dependsOn:
+  - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/internal_bit.nim
-  - atcoder/generate_definitions.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/convolution.nim
+  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/modint.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/element_concepts.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/modint.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
   - atcoder/convolution.nim
-  - atcoder/convolution.nim
+  - atcoder/internal_math.nim
   - atcoder/internal_bit.nim
   - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/element_concepts.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/internal_bit.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/convolution.nim
   - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
   - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/modint.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/modint.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/convolution.nim
   - atcoder/internal_math.nim
-  - atcoder/convolution.nim
-  - atcoder/convolution.nim
+  - atcoder/internal_bit.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/math/ntt.nim
   requiredBy:

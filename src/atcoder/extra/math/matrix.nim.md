@@ -145,12 +145,12 @@ data:
     \    assert ids == (0..<n).toSeq\n    for i in 0..<n:\n      for j in 0..<n:\n\
     \        result[i][j] = G[i][j + n]\n\n  generatePow(Matrix)\n"
   dependsOn:
-  - atcoder/generate_definitions.nim
   - atcoder/element_concepts.nim
   - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
   - atcoder/generate_definitions.nim
   - atcoder/element_concepts.nim
+  - atcoder/element_concepts.nim
+  - atcoder/generate_definitions.nim
   - atcoder/generate_definitions.nim
   - atcoder/element_concepts.nim
   isVerificationFile: false

@@ -69,19 +69,19 @@ data:
     \ (mint(c), mint(d)))\n  else:\n    let l, r = nextInt()\n    echo seg.prod(l..<r)[0]\n"
   dependsOn:
   - atcoder/internal_bit.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/rangeutils.nim
   - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/header.nim
+  - atcoder/internal_math.nim
+  - atcoder/rangeutils.nim
   - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
   - atcoder/internal_bit.nim
-  - atcoder/modint.nim
-  - atcoder/header.nim
-  - atcoder/rangeutils.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
   - atcoder/extra/structure/universal_segtree.nim
-  - atcoder/rangeutils.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
   - atcoder/header.nim
-  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/extra/structure/extra_lazy_segtree_test.nim
   requiredBy: []

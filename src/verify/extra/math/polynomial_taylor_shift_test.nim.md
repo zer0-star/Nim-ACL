@@ -99,32 +99,32 @@ data:
     \  let N, c = nextInt()\n  var a = initFormalPowerSeries[mint](newSeqWith(N, mint.init(nextInt())))\n\
     \  let b = a.taylor_shift(c)\n  echo b.join(\" \")\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/math/polynomial_taylor_shift.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/internal_math.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/extra/math/combination.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/internal_bit.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/convolution.nim
+  - atcoder/modint.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/extra/math/polynomial_taylor_shift.nim
   - atcoder/generate_definitions.nim
+  - atcoder/header.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/header.nim
-  - atcoder/convolution.nim
-  - atcoder/header.nim
-  - atcoder/convolution.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/ntt.nim
   - atcoder/extra/math/combination.nim
-  - atcoder/modint.nim
-  - atcoder/modint.nim
   - atcoder/internal_bit.nim
+  - atcoder/modint.nim
+  - atcoder/extra/math/polynomial_taylor_shift.nim
+  - atcoder/header.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/internal_bit.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: true
   path: verify/extra/math/polynomial_taylor_shift_test.nim
   requiredBy: []

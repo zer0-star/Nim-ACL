@@ -66,19 +66,19 @@ data:
     \ a * x + b\n\n"
   dependsOn:
   - atcoder/extra/other/internal_sugar.nim
+  - atcoder/header.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/structure/sliding_window_aggregation.nim
   - atcoder/generate_definitions.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/modint.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
   - atcoder/extra/other/internal_sugar.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
-  - atcoder/extra/structure/sliding_window_aggregation.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/header.nim
   - atcoder/modint.nim
   - atcoder/extra/structure/sliding_window_aggregation.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
   - atcoder/header.nim
-  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
   requiredBy: []

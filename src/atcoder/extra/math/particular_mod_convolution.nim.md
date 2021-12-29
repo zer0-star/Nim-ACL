@@ -225,29 +225,29 @@ data:
     \ a, b:seq[T]):auto {.inline.} = convolution(a, b)\n"
   dependsOn:
   - atcoder/internal_bit.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/convolution.nim
   - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
+  - atcoder/convolution.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
   - atcoder/element_concepts.nim
   - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
   - atcoder/convolution.nim
-  - atcoder/convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/generate_definitions.nim
   - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
   - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
   - atcoder/convolution.nim
-  - atcoder/convolution.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/math/particular_mod_convolution.nim
   requiredBy:

@@ -100,32 +100,32 @@ data:
     \    p[i] = mint(nextInt())\n  let q = p.sqrt()\n  echo if q.isSome: q.get.join(\"\
     \ \") else: \"-1\"\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/math/formal_power_series_sqrt.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/extra/math/mod_sqrt.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/internal_math.nim
-  - atcoder/internal_math.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/internal_bit.nim
-  - atcoder/extra/math/ntt.nim
+  - atcoder/convolution.nim
+  - atcoder/modint.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/mod_sqrt.nim
   - atcoder/generate_definitions.nim
+  - atcoder/header.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/internal_bit.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - atcoder/modint.nim
+  - atcoder/header.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/internal_bit.nim
   - atcoder/extra/math/formal_power_series_sqrt.nim
   - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/mod_sqrt.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/header.nim
-  - atcoder/convolution.nim
-  - atcoder/header.nim
-  - atcoder/convolution.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/math/ntt.nim
   - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/modint.nim
-  - atcoder/modint.nim
-  - atcoder/internal_bit.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: true
   path: verify/extra/math/sqrt_of_formal_power_series_test.nim
   requiredBy: []

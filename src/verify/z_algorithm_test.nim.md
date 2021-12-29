@@ -43,9 +43,9 @@ data:
 
     '
   dependsOn:
-  - atcoder/string.nim
-  - atcoder/string.nim
   - atcoder/header.nim
+  - atcoder/string.nim
+  - atcoder/string.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/z_algorithm_test.nim

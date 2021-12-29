@@ -47,11 +47,11 @@ data:
   dependsOn:
   - atcoder/internal_bit.nim
   - atcoder/segtree.nim
-  - atcoder/segtree.nim
-  - atcoder/internal_bit.nim
-  - atcoder/rangeutils.nim
   - atcoder/header.nim
   - atcoder/rangeutils.nim
+  - atcoder/segtree.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/segtree_test.nim

@@ -249,34 +249,34 @@ data:
     \ b.map(f1))\n      c2 = convolution(a.map(f2), b.map(f2))\n    return calc_garner[T](c0,\
     \ c1, c2, a.len + b.len - 1)\n"
   dependsOn:
-  - atcoder/internal_bit.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/modint.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
   - atcoder/convolution.nim
+  - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/internal_math.nim
   - atcoder/convolution.nim
   - atcoder/internal_bit.nim
   - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
   - atcoder/element_concepts.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/internal_bit.nim
+  - atcoder/convolution.nim
+  - atcoder/element_concepts.nim
   - atcoder/internal_math.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/generate_definitions.nim
   - atcoder/modint.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/modint.nim
   - atcoder/internal_math.nim
   - atcoder/convolution.nim
-  - atcoder/convolution.nim
+  - atcoder/internal_bit.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/math/arbitrary_mod_convolution.nim
   requiredBy:

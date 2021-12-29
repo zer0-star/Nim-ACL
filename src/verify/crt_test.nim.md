@@ -38,11 +38,11 @@ data:
     \ 0: y += z\n  echo y\n"
   dependsOn:
   - atcoder/header.nim
+  - atcoder/internal_math.nim
   - atcoder/math.nim
   - atcoder/internal_math.nim
+  - atcoder/math.nim
   - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/math.nim
   isVerificationFile: true
   path: verify/crt_test.nim
   requiredBy: []
