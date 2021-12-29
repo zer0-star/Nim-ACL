@@ -13,19 +13,7 @@ data:
   - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/example/segtree_practice.nim
-    title: test/example/segtree_practice.nim
-  - icon: ':warning:'
-    path: test/example/segtree_practice.nim
-    title: test/example/segtree_practice.nim
-  - icon: ':warning:'
-    path: tests/test_segtree.nim
-    title: tests/test_segtree.nim
-  - icon: ':warning:'
-    path: tests/test_segtree.nim
-    title: tests/test_segtree.nim
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
     path: verify/segtree_test.nim
@@ -38,9 +26,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_SEGTREE_HPP:\n  const ATCODER_SEGTREE_HPP* = 1\n\
     \  import atcoder/internal_bit\n  import std/sugar, std/sequtils, std/algorithm\n\
@@ -99,17 +87,13 @@ data:
     \ ((r and -r) != r): break\n    return 0\n  {.pop.}\n"
   dependsOn:
   - atcoder/rangeutils.nim
-  - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
+  - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
   isVerificationFile: false
   path: atcoder/segtree.nim
-  requiredBy:
-  - tests/test_segtree.nim
-  - tests/test_segtree.nim
-  - test/example/segtree_practice.nim
-  - test/example/segtree_practice.nim
-  timestamp: '1970-01-01 00:00:00+00:00'
+  requiredBy: []
+  timestamp: '2021-07-15 21:51:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/segtree_test.nim

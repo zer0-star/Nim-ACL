@@ -13,31 +13,7 @@ data:
   - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/example/lazyseg_practice1.nim
-    title: test/example/lazyseg_practice1.nim
-  - icon: ':warning:'
-    path: test/example/lazyseg_practice1.nim
-    title: test/example/lazyseg_practice1.nim
-  - icon: ':warning:'
-    path: test/example/lazyseg_practice2.nim
-    title: test/example/lazyseg_practice2.nim
-  - icon: ':warning:'
-    path: test/example/lazyseg_practice2.nim
-    title: test/example/lazyseg_practice2.nim
-  - icon: ':warning:'
-    path: tests/test_lazysegtree.nim
-    title: tests/test_lazysegtree.nim
-  - icon: ':warning:'
-    path: tests/test_lazysegtree.nim
-    title: tests/test_lazysegtree.nim
-  - icon: ':warning:'
-    path: tests/test_lazysegtree_stress.nim
-    title: tests/test_lazysegtree_stress.nim
-  - icon: ':warning:'
-    path: tests/test_lazysegtree_stress.nim
-    title: tests/test_lazysegtree_stress.nim
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
     path: verify/lazy_segtree_dynamicmodint_test.nim
@@ -56,9 +32,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_LAZYSEGTREE_HPP:\n  const ATCODER_LAZYSEGTREE_HPP*\
     \ = 1\n  \n  import atcoder/internal_bit, atcoder/rangeutils\n  import std/sugar,\
@@ -75,7 +51,8 @@ data:
     \ ST, k:int) =\n    self.d[k] = ST.calc_op(self.d[2 * k], self.d[2 * k + 1])\n\
     \  proc all_apply*[ST:LazySegTree](self:var ST, k:int, f:ST.F) =\n    self.d[k]\
     \ = ST.calc_mapping(f, self.d[k])\n    if k < self.size: self.lz[k] = ST.calc_composition(f,\
-    \ self.lz[k])\n  proc push*[ST:LazySegTree](self: var ST, k:int) =\n    self.all_apply(2\
+    \ self.lz[k])\n  proc all_apply*[ST:LazySegTree](self:var ST, f:ST.F) =\n    self.all_apply(1,\
+    \ f)\n  proc push*[ST:LazySegTree](self: var ST, k:int) =\n    self.all_apply(2\
     \ * k, self.lz[k])\n    self.all_apply(2 * k + 1, self.lz[k])\n    self.lz[k]\
     \ = ST.calc_id()\n\n  proc init[ST:LazySegTree](self:var ST, v:seq[ST.S]) =\n\
     \    let\n      n = v.len\n      log = ceil_pow2(n)\n      size = 1 shl log\n\
@@ -150,27 +127,19 @@ data:
     \ sm)\n      if not ((r and -r) != r): break\n    return 0\n  {.pop.}\n"
   dependsOn:
   - atcoder/rangeutils.nim
-  - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
+  - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
   isVerificationFile: false
   path: atcoder/lazysegtree.nim
-  requiredBy:
-  - tests/test_lazysegtree.nim
-  - tests/test_lazysegtree.nim
-  - tests/test_lazysegtree_stress.nim
-  - tests/test_lazysegtree_stress.nim
-  - test/example/lazyseg_practice2.nim
-  - test/example/lazyseg_practice2.nim
-  - test/example/lazyseg_practice1.nim
-  - test/example/lazyseg_practice1.nim
-  timestamp: '1970-01-01 00:00:00+00:00'
+  requiredBy: []
+  timestamp: '2021-12-11 18:27:17+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/lazy_segtree_test.nim
-  - verify/lazy_segtree_test.nim
   - verify/lazy_segtree_dynamicmodint_test.nim
   - verify/lazy_segtree_dynamicmodint_test.nim
+  - verify/lazy_segtree_test.nim
+  - verify/lazy_segtree_test.nim
 documentation_of: atcoder/lazysegtree.nim
 layout: document
 redirect_from:

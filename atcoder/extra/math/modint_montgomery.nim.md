@@ -13,13 +13,7 @@ data:
   - icon: ':question:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: tests/test_extra_montgomery_modint.nim
-    title: tests/test_extra_montgomery_modint.nim
-  - icon: ':warning:'
-    path: tests/test_extra_montgomery_modint.nim
-    title: tests/test_extra_montgomery_modint.nim
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
     path: verify/extra/math/convolution_montgomery_test.nim
@@ -32,9 +26,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_MONTGOMERY_MODINT_HPP:\n  const ATCODER_MONTGOMERY_MODINT_HPP*\
     \ = 1\n\n  import std/macros\n  import atcoder/generate_definitions\n\n  type\
@@ -102,10 +96,8 @@ data:
   - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: atcoder/extra/math/modint_montgomery.nim
-  requiredBy:
-  - tests/test_extra_montgomery_modint.nim
-  - tests/test_extra_montgomery_modint.nim
-  timestamp: '1970-01-01 00:00:00+00:00'
+  requiredBy: []
+  timestamp: '2021-08-11 00:39:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/math/convolution_montgomery_test.nim

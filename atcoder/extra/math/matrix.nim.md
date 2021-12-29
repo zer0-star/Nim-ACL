@@ -27,11 +27,17 @@ data:
     title: atcoder/generate_definitions.nim
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: tests/test_extra_matrix.nim
-    title: tests/test_extra_matrix.nim
+    path: atcoder/extra/math/simplex.nim
+    title: atcoder/extra/math/simplex.nim
   - icon: ':warning:'
-    path: tests/test_extra_matrix.nim
-    title: tests/test_extra_matrix.nim
+    path: atcoder/extra/math/simplex.nim
+    title: atcoder/extra/math/simplex.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/simplex.nim
+    title: atcoder/extra/math/simplex.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/simplex.nim
+    title: atcoder/extra/math/simplex.nim
   _extendedVerifiedWith:
   - icon: ':x:'
     path: verify/extra/math/yosupo_system_of_linear_equations_test.nim
@@ -44,9 +50,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_MATRIX_HPP:\n  const ATCODER_MATRIX_HPP* = 1\n\
     \  import std/sequtils\n  import atcoder/element_concepts, atcoder/generate_definitions\n\
@@ -141,18 +147,20 @@ data:
   dependsOn:
   - atcoder/element_concepts.nim
   - atcoder/generate_definitions.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   - atcoder/generate_definitions.nim
+  - atcoder/element_concepts.nim
   - atcoder/generate_definitions.nim
   - atcoder/element_concepts.nim
+  - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: atcoder/extra/math/matrix.nim
   requiredBy:
-  - tests/test_extra_matrix.nim
-  - tests/test_extra_matrix.nim
-  timestamp: '1970-01-01 00:00:00+00:00'
+  - atcoder/extra/math/simplex.nim
+  - atcoder/extra/math/simplex.nim
+  - atcoder/extra/math/simplex.nim
+  - atcoder/extra/math/simplex.nim
+  timestamp: '2021-08-20 02:39:44+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/math/yosupo_system_of_linear_equations_test.nim

@@ -13,22 +13,16 @@ data:
   - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: tests/test_extra_formal_power_series_float.nim
-    title: tests/test_extra_formal_power_series_float.nim
-  - icon: ':warning:'
-    path: tests/test_extra_formal_power_series_float.nim
-    title: tests/test_extra_formal_power_series_float.nim
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: nim
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "#{{{ FastFourierTransform\nwhen not declared ATCODER_FFT_HPP:\n  const ATCODER_FFT_HPP*\
     \ = 1\n\n  import std/sequtils, std/bitops, std/math\n#  import atcoder/extra/math/longdouble\n\
@@ -90,10 +84,8 @@ data:
   - atcoder/internal_bit.nim
   isVerificationFile: false
   path: atcoder/extra/math/fft.nim
-  requiredBy:
-  - tests/test_extra_formal_power_series_float.nim
-  - tests/test_extra_formal_power_series_float.nim
-  timestamp: '1970-01-01 00:00:00+00:00'
+  requiredBy: []
+  timestamp: '2020-10-20 18:15:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/math/fft.nim

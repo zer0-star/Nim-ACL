@@ -7,25 +7,7 @@ data:
   - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/example/floor_sum_practice.nim
-    title: test/example/floor_sum_practice.nim
-  - icon: ':warning:'
-    path: test/example/floor_sum_practice.nim
-    title: test/example/floor_sum_practice.nim
-  - icon: ':warning:'
-    path: tests/test_internal_math.nim
-    title: tests/test_internal_math.nim
-  - icon: ':warning:'
-    path: tests/test_internal_math.nim
-    title: tests/test_internal_math.nim
-  - icon: ':warning:'
-    path: tests/test_math.nim
-    title: tests/test_math.nim
-  - icon: ':warning:'
-    path: tests/test_math.nim
-    title: tests/test_math.nim
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/crt_test.nim
@@ -44,9 +26,9 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_MATH_HPP:\n  const ATCODER_MATH_HPP* = 1\n\n  import\
     \ atcoder/internal_math\n  import std/math as math_lib_of_math\n\n  proc pow_mod*(x,n,m:int):int\
@@ -76,27 +58,21 @@ data:
     \  var (a, b) = (a, b)\n  var ans = 0.uint\n  if a < 0:\n    var a2:uint = floorMod(a,\
     \ m).uint\n    ans -= n.uint * (n - 1).uint div 2 * ((a2 - a.uint) div m.uint)\n\
     \    a = a2.int\n  if b < 0:\n    var b2:uint = floorMod(b, m).uint\n    ans -=\
-    \ n.uint * ((b2 - b.uint) div m.uint)\n    b = b2.int\n  return (ans + floor_sum_unsigned(n.uint,\
-    \ m.uint, a.uint, b.uint)).int\n"
+    \ n.uint * ((b2 - b.uint) div m.uint)\n    b = b2.int\n  return cast[int](ans\
+    \ + floor_sum_unsigned(n.uint, m.uint, a.uint, b.uint))\n"
   dependsOn:
   - atcoder/internal_math.nim
   - atcoder/internal_math.nim
   isVerificationFile: false
   path: atcoder/math.nim
-  requiredBy:
-  - tests/test_math.nim
-  - tests/test_math.nim
-  - tests/test_internal_math.nim
-  - tests/test_internal_math.nim
-  - test/example/floor_sum_practice.nim
-  - test/example/floor_sum_practice.nim
-  timestamp: '1970-01-01 00:00:00+00:00'
+  requiredBy: []
+  timestamp: '2021-08-23 20:29:05+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/crt_test.nim
-  - verify/crt_test.nim
   - verify/floor_sum_test.nim
   - verify/floor_sum_test.nim
+  - verify/crt_test.nim
+  - verify/crt_test.nim
 documentation_of: atcoder/math.nim
 layout: document
 redirect_from:

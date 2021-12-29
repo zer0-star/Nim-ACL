@@ -82,9 +82,9 @@ data:
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_F
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_G
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_TANGENT_HPP:\n  const ATCODER_TANGENT_HPP* = 1\n\
     \  import std/math\n  import atcoder/extra/other/floatutils\n  import atcoder/extra/other/internal_complex\n\
@@ -106,36 +106,36 @@ data:
     \ * c2.r.complex * s.Real.complex))\n        result.add(initLine(c1.p + (uu -\
     \ vv) * c1.r.complex, c2.p - (uu - vv) * c2.r.complex * s.Real.complex))\n"
   dependsOn:
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/element_concepts.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/internal_complex.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/geometry/geometry_template.nim
   isVerificationFile: false
   path: atcoder/extra/geometry/tangent.nim
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2021-05-22 03:00:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim
-  - verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim
   - verify/extra/geometry/aoj_cgl_7_f_tangent_to_a_circle_test.nim
   - verify/extra/geometry/aoj_cgl_7_f_tangent_to_a_circle_test.nim
+  - verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim
+  - verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim
 documentation_of: atcoder/extra/geometry/tangent.nim
 layout: document
 redirect_from:

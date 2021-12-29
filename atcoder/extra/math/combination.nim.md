@@ -38,7 +38,25 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/math/lagrange_polynomial.nim
     title: atcoder/extra/math/lagrange_polynomial.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/polynomial_taylor_shift.nim
+    title: atcoder/extra/math/polynomial_taylor_shift.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/polynomial_taylor_shift.nim
+    title: atcoder/extra/math/polynomial_taylor_shift.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/polynomial_taylor_shift.nim
+    title: atcoder/extra/math/polynomial_taylor_shift.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/polynomial_taylor_shift.nim
+    title: atcoder/extra/math/polynomial_taylor_shift.nim
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/extra/math/polynomial_taylor_shift_test.nim
+    title: verify/extra/math/polynomial_taylor_shift_test.nim
+  - icon: ':x:'
+    path: verify/extra/math/polynomial_taylor_shift_test.nim
+    title: verify/extra/math/polynomial_taylor_shift_test.nim
   - icon: ':x:'
     path: verify/extra/math/yukicoder_factorial_test.nim
     title: verify/extra/math/yukicoder_factorial_test.nim
@@ -50,9 +68,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not defined ATCODER_COMBINATION_HPP:\n  const ATCODER_COMBINATION_HPP*\
     \ = 1\n  import atcoder/element_concepts\n\n  type Combination*[T] = object\n\
@@ -98,17 +116,23 @@ data:
   requiredBy:
   - atcoder/extra/math/lagrange_polynomial.nim
   - atcoder/extra/math/lagrange_polynomial.nim
+  - atcoder/extra/math/polynomial_taylor_shift.nim
+  - atcoder/extra/math/polynomial_taylor_shift.nim
   - atcoder/extra/math/factorial.nim
   - atcoder/extra/math/factorial.nim
   - atcoder/extra/math/lagrange_polynomial.nim
   - atcoder/extra/math/lagrange_polynomial.nim
+  - atcoder/extra/math/polynomial_taylor_shift.nim
+  - atcoder/extra/math/polynomial_taylor_shift.nim
   - atcoder/extra/math/factorial.nim
   - atcoder/extra/math/factorial.nim
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2021-05-19 22:57:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/math/yukicoder_factorial_test.nim
   - verify/extra/math/yukicoder_factorial_test.nim
+  - verify/extra/math/polynomial_taylor_shift_test.nim
+  - verify/extra/math/polynomial_taylor_shift_test.nim
 documentation_of: atcoder/extra/math/combination.nim
 layout: document
 redirect_from:

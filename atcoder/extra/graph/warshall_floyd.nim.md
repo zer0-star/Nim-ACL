@@ -13,13 +13,7 @@ data:
   - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: tests/test_shortest_path.nim
-    title: tests/test_shortest_path.nim
-  - icon: ':warning:'
-    path: tests/test_shortest_path.nim
-    title: tests/test_shortest_path.nim
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/aoj_grl_1_c_warshall_floyd_test.nim
@@ -32,9 +26,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_WARSHALL_FLOYD_HPP:\n  const ATCODER_WARSHALL_FLOYD_HPP*\
     \ = 1\n  import std/sequtils\n  import atcoder/extra/other/inf\n  type WarshallFloydType*[T]\
@@ -58,10 +52,8 @@ data:
   - atcoder/extra/other/inf.nim
   isVerificationFile: false
   path: atcoder/extra/graph/warshall_floyd.nim
-  requiredBy:
-  - tests/test_shortest_path.nim
-  - tests/test_shortest_path.nim
-  timestamp: '1970-01-01 00:00:00+00:00'
+  requiredBy: []
+  timestamp: '2021-07-29 00:52:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/graph/aoj_grl_1_c_warshall_floyd_test.nim

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/other/internal_sugar.nim
     title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/other/internal_sugar.nim
     title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/other/internal_underscored_calls.nim
     title: atcoder/extra/other/internal_underscored_calls.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/other/internal_underscored_calls.nim
     title: atcoder/extra/other/internal_underscored_calls.nim
   - icon: ':x:'
@@ -52,9 +52,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/queue_operate_all_composite
     links:
     - https://judge.yosupo.jp/problem/queue_operate_all_composite
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/queue_operate_all_composite\n\
     \nimport atcoder/header\nimport atcoder/extra/other/internal_sugar\nimport atcoder/extra/structure/sliding_window_aggregation\n\
@@ -65,24 +65,24 @@ data:
     \  else:\n    let x = nextInt().mint\n    let (b, a) = swa.fold_all()\n    echo\
     \ a * x + b\n\n"
   dependsOn:
-  - atcoder/header.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
   - atcoder/header.nim
   - atcoder/extra/structure/sliding_window_aggregation.nim
-  - atcoder/internal_math.nim
   - atcoder/extra/other/internal_sugar.nim
-  - atcoder/modint.nim
-  - atcoder/modint.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/other/internal_sugar.nim
+  - atcoder/modint.nim
+  - atcoder/header.nim
   - atcoder/internal_math.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
   - atcoder/extra/structure/sliding_window_aggregation.nim
+  - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2021-08-23 19:10:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim

@@ -1,23 +1,35 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: atcoder/extra/other/bitset.nim
+    title: atcoder/extra/other/bitset.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/bitset.nim
+    title: atcoder/extra/other/bitset.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/bitset.nim
+    title: atcoder/extra/other/bitset.nim
+  - icon: ':warning:'
+    path: atcoder/extra/other/bitset.nim
+    title: atcoder/extra/other/bitset.nim
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: nim
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_BITUTILS_HPP:\n  const ATCODER_BITUTILS_HPP* =\
     \ 1\n  import bitops\n\n  proc `<<`*[B:SomeInteger](b:B, n:SomeInteger):B = b\
     \ shl n\n  proc `>>`*[B:SomeInteger](b:B, n:SomeInteger):B = b shr n\n\n  proc\
     \ seqToBits*[B:SomeInteger](v:varargs[int]): B =\n    result = 0\n    for x in\
-    \ v: result = (result or (B(1) shl B(x)))\n\n  proc `[]`*[B:SomeInteger](b:B,n:int):bool\
-    \ = (if b.testBit(n): true else: false)\n  proc `[]`*[B:SomeInteger](b:B,s:Slice[int]):int\
+    \ v: result = (result or (B(1) shl B(x)))\n\n  proc `[]`*[B:SomeInteger](b:B,n:int):int\
+    \ = (if b.testBit(n): 1 else: 0)\n  proc `[]`*[B:SomeInteger](b:B,s:Slice[int]):int\
     \ = (b shr s.a) mod (B(1) shl (s.b - s.a + 1))\n  \n  proc `[]=`*[B:SomeInteger](b:var\
     \ B,n:int,t:int) =\n    if t == 0: b.clearBit(n)\n    elif t == 1: b.setBit(n)\n\
     \    else: doAssert(false)\n  proc `and`*[B:SomeInteger](b:B, v:openArray[int]):B\
@@ -42,8 +54,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: atcoder/extra/other/bitutils.nim
-  requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  requiredBy:
+  - atcoder/extra/other/bitset.nim
+  - atcoder/extra/other/bitset.nim
+  - atcoder/extra/other/bitset.nim
+  - atcoder/extra/other/bitset.nim
+  timestamp: '2021-12-11 18:27:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/other/bitutils.nim

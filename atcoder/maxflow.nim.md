@@ -1,40 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  - icon: ':warning:'
+  - icon: ':x:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/example/maxflow_practice.nim
-    title: test/example/maxflow_practice.nim
-  - icon: ':warning:'
-    path: test/example/maxflow_practice.nim
-    title: test/example/maxflow_practice.nim
-  - icon: ':warning:'
-    path: tests/test_maxflow.nim
-    title: tests/test_maxflow.nim
-  - icon: ':warning:'
-    path: tests/test_maxflow.nim
-    title: tests/test_maxflow.nim
-  - icon: ':warning:'
-    path: tests/test_mincostflow.nim
-    title: tests/test_mincostflow.nim
-  - icon: ':warning:'
-    path: tests/test_mincostflow.nim
-    title: tests/test_mincostflow.nim
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/max_flow_test.nim
+    title: verify/max_flow_test.nim
+  - icon: ':x:'
+    path: verify/max_flow_test.nim
+    title: verify/max_flow_test.nim
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_MAXFLOW_HPP:\n  const ATCODER_MAXFLOW_HPP* = 1\n\
     \  \n  import atcoder/internal_queue\n  import std/algorithm\n\n  type MFInternalEdge[Cap]\
@@ -90,16 +78,12 @@ data:
   - atcoder/internal_queue.nim
   isVerificationFile: false
   path: atcoder/maxflow.nim
-  requiredBy:
-  - tests/test_mincostflow.nim
-  - tests/test_mincostflow.nim
-  - tests/test_maxflow.nim
-  - tests/test_maxflow.nim
-  - test/example/maxflow_practice.nim
-  - test/example/maxflow_practice.nim
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy: []
+  timestamp: '2021-08-18 01:50:54+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/max_flow_test.nim
+  - verify/max_flow_test.nim
 documentation_of: atcoder/maxflow.nim
 layout: document
 redirect_from:

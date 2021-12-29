@@ -33,13 +33,13 @@ data:
     - icon: ':question:'
       path: atcoder/internal_csr.nim
       title: atcoder/internal_csr.nim
-    - icon: ':warning:'
+    - icon: ':x:'
       path: atcoder/internal_heap.nim
       title: atcoder/internal_heap.nim
     - icon: ':question:'
       path: atcoder/internal_math.nim
       title: atcoder/internal_math.nim
-    - icon: ':warning:'
+    - icon: ':x:'
       path: atcoder/internal_queue.nim
       title: atcoder/internal_queue.nim
     - icon: ':question:'
@@ -54,10 +54,10 @@ data:
     - icon: ':question:'
       path: atcoder/math.nim
       title: atcoder/math.nim
-    - icon: ':warning:'
+    - icon: ':x:'
       path: atcoder/maxflow.nim
       title: atcoder/maxflow.nim
-    - icon: ':warning:'
+    - icon: ':x:'
       path: atcoder/mincostflow.nim
       title: atcoder/mincostflow.nim
     - icon: ':question:'
@@ -89,10 +89,10 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/dp/cumulative_sum.nim
       title: atcoder/extra/dp/cumulative_sum.nim
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/dp/cumulative_sum_2d.nim
       title: atcoder/extra/dp/cumulative_sum_2d.nim
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/dp/cumulative_sum_2d.nim
       title: atcoder/extra/dp/cumulative_sum_2d.nim
     - icon: ':warning:'
@@ -101,10 +101,10 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/dp/dual_cumulative_sum.nim
       title: atcoder/extra/dp/dual_cumulative_sum.nim
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/dp/dual_cumulative_sum_2d.nim
       title: atcoder/extra/dp/dual_cumulative_sum_2d.nim
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/dp/dual_cumulative_sum_2d.nim
       title: atcoder/extra/dp/dual_cumulative_sum_2d.nim
     - icon: ':warning:'
@@ -201,10 +201,10 @@ data:
     - icon: ':question:'
       path: atcoder/extra/graph/chu_liu_edmonds.nim
       title: atcoder/extra/graph/chu_liu_edmonds.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/graph/cycle_detection.nim
       title: atcoder/extra/graph/cycle_detection.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/graph/cycle_detection.nim
       title: atcoder/extra/graph/cycle_detection.nim
     - icon: ':question:'
@@ -297,6 +297,12 @@ data:
     - icon: ':x:'
       path: atcoder/extra/graph/maximum_independent_set.nim
       title: atcoder/extra/graph/maximum_independent_set.nim
+    - icon: ':warning:'
+      path: atcoder/extra/graph/mincostflow_generalized.nim
+      title: atcoder/extra/graph/mincostflow_generalized.nim
+    - icon: ':warning:'
+      path: atcoder/extra/graph/mincostflow_generalized.nim
+      title: atcoder/extra/graph/mincostflow_generalized.nim
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/prim.nim
       title: atcoder/extra/graph/prim.nim
@@ -343,10 +349,10 @@ data:
     - icon: ':x:'
       path: atcoder/extra/math/bitwise_convolution.nim
       title: atcoder/extra/math/bitwise_convolution.nim
-    - icon: ':warning:'
+    - icon: ':x:'
       path: atcoder/extra/math/coef_of_generating_function.nim
       title: atcoder/extra/math/coef_of_generating_function.nim
-    - icon: ':warning:'
+    - icon: ':x:'
       path: atcoder/extra/math/coef_of_generating_function.nim
       title: atcoder/extra/math/coef_of_generating_function.nim
     - icon: ':x:'
@@ -427,12 +433,6 @@ data:
     - icon: ':x:'
       path: atcoder/extra/math/formal_power_series.nim
       title: atcoder/extra/math/formal_power_series.nim
-    - icon: ':warning:'
-      path: atcoder/extra/math/formal_power_series_sparse.nim
-      title: atcoder/extra/math/formal_power_series_sparse.nim
-    - icon: ':warning:'
-      path: atcoder/extra/math/formal_power_series_sparse.nim
-      title: atcoder/extra/math/formal_power_series_sparse.nim
     - icon: ':x:'
       path: atcoder/extra/math/formal_power_series_sqrt.nim
       title: atcoder/extra/math/formal_power_series_sqrt.nim
@@ -487,9 +487,39 @@ data:
     - icon: ':x:'
       path: atcoder/extra/math/particular_mod_convolution.nim
       title: atcoder/extra/math/particular_mod_convolution.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/polynomial.nim
+      title: atcoder/extra/math/polynomial.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/polynomial.nim
+      title: atcoder/extra/math/polynomial.nim
+    - icon: ':x:'
+      path: atcoder/extra/math/polynomial_taylor_shift.nim
+      title: atcoder/extra/math/polynomial_taylor_shift.nim
+    - icon: ':x:'
+      path: atcoder/extra/math/polynomial_taylor_shift.nim
+      title: atcoder/extra/math/polynomial_taylor_shift.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/simplex.nim
+      title: atcoder/extra/math/simplex.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/simplex.nim
+      title: atcoder/extra/math/simplex.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/zeta_transform.nim
+      title: atcoder/extra/math/zeta_transform.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/zeta_transform.nim
+      title: atcoder/extra/math/zeta_transform.nim
   - name: atcoder/extra/other
     pages:
     - icon: ':warning:'
+      path: atcoder/extra/other/algorithmutils.nim
+      title: atcoder/extra/other/algorithmutils.nim
+    - icon: ':warning:'
+      path: atcoder/extra/other/algorithmutils.nim
+      title: atcoder/extra/other/algorithmutils.nim
+    - icon: ':warning:'
       path: atcoder/extra/other/assignment_operator.nim
       title: atcoder/extra/other/assignment_operator.nim
     - icon: ':warning:'
@@ -573,16 +603,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/other/internal_complex.nim
       title: atcoder/extra/other/internal_complex.nim
-    - icon: ':question:'
+    - icon: ':x:'
       path: atcoder/extra/other/internal_sugar.nim
       title: atcoder/extra/other/internal_sugar.nim
-    - icon: ':question:'
+    - icon: ':x:'
       path: atcoder/extra/other/internal_sugar.nim
       title: atcoder/extra/other/internal_sugar.nim
-    - icon: ':question:'
+    - icon: ':x:'
       path: atcoder/extra/other/internal_underscored_calls.nim
       title: atcoder/extra/other/internal_underscored_calls.nim
-    - icon: ':question:'
+    - icon: ':x:'
       path: atcoder/extra/other/internal_underscored_calls.nim
       title: atcoder/extra/other/internal_underscored_calls.nim
     - icon: ':warning:'
@@ -666,6 +696,12 @@ data:
       path: atcoder/extra/structure/dual_fenwicktree.nim
       title: atcoder/extra/structure/dual_fenwicktree.nim
     - icon: ':warning:'
+      path: atcoder/extra/structure/generalized_slope_trick.nim
+      title: atcoder/extra/structure/generalized_slope_trick.nim
+    - icon: ':warning:'
+      path: atcoder/extra/structure/generalized_slope_trick.nim
+      title: atcoder/extra/structure/generalized_slope_trick.nim
+    - icon: ':warning:'
       path: atcoder/extra/structure/internal_heapqueue.nim
       title: atcoder/extra/structure/internal_heapqueue.nim
     - icon: ':warning:'
@@ -743,6 +779,12 @@ data:
     - icon: ':x:'
       path: atcoder/extra/structure/sliding_window_aggregation.nim
       title: atcoder/extra/structure/sliding_window_aggregation.nim
+    - icon: ':warning:'
+      path: atcoder/extra/structure/slope_trick.nim
+      title: atcoder/extra/structure/slope_trick.nim
+    - icon: ':warning:'
+      path: atcoder/extra/structure/slope_trick.nim
+      title: atcoder/extra/structure/slope_trick.nim
     - icon: ':x:'
       path: atcoder/extra/structure/sparse_table.nim
       title: atcoder/extra/structure/sparse_table.nim
@@ -806,6 +848,12 @@ data:
       path: atcoder/extra/tree/heavy_light_decomposition.nim
       title: atcoder/extra/tree/heavy_light_decomposition.nim
     - icon: ':x:'
+      path: atcoder/extra/tree/rerooting.nim
+      title: atcoder/extra/tree/rerooting.nim
+    - icon: ':x:'
+      path: atcoder/extra/tree/rerooting.nim
+      title: atcoder/extra/tree/rerooting.nim
+    - icon: ':x:'
       path: atcoder/extra/tree/tree_diameter.nim
       title: atcoder/extra/tree/tree_diameter.nim
     - icon: ':x:'
@@ -816,174 +864,6 @@ data:
     - icon: ':warning:'
       path: atcoder.nim
       title: atcoder.nim
-    - icon: ':warning:'
-      path: expander.py
-      title: expander.py
-    - icon: ':warning:'
-      path: run_expander.py
-      title: run_expander.py
-  - name: test/example
-    pages:
-    - icon: ':warning:'
-      path: test/example/convolution_int_practice.nim
-      title: test/example/convolution_int_practice.nim
-    - icon: ':warning:'
-      path: test/example/convolution_practice.nim
-      title: test/example/convolution_practice.nim
-    - icon: ':warning:'
-      path: test/example/dsu_practice.nim
-      title: test/example/dsu_practice.nim
-    - icon: ':warning:'
-      path: test/example/fenwick_practice.nim
-      title: test/example/fenwick_practice.nim
-    - icon: ':warning:'
-      path: test/example/floor_sum_practice.nim
-      title: test/example/floor_sum_practice.nim
-    - icon: ':warning:'
-      path: test/example/lazyseg_practice1.nim
-      title: test/example/lazyseg_practice1.nim
-    - icon: ':warning:'
-      path: test/example/lazyseg_practice2.nim
-      title: test/example/lazyseg_practice2.nim
-    - icon: ':warning:'
-      path: test/example/maxflow_practice.nim
-      title: test/example/maxflow_practice.nim
-    - icon: ':warning:'
-      path: test/example/mincostflow_practice.nim
-      title: test/example/mincostflow_practice.nim
-    - icon: ':warning:'
-      path: test/example/modint_usage.nim
-      title: test/example/modint_usage.nim
-    - icon: ':warning:'
-      path: test/example/sa_practice.nim
-      title: test/example/sa_practice.nim
-    - icon: ':warning:'
-      path: test/example/sa_usage.nim
-      title: test/example/sa_usage.nim
-    - icon: ':warning:'
-      path: test/example/scc_practice.nim
-      title: test/example/scc_practice.nim
-    - icon: ':warning:'
-      path: test/example/segtree_practice.nim
-      title: test/example/segtree_practice.nim
-    - icon: ':warning:'
-      path: test/example/twosat_practice.nim
-      title: test/example/twosat_practice.nim
-  - name: test/expander
-    pages:
-    - icon: ':warning:'
-      path: test/expander/comment_out.cpp
-      title: test/expander/comment_out.cpp
-    - icon: ':warning:'
-      path: test/expander/include_all.cpp
-      title: test/expander/include_all.cpp
-    - icon: ':warning:'
-      path: test/expander/include_dsu.cpp
-      title: test/expander/include_dsu.cpp
-    - icon: ':warning:'
-      path: test/expander/include_unusual_format.cpp
-      title: test/expander/include_unusual_format.cpp
-  - name: test
-    pages:
-    - icon: ':warning:'
-      path: test/test_expander.py
-      title: test/test_expander.py
-  - name: test/utils
-    pages:
-    - icon: ':warning:'
-      path: test/utils/math.nim
-      title: test/utils/math.nim
-    - icon: ':warning:'
-      path: test/utils/random.nim
-      title: test/utils/random.nim
-  - name: tests
-    pages:
-    - icon: ':warning:'
-      path: tests/matrix_test.cpp
-      title: tests/matrix_test.cpp
-    - icon: ':warning:'
-      path: tests/test_basic.nim
-      title: tests/test_basic.nim
-    - icon: ':warning:'
-      path: tests/test_bit.nim
-      title: tests/test_bit.nim
-    - icon: ':warning:'
-      path: tests/test_convolution.nim
-      title: tests/test_convolution.nim
-    - icon: ':warning:'
-      path: tests/test_dsu.nim
-      title: tests/test_dsu.nim
-    - icon: ':warning:'
-      path: tests/test_extra_formal_power_series.nim
-      title: tests/test_extra_formal_power_series.nim
-    - icon: ':warning:'
-      path: tests/test_extra_formal_power_series_float.nim
-      title: tests/test_extra_formal_power_series_float.nim
-    - icon: ':warning:'
-      path: tests/test_extra_matrix.nim
-      title: tests/test_extra_matrix.nim
-    - icon: ':warning:'
-      path: tests/test_extra_montgomery_modint.nim
-      title: tests/test_extra_montgomery_modint.nim
-    - icon: ':warning:'
-      path: tests/test_extra_set_map.nim
-      title: tests/test_extra_set_map.nim
-    - icon: ':warning:'
-      path: tests/test_extra_universal_segtree_stress.nim
-      title: tests/test_extra_universal_segtree_stress.nim
-    - icon: ':warning:'
-      path: tests/test_fenwicktree.nim
-      title: tests/test_fenwicktree.nim
-    - icon: ':warning:'
-      path: tests/test_internal_math.nim
-      title: tests/test_internal_math.nim
-    - icon: ':warning:'
-      path: tests/test_lazysegtree.nim
-      title: tests/test_lazysegtree.nim
-    - icon: ':warning:'
-      path: tests/test_lazysegtree_stress.nim
-      title: tests/test_lazysegtree_stress.nim
-    - icon: ':warning:'
-      path: tests/test_math.nim
-      title: tests/test_math.nim
-    - icon: ':warning:'
-      path: tests/test_maxflow.nim
-      title: tests/test_maxflow.nim
-    - icon: ':warning:'
-      path: tests/test_mincostflow.nim
-      title: tests/test_mincostflow.nim
-    - icon: ':warning:'
-      path: tests/test_modint.nim
-      title: tests/test_modint.nim
-    - icon: ':warning:'
-      path: tests/test_scc.nim
-      title: tests/test_scc.nim
-    - icon: ':warning:'
-      path: tests/test_segtree.nim
-      title: tests/test_segtree.nim
-    - icon: ':warning:'
-      path: tests/test_shortest_path.nim
-      title: tests/test_shortest_path.nim
-    - icon: ':warning:'
-      path: tests/test_string.nim
-      title: tests/test_string.nim
-    - icon: ':warning:'
-      path: tests/test_twosat.nim
-      title: tests/test_twosat.nim
-    - icon: ':warning:'
-      path: tests/test_utils_math.nim
-      title: tests/test_utils_math.nim
-    - icon: ':warning:'
-      path: tests/type_traits_test.cpp
-      title: tests/type_traits_test.cpp
-  - name: tools
-    pages:
-    - icon: ':warning:'
-      path: tools/generate_document.py
-      title: tools/generate_document.py
-    - icon: ':warning:'
-      path: tools/generate_zip.py
-      title: tools/generate_zip.py
   verificationCategories:
   - name: verify
     pages:
@@ -1015,6 +895,12 @@ data:
       path: verify/map_test.nim
       title: verify/map_test.nim
     - icon: ':x:'
+      path: verify/max_flow_test.nim
+      title: verify/max_flow_test.nim
+    - icon: ':x:'
+      path: verify/min_cost_flow_test.nim
+      title: verify/min_cost_flow_test.nim
+    - icon: ':x:'
       path: verify/modint_test.nim
       title: verify/modint_test.nim
     - icon: ':x:'
@@ -1043,6 +929,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/extra/dp/aoj_dsl_3_d_slidemin_test.nim
       title: verify/extra/dp/aoj_dsl_3_d_slidemin_test.nim
+    - icon: ':heavy_check_mark:'
+      path: verify/extra/dp/cumulative_sum_2D_test.nim
+      title: verify/extra/dp/cumulative_sum_2D_test.nim
   - name: verify/extra/geometry
     pages:
     - icon: ':heavy_check_mark:'
@@ -1152,7 +1041,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/extra/graph/yosupo_bipartite_matching_test.nim
       title: verify/extra/graph/yosupo_bipartite_matching_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/graph/yosupo_cycle_detection_test.nim
       title: verify/extra/graph/yosupo_cycle_detection_test.nim
     - icon: ':x:'
@@ -1179,6 +1068,9 @@ data:
       path: verify/extra/math/convolution_montgomery_test.nim
       title: verify/extra/math/convolution_montgomery_test.nim
     - icon: ':x:'
+      path: verify/extra/math/division_of_polynomials_test.nim
+      title: verify/extra/math/division_of_polynomials_test.nim
+    - icon: ':x:'
       path: verify/extra/math/exp_of_formal_power_series_test.nim
       title: verify/extra/math/exp_of_formal_power_series_test.nim
     - icon: ':x:'
@@ -1187,6 +1079,9 @@ data:
     - icon: ':x:'
       path: verify/extra/math/log_of_formal_power_series_test.nim
       title: verify/extra/math/log_of_formal_power_series_test.nim
+    - icon: ':x:'
+      path: verify/extra/math/polynomial_taylor_shift_test.nim
+      title: verify/extra/math/polynomial_taylor_shift_test.nim
     - icon: ':x:'
       path: verify/extra/math/pow_of_formal_power_series_test.nim
       title: verify/extra/math/pow_of_formal_power_series_test.nim
@@ -1205,6 +1100,9 @@ data:
     - icon: ':x:'
       path: verify/extra/math/yosupo_factorization_test.nim
       title: verify/extra/math/yosupo_factorization_test.nim
+    - icon: ':x:'
+      path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
+      title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     - icon: ':x:'
       path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
       title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
@@ -1247,6 +1145,9 @@ data:
       path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
       title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
     - icon: ':x:'
+      path: verify/extra/structure/yosupo_predecessor_problem_test.nim
+      title: verify/extra/structure/yosupo_predecessor_problem_test.nim
+    - icon: ':x:'
       path: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
       title: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
     - icon: ':x:'
@@ -1273,6 +1174,9 @@ data:
       path: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
       title: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
     - icon: ':x:'
+      path: verify/extra/tree/rerooting_test.nim
+      title: verify/extra/tree/rerooting_test.nim
+    - icon: ':x:'
       path: verify/extra/tree/yosupo_lowest_common_ancestor_test.nim
       title: verify/extra/tree/yosupo_lowest_common_ancestor_test.nim
     - icon: ':x:'
@@ -1280,6 +1184,3 @@ data:
       title: verify/extra/tree/yosupo_tree_diameter_test.nim
 layout: toppage
 ---
-## ドキュメント
-
-[日本語](./document_ja/)

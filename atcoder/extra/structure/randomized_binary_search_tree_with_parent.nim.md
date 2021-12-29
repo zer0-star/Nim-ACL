@@ -62,13 +62,13 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
     title: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
-  - icon: ':warning:'
-    path: tests/test_extra_set_map.nim
-    title: tests/test_extra_set_map.nim
-  - icon: ':warning:'
-    path: tests/test_extra_set_map.nim
-    title: tests/test_extra_set_map.nim
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_predecessor_problem_test.nim
+    title: verify/extra/structure/yosupo_predecessor_problem_test.nim
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_predecessor_problem_test.nim
+    title: verify/extra/structure/yosupo_predecessor_problem_test.nim
   - icon: ':x:'
     path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
     title: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
@@ -86,9 +86,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:\n  {.experimental:\
     \ \"codeReordering\".}\n  const ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP*\
@@ -112,38 +112,39 @@ data:
     \ composition(a, b)\n  template calc_p[ST:RBSTType](self:typedesc[ST], a:ST.L,\
     \ b:Slice[int]):auto =\n    block:\n      let s = ST.p.p\n      s(a, b)\n\n  proc\
     \ hasSum*[RBST:SomeRBST](t:typedesc[RBST]):bool {.compileTime.} =\n    when t\
-    \ isnot RandomizedBinarySearchTree:\n      return false\n    else:\n      t.useSum\
-    \ isnot RBST_FALSE\n  #proc hasData*(t:typedesc):bool {.compileTime.} = t.D isnot\
-    \ void\n  proc hasLazy*[RBST:SomeRBST](t:typedesc[RBST]):bool {.compileTime.}\
-    \ =\n    t.L isnot void\n#    when t isnot RandomizedBinarySearchTree:\n#    \
-    \  # TODO\n#      return false\n#    else:\n#      t.L isnot void\n#  proc hasP*(t:typedesc):bool\
-    \ {.compileTime.} = t.useP isnot void\n  #proc isPersistent*(t:typedesc):bool\
-    \ {.compileTime.} = t.Persistent isnot void\n  proc isLeaf*[Node:RBSTNode](node:Node):bool\
-    \ =\n    return node.l == node\n\n  proc initNode*[RBST:SomeRBST](self:RBST, k:RBST.D,\
-    \ p:RBST.L, id:int, cnt:int):auto =\n    result = RBSTNode[RBST.D, RBST.L, RBST.useSum](cnt:cnt,\
-    \ key:k, lazy:p, l:self.leaf, r:self.leaf, p:nil , id:id)\n    when RBST.hasSum:\
-    \ result.sum = k\n  proc initNode*[RBST:SomeRBST](self:RBST, k:RBST.D, id:int,\
-    \ cnt:int):auto =\n    result = RBSTNode[RBST.D, RBST.L, RBST.useSum](cnt:cnt,\
+    \ is RBSTType or t is LazyRandomizedBinarySearchTree:\n      t.useSum isnot RBST_FALSE\n\
+    \    elif t is RandomizedBinarySearchTree:\n      false\n  #proc hasData*(t:typedesc):bool\
+    \ {.compileTime.} = t.D isnot void\n  proc hasLazy*[RBST:SomeRBST](t:typedesc[RBST]):bool\
+    \ {.compileTime.} =\n    t.L isnot void\n#    when t isnot RandomizedBinarySearchTree:\n\
+    #      # TODO\n#      return false\n#    else:\n#      t.L isnot void\n#  proc\
+    \ hasP*(t:typedesc):bool {.compileTime.} = t.useP isnot void\n  #proc isPersistent*(t:typedesc):bool\
+    \ {.compileTime.} = t.Persistent isnot void\n#  proc isLeaf*[Node:RBSTNode](node:Node):bool\
+    \ =\n#    return node.l == node\n\n  proc initNode*[RBST:SomeRBST](self:RBST,\
+    \ k:RBST.D, p:RBST.L, id:int, cnt:int):auto =\n    result = RBSTNode[RBST.D, RBST.L,\
+    \ RBST.useSum](cnt:cnt, key:k, lazy:p, l:self.leaf, r:self.leaf, p:nil , id:id)\n\
+    \    when RBST.hasSum: result.sum = k\n  proc initNode*[RBST:SomeRBST](self:RBST,\
+    \ k:RBST.D, id:int, cnt:int):auto =\n    result = RBSTNode[RBST.D, RBST.L, RBST.useSum](cnt:cnt,\
     \ key:k, l:self.leaf, r:self.leaf, p:nil, id:id)\n    when RBST.hasSum: result.sum\
     \ = k\n  proc alloc*[RBST:SomeRBST](self: var RBST, key:RBST.D, cnt = 1):RBST.Node\
     \ =\n    when RBST.hasLazy:\n      result = self.initNode(key, self.L0, self.id_max,\
     \ cnt)\n    else:\n      result = self.initNode(key, self.id_max, cnt)\n    self.id_max.inc\n\
-    \  #  return &(pool[ptr++] = Node(key, self.L0));\n\n  proc setRBST*[RBST:SomeRBST](self:\
-    \ var RBST, seed = 2019) =\n    # leaf\n    var leaf = RBST.Node(cnt:0, p:nil,\
-    \ id: -2)\n    leaf.l = leaf;leaf.r = leaf\n    self.leaf = leaf\n\n    self.root\
-    \ = self.leaf\n    self.r = initRand(seed)\n    self.id_max = 0\n\n  proc initRandomizedBinarySearchTree*[D](seed\
+    \  #  return &(pool[ptr++] = Node(key, self.L0));\n\n  proc init*[RBST:SomeRBST](self:\
+    \ var RBST, root: RBST.Node = nil, seed = 2019) =\n    # leaf\n    var leaf =\
+    \ RBST.Node(cnt:0, p:nil, id: -1)\n    leaf.l = leaf;leaf.r = leaf\n    self.leaf\
+    \ = leaf\n    if root == nil:\n      self.root = self.leaf\n    else:\n      self.root\
+    \ = root\n      self.root.l = self.leaf\n      self.root.r = self.leaf\n    self.root.p\
+    \ = nil\n    self.r = initRand(seed)\n    self.id_max = 0\n\n  proc initRandomizedBinarySearchTree*[D](seed\
     \ = 2019):auto =\n    type Node = RBSTNode[D, void, void]\n    result = RBSTType[D,void,Node,false,void,()]()\n\
-    \    result.setRBST()\n  proc initRandomizedBinarySearchTree*[D](f:static[(D,D)->D],\
+    \    result.init()\n  proc initRandomizedBinarySearchTree*[D](f:static[(D,D)->D],\
     \ D0:D, seed = 2019):auto =\n    type Node = RBSTNode[D, void, int]\n    result\
-    \ = RBSTType[D,void,Node,false,int,(op:f)](D0:D0)\n    result.setRBST()\n  proc\
-    \ initRandomizedBinarySearchTree*[D, L](f:static[(D,D)->D], g:static[(L,D)->D],\
-    \ h:static[(L,L)->L], D0:D, L0:L, seed = 2019):auto =\n    type Node = RBSTNode[D,\
-    \ L, int]\n    result = RBSTType[D,L,Node,false,int,(op:f,mapping:g,composition:h)](D0:D0,\
-    \ L0:L0)\n    result.setRBST()\n  proc initRandomizedBinarySearchTree*[D, L](f:static[(D,D)->D],\
+    \ = RBSTType[D,void,Node,false,int,(op:f)](D0:D0)\n    result.init()\n  proc initRandomizedBinarySearchTree*[D,\
+    \ L](f:static[(D,D)->D], g:static[(L,D)->D], h:static[(L,L)->L], D0:D, L0:L, seed\
+    \ = 2019):auto =\n    type Node = RBSTNode[D, L, int]\n    result = RBSTType[D,L,Node,false,int,(op:f,mapping:g,composition:h)](D0:D0,\
+    \ L0:L0)\n    result.init()\n  proc initRandomizedBinarySearchTree*[D, L](f:static[(D,D)->D],\
     \ g:static[(L,D)->D], h:static[(L,L)->L], p:static[(L,Slice[int])->L],D0:D,L0:L,seed\
     \ = 2019):auto =\n    type Node = RBSTNode[D, L, int]\n    result = RBSTType[D,L,Node,true,int,(op:f,mapping:g,composition:h,p:p)](D0:D0,\
-    \ L0:L0)\n    result.setRBST()\n\n  template clone*[D,L,useSum](t:RBSTNode[D,\
-    \ L, useSum]):auto = t\n  proc test*[RBST:SomeRBST](self: var RBST, n, s:int):bool\
+    \ L0:L0)\n    result.init()\n\n  template clone*[D,L,useSum](t:RBSTNode[D, L,\
+    \ useSum]):auto = t\n  proc test*[RBST:SomeRBST](self: var RBST, n, s:int):bool\
     \ = \n    const randMax = 18_446_744_073_709_551_615u64\n    let\n      q = randMax\
     \ div n.uint64\n      qn = q * n.uint64\n    while true:\n      let x = self.r.next()\n\
     \      if x < qn: return x < s.uint64 * q\n  \n#K  proc count*[RBST:SomeRBST](self:\
@@ -237,36 +238,39 @@ data:
     \ self.propagate(t)\n    if k < t.l.cnt: self.set(t.l, k, x)\n    elif k == t.l.cnt:\n\
     \      t.key = x\n      t.sum = x\n    else: self.set(t.r, k - t.l.cnt - 1, x)\n\
     \    t = self.update(t)\n  \n  proc empty*[RBST:SomeRBST](self: var RBST, t:RBST.Node):bool\
-    \ = self.len == 0\n\n\n  proc insert_index*[RBST:SomeRBST](self: var RBST, k:int,\
-    \ v:RBST.D) = self.insert_index(self.root, k, v)\n  proc insert*[RBST:SomeRBST](self:\
-    \ var RBST, p:RBST.Node, v:RBST.D):RBST.Node {.discardable.} =\n    self.insert(self.root,\
-    \ p, v)\n  proc erase_index*[RBST:SomeRBST](self: var RBST, k:int) = self.erase_index(self.root,\
-    \ k)\n  proc erase*[RBST:SomeRBST](self: var RBST, p:RBST.Node):RBST.Node {.discardable.}\
-    \ =\n    self.erase(self.root, p)\n  proc prod*[RBST:SomeRBST](self: var RBST,\
-    \ p:Slice[int]):auto = self.prod(self.root, p)\n  proc `[]`*[RBST:SomeRBST](self:\
-    \ var RBST, p:Slice[int]):auto = self.prod(self.root, p)\n  proc apply*[RBST:SomeRBST](self:var\
-    \ RBST, s:Slice[int], p:RBST.L) = self.apply(self.root, s, p)\n  proc set*[RBST:SomeRBST](self:\
-    \ var RBST, k:int, x:RBST.D) = self.set(self.root, k, x)\n  proc `[]=`*[RBST:RBSTType](self:\
-    \ var RBST, k:int, x:RBST.D) = self.set(self.root, k, x)\n  proc empty*[RBST:SomeRBST](self:\
-    \ var RBST):bool = self.empty(self.root)\n  proc check_tree*[RBST:SomeRBST](self:\
-    \ RBST, t:RBST.Node):int =\n    if t == self.leaf: return 0\n    result = 1\n\
-    \    if t.l != self.leaf:\n      doAssert t.l.p == t\n      result += self.check_tree(t.l)\n\
-    \    if t.r != self.leaf:\n      doAssert t.r.p == t\n      result += self.check_tree(t.r)\n\
-    \  proc check_tree*[RBST:SomeRBST](self: RBST):int {.discardable.} =\n    doAssert\
-    \ self.root.p == nil\n    self.check_tree(self.root)\n  {.pop.}\n"
+    \ = self.len == 0\n\n  proc insert_index*[RBST:SomeRBST](self: var RBST, k:int,\
+    \ v:RBST.D):RBST.Node {.discardable.} =\n    result = self.insert_index(self.root,\
+    \ k, v)\n    self.root.p = nil\n  proc insert*[RBST:SomeRBST](self: var RBST,\
+    \ p:RBST.Node, v:RBST.D):RBST.Node {.discardable.} =\n    result = self.insert(self.root,\
+    \ p, v)\n    self.root.p = nil\n  proc erase_index*[RBST:SomeRBST](self: var RBST,\
+    \ k:int):RBST.Node {.discardable.} =\n    result = self.erase_index(self.root,\
+    \ k)\n    self.root.p = nil\n  proc erase*[RBST:SomeRBST](self: var RBST, p:RBST.Node):RBST.Node\
+    \ {.discardable.} =\n    result = self.erase(self.root, p)\n    self.root.p =\
+    \ nil\n  proc prod*[RBST:SomeRBST](self: var RBST, p:Slice[int]):auto = self.prod(self.root,\
+    \ p)\n  proc `[]`*[RBST:SomeRBST](self: var RBST, p:Slice[int]):auto = self.prod(self.root,\
+    \ p)\n  proc apply*[RBST:SomeRBST](self:var RBST, s:Slice[int], p:RBST.L) = self.apply(self.root,\
+    \ s, p)\n  proc set*[RBST:SomeRBST](self: var RBST, k:int, x:RBST.D) = self.set(self.root,\
+    \ k, x)\n  proc `[]=`*[RBST:RBSTType](self: var RBST, k:int, x:RBST.D) = self.set(self.root,\
+    \ k, x)\n  proc empty*[RBST:SomeRBST](self: var RBST):bool = self.empty(self.root)\n\
+    \  proc check_tree*[RBST:SomeRBST](self: RBST, t:RBST.Node):int =\n    if t ==\
+    \ self.leaf: return 0\n    result = 1\n    if t.l != self.leaf:\n      doAssert\
+    \ t.l.p == t\n      result += self.check_tree(t.l)\n    if t.r != self.leaf:\n\
+    \      doAssert t.r.p == t\n      result += self.check_tree(t.r)\n  proc check_tree*[RBST:SomeRBST](self:\
+    \ RBST):int {.discardable.} =\n    doAssert self.root.p == nil\n    self.check_tree(self.root)\n\
+    \  {.pop.}\n"
   dependsOn:
-  - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/rangeutils.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/rangeutils.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   requiredBy:
@@ -278,15 +282,15 @@ data:
   - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
   - atcoder/extra/structure/set_map.nim
   - atcoder/extra/structure/set_map.nim
-  - tests/test_extra_set_map.nim
-  - tests/test_extra_set_map.nim
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2021-11-18 02:47:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-  - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
   - verify/map_test.nim
   - verify/map_test.nim
+  - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
+  - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
+  - verify/extra/structure/yosupo_predecessor_problem_test.nim
+  - verify/extra/structure/yosupo_predecessor_problem_test.nim
 documentation_of: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
 layout: document
 redirect_from:

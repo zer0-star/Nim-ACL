@@ -25,13 +25,7 @@ data:
   - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: tests/test_extra_universal_segtree_stress.nim
-    title: tests/test_extra_universal_segtree_stress.nim
-  - icon: ':warning:'
-    path: tests/test_extra_universal_segtree_stress.nim
-    title: tests/test_extra_universal_segtree_stress.nim
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
     path: verify/extra/structure/extra_lazy_segtree_test.nim
@@ -50,9 +44,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_LAZYSEGTREE_HPP:\n  const ATCODER_LAZYSEGTREE_HPP*\
     \ = 1\n  \n  import std/sugar, std/sequtils, std/bitops\n  import atcoder/internal_bit,\
@@ -174,19 +168,17 @@ data:
     \ ((r and -r) != r): break\n    return 0\n"
   dependsOn:
   - atcoder/rangeutils.nim
-  - atcoder/rangeutils.nim
-  - atcoder/internal_bit.nim
   - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
+  - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
   isVerificationFile: false
   path: atcoder/extra/structure/universal_segtree.nim
-  requiredBy:
-  - tests/test_extra_universal_segtree_stress.nim
-  - tests/test_extra_universal_segtree_stress.nim
-  timestamp: '1970-01-01 00:00:00+00:00'
+  requiredBy: []
+  timestamp: '2021-07-15 21:51:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/structure/extra_segtree_test.nim

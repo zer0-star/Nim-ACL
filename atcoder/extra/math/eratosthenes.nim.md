@@ -8,9 +8,9 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_ERATOSTHENES_HPP:\n  const ATCODER_ERATOSTHENES_HPP*\
     \ = 1\n  type Eratosthenes* = object\n    n*:int\n    pdiv*, prime*, index:seq[int]\n\
@@ -31,12 +31,13 @@ data:
     \ newSeq[(int,int)]()\n    var n = n\n    while n > 1:\n      let p = self.primeDivisor(n)\n\
     \      var e = 0\n      while n mod p == 0: e.inc;n = n div p\n      result.add\
     \ (p, e)\n  proc getPrime*(self:var Eratosthenes, i:int):int =\n    while i >=\
-    \ self.prime.len: self.expand()\n    return self.prime[i]\n"
+    \ self.prime.len: self.expand()\n    return self.prime[i]\n  proc `[]`*(self:var\
+    \ Eratosthenes, i:int):int = self.getPrime(i)\n"
   dependsOn: []
   isVerificationFile: false
   path: atcoder/extra/math/eratosthenes.nim
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2021-11-18 02:47:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/math/eratosthenes.nim

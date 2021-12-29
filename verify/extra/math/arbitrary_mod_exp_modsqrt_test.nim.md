@@ -82,9 +82,9 @@ data:
     PROBLEM: https://yukicoder.me/problems/no/1080
     links:
     - https://yukicoder.me/problems/no/1080
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://yukicoder.me/problems/no/1080\n\nimport\
     \ atcoder/header\nimport atcoder/modint\nimport atcoder/extra/math/mod_sqrt\n\
@@ -97,33 +97,33 @@ data:
     \ > 0:\n    echo a\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/extra/math/formal_power_series.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/convolution.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/internal_bit.nim
+  - atcoder/modint.nim
   - atcoder/header.nim
-  - atcoder/extra/math/mod_sqrt.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/convolution.nim
+  - atcoder/internal_bit.nim
   - atcoder/extra/math/formal_power_series.nim
+  - atcoder/convolution.nim
+  - atcoder/internal_bit.nim
   - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
   - atcoder/extra/math/mod_sqrt.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
-  - atcoder/internal_bit.nim
+  - atcoder/modint.nim
   isVerificationFile: true
   path: verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2021-12-11 18:27:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim

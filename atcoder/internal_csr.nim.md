@@ -2,16 +2,28 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
-    path: atcoder/internal_scc.nim
-    title: atcoder/internal_scc.nim
-  - icon: ':question:'
-    path: atcoder/internal_scc.nim
-    title: atcoder/internal_scc.nim
   - icon: ':warning:'
+    path: atcoder/extra/graph/mincostflow_generalized.nim
+    title: atcoder/extra/graph/mincostflow_generalized.nim
+  - icon: ':warning:'
+    path: atcoder/extra/graph/mincostflow_generalized.nim
+    title: atcoder/extra/graph/mincostflow_generalized.nim
+  - icon: ':warning:'
+    path: atcoder/extra/graph/mincostflow_generalized.nim
+    title: atcoder/extra/graph/mincostflow_generalized.nim
+  - icon: ':warning:'
+    path: atcoder/extra/graph/mincostflow_generalized.nim
+    title: atcoder/extra/graph/mincostflow_generalized.nim
+  - icon: ':question:'
+    path: atcoder/internal_scc.nim
+    title: atcoder/internal_scc.nim
+  - icon: ':question:'
+    path: atcoder/internal_scc.nim
+    title: atcoder/internal_scc.nim
+  - icon: ':x:'
     path: atcoder/mincostflow.nim
     title: atcoder/mincostflow.nim
-  - icon: ':warning:'
+  - icon: ':x:'
     path: atcoder/mincostflow.nim
     title: atcoder/mincostflow.nim
   - icon: ':question:'
@@ -26,36 +38,6 @@ data:
   - icon: ':x:'
     path: atcoder/twosat.nim
     title: atcoder/twosat.nim
-  - icon: ':warning:'
-    path: test/example/mincostflow_practice.nim
-    title: test/example/mincostflow_practice.nim
-  - icon: ':warning:'
-    path: test/example/mincostflow_practice.nim
-    title: test/example/mincostflow_practice.nim
-  - icon: ':warning:'
-    path: test/example/twosat_practice.nim
-    title: test/example/twosat_practice.nim
-  - icon: ':warning:'
-    path: test/example/twosat_practice.nim
-    title: test/example/twosat_practice.nim
-  - icon: ':warning:'
-    path: tests/test_mincostflow.nim
-    title: tests/test_mincostflow.nim
-  - icon: ':warning:'
-    path: tests/test_mincostflow.nim
-    title: tests/test_mincostflow.nim
-  - icon: ':warning:'
-    path: tests/test_scc.nim
-    title: tests/test_scc.nim
-  - icon: ':warning:'
-    path: tests/test_scc.nim
-    title: tests/test_scc.nim
-  - icon: ':warning:'
-    path: tests/test_twosat.nim
-    title: tests/test_twosat.nim
-  - icon: ':warning:'
-    path: tests/test_twosat.nim
-    title: tests/test_twosat.nim
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
@@ -63,6 +45,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
     title: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
+  - icon: ':x:'
+    path: verify/min_cost_flow_test.nim
+    title: verify/min_cost_flow_test.nim
+  - icon: ':x:'
+    path: verify/min_cost_flow_test.nim
+    title: verify/min_cost_flow_test.nim
   - icon: ':x:'
     path: verify/scc_test.nim
     title: verify/scc_test.nim
@@ -80,9 +68,9 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_INTERNAL_CSR_HPP:\n  const ATCODER_INTERNAL_CSR_HPP*\
     \ = 1\n\n  type csr*[E] = object\n    start*: seq[int]\n    elist*: seq[E]\n \
@@ -95,33 +83,29 @@ data:
   isVerificationFile: false
   path: atcoder/internal_csr.nim
   requiredBy:
+  - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_scc.nim
+  - atcoder/scc.nim
+  - atcoder/scc.nim
   - atcoder/mincostflow.nim
   - atcoder/mincostflow.nim
   - atcoder/twosat.nim
   - atcoder/twosat.nim
-  - atcoder/scc.nim
-  - atcoder/scc.nim
-  - atcoder/internal_scc.nim
-  - atcoder/internal_scc.nim
-  - tests/test_twosat.nim
-  - tests/test_twosat.nim
-  - tests/test_mincostflow.nim
-  - tests/test_mincostflow.nim
-  - tests/test_scc.nim
-  - tests/test_scc.nim
-  - test/example/mincostflow_practice.nim
-  - test/example/mincostflow_practice.nim
-  - test/example/twosat_practice.nim
-  - test/example/twosat_practice.nim
-  timestamp: '1970-01-01 00:00:00+00:00'
+  - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/extra/graph/mincostflow_generalized.nim
+  timestamp: '2021-08-18 01:50:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/min_cost_flow_test.nim
+  - verify/min_cost_flow_test.nim
   - verify/twosat_test.nim
   - verify/twosat_test.nim
-  - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
-  - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
   - verify/scc_test.nim
   - verify/scc_test.nim
+  - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
+  - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
 documentation_of: atcoder/internal_csr.nim
 layout: document
 redirect_from:

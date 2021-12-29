@@ -13,19 +13,7 @@ data:
   - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/example/fenwick_practice.nim
-    title: test/example/fenwick_practice.nim
-  - icon: ':warning:'
-    path: test/example/fenwick_practice.nim
-    title: test/example/fenwick_practice.nim
-  - icon: ':warning:'
-    path: tests/test_fenwicktree.nim
-    title: tests/test_fenwicktree.nim
-  - icon: ':warning:'
-    path: tests/test_fenwicktree.nim
-    title: tests/test_fenwicktree.nim
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
     path: verify/fenwick_tree_test.nim
@@ -39,9 +27,9 @@ data:
   attributes:
     links:
     - https://en.wikipedia.org/wiki/Fenwick_tree
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_FENWICKTREE_HPP:\n  const ATCODER_FENWICKTREE_HPP*\
     \ = 1\n  import std/sequtils\n  import atcoder/internal_type_traits\n  import\
@@ -63,17 +51,13 @@ data:
     \    return cast[FT.T](self.sum(r) - self.sum(l))\n"
   dependsOn:
   - atcoder/rangeutils.nim
-  - atcoder/rangeutils.nim
   - atcoder/internal_type_traits.nim
+  - atcoder/rangeutils.nim
   - atcoder/internal_type_traits.nim
   isVerificationFile: false
   path: atcoder/fenwicktree.nim
-  requiredBy:
-  - tests/test_fenwicktree.nim
-  - tests/test_fenwicktree.nim
-  - test/example/fenwick_practice.nim
-  - test/example/fenwick_practice.nim
-  timestamp: '1970-01-01 00:00:00+00:00'
+  requiredBy: []
+  timestamp: '2021-07-15 21:51:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/fenwick_tree_test.nim

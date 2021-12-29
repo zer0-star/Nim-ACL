@@ -26,13 +26,13 @@ data:
   - icon: ':x:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
-  - icon: ':warning:'
-    path: tests/test_extra_set_map.nim
-    title: tests/test_extra_set_map.nim
-  - icon: ':warning:'
-    path: tests/test_extra_set_map.nim
-    title: tests/test_extra_set_map.nim
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_predecessor_problem_test.nim
+    title: verify/extra/structure/yosupo_predecessor_problem_test.nim
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_predecessor_problem_test.nim
+    title: verify/extra/structure/yosupo_predecessor_problem_test.nim
   - icon: ':x:'
     path: verify/map_test.nim
     title: verify/map_test.nim
@@ -44,9 +44,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_RED_BLACK_TREE_HPP:\n  const ATCODER_RED_BLACK_TREE_HPP*\
     \ = 1\n  import std/sugar\n#  {.experimental: \"codeReordering\".}\n  {.push inline,\
@@ -61,55 +61,56 @@ data:
     \ id: self.next_id)\n    when T.Countable isnot void:\n      result.cnt = 1\n\n\
     \  proc newNode[T:RedBlackTree](self: var T, parent: T.Node, key: T.K): T.Node\
     \ =\n    result = self.newNode(parent)\n    result.key = key\n    self.next_id\
-    \ += 1\n\n  proc initRedBlackTree*[K](root:RedBlackTreeNode[K, void] = nil): RedBlackTree[K,\
-    \ void] =\n    var leaf = RedBlackTreeNode[K](color: Color.black, id: -1)\n  \
-    \  leaf.l = leaf;leaf.r = leaf\n    result = RedBlackTree[K](root: root, next_id:\
-    \ 0, leaf:leaf)\n  proc initCountableRedBlackTree*[K](root:RedBlackTreeNode[K,\
-    \ int] = nil): RedBlackTree[K, int] =\n    result = initRedBlackTree[K](root)\n\
-    \    result.cnt = 1\n\n  include atcoder/extra/structure/binary_tree_node_utils\n\
-    \n  proc `*`*[T:RedBlackTreeNode](node:T):auto = node.key\n  template update*[T:RedBlackTree](self:T,\
-    \ node: T.Node) =\n    when T.Countable isnot void:\n      if node == self.leaf\
-    \ or node == nil: return\n      node.cnt = node.l.cnt + node.r.cnt\n      node.cnt.inc\n\
-    \    discard\n\n  proc rotateLeft[T:RedBlackTree](self: var T, parent: T.Node)\
-    \ =\n    if parent == nil: return\n    var right = parent.r\n    parent.r = right.l\n\
-    \    if right.l != self.leaf: right.l.p = parent\n    right.p = parent.p\n   \
-    \ if parent.p == nil: self.root = right\n    elif parent.p.l == parent: parent.p.l\
-    \ = right\n    else: parent.p.r = right\n    right.l = parent\n    parent.p =\
-    \ right\n    self.update(parent)\n    self.update(right)\n\n  proc rotateRight[T:RedBlackTree](self:\
-    \ var T, parent: T.Node) =\n    if parent == nil: return\n    var left = parent.l\n\
-    \    parent.l = left.r\n    if left.r != self.leaf : left.r.p = parent\n    left.p\
-    \ = parent.p\n    if parent.p == nil: self.root = left\n    elif parent.p.r ==\
-    \ parent: parent.p.r = left\n    else: parent.p.l = left\n    left.r = parent\n\
-    \    parent.p = left\n    self.update(parent)\n    self.update(left)\n\n  # insert\
-    \ {{{\n  proc fixInsert[T:RedBlackTree](self: var T, node: T.Node) =\n    ## Rebalances\
-    \ a tree after an insertion\n    if T.Countable isnot void:\n      var curr =\
-    \ node\n      while curr != nil:\n        self.update(curr)\n        curr = curr.p\n\
-    \n    var curr = node\n    while curr != self.root and curr.p.color == Color.red:\n\
-    \      if curr.p.p != nil and curr.p == curr.p.p.l:\n        var uncle = curr.p.p.r\n\
-    \        if uncle.color == Color.red:\n          curr.p.color = Color.black\n\
-    \          uncle.color = Color.black\n          curr.p.p.color = Color.red\n \
-    \         curr = curr.p.p\n        else:\n          if curr == curr.p.r:\n   \
-    \         curr = curr.p\n            self.rotateLeft(curr)\n          curr.p.color\
+    \ += 1\n  proc init*[T:RedBlackTree](self:var T, root: var T.Node) =\n    self.leaf\
+    \ = self.Node(color: Color.black, id: -1)\n    self.leaf.l = self.leaf\n    self.leaf.r\
+    \ = self.leaf\n    when T.Countable isnot void:\n      self.leaf.cnt = 0\n   \
+    \ if root != nil:\n      self.root = root\n      self.root.l = self.leaf\n   \
+    \   self.root.r = self.leaf\n      self.root.p = nil\n      self.root.color =\
+    \ Color.black\n    self.next_id = 0\n\n#  proc initRedBlackTree*[K](root:RedBlackTreeNode[K,\
+    \ void]): RedBlackTree[K, void] = result.init()\n#  proc initCountableRedBlackTree*[K](root:RedBlackTreeNode[K,\
+    \ int]): RedBlackTree[K, int] = result.init()\n\n  include atcoder/extra/structure/binary_tree_node_utils\n\
+    \n  template update*[T:RedBlackTree](self:T, node: T.Node) =\n    when T.Countable\
+    \ isnot void:\n      if node == self.leaf or node == nil: return\n      node.cnt\
+    \ = node.l.cnt + node.r.cnt\n      node.cnt.inc\n    discard\n\n  proc rotateLeft[T:RedBlackTree](self:\
+    \ var T, parent: T.Node) =\n    if parent == nil: return\n    var right = parent.r\n\
+    \    parent.r = right.l\n    if right.l != self.leaf: right.l.p = parent\n   \
+    \ right.p = parent.p\n    if parent.p == nil: self.root = right\n    elif parent.p.l\
+    \ == parent: parent.p.l = right\n    else: parent.p.r = right\n    right.l = parent\n\
+    \    parent.p = right\n    self.update(parent)\n    self.update(right)\n\n  proc\
+    \ rotateRight[T:RedBlackTree](self: var T, parent: T.Node) =\n    if parent ==\
+    \ nil: return\n    var left = parent.l\n    parent.l = left.r\n    if left.r !=\
+    \ self.leaf : left.r.p = parent\n    left.p = parent.p\n    if parent.p == nil:\
+    \ self.root = left\n    elif parent.p.r == parent: parent.p.r = left\n    else:\
+    \ parent.p.l = left\n    left.r = parent\n    parent.p = left\n    self.update(parent)\n\
+    \    self.update(left)\n\n  # insert {{{\n  proc fixInsert[T:RedBlackTree](self:\
+    \ var T, node: T.Node) =\n    ## Rebalances a tree after an insertion\n    if\
+    \ T.Countable isnot void:\n      var curr = node\n      while curr != nil:\n \
+    \       self.update(curr)\n        curr = curr.p\n\n    var curr = node\n    while\
+    \ curr != self.root and curr.p.color == Color.red:\n      if curr.p.p != nil and\
+    \ curr.p == curr.p.p.l:\n        var uncle = curr.p.p.r\n        if uncle.color\
+    \ == Color.red:\n          curr.p.color = Color.black\n          uncle.color =\
+    \ Color.black\n          curr.p.p.color = Color.red\n          curr = curr.p.p\n\
+    \        else:\n          if curr == curr.p.r:\n            curr = curr.p\n  \
+    \          self.rotateLeft(curr)\n          curr.p.color = Color.black\n     \
+    \     if curr.p.p != nil:\n            curr.p.p.color = Color.red\n          \
+    \  self.rotateRight(curr.p.p)\n      elif curr.p.p != nil:\n        var uncle\
+    \ = curr.p.p.l\n        if uncle.color == Color.red:\n          curr.p.color =\
+    \ Color.black\n          uncle.color = Color.black\n          curr.p.p.color =\
+    \ Color.red\n          curr = curr.p.p\n        else:\n          if curr == curr.p.l:\n\
+    \            curr = curr.p\n            self.rotateRight(curr)\n          curr.p.color\
     \ = Color.black\n          if curr.p.p != nil:\n            curr.p.p.color = Color.red\n\
-    \            self.rotateRight(curr.p.p)\n      elif curr.p.p != nil:\n       \
-    \ var uncle = curr.p.p.l\n        if uncle.color == Color.red:\n          curr.p.color\
-    \ = Color.black\n          uncle.color = Color.black\n          curr.p.p.color\
-    \ = Color.red\n          curr = curr.p.p\n        else:\n          if curr ==\
-    \ curr.p.l:\n            curr = curr.p\n            self.rotateRight(curr)\n \
-    \         curr.p.color = Color.black\n          if curr.p.p != nil:\n        \
-    \    curr.p.p.color = Color.red\n            self.rotateLeft(curr.p.p)\n    self.root.color\
-    \ = Color.black\n\n\n  proc insert*[T:RedBlackTree](self: var T, node:T.Node,\
-    \ next:T.Node): T.Node {.discardable.} =\n    self.size += 1\n    if next.l ==\
-    \ self.leaf:\n      # insert at next.l\n      next.l = node\n      node.p = next\n\
-    \    else:\n      var curr = next.l.rightMost\n      # insert at curr.r\n    \
-    \  curr.r = node\n      node.p = curr\n    self.fixInsert(node)\n    return node\n\
-    \n  proc insert*[T:RedBlackTree](self: var T, next:T.Node, x:T.K): T.Node {.discardable.}\
-    \ =\n    var node = self.newNode(T.Node(nil), x)\n    return self.insert(node,\
-    \ next)\n  # }}}\n\n  # erase {{{\n  proc fixErase*[T:RedBlackTree](self: var\
-    \ T, node: T.Node, parent: T.Node) =\n\n    var\n      child = node\n      parent\
-    \ = parent\n    while child != self.root and child.color == Color.black:\n   \
-    \   if parent == nil: break # add!!!!!!!!\n      if child == parent.l:\n     \
-    \   var sib = parent.r\n        if sib.color == Color.red:\n          sib.color\
+    \            self.rotateLeft(curr.p.p)\n    self.root.color = Color.black\n\n\n\
+    \  proc insert*[T:RedBlackTree](self: var T, node:T.Node, next:T.Node): T.Node\
+    \ {.discardable.} =\n    self.size += 1\n    if next.l == self.leaf:\n      #\
+    \ insert at next.l\n      next.l = node\n      node.p = next\n    else:\n    \
+    \  var curr = next.l.rightMost\n      # insert at curr.r\n      curr.r = node\n\
+    \      node.p = curr\n    self.fixInsert(node)\n    return node\n\n  proc insert*[T:RedBlackTree](self:\
+    \ var T, next:T.Node, x:T.K): T.Node {.discardable.} =\n    var node = self.newNode(T.Node(nil),\
+    \ x)\n    return self.insert(node, next)\n  # }}}\n\n  # erase {{{\n  proc fixErase*[T:RedBlackTree](self:\
+    \ var T, node: T.Node, parent: T.Node) =\n\n    var\n      child = node\n    \
+    \  parent = parent\n    while child != self.root and child.color == Color.black:\n\
+    \      if parent == nil: break # add!!!!!!!!\n      if child == parent.l:\n  \
+    \      var sib = parent.r\n        if sib.color == Color.red:\n          sib.color\
     \ = Color.black\n          parent.color = Color.red\n          self.rotateLeft(parent)\n\
     \          sib = parent.r\n  \n        if sib.l.color == Color.black and sib.r.color\
     \ == Color.black:\n          sib.color = Color.red\n          child = parent\n\
@@ -131,16 +132,16 @@ data:
     \n  proc write*[T:RedBlackTree](rbt: T, self: T.Node, h = 0) =\n    for i in 0..<h:\
     \ stderr.write \" | \"\n    if self == rbt.leaf:\n      stderr.write \"*\\n\"\n\
     \    else:\n      stderr.write \"id: \",self.id, \" key: \", self.key, \" color:\
-    \ \", self.color, \" cnt: \", self.cnt, \" \"\n  #    if self.key == T.K.inf:\
-    \ stderr.write \"inf\"\n      if self.p != nil: stderr.write \" parent: \", self.p.id\n\
-    \      else: stderr.write \" parent: nil\"\n      stderr.write \"\\n\"\n     \
-    \ if h >= 200:\n        stderr.write \"too deep!!!\\n\"\n        assert false\n\
-    \        return\n      rbt.write(self.l, h + 1)\n      rbt.write(self.r, h + 1)\n\
-    \  \n  proc write*[T:RedBlackTree](self: T) =\n    stderr.write \"======= RB-TREE\
-    \ =============\\n\"\n    self.write(self.root, 0)\n    stderr.write \"=======\
-    \ END ==========\\n\"\n  proc checkTree*[T:RedBlackTree](self: T) =\n    doAssert\
-    \ self.root.color == Color.black\n    var black_ct_s = initHashSet[int]()\n  \
-    \  proc checkTreeSub(node:T.Node, black_ct:int) =\n      var black_ct = black_ct\n\
+    \ \", self.color\n      when T.Countable isnot void:\n        stderr.write \"\
+    \ cnt: \", self.cnt, \" \"\n  #    if self.key == T.K.inf: stderr.write \"inf\"\
+    \n      if self.p != nil: stderr.write \" parent: \", self.p.id\n      else: stderr.write\
+    \ \" parent: nil\"\n      stderr.write \"\\n\"\n      if h >= 5:\n        stderr.write\
+    \ \"too deep!!!\\n\"\n        assert false\n        return\n      rbt.write(self.l,\
+    \ h + 1)\n      rbt.write(self.r, h + 1)\n  \n  proc write*[T:RedBlackTree](self:\
+    \ T) =\n    stderr.write \"======= RB-TREE =============\\n\"\n    self.write(self.root,\
+    \ 0)\n    stderr.write \"======= END ==========\\n\"\n  proc checkTree*[T:RedBlackTree](self:\
+    \ T) =\n    doAssert self.root.color == Color.black\n    var black_ct_s = initHashSet[int]()\n\
+    \    proc checkTreeSub(node:T.Node, black_ct:int) =\n      var black_ct = black_ct\n\
     \      if node.color == Color.black: black_ct.inc\n      if node == self.leaf:\n\
     \        black_ct_s.incl(black_ct)\n        return\n      if node.color == Color.red:\n\
     \        doAssert node.l.color == Color.black and node.r.color == Color.black\n\
@@ -197,13 +198,13 @@ data:
   - atcoder/extra/structure/set_map.nim
   - atcoder/extra/structure/set_map.nim
   - atcoder/extra/structure/set_map.nim
-  - tests/test_extra_set_map.nim
-  - tests/test_extra_set_map.nim
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2021-11-18 02:47:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/map_test.nim
   - verify/map_test.nim
+  - verify/extra/structure/yosupo_predecessor_problem_test.nim
+  - verify/extra/structure/yosupo_predecessor_problem_test.nim
 documentation_of: atcoder/extra/structure/red_black_tree.nim
 layout: document
 redirect_from:

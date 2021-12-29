@@ -14,16 +14,16 @@ data:
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: atcoder/extra/math/coef_of_generating_function.nim
     title: atcoder/extra/math/coef_of_generating_function.nim
-  - icon: ':warning:'
+  - icon: ':x:'
     path: atcoder/extra/math/coef_of_generating_function.nim
     title: atcoder/extra/math/coef_of_generating_function.nim
-  - icon: ':warning:'
+  - icon: ':x:'
     path: atcoder/extra/math/coef_of_generating_function.nim
     title: atcoder/extra/math/coef_of_generating_function.nim
-  - icon: ':warning:'
+  - icon: ':x:'
     path: atcoder/extra/math/coef_of_generating_function.nim
     title: atcoder/extra/math/coef_of_generating_function.nim
   - icon: ':x:'
@@ -50,18 +50,6 @@ data:
   - icon: ':x:'
     path: atcoder/extra/math/factorial.nim
     title: atcoder/extra/math/factorial.nim
-  - icon: ':warning:'
-    path: atcoder/extra/math/formal_power_series_sparse.nim
-    title: atcoder/extra/math/formal_power_series_sparse.nim
-  - icon: ':warning:'
-    path: atcoder/extra/math/formal_power_series_sparse.nim
-    title: atcoder/extra/math/formal_power_series_sparse.nim
-  - icon: ':warning:'
-    path: atcoder/extra/math/formal_power_series_sparse.nim
-    title: atcoder/extra/math/formal_power_series_sparse.nim
-  - icon: ':warning:'
-    path: atcoder/extra/math/formal_power_series_sparse.nim
-    title: atcoder/extra/math/formal_power_series_sparse.nim
   - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
@@ -74,18 +62,18 @@ data:
   - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
-  - icon: ':warning:'
-    path: tests/test_extra_formal_power_series.nim
-    title: tests/test_extra_formal_power_series.nim
-  - icon: ':warning:'
-    path: tests/test_extra_formal_power_series.nim
-    title: tests/test_extra_formal_power_series.nim
-  - icon: ':warning:'
-    path: tests/test_extra_formal_power_series_float.nim
-    title: tests/test_extra_formal_power_series_float.nim
-  - icon: ':warning:'
-    path: tests/test_extra_formal_power_series_float.nim
-    title: tests/test_extra_formal_power_series_float.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/polynomial_taylor_shift.nim
+    title: atcoder/extra/math/polynomial_taylor_shift.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/polynomial_taylor_shift.nim
+    title: atcoder/extra/math/polynomial_taylor_shift.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/polynomial_taylor_shift.nim
+    title: atcoder/extra/math/polynomial_taylor_shift.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/polynomial_taylor_shift.nim
+    title: atcoder/extra/math/polynomial_taylor_shift.nim
   _extendedVerifiedWith:
   - icon: ':x:'
     path: verify/extra/math/arbitrary_mod_convolution_test.nim
@@ -100,6 +88,12 @@ data:
     path: verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
     title: verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
   - icon: ':x:'
+    path: verify/extra/math/division_of_polynomials_test.nim
+    title: verify/extra/math/division_of_polynomials_test.nim
+  - icon: ':x:'
+    path: verify/extra/math/division_of_polynomials_test.nim
+    title: verify/extra/math/division_of_polynomials_test.nim
+  - icon: ':x:'
     path: verify/extra/math/exp_of_formal_power_series_test.nim
     title: verify/extra/math/exp_of_formal_power_series_test.nim
   - icon: ':x:'
@@ -118,6 +112,12 @@ data:
     path: verify/extra/math/log_of_formal_power_series_test.nim
     title: verify/extra/math/log_of_formal_power_series_test.nim
   - icon: ':x:'
+    path: verify/extra/math/polynomial_taylor_shift_test.nim
+    title: verify/extra/math/polynomial_taylor_shift_test.nim
+  - icon: ':x:'
+    path: verify/extra/math/polynomial_taylor_shift_test.nim
+    title: verify/extra/math/polynomial_taylor_shift_test.nim
+  - icon: ':x:'
     path: verify/extra/math/pow_of_formal_power_series_test.nim
     title: verify/extra/math/pow_of_formal_power_series_test.nim
   - icon: ':x:'
@@ -135,6 +135,12 @@ data:
   - icon: ':x:'
     path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
+  - icon: ':x:'
+    path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
+    title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
+  - icon: ':x:'
+    path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
+    title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
   - icon: ':x:'
     path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
     title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
@@ -152,32 +158,89 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_FORMAL_POWER_SERIES:\n  const ATCODER_FORMAL_POWER_SERIES*\
     \ = 1\n  \n  import std/sequtils, std/strformat, std/options, std/macros, std/tables,\
     \ std/algorithm\n  import atcoder/element_concepts\n\n  type FormalPowerSeries*[T:FieldElem]\
-    \ = seq[T]\n\n  template initFormalPowerSeries*[T:FieldElem](n:int):FormalPowerSeries[T]\
-    \ =\n    block:\n      FormalPowerSeries[T](newSeq[T](n))\n  template initFormalPowerSeries*[T:FieldElem](data:seq\
-    \ or array):FormalPowerSeries[T] =\n    block:\n      when data is FormalPowerSeries[T]:\
-    \ data\n      else:\n        var result = newSeq[T](data.len)\n        for i,\
-    \ it in data:\n          result[i] = T(it)\n        result\n  template init*[T:FieldElem](self:typedesc[FormalPowerSeries[T]],\
-    \ data:typed):auto =\n    initFormalPowerSeries[T](data)\n\n  macro revise*(a,\
-    \ b) =\n    parseStmt(fmt\"\"\"let {a.repr} = if {a.repr} == -1: {b.repr} else:\
-    \ {a.repr}\"\"\")\n  proc shrink*[T](self: var FormalPowerSeries[T]) =\n    while\
-    \ self.len > 0 and self[^1] == 0: discard self.pop()\n\n  # Monomial {{{\n  type\
-    \ Monomial*[T] = object\n    c:T\n    d:int\n  \n  proc initVar*[T](c = 1, d =\
-    \ 1):Monomial[T] = Monomial[T](c:T(c), d:d)\n  \n  proc `^`*[T](f:Monomial[T],\
-    \ n:int):Monomial[T] =\n    result = f\n    result.d *= n\n    if f.c != T(1):\
-    \ result.c = result.c ^ n\n  \n  converter toFPS*[T](f:Monomial[T]):FormalPowerSeries[T]\
-    \ = \n    result = newSeq[T](f.d + 1)\n    result[f.d] = f.c\n  \n  proc `+`*[T](f,\
-    \ g: Monomial[T]):FormalPowerSeries[T] =\n    return toFPS(f) + toFPS(g)\n  \n\
-    \  proc `*`*[T](f, g:Monomial[T]):Monomial[T] =\n    result.c = f.c * g.c\n  \
-    \  result.d = f.d + g.d\n  proc `*`*[T](a:T, f:Monomial[T]):Monomial[T] =\n  \
-    \  result = f\n    result.c *= a\n  # }}}\n\n  # operators +=, -=, *=, mod=, -,\
-    \ /= {{{\n  proc `+=`*[T](self: var FormalPowerSeries[T], r:FormalPowerSeries[T])\
+    \ = seq[T]\n  type poly*[T:FieldElem] = FormalPowerSeries[T]\n\n  template initFormalPowerSeries*[T:FieldElem](n:int):FormalPowerSeries[T]\
+    \ =\n    block:\n      FormalPowerSeries[T](newSeq[T](n))\n  template initFormalPowerSeries*[T:FieldElem;U:\
+    \ not T](data:openArray[U]):FormalPowerSeries[T] =\n    block:\n      var result\
+    \ = newSeq[T](data.len)\n      for i, it in data:\n        result[i] = T(it)\n\
+    \      FormalPowerSeries[T](result)\n  template initFormalPowerSeries*[T:FieldElem](data:openArray[T]):FormalPowerSeries[T]\
+    \ =\n    block:\n      data\n\n  template init*[T:FieldElem](self:typedesc[FormalPowerSeries[T]],\
+    \ data:typed):auto =\n    initFormalPowerSeries[T](data)\n\n#  include atcoder/extra/math/formal_power_series_sparse\n\
+    \n  # {{{ sparseFormalPowerSeries\n\n  type SparseFormalPowerSeries*[T:FieldElem]\
+    \ = seq[tuple[d:int, c:T]] # sorted ascending order\n\n#  converter toSparseFormalPowerSeries*[XI,\
+    \ T](a:array[XI, (int, T)]):SparseFormalPowerSeries[T] = a.toSeq()\n\n  # SparseMonomial\
+    \ {{{\n  type Monomial*[T] = object\n    c:T\n    d:int\n  \n  proc initVar*[T](c\
+    \ = 1, d = 1):SparseFormalPowerSeries[T] = @[(d:d, c:T(c))]\n  \n  proc `^`*[T](f:SparseFormalPowerSeries[T],\
+    \ n:int):SparseFormalPowerSeries[T] =\n    assert f.len == 1\n    result.add(f[0])\n\
+    \    result[0].d *= n\n    if f[0].c != T.init(1): result[0].c = result[0].c ^\
+    \ n\n  \n#  converter toSFPS*[T](f:Monomial[T]):SparseFormalPowerSeries[T] = @[(f.d,f.c)]\n\
+    \n#  proc `+`*[T](f, g: Monomial[T]):SparseFormalPowerSeries[T] =\n#    return\
+    \ toSFPS(f) + toSFPS(g)\n\n  # }}}\n\n  converter toSFPS*[T](f:Table[int, T]):SparseFormalPowerSeries[T]\
+    \ =\n    for d, c in f:\n      result.add((d, c))\n    result.sort do (x, y:(int,\
+    \ T)) -> int:\n      cmp(x[0], y[0])\n\n#  converter toSFPS*[T](a:T):SparseFormalPowerSeries[T]\
+    \ = @[(0, a)]\n  proc deg*[T](a:SparseFormalPowerSeries[T]):int = a[^1].d\n  proc\
+    \ `+=`*[T](a:var SparseFormalPowerSeries[T], b:SparseFormalPowerSeries[T]) =\n\
+    \    var r:SparseFormalPowerSeries[T]\n    var i, j = 0\n    while i < a.len or\
+    \ j < b.len:\n      if i < a.len and j < b.len and a[i].d == b[j].d:\n       \
+    \ r.add((a[i].d, a[i].c + b[j].c))\n        i.inc;j.inc\n      else:\n       \
+    \ if j == b.len or (i < a.len and a[i].d < b[j].d):\n          r.add(a[i]);i.inc\n\
+    \        else:\n          r.add(b[j]);j.inc\n    swap(r, a)\n  proc `+=`*[T](a:var\
+    \ SparseFormalPowerSeries[T], b:T) = a += @[(0, b)]\n  proc `+=`*[T](a:var FormalPowerSeries[T],\
+    \ b:SparseFormalPowerSeries[T]) =\n    for p in b:\n      while a.len <= p.d:\
+    \ a.add(T.init(0))\n      a[p.d] += p.c\n  proc `-=`*[T](a:var SparseFormalPowerSeries[T],\
+    \ b:SparseFormalPowerSeries[T]) =\n    var r:SparseFormalPowerSeries[T]\n    var\
+    \ i, j = 0\n    while i < a.len or j < b.len:\n      if i < a.len and j < b.len\
+    \ and a[i].d == b[j].d:\n        r.add((a[i].d, a[i].c - b[j].c))\n        i.inc;j.inc\n\
+    \      else:\n        if j == b.len or (i < a.len and a[i].d < b[j].d):\n    \
+    \      r.add(a[i]);i.inc\n        else:\n          r.add((b[j].d, -b[j].c));j.inc\n\
+    \    swap(r, a)\n  proc `-=`*[T](a:var SparseFormalPowerSeries[T], b:T) = a -=\
+    \ @[(0, b)]\n  proc `-=`*[T](a:var FormalPowerSeries[T], b:SparseFormalPowerSeries[T])\
+    \ =\n    for p in b:\n      while a.len <= p.d: a.add(T.init(0))\n      a[p.d]\
+    \ -= p.c\n\n  proc `*`*[T](a:FormalPowerSeries[T], b:SparseFormalPowerSeries[T],\
+    \ deg = -1):FormalPowerSeries[T] =\n    var deg = deg\n    if deg == -1:\n   \
+    \   let bdeg = b[^1][0]\n      deg = a.len + bdeg\n    result = initFormalPowerSeries[T](deg)\n\
+    \    for i in 0..<a.len:\n      for (j, c) in b:\n        let k = i + j\n    \
+    \    if k < deg: result[k] += a[i] * c\n  proc `*=`*[T](a:var SparseFormalPowerSeries[T],\
+    \ b:SparseFormalPowerSeries[T], deg = -1) =\n    var r = initTable[int,T]()\n\
+    \    for (i, c0) in a:\n      for (j, c1) in b:\n        let k = i + j\n     \
+    \   if deg != -1 and k >= deg: continue\n        if k notin r: r[k] = T.init(0)\n\
+    \        r[k] += c0 * c1\n    var rs = SparseFormalPowerSeries[T](r)\n    swap(rs,\
+    \ a)\n  proc `*=`*[T](a:var SparseFormalPowerSeries[T], b:T) =\n    for (i, c)\
+    \ in a.mitems:\n      c = c * b\n  proc `*`*[T](a:SparseFormalPowerSeries[T],\
+    \ b:T):SparseFormalPowerSeries[T] =\n    result = a\n    result *= b\n  proc `*`*[T](b:T,\
+    \ a:var SparseFormalPowerSeries[T]):SparseFormalPowerSeries[T] =\n    result =\
+    \ a\n    for (i, c) in result.mitems:\n      c = b * c\n\n  macro declareSparseFormalPowerSeriesOperators(op)\
+    \ =\n    fmt\"\"\"proc `{op}`*[T](self:SparseFormalPowerSeries[T];r:SparseFormalPowerSeries[T]\
+    \ or T):SparseFormalPowerSeries[T] = result = self;result {op}= r\nproc `{op}`*[T](self:\
+    \ not SparseFormalPowerSeries and not Monomial, r:SparseFormalPowerSeries[T]):SparseFormalPowerSeries[T]\
+    \ = result = @[(0, T(self))];result {op}= r\"\"\".parsestmt\n\n  declareSparseFormalPowerSeriesOperators(`+`)\n\
+    \  declareSparseFormalPowerSeriesOperators(`-`)\n  declareSparseFormalPowerSeriesOperators(`*`)\n\
+    \n  proc divMod*[T](a: FormalPowerSeries[T], b:SparseFormalPowerSeries[T]):(FormalPowerSeries[T],\
+    \ FormalPowerSeries[T]) =\n    mixin inv\n    var a = a\n    let\n      max_deg\
+    \ = b[^1][0]\n      inv_max_coef = b[^1][1].inv\n    var q = initFormalPowerSeries[T](a.len\
+    \ - max_deg)\n    for i in countdown(q.len - 1, 0):\n      q[i] = a[i + max_deg]\
+    \ * inv_max_coef\n      for (d, v) in b:\n        a[i + d] -= q[i] * v\n    return\
+    \ (q, a[0..<max_deg])\n  proc `div`*[T:FieldElem](a: FormalPowerSeries[T], b:SparseFormalPowerSeries[T]):auto\
+    \ = a.divMod(b)[0]\n  proc `mod`*[T:FieldElem](a: FormalPowerSeries[T], b:SparseFormalPowerSeries[T]):auto\
+    \ = a.divMod(b)[1]\n  # }}}\n\n  macro revise*(a, b) =\n    parseStmt(fmt\"\"\"\
+    let {a.repr} = if {a.repr} == -1: {b.repr} else: {a.repr}\"\"\")\n  proc shrink*[T](self:\
+    \ var FormalPowerSeries[T]) =\n    while self.len > 0 and self[^1] == 0: discard\
+    \ self.pop()\n\n  converter toFPS*[T](f:Monomial[T]):FormalPowerSeries[T] = \n\
+    \    result = newSeq[T](f.d + 1)\n    result[f.d] = f.c\n  converter toFPS*[T](f:SparseFormalPowerSeries[T]):FormalPowerSeries[T]\
+    \ = \n    let d = f.deg\n    result = initFormalPowerSeries[T](newSeqWith(d +\
+    \ 1, T.init(0)))\n    for p in f: result[p.d] += p.c\n\n#  proc `+`*[T](f, g:\
+    \ Monomial[T]):FormalPowerSeries[T] =\n#    return toFPS(f) + toFPS(g)\n  \n \
+    \ proc `*`*[T](f, g:Monomial[T]):Monomial[T] =\n    result.c = f.c * g.c\n   \
+    \ result.d = f.d + g.d\n  proc `*`*[T](a:T, f:Monomial[T]):Monomial[T] =\n   \
+    \ result = f\n    result.c *= a\n  proc `*`*[T](a:SomeInteger, f:Monomial[T]):Monomial[T]\
+    \ =\n    result = f\n    result.c *= T.init(a)\n  # }}}\n\n  # operators +=, -=,\
+    \ *=, mod=, -, /= {{{\n  proc `+=`*[T](self: var FormalPowerSeries[T], r:FormalPowerSeries[T])\
     \ =\n    if r.len > self.len: self.setlen(r.len)\n    for i in 0..<r.len: self[i]\
     \ += r[i]\n  proc `+=`*[T](self: var FormalPowerSeries[T], r:T) =\n    if self.len\
     \ == 0: self.setlen(1)\n    self[0] += r\n  \n  proc `-=`*[T](self: var FormalPowerSeries[T],\
@@ -281,7 +344,9 @@ data:
     \ shl (i * k)).pre(deg)\n        if result.len < deg: result.setlen(deg)\n   \
     \     return\n    return self\n\n  proc eval*[T](self: FormalPowerSeries[T], x:T):T\
     \ =\n    var\n      (r, w) = (T(0), T(1))\n    for v in self:\n      r += w *\
-    \ v\n      w *= x\n    return r\n\n  proc powMod*[T](self: FormalPowerSeries[T],\
+    \ v\n      w *= x\n    return r\n#  {.experimental: \"callOperator\".}\n#  template\
+    \ `()`*[T](self: FormalPowerSeries[T], x:T):T = self.eval(x)\n#  proc `()`*[T](self:\
+    \ FormalPowerSeries[T], x:T):T = self.eval(x)\n\n  proc powMod*[T](self: FormalPowerSeries[T],\
     \ n:int, M:FormalPowerSeries[T]):auto =\n    assert M[^1] != T(0)\n    let modinv\
     \ = M.rev().inv()\n    proc getDiv(base:FormalPowerSeries[T]):FormalPowerSeries[T]\
     \ =\n      var base = base\n      if base.len < M.len:\n        base.setlen(0)\n\
@@ -299,53 +364,55 @@ data:
   isVerificationFile: false
   path: atcoder/extra/math/formal_power_series.nim
   requiredBy:
-  - atcoder/extra/math/formal_power_series_sparse.nim
-  - atcoder/extra/math/formal_power_series_sparse.nim
-  - atcoder/extra/math/composition.nim
-  - atcoder/extra/math/composition.nim
-  - atcoder/extra/math/factorial.nim
-  - atcoder/extra/math/factorial.nim
-  - atcoder/extra/math/coef_of_generating_function.nim
-  - atcoder/extra/math/coef_of_generating_function.nim
   - atcoder/extra/math/formal_power_series_sqrt.nim
   - atcoder/extra/math/formal_power_series_sqrt.nim
-  - atcoder/extra/math/formal_power_series_sparse.nim
-  - atcoder/extra/math/formal_power_series_sparse.nim
-  - atcoder/extra/math/composition.nim
-  - atcoder/extra/math/composition.nim
-  - atcoder/extra/math/factorial.nim
-  - atcoder/extra/math/factorial.nim
+  - atcoder/extra/math/polynomial_taylor_shift.nim
+  - atcoder/extra/math/polynomial_taylor_shift.nim
   - atcoder/extra/math/coef_of_generating_function.nim
   - atcoder/extra/math/coef_of_generating_function.nim
+  - atcoder/extra/math/factorial.nim
+  - atcoder/extra/math/factorial.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/composition.nim
   - atcoder/extra/math/formal_power_series_sqrt.nim
   - atcoder/extra/math/formal_power_series_sqrt.nim
-  - tests/test_extra_formal_power_series.nim
-  - tests/test_extra_formal_power_series.nim
-  - tests/test_extra_formal_power_series_float.nim
-  - tests/test_extra_formal_power_series_float.nim
-  timestamp: '1970-01-01 00:00:00+00:00'
+  - atcoder/extra/math/polynomial_taylor_shift.nim
+  - atcoder/extra/math/polynomial_taylor_shift.nim
+  - atcoder/extra/math/coef_of_generating_function.nim
+  - atcoder/extra/math/coef_of_generating_function.nim
+  - atcoder/extra/math/factorial.nim
+  - atcoder/extra/math/factorial.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/composition.nim
+  timestamp: '2021-12-11 18:27:17+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - verify/extra/math/arbitrary_mod_convolution_test.nim
-  - verify/extra/math/arbitrary_mod_convolution_test.nim
-  - verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - verify/extra/math/log_of_formal_power_series_test.nim
-  - verify/extra/math/log_of_formal_power_series_test.nim
   - verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
   - verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
-  - verify/extra/math/exp_of_formal_power_series_test.nim
-  - verify/extra/math/exp_of_formal_power_series_test.nim
-  - verify/extra/math/inv_of_formal_power_series_test.nim
-  - verify/extra/math/inv_of_formal_power_series_test.nim
-  - verify/extra/math/yukicoder_factorial_test.nim
-  - verify/extra/math/yukicoder_factorial_test.nim
-  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
   - verify/extra/math/pow_of_formal_power_series_test.nim
   - verify/extra/math/pow_of_formal_power_series_test.nim
+  - verify/extra/math/yukicoder_factorial_test.nim
+  - verify/extra/math/yukicoder_factorial_test.nim
+  - verify/extra/math/polynomial_taylor_shift_test.nim
+  - verify/extra/math/polynomial_taylor_shift_test.nim
+  - verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
+  - verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
+  - verify/extra/math/inv_of_formal_power_series_test.nim
+  - verify/extra/math/inv_of_formal_power_series_test.nim
+  - verify/extra/math/arbitrary_mod_convolution_test.nim
+  - verify/extra/math/arbitrary_mod_convolution_test.nim
+  - verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
+  - verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
+  - verify/extra/math/sqrt_of_formal_power_series_test.nim
+  - verify/extra/math/sqrt_of_formal_power_series_test.nim
+  - verify/extra/math/division_of_polynomials_test.nim
+  - verify/extra/math/division_of_polynomials_test.nim
+  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
+  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
+  - verify/extra/math/log_of_formal_power_series_test.nim
+  - verify/extra/math/log_of_formal_power_series_test.nim
+  - verify/extra/math/exp_of_formal_power_series_test.nim
+  - verify/extra/math/exp_of_formal_power_series_test.nim
 documentation_of: atcoder/extra/math/formal_power_series.nim
 layout: document
 redirect_from:

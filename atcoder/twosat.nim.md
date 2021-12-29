@@ -13,19 +13,7 @@ data:
   - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/example/twosat_practice.nim
-    title: test/example/twosat_practice.nim
-  - icon: ':warning:'
-    path: test/example/twosat_practice.nim
-    title: test/example/twosat_practice.nim
-  - icon: ':warning:'
-    path: tests/test_twosat.nim
-    title: tests/test_twosat.nim
-  - icon: ':warning:'
-    path: tests/test_twosat.nim
-    title: tests/test_twosat.nim
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
     path: verify/twosat_test.nim
@@ -38,9 +26,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_TWOSAT_HPP:\n  const ATCODER_TWOSAT_HPP* = 1\n\n\
     \  import atcoder/internal_scc\n  \n  # Reference:\n  # B. Aspvall, M. Plass,\
@@ -62,12 +50,8 @@ data:
   - atcoder/internal_csr.nim
   isVerificationFile: false
   path: atcoder/twosat.nim
-  requiredBy:
-  - tests/test_twosat.nim
-  - tests/test_twosat.nim
-  - test/example/twosat_practice.nim
-  - test/example/twosat_practice.nim
-  timestamp: '1970-01-01 00:00:00+00:00'
+  requiredBy: []
+  timestamp: '2021-08-18 01:50:54+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/twosat_test.nim

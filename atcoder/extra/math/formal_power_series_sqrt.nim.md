@@ -86,9 +86,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_FORMAL_POWER_SERIES_SQRT:\n  const ATCODER_FORMAL_POWER_SERIES_SQRT*\
     \ = 1\n  import atcoder/extra/math/formal_power_series\n  import atcoder/extra/math/mod_sqrt\n\
@@ -105,34 +105,34 @@ data:
     \ T(2)\n    var i = 1\n    while i < deg:\n      ret = (ret + self.pre(i shl 1)\
     \ * ret.inv(i shl 1)) * inv2\n      i = i shl 1\n    return ret.pre(deg).some\n"
   dependsOn:
-  - atcoder/extra/math/mod_sqrt.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/mod_sqrt.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/internal_math.nim
   - atcoder/modint.nim
-  - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/extra/math/mod_sqrt.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/math/mod_sqrt.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
-  - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
   - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
   - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: atcoder/extra/math/formal_power_series_sqrt.nim
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2021-12-11 18:27:17+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/math/sqrt_of_formal_power_series_test.nim

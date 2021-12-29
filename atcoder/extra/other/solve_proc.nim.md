@@ -20,20 +20,20 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_SOLVEPROC_HPP:\n  const ATCODER_SOLVEPROC_HPP*\
-    \ = 1\n  import std/macros, std/strformat, std/algorithm\n  proc mainBodyHeader():NimNode\
-    \ =\n    result = newStmtList()\n    result.add parseStmt \"result = \\\"\\\"\"\
-    \n    result.add parseStmt \"var resultPointer = result.addr\"\n#    let macro_def\
-    \ = \"(for s in {x.repr}: (result &= $s;(when output_stdout: stdout.write $s)));(result\
-    \ &= \\\"\\\\n\\\";when output_stdout: stdout.write \\\"\\\\n\\\")\"\n    let\
-    \ d = &\"proc echo(x:varargs[string, `$`]) = (for s in x: (resultPointer[] &=\
-    \ $s; when output_stdout: stdout.write $s)); (resultPointer[] &= \\\"\\\\n\\\"\
-    ; when output_stdout: stdout.write \\\"\\\\n\\\")\"\n    result.add parseStmt(d)\n\
-    \n  macro solveProc*(head, body:untyped):untyped =\n    var prev_type:NimNode\n\
+    \ = 1\n  import std/macros, std/strformat, std/algorithm, std/sequtils\n  proc\
+    \ mainBodyHeader():NimNode =\n    result = newStmtList()\n    result.add parseStmt\
+    \ \"result = \\\"\\\"\"\n    result.add parseStmt \"var resultPointer = result.addr\"\
+    \n#    let macro_def = \"(for s in {x.repr}: (result &= $s;(when output_stdout:\
+    \ stdout.write $s)));(result &= \\\"\\\\n\\\";when output_stdout: stdout.write\
+    \ \\\"\\\\n\\\")\"\n    let d = &\"proc echo(x:varargs[string, `$`]) = (for s\
+    \ in x: (resultPointer[] &= $s; when output_stdout: stdout.write $s)); (resultPointer[]\
+    \ &= \\\"\\\\n\\\"; when output_stdout: stdout.write \\\"\\\\n\\\")\"\n    result.add\
+    \ parseStmt(d)\n\n  macro solveProc*(head, body:untyped):untyped =\n    var prev_type:NimNode\n\
     \    var params:seq[NimNode]\n    for i in countdown(head.len - 1, 1):\n     \
     \ var identDefs = newNimNode(nnkIdentDefs)\n      if head[i].kind == nnkExprColonExpr:\n\
     \        identDefs.add(head[i][0])\n        prev_type = head[i][1]\n      elif\
@@ -57,16 +57,16 @@ data:
     \ = newNimNode(nnkIdentDefs).add(ident\"output_stdout\").add(newNimNode(nnkBracketExpr).add(ident\"\
     static\").add(ident\"bool\")).add(ident\"true\")\n    var identDefs = newNimNode(nnkIdentDefs).add(ident\"\
     output_stdout\").add(newNimNode(nnkBracketExpr).add(ident\"static\").add(ident\"\
-    bool\")).add(ident\"true\")\n#    var identDefs = newNimNode(nnkIdentDefs).add(ident\"\
-    output_stdout\").add(newNimNode(nnkBracketExpr).add(ident\"static\").add(ident\"\
-    bool\")).add(newEmptyNode())\n    mainParams.add(identDefs)\n    var mainProcDef\
-    \ = newNimNode(nnkProcDef).add(ident\"solve\").add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams)).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())\n\
+    bool\")).add(ident\"true\")\n    proc copy(a:seq[NimNode]):seq[NimNode] = a.mapIt(it.copy)\n\
+    #    var identDefs = newNimNode(nnkIdentDefs).add(ident\"output_stdout\").add(newNimNode(nnkBracketExpr).add(ident\"\
+    static\").add(ident\"bool\")).add(newEmptyNode())\n    mainParams.add(identDefs)\n\
+    \    var mainProcDef = newNimNode(nnkProcDef).add(ident\"solve\").add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams.copy())).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())\n\
     \    result.add(mainProcDef)\n    if hasNaive:\n      var naiveProcDef = newNimNode(nnkProcDef).add(ident\"\
-    solve_naive\").add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams)).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())\n\
-    \      result.add(naiveProcDef)\n\n    var naiveParams = mainParams\n    result.add\
-    \ newProc(name = ident(procName), params = mainParams, body = mainBody, pragmas\
-    \ = discardablePragma)\n    if hasNaive:\n      let naiveProcName = procName &\
-    \ \"naive\"\n      naiveBody = mainBodyHeader().add(newBlockStmt(newEmptyNode(),\
+    solve_naive\").add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams.copy())).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())\n\
+    \      result.add(naiveProcDef)\n\n    var naiveParams = mainParams.copy()\n \
+    \   result.add newProc(name = ident(procName), params = mainParams.copy(), body\
+    \ = mainBody, pragmas = discardablePragma)\n    if hasNaive:\n      let naiveProcName\
+    \ = procName & \"naive\"\n      naiveBody = mainBodyHeader().add(newBlockStmt(newEmptyNode(),\
     \ naiveBody))\n      result.add newProc(name = ident(naiveProcName), params =\
     \ naiveParams, body = naiveBody, pragmas = discardablePragma)\n      var test_body\
     \ = newStmtList()\n      var var_names = newSeq[string]()\n      for procName\
@@ -90,7 +90,7 @@ data:
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2021-08-23 19:10:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/other/solve_proc.nim

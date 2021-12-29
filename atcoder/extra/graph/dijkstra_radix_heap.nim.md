@@ -49,13 +49,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/radix_heap.nim
     title: atcoder/extra/structure/radix_heap.nim
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: tests/test_shortest_path.nim
-    title: tests/test_shortest_path.nim
-  - icon: ':warning:'
-    path: tests/test_shortest_path.nim
-    title: tests/test_shortest_path.nim
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/aoj_grl_1_a_dijkstra_radix_heap_test.nim
@@ -68,50 +62,52 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.6/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_DIJKSTRA_RADIX_HEAP_HPP:\n  const ATCODER_DIJKSTRA_RADIX_HEAP_HPP*\
     \ = 1\n  import std/sequtils\n  import atcoder/extra/graph/graph_template\n  import\
     \ atcoder/extra/structure/radix_heap\n  import atcoder/extra/other/inf\n\n  include\
     \ atcoder/extra/graph/dijkstra_result\n\n  proc dijkstra_radix_heap*[G:Graph](g:G,\
     \ s:G.U or seq[G.U]): auto =\n    static:\n      assert G.T is SomeInteger, \"\
-    weight type must be integer\"\n    let n = g.len\n    var\n      dist = newSeqWith(n,\
-    \ G.T.inf)\n      prev_set = newSeqWith(n, false)\n      prev = newSeq[G.U](n)\n\
-    \n    var heap = initRadixHeap[G.T, Edge[G.T, G.U]]()\n    when s is G.U:\n  \
-    \    let si = g.id(s)\n      dist[si] = G.T(0)\n      heap.push(dist[si], initEdge(s,\
-    \ s, G.T(0)))\n    else:\n      for s in s:\n        let si = g.id(s)\n      \
-    \  dist[si] = G.T(0)\n        heap.push(dist[si], initEdge(s, s, G.T(0)))\n  \
-    \  while not heap.empty():\n      let (cost, p) = heap.pop()\n      let ui = g.id(p.dst)\n\
-    \      if prev_set[ui]: continue\n      prev_set[ui] = true\n      prev[ui] =\
-    \ p.src\n      for e in g[p.dst]:\n        let next_cost = cost + e.weight\n \
-    \       let vi = g.id(e.dst)\n        if dist[vi] <= next_cost: continue\n   \
-    \     dist[vi] = next_cost\n        heap.push(dist[vi], e)\n    result = DijkstraResult[G.T,\
-    \ G.U](dist:dist, prev:prev)\n    when G.U isnot int: result.id = g.id\n"
+    weight type must be integer\"\n    var default_val: tuple[dist:G.T, prev_set:bool,\
+    \ prev:G.U]\n    default_val.dist = G.T.inf\n    default_val.prev_set = false\n\
+    \    let n = g.len\n    var a = initNodeArray(g, default_val, g.len)\n    static:\n\
+    \      echo a.type\n\n    var heap = initRadixHeap[G.T, Edge[G.T, G.U]]()\n  \
+    \  when s is G.U:\n#      let si = g.id(s)\n      var x = a[s]\n      x[].dist\
+    \ = G.T(0)\n#      dist[si] = G.T(0)\n      heap.push(G.T(0), initEdge(s, s, G.T(0)))\n\
+    \    else:\n      for s in s:\n        #let si = g.id(s)\n        var x = a[s]\n\
+    \        x[].dist = G.T(0)\n        #dist[si] = G.T(0)\n        heap.push(G.T(0),\
+    \ initEdge(s, s, G.T(0)))\n    while not heap.empty():\n      let (cost, p) =\
+    \ heap.pop()\n      var x = a[p.dst]\n#      let ui = g.id(p.dst)\n#      if prev_set[ui]:\
+    \ continue\n      if x[].prev_set: continue\n      x[].prev_set = true\n#    \
+    \  prev_set[ui] = true\n      x[].prev = p.src\n#      prev[ui] = p.src\n    \
+    \  for e in g[p.dst]:\n        let next_cost = cost + e.weight\n        var x\
+    \ = a[e.dst]\n#        let vi = g.id(e.dst)\n        if x[].dist <= next_cost:\
+    \ continue\n        x[].dist = next_cost\n        heap.push(x[].dist, e)\n   \
+    \ result = DijkstraResult[G.T, G.U, G.useId](a:a)\n"
   dependsOn:
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/structure/radix_heap.nim
   - atcoder/extra/structure/radix_heap.nim
   - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/structure/radix_heap.nim
   - atcoder/extra/structure/radix_heap.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/graph/dijkstra_result.nim
   isVerificationFile: false
   path: atcoder/extra/graph/dijkstra_radix_heap.nim
-  requiredBy:
-  - tests/test_shortest_path.nim
-  - tests/test_shortest_path.nim
-  timestamp: '1970-01-01 00:00:00+00:00'
+  requiredBy: []
+  timestamp: '2021-11-18 02:47:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/graph/aoj_grl_1_a_dijkstra_radix_heap_test.nim
