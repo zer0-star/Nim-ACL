@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/maximum_independent_set.nim
     title: atcoder/extra/graph/maximum_independent_set.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/maximum_independent_set.nim
     title: atcoder/extra/graph/maximum_independent_set.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/maximum_independent_set
     links:
@@ -34,15 +34,15 @@ data:
     \  for i in 0..<p.len:\n    stdout.write p[i]\n    if i < p.len - 1: stdout.write\
     \ \" \"\n  echo \"\"\n\nmain()\n"
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/extra/graph/maximum_independent_set.nim
   - atcoder/extra/graph/maximum_independent_set.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_maximum_independent_set_test.nim
   requiredBy: []
-  timestamp: '2021-07-18 17:05:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-11 23:59:27+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/graph/yosupo_maximum_independent_set_test.nim
 layout: document

@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/persistent_array.nim
     title: atcoder/extra/structure/persistent_array.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/persistent_array.nim
     title: atcoder/extra/structure/persistent_array.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/persistent_dsu.nim
     title: atcoder/extra/structure/persistent_dsu.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/persistent_dsu.nim
     title: atcoder/extra/structure/persistent_dsu.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/persistent_unionfind
     links:
@@ -40,17 +40,17 @@ data:
     \ v)\n    else:\n      echo if G[k].leader(u) == G[k].leader(v): 1 else: 0\n\n\
     main()\n"
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/extra/structure/persistent_dsu.nim
-  - atcoder/extra/structure/persistent_dsu.nim
-  - atcoder/header.nim
   - atcoder/extra/structure/persistent_array.nim
+  - atcoder/extra/structure/persistent_dsu.nim
   - atcoder/extra/structure/persistent_array.nim
+  - atcoder/extra/structure/persistent_dsu.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_persistent_unionfind_test.nim
   requiredBy: []
-  timestamp: '2021-07-18 17:05:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-11 23:59:27+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/structure/yosupo_persistent_unionfind_test.nim
 layout: document

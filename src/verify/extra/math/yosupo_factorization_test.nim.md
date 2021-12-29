@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/factorization.nim
     title: atcoder/extra/math/factorization.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/factorization.nim
     title: atcoder/extra/math/factorization.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/factorize
     links:
@@ -32,15 +32,15 @@ data:
     \   stdout.write(x.len, \" \")\n    stdout.write(x.mapIt($it).join(\" \"))\n \
     \   echo \"\"\n"
   dependsOn:
-  - atcoder/header.nim
   - atcoder/extra/math/factorization.nim
   - atcoder/header.nim
   - atcoder/extra/math/factorization.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/math/yosupo_factorization_test.nim
   requiredBy: []
-  timestamp: '2021-07-18 17:05:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-11 23:59:27+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/math/yosupo_factorization_test.nim
 layout: document

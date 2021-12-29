@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
   _extendedRequiredBy: []
@@ -45,12 +45,12 @@ data:
     \ i in 0..N:\n      let tmp = y[i] * dp[i] * pd[i] * T.rfact(i) * T.rfact(N -\
     \ i)\n      if ((N - i) and 1) != 0: result -= tmp\n      else: result += tmp\n"
   dependsOn:
-  - atcoder/extra/math/combination.nim
-  - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/math/combination.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/math/combination.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/math/combination.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/math/combination.nim
   isVerificationFile: false

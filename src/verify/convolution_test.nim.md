@@ -1,46 +1,46 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/convolution.nim
     title: atcoder/convolution.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/convolution.nim
     title: atcoder/convolution.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
   _extendedRequiredBy: []
@@ -78,24 +78,24 @@ data:
 
     '
   dependsOn:
-  - atcoder/header.nim
   - atcoder/internal_bit.nim
-  - atcoder/convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
-  - atcoder/element_concepts.nim
   - atcoder/generate_definitions.nim
-  - atcoder/convolution.nim
-  - atcoder/element_concepts.nim
   - atcoder/internal_math.nim
-  - atcoder/modint.nim
+  - atcoder/internal_bit.nim
+  - atcoder/generate_definitions.nim
   - atcoder/header.nim
   - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/element_concepts.nim
+  - atcoder/convolution.nim
+  - atcoder/header.nim
+  - atcoder/modint.nim
+  - atcoder/element_concepts.nim
+  - atcoder/convolution.nim
+  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/convolution_test.nim
   requiredBy: []
-  timestamp: '2021-08-23 20:05:28+09:00'
+  timestamp: '2021-12-11 23:59:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/convolution_test.nim

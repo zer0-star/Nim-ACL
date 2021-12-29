@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
   - icon: ':heavy_check_mark:'
@@ -19,22 +19,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/segment_graph.nim
     title: atcoder/extra/geometry/segment_graph.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
   - icon: ':heavy_check_mark:'
@@ -43,10 +43,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
   - icon: ':heavy_check_mark:'
@@ -61,10 +61,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
@@ -102,32 +102,32 @@ data:
     \        ans.min= dist[(u, v)]\n    if ans.classify == fcInf:\n      echo -1\n\
     \    else:\n      echo ans.radianToDegree\n"
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/header.nim
-  - atcoder/extra/geometry/segment_graph.nim
-  - atcoder/extra/graph/dijkstra.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/geometry/segment_graph.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/graph/dijkstra.nim
   - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/static_var.nim
+  - atcoder/header.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/geometry/segment_graph.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/dijkstra.nim
   - atcoder/element_concepts.nim
+  - atcoder/header.nim
+  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/graph/dijkstra.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/geometry/segment_graph.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/internal_complex.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
   requiredBy: []
-  timestamp: '2021-11-18 02:47:29+09:00'
+  timestamp: '2021-12-11 23:59:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim

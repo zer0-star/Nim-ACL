@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/succinct_indexable_dictionary.nim
     title: atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/succinct_indexable_dictionary.nim
     title: atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2674
     links:
@@ -45,19 +45,19 @@ data:
     \ L, R = nextInt() - 1\n  let E = nextInt()\n  echo (R - L + 1) - matrix.range_freq(L\
     \ .. R, min(X[L], X[R]) - E, max(X[L], X[R]) + E + 1)\n"
   dependsOn:
+  - atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/wavelet_matrix.nim
-  - atcoder/extra/structure/wavelet_matrix.nim
-  - atcoder/header.nim
-  - atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - atcoder/extra/structure/succinct_indexable_dictionary.nim
   isVerificationFile: true
   path: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
   requiredBy: []
-  timestamp: '2021-07-18 17:05:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-11 23:59:27+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
 layout: document

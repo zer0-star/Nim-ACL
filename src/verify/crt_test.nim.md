@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/math.nim
     title: atcoder/math.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/math.nim
     title: atcoder/math.nim
   _extendedRequiredBy: []
@@ -38,15 +38,15 @@ data:
     \ 0: y += z\n  echo y\n"
   dependsOn:
   - atcoder/math.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/internal_math.nim
   - atcoder/math.nim
-  - atcoder/header.nim
-  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/crt_test.nim
   requiredBy: []
-  timestamp: '2021-08-23 20:29:05+09:00'
+  timestamp: '2021-12-11 23:59:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/crt_test.nim

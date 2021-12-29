@@ -14,28 +14,28 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/graph/mincostflow_generalized.nim
     title: atcoder/extra/graph/mincostflow_generalized.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/mincostflow.nim
     title: atcoder/mincostflow.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/mincostflow.nim
     title: atcoder/mincostflow.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/twosat.nim
     title: atcoder/twosat.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/twosat.nim
     title: atcoder/twosat.nim
   _extendedVerifiedWith:
@@ -45,27 +45,27 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
     title: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/min_cost_flow_test.nim
     title: verify/min_cost_flow_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/min_cost_flow_test.nim
     title: verify/min_cost_flow_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/scc_test.nim
     title: verify/scc_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/scc_test.nim
     title: verify/scc_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/twosat_test.nim
     title: verify/twosat_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/twosat_test.nim
     title: verify/twosat_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -96,7 +96,7 @@ data:
   - atcoder/extra/graph/mincostflow_generalized.nim
   - atcoder/extra/graph/mincostflow_generalized.nim
   timestamp: '2021-08-18 01:50:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/min_cost_flow_test.nim
   - verify/min_cost_flow_test.nim
