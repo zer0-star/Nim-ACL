@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
@@ -52,16 +52,16 @@ data:
     \ = dijkstra(g, R)\n  for u in 0..<V:\n    if dist[u] == int.inf: echo \"INF\"\
     \n    else: echo dist[u]\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/header.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/graph/dijkstra.nim
-  - atcoder/extra/graph/dijkstra.nim
   - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/dijkstra.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/graph_template.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
   requiredBy: []

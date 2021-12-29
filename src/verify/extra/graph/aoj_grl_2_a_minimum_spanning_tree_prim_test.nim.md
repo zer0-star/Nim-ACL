@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
   - icon: ':heavy_check_mark:'
@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/prim.nim
     title: atcoder/extra/graph/prim.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
@@ -38,12 +38,12 @@ data:
     \ i in 0..<E:\n    let\n      a,b,c = nextInt()\n    g.addBiEdge(a,b,c)\n  echo\
     \ prim(g)[0]\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/header.nim
-  - atcoder/extra/graph/prim.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/prim.nim
   - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/prim.nim
+  - atcoder/extra/graph/graph_template.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_2_a_minimum_spanning_tree_prim_test.nim
   requiredBy: []

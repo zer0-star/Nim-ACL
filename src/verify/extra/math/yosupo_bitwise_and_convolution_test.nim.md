@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/math/bitwise_convolution.nim
     title: atcoder/extra/math/bitwise_convolution.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/math/bitwise_convolution.nim
     title: atcoder/extra/math/bitwise_convolution.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
   _extendedRequiredBy: []
@@ -50,16 +50,16 @@ data:
     \  let N = nextInt()\n  var a = newSeqWith(2^N, mint(nextInt()))\n  var b = newSeqWith(2^N,\
     \ mint(nextInt()))\n  echo AndConvolution(a, b).join(\" \")\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/math/bitwise_convolution.nim
-  - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
   - atcoder/modint.nim
   - atcoder/extra/math/bitwise_convolution.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
   - atcoder/modint.nim
   - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/extra/math/bitwise_convolution.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/extra/math/yosupo_bitwise_and_convolution_test.nim
   requiredBy: []

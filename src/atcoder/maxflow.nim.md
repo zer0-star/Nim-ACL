@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/max_flow_test.nim
     title: verify/max_flow_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/max_flow_test.nim
     title: verify/max_flow_test.nim
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -80,7 +80,7 @@ data:
   path: atcoder/maxflow.nim
   requiredBy: []
   timestamp: '2021-08-18 01:50:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/max_flow_test.nim
   - verify/max_flow_test.nim

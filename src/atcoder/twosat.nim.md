@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/twosat_test.nim
     title: verify/twosat_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/twosat_test.nim
     title: verify/twosat_test.nim
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -45,14 +45,14 @@ data:
     \ TwoSAT):auto = self.answer\n"
   dependsOn:
   - atcoder/internal_csr.nim
-  - atcoder/internal_scc.nim
-  - atcoder/internal_scc.nim
   - atcoder/internal_csr.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_scc.nim
   isVerificationFile: false
   path: atcoder/twosat.nim
   requiredBy: []
   timestamp: '2021-08-18 01:50:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/twosat_test.nim
   - verify/twosat_test.nim

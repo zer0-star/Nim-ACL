@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/dp/longest_increasing_subsequence.nim
     title: atcoder/extra/dp/longest_increasing_subsequence.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
@@ -31,10 +31,10 @@ data:
     \nproc main() =\n  let\n    N = nextInt()\n    A = newSeqWith(N, nextInt())\n\
     \  echo longestIncreasingSubsequence(A, true)\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/dp/longest_increasing_subsequence.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/extra/dp/longest_increasing_subsequence.nim
-  - atcoder/header.nim
+  - atcoder/extra/dp/longest_increasing_subsequence.nim
   isVerificationFile: true
   path: verify/extra/dp/aoj_dpl_1_d_LIS_test.nim
   requiredBy: []

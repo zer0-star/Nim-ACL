@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/math.nim
     title: atcoder/math.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/math.nim
     title: atcoder/math.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_floor_of_linear
     links:
@@ -37,16 +37,16 @@ data:
     \  let N, M, A, B = nextInt()\n  echo floor_sum(N, M, A, B)\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/math.nim
-  - atcoder/internal_math.nim
-  - atcoder/math.nim
   - atcoder/header.nim
+  - atcoder/math.nim
+  - atcoder/math.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/floor_sum_test.nim
   requiredBy: []
   timestamp: '2021-12-11 23:59:27+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/floor_sum_test.nim
 layout: document

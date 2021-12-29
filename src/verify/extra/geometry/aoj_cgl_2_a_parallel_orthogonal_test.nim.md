@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
   - icon: ':heavy_check_mark:'
@@ -31,10 +31,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
@@ -58,18 +58,18 @@ data:
     \ yp3)\n      s1 = initLine(p0, p1)\n      s2 = initLine(p2, p3)\n    if s1.parallel(s2):\
     \ echo 2\n    elif s1.orthogonal(s2): echo 1\n    else: echo 0\n"
   dependsOn:
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/element_concepts.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
-  - atcoder/header.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/static_var.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_2_a_parallel_orthogonal_test.nim
   requiredBy: []

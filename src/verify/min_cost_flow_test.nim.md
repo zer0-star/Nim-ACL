@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/internal_heap.nim
     title: atcoder/internal_heap.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/internal_heap.nim
     title: atcoder/internal_heap.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/mincostflow.nim
     title: atcoder/mincostflow.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/mincostflow.nim
     title: atcoder/mincostflow.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B
     links:
@@ -51,20 +51,20 @@ data:
     \ V - 1, F)\n  if f.cap < F:\n    echo -1\n  else:\n    echo f.cost\n"
   dependsOn:
   - atcoder/internal_heap.nim
-  - atcoder/internal_queue.nim
-  - atcoder/header.nim
   - atcoder/internal_heap.nim
-  - atcoder/internal_csr.nim
-  - atcoder/mincostflow.nim
-  - atcoder/mincostflow.nim
-  - atcoder/internal_csr.nim
-  - atcoder/internal_queue.nim
   - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/internal_csr.nim
+  - atcoder/internal_csr.nim
+  - atcoder/mincostflow.nim
+  - atcoder/internal_queue.nim
+  - atcoder/mincostflow.nim
+  - atcoder/internal_queue.nim
   isVerificationFile: true
   path: verify/min_cost_flow_test.nim
   requiredBy: []
   timestamp: '2021-12-21 01:39:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/min_cost_flow_test.nim
 layout: document

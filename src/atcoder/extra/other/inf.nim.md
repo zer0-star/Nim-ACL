@@ -14,16 +14,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/bellman_ford.nim
     title: atcoder/extra/graph/bellman_ford.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
   - icon: ':heavy_check_mark:'
@@ -147,15 +147,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_shortest_path_test.nim
     title: verify/extra/graph/yosupo_shortest_path_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/shortest_path_test.nim
     title: verify/shortest_path_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/shortest_path_test.nim
     title: verify/shortest_path_test.nim
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -214,7 +214,7 @@ data:
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   timestamp: '2021-07-29 00:52:13+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/shortest_path_test.nim
   - verify/shortest_path_test.nim

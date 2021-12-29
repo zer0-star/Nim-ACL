@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/dp/slide_min.nim
     title: atcoder/extra/dp/slide_min.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
@@ -32,9 +32,9 @@ data:
     \ \")\n\nmain()\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/extra/dp/slide_min.nim
-  - atcoder/extra/dp/slide_min.nim
   - atcoder/header.nim
+  - atcoder/extra/dp/slide_min.nim
+  - atcoder/extra/dp/slide_min.nim
   isVerificationFile: true
   path: verify/extra/dp/aoj_dsl_3_d_slidemin_test.nim
   requiredBy: []

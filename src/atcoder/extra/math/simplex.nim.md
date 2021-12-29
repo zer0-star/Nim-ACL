@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
   _extendedRequiredBy: []
@@ -92,18 +92,18 @@ data:
     \ 0])\n#  echo A, b, c\n#  var tss = init_two_stage_simplex(A, b, c)\n#  echo\
     \ tss.solution\n\n\n"
   dependsOn:
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/matrix.nim
   - atcoder/generate_definitions.nim
-  - atcoder/extra/math/matrix.nim
   - atcoder/generate_definitions.nim
   - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/math/matrix.nim
-  - atcoder/generate_definitions.nim
   - atcoder/extra/math/matrix.nim
   - atcoder/generate_definitions.nim
+  - atcoder/generate_definitions.nim
   - atcoder/element_concepts.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/matrix.nim
+  - atcoder/extra/math/matrix.nim
   isVerificationFile: false
   path: atcoder/extra/math/simplex.nim
   requiredBy: []

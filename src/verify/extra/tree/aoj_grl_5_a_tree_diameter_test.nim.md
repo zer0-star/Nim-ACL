@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/tree/tree_diameter.nim
     title: atcoder/extra/tree/tree_diameter.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/tree/tree_diameter.nim
     title: atcoder/extra/tree/tree_diameter.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_A
     links:
@@ -38,17 +38,17 @@ data:
     \    let x, y, z = nextInt()\n    g.addBiEdge(x,y,z)\n  echo g.treeDiameter()[0]\n\
     \nmain()\n"
   dependsOn:
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/tree/tree_diameter.nim
   - atcoder/extra/tree/tree_diameter.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/tree/tree_diameter.nim
-  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/tree/aoj_grl_5_a_tree_diameter_test.nim
   requiredBy: []
   timestamp: '2021-12-11 23:59:27+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/tree/aoj_grl_5_a_tree_diameter_test.nim
 layout: document

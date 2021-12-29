@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/scc
     links:
@@ -45,18 +45,18 @@ data:
     )\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/scc.nim
-  - atcoder/internal_csr.nim
-  - atcoder/internal_scc.nim
-  - atcoder/scc.nim
-  - atcoder/internal_scc.nim
-  - atcoder/internal_csr.nim
   - atcoder/header.nim
+  - atcoder/internal_csr.nim
+  - atcoder/internal_csr.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_scc.nim
+  - atcoder/scc.nim
+  - atcoder/scc.nim
   isVerificationFile: true
   path: verify/scc_test.nim
   requiredBy: []
   timestamp: '2021-12-11 23:59:27+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/scc_test.nim
 layout: document

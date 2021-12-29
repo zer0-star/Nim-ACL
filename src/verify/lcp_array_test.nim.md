@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/string.nim
     title: atcoder/string.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/string.nim
     title: atcoder/string.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/number_of_substrings
     links:
@@ -32,14 +32,14 @@ data:
     \ + 1) div 2\nfor v in lcp: ans -= v\necho ans\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/string.nim
-  - atcoder/string.nim
   - atcoder/header.nim
+  - atcoder/string.nim
+  - atcoder/string.nim
   isVerificationFile: true
   path: verify/lcp_array_test.nim
   requiredBy: []
   timestamp: '2021-12-11 23:59:27+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/lcp_array_test.nim
 layout: document

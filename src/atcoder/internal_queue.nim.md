@@ -26,34 +26,34 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/graph/mincostflow_lowerbound.nim
     title: atcoder/extra/graph/mincostflow_lowerbound.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/maxflow.nim
     title: atcoder/maxflow.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/maxflow.nim
     title: atcoder/maxflow.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/mincostflow.nim
     title: atcoder/mincostflow.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/mincostflow.nim
     title: atcoder/mincostflow.nim
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/max_flow_test.nim
     title: verify/max_flow_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/max_flow_test.nim
     title: verify/max_flow_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/min_cost_flow_test.nim
     title: verify/min_cost_flow_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/min_cost_flow_test.nim
     title: verify/min_cost_flow_test.nim
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -86,7 +86,7 @@ data:
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   timestamp: '2020-09-18 00:33:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/max_flow_test.nim
   - verify/max_flow_test.nim

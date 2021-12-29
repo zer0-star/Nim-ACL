@@ -13,16 +13,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
   - icon: ':heavy_check_mark:'
@@ -88,18 +88,18 @@ data:
     \      while x != i:\n        usede[x] = true\n        x = paredge[x]\n    return\
     \ (ret, parent).some\n"
   dependsOn:
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/structure/skew_heap.nim
-  - atcoder/extra/graph/graph_template.nim
+  - atcoder/dsu.nim
   - atcoder/dsu.nim
   - atcoder/extra/structure/skew_heap.nim
-  - atcoder/dsu.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/structure/skew_heap.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/dsu.nim
   - atcoder/dsu.nim
   - atcoder/extra/structure/skew_heap.nim
-  - atcoder/dsu.nim
+  - atcoder/extra/structure/skew_heap.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
   isVerificationFile: false
   path: atcoder/extra/graph/chu_liu_edmonds.nim
   requiredBy: []

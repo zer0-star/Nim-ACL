@@ -13,64 +13,64 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/graph/mincostflow_generalized.nim
     title: atcoder/extra/graph/mincostflow_generalized.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/internal_heap.nim
     title: atcoder/internal_heap.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/internal_heap.nim
     title: atcoder/internal_heap.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/internal_heap.nim
     title: atcoder/internal_heap.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/internal_heap.nim
     title: atcoder/internal_heap.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
   _extendedRequiredBy: []
@@ -121,29 +121,29 @@ data:
     \  \n  \n  \n"
   dependsOn:
   - atcoder/internal_heap.nim
-  - atcoder/internal_queue.nim
   - atcoder/internal_heap.nim
   - atcoder/internal_csr.nim
-  - atcoder/scc.nim
-  - atcoder/extra/graph/mincostflow_generalized.nim
-  - atcoder/internal_scc.nim
-  - atcoder/scc.nim
-  - atcoder/internal_scc.nim
   - atcoder/internal_csr.nim
-  - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/scc.nim
   - atcoder/internal_queue.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_queue.nim
+  - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/scc.nim
+  - atcoder/extra/graph/mincostflow_generalized.nim
   - atcoder/internal_heap.nim
-  - atcoder/internal_queue.nim
   - atcoder/internal_heap.nim
   - atcoder/internal_csr.nim
-  - atcoder/scc.nim
-  - atcoder/extra/graph/mincostflow_generalized.nim
-  - atcoder/internal_scc.nim
-  - atcoder/scc.nim
-  - atcoder/internal_scc.nim
   - atcoder/internal_csr.nim
-  - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/scc.nim
   - atcoder/internal_queue.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_queue.nim
+  - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/scc.nim
+  - atcoder/extra/graph/mincostflow_generalized.nim
   isVerificationFile: false
   path: atcoder/extra/graph/mincostflow_lowerbound.nim
   requiredBy: []

@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
   _extendedRequiredBy: []
@@ -47,13 +47,13 @@ data:
     main()\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/scc.nim
-  - atcoder/internal_csr.nim
-  - atcoder/internal_scc.nim
-  - atcoder/scc.nim
-  - atcoder/internal_scc.nim
-  - atcoder/internal_csr.nim
   - atcoder/header.nim
+  - atcoder/internal_csr.nim
+  - atcoder/internal_csr.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_scc.nim
+  - atcoder/scc.nim
+  - atcoder/scc.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
   requiredBy: []

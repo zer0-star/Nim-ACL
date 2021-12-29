@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
   _extendedRequiredBy:
@@ -32,16 +32,16 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/graph/mincostflow_lowerbound.nim
     title: atcoder/extra/graph/mincostflow_lowerbound.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/twosat.nim
     title: atcoder/twosat.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/twosat.nim
     title: atcoder/twosat.nim
   _extendedVerifiedWith:
@@ -51,21 +51,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
     title: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/scc_test.nim
     title: verify/scc_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/scc_test.nim
     title: verify/scc_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/twosat_test.nim
     title: verify/twosat_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/twosat_test.nim
     title: verify/twosat_test.nim
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -116,7 +116,7 @@ data:
   - atcoder/scc.nim
   - atcoder/scc.nim
   timestamp: '2021-08-18 01:50:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
   - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim

@@ -9,15 +9,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_bitwise_and_convolution_test.nim
     title: verify/extra/math/yosupo_bitwise_and_convolution_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_bitwise_or_convolution_test.nim
     title: verify/extra/math/yosupo_bitwise_or_convolution_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_bitwise_or_convolution_test.nim
     title: verify/extra/math/yosupo_bitwise_or_convolution_test.nim
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -45,7 +45,7 @@ data:
   path: atcoder/extra/math/bitwise_convolution.nim
   requiredBy: []
   timestamp: '2021-03-01 01:28:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/extra/math/yosupo_bitwise_or_convolution_test.nim
   - verify/extra/math/yosupo_bitwise_or_convolution_test.nim

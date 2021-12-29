@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/structure/persistent_array.nim
     title: atcoder/extra/structure/persistent_array.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/structure/persistent_array.nim
     title: atcoder/extra/structure/persistent_array.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/persistent_queue
     links:
@@ -35,15 +35,15 @@ data:
     \    else:\n      echo a[head]\n      head.inc\n    S[i] = (a, head, tail)\n\n\
     main()\n"
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/extra/structure/persistent_array.nim
   - atcoder/extra/structure/persistent_array.nim
   - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/extra/structure/persistent_array.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_persistent_queue_test.nim
   requiredBy: []
   timestamp: '2021-12-11 23:59:27+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/structure/yosupo_persistent_queue_test.nim
 layout: document

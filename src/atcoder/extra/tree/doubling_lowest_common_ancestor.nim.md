@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
     title: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
     title: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/tree/yosupo_lowest_common_ancestor_test.nim
     title: verify/extra/tree/yosupo_lowest_common_ancestor_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/tree/yosupo_lowest_common_ancestor_test.nim
     title: verify/extra/tree/yosupo_lowest_common_ancestor_test.nim
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -66,7 +66,7 @@ data:
   path: atcoder/extra/tree/doubling_lowest_common_ancestor.nim
   requiredBy: []
   timestamp: '2021-11-18 02:47:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
   - verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim

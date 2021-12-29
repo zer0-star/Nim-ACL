@@ -7,28 +7,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/cycle_detection.nim
     title: atcoder/extra/graph/cycle_detection.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_sugar.nim
     title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_sugar.nim
     title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_underscored_calls.nim
     title: atcoder/extra/other/internal_underscored_calls.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_underscored_calls.nim
     title: atcoder/extra/other/internal_underscored_calls.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
@@ -54,16 +54,16 @@ data:
     \      for e in c:\n        e.weight\n    echo v.join(\"\\n\")\n  else:\n    echo\
     \ -1\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/other/internal_sugar.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/cycle_detection.nim
   - atcoder/header.nim
-  - atcoder/extra/graph/cycle_detection.nim
+  - atcoder/header.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/cycle_detection.nim
   - atcoder/extra/other/internal_underscored_calls.nim
   - atcoder/extra/other/internal_sugar.nim
+  - atcoder/extra/other/internal_sugar.nim
   - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_cycle_detection_test.nim
   requiredBy: []

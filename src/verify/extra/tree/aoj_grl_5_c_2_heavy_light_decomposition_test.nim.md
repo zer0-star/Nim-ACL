@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/tree/heavy_light_decomposition.nim
     title: atcoder/extra/tree/heavy_light_decomposition.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/tree/heavy_light_decomposition.nim
     title: atcoder/extra/tree/heavy_light_decomposition.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_C
     links:
@@ -39,17 +39,17 @@ data:
     \ c)\n  let tree = initHeavyLightDecomposition(g)\n  let Q = nextInt()\n  for\
     \ i in 0..<Q:\n    let u, v = nextInt()\n    echo tree.lca(u, v)\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/graph/graph_template.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/tree/heavy_light_decomposition.nim
   - atcoder/extra/tree/heavy_light_decomposition.nim
-  - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
   isVerificationFile: true
   path: verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim
   requiredBy: []
   timestamp: '2021-12-11 23:59:27+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim
 layout: document

@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
@@ -32,9 +32,9 @@ data:
     \ v)\n  elif t == 1:\n    echo(\n      if uf.same(u, v):\n        1\n      else:\n\
     \        0\n    )\n"
   dependsOn:
+  - atcoder/dsu.nim
+  - atcoder/dsu.nim
   - atcoder/header.nim
-  - atcoder/dsu.nim
-  - atcoder/dsu.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/dsu_test.nim

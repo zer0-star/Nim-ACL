@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/convolution.nim
     title: atcoder/convolution.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/convolution.nim
     title: atcoder/convolution.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
   - icon: ':heavy_check_mark:'
@@ -25,34 +25,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/centroid_decomposition.nim
     title: atcoder/extra/tree/centroid_decomposition.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
   _extendedRequiredBy: []
@@ -85,24 +85,24 @@ data:
     \      for i,d in d:ans[i] += d;base[i] += d\n\n  dfs(c)\n  echo ans[1..^1].join(\"\
     \ \")\n\nmain()\n"
   dependsOn:
+  - atcoder/header.nim
   - atcoder/convolution.nim
+  - atcoder/extra/tree/centroid_decomposition.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/modint.nim
+  - atcoder/extra/tree/centroid_decomposition.nim
   - atcoder/generate_definitions.nim
-  - atcoder/header.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/internal_bit.nim
-  - atcoder/extra/tree/centroid_decomposition.nim
-  - atcoder/modint.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/header.nim
   - atcoder/internal_math.nim
-  - atcoder/extra/tree/centroid_decomposition.nim
-  - atcoder/convolution.nim
+  - atcoder/modint.nim
   - atcoder/internal_bit.nim
   - atcoder/generate_definitions.nim
-  - atcoder/internal_math.nim
   - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/convolution.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: true
   path: verify/extra/graph/centroid_decomposition_test.nim
   requiredBy: []

@@ -7,22 +7,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra_radix_heap.nim
     title: atcoder/extra/graph/dijkstra_radix_heap.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
   - icon: ':heavy_check_mark:'
@@ -31,10 +31,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/radix_heap.nim
     title: atcoder/extra/structure/radix_heap.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
   _extendedRequiredBy: []
@@ -58,18 +58,18 @@ data:
     \  var dist = dijkstra_radix_heap(g, R)\n  for u in 0..<V:\n    if dist[u] ==\
     \ int32.inf: echo \"INF\"\n    else: echo dist[u]\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/graph/dijkstra_radix_heap.nim
-  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/graph/dijkstra_radix_heap.nim
   - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/structure/radix_heap.nim
+  - atcoder/extra/graph/dijkstra_radix_heap.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/structure/radix_heap.nim
   - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/extra/structure/radix_heap.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_1_a_dijkstra_radix_heap_test.nim
   requiredBy: []
