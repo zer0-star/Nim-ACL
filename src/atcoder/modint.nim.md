@@ -358,10 +358,10 @@ data:
     \n  useStaticModInt(modint998244353, 998244353)\n  useStaticModInt(modint1000000007,\
     \ 1000000007)\n  useDynamicModInt(modint, -1)\n"
   dependsOn:
-  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
   isVerificationFile: false
   path: atcoder/modint.nim
   requiredBy:

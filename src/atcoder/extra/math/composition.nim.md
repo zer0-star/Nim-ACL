@@ -179,44 +179,44 @@ data:
   dependsOn:
   - atcoder/internal_bit.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/modint.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/generate_definitions.nim
   - atcoder/modint.nim
   - atcoder/internal_math.nim
+  - atcoder/element_concepts.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
+  - atcoder/convolution.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/element_concepts.nim
-  - atcoder/convolution.nim
+  - atcoder/extra/math/formal_power_series.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/formal_power_series.nim
   - atcoder/element_concepts.nim
   - atcoder/convolution.nim
   - atcoder/extra/math/ntt.nim
-  - atcoder/generate_definitions.nim
   - atcoder/extra/math/formal_power_series.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/internal_bit.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/modint.nim
   - atcoder/internal_bit.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/modint.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/generate_definitions.nim
   - atcoder/modint.nim
   - atcoder/internal_math.nim
+  - atcoder/element_concepts.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
+  - atcoder/convolution.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/element_concepts.nim
-  - atcoder/convolution.nim
+  - atcoder/extra/math/formal_power_series.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/formal_power_series.nim
   - atcoder/element_concepts.nim
   - atcoder/convolution.nim
   - atcoder/extra/math/ntt.nim
-  - atcoder/generate_definitions.nim
   - atcoder/extra/math/formal_power_series.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/internal_bit.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/modint.nim
   isVerificationFile: false
   path: atcoder/extra/math/composition.nim
   requiredBy: []

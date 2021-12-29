@@ -186,27 +186,27 @@ data:
     \ = node.r\n    return \"{\" & a.join(\", \") & \"}\"\n"
   dependsOn:
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/red_black_tree.nim
-  - atcoder/extra/structure/red_black_tree.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/red_black_tree.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/red_black_tree.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/red_black_tree.nim
-  - atcoder/extra/structure/red_black_tree.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/red_black_tree.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/red_black_tree.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
   isVerificationFile: false

@@ -65,18 +65,18 @@ data:
     \  else:\n    let x = nextInt().mint\n    let (b, a) = swa.fold_all()\n    echo\
     \ a * x + b\n\n"
   dependsOn:
+  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/header.nim
+  - atcoder/modint.nim
   - atcoder/extra/other/internal_sugar.nim
-  - atcoder/modint.nim
-  - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/header.nim
-  - atcoder/generate_definitions.nim
   - atcoder/extra/structure/sliding_window_aggregation.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
   - atcoder/extra/structure/sliding_window_aggregation.nim
   - atcoder/extra/other/internal_sugar.nim
   isVerificationFile: true

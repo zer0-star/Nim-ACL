@@ -44,9 +44,9 @@ data:
     \      self.answer[i] = id[2 * i] < id[2 * i + 1]\n    return true\n  proc answer*(self:\
     \ TwoSAT):auto = self.answer\n"
   dependsOn:
+  - atcoder/internal_scc.nim
+  - atcoder/internal_scc.nim
   - atcoder/internal_csr.nim
-  - atcoder/internal_scc.nim
-  - atcoder/internal_scc.nim
   - atcoder/internal_csr.nim
   isVerificationFile: false
   path: atcoder/twosat.nim

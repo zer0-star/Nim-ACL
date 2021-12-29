@@ -78,12 +78,12 @@ data:
   dependsOn:
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
-  - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/rangeutils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/link_cut_tree.nim
   requiredBy: []

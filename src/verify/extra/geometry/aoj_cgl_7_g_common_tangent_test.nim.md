@@ -66,20 +66,20 @@ data:
     \      ans.add l.b\n  ans.sort() do (x, y:Point[float]) -> int:\n    if x <~ y:\
     \ -1\n    elif x >~ y: 1\n    else: 0\n  for a in ans:\n    echo a.toString()\n"
   dependsOn:
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/header.nim
-  - atcoder/extra/geometry/tangent.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/geometry/tangent.nim
-  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/geometry/tangent.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim
   requiredBy: []

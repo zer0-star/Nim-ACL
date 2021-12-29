@@ -43,8 +43,8 @@ data:
 
     '
   dependsOn:
-  - atcoder/header.nim
   - atcoder/string.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/string.nim
   isVerificationFile: true

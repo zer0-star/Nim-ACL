@@ -38,12 +38,12 @@ data:
     \    let x, y, z = nextInt()\n    g.addBiEdge(x,y,z)\n  let (d, a) = g.treeDiameter()\n\
     \  echo d, \" \", a.len\n  echo a.mapIt($it).join(\" \")\n\nmain()\n"
   dependsOn:
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/graph_template.nim
+  - atcoder/header.nim
   - atcoder/extra/tree/tree_diameter.nim
   - atcoder/extra/tree/tree_diameter.nim
-  - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
   isVerificationFile: true
   path: verify/extra/tree/yosupo_tree_diameter_test.nim
   requiredBy: []

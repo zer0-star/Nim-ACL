@@ -93,17 +93,17 @@ data:
     \ tss.solution\n\n\n"
   dependsOn:
   - atcoder/element_concepts.nim
-  - atcoder/extra/math/matrix.nim
+  - atcoder/generate_definitions.nim
   - atcoder/extra/math/matrix.nim
   - atcoder/generate_definitions.nim
+  - atcoder/extra/math/matrix.nim
+  - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/matrix.nim
   - atcoder/extra/math/matrix.nim
   - atcoder/generate_definitions.nim
+  - atcoder/extra/math/matrix.nim
   - atcoder/element_concepts.nim
-  - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: atcoder/extra/math/simplex.nim
   requiredBy: []

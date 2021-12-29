@@ -109,12 +109,12 @@ data:
   dependsOn:
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
-  - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/rangeutils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/generalized_slope_trick.nim
   requiredBy: []

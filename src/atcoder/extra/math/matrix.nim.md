@@ -147,12 +147,12 @@ data:
   dependsOn:
   - atcoder/element_concepts.nim
   - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
   - atcoder/generate_definitions.nim
   - atcoder/element_concepts.nim
-  - atcoder/generate_definitions.nim
   - atcoder/element_concepts.nim
   - atcoder/generate_definitions.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/math/matrix.nim
   requiredBy:

@@ -54,16 +54,16 @@ data:
     \  var u, v, w = nextInt()\n  u.dec;v.dec\n  g.addBiEdge(u, v, w)\n\nvar d = g.solve()\n\
     var ans = mint(0)\nfor i, (n, s, t) in d:\n  ans += t\n\necho ans / 2\n"
   dependsOn:
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/header.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
+  - atcoder/extra/tree/rerooting.nim
   - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
   - atcoder/header.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/header.nim
   - atcoder/extra/tree/rerooting.nim
-  - atcoder/extra/tree/rerooting.nim
+  - atcoder/modint.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/extra/tree/rerooting_test.nim
   requiredBy: []
