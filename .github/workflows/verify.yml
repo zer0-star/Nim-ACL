@@ -53,6 +53,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ github.ref == 'refs/heads/master' }}
         run: |
+          git config --global user.name GitHub
+          git config --global user.email noreply@github.com
           git switch gh-pages
           rm -rf docs
           cp -R src docs
