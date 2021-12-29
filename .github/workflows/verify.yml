@@ -53,7 +53,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ github.ref == 'refs/heads/master' }}
         run: |
-          cd ..
           git switch gh-pages
           rm -rf docs
           cp -R src docs
