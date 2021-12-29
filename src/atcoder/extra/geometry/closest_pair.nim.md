@@ -104,25 +104,25 @@ data:
     \       beet[p] = ps[i];\n        p += 1\n    return rec(0, ps.len)\n  # }}}\n"
   dependsOn:
   - atcoder/element_concepts.nim
-  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/internal_complex.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/other/internal_complex.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
   isVerificationFile: false
   path: atcoder/extra/geometry/closest_pair.nim
   requiredBy: []

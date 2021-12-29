@@ -59,16 +59,16 @@ data:
   dependsOn:
   - atcoder/element_concepts.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/floatutils.nim
   - atcoder/element_concepts.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/static_var.nim
   isVerificationFile: false
   path: atcoder/extra/other/binary_search_float.nim
   requiredBy: []

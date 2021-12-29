@@ -47,12 +47,12 @@ data:
   dependsOn:
   - atcoder/element_concepts.nim
   - atcoder/extra/math/combination.nim
-  - atcoder/extra/math/combination.nim
-  - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/math/combination.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/math/combination.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/math/combination.nim
   isVerificationFile: false
   path: atcoder/extra/math/lagrange_polynomial.nim
   requiredBy: []

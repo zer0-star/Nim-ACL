@@ -59,17 +59,17 @@ data:
     \ echo 2\n    elif s1.orthogonal(s2): echo 1\n    else: echo 0\n"
   dependsOn:
   - atcoder/element_concepts.nim
-  - atcoder/header.nim
-  - atcoder/header.nim
-  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/internal_complex.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/header.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/header.nim
+  - atcoder/extra/other/static_var.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_2_a_parallel_orthogonal_test.nim
   requiredBy: []

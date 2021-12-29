@@ -107,13 +107,13 @@ data:
     \ = self.st.merge_wuh(self.L, g.L)\n    self.R = self.st.merge_wuh(self.R, g.R)\n\
     \    self.min_f += g.min_f;\n"
   dependsOn:
-  - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/extra/structure/splay_tree.nim
+  - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/generalized_slope_trick.nim

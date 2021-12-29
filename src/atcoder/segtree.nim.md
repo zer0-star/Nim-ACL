@@ -86,10 +86,10 @@ data:
     \   return r + 1 - self.size\n      sm = ST.calc_op(self.d[r], sm)\n      if not\
     \ ((r and -r) != r): break\n    return 0\n  {.pop.}\n"
   dependsOn:
-  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: false
   path: atcoder/segtree.nim
   requiredBy: []

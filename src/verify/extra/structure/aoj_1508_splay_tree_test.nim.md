@@ -46,10 +46,10 @@ data:
     \ st.initNode(z), r)\n        # type 3\n#        st.erase(st.get_node(y))\n# \
     \       st.insert(y, z)\n"
   dependsOn:
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/splay_tree.nim
   - atcoder/header.nim
-  - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
   - atcoder/header.nim
   isVerificationFile: true

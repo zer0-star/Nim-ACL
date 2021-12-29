@@ -59,18 +59,18 @@ data:
     \ vs.len\n    echo x.mapIt($it).join(\" \")\n    for v in vs:\n      echo v.mapIt($it).join(\"\
     \ \")\n  else:\n    echo -1\n"
   dependsOn:
-  - atcoder/element_concepts.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/header.nim
-  - atcoder/internal_math.nim
   - atcoder/extra/math/matrix.nim
   - atcoder/generate_definitions.nim
+  - atcoder/element_concepts.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/matrix.nim
+  - atcoder/modint.nim
   - atcoder/header.nim
   - atcoder/modint.nim
-  - atcoder/modint.nim
-  - atcoder/extra/math/matrix.nim
   - atcoder/internal_math.nim
-  - atcoder/element_concepts.nim
+  - atcoder/header.nim
+  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/extra/math/yosupo_system_of_linear_equations_test.nim
   requiredBy: []

@@ -63,19 +63,19 @@ data:
     \    g = newSeqWith(n, initPoint(nextFloat(), nextFloat()))\n  echo g.closest_pair()\n"
   dependsOn:
   - atcoder/element_concepts.nim
-  - atcoder/header.nim
   - atcoder/extra/geometry/closest_pair.nim
-  - atcoder/header.nim
-  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/geometry/closest_pair.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/internal_complex.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/header.nim
+  - atcoder/extra/geometry/closest_pair.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/header.nim
+  - atcoder/extra/other/static_var.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_5_a_closest_pair_test.nim
   requiredBy: []

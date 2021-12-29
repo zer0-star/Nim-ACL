@@ -68,8 +68,8 @@ data:
     \ dst)\n\n  proc scc*(self:SCCGraph):auto = self.internal.scc()\n"
   dependsOn:
   - atcoder/internal_scc.nim
-  - atcoder/internal_scc.nim
   - atcoder/internal_csr.nim
+  - atcoder/internal_scc.nim
   - atcoder/internal_csr.nim
   isVerificationFile: false
   path: atcoder/scc.nim

@@ -85,24 +85,24 @@ data:
     \      for i,d in d:ans[i] += d;base[i] += d\n\n  dfs(c)\n  echo ans[1..^1].join(\"\
     \ \")\n\nmain()\n"
   dependsOn:
-  - atcoder/internal_bit.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/header.nim
-  - atcoder/modint.nim
   - atcoder/internal_math.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/tree/centroid_decomposition.nim
+  - atcoder/generate_definitions.nim
   - atcoder/element_concepts.nim
   - atcoder/generate_definitions.nim
-  - atcoder/internal_math.nim
+  - atcoder/element_concepts.nim
+  - atcoder/header.nim
+  - atcoder/modint.nim
+  - atcoder/convolution.nim
   - atcoder/header.nim
   - atcoder/convolution.nim
-  - atcoder/extra/tree/centroid_decomposition.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/convolution.nim
-  - atcoder/internal_bit.nim
   - atcoder/modint.nim
   - atcoder/extra/tree/centroid_decomposition.nim
-  - atcoder/extra/graph/graph_template.nim
+  - atcoder/internal_bit.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: true
   path: verify/extra/graph/centroid_decomposition_test.nim
   requiredBy: []

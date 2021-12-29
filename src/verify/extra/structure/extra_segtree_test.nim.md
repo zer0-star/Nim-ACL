@@ -47,12 +47,12 @@ data:
     \    echo st.prod(l..<r)\n"
   dependsOn:
   - atcoder/internal_bit.nim
-  - atcoder/rangeutils.nim
-  - atcoder/extra/structure/universal_segtree.nim
   - atcoder/internal_bit.nim
-  - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/rangeutils.nim
+  - atcoder/header.nim
+  - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/rangeutils.nim
+  - atcoder/header.nim
   - atcoder/extra/structure/universal_segtree.nim
   isVerificationFile: true
   path: verify/extra/structure/extra_segtree_test.nim

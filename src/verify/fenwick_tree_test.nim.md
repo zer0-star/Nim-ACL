@@ -47,11 +47,11 @@ data:
   dependsOn:
   - atcoder/rangeutils.nim
   - atcoder/internal_type_traits.nim
-  - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/rangeutils.nim
-  - atcoder/internal_type_traits.nim
+  - atcoder/header.nim
   - atcoder/fenwicktree.nim
+  - atcoder/internal_type_traits.nim
+  - atcoder/header.nim
   - atcoder/fenwicktree.nim
   isVerificationFile: true
   path: verify/fenwick_tree_test.nim

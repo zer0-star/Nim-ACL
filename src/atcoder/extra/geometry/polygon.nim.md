@@ -188,25 +188,25 @@ data:
     \ Real(2)\n    return A\n  # }}}\n  # }}}\n"
   dependsOn:
   - atcoder/element_concepts.nim
-  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/internal_complex.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/internal_complex.nim
-  - atcoder/element_concepts.nim
+  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
   isVerificationFile: false
   path: atcoder/extra/geometry/polygon.nim
   requiredBy:

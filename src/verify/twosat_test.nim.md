@@ -51,12 +51,12 @@ data:
   dependsOn:
   - atcoder/twosat.nim
   - atcoder/internal_scc.nim
-  - atcoder/twosat.nim
-  - atcoder/header.nim
+  - atcoder/internal_csr.nim
   - atcoder/internal_scc.nim
   - atcoder/header.nim
   - atcoder/internal_csr.nim
-  - atcoder/internal_csr.nim
+  - atcoder/header.nim
+  - atcoder/twosat.nim
   isVerificationFile: true
   path: verify/twosat_test.nim
   requiredBy: []

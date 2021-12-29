@@ -84,17 +84,17 @@ data:
     \      z *= z\n      y *= z\n      e = j\n    return T(x).some\n#}}}\n"
   dependsOn:
   - atcoder/generate_definitions.nim
-  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
   - atcoder/modint.nim
-  - atcoder/internal_math.nim
   - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
-  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
   - atcoder/modint.nim
-  - atcoder/internal_math.nim
   - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_math.nim
   isVerificationFile: false
   path: atcoder/extra/math/mod_sqrt.nim
   requiredBy:

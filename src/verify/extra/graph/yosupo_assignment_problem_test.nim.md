@@ -32,8 +32,8 @@ data:
     \ p) = a.hungarian()\n  echo X\n  echo p.mapIt($it).join(\" \")\n\nmain()\n"
   dependsOn:
   - atcoder/extra/graph/hungarian.nim
-  - atcoder/header.nim
   - atcoder/extra/graph/hungarian.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_assignment_problem_test.nim

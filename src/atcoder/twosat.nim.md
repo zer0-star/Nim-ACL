@@ -45,8 +45,8 @@ data:
     \ TwoSAT):auto = self.answer\n"
   dependsOn:
   - atcoder/internal_scc.nim
-  - atcoder/internal_scc.nim
   - atcoder/internal_csr.nim
+  - atcoder/internal_scc.nim
   - atcoder/internal_csr.nim
   isVerificationFile: false
   path: atcoder/twosat.nim
