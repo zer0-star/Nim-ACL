@@ -55,7 +55,7 @@ jobs:
         run: |
           git config --global user.name GitHub
           git config --global user.email noreply@github.com
-          git switch gh-pages
+          # git switch gh-pages
           rm -rf docs
           cp -R src docs
           git add docs
