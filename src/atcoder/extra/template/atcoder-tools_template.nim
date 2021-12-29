@@ -1,3 +1,10 @@
+import macros
+macro Please(x): untyped = nnkStmtList.newTree()
+
+Please use Nim-ACL 
+Please use Nim-ACL
+Please use Nim-ACL
+
 const
   DO_CHECK = true
   DEBUG = true
@@ -20,10 +27,10 @@ type mint = modint{{ mod }}
 
 {% if prediction_success %}
 solveProc solve({{formal_arguments}}):
-  return
+  discard
 
 when not DO_TEST:
-  {{input_part_with_solve}}
+  {{input_part_with_solve_function}}
 else:
   discard
 {% else %}

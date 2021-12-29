@@ -1,13 +1,13 @@
 when not declared ATCODER_SOLVEPROC_HPP:
   const ATCODER_SOLVEPROC_HPP* = 1
-  import std/macros, std/strformat, std/algorithm, std/sequtils
+  import std/macros, std/strformat, std/algorithm, std/sequtils, std/streams
+  import std/strutils
   proc mainBodyHeader():NimNode =
-    result = newStmtList()
-    result.add parseStmt "result = \"\""
-    result.add parseStmt "var resultPointer = result.addr"
 #    let macro_def = "(for s in {x.repr}: (result &= $s;(when output_stdout: stdout.write $s)));(result &= \"\\n\";when output_stdout: stdout.write \"\\n\")"
     let d = &"proc echo(x:varargs[string, `$`]) = (for s in x: (resultPointer[] &= $s; when output_stdout: stdout.write $s)); (resultPointer[] &= \"\\n\"; when output_stdout: stdout.write \"\\n\")"
-    result.add parseStmt(d)
+    result = newStmtList()
+    result.add parseStmt("result = \"\"\nvar resultPointer = result.addr")
+    result.add(parseStmt(d))
 
   macro solveProc*(head, body:untyped):untyped =
     var prev_type:NimNode
@@ -34,7 +34,13 @@ when not declared ATCODER_SOLVEPROC_HPP:
       if b.kind == nnkCall:
         if b[0] == ident"Check":
           hasCheck = true
-          checkBody.add b[1]
+          var checkStmt = if b.len == 2: b[1] else: b[2]
+          var strmName = if b.len == 2: "strm" else: $b[1]
+          checkBody.add(newNimNode(nnkWhenStmt).add(
+            newNimNode(nnkElifBranch).add(ident"DO_CHECK").add(
+              newBlockStmt(newEmptyNode(), 
+                newStmtList().add(parseStmt(fmt"var {strmName} = newStringStream(resultPointer[])")).add(checkStmt)
+          ))))
         elif b[0] == ident"Naive":
           hasNaive = true
           naiveBody.add b[1]
@@ -48,7 +54,7 @@ when not declared ATCODER_SOLVEPROC_HPP:
           mainBody.add b
       else:
         mainBody.add b
-    mainBody = newStmtList().add newBlockStmt(newEmptyNode(), newStmtList().add(mainBodyHeader()).add(mainBody))
+    mainBody = newStmtList().add(mainBodyHeader()).add(mainBody)
     if hasCheck:
       mainBody.add(checkBody)
     result = newStmtList()
@@ -62,6 +68,9 @@ when not declared ATCODER_SOLVEPROC_HPP:
 #    var identDefs = newNimNode(nnkIdentDefs).add(ident"output_stdout").add(newNimNode(nnkBracketExpr).add(ident"static").add(ident"bool")).add(newEmptyNode())
     mainParams.add(identDefs)
     var mainProcDef = newNimNode(nnkProcDef).add(ident"solve").add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams.copy())).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())
+    if hasCheck:
+      result.add(parseStmt("type CheckResult = ref object of Exception\n  output, err:string"))
+      result.add(parseStmt("template check(b:untyped) =\n  if not b: raise CheckResult(err: b.astToStr, output: resultPointer[])"))
     result.add(mainProcDef)
     if hasNaive:
       var naiveProcDef = newNimNode(nnkProcDef).add(ident"solve_naive").add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams.copy())).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())
@@ -93,7 +102,32 @@ when not declared ATCODER_SOLVEPROC_HPP:
       test_params[0] = ident"bool"
       test_body.add parseStmt(&"if vsolve != vsolve_naive: echo &\"test failed for\\n{vars}\", \"[solve]\\n\", vsolve, \"[solve_naive]\\n\", vsolve_naive;doAssert false")
       result.add newProc(name = ident"test", params = test_params, body = test_body, pragmas = discardablePragma)
+    elif hasCheck:
+      var test_body_sub = newStmtList()
+      var var_names = newSeq[string]()
+      for procName in [procName]:
+        let var_name = "v" & procName
+        var_names.add(var_name)
+        var l = newNimNode(nnkCall).add(ident(procName))
+        for c in callparams: l.add(c)
+        l.add(ident"false")
+        test_body_sub.add(
+          newNimNode(nnkLetSection).add(
+            newNimNode(nnkIdentDefs).add(ident(var_name)).add(newEmptyNode()).add(l)
+          ))
+      var test_params = params
+      var vars = ""
+      for i in 1..<params.len:
+        let p = params[i][0]
+        vars &= &"  {p.repr} = {{{p.repr}}}\\n"
+      test_params[0] = ident"bool"
+      var test_body = newStmtList()
+      var d = &"try:\n  {test_body_sub.repr.strip}\nexcept CheckResult as e:\n  echo &\"check failed for\\n{vars}\", \"[failed statement]\\n\", e.err.strip, \"\\n[output]\\n\", e.output;doAssert false"
+      test_body.add parseStmt(d)
+      result.add newProc(name = ident"test", params = test_params, body = test_body, pragmas = discardablePragma)
+
     if hasGenerate:
       discard
     if hasTest:
       discard
+    # echo result.repr
