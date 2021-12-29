@@ -47,3 +47,16 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
             #run: oj-verify all
         run: cd src && oj-verify all
+      
+      - name: Copy documents to /docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ github.ref == 'refs/heads/master' }}
+        run: |
+          cd ..
+          git switch gh-pages
+          rm -rf docs
+          cp -R src docs
+          git add docs
+          git commit -m "[workflow] copy docs $(git rev-parse HEAD~1)"
+          git push origin gh-pages
