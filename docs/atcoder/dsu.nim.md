@@ -86,9 +86,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_DSU_HPP:\n  const ATCODER_DSU_HPP* = 1\n\n  import\
     \ std/sequtils\n\n  type\n    DSU* = ref object\n      n: int\n      par_or_siz:\
@@ -113,33 +113,33 @@ data:
   requiredBy:
   - atcoder/extra/graph/chu_liu_edmonds.nim
   - atcoder/extra/graph/chu_liu_edmonds.nim
-  - atcoder/extra/graph/kruskal.nim
-  - atcoder/extra/graph/kruskal.nim
   - atcoder/extra/graph/boruvka.nim
   - atcoder/extra/graph/boruvka.nim
+  - atcoder/extra/graph/kruskal.nim
+  - atcoder/extra/graph/kruskal.nim
   - atcoder/extra/graph/eulerian_trail.nim
   - atcoder/extra/graph/eulerian_trail.nim
   - atcoder/extra/graph/chu_liu_edmonds.nim
   - atcoder/extra/graph/chu_liu_edmonds.nim
-  - atcoder/extra/graph/kruskal.nim
-  - atcoder/extra/graph/kruskal.nim
   - atcoder/extra/graph/boruvka.nim
   - atcoder/extra/graph/boruvka.nim
+  - atcoder/extra/graph/kruskal.nim
+  - atcoder/extra/graph/kruskal.nim
   - atcoder/extra/graph/eulerian_trail.nim
   - atcoder/extra/graph/eulerian_trail.nim
   timestamp: '2020-09-18 00:06:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/dsu_test.nim
-  - verify/dsu_test.nim
-  - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
-  - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
   - verify/extra/graph/aoj_grl_2_a_2_minimum_spanning_tree_kruskal_test.nim
   - verify/extra/graph/aoj_grl_2_a_2_minimum_spanning_tree_kruskal_test.nim
-  - verify/extra/graph/yosupo_directedmst_test.nim
-  - verify/extra/graph/yosupo_directedmst_test.nim
   - verify/extra/graph/aoj_grl_2_a_3_boruvka_test.nim
   - verify/extra/graph/aoj_grl_2_a_3_boruvka_test.nim
+  - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
+  - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
+  - verify/extra/graph/yosupo_directedmst_test.nim
+  - verify/extra/graph/yosupo_directedmst_test.nim
+  - verify/dsu_test.nim
+  - verify/dsu_test.nim
 documentation_of: atcoder/dsu.nim
 layout: document
 redirect_from:

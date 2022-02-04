@@ -19,10 +19,10 @@ data:
   - icon: ':question:'
     path: atcoder/extra/math/arbitrary_mod_convolution.nim
     title: atcoder/extra/math/arbitrary_mod_convolution.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
   - icon: ':question:'
@@ -75,16 +75,16 @@ data:
     title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/composition_of_formal_power_series
     links:
     - https://judge.yosupo.jp/problem/composition_of_formal_power_series
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/composition_of_formal_power_series\n\
     \nconst Mod = 998244353\n\ninclude atcoder/header\nimport atcoder/modint\nimport\
@@ -93,35 +93,35 @@ data:
     \ =\n  let\n    N = nextInt()\n    a = newSeqWith(N, mint(nextInt()))\n    b =\
     \ newSeqWith(N, mint(nextInt()))\n  echo composition(b, a).join(\" \")\n\nmain()\n"
   dependsOn:
-  - atcoder/header.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
   - atcoder/convolution.nim
-  - atcoder/extra/math/composition.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/modint.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
-  - atcoder/internal_math.nim
   - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/modint.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/internal_bit.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
-  - atcoder/internal_math.nim
   - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/header.nim
   - atcoder/convolution.nim
   - atcoder/internal_bit.nim
-  - atcoder/extra/math/composition.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/ntt.nim
   - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/internal_bit.nim
+  - atcoder/header.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/modint.nim
+  - atcoder/header.nim
+  - atcoder/modint.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/generate_definitions.nim
   isVerificationFile: true
   path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
   requiredBy: []
   timestamp: '2021-12-11 23:59:27+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
 layout: document

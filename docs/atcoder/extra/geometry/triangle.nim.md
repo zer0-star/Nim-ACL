@@ -68,9 +68,9 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_TRIANGLE_HPP:\n  const ATCODER_TRIANGLE_HPP* =\
     \ 1\n  import atcoder/extra/geometry/geometry_template\n\n  proc centroid*[Real](a,b,c:Point[Real]):Point[Real]\
@@ -91,30 +91,30 @@ data:
     \ =\n    return crossPoint(\n             initLine(a, a.projection(initLine(b,\
     \ c))), \n             initLine(b, b.projection(initLine(a, b))))\n"
   dependsOn:
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/element_concepts.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/static_var.nim
   isVerificationFile: false
   path: atcoder/extra/geometry/triangle.nim
   requiredBy: []
-  timestamp: '2021-05-22 03:00:32+09:00'
+  timestamp: '2022-02-05 00:42:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/geometry/triangle.nim

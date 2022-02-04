@@ -56,9 +56,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_CHU_LIU_EDMONDS_HPP:\n  const ATCODER_CHU_LIU_EDMONDS_HPP*\
     \ = 1\n  import sequtils, options, algorithm\n  import atcoder/extra/graph/graph_template\n\
@@ -88,17 +88,17 @@ data:
     \      while x != i:\n        usede[x] = true\n        x = paredge[x]\n    return\
     \ (ret, parent).some\n"
   dependsOn:
-  - atcoder/dsu.nim
-  - atcoder/dsu.nim
-  - atcoder/extra/structure/skew_heap.nim
   - atcoder/extra/structure/skew_heap.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/dsu.nim
   - atcoder/dsu.nim
   - atcoder/extra/structure/skew_heap.nim
+  - atcoder/dsu.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/structure/skew_heap.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/dsu.nim
+  - atcoder/extra/structure/skew_heap.nim
+  - atcoder/dsu.nim
   - atcoder/extra/graph/graph_template.nim
   isVerificationFile: false
   path: atcoder/extra/graph/chu_liu_edmonds.nim

@@ -34,9 +34,9 @@ data:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2674
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2674
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2674\n\
     \ninclude atcoder/header\n\n\nimport atcoder/extra/structure/wavelet_matrix\n\n\
@@ -45,13 +45,13 @@ data:
     \ L, R = nextInt() - 1\n  let E = nextInt()\n  echo (R - L + 1) - matrix.range_freq(L\
     \ .. R, min(X[L], X[R]) - E, max(X[L], X[R]) + E + 1)\n"
   dependsOn:
-  - atcoder/extra/structure/wavelet_matrix.nim
-  - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/rangeutils.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/wavelet_matrix.nim
   - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/rangeutils.nim
+  - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/header.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
   isVerificationFile: true
   path: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim

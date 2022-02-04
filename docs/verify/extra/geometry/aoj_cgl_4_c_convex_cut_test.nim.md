@@ -53,9 +53,9 @@ data:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C\n\
     # verify-helper: ERROR 1e-6\n\ninclude atcoder/header\nimport atcoder/extra/geometry/geometry_template\n\
@@ -64,24 +64,24 @@ data:
     \  for i in 0..<q:\n    let p1, p2 = initPoint(nextFloat(), nextFloat())\n   \
     \ echo g.convexCut(initLine(p1, p2)).area()\n"
   dependsOn:
-  - atcoder/extra/geometry/polygon.nim
-  - atcoder/header.nim
-  - atcoder/header.nim
-  - atcoder/extra/geometry/polygon.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/element_concepts.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/static_var.nim
+  - atcoder/header.nim
+  - atcoder/extra/geometry/polygon.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/geometry/polygon.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/header.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/geometry/geometry_template.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
   requiredBy: []
-  timestamp: '2021-12-11 23:59:27+09:00'
+  timestamp: '2022-02-05 00:42:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim

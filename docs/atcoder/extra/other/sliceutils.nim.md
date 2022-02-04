@@ -39,6 +39,18 @@ data:
     path: atcoder/extra/template/atcoder-tools_template_global.nim
     title: atcoder/extra/template/atcoder-tools_template_global.nim
   - icon: ':warning:'
+    path: atcoder/extra/template/atcoder-tools_template_with_solve.nim
+    title: atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - icon: ':warning:'
+    path: atcoder/extra/template/atcoder-tools_template_with_solve.nim
+    title: atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - icon: ':warning:'
+    path: atcoder/extra/template/atcoder-tools_template_with_solve.nim
+    title: atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - icon: ':warning:'
+    path: atcoder/extra/template/atcoder-tools_template_with_solve.nim
+    title: atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - icon: ':warning:'
     path: atcoder/extra/template/template.nim
     title: atcoder/extra/template/template.nim
   - icon: ':warning:'
@@ -68,9 +80,9 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_SLICEUTILS_HPP:\n  const ATCODER_SLICEUTILS_HPP*\
     \ = 1\n  proc index*[T](a:openArray[T]):Slice[int] =\n    a.low..a.high\n  type\
@@ -97,26 +109,30 @@ data:
   isVerificationFile: false
   path: atcoder/extra/other/sliceutils.nim
   requiredBy:
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/template/template.nim
-  - atcoder/extra/template/template.nim
+  - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/template/template.nim
   - atcoder/extra/template/template.nim
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/template.nim
+  - atcoder/extra/template/template.nim
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/chaemon_header.nim
   timestamp: '2020-12-31 00:01:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

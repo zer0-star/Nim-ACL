@@ -80,9 +80,9 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "import std/math\nimport atcoder/extra/other/floatutils\nimport atcoder/extra/geometry/geometry_template\n\
     import atcoder/extra/geometry/polygon\n\nimport nigui\n\nconst D = 900\n\ntype\
@@ -152,34 +152,34 @@ data:
     \    self.canvas_data.poly.add((p, label, color))\n\nproc show*[Real](self: Canvas[Real])\
     \ =\n  self.Win.show()\n  app.run()\n\n"
   dependsOn:
-  - atcoder/extra/geometry/polygon.nim
-  - atcoder/extra/geometry/polygon.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/element_concepts.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/static_var.nim
   - atcoder/extra/geometry/polygon.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/geometry/polygon.nim
   - atcoder/extra/other/floatutils.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/geometry/polygon.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/geometry/polygon.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/element_concepts.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/static_var.nim
   isVerificationFile: false
   path: atcoder/extra/geometry/visualizer.nim
   requiredBy: []
-  timestamp: '2021-05-22 03:00:32+09:00'
+  timestamp: '2022-02-05 00:42:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/geometry/visualizer.nim
