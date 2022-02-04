@@ -1,15 +1,18 @@
 when not declared ATCODER_SPARSE_TABLE_HPP:
   const ATCODER_SPARSE_TABLE_HPP* = 1
   import std/sequtils
+  import atcoder/rangeutils
 
   {.push inline.}
 
   type SparseTable*[T] = object
+    len: int
     data: seq[seq[T]]
     lookup: seq[int]
-    f: proc(a, b:T):T
+    op: proc(a, b:T):T
+    e: proc():T
 
-  proc initSparseTable*[T](v:seq[T], f:proc(a, b:T):T):SparseTable[T] =
+  proc initSparseTable*[T](v:seq[T], op:proc(a, b:T):T, e:proc():T):SparseTable[T] =
     var b = 0
     while (1 shl b) <= v.len: b += 1
     var data = newSeqWith(b, newSeq[T](1 shl b))
@@ -17,14 +20,16 @@ when not declared ATCODER_SPARSE_TABLE_HPP:
     for i in 1..<b:
       var j = 0
       while j + (1 shl i) <= (1 shl b):
-        data[i][j] = f(data[i - 1][j], data[i - 1][j + (1 shl (i - 1))]);
+        data[i][j] = op(data[i - 1][j], data[i - 1][j + (1 shl (i - 1))]);
         j += 1
     var lookup = newSeq[int](v.len + 1)
     for i in 2..<lookup.len: lookup[i] = lookup[i shr 1] + 1
-    return SparseTable[T](data:data, lookup:lookup, f:f)
+    return SparseTable[T](len: v.len, data:data, lookup:lookup, op:op, e:e)
 
-  proc prod*[T](self: SparseTable[T], s:Slice[int]):T =
-    let b = self.lookup[s.b + 1 - s.a]
-    return self.f(self.data[b][s.a], self.data[b][s.b + 1 - (1 shl b)])
-  proc `[]`*[T](self: SparseTable[T], s:Slice[int]):T = self.prod(s)
+  proc prod*[T](self: SparseTable[T], s:RangeType):T =
+    let (l, r) = self.halfOpenEndpoints(s)
+    if l >= r: return self.e()
+    let b = self.lookup[r - l]
+    return self.op(self.data[b][l], self.data[b][r - (1 shl b)])
+  proc `[]`*[T](self: SparseTable[T], s:RangeType):T = self.prod(s)
   {.pop.}

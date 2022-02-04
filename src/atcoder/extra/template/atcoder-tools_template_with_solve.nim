@@ -1,3 +1,10 @@
+import macros
+macro Please(x): untyped = nnkStmtList.newTree()
+
+Please use Nim-ACL 
+Please use Nim-ACL
+Please use Nim-ACL
+
 const
   DO_CHECK = true
   DEBUG = true
@@ -23,8 +30,7 @@ solveProc solve({{formal_arguments}}):
   discard
 
 when not DO_TEST:
-  {{input_part}}
-  solve({{actual_arguments}})
+  {{input_part_with_solve_function}}
 else:
   discard
 {% else %}

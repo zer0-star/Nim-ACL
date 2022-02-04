@@ -3,9 +3,9 @@ when not declared ATCODER_FLOAT_UTILS_HPP:
   import std/math as math_lib_floatutils, std/strutils
   import atcoder/element_concepts
   import atcoder/extra/other/static_var
-#  proc getParameters*(Real:typedesc):ptr[tuple[n:int, pi, eps, inf:Real]] =
-#    var p {.global.}:tuple[n:int, pi, eps, inf:Real]
-#    return p.addr
+  proc getParameters*(Real:typedesc):ptr[tuple[n:int, pi, eps, inf:Real]] =
+    var p {.global.}:tuple[n:int, pi, eps, inf:Real]
+    return p.addr
 
   converter floatConverter*(a:SomeInteger):float = a.float
   converter float64Converter*(a:SomeInteger):float64 = a.float64
@@ -19,10 +19,10 @@ when not declared ATCODER_FLOAT_UTILS_HPP:
     eps:U.type
     inf:U.type
 
-#  proc getPi*(Real:typedesc):Real = Real.getParameters()[].pi
-#  proc getEPS*(Real:typedesc):Real = Real.getParameters()[].eps
-#  proc getINF*(Real:typedesc):Real = Real.getParameters()[].inf
-#  proc setEPS*(Real:typedesc, x:Real) = Real.getParameters()[].eps = x
+  proc getPi*(Real:typedesc):Real = Real.getParameters()[].pi
+  proc getEPS*(Real:typedesc):Real = Real.getParameters()[].eps
+  proc getINF*(Real:typedesc):Real = Real.getParameters()[].inf
+  proc setEPS*(Real:typedesc, x:Real) = Real.getParameters()[].eps = x
 
   proc valid_range*[Real](l, r:Real):bool =
     # assert(l <= r)

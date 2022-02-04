@@ -1,18 +1,22 @@
 when not declared ATCODER_CHAEMON_WARLUS_OPERATOR_HPP:
   const ATCODER_CHAEMON_WARLUS_OPERATOR_HPP* = 1
-  import strformat, macros
+  import macros
   proc discardableId*[T](x: T): T {.discardable.} = x
 
-  proc warlusImpl(x, y:string):string =
-    fmt"""when declaredInScope({x}):{'\n'} {x} = {y}{'\n'}else:{'\n'}  var {x} = {y}{'\n'}"""
+  proc warlusImpl(x, y:NimNode):NimNode =
+    return quote do:
+      when declaredInScope(`x`):
+        `x` = `y`
+      else:
+        var `x` = `y`
 
   macro `:=`*(x, y: untyped): untyped =
-    var strBody = ""
+    result = newStmtList()
     if x.kind == nnkCurly:
-      for i,xi in x: strBody &= warlusImpl(xi.repr, y.repr)
+      for i,xi in x: result.add warlusImpl(xi, y)
     elif x.kind == nnkPar:
-      for i,xi in x: strBody &= warlusImpl(xi.repr, y[i].repr)
+      for i,xi in x: result.add warlusImpl(xi, y[i])
     else:
-      strBody &= warlusImpl(x.repr, y.repr)
-      strBody &= fmt"discardableId({x.repr})"
-    parseStmt(strBody)
+      result.add warlusImpl(x, y)
+      result.add quote do:
+        discardableId(`x`)

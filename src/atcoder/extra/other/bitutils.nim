@@ -27,7 +27,7 @@ when not declared ATCODER_BITUTILS_HPP:
   proc `@`*[B:SomeInteger](b:B): seq[int] =
     result = newSeq[int]()
     for i in 0..<(8 * sizeof(B)):
-      if b[i]: result.add(i)
+      if b[i] == 1: result.add(i)
   proc `@^`*(v:openArray[int]): int =
     result = 0
     for i in v:
@@ -36,7 +36,7 @@ when not declared ATCODER_BITUTILS_HPP:
   proc toBitStr*[B:SomeInteger](b:B, n = -1):string =
     let n = if n == -1: sizeof(B) * 8 else: n
     result = ""
-    for i in countdown(n-1,0):result.add if b[i]: '1' else: '0'
+    for i in countdown(n-1,0):result.add if b[i] == 1: '1' else: '0'
   proc allSetBits*[B:SomeInteger](n:int):B =
     if n == 64:
       return not uint64(0)

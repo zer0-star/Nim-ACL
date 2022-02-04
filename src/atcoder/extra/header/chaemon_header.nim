@@ -45,8 +45,8 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
         discard self.hasKeyOrPut(key, B.default)
         tables_lib.`[]`(self, key)
 
-  converter toBool[T:ref object](x:T):bool = x != nil
-  converter toBool[T](x:T):bool = x != T(0)
+  # converter toBool[T:ref object](x:T):bool = x != nil
+  # converter toBool[T](x:T):bool = x != T(0)
   # misc
   proc `<`[T](a, b:seq[T]):bool =
     for i in 0 ..< min(a.len, b.len):

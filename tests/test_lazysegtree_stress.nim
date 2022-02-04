@@ -55,7 +55,7 @@ test "LazySegtreeStressTest, NaiveTest":
   var rnd = initRand(2020)
   for n in 1..30:
     for ph in 0..<10:
-      var seg0 = initLazySegTree(n, op_ss, e_s, op_ts, op_tt, e_t)
+      var seg0 = initLazySegTree[S, T](n, op_ss, e_s, op_ts, op_tt, e_t)
       var tm = initTimeManager(n)
       for i in 0..<n:
         seg0.set(i, (i, i + 1, -1))
@@ -88,7 +88,7 @@ test "LazySegtreeStressTest, MaxRightTest":
   var rnd = initRand(2020)
   for n in 1..30:
     for ph in 0..<10:
-      var seg0 = initLazySegTree(n, op_ss, e_s, op_ts, op_tt, e_t)
+      var seg0 = initLazySegTree[S, T](n, op_ss, e_s, op_ts, op_tt, e_t)
       var tm = initTimeManager(n)
       for i in 0..<n:
         seg0.set(i, (i, i + 1, -1))
@@ -112,7 +112,7 @@ test "LazySegtreeStressTest, MinLeftTest":
   var rnd = initRand(2020)
   for n in 1..30:
     for ph in 0..<10:
-      var seg0 = initLazySegTree(n, op_ss, e_s, op_ts, op_tt, e_t)
+      var seg0 = initLazySegTree[S, T](n, op_ss, e_s, op_ts, op_tt, e_t)
       var tm = initTimeManager(n)
       for i in 0..<n:
         seg0.set(i, (i, i + 1, -1))

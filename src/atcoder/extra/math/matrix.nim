@@ -1,7 +1,7 @@
 when not declared ATCODER_MATRIX_HPP:
   const ATCODER_MATRIX_HPP* = 1
   import std/sequtils
-  import atcoder/element_concepts, atcoder/generate_definitions
+  import atcoder/generate_definitions
 
   type Matrix*[T; p:static[tuple]] = seq[seq[T]]
   type Vector*[T] = seq[T]
@@ -25,35 +25,12 @@ when not declared ATCODER_MATRIX_HPP:
     result = newSeqWith(n, newSeqWith(m, M.getZero()))
   proc init*[M:Matrix](self:typedesc[M] or M, n:int):M = M.init(n, n)
 
-  template MatrixType*(T:typedesc, zero:static[proc():T], unit:static[proc():T], isZero:static[proc(a:T):bool]):auto = Matrix[T, (zero, unit, isZero)]
+  template MatrixType*(T:typedesc, zero, unit, isZero:untyped):auto =
+    Matrix[T, ((proc():T)zero, (proc():T)unit, (proc (a:T):bool)isZero)]
   template MatrixType*(T:typedesc):auto =
     MatrixType(T, zero = proc():T = T(0), unit = proc():T = T(1), isZero = proc(a:T):bool = (a == T(0)))
-  template MatrixType*(T:typedesc, zero:static[proc():T], unit:static[proc():T]):auto =
+  template MatrixType*(T:typedesc, zero, unit:untyped):auto =
     MatrixType(T, zero, unit, proc(a:T):bool = (a == zero()))
-
-  proc initMatrix*[T:RingElem](n, m:int, z:static[proc():T], u:static[proc():T]):auto =
-    type M = MatrixType(T, z, u)
-    return M.init(n, m)
-  proc initMatrix*[T:RingElem](n:int, z:static[proc():T], u:static[proc():T]):auto = 
-    type M = MatrixType(T, z, u)
-    return M.init(n, n)
-
-  proc initMatrix*[T:RingElem](n, m:int):auto =
-    type M = MatrixType(T)
-    return M.init(n, m)
-  proc initMatrix*[T:RingElem](n:int):auto =
-    type M = MatrixType(T)
-    return M.init(n, n)
-
-  proc init*[M:Matrix](self:M or typedesc[M], a:seq or array):M =
-    when a is seq[seq[M.T]]:
-      return M(a)
-    else:
-      let (h, w) = (a.len, a[0].len)
-      result = M.init(h, w)
-      for i in 0..<result.height:
-        for j in 0..<result.width:
-          result[i][j] = M.T(a[i][j])
 
   proc initVector*[M:Matrix](self:M or typedesc[M], n:int):Vector[M.T] = Vector[M.T](newSeqWith(n, M.getZero()))
   proc initVector*[M:Matrix](self:M or typedesc[M], a:seq or array):Vector[M.T] =
@@ -62,6 +39,19 @@ when not declared ATCODER_MATRIX_HPP:
     else:
       result = M.initVector(a.len)
       for i in 0..<a.len: result[i] = M.T(a[i])
+
+  proc init*[M:Matrix](self:M or typedesc[M], a:seq or array):auto =
+    when a is seq[seq[M.T]]:
+      return M(a)
+    else:
+      when a[0] is seq or a[0] is array:
+        let (h, w) = (a.len, a[0].len)
+        result = M.init(h, w)
+        for i in 0..<result.height:
+          for j in 0..<result.width:
+            result[i][j] = M.T(a[i][j])
+      else:
+        return M.initVector(a)
 
   proc unit*[M:Matrix](self: typedesc[M], n:int):M =
     result = M.init(n)
@@ -76,18 +66,18 @@ when not declared ATCODER_MATRIX_HPP:
     assert n == B.height() and m == B.width()
     for i in 0..<n:
       for j in 0..<m:
-        self[i][j] += B[i][j]
+        self[i][j] = self[i][j] + B[i][j]
   proc `+=`*[T](self: var Vector[T], B:Vector[T]) =
     let n = self.len
     for i in 0..<n:
-      self[i] += B[i]
+      self[i] = self[i] + B[i]
 
   proc `-=`*[M:Matrix](self: var M, B: M) =
     let (n, m) = (self.height, self.width)
     assert n == B.height() and m == B.width()
     for i in 0..<n:
       for j in 0..<m:
-        self[i][j] -= B[i][j]
+        self[i][j] = self[i][j] - B[i][j]
   
   proc `*=`*[M:Matrix](self: var M, B: M) =
     let (n,m,p) = (self.height, B.width, self.width)
@@ -96,7 +86,7 @@ when not declared ATCODER_MATRIX_HPP:
     for i in 0..<n:
       for k in 0..<p:
         for j in 0..<m:
-          C[i][j] += self[i][k] * B[k][j]
+          C[i][j] = C[i][j] + self[i][k] * B[k][j]
     swap(self, C)
   proc `*`*[M:Matrix](self: M, v: Vector[M.T]): Vector[M.T] =
     let (n, m) = (self.height, self.width)
@@ -104,7 +94,7 @@ when not declared ATCODER_MATRIX_HPP:
     assert(v.len == m)
     for i in 0..<n:
       for j in 0..<m:
-          result[i] += self[i][j] * v[j]
+          result[i] = result[i] + self[i][j] * v[j]
   
   proc `+`*[M:Matrix](self: M, B:M):auto =
     result = self; result += B

@@ -17,6 +17,14 @@ WHEN_STATEMENT = re.compile(r'^\s*when\s+.*:')
 ATCODER_DIR = re.compile('^(?:atcoder|lib)\/')
 INDENT_WIDTH = 2
 
+outputPrefix = """import macros
+macro Please(x): untyped = nnkStmtList.newTree()
+
+Please use Nim-ACL
+Please use Nim-ACL
+Please use Nim-ACL
+"""
+
 
 def indent_level(line: str):
     """
@@ -157,7 +165,7 @@ def main():
         result.append("import macros;macro ImportExpand(s:untyped):untyped = parseStmt($s[2])")
     result.extend(read_source(opts.source, "", set(), lib_path))
 
-    output = '\n'.join(result) + '\n'
+    output = outputPrefix + '\n\n' + '\n'.join(result) + '\n'
     if opts.console:
         print(output)
     else:

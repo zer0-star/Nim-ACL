@@ -10,6 +10,7 @@ when not declared ATCODER_READER_HPP:
     result = ""
     while true:
       let c = f.readChar
+      #doassert c.int != 0
       if c.int > ' '.int:
         get = true
         result.add(c)

@@ -1,21 +1,24 @@
 when not declared ATCODER_SEQ_ARRAY_UTILS:
   const ATCODER_SEQ_ARRAY_UTILS* = 1
-  import std/strformat, std/macros, std/sequtils
-  template makeSeq*(x:int; init):auto =
-    when init is typedesc: newSeq[init](x)
-    else: newSeqWith(x, init)
-
+  import std/strformat, std/macros
   type SeqType = object
   type ArrayType = object
   let
     Seq* = SeqType()
     Array* = ArrayType()
 
-  template fill*[T](a:var T, init) =
-    when a isnot seq and a isnot array:
+  template fill*[T](a:var T, init:untyped) =
+    when T is init.type:
       a = init
     else:
-      for v in a.mitems: fill(v, init)
+      for x in a.mitems: fill(x, init)
+
+  template makeSeq*(x:int; init):auto =
+    when init is typedesc: newSeq[init](x)
+    else:
+      var a = newSeq[typeof(init, typeofProc)](x)
+      a.fill(init)
+      a
 
   template makeArray*(x:int or Slice[int]; init):auto =
     var v:array[x, init.type]

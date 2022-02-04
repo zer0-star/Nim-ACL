@@ -1,7 +1,7 @@
 when not declared ATCODER_SEGTREE_HPP:
   const ATCODER_SEGTREE_HPP* = 1
   import atcoder/internal_bit
-  import std/sugar, std/sequtils, std/algorithm
+  import std/sequtils, std/algorithm
   import atcoder/rangeutils
 
   {.push inline.}
@@ -39,15 +39,13 @@ when not declared ATCODER_SEGTREE_HPP:
     result.init(v)
   proc init*[ST:SegTree](self: typedesc[ST], n:int):auto =
     self.init(newSeqWith(n, ST.calc_e()))
-  template getType*(ST:typedesc[SegTree], S:typedesc, op0:static[(S,S)->S], e0:static[()->S]):typedesc[SegTree] =
-    SegTree[S, (op:op0, e:e0)]
-  template SegTreeType*(S:typedesc, op0:static[(S,S)->S], e0:static[()->S]):typedesc[SegTree] =
-    SegTree[S, (op:op0, e:e0)]
-  proc initSegTree*[S](v:seq[S], op:static[(S,S)->S], e:static[()->S]):auto =
-    SegTreeType(S, op, e).init(v)
-  proc initSegTree*[S](n:int, op:static[(S,S)->S], e:static[()->S]):auto =
-    result = SegTreeType(S, op, e)()
-    result.init(newSeqWith(n, result.type.calc_e()))
+  template SegTreeType*[S](op0, e0:untyped):typedesc[SegTree] =
+    SegTree[S, (op:(proc(l:S, r:S):S)(op0), e:(proc():S)(e0))]
+  template getType*(ST:typedesc[SegTree], S:typedesc, op, e:untyped):typedesc[SegTree] =
+    SegTreeType[S](op, e)
+
+  template initSegTree*[S](v:seq[S] or int, op, e:untyped):auto =
+    SegTreeType[S](op, e).init(v)
 
   proc set*[ST:SegTree](self:var ST, p:IndexType, x:ST.S) =
     var p = self^^p

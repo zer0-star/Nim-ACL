@@ -24,22 +24,22 @@ proc e_t():int = 0
 
 test "LazySegtreeTest, Zero":
   block:
-    var s = initLazySegTree(0, op_ss, e_s, op_ts, op_tt, e_t)
+    var s = initLazySegTree[int, int](0, op_ss, e_s, op_ts, op_tt, e_t)
     check -1_000_000_000 == s.all_prod()
   block:
-    var s = initLazySegTree(0, op_ss, e_s, op_ts, op_tt, e_t)
+    var s = initLazySegTree[int, int](0, op_ss, e_s, op_ts, op_tt, e_t)
     check -1_000_000_000 == s.all_prod()
   block:
-    var s = initLazySegTree(10, op_ss, e_s, op_ts, op_tt, e_t)
+    var s = initLazySegTree[int, int](10, op_ss, e_s, op_ts, op_tt, e_t)
     check -1_000_000_000 == s.all_prod()
 
 test "LazySegtreeTest, Assign":
-  var seg0 = initLazySegTree(10, op_ss, e_s, op_ts, op_tt, e_t)
+  var seg0 = initLazySegTree[int, int](10, op_ss, e_s, op_ts, op_tt, e_t)
 
 test "LazySegtreeTest, Invalid":
   expect RangeError:
-    var s = initLazySegTree(-1, op_ss, e_s, op_ts, op_tt, e_t)
-  var s = initLazySegTree(10, op_ss, e_s, op_ts, op_tt, e_t)
+    var s = initLazySegTree[int, int](-1, op_ss, e_s, op_ts, op_tt, e_t)
+  var s = initLazySegTree[int, int](10, op_ss, e_s, op_ts, op_tt, e_t)
 
   expect AssertionError: discard s.get(-1)
   expect AssertionError: discard s[-1]
@@ -53,7 +53,7 @@ test "LazySegtreeTest, Invalid":
 
 test "LazySegtreeTest, NaiveProd":
   for n in 0..50:
-    var seg = initLazySegTree(n, op_ss, e_s, op_ts, op_tt, e_t)
+    var seg = initLazySegTree[int, int](n, op_ss, e_s, op_ts, op_tt, e_t)
     var p = newSeq[int](n)
     for i in 0..<n:
       p[i] = (i * i + 100) mod 31
@@ -69,7 +69,7 @@ test "LazySegtreeTest, NaiveProd":
 
 test "LazySegtreeTest, NaiveProdBackwards":
   for n in 0..50:
-    var seg = initLazySegTree(n, op_ss, e_s, op_ts, op_tt, e_t)
+    var seg = initLazySegTree[int, int](n, op_ss, e_s, op_ts, op_tt, e_t)
     var p = newSeq[int](n)
     for i in 0..<n:
       p[i] = (i * i + 100) mod 31
@@ -84,7 +84,7 @@ test "LazySegtreeTest, NaiveProdBackwards":
         check e == seg[l .. ^(n - r + 1)]
 
 test "LazySegtreeTest, Usage":
-  var seg = initLazySegTree(newSeqWith(10, 0), op_ss, e_s, op_ts, op_tt, e_t)
+  var seg = initLazySegTree[int, int](newSeqWith(10, 0), op_ss, e_s, op_ts, op_tt, e_t)
   check 0 == seg.all_prod()
   seg.apply(0 ..< 3, 5)
   check 5 == seg.all_prod()

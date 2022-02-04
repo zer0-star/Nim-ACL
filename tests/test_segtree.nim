@@ -48,7 +48,7 @@ proc e():string = return "$"
 
 test "SegtreeTest, Zero":
   block:
-    var s = initSegTree(0, op, e)
+    var s = initSegTree[string](0, op, e)
     check("$" == s.all_prod())
   #TODO
   # {
@@ -59,9 +59,9 @@ test "SegtreeTest, Zero":
 
 test "SegtreeTest, Invalid":
   expect RangeError:
-    var s = initSegTree(-1, op, e)
+    var s = initSegTree[string](-1, op, e)
 
-  var s = initSegTree(10, op, e)
+  var s = initSegTree[string](10, op, e)
 
   expect AssertionError: discard s.get(-1)
   expect AssertionError: discard s.get(10)
@@ -87,7 +87,7 @@ test "SegtreeTest, Invalid":
     discard s.max_right(0, f)
 
 test "SegtreeTest, One":
-  var s = initSegTree(1, op, e)
+  var s = initSegTree[string](1, op, e)
   check "$" == s.all_prod()
   check "$" == s.get(0)
   check "$" == s[0]
@@ -106,7 +106,7 @@ test "SegtreeTest, CompareNaive":
   for n in 0..<30:
     var
       seg0 = initSegtreeNaive(n, op, e)
-      seg1 = initSegTree(n, op, e)
+      seg1 = initSegTree[string](n, op, e)
     for i in 0..<n:
       var s = ""
       s &= chr('a'.int + i)
@@ -137,7 +137,7 @@ test "SegtreeTest, CompareNaiveBackwards":
   for n in 0..<30:
     var
       seg0 = initSegtreeNaive(n, op, e)
-      seg1 = initSegTree(n, op, e)
+      seg1 = initSegTree[string](n, op, e)
     for i in 0..<n:
       var s = ""
       s &= chr('a'.int + i)
@@ -151,5 +151,5 @@ test "SegtreeTest, CompareNaiveBackwards":
         check seg0.prod(l ..< r) == seg1[l .. ^(n - r + 1)]
 
 test "SegtreeTest, Assign":
-  var seg0:SegTreeType(string, op, e)
+  var seg0:SegTreeType[string](op, e)
   seg0.init(10)
