@@ -98,9 +98,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_SPLAY_TREE_HPP:\n  {.push inline.}\n  const ATCODER_SPLAY_TREE_HPP*\
     \ = 1\n\n  import atcoder/rangeutils\n\n  type useRev = int\n  type useSum = int\n\
@@ -311,35 +311,35 @@ data:
   isVerificationFile: false
   path: atcoder/extra/structure/splay_tree.nim
   requiredBy:
-  - atcoder/extra/structure/set_map.nim
-  - atcoder/extra/structure/set_map.nim
   - atcoder/extra/structure/link_cut_tree.nim
   - atcoder/extra/structure/link_cut_tree.nim
+  - atcoder/extra/structure/set_map.nim
+  - atcoder/extra/structure/set_map.nim
   - atcoder/extra/structure/generalized_slope_trick.nim
   - atcoder/extra/structure/generalized_slope_trick.nim
-  - atcoder/extra/structure/set_map.nim
-  - atcoder/extra/structure/set_map.nim
   - atcoder/extra/structure/link_cut_tree.nim
   - atcoder/extra/structure/link_cut_tree.nim
+  - atcoder/extra/structure/set_map.nim
+  - atcoder/extra/structure/set_map.nim
   - atcoder/extra/structure/generalized_slope_trick.nim
   - atcoder/extra/structure/generalized_slope_trick.nim
   timestamp: '2021-11-18 02:47:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/map_test.nim
-  - verify/map_test.nim
+  - verify/extra/structure/yosupo_predecessor_problem_test.nim
+  - verify/extra/structure/yosupo_predecessor_problem_test.nim
   - verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
   - verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
   - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-  - verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
-  - verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
-  - verify/extra/structure/yosupo_predecessor_problem_test.nim
-  - verify/extra/structure/yosupo_predecessor_problem_test.nim
   - verify/extra/structure/aoj_1508_splay_tree_test.nim
   - verify/extra/structure/aoj_1508_splay_tree_test.nim
   - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
   - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
+  - verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
+  - verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
+  - verify/map_test.nim
+  - verify/map_test.nim
 documentation_of: atcoder/extra/structure/splay_tree.nim
 layout: document
 redirect_from:

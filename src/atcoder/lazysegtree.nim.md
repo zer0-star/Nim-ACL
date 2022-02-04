@@ -32,14 +32,14 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_LAZYSEGTREE_HPP:\n  const ATCODER_LAZYSEGTREE_HPP*\
-    \ = 1\n  \n  import atcoder/internal_bit, atcoder/rangeutils\n  import std/sugar,\
-    \ std/sequtils, std/algorithm\n  {.push inline.}\n  type LazySegTree*[S,F;p:static[tuple]]\
-    \ = object\n    len*, size*, log*:int\n    d:seq[S]\n    lz:seq[F]\n\n  template\
+    \ = 1\n  \n  import atcoder/internal_bit, atcoder/rangeutils\n  import std/sequtils,\
+    \ std/algorithm\n  {.push inline.}\n  type LazySegTree*[S,F;p:static[tuple]] =\
+    \ object\n    len*, size*, log*:int\n    d:seq[S]\n    lz:seq[F]\n\n  template\
     \ calc_op[ST:LazySegTree](self:typedesc[ST], a, b:ST.S):auto =\n    block:\n \
     \     let op = ST.p.op\n      op(a, b)\n  template calc_e[ST:LazySegTree](self:typedesc[ST]):auto\
     \ =\n    block:\n      let e = ST.p.e\n      e()\n  template calc_mapping[ST:LazySegTree](self:typedesc[ST],\
@@ -61,19 +61,17 @@ data:
     \ 2 * size - 1, ST.calc_e())\n    for i in 0..<n:\n      self.d[size + i] = v[i]\n\
     \    if self.lz.len < size:\n      self.lz = newSeqWith(size, ST.calc_id())\n\
     \    else:\n      self.lz.fill(0, size - 1, ST.calc_id())\n    for i in countdown(size\
-    \ - 1, 1): self.update(i)\n  proc init[ST:LazySegTree](self: var ST, n:int) =\n\
-    \    self.init(newSeqWith(n, ST.calc_e()))\n  proc init[ST:LazySegTree](self:\
-    \ typedesc[ST], v:seq[ST.S]):ST = result.init(v)\n  proc init[ST:LazySegTree](self:\
-    \ typedesc[ST], n:int):ST = result.init(n)\n\n  template getType*(ST:typedesc[LazySegTree],\
-    \ S, F:typedesc, op0:static[(S,S)->S],e0:static[()->S],mapping0:static[(F,S)->S],composition0:static[(F,F)->F],id0:static[()->F]):typedesc[LazySegTree]\
-    \ =\n    LazySegTree[S, F, (op:op0, e:e0, mapping:mapping0, composition:composition0,\
-    \ id:id0)]\n  template LazySegTreeType*(S, F:typedesc, op0:static[(S,S)->S],e0:static[()->S],mapping0:static[(F,S)->S],composition0:static[(F,F)->F],id0:static[()->F]):typedesc[LazySegTree]\
-    \ =\n    LazySegTree[S, F, (op:op0, e:e0, mapping:mapping0, composition:composition0,\
-    \ id:id0)]\n#    LazySegTree.getType(S, F, op, e, mapping, composition, id)\n\n\
-    \  proc initLazySegTree*[S, F](v:seq[S], op:static[(S,S)->S],e:static[()->S],mapping:static[(F,S)->S],composition:static[(F,F)->F],id:static[()->F]):auto\
-    \ =\n    LazySegTreeType(S, F, op, e, mapping, composition, id).init(v)\n  proc\
-    \ initLazySegTree*[S, F](n:int, op:static[(S,S)->S],e:static[()->S],mapping:static[(F,S)->S],composition:static[(F,F)->F],id:static[()->F]):auto\
-    \ =\n    LazySegTreeType(S, F, op, e, mapping, composition, id).init(n)\n\n  proc\
+    \ - 1, 1): self.update(i)\n  proc init*[ST:LazySegTree](self: var ST, n:int) =\
+    \ self.init(newSeqWith(n, ST.calc_e()))\n  proc init*[ST:LazySegTree](self: typedesc[ST],\
+    \ v:seq[ST.S] or int):ST = result.init(v)\n\n  template LazySegTreeType[S, F](op0,\
+    \ e0, mapping0, composition0, id0:untyped):typedesc[LazySegTree] =\n    LazySegTree[S,\
+    \ F,\n      (op:(proc(l, r:S):S)(op0),\n        e:(proc():S)(e0),\n        mapping:(proc(f:F,\
+    \ s:S):S)(mapping0),\n        composition:(proc(f1:F, f2:F):F)(composition0),\n\
+    \        id:(proc():F)(id0))]\n\n  template getType*(ST:typedesc[LazySegTree],\
+    \ S, F:typedesc, op, e, mapping, composition, id:untyped):typedesc[LazySegTree]\
+    \ =\n    LazySegTreeType[S, F](op, e, mapping, composition, id)\n\n  template\
+    \ initLazySegTree*[S, F](v:seq[S] or int, op, e, mapping, composition, id:untyped):auto\
+    \ =\n    LazySegTreeType[S, F](op, e, mapping, composition, id).init(v)\n\n  proc\
     \ set*[ST:LazySegTree](self: var ST, p:IndexType, x:ST.S) =\n    var p = self^^p\n\
     \    assert p in 0..<self.len\n    p += self.size\n    for i in countdown(self.log,\
     \ 1): self.push(p shr i)\n    self.d[p] = x\n    for i in 1..self.log: self.update(p\
@@ -106,8 +104,8 @@ data:
     \ i) shl i) != l: self.update(l shr i)\n      if ((r shr i) shl i) != r: self.update((r\
     \ - 1) shr i)\n\n#  template <bool (*g)(S)> int max_right(int l) {\n#    return\
     \ max_right(l, [](S x) { return g(x); });\n#  }\n  proc max_right*[ST:LazySegTree](self:var\
-    \ ST, l:IndexType, g:(ST.S)->bool):int =\n    var l = self^^l\n    assert l in\
-    \ 0..self.len\n    assert g(ST.calc_e())\n    if l == self.len: return self.len\n\
+    \ ST, l:IndexType, g:proc(s:ST.S):bool):int =\n    var l = self^^l\n    assert\
+    \ l in 0..self.len\n    assert g(ST.calc_e())\n    if l == self.len: return self.len\n\
     \    l += self.size\n    for i in countdown(self.log, 1): self.push(l shr i)\n\
     \    var sm = ST.calc_e()\n    while true:\n      while l mod 2 == 0: l = l shr\
     \ 1\n      if not g(ST.calc_op(sm, self.d[l])):\n        while l < self.size:\n\
@@ -116,7 +114,7 @@ data:
     \        return l - self.size\n      sm = ST.calc_op(sm, self.d[l])\n      l.inc\n\
     \      if not((l and -l) != l): break\n    return self.len\n\n#  template <bool\
     \ (*g)(S)> int min_left(int r) {\n#    return min_left(r, [](S x) { return g(x);\
-    \ });\n#  }\n  proc min_left*[ST:LazySegTree](self: var ST, r:IndexType, g:(ST.S)->bool):int\
+    \ });\n#  }\n  proc min_left*[ST:LazySegTree](self: var ST, r:IndexType, g:proc(s:ST.S):bool):int\
     \ =\n    var r = self^^r\n    assert r in 0..self.len\n    assert(g(ST.calc_e()))\n\
     \    if r == 0: return 0\n    r += self.size\n    for i in countdown(self.log,\
     \ 1): self.push((r - 1) shr i)\n    var sm = ST.calc_e()\n    while true:\n  \
@@ -126,14 +124,14 @@ data:
     \ sm)\n            r.dec\n        return r + 1 - self.size\n      sm = ST.calc_op(self.d[r],\
     \ sm)\n      if not ((r and -r) != r): break\n    return 0\n  {.pop.}\n"
   dependsOn:
-  - atcoder/internal_bit.nim
+  - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
-  - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: false
   path: atcoder/lazysegtree.nim
   requiredBy: []
-  timestamp: '2021-12-11 18:27:17+09:00'
+  timestamp: '2022-02-05 00:42:13+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/lazy_segtree_test.nim

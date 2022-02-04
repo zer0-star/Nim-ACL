@@ -68,9 +68,9 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.1/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_INTERNAL_SCC_HPP:\n  const ATCODER_INTERNAL_SCC_HPP*\
     \ = 1\n  \n  import std/sequtils\n  import atcoder/internal_csr\n\n  \n  type\
@@ -109,21 +109,21 @@ data:
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/twosat.nim
   - atcoder/twosat.nim
+  - atcoder/scc.nim
+  - atcoder/scc.nim
   - atcoder/extra/graph/mincostflow_generalized.nim
   - atcoder/extra/graph/mincostflow_generalized.nim
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/extra/graph/mincostflow_lowerbound.nim
-  - atcoder/scc.nim
-  - atcoder/scc.nim
   timestamp: '2021-08-18 01:50:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
-  - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
-  - verify/twosat_test.nim
-  - verify/twosat_test.nim
   - verify/scc_test.nim
   - verify/scc_test.nim
+  - verify/twosat_test.nim
+  - verify/twosat_test.nim
+  - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
+  - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
 documentation_of: atcoder/internal_scc.nim
 layout: document
 redirect_from:
