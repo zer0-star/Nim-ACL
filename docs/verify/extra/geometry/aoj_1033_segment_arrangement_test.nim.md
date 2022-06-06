@@ -77,9 +77,9 @@ data:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1033
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1033
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1033\n\
     # verify-helper: ERROR 1e-5\n\ninclude atcoder/header\nimport atcoder/extra/other/internal_complex\n\
@@ -102,32 +102,32 @@ data:
     \        ans.min= dist[(u, v)]\n    if ans.classify == fcInf:\n      echo -1\n\
     \    else:\n      echo ans.radianToDegree\n"
   dependsOn:
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/graph/dijkstra.nim
   - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/element_concepts.nim
-  - atcoder/header.nim
-  - atcoder/extra/geometry/segment_graph.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/header.nim
-  - atcoder/extra/geometry/segment_graph.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/dijkstra.nim
-  - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/header.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/geometry/segment_graph.nim
+  - atcoder/extra/graph/dijkstra.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/geometry/segment_graph.nim
+  - atcoder/header.nim
+  - atcoder/extra/graph/dijkstra.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
   requiredBy: []
-  timestamp: '2022-02-05 00:42:13+09:00'
+  timestamp: '2022-06-06 17:51:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim

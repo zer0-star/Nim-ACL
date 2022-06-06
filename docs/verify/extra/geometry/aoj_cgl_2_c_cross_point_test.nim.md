@@ -47,9 +47,9 @@ data:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\n\
     \n# verify-helper: ERROR 1e-8\n\ninclude atcoder/header\nimport atcoder/extra/geometry/geometry_template\n\
@@ -57,18 +57,18 @@ data:
     \ initPoint(nextFloat(), nextFloat()))\n    echo crossPoint(initSegment(p[0],\
     \ p[1]), initSegment(p[2], p[3])).toString()\n"
   dependsOn:
-  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/static_var.nim
   - atcoder/header.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/header.nim
+  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/static_var.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_2_c_cross_point_test.nim
   requiredBy: []

@@ -1,8 +1,26 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: atcoder/extra/string/run_enumerate.nim
+    title: atcoder/extra/string/run_enumerate.nim
+  - icon: ':x:'
+    path: atcoder/extra/string/run_enumerate.nim
+    title: atcoder/extra/string/run_enumerate.nim
+  - icon: ':x:'
+    path: atcoder/extra/string/run_enumerate.nim
+    title: atcoder/extra/string/run_enumerate.nim
+  - icon: ':x:'
+    path: atcoder/extra/string/run_enumerate.nim
+    title: atcoder/extra/string/run_enumerate.nim
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/extra/string/yosupo_run_enumerate_test.nim
+    title: verify/extra/string/yosupo_run_enumerate_test.nim
+  - icon: ':x:'
+    path: verify/extra/string/yosupo_run_enumerate_test.nim
+    title: verify/extra/string/yosupo_run_enumerate_test.nim
   - icon: ':x:'
     path: verify/lcp_array_test.nim
     title: verify/lcp_array_test.nim
@@ -26,9 +44,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_STRING_HPP:\n  const ATCODER_STRING_HPP* = 1\n\n\
     \  import std/algorithm, std/sequtils\n\n  proc sa_naive*(s:seq[int]):seq[int]\
@@ -109,14 +127,20 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: atcoder/string.nim
-  requiredBy: []
+  requiredBy:
+  - atcoder/extra/string/run_enumerate.nim
+  - atcoder/extra/string/run_enumerate.nim
+  - atcoder/extra/string/run_enumerate.nim
+  - atcoder/extra/string/run_enumerate.nim
   timestamp: '2020-09-24 19:39:03+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/lcp_array_test.nim
-  - verify/lcp_array_test.nim
+  - verify/extra/string/yosupo_run_enumerate_test.nim
+  - verify/extra/string/yosupo_run_enumerate_test.nim
   - verify/suffix_array_test.nim
   - verify/suffix_array_test.nim
+  - verify/lcp_array_test.nim
+  - verify/lcp_array_test.nim
   - verify/z_algorithm_test.nim
   - verify/z_algorithm_test.nim
 documentation_of: atcoder/string.nim

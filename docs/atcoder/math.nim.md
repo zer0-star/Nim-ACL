@@ -26,9 +26,9 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_MATH_HPP:\n  const ATCODER_MATH_HPP* = 1\n\n  import\
     \ atcoder/internal_math\n  import std/math as math_lib_of_math\n\n  proc pow_mod*(x,n,m:int):int\
@@ -53,26 +53,27 @@ data:
     \ m0 * m1 / g = lcm(m0, m1)\n      let x = (r1 - r0) div g mod u1 * im mod u1\n\
     \  \n      # |r0| + |m0 * x|\n      # < m0 + m0 * (u1 - 1)\n      # = m0 + m0\
     \ * m1 / g - m0\n      # = lcm(m0, m1)\n      r0 += x * m0\n      m0 *= u1  #\
-    \ -> lcm(m0, m1)\n      if r0 < 0: r0 += m0\n    return (r0, m0)\n\nproc floor_sum*(n,\
-    \ m, a, b:int):int =\n  assert n in 0..<(1 shl 32)\n  assert m in 1..<(1 shl 32)\n\
-    \  var (a, b) = (a, b)\n  var ans = 0.uint\n  if a < 0:\n    var a2:uint = floorMod(a,\
-    \ m).uint\n    ans -= n.uint * (n - 1).uint div 2 * ((a2 - a.uint) div m.uint)\n\
-    \    a = a2.int\n  if b < 0:\n    var b2:uint = floorMod(b, m).uint\n    ans -=\
-    \ n.uint * ((b2 - b.uint) div m.uint)\n    b = b2.int\n  return cast[int](ans\
-    \ + floor_sum_unsigned(n.uint, m.uint, a.uint, b.uint))\n"
+    \ -> lcm(m0, m1)\n      if r0 < 0: r0 += m0\n    return (r0, m0)\n\n  proc floor_sum*(n,\
+    \ m, a, b:int):int =\n    assert n in 0..<(1 shl 32)\n    assert m in 1..<(1 shl\
+    \ 32)\n    var (a, b) = (a, b)\n    var ans = 0.uint\n    if a < 0:\n      var\
+    \ a2:uint = floorMod(a, m).uint\n      ans -= n.uint * (n - 1).uint div 2 * ((a2\
+    \ - a.uint) div m.uint)\n      a = a2.int\n    if b < 0:\n      var b2:uint =\
+    \ floorMod(b, m).uint\n      ans -= n.uint * ((b2 - b.uint) div m.uint)\n    \
+    \  b = b2.int\n    return cast[int](ans + floor_sum_unsigned(n.uint, m.uint, a.uint,\
+    \ b.uint))\n"
   dependsOn:
   - atcoder/internal_math.nim
   - atcoder/internal_math.nim
   isVerificationFile: false
   path: atcoder/math.nim
   requiredBy: []
-  timestamp: '2021-08-23 20:29:05+09:00'
+  timestamp: '2022-06-06 17:51:24+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/crt_test.nim
-  - verify/crt_test.nim
   - verify/floor_sum_test.nim
   - verify/floor_sum_test.nim
+  - verify/crt_test.nim
+  - verify/crt_test.nim
 documentation_of: atcoder/math.nim
 layout: document
 redirect_from:

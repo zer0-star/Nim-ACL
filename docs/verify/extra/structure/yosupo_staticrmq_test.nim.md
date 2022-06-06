@@ -40,9 +40,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
     links:
     - https://judge.yosupo.jp/problem/staticrmq
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/staticrmq\n\ninclude\
     \ atcoder/header\nimport atcoder/extra/other/internal_sugar\nimport atcoder/extra/structure/sparse_table\n\
@@ -50,16 +50,16 @@ data:
     \nvar st = initSparseTable(a, f)\n\nfor _ in 0..<Q:\n  let l, r = nextInt()\n\
     \  echo st[l..<r]\n"
   dependsOn:
-  - atcoder/extra/structure/sparse_table.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/rangeutils.nim
-  - atcoder/header.nim
   - atcoder/extra/other/internal_sugar.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/sparse_table.nim
   - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/header.nim
   - atcoder/extra/other/internal_sugar.nim
+  - atcoder/rangeutils.nim
+  - atcoder/header.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/extra/structure/sparse_table.nim
+  - atcoder/header.nim
+  - atcoder/extra/structure/sparse_table.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_staticrmq_test.nim
   requiredBy: []

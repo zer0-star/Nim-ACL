@@ -64,9 +64,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
     links:
     - https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\n\
     \nimport atcoder/header\n#import atcoder/modint\ninclude atcoder/convolution\n\
@@ -85,28 +85,28 @@ data:
     \      for i,d in d:ans[i] += d;base[i] += d\n\n  dfs(c)\n  echo ans[1..^1].join(\"\
     \ \")\n\nmain()\n"
   dependsOn:
-  - atcoder/internal_math.nim
+  - atcoder/modint.nim
   - atcoder/generate_definitions.nim
+  - atcoder/extra/tree/centroid_decomposition.nim
   - atcoder/internal_math.nim
-  - atcoder/convolution.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/convolution.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/internal_bit.nim
-  - atcoder/element_concepts.nim
-  - atcoder/internal_bit.nim
-  - atcoder/header.nim
-  - atcoder/element_concepts.nim
-  - atcoder/modint.nim
   - atcoder/header.nim
   - atcoder/modint.nim
-  - atcoder/extra/tree/centroid_decomposition.nim
-  - atcoder/extra/tree/centroid_decomposition.nim
+  - atcoder/element_concepts.nim
+  - atcoder/internal_bit.nim
   - atcoder/generate_definitions.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/tree/centroid_decomposition.nim
+  - atcoder/element_concepts.nim
+  - atcoder/convolution.nim
+  - atcoder/header.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: true
   path: verify/extra/graph/centroid_decomposition_test.nim
   requiredBy: []
-  timestamp: '2021-12-11 23:59:27+09:00'
+  timestamp: '2022-06-06 17:51:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/graph/centroid_decomposition_test.nim

@@ -68,9 +68,9 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_EXTRA_DIJKSTRA_HPP:\n  const ATCODER_EXTRA_DIJKSTRA_HPP*\
     \ = 1\n  import std/heapqueue, std/sequtils\n  import std/deques, std/options,\
@@ -83,16 +83,16 @@ data:
     \ tuple[dist:G.T, prev_set:bool, prev:G.U]\n    default_val.dist = G.T.inf\n \
     \   default_val.prev_set = false\n    var\n      a = initNodeArray(g, default_val,\
     \ g.len)\n      Q = initDeque[DijkstraObj[G.T, G.U]]()\n    when s is G.U:\n \
-    \     var p = a[s]\n      p[].dist = G.T(0)\n      Q.addFirst(DijkstraObj[G.T,\
-    \ G.U](dst:s, weight:G.T(0)))\n    else:\n      for s in s:\n        var p = a[s]\n\
-    \        p[].dist = G.T(0)\n        Q.addFirst(DijkstraObj[G.T, G.U](dst:s, weight:G.T(0)))\n\
-    \    while Q.len > 0:\n      var e = Q.popFirst()\n      var p = a[e.dst]\n  \
-    \    if p[].prev_set: continue\n      p[].prev_set = true\n      p[].prev = e.src\n\
-    \      for f in g[e.dst]:\n        var w = e.weight + f.weight\n        var p\
-    \ = a[f.dst]\n        if p[].dist > w:\n          p[].dist = w;\n          if\
-    \ f.weight == 0:\n            Q.addFirst(initDijkstraObj(e.dst, f.dst, w))\n \
-    \         else:\n            Q.addLast(initDijkstraObj(e.dst, f.dst, w))\n   \
-    \ result = DijkstraResult[G.T, G.U, G.useId](a:a)\n\n  proc dijkstra*[G:Graph](g:var\
+    \     var p = a[s]\n      p[].dist = G.T(0)\n      p[].prev = s\n      Q.addFirst(DijkstraObj[G.T,\
+    \ G.U](src:s, dst:s, weight:G.T(0)))\n    else:\n      for s in s:\n        var\
+    \ p = a[s]\n        p[].dist = G.T(0)\n        p[].prev = s\n        Q.addFirst(DijkstraObj[G.T,\
+    \ G.U](src: s, dst:s, weight:G.T(0)))\n    while Q.len > 0:\n      var e = Q.popFirst()\n\
+    \      var p = a[e.dst]\n      if p[].prev_set: continue\n      p[].prev_set =\
+    \ true\n      p[].prev = e.src\n      for f in g[e.dst]:\n        var w = e.weight\
+    \ + f.weight\n        var p = a[f.dst]\n        if p[].dist > w:\n          p[].dist\
+    \ = w;\n          if f.weight == 0:\n            Q.addFirst(initDijkstraObj(e.dst,\
+    \ f.dst, w))\n          else:\n            Q.addLast(initDijkstraObj(e.dst, f.dst,\
+    \ w))\n    result = DijkstraResult[G.T, G.U, G.useId](a:a)\n\n  proc dijkstra*[G:Graph](g:var\
     \ G, s:G.U or seq[G.U]): auto = \n    var default_val: tuple[dist:G.T, prev_set:bool,\
     \ prev:G.U]\n    default_val.dist = G.T.inf\n    default_val.prev_set = false\n\
     \    var\n      a = initNodeArray(g, default_val, g.len)\n      Q = initHeapQueue[DijkstraObj[G.T,\
@@ -105,32 +105,32 @@ data:
     \ a[f.dst]\n        if p[].dist > w:\n          p[].dist = w;\n          Q.push(initDijkstraObj(e.dst,\
     \ f.dst, w))\n    result = DijkstraResult[G.T, G.U, G.useId](a:a)\n"
   dependsOn:
-  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/dijkstra_result.nim
   isVerificationFile: false
   path: atcoder/extra/graph/dijkstra.nim
   requiredBy: []
-  timestamp: '2021-11-18 02:47:29+09:00'
+  timestamp: '2022-06-06 17:51:24+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/shortest_path_test.nim
   - verify/shortest_path_test.nim
-  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
-  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
   - verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
   - verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
   - verify/extra/graph/yosupo_shortest_path_test.nim
   - verify/extra/graph/yosupo_shortest_path_test.nim
+  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
+  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
 documentation_of: atcoder/extra/graph/dijkstra.nim
 layout: document
 redirect_from:

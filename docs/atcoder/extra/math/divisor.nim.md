@@ -1,7 +1,19 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: atcoder/extra/math/eratosthenes.nim
+    title: atcoder/extra/math/eratosthenes.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/eratosthenes.nim
+    title: atcoder/extra/math/eratosthenes.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/eratosthenes.nim
+    title: atcoder/extra/math/eratosthenes.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/eratosthenes.nim
+    title: atcoder/extra/math/eratosthenes.nim
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: nim
@@ -9,9 +21,9 @@ data:
   attributes:
     links:
     - https://atcoder.jp/contests/abc212/submissions/24699873
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_DEVISOR_HPP:\n  const ATCODER_DEVISOR_HPP* = 1\n\
     \  import std/algorithm\n  proc divisor*(n:int):seq[int] =\n    result = newSeq[int]()\n\
@@ -34,7 +46,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: atcoder/extra/math/divisor.nim
-  requiredBy: []
+  requiredBy:
+  - atcoder/extra/math/eratosthenes.nim
+  - atcoder/extra/math/eratosthenes.nim
+  - atcoder/extra/math/eratosthenes.nim
+  - atcoder/extra/math/eratosthenes.nim
   timestamp: '2021-08-10 01:29:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

@@ -92,9 +92,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_SET_MAP_HPP:\n  const ATCODER_SET_MAP_HPP* = 1\n\
     \  #type BinaryTreeType = enum\n  #  RedBlack, \n  #  Splay, \n  #  Randomized\n\
@@ -136,12 +136,12 @@ data:
     \      self.End = End\n      self.tree.init(End)\n    proc len*[Tree:SetOrMap](self:Tree):int\
     \ = self.tree.root.cnt - 1\n    proc empty*[Tree:SetOrMap](self:Tree):bool = self.len\
     \ == 0\n\n  else:\n    include atcoder/extra/structure/randomized_binary_search_tree_with_parent\n\
-    \ \n    type SortedSetType*[K, Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[K],\
-    \ RandomizedBinarySearchTree[K].Node, MULTI_FALSE, K, void, p]\n    type SortedMultiSetType*[K,\
+    \ \n    type\n      SortedSetType*[K, Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[K],\
+    \ RandomizedBinarySearchTree[K].Node, MULTI_FALSE, K, void, p]\n      SortedMultiSetType*[K,\
     \ Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[K], RBSTNode[K,\
-    \ void, void], MULTI_TRUE, K, void, p]\n    type SortedMapType*[K, V, Countable;\
+    \ void, void], MULTI_TRUE, K, void, p]\n      SortedMapType*[K, V, Countable;\
     \ p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[(K, V)], RBSTNode[(K,\
-    \ V), void, void], MULTI_FALSE, K, V, p]\n    type SortedMultiMapType*[K, V, Countable;\
+    \ V), void, void], MULTI_FALSE, K, V, p]\n      SortedMultiMapType*[K, V, Countable;\
     \ p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[(K, V)], RBSTNode[(K,\
     \ V), void, void], MULTI_TRUE, K, V, p]\n  \n    type SetOrMap = SortedMultiSetType\
     \ or SortedSetType or SortedMultiMapType or SortedMapType\n  \n    proc init*[Tree:SetOrMap](self:\
@@ -185,40 +185,40 @@ data:
     \          v.addQuoted(node.key[1])\n          a &= k & \": \" & v\n        node\
     \ = node.r\n    return \"{\" & a.join(\", \") & \"}\"\n"
   dependsOn:
-  - atcoder/extra/structure/red_black_tree.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/red_black_tree.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/rangeutils.nim
-  - atcoder/extra/structure/splay_tree.nim
   - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/red_black_tree.nim
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/rangeutils.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/red_black_tree.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/splay_tree.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/splay_tree.nim
   - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/red_black_tree.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/red_black_tree.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/set_map.nim
   requiredBy: []
-  timestamp: '2021-11-18 02:47:29+09:00'
+  timestamp: '2022-06-06 17:51:24+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/extra/structure/yosupo_predecessor_problem_test.nim
-  - verify/extra/structure/yosupo_predecessor_problem_test.nim
   - verify/map_test.nim
   - verify/map_test.nim
+  - verify/extra/structure/yosupo_predecessor_problem_test.nim
+  - verify/extra/structure/yosupo_predecessor_problem_test.nim
 documentation_of: atcoder/extra/structure/set_map.nim
 layout: document
 redirect_from:

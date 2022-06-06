@@ -14,28 +14,28 @@ data:
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/coef_of_generating_function.nim
     title: atcoder/extra/math/coef_of_generating_function.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/coef_of_generating_function.nim
     title: atcoder/extra/math/coef_of_generating_function.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/coef_of_generating_function.nim
     title: atcoder/extra/math/coef_of_generating_function.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/coef_of_generating_function.nim
     title: atcoder/extra/math/coef_of_generating_function.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
   - icon: ':x:'
@@ -50,16 +50,16 @@ data:
   - icon: ':x:'
     path: atcoder/extra/math/factorial.nim
     title: atcoder/extra/math/factorial.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
   - icon: ':heavy_check_mark:'
@@ -123,28 +123,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/math/pow_of_formal_power_series_test.nim
     title: verify/extra/math/pow_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/sqrt_of_formal_power_series_test.nim
     title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/sqrt_of_formal_power_series_test.nim
     title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
     title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
     title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
   - icon: ':x:'
@@ -158,9 +158,9 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_FORMAL_POWER_SERIES:\n  const ATCODER_FORMAL_POWER_SERIES*\
     \ = 1\n  \n  import std/sequtils, std/strformat, std/options, std/macros, std/tables,\
@@ -290,9 +290,9 @@ data:
     \ r: FormalPowerSeries[T]) =\n    self *= r.inv()\n\n  proc `div=`*[T](self: var\
     \ FormalPowerSeries[T], r: FormalPowerSeries[T]) =\n    if self.len < r.len:\n\
     \      self.setlen(0)\n    else:\n      let n = self.len - r.len + 1\n      self\
-    \ = (self.rev().pre(n) * r.rev().inv(n)).pre(n).rev(n)\n\n  # operators +, -,\
-    \ *, div, mod {{{\n  macro declareFormalPowerSeriesOperators(op) =\n    fmt\"\"\
-    \"proc `{op}`*[T](self:FormalPowerSeries[T];r:FormalPowerSeries[T] or T):FormalPowerSeries[T]\
+    \ = (self.rev().pre(n) * r.rev().inv(n)).pre(n).rev(n)\n\n# operators +, -, *,\
+    \ div, mod {{{\n  macro declareFormalPowerSeriesOperators(op) =\n    fmt\"\"\"\
+    proc `{op}`*[T](self:FormalPowerSeries[T];r:FormalPowerSeries[T] or T):FormalPowerSeries[T]\
     \ = result = self;result {op}= r\nproc `{op}`*[T](self: not FormalPowerSeries\
     \ and not Monomial, r:FormalPowerSeries[T]):FormalPowerSeries[T] = result = initFormalPowerSeries[T](@[T(self)]);result\
     \ {op}= r\"\"\".parseStmt\n  \n  declareFormalPowerSeriesOperators(`+`)\n  declareFormalPowerSeriesOperators(`-`)\n\
@@ -347,8 +347,8 @@ data:
     \ v\n      w *= x\n    return r\n#  {.experimental: \"callOperator\".}\n#  template\
     \ `()`*[T](self: FormalPowerSeries[T], x:T):T = self.eval(x)\n#  proc `()`*[T](self:\
     \ FormalPowerSeries[T], x:T):T = self.eval(x)\n\n  proc powMod*[T](self: FormalPowerSeries[T],\
-    \ n:int, M:FormalPowerSeries[T]):auto =\n    assert M[^1] != T(0)\n    let modinv\
-    \ = M.rev().inv()\n    proc getDiv(base:FormalPowerSeries[T]):FormalPowerSeries[T]\
+    \ n:int, M:FormalPowerSeries[T]):auto =\n    assert not EQUAL(M[^1], T(0))\n \
+    \   let modinv = M.rev().inv()\n    proc getDiv(base:FormalPowerSeries[T]):FormalPowerSeries[T]\
     \ =\n      var base = base\n      if base.len < M.len:\n        base.setlen(0)\n\
     \        return base\n      let n = base.len - M.len + 1\n      return (base.rev().pre(n)\
     \ * modinv.pre(n)).pre(n).rev(n)\n    var\n      n = n\n      x = self\n    result\
@@ -368,51 +368,51 @@ data:
   - atcoder/extra/math/composition.nim
   - atcoder/extra/math/polynomial_taylor_shift.nim
   - atcoder/extra/math/polynomial_taylor_shift.nim
-  - atcoder/extra/math/coef_of_generating_function.nim
-  - atcoder/extra/math/coef_of_generating_function.nim
-  - atcoder/extra/math/formal_power_series_sqrt.nim
-  - atcoder/extra/math/formal_power_series_sqrt.nim
   - atcoder/extra/math/factorial.nim
   - atcoder/extra/math/factorial.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - atcoder/extra/math/coef_of_generating_function.nim
+  - atcoder/extra/math/coef_of_generating_function.nim
   - atcoder/extra/math/composition.nim
   - atcoder/extra/math/composition.nim
   - atcoder/extra/math/polynomial_taylor_shift.nim
   - atcoder/extra/math/polynomial_taylor_shift.nim
-  - atcoder/extra/math/coef_of_generating_function.nim
-  - atcoder/extra/math/coef_of_generating_function.nim
-  - atcoder/extra/math/formal_power_series_sqrt.nim
-  - atcoder/extra/math/formal_power_series_sqrt.nim
   - atcoder/extra/math/factorial.nim
   - atcoder/extra/math/factorial.nim
-  timestamp: '2021-12-11 18:27:17+09:00'
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - atcoder/extra/math/coef_of_generating_function.nim
+  - atcoder/extra/math/coef_of_generating_function.nim
+  timestamp: '2022-06-06 17:51:24+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/extra/math/arbitrary_mod_convolution_test.nim
-  - verify/extra/math/arbitrary_mod_convolution_test.nim
-  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - verify/extra/math/inv_of_formal_power_series_test.nim
-  - verify/extra/math/inv_of_formal_power_series_test.nim
-  - verify/extra/math/polynomial_taylor_shift_test.nim
-  - verify/extra/math/polynomial_taylor_shift_test.nim
-  - verify/extra/math/yukicoder_factorial_test.nim
-  - verify/extra/math/yukicoder_factorial_test.nim
-  - verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - verify/extra/math/log_of_formal_power_series_test.nim
-  - verify/extra/math/log_of_formal_power_series_test.nim
-  - verify/extra/math/division_of_polynomials_test.nim
-  - verify/extra/math/division_of_polynomials_test.nim
-  - verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
-  - verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
-  - verify/extra/math/pow_of_formal_power_series_test.nim
-  - verify/extra/math/pow_of_formal_power_series_test.nim
   - verify/extra/math/exp_of_formal_power_series_test.nim
   - verify/extra/math/exp_of_formal_power_series_test.nim
+  - verify/extra/math/yukicoder_factorial_test.nim
+  - verify/extra/math/yukicoder_factorial_test.nim
+  - verify/extra/math/log_of_formal_power_series_test.nim
+  - verify/extra/math/log_of_formal_power_series_test.nim
+  - verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
+  - verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
+  - verify/extra/math/sqrt_of_formal_power_series_test.nim
+  - verify/extra/math/sqrt_of_formal_power_series_test.nim
+  - verify/extra/math/arbitrary_mod_convolution_test.nim
+  - verify/extra/math/arbitrary_mod_convolution_test.nim
+  - verify/extra/math/pow_of_formal_power_series_test.nim
+  - verify/extra/math/pow_of_formal_power_series_test.nim
+  - verify/extra/math/polynomial_taylor_shift_test.nim
+  - verify/extra/math/polynomial_taylor_shift_test.nim
+  - verify/extra/math/inv_of_formal_power_series_test.nim
+  - verify/extra/math/inv_of_formal_power_series_test.nim
+  - verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
+  - verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
+  - verify/extra/math/division_of_polynomials_test.nim
+  - verify/extra/math/division_of_polynomials_test.nim
+  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
+  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
+  - verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
+  - verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
 documentation_of: atcoder/extra/math/formal_power_series.nim
 layout: document
 redirect_from:

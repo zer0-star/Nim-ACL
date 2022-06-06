@@ -74,17 +74,18 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_DIJKSTRA_RESULT_HPP:\n  const ATCODER_DIJKSTRA_RESULT_HPP*\
     \ = 1\n  import std/algorithm\n  import atcoder/extra/graph/graph_template\n \
-    \ type DijkstraResult*[T, U, useId] = object\n    a: NodeArray[U, tuple[dist:T,\
-    \ prev_set:bool, prev:U], useId]\n  proc `[]`*[T, U, useId](d:var DijkstraResult[T,\
+    \ type DijkstraResult*[T, U, useId] = object\n    a*: NodeArray[U, tuple[dist:T,\
+    \ prev_set:bool, prev:U], useId]\n  proc contains*[T, U, useId](d:var DijkstraResult[T,\
+    \ U, useId], u:U):bool =\n    u in d.a\n  proc `[]`*[T, U, useId](d:var DijkstraResult[T,\
     \ U, useId], u:U):T =\n    d.a[u][].dist\n  proc prev*[T, U, useId](d:var DijkstraResult[T,\
     \ U, useId], u:U):U =\n    d.a[u][].prev\n  proc path*[T, U, useId](d:var DijkstraResult[T,\
-    \ U, useId], t:U): seq[U] = \n    var u = t\n    while u >= 0:\n      result.add(u)\n\
+    \ U, useId], t:U): seq[U] = \n    var u = t\n    while true:\n      result.add(u)\n\
     #      if u == d.s: break\n      var p = d.prev(u)\n      if u == p: break\n \
     \     u = p\n    result.reverse()\n"
   dependsOn:
@@ -95,27 +96,27 @@ data:
   isVerificationFile: false
   path: atcoder/extra/graph/dijkstra_result.nim
   requiredBy:
-  - atcoder/extra/graph/dijkstra_radix_heap.nim
-  - atcoder/extra/graph/dijkstra_radix_heap.nim
   - atcoder/extra/graph/dijkstra.nim
   - atcoder/extra/graph/dijkstra.nim
   - atcoder/extra/graph/dijkstra_radix_heap.nim
   - atcoder/extra/graph/dijkstra_radix_heap.nim
   - atcoder/extra/graph/dijkstra.nim
   - atcoder/extra/graph/dijkstra.nim
-  timestamp: '2021-11-18 02:47:29+09:00'
+  - atcoder/extra/graph/dijkstra_radix_heap.nim
+  - atcoder/extra/graph/dijkstra_radix_heap.nim
+  timestamp: '2022-06-06 17:51:24+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/shortest_path_test.nim
   - verify/shortest_path_test.nim
-  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
-  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
-  - verify/extra/graph/aoj_grl_1_a_dijkstra_radix_heap_test.nim
-  - verify/extra/graph/aoj_grl_1_a_dijkstra_radix_heap_test.nim
   - verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
   - verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
   - verify/extra/graph/yosupo_shortest_path_test.nim
   - verify/extra/graph/yosupo_shortest_path_test.nim
+  - verify/extra/graph/aoj_grl_1_a_dijkstra_radix_heap_test.nim
+  - verify/extra/graph/aoj_grl_1_a_dijkstra_radix_heap_test.nim
+  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
+  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
 documentation_of: atcoder/extra/graph/dijkstra_result.nim
 layout: document
 redirect_from:

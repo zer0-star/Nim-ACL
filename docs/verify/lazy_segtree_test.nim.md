@@ -52,9 +52,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
     links:
     - https://judge.yosupo.jp/problem/range_affine_range_sum
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/range_affine_range_sum\n\
     \nimport atcoder/header, atcoder/lazysegtree, atcoder/modint\nimport std/sequtils\n\
@@ -68,24 +68,24 @@ data:
     \ d = nextInt()\n    seg.apply(l..<r, (mint(c), mint(d)))\n  else:\n    let l,\
     \ r = nextInt()\n    echo seg.prod(l..<r)[0]\n"
   dependsOn:
-  - atcoder/internal_math.nim
   - atcoder/modint.nim
   - atcoder/internal_math.nim
   - atcoder/rangeutils.nim
-  - atcoder/lazysegtree.nim
   - atcoder/internal_bit.nim
-  - atcoder/header.nim
-  - atcoder/modint.nim
   - atcoder/generate_definitions.nim
+  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
-  - atcoder/lazysegtree.nim
-  - atcoder/internal_bit.nim
   - atcoder/header.nim
+  - atcoder/lazysegtree.nim
   - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
+  - atcoder/lazysegtree.nim
   isVerificationFile: true
   path: verify/lazy_segtree_test.nim
   requiredBy: []
-  timestamp: '2022-02-05 00:42:13+09:00'
+  timestamp: '2022-06-06 17:51:24+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/lazy_segtree_test.nim
