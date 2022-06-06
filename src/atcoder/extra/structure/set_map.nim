@@ -70,10 +70,11 @@ when not declared ATCODER_SET_MAP_HPP:
   else:
     include atcoder/extra/structure/randomized_binary_search_tree_with_parent
  
-    type SortedSetType*[K, Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[K], RandomizedBinarySearchTree[K].Node, MULTI_FALSE, K, void, p]
-    type SortedMultiSetType*[K, Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[K], RBSTNode[K, void, void], MULTI_TRUE, K, void, p]
-    type SortedMapType*[K, V, Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[(K, V)], RBSTNode[(K, V), void, void], MULTI_FALSE, K, V, p]
-    type SortedMultiMapType*[K, V, Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[(K, V)], RBSTNode[(K, V), void, void], MULTI_TRUE, K, V, p]
+    type
+      SortedSetType*[K, Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[K], RandomizedBinarySearchTree[K].Node, MULTI_FALSE, K, void, p]
+      SortedMultiSetType*[K, Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[K], RBSTNode[K, void, void], MULTI_TRUE, K, void, p]
+      SortedMapType*[K, V, Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[(K, V)], RBSTNode[(K, V), void, void], MULTI_FALSE, K, V, p]
+      SortedMultiMapType*[K, V, Countable; p:static[tuple]] = SortedTree[RandomizedBinarySearchTree[(K, V)], RBSTNode[(K, V), void, void], MULTI_TRUE, K, V, p]
   
     type SetOrMap = SortedMultiSetType or SortedSetType or SortedMultiMapType or SortedMapType
   

@@ -11,12 +11,10 @@ when not declared ATCODER_SEGTREE_HPP:
 
   template calc_op[ST:SegTree](self:typedesc[ST], a, b:ST.S):auto =
     block:
-      let op = ST.p.op
-      op(a, b)
+      ST.p.op(a, b)
   template calc_e[ST:SegTree](self:typedesc[ST]):auto =
     block:
-      let e = ST.p.e
-      e()
+      ST.p.e()
   proc update[ST:SegTree](self: var ST, k:int) =
     self.d[k] = ST.calc_op(self.d[2 * k], self.d[2 * k + 1])
 

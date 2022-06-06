@@ -192,4 +192,3 @@ when not declared ATCODER_SOLVEPROC_HPP:
       discard
     if hasTest:
       discard
-    #echo result.repr

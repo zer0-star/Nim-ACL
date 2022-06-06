@@ -11,24 +11,19 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
 
   template calc_op[ST:LazySegTree](self:typedesc[ST], a, b:ST.S):auto =
     block:
-      let op = ST.p.op
-      op(a, b)
+      ST.p.op(a, b)
   template calc_e[ST:LazySegTree](self:typedesc[ST]):auto =
     block:
-      let e = ST.p.e
-      e()
+      ST.p.e()
   template calc_mapping[ST:LazySegTree](self:typedesc[ST], a:ST.F, b:ST.S):auto =
     block:
-      let mapping = ST.p.mapping
-      mapping(a, b)
+      ST.p.mapping(a, b)
   template calc_composition[ST:LazySegTree](self:typedesc[ST], a, b:ST.F):auto =
     block:
-      let composition = ST.p.composition
-      composition(a, b)
+      ST.p.composition(a, b)
   template calc_id[ST:LazySegTree](self:typedesc[ST]):auto =
     block:
-      let id = ST.p.id
-      id()
+      ST.p.id()
 
   proc update[ST:LazySegTree](self:var ST, k:int) =
     self.d[k] = ST.calc_op(self.d[2 * k], self.d[2 * k + 1])

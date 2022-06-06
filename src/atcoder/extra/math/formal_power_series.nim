@@ -303,7 +303,7 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
       let n = self.len - r.len + 1
       self = (self.rev().pre(n) * r.rev().inv(n)).pre(n).rev(n)
 
-  # operators +, -, *, div, mod {{{
+# operators +, -, *, div, mod {{{
   macro declareFormalPowerSeriesOperators(op) =
     fmt"""proc `{op}`*[T](self:FormalPowerSeries[T];r:FormalPowerSeries[T] or T):FormalPowerSeries[T] = result = self;result {op}= r
 proc `{op}`*[T](self: not FormalPowerSeries and not Monomial, r:FormalPowerSeries[T]):FormalPowerSeries[T] = result = initFormalPowerSeries[T](@[T(self)]);result {op}= r""".parseStmt
@@ -449,7 +449,7 @@ proc `{op}`*[T](self: not FormalPowerSeries and not Monomial, r:FormalPowerSerie
 #  proc `()`*[T](self: FormalPowerSeries[T], x:T):T = self.eval(x)
 
   proc powMod*[T](self: FormalPowerSeries[T], n:int, M:FormalPowerSeries[T]):auto =
-    assert M[^1] != T(0)
+    assert not EQUAL(M[^1], T(0))
     let modinv = M.rev().inv()
     proc getDiv(base:FormalPowerSeries[T]):FormalPowerSeries[T] =
       var base = base

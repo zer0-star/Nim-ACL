@@ -1,9 +1,9 @@
-# LongDouble {{{
 when not declared ATCODER_LONGDOUBLE_HPP:
   const ATCODER_LONGDOUBLE_HPP* = 1
   type LongDouble* {.importcpp: "long double", nodecl .} = object
     discard
-  
+  type float128* = LongDouble
+
   proc getLongDouble*(a:SomeNumber):LongDouble {.importcpp: "(long double)(#)", nodecl.}
   proc initLongDouble*(a:float):LongDouble = getLongDouble(a.cdouble)
   converter toLongDouble*(a:int):LongDouble = getLongDouble(a.cint)
@@ -33,12 +33,12 @@ when not declared ATCODER_LONGDOUBLE_HPP:
     var s:cstring
     getString(a, s)
     return $s
-  proc `abs`*(a:LongDouble):LongDouble {.header: "<cmath>", importcpp: "abs(#)", nodecl.}
-  proc `sqrt`*(a:LongDouble):LongDouble {.header: "<cmath>", importcpp: "sqrtl(#)", nodecl.}
-  proc `exp`*(a:LongDouble):LongDouble {.header: "<cmath>", importcpp: "expl(#)", nodecl.}
-  proc `sin`*(a:LongDouble):LongDouble {.header: "<cmath>", importcpp: "sinl(#)", nodecl.}
-  proc `cos`*(a:LongDouble):LongDouble {.header: "<cmath>", importcpp: "cosl(#)", nodecl.}
-  proc `acos`*(a:LongDouble):LongDouble {.header: "<cmath>", importcpp: "acosl(#)", nodecl.}
-  proc `llround`*(a:LongDouble):int {.header: "<cmath>", importcpp: "llround(#)", nodecl.}
-  proc `pow`*(a:LongDouble, b:SomeNumber):LongDouble {.header: "<cmath>", importcpp: "powl((#), (long double)(@))", nodecl.}
-# }}}
+  proc `abs`*(a:LongDouble):LongDouble {.header: "<cmath>", importcpp: "std::abs(#)", nodecl.}
+  proc `sqrt`*(a:LongDouble):LongDouble {.header: "<cmath>", importcpp: "std::sqrtl(#)", nodecl.}
+  proc `exp`*(a:LongDouble):LongDouble {.header: "<cmath>", importcpp: "std:;expl(#)", nodecl.}
+  proc `sin`*(a:LongDouble):LongDouble {.header: "<cmath>", importcpp: "std::sinl(#)", nodecl.}
+  proc `cos`*(a:LongDouble):LongDouble {.header: "<cmath>", importcpp: "std::cosl(#)", nodecl.}
+  proc `acos`*(a:LongDouble):LongDouble {.header: "<cmath>", importcpp: "std::acosl(#)", nodecl.}
+  proc `llround`*(a:LongDouble):int {.header: "<cmath>", importcpp: "std::llround(#)", nodecl.}
+  proc `pow`*(a:LongDouble, b:SomeNumber):LongDouble {.header: "<cmath>", importcpp: "std::powl((#), (long double)(@))", nodecl.}
+  proc inf*(self:typedesc[LongDouble]):LongDouble {.header: "<limits>", importcpp: "std::numeric_limits<long double>::infinity()", nodecl.}

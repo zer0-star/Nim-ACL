@@ -1,6 +1,6 @@
 when not declared ATCODER_GENERATE_DEFINITIONS_NIM:
   const ATCODER_GENERATE_DEFINITIONS_NIM* = 1
-  import std/strformat, std/macros
+  import std/macros
 
   type hasInv* = concept x
     var t: x
@@ -35,4 +35,8 @@ when not declared ATCODER_GENERATE_DEFINITIONS_NIM:
     proc `^`*[T:name](m: T; p: SomeInteger): T {.inline.} = m.pow(p)
 
   macro generateConverter*(name, from_type, to_type) =
-    parseStmt(fmt"""type {name.repr}* = {to_type.repr}{'\n'}converter to{name.repr}OfGenerateConverter*(a:{from_type}):{name.repr} {{.used.}} = {name.repr}.init(a){'\n'}""")
+    let fname = ident("to" & $`name` & "OfGenerateConverter")
+    quote do:
+      type `name`* = `to_type`
+      converter `fname`*(a:`from_type`):`name` {.used.} =
+        `name`.init(a)

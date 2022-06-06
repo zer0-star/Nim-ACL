@@ -25,12 +25,14 @@ when not declared ATCODER_EXTRA_DIJKSTRA_HPP:
     when s is G.U:
       var p = a[s]
       p[].dist = G.T(0)
-      Q.addFirst(DijkstraObj[G.T, G.U](dst:s, weight:G.T(0)))
+      p[].prev = s
+      Q.addFirst(DijkstraObj[G.T, G.U](src:s, dst:s, weight:G.T(0)))
     else:
       for s in s:
         var p = a[s]
         p[].dist = G.T(0)
-        Q.addFirst(DijkstraObj[G.T, G.U](dst:s, weight:G.T(0)))
+        p[].prev = s
+        Q.addFirst(DijkstraObj[G.T, G.U](src: s, dst:s, weight:G.T(0)))
     while Q.len > 0:
       var e = Q.popFirst()
       var p = a[e.dst]

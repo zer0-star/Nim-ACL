@@ -1,6 +1,6 @@
 when not declared ATCODER_MODINT_HPP:
   const ATCODER_MODINT_HPP* = 1
-  import std/macros, std/strformat
+  import std/macros
   import atcoder/generate_definitions
 
   type
@@ -148,3 +148,16 @@ when not declared ATCODER_MODINT_HPP:
   useStaticModInt(modint998244353, 998244353)
   useStaticModInt(modint1000000007, 1000000007)
   useDynamicModInt(modint, -1)
+
+  import std/math as math_lib_modint
+  proc estimateRational*(a:ModInt, ub:int = int(sqrt(float(ModInt.mod)))):string =
+    for d in 1..ub:
+      var n = (a * d).val
+      if n <= ub:
+        return $n & " / " & $d
+    stderr.write "estimate failed"
+    return "??? / ???"
+  # Modint -> intのconverterあるとmint(2) * 3みたいなのがintになっちゃう
+  # converter toInt*(m: ModInt):int {.inline.} = m.val
+
+

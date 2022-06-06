@@ -3,8 +3,8 @@ when not declared ATCODER_ASSIGNMENT_OPERATOR_HPP:
   const ATCODER_ASSIGNMENT_OPERATOR_HPP* = 1
   template `>?=`*(x,y:typed):void = x.max= y
   template `<?=`*(x,y:typed):void = x.min= y
-  proc `//`*[T](x,y:T):T = x div y
-  proc `%`*[T](x,y:T):T = x mod y
+  proc `//`*[T:SomeInteger](x,y:T):T = x div y
+  proc `%`*[T:SomeInteger](x,y:T):T = x mod y
   macro generateAssignmentOperator*(ops:varargs[untyped]) =
     var strBody = ""
     for op in ops:

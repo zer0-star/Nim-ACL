@@ -27,6 +27,9 @@ when not declared ATCODER_CUMULATIVE_SUM_HPP:
     if k < self.pos: doAssert(false)
     if self.data.len < k + 2: self.data.setLen(k + 2)
     self.data[k + 1] += x
+  proc initCumulativeSum*[T](v:seq[T]):CumulativeSum[T, false] =
+    result = CumulativeSum[T, false](data: newSeqWith(v.len + 1, T.default), pos:0, len:v.len)
+    for i, a in v: result.add(i, a)
 
   proc propagate*[T;reverse:static[bool]](self: var CumulativeSum[T, reverse]) =
     if self.data.len < self.pos + 2: self.data.setLen(self.pos + 2)

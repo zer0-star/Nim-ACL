@@ -69,17 +69,17 @@ when not declared ATCODER_MATH_HPP:
       if r0 < 0: r0 += m0
     return (r0, m0)
 
-proc floor_sum*(n, m, a, b:int):int =
-  assert n in 0..<(1 shl 32)
-  assert m in 1..<(1 shl 32)
-  var (a, b) = (a, b)
-  var ans = 0.uint
-  if a < 0:
-    var a2:uint = floorMod(a, m).uint
-    ans -= n.uint * (n - 1).uint div 2 * ((a2 - a.uint) div m.uint)
-    a = a2.int
-  if b < 0:
-    var b2:uint = floorMod(b, m).uint
-    ans -= n.uint * ((b2 - b.uint) div m.uint)
-    b = b2.int
-  return cast[int](ans + floor_sum_unsigned(n.uint, m.uint, a.uint, b.uint))
+  proc floor_sum*(n, m, a, b:int):int =
+    assert n in 0..<(1 shl 32)
+    assert m in 1..<(1 shl 32)
+    var (a, b) = (a, b)
+    var ans = 0.uint
+    if a < 0:
+      var a2:uint = floorMod(a, m).uint
+      ans -= n.uint * (n - 1).uint div 2 * ((a2 - a.uint) div m.uint)
+      a = a2.int
+    if b < 0:
+      var b2:uint = floorMod(b, m).uint
+      ans -= n.uint * ((b2 - b.uint) div m.uint)
+      b = b2.int
+    return cast[int](ans + floor_sum_unsigned(n.uint, m.uint, a.uint, b.uint))

@@ -112,13 +112,13 @@ when not declared ATCODER_GRAPH_TEMPLATE_HPP:
       for e in g.adj(u): yield e
 
   type NodeArray*[U, VAL, useId] = object
-    default_val:VAL
+    default_val*:VAL
     when useId is USEID_TRUE:
       id*: proc(u:U):int
     when useId is USEID_TRUE or U is int:
-      v:seq[VAL]
+      v*:seq[VAL]
     else:
-      v:Table[U, VAL]
+      v*:Table[U, VAL]
 
   proc initNodeArray*[VAL](g:Graph, default_val:VAL, len = 0):auto =
     result = NodeArray[g.U, VAL, g.useId](default_val:default_val)
@@ -141,3 +141,13 @@ when not declared ATCODER_GRAPH_TEMPLATE_HPP:
       if u notin a.v:
         (a.v)[u] = a.default_val
       a.v[u].addr
+
+  proc contains*[U, useId, VAL](a:var NodeArray[U, VAL, useId], u:U):bool =
+    when useId is USEID_TRUE or U is int:
+      when U is int:
+        var i = u
+      else:
+        var i = a.id(u)
+      return i < a.v.len
+    else:
+      return u in a.v

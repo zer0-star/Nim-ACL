@@ -1,5 +1,6 @@
 when not declared ATCODER_ERATOSTHENES_HPP:
   const ATCODER_ERATOSTHENES_HPP* = 1
+  import atcoder/extra/math/divisor
   type Eratosthenes* = object
     n*:int
     pdiv*, prime*, index:seq[int]
@@ -45,3 +46,6 @@ when not declared ATCODER_ERATOSTHENES_HPP:
     while i >= self.prime.len: self.expand()
     return self.prime[i]
   proc `[]`*(self:var Eratosthenes, i:int):int = self.getPrime(i)
+  proc divisor*(self: var Eratosthenes, n:int):seq[int] =
+    var f = self.factor(n)
+    return f.divisor()
