@@ -201,6 +201,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/chu_liu_edmonds.nim
       title: atcoder/extra/graph/chu_liu_edmonds.nim
+    - icon: ':warning:'
+      path: atcoder/extra/graph/combined.nim
+      title: atcoder/extra/graph/combined.nim
+    - icon: ':warning:'
+      path: atcoder/extra/graph/combined.nim
+      title: atcoder/extra/graph/combined.nim
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/cycle_detection.nim
       title: atcoder/extra/graph/cycle_detection.nim
@@ -291,6 +297,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/lowlink.nim
       title: atcoder/extra/graph/lowlink.nim
+    - icon: ':warning:'
+      path: atcoder/extra/graph/maxflow_lowerbound.nim
+      title: atcoder/extra/graph/maxflow_lowerbound.nim
+    - icon: ':warning:'
+      path: atcoder/extra/graph/maxflow_lowerbound.nim
+      title: atcoder/extra/graph/maxflow_lowerbound.nim
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/maximum_independent_set.nim
       title: atcoder/extra/graph/maximum_independent_set.nim
@@ -347,6 +359,12 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/header/chaemon_header.nim
       title: atcoder/extra/header/chaemon_header.nim
+    - icon: ':warning:'
+      path: atcoder/extra/header/header.nim
+      title: atcoder/extra/header/header.nim
+    - icon: ':warning:'
+      path: atcoder/extra/header/header.nim
+      title: atcoder/extra/header/header.nim
   - name: atcoder/extra/math
     pages:
     - icon: ':question:'
@@ -355,16 +373,16 @@ data:
     - icon: ':question:'
       path: atcoder/extra/math/arbitrary_mod_convolution.nim
       title: atcoder/extra/math/arbitrary_mod_convolution.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/bitwise_convolution.nim
       title: atcoder/extra/math/bitwise_convolution.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/bitwise_convolution.nim
       title: atcoder/extra/math/bitwise_convolution.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/coef_of_generating_function.nim
       title: atcoder/extra/math/coef_of_generating_function.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/coef_of_generating_function.nim
       title: atcoder/extra/math/coef_of_generating_function.nim
     - icon: ':question:'
@@ -379,10 +397,10 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/math/combination_table.nim
       title: atcoder/extra/math/combination_table.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/composition.nim
       title: atcoder/extra/math/composition.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/composition.nim
       title: atcoder/extra/math/composition.nim
     - icon: ':warning:'
@@ -445,10 +463,10 @@ data:
     - icon: ':question:'
       path: atcoder/extra/math/formal_power_series.nim
       title: atcoder/extra/math/formal_power_series.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/formal_power_series_sqrt.nim
       title: atcoder/extra/math/formal_power_series_sqrt.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/formal_power_series_sqrt.nim
       title: atcoder/extra/math/formal_power_series_sqrt.nim
     - icon: ':warning:'
@@ -469,10 +487,10 @@ data:
     - icon: ':x:'
       path: atcoder/extra/math/matrix.nim
       title: atcoder/extra/math/matrix.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/math/mod_sqrt.nim
       title: atcoder/extra/math/mod_sqrt.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/math/mod_sqrt.nim
       title: atcoder/extra/math/mod_sqrt.nim
     - icon: ':warning:'
@@ -562,6 +580,12 @@ data:
       path: atcoder/extra/other/bitutils.nim
       title: atcoder/extra/other/bitutils.nim
     - icon: ':warning:'
+      path: atcoder/extra/other/cfor.nim
+      title: atcoder/extra/other/cfor.nim
+    - icon: ':warning:'
+      path: atcoder/extra/other/cfor.nim
+      title: atcoder/extra/other/cfor.nim
+    - icon: ':warning:'
       path: atcoder/extra/other/compress.nim
       title: atcoder/extra/other/compress.nim
     - icon: ':warning:'
@@ -687,6 +711,38 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/other/zip.nim
       title: atcoder/extra/other/zip.nim
+  - name: atcoder/extra/string
+    pages:
+    - icon: ':warning:'
+      path: atcoder/extra/string/aho_corasick.nim
+      title: atcoder/extra/string/aho_corasick.nim
+    - icon: ':warning:'
+      path: atcoder/extra/string/aho_corasick.nim
+      title: atcoder/extra/string/aho_corasick.nim
+    - icon: ':warning:'
+      path: atcoder/extra/string/knuth_morris_pratt.nim
+      title: atcoder/extra/string/knuth_morris_pratt.nim
+    - icon: ':warning:'
+      path: atcoder/extra/string/knuth_morris_pratt.nim
+      title: atcoder/extra/string/knuth_morris_pratt.nim
+    - icon: ':warning:'
+      path: atcoder/extra/string/rolling_hash.nim
+      title: atcoder/extra/string/rolling_hash.nim
+    - icon: ':warning:'
+      path: atcoder/extra/string/rolling_hash.nim
+      title: atcoder/extra/string/rolling_hash.nim
+    - icon: ':x:'
+      path: atcoder/extra/string/run_enumerate.nim
+      title: atcoder/extra/string/run_enumerate.nim
+    - icon: ':x:'
+      path: atcoder/extra/string/run_enumerate.nim
+      title: atcoder/extra/string/run_enumerate.nim
+    - icon: ':x:'
+      path: atcoder/extra/string/suffix_automaton.nim
+      title: atcoder/extra/string/suffix_automaton.nim
+    - icon: ':x:'
+      path: atcoder/extra/string/suffix_automaton.nim
+      title: atcoder/extra/string/suffix_automaton.nim
   - name: atcoder/extra/structure
     pages:
     - icon: ':x:'
@@ -702,6 +758,18 @@ data:
       path: atcoder/extra/structure/binary_tree_utils.nim
       title: atcoder/extra/structure/binary_tree_utils.nim
     - icon: ':warning:'
+      path: atcoder/extra/structure/combined.nim
+      title: atcoder/extra/structure/combined.nim
+    - icon: ':warning:'
+      path: atcoder/extra/structure/combined.nim
+      title: atcoder/extra/structure/combined.nim
+    - icon: ':warning:'
+      path: atcoder/extra/structure/convex_hull_trick_add_monotone.nim
+      title: atcoder/extra/structure/convex_hull_trick_add_monotone.nim
+    - icon: ':warning:'
+      path: atcoder/extra/structure/convex_hull_trick_add_monotone.nim
+      title: atcoder/extra/structure/convex_hull_trick_add_monotone.nim
+    - icon: ':warning:'
       path: atcoder/extra/structure/dual_fenwicktree.nim
       title: atcoder/extra/structure/dual_fenwicktree.nim
     - icon: ':warning:'
@@ -719,6 +787,12 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/structure/internal_heapqueue.nim
       title: atcoder/extra/structure/internal_heapqueue.nim
+    - icon: ':warning:'
+      path: atcoder/extra/structure/li_chao_tree.nim
+      title: atcoder/extra/structure/li_chao_tree.nim
+    - icon: ':warning:'
+      path: atcoder/extra/structure/li_chao_tree.nim
+      title: atcoder/extra/structure/li_chao_tree.nim
     - icon: ':x:'
       path: atcoder/extra/structure/link_cut_tree.nim
       title: atcoder/extra/structure/link_cut_tree.nim
@@ -815,6 +889,12 @@ data:
     - icon: ':x:'
       path: atcoder/extra/structure/succinct_indexable_dictionary.nim
       title: atcoder/extra/structure/succinct_indexable_dictionary.nim
+    - icon: ':warning:'
+      path: atcoder/extra/structure/trie.nim
+      title: atcoder/extra/structure/trie.nim
+    - icon: ':warning:'
+      path: atcoder/extra/structure/trie.nim
+      title: atcoder/extra/structure/trie.nim
     - icon: ':x:'
       path: atcoder/extra/structure/universal_segtree.nim
       title: atcoder/extra/structure/universal_segtree.nim
@@ -908,6 +988,11 @@ data:
     - icon: ':warning:'
       path: atcoder.nim
       title: atcoder.nim
+  - name: verify/extra/string
+    pages:
+    - icon: ':warning:'
+      path: verify/extra/string/aoj_alds_1_14_d_aho_corasick_test_backup.nim
+      title: verify/extra/string/aoj_alds_1_14_d_aho_corasick_test_backup.nim
   verificationCategories:
   - name: verify
     pages:
@@ -1129,25 +1214,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/extra/math/pow_of_formal_power_series_test.nim
       title: verify/extra/math/pow_of_formal_power_series_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/math/sqrt_of_formal_power_series_test.nim
       title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/math/yosupo_bitwise_and_convolution_test.nim
       title: verify/extra/math/yosupo_bitwise_and_convolution_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/math/yosupo_bitwise_or_convolution_test.nim
       title: verify/extra/math/yosupo_bitwise_or_convolution_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
       title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     - icon: ':heavy_check_mark:'
       path: verify/extra/math/yosupo_factorization_test.nim
       title: verify/extra/math/yosupo_factorization_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
       title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
       title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
     - icon: ':x:'
@@ -1156,6 +1241,23 @@ data:
     - icon: ':x:'
       path: verify/extra/math/yukicoder_factorial_test.nim
       title: verify/extra/math/yukicoder_factorial_test.nim
+  - name: verify/extra/string
+    pages:
+    - icon: ':x:'
+      path: verify/extra/string/aoj_alds_1_14_b_kmp_test.nim
+      title: verify/extra/string/aoj_alds_1_14_b_kmp_test.nim
+    - icon: ':x:'
+      path: verify/extra/string/aoj_alds_1_14_b_test.nim
+      title: verify/extra/string/aoj_alds_1_14_b_test.nim
+    - icon: ':x:'
+      path: verify/extra/string/aoj_alds_1_14_d_suffix_array_test.nim
+      title: verify/extra/string/aoj_alds_1_14_d_suffix_array_test.nim
+    - icon: ':x:'
+      path: verify/extra/string/yosupo_number_of_substrings_test.nim
+      title: verify/extra/string/yosupo_number_of_substrings_test.nim
+    - icon: ':x:'
+      path: verify/extra/string/yosupo_run_enumerate_test.nim
+      title: verify/extra/string/yosupo_run_enumerate_test.nim
   - name: verify/extra/structure
     pages:
     - icon: ':x:'

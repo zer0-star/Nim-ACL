@@ -26,18 +26,17 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_SEGTREE_HPP:\n  const ATCODER_SEGTREE_HPP* = 1\n\
     \  import atcoder/internal_bit\n  import std/sequtils, std/algorithm\n  import\
     \ atcoder/rangeutils\n\n  {.push inline.}\n  type SegTree*[S; p:static[tuple]]\
     \ = object\n    len*, size*, log*:int\n    d: seq[S]\n\n  template calc_op[ST:SegTree](self:typedesc[ST],\
-    \ a, b:ST.S):auto =\n    block:\n      let op = ST.p.op\n      op(a, b)\n  template\
-    \ calc_e[ST:SegTree](self:typedesc[ST]):auto =\n    block:\n      let e = ST.p.e\n\
-    \      e()\n  proc update[ST:SegTree](self: var ST, k:int) =\n    self.d[k] =\
-    \ ST.calc_op(self.d[2 * k], self.d[2 * k + 1])\n\n  proc init*[ST:SegTree](self:\
+    \ a, b:ST.S):auto =\n    block:\n      ST.p.op(a, b)\n  template calc_e[ST:SegTree](self:typedesc[ST]):auto\
+    \ =\n    block:\n      ST.p.e()\n  proc update[ST:SegTree](self: var ST, k:int)\
+    \ =\n    self.d[k] = ST.calc_op(self.d[2 * k], self.d[2 * k + 1])\n\n  proc init*[ST:SegTree](self:\
     \ var ST, v:seq[ST.S]) =\n    let\n      n = v.len\n      log = ceil_pow2(n)\n\
     \      size = 1 shl log\n    (self.len, self.size, self.log) = (n, size, log)\n\
     \    if self.d.len < 2 * size:\n      self.d = newSeqWith(2 * size, ST.calc_e())\n\
@@ -91,7 +90,7 @@ data:
   isVerificationFile: false
   path: atcoder/segtree.nim
   requiredBy: []
-  timestamp: '2022-02-05 00:42:13+09:00'
+  timestamp: '2022-06-06 17:51:24+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/segtree_test.nim

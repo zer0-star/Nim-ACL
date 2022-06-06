@@ -38,16 +38,16 @@ data:
     path: atcoder/modint.nim
     title: atcoder/modint.nim
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
   _extendedVerifiedWith:
@@ -57,20 +57,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
     title: verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/sqrt_of_formal_power_series_test.nim
     title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/sqrt_of_formal_power_series_test.nim
     title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# modSqrt {{{\nwhen not declared ATCODER_MODSQRT_HPP:\n  const ATCODER_MODSQRT_HPP*\
     \ = 1\n  import atcoder/modint\n  import std/options\n  \n  proc modSqrt*[T:ModInt](a:T):Option[T]\
@@ -83,18 +83,18 @@ data:
     \    j.inc\n        t *= t\n      z = z.pow(1 shl (e - j - 1))\n      x *= z\n\
     \      z *= z\n      y *= z\n      e = j\n    return T(x).some\n#}}}\n"
   dependsOn:
-  - atcoder/internal_math.nim
   - atcoder/modint.nim
-  - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
   - atcoder/internal_math.nim
   - atcoder/modint.nim
-  - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
   isVerificationFile: false
   path: atcoder/extra/math/mod_sqrt.nim
   requiredBy:
@@ -102,8 +102,8 @@ data:
   - atcoder/extra/math/formal_power_series_sqrt.nim
   - atcoder/extra/math/formal_power_series_sqrt.nim
   - atcoder/extra/math/formal_power_series_sqrt.nim
-  timestamp: '2021-08-23 19:10:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-06-06 17:51:24+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/extra/math/sqrt_of_formal_power_series_test.nim
   - verify/extra/math/sqrt_of_formal_power_series_test.nim

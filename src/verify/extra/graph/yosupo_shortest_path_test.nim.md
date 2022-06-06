@@ -40,9 +40,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/shortest_path
     links:
     - https://judge.yosupo.jp/problem/shortest_path
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/shortest_path\n\n\
     include atcoder/header\n\nimport atcoder/extra/graph/graph_template\nimport atcoder/extra/graph/dijkstra\n\
@@ -52,20 +52,20 @@ data:
     \    echo -1\n  else:\n    let p = dist.path(t)\n    echo dist[t], \" \", p.len\
     \ - 1\n    for i in 0..<p.len - 1:\n      echo p[i], \" \", p[i + 1]\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/header.nim
   - atcoder/extra/graph/dijkstra.nim
-  - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/header.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/dijkstra.nim
   - atcoder/header.nim
-  - atcoder/extra/graph/dijkstra_result.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_shortest_path_test.nim
   requiredBy: []
-  timestamp: '2021-12-11 23:59:27+09:00'
+  timestamp: '2022-06-06 17:51:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/graph/yosupo_shortest_path_test.nim

@@ -15,6 +15,18 @@ data:
     path: atcoder/extra/header/chaemon_header.nim
     title: atcoder/extra/header/chaemon_header.nim
   - icon: ':warning:'
+    path: atcoder/extra/header/header.nim
+    title: atcoder/extra/header/header.nim
+  - icon: ':warning:'
+    path: atcoder/extra/header/header.nim
+    title: atcoder/extra/header/header.nim
+  - icon: ':warning:'
+    path: atcoder/extra/header/header.nim
+    title: atcoder/extra/header/header.nim
+  - icon: ':warning:'
+    path: atcoder/extra/header/header.nim
+    title: atcoder/extra/header/header.nim
+  - icon: ':warning:'
     path: atcoder/extra/template/atcoder-tools_template.nim
     title: atcoder/extra/template/atcoder-tools_template.nim
   - icon: ':warning:'
@@ -80,9 +92,9 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_SOLVEPROC_HPP:\n  const ATCODER_SOLVEPROC_HPP*\
     \ = 1\n  import std/macros, std/strformat, std/algorithm, std/sequtils, std/streams\n\
@@ -182,37 +194,40 @@ data:
     \ statement]\\\\n\\\", e.err.strip, \\\"\\\\n[output]\\\\n\\\", e.output;doAssert\
     \ false\"\n      test_body.add parseStmt(d)\n      result.add newProc(name = ident\"\
     test\", params = test_params, body = test_body, pragmas = discardablePragma)\n\
-    \n    if hasGenerate:\n      discard\n    if hasTest:\n      discard\n    #echo\
-    \ result.repr\n"
+    \n    if hasGenerate:\n      discard\n    if hasTest:\n      discard\n"
   dependsOn: []
   isVerificationFile: false
   path: atcoder/extra/other/solve_proc.nim
   requiredBy:
-  - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/template.nim
   - atcoder/extra/template/template.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/template.nim
-  - atcoder/extra/template/template.nim
+  - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/vim_template.nim
+  - atcoder/extra/template/vim_template.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/header/header.nim
+  - atcoder/extra/header/header.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
-  timestamp: '2022-02-05 00:42:13+09:00'
+  - atcoder/extra/template/template.nim
+  - atcoder/extra/template/template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/vim_template.nim
+  - atcoder/extra/template/vim_template.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/header/header.nim
+  - atcoder/extra/header/header.nim
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/chaemon_header.nim
+  timestamp: '2022-06-06 17:51:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/other/solve_proc.nim

@@ -34,9 +34,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
     links:
     - https://judge.yosupo.jp/problem/point_add_range_sum
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/point_add_range_sum\n\
     \nimport atcoder/header\nimport atcoder/segtree\n\nimport std/sequtils, std/sugar\n\
@@ -48,15 +48,15 @@ data:
   - atcoder/segtree.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
+  - atcoder/rangeutils.nim
   - atcoder/header.nim
   - atcoder/segtree.nim
-  - atcoder/rangeutils.nim
-  - atcoder/internal_bit.nim
   - atcoder/header.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: true
   path: verify/segtree_test.nim
   requiredBy: []
-  timestamp: '2022-02-05 00:42:13+09:00'
+  timestamp: '2022-06-06 17:51:24+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/segtree_test.nim
