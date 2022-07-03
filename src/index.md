@@ -373,10 +373,10 @@ data:
     - icon: ':question:'
       path: atcoder/extra/math/arbitrary_mod_convolution.nim
       title: atcoder/extra/math/arbitrary_mod_convolution.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/bitwise_convolution.nim
       title: atcoder/extra/math/bitwise_convolution.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/bitwise_convolution.nim
       title: atcoder/extra/math/bitwise_convolution.nim
     - icon: ':x:'
@@ -397,10 +397,10 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/math/combination_table.nim
       title: atcoder/extra/math/combination_table.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/composition.nim
       title: atcoder/extra/math/composition.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/composition.nim
       title: atcoder/extra/math/composition.nim
     - icon: ':warning:'
@@ -463,10 +463,10 @@ data:
     - icon: ':question:'
       path: atcoder/extra/math/formal_power_series.nim
       title: atcoder/extra/math/formal_power_series.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/formal_power_series_sqrt.nim
       title: atcoder/extra/math/formal_power_series_sqrt.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/formal_power_series_sqrt.nim
       title: atcoder/extra/math/formal_power_series_sqrt.nim
     - icon: ':warning:'
@@ -487,10 +487,10 @@ data:
     - icon: ':x:'
       path: atcoder/extra/math/matrix.nim
       title: atcoder/extra/math/matrix.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/mod_sqrt.nim
       title: atcoder/extra/math/mod_sqrt.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/mod_sqrt.nim
       title: atcoder/extra/math/mod_sqrt.nim
     - icon: ':warning:'
@@ -719,16 +719,16 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/string/aho_corasick.nim
       title: atcoder/extra/string/aho_corasick.nim
-    - icon: ':warning:'
+    - icon: ':x:'
       path: atcoder/extra/string/knuth_morris_pratt.nim
       title: atcoder/extra/string/knuth_morris_pratt.nim
-    - icon: ':warning:'
+    - icon: ':x:'
       path: atcoder/extra/string/knuth_morris_pratt.nim
       title: atcoder/extra/string/knuth_morris_pratt.nim
-    - icon: ':warning:'
+    - icon: ':x:'
       path: atcoder/extra/string/rolling_hash.nim
       title: atcoder/extra/string/rolling_hash.nim
-    - icon: ':warning:'
+    - icon: ':x:'
       path: atcoder/extra/string/rolling_hash.nim
       title: atcoder/extra/string/rolling_hash.nim
     - icon: ':x:'
@@ -737,6 +737,12 @@ data:
     - icon: ':x:'
       path: atcoder/extra/string/run_enumerate.nim
       title: atcoder/extra/string/run_enumerate.nim
+    - icon: ':x:'
+      path: atcoder/extra/string/suffix_array_utils.nim
+      title: atcoder/extra/string/suffix_array_utils.nim
+    - icon: ':x:'
+      path: atcoder/extra/string/suffix_array_utils.nim
+      title: atcoder/extra/string/suffix_array_utils.nim
     - icon: ':x:'
       path: atcoder/extra/string/suffix_automaton.nim
       title: atcoder/extra/string/suffix_automaton.nim
@@ -1211,19 +1217,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/extra/math/polynomial_taylor_shift_test.nim
       title: verify/extra/math/polynomial_taylor_shift_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/math/pow_of_formal_power_series_test.nim
       title: verify/extra/math/pow_of_formal_power_series_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/math/sqrt_of_formal_power_series_test.nim
       title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/math/yosupo_bitwise_and_convolution_test.nim
       title: verify/extra/math/yosupo_bitwise_and_convolution_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/math/yosupo_bitwise_or_convolution_test.nim
       title: verify/extra/math/yosupo_bitwise_or_convolution_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
       title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     - icon: ':heavy_check_mark:'

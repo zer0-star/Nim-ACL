@@ -28,9 +28,9 @@ data:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_A
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_A
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_A\n\
     \ninclude atcoder/header\nimport atcoder/extra/graph/graph_template\nimport atcoder/extra/tree/tree_diameter\n\
@@ -38,12 +38,12 @@ data:
     \    let x, y, z = nextInt()\n    g.addBiEdge(x,y,z)\n  echo g.treeDiameter()[0]\n\
     \nmain()\n"
   dependsOn:
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/tree/tree_diameter.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/tree/tree_diameter.nim
-  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/tree/aoj_grl_5_a_tree_diameter_test.nim
   requiredBy: []

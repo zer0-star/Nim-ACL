@@ -32,9 +32,9 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_MAXFLOW_LOWERBOUND_HPP:\n  const ATCODER_MAXFLOW_LOWERBOUND_HPP*\
     \ = 1\n  import atcoder/maxflow\n  import std/options\n  \n  type MaxFlowLowerBound*[Cap]\
@@ -69,7 +69,6 @@ data:
     \  #  }\n  #  for(auto &p : ans) cout << p << endl;\n  #}\n  \n#var g = initMaxFlowLowerBound[int](3)\n\
     #g.addEdge(0, 1, 1, 2)\n#g.addEdge(1, 2, 2, 3)\n#echo g.max_flow(0, 2)\n\n"
   dependsOn:
-  - atcoder/maxflow.nim
   - atcoder/internal_queue.nim
   - atcoder/maxflow.nim
   - atcoder/internal_queue.nim
@@ -77,6 +76,7 @@ data:
   - atcoder/internal_queue.nim
   - atcoder/maxflow.nim
   - atcoder/internal_queue.nim
+  - atcoder/maxflow.nim
   isVerificationFile: false
   path: atcoder/extra/graph/maxflow_lowerbound.nim
   requiredBy: []

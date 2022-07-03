@@ -34,9 +34,9 @@ data:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1549
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1549
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1549\n\
     \ninclude atcoder/header\n\nimport atcoder/extra/structure/wavelet_matrix\n\n\
@@ -48,14 +48,14 @@ data:
     \ - d)\n    let pred = wm.prev_value(l ..< r, d)\n    if pred != -1: ans.min=\
     \ abs(pred - d)\n  echo ans\n"
   dependsOn:
-  - atcoder/rangeutils.nim
-  - atcoder/extra/structure/wavelet_matrix.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/rangeutils.nim
-  - atcoder/header.nim
+  - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/extra/structure/wavelet_matrix.nim
   - atcoder/header.nim
-  - atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/rangeutils.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
   requiredBy: []

@@ -20,12 +20,12 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_BITSET_HPP:\n  const ATCODER_BITSET_HPP* = 1\n\
-    \  import strutils, sequtils, algorithm\n  import atcoder/extra/other/bitutils\n\
+    \  import strutils, sequtils, algorithm, bitops\n  import atcoder/extra/other/bitutils\n\
     \  \n  const BitWidth = 64\n  \n  # bitset\n  type BitSet*[N:static[int]] = object\n\
     \    data: array[(N + BitWidth - 1) div BitWidth, uint64]\n  \n  proc initBitSet*[N:static[int]]():\
     \ BitSet[N] =\n    discard\n  proc initBitSet1*[N:static[int]](): BitSet[N] =\n\
@@ -63,23 +63,25 @@ data:
     \ bool =\n    let N = a.getSize()\n    var\n      q = N div BitWidth\n      r\
     \ = N mod BitWidth\n    for i in 0..<q:\n      if (not a.data[i]) != 0.uint64:\
     \ return false\n    if r > 0 and a.data[^1] != setBits[uint64](r): return false\n\
-    \    return true\n  \n  proc `[]`*(b:SomeBitSet,n:int):int =\n    let N = b.getSize()\n\
-    \    assert 0 <= n and n < N\n    let\n      q = n div BitWidth\n      r = n mod\
-    \ BitWidth\n    return b.data[q][r].int\n  proc `[]=`*(b:var SomeBitSet,n:int,t:int)\
-    \ =\n    let N = b.getSize()\n    assert 0 <= n and n < N\n    assert t == 0 or\
-    \ t == 1\n    let\n      q = n div BitWidth\n      r = n mod BitWidth\n    b.data[q][r]\
-    \ = t\n  \n  proc `shl`*(a: SomeBitSet, n:int): auto =\n    result = a.init()\n\
-    \    var r = int(n mod BitWidth)\n    if r < 0: r += BitWidth\n    let q = (n\
-    \ - r) div BitWidth\n    let maskl = allSetBits[uint64](BitWidth - r)\n    for\
-    \ i in 0..<a.data.len:\n      let d = (a.data[i] and maskl) shl uint64(r)\n  \
-    \    let i2 = i + q\n      if 0 <= i2 and i2 < a.data.len: result.data[i2] = result.data[i2]\
-    \ or d\n    if r != 0:\n      let maskr = allSetBits[uint64](r) shl uint64(BitWidth\
-    \ - r)\n      for i in 0..<a.data.len:\n        let d = (a.data[i] and maskr)\
-    \ shr uint64(BitWidth - r)\n        let i2 = i + q + 1\n        if 0 <= i2 and\
-    \ i2 < a.data.len: result.data[i2] = result.data[i2] or d\n    block:\n      let\
-    \ r = a.getSize() mod BitWidth\n      if r != 0:\n        let mask = not (allSetBits[uint64](BitWidth\
-    \ - r) shl uint64(r))\n        result.data[^1] = result.data[^1] and mask\n  proc\
-    \ `shr`*(a: SomeBitSet, n:int): auto = a shl (-n)\n"
+    \    return true\n\n  proc count*(a: SomeBitSet): int =\n    result = 0\n    for\
+    \ i in 0 ..< a.data.len: result += a.data[i].popCount\n\n  proc `[]`*(b:SomeBitSet,n:int):int\
+    \ =\n    let N = b.getSize()\n    assert 0 <= n and n < N\n    let\n      q =\
+    \ n div BitWidth\n      r = n mod BitWidth\n    return b.data[q][r].int\n  proc\
+    \ `[]=`*(b:var SomeBitSet, n:int, t:int) =\n    let N = b.getSize()\n    assert\
+    \ 0 <= n and n < N\n    assert t == 0 or t == 1\n    let\n      q = n div BitWidth\n\
+    \      r = n mod BitWidth\n    b.data[q][r] = t\n  \n  proc `shl`*(a: SomeBitSet,\
+    \ n:int): auto =\n    result = a.init()\n    var r = int(n mod BitWidth)\n   \
+    \ if r < 0: r += BitWidth\n    let q = (n - r) div BitWidth\n    let maskl = allSetBits[uint64](BitWidth\
+    \ - r)\n    for i in 0..<a.data.len:\n      let d = (a.data[i] and maskl) shl\
+    \ uint64(r)\n      let i2 = i + q\n      if 0 <= i2 and i2 < a.data.len: result.data[i2]\
+    \ = result.data[i2] or d\n    if r != 0:\n      let maskr = allSetBits[uint64](r)\
+    \ shl uint64(BitWidth - r)\n      for i in 0..<a.data.len:\n        let d = (a.data[i]\
+    \ and maskr) shr uint64(BitWidth - r)\n        let i2 = i + q + 1\n        if\
+    \ 0 <= i2 and i2 < a.data.len: result.data[i2] = result.data[i2] or d\n    block:\n\
+    \      let r = a.getSize() mod BitWidth\n      if r != 0:\n        let mask =\
+    \ not (allSetBits[uint64](BitWidth - r) shl uint64(r))\n        result.data[^1]\
+    \ = result.data[^1] and mask\n  proc `shr`*(a: SomeBitSet, n:int): auto = a shl\
+    \ (-n)\n"
   dependsOn:
   - atcoder/extra/other/bitutils.nim
   - atcoder/extra/other/bitutils.nim
@@ -88,7 +90,7 @@ data:
   isVerificationFile: false
   path: atcoder/extra/other/bitset.nim
   requiredBy: []
-  timestamp: '2022-02-05 00:42:13+09:00'
+  timestamp: '2022-07-03 22:20:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/other/bitset.nim

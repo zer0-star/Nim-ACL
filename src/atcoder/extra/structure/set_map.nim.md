@@ -92,9 +92,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_SET_MAP_HPP:\n  const ATCODER_SET_MAP_HPP* = 1\n\
     \  #type BinaryTreeType = enum\n  #  RedBlack, \n  #  Splay, \n  #  Randomized\n\
@@ -106,19 +106,18 @@ data:
     \  type MULTI_TRUE = int32\n  type MULTI_FALSE = void\n  type SortedTree*[Tree,\
     \ Node, multi, K, V; p:static[tuple]] = object\n    tree*: Tree\n    End*: Node\n\
     \n  when USE_RED_BLACK_TREE:\n    include atcoder/extra/structure/red_black_tree\n\
-    \    type\n      SortedSetType*[K, Countable; p:static[tuple]] = SortedTree[RedBlackTree[K,\
-    \ Countable], RedBlackTreeNode[K, Countable], MULTI_FALSE, K, void, p]\n     \
-    \ SortedMultiSetType*[K, Countable; p:static[tuple]] = SortedTree[RedBlackTree[K,\
-    \ Countable], RedBlackTreeNode[K, Countable], MULTI_TRUE, K, void, p]\n      SortedMapType*[K;\
-    \ V:not void; Countable; p:static[tuple]] = SortedTree[RedBlackTree[(K, V), Countable],\
-    \ RedBlackTreeNode[(K, V), Countable], MULTI_FALSE, K, V, p]\n      SortedMultiMapType*[K;\
-    \ V:not void; Countable; p:static[tuple]] = SortedTree[RedBlackTree[(K, V), Countable],\
-    \ RedBlackTreeNode[(K, V), Countable], MULTI_TRUE, K, V, p]\n\n    type SetOrMap\
-    \ = SortedMultiSetType or SortedSetType or SortedMultiMapType or SortedMapType\n\
-    \    proc init*[Tree:SetOrMap](self: var Tree) =\n      when Tree.V is void:\n\
-    \        type T = Tree.K\n      else:\n        type T = (Tree.K, Tree.V)\n   \
-    \   type Node = Tree.Node\n      var End = Node(id: -2)\n      when Tree.Tree.Countable\
-    \ isnot void:\n        End.cnt = 1\n      self.End = End\n      self.tree.init(End)\n\
+    \    type\n      SortedSetType*[K, Countable; p:static[tuple]] = SortedTree[RedBlackTree[K],\
+    \ RedBlackTreeNode[K], MULTI_FALSE, K, void, p]\n      SortedMultiSetType*[K,\
+    \ Countable; p:static[tuple]] = SortedTree[RedBlackTree[K], RedBlackTreeNode[K],\
+    \ MULTI_TRUE, K, void, p]\n      SortedMapType*[K; V:not void; Countable; p:static[tuple]]\
+    \ = SortedTree[RedBlackTree[(K, V)], RedBlackTreeNode[(K, V)], MULTI_FALSE, K,\
+    \ V, p]\n      SortedMultiMapType*[K; V:not void; Countable; p:static[tuple]]\
+    \ = SortedTree[RedBlackTree[(K, V)], RedBlackTreeNode[(K, V)], MULTI_TRUE, K,\
+    \ V, p]\n\n    type SetOrMap = SortedMultiSetType or SortedSetType or SortedMultiMapType\
+    \ or SortedMapType\n    proc init*[Tree:SetOrMap](self: var Tree) =\n      when\
+    \ Tree.V is void:\n        type T = Tree.K\n      else:\n        type T = (Tree.K,\
+    \ Tree.V)\n      type Node = Tree.Node\n      var End = Node(id: -2)\n      End.cnt\
+    \ = 0\n      End.color = Color.black\n      self.End = End\n      self.tree.init(End)\n\
     \    proc empty*[Tree:SetOrMap](self:Tree):bool = self.tree.empty()\n    proc\
     \ len*[Tree:SetOrMap](self:Tree):int = self.tree.len()\n  elif USE_SPLAY_TREE:\n\
     \    include atcoder/extra/structure/splay_tree\n    type\n      SortedSetType*[K,\
@@ -167,52 +166,64 @@ data:
     \ =\n    result.init()\n  template initSortedSet*[K](countable:static[bool] =\
     \ false, comp:static[proc(a, b:K):bool] = nil):auto =\n    block:\n      var r:\
     \ SortedSetType[K, when countable: int else: void, (comp,)]\n      r.init()\n\
-    \      r\n  template initSortedMultiSet*[K](countable:static[bool] = false, comp:static[proc(a,\
+    \      r\n  template initSortedSet*[K](a:openArray[K], countable:static[bool]\
+    \ = false, comp:static[proc(a, b:K):bool] = nil):auto =\n    block:\n      var\
+    \ s = initSortedSet[K](countable, comp)\n      for t in a: s.insert(t)\n     \
+    \ s\n\n  template initSortedMultiSet*[K](countable:static[bool] = false, comp:static[proc(a,\
     \ b:K):bool] = nil):auto =\n    block:\n      var r: SortedMultiSetType[K, when\
-    \ countable: int else: void, (comp,)]\n      r.init()\n      r\n  template initSortedMap*[K;\
-    \ V:not void](countable:static[bool] = false, comp:static[proc(a, b:K):bool] =\
-    \ nil):auto =\n    block:\n      var r: SortedMapType[K, V, when countable: int\
-    \ else: void, (comp,)]\n      r.init()\n      r\n  template initSortedMultiMap*[K;\
-    \ V:not void](countable:static[bool] = false, comp:static[proc(a, b:K):bool] =\
-    \ nil):auto =\n    block:\n      var r: SortedMultiMapType[K, V, when countable:\
-    \ int else: void, (comp,)]\n      r.init()\n      r\n\n  proc `$`*(self: SetOrMap):\
-    \ string =\n    var a = newSeq[string]()\n    var node = self.tree.root\n    var\
-    \ stack: seq[self.Node] = @[]\n    while stack.len() != 0 or not node.isLeaf:\n\
-    \      if not node.isLeaf:\n        if node != self.End:\n          stack.add(node)\n\
-    \        node = node.l\n      else:\n        node = stack.pop()\n        when\
-    \ self.V is void:\n          var k = \"\"\n          k.addQuoted(node.key)\n \
-    \         a &= k\n        else:\n          var k, v = \"\"\n          k.addQuoted(node.key[0])\n\
-    \          v.addQuoted(node.key[1])\n          a &= k & \": \" & v\n        node\
-    \ = node.r\n    return \"{\" & a.join(\", \") & \"}\"\n"
+    \ countable: int else: void, (comp,)]\n      r.init()\n      r\n  template initSortedMultiSet*[K](a:openArray[K],\
+    \ countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =\n\
+    \    block:\n      var s = initSortedMultiSet[K](countable, comp)\n      for t\
+    \ in a: s.insert(t)\n      s\n\n  template initSortedMap*[K; V:not void](countable:static[bool]\
+    \ = false, comp:static[proc(a, b:K):bool] = nil):auto =\n    block:\n      var\
+    \ r: SortedMapType[K, V, when countable: int else: void, (comp,)]\n      r.init()\n\
+    \      r\n  template initSortedMap*[K; V:not void](a:openArray[(K, V)], countable:static[bool]\
+    \ = false, comp:static[proc(a, b:K):bool] = nil):auto =\n    block:\n      var\
+    \ s = initSortedMap[K, V](countable, comp)\n      for p in a: s.insert(p)\n  \
+    \    s\n\n  template initSortedMultiMap*[K; V:not void](countable:static[bool]\
+    \ = false, comp:static[proc(a, b:K):bool] = nil):auto =\n    block:\n      var\
+    \ r: SortedMultiMapType[K, V, when countable: int else: void, (comp,)]\n     \
+    \ r.init()\n      r\n  template initSortedMultiMap*[K; V:not void](a:openArray[(K,\
+    \ V)], countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto\
+    \ =\n    block:\n      var s = initSortedMultiMap[K, V](countable, comp)\n   \
+    \   for p in a: s.insert(p)\n      s\n\n  proc `$`*(self: SetOrMap): string =\n\
+    \    var a = newSeq[string]()\n    var node = self.tree.root\n    var stack: seq[self.Node]\
+    \ = @[]\n    while stack.len() != 0 or not node.isLeaf:\n      if not node.isLeaf:\n\
+    \        if node != self.End:\n          stack.add(node)\n        node = node.l\n\
+    \      else:\n        node = stack.pop()\n        when self.V is void:\n     \
+    \     var k = \"\"\n          k.addQuoted(node.key)\n          a &= k\n      \
+    \  else:\n          var k, v = \"\"\n          k.addQuoted(node.key[0])\n    \
+    \      v.addQuoted(node.key[1])\n          a &= k & \": \" & v\n        node =\
+    \ node.r\n    return \"{\" & a.join(\", \") & \"}\"\n"
   dependsOn:
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/red_black_tree.nim
   - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/red_black_tree.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/rangeutils.nim
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/extra/structure/red_black_tree.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/extra/structure/splay_tree.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/extra/structure/red_black_tree.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/red_black_tree.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/red_black_tree.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/splay_tree.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/set_map.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-07-03 22:20:00+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/map_test.nim

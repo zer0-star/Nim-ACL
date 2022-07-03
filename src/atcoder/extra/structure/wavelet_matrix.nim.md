@@ -50,9 +50,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_WAVELET_MATRIX_HPP:\n  const ATCODER_WAVELET_MATRIX_HPP*\
     \ = 1\n  import atcoder/extra/structure/succinct_indexable_dictionary\n  import\
@@ -122,7 +122,6 @@ data:
     \ p:Slice[int], lower:self.T):self.T =\n    var ret = self.mat.next_value(p, self.get(lower))\n\
     \    return if ret == -1: self.T(-1) else: self.ys[ret]\n"
   dependsOn:
-  - atcoder/rangeutils.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
@@ -130,18 +129,19 @@ data:
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - atcoder/rangeutils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/wavelet_matrix.nim
   requiredBy: []
   timestamp: '2021-07-15 21:51:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/extra/structure/yosupo_range_kth_smallest_test.nim
-  - verify/extra/structure/yosupo_range_kth_smallest_test.nim
   - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
   - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
   - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
   - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
+  - verify/extra/structure/yosupo_range_kth_smallest_test.nim
+  - verify/extra/structure/yosupo_range_kth_smallest_test.nim
 documentation_of: atcoder/extra/structure/wavelet_matrix.nim
 layout: document
 redirect_from:

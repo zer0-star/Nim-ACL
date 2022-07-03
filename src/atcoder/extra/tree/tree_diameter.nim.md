@@ -32,9 +32,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_TREE_DIAMETER_HPP:\n  const ATCODER_TREE_DIAMETER_HPP*\
     \ = 1\n  import atcoder/extra/graph/graph_template\n\n  proc treeDiameter*[G:Graph](g:G):tuple[len:G.T,\
@@ -59,10 +59,10 @@ data:
   timestamp: '2022-06-06 17:51:24+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/extra/tree/aoj_grl_5_a_tree_diameter_test.nim
-  - verify/extra/tree/aoj_grl_5_a_tree_diameter_test.nim
   - verify/extra/tree/yosupo_tree_diameter_test.nim
   - verify/extra/tree/yosupo_tree_diameter_test.nim
+  - verify/extra/tree/aoj_grl_5_a_tree_diameter_test.nim
+  - verify/extra/tree/aoj_grl_5_a_tree_diameter_test.nim
 documentation_of: atcoder/extra/tree/tree_diameter.nim
 layout: document
 redirect_from:

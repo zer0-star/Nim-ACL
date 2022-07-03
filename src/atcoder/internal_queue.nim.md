@@ -68,9 +68,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_INTERNAL_QUEUE_HPP:\n  const ATCODER_INTERNAL_QUEUE_HPP*\
     \ = 1\n\n  type simple_queue[T] = object\n    payload:seq[T]\n    pos:int\n  proc\
@@ -85,16 +85,16 @@ data:
   isVerificationFile: false
   path: atcoder/internal_queue.nim
   requiredBy:
+  - atcoder/maxflow.nim
+  - atcoder/maxflow.nim
+  - atcoder/mincostflow.nim
+  - atcoder/mincostflow.nim
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/extra/graph/mincostflow_generalized.nim
   - atcoder/extra/graph/mincostflow_generalized.nim
   - atcoder/extra/graph/maxflow_lowerbound.nim
   - atcoder/extra/graph/maxflow_lowerbound.nim
-  - atcoder/mincostflow.nim
-  - atcoder/mincostflow.nim
-  - atcoder/maxflow.nim
-  - atcoder/maxflow.nim
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/extra/graph/mincostflow_generalized.nim

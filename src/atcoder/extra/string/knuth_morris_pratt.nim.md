@@ -2,15 +2,21 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/extra/string/aoj_alds_1_14_b_kmp_test.nim
+    title: verify/extra/string/aoj_alds_1_14_b_kmp_test.nim
+  - icon: ':x:'
+    path: verify/extra/string/aoj_alds_1_14_b_kmp_test.nim
+    title: verify/extra/string/aoj_alds_1_14_b_kmp_test.nim
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_KNUTH_MORRIS_PRATT_HPP:\n  const ATCODER_KNUTH_MORRIS_PRATT_HPP*\
     \ = 1\n  proc KnuthMorrisPratt*(t,p:string):seq[int] =\n    proc buildFail(p:string):seq[int]\
@@ -26,8 +32,10 @@ data:
   path: atcoder/extra/string/knuth_morris_pratt.nim
   requiredBy: []
   timestamp: '2022-06-06 17:51:24+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/extra/string/aoj_alds_1_14_b_kmp_test.nim
+  - verify/extra/string/aoj_alds_1_14_b_kmp_test.nim
 documentation_of: atcoder/extra/string/knuth_morris_pratt.nim
 layout: document
 redirect_from:

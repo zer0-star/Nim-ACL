@@ -74,9 +74,9 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_DIJKSTRA_RESULT_HPP:\n  const ATCODER_DIJKSTRA_RESULT_HPP*\
     \ = 1\n  import std/algorithm\n  import atcoder/extra/graph/graph_template\n \
@@ -109,14 +109,14 @@ data:
   verifiedWith:
   - verify/shortest_path_test.nim
   - verify/shortest_path_test.nim
+  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
+  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
   - verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
   - verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
   - verify/extra/graph/yosupo_shortest_path_test.nim
   - verify/extra/graph/yosupo_shortest_path_test.nim
   - verify/extra/graph/aoj_grl_1_a_dijkstra_radix_heap_test.nim
   - verify/extra/graph/aoj_grl_1_a_dijkstra_radix_heap_test.nim
-  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
-  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
 documentation_of: atcoder/extra/graph/dijkstra_result.nim
 layout: document
 redirect_from:
