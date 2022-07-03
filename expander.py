@@ -50,7 +50,7 @@ def main():
     """
     メイン関数
     """
-    lib_path = Path.cwd()
+    lib_path = Path(__file__).parent.resolve()
     basicConfig(
         format="%(asctime)s [%(levelname)s] %(message)s",
         datefmt="%H:%M:%S",
