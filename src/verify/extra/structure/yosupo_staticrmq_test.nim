@@ -5,11 +5,12 @@ import atcoder/extra/other/internal_sugar
 import atcoder/extra/structure/sparse_table
 
 f(p, q:int) => min(p, q)
+e() => int.inf
 
 let N, Q = nextInt()
 let a = newSeqWith(N, nextInt())
 
-var st = initSparseTable(a, f)
+var st = initSparseTable(a, f, e)
 
 for _ in 0..<Q:
   let l, r = nextInt()

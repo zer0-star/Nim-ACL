@@ -5,24 +5,11 @@ when not declared ATCODER_CONVOLUTION_HPP:
   import atcoder/internal_math, atcoder/internal_bit
   import atcoder/element_concepts
 
-
-#  template <class mint,
-#            int g = internal::primitive_root<mint::mod()>,
-#            internal::is_static_modint_t<mint>* = nullptr>
   type fft_info*[mint:FiniteFieldElem; g, rank2:static[int]] = object
-#    static constexpr int rank2 = bsf_constexpr(mint::mod() - 1);
     root, iroot: array[rank2 + 1, mint]
-
-    #std::array<mint, rank2 + 1> root;   # root[i]^(2^i) == 1
-    #std::array<mint, rank2 + 1> iroot;  # root[i] * iroot[i] == 1
     rate2, irate2: array[max(0, rank2 - 2 + 1), mint]
-    #std::array<mint, std::max(0, rank2 - 2 + 1)> rate2;
-    #std::array<mint, std::max(0, rank2 - 2 + 1)> irate2;
     rate3, irate3: array[max(0, rank2 - 3 + 1), mint]
-  
-    #std::array<mint, std::max(0, rank2 - 3 + 1)> rate3;
-    #std::array<mint, std::max(0, rank2 - 3 + 1)> irate3;
-  
+
   proc initFFTInfo*[mint:FiniteFieldElem]():auto =
     const g = primitive_root[mint.mod]()
     const rank2 = bsf(mint.mod - 1)
@@ -160,7 +147,6 @@ when not declared ATCODER_CONVOLUTION_HPP:
     mixin `+=`
     let (n, m) = (a.len, b.len)
     result = newSeq[mint](n + m - 1)
-#    result = newSeqWith(n + m - 1, mint(0))
     if n < m:
       for j in 0..<m:
         for i in 0..<n:
@@ -193,21 +179,8 @@ when not declared ATCODER_CONVOLUTION_HPP:
     if n == 0 or m == 0: return
     if min(n, m) <= 60: return convolution_naive(a, b)
     return convolution_fft(a, b)
-  
-#  template <class mint, internal::is_static_modint_t<mint>* = nullptr>
-#  std::vector<mint> convolution(const std::vector<mint>& a,
-#                                const std::vector<mint>& b) {
-#    int n = int(a.size()), m = int(b.size());
-#    if (!n || !m) return {};
-#    if (std::min(n, m) <= 60) return convolution_naive(a, b);
-#    return internal::convolution_fft(a, b);
-#  }
-
 
   import atcoder/modint
-#  template <unsigned int mod = 998244353,
-#      class T,
-#      std::enable_if_t<internal::is_integral<T>::value>* = nullptr>
   proc convolution*[T:SomeInteger](a, b:seq[T], M:static[uint] = 998244353):seq[T] =
     let (n, m) = (a.len, b.len)
     if n == 0 or m == 0: return newSeq[T]()

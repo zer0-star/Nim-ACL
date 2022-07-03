@@ -1,6 +1,6 @@
 when not declared ATCODER_BITSET_HPP:
   const ATCODER_BITSET_HPP* = 1
-  import strutils, sequtils, algorithm
+  import strutils, sequtils, algorithm, bitops
   import atcoder/extra/other/bitutils
   
   const BitWidth = 64
@@ -92,7 +92,11 @@ when not declared ATCODER_BITSET_HPP:
       if (not a.data[i]) != 0.uint64: return false
     if r > 0 and a.data[^1] != setBits[uint64](r): return false
     return true
-  
+
+  proc count*(a: SomeBitSet): int =
+    result = 0
+    for i in 0 ..< a.data.len: result += a.data[i].popCount
+
   proc `[]`*(b:SomeBitSet,n:int):int =
     let N = b.getSize()
     assert 0 <= n and n < N
@@ -100,7 +104,7 @@ when not declared ATCODER_BITSET_HPP:
       q = n div BitWidth
       r = n mod BitWidth
     return b.data[q][r].int
-  proc `[]=`*(b:var SomeBitSet,n:int,t:int) =
+  proc `[]=`*(b:var SomeBitSet, n:int, t:int) =
     let N = b.getSize()
     assert 0 <= n and n < N
     assert t == 0 or t == 1

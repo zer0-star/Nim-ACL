@@ -1,14 +1,15 @@
 # verify-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_D
 
-include "template/template.nim"
-include "string/suffix_array.nim"
+include atcoder/header
+#import atcoder/string
+import atcoder/extra/string/suffix_array_utils
 
 proc main() =
   let
     S = nextString()
     Q = nextInt()
 
-  var sa = initSuffixArray(S);
+  var sa = S.initSuffixArray
   for i in 0..<Q:
     let T = nextString()
     let range = sa.lowerUpperBound(T)

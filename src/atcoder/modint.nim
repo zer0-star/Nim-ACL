@@ -28,6 +28,8 @@ when not declared ATCODER_MODINT_HPP:
   proc setMod*[T:static[int]](t:typedesc[DynamicModInt[T]], M:SomeInteger){.inline.} =
     (t.getBarrett)[] = initBarrett(M.uint)
 
+  proc val*(m: ModInt): int {.inline.} = int(m.a)
+
   proc `$`*(m: StaticModInt or DynamicModInt): string {.inline.} = $(m.val())
 
   template umod*[T:ModInt](self: typedesc[T] or T):uint32 =
@@ -83,7 +85,6 @@ when not declared ATCODER_MODINT_HPP:
       u -= t * v;swap(u, v)
     return T.init(u)
 
-  proc val*(m: ModInt): int {.inline.} = int(m.a)
 
   proc `-`*[T:ModInt](m: T): T {.inline.} =
     if int(m.a) == 0: return m

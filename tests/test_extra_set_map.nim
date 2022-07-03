@@ -106,6 +106,7 @@ test "CountableSortedSet, int, reverse":
   for i in 0..<a.len:
     check a{i}.index == i
   check 3 in a
+  a.checkTree()
   a.erase(3)
   a.checkTree()
   check 3 notin a
@@ -133,7 +134,7 @@ test "sortedMap, strind, int":
   check "four" notin a
 
 test "sortedMultiSet, int":
-  var a = initSortedMultiSet[int]()
+  var a = initSortedMultiSet[int](countable = true)
   a.checkTree()
   check a.empty()
   a.insert(3)
@@ -149,12 +150,10 @@ test "sortedMultiSet, int":
   check 1 in a
   check 7 notin a
   a.erase(1)
-  check 1 in a
-  a.erase(1)
   check 1 notin a
 
 test "sortedMultiMap, string, int":
-  var a = initSortedMultiMap[string, int](countable = false)
+  var a = initSortedMultiMap[string, int](countable = true)
   check a.empty()
   a.checkTree()
   a.insert(("three", 3))
@@ -173,19 +172,13 @@ test "sortedMultiMap, string, int":
   check "hundred" notin a
   a.erase("one")
   a.checkTree()
-  check "one" in a
-  a.erase("one")
-  a.checkTree()
-  check "one" in a
-  a.erase("one")
-  a.checkTree()
   check "one" notin a
 
 
 test "sortedSet, int":
   var rnd = initRand(2021)
-#  var st = initSortedSet(int)
-  var st = SortedSet(int).default
+  var st = initSortedSet[int]()
+  #var st = SortedSet(int).default
   check st.empty()
   var v = newSeq[int]()
   for i in 0..1000:
@@ -271,7 +264,8 @@ test "sortedMultiSet, int":
         if p == r: continue
         v2.add(p)
       swap(v, v2)
-      while r in st: st.erase(r);st.checkTree()
+      st.erase(r)
+      #while r in st: st.erase(r);st.checkTree()
     else:
       check false
     var v2 = newSeq[int]()
@@ -284,7 +278,7 @@ test "sortedMultiSet, int":
 
 test "sortedMultiMap, int":
   var rnd = initRand(2021)
-  var st = initSortedMultiMap[int, int]()
+  var st = initSortedMultiMap[int, int](countable = true)
   check st.empty()
   var v = newSeq[(int, int)]()
   var s = 0
@@ -326,3 +320,11 @@ test "sortedMapMultiDimension, int":
       for k in 0..<B:
         for l in 0..<B:
           check st[i][j][k][l] == i * j * k * l
+
+test "sortedMultiSet, erase range":
+  var st = initSortedMultiSet[int](countable = true)
+  for b in [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]:
+    st.insert(b)
+  check $st == "{1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9}"
+  st.erase(5)
+  check $st == "{1, 1, 2, 3, 3, 4, 6, 9}"

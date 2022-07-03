@@ -1,8 +1,7 @@
 # verify-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B
 
-include "template/template.nim"
-
-include "string/knuth_morris_pratt.nim"
+import atcoder/header
+import atcoder/extra/string/knuth_morris_pratt
 
 proc main() =
   let T, P = nextString()

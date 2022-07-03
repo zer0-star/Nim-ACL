@@ -108,10 +108,11 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
     self.insert(x)
 
   template getAddr*[T:SomeSortedMap](self:var T, x:T.K):auto =
-    mixin default
     var t = self.lower_bound(x)
     if t == self.End or t.key[0] != x:
-      var v = T.V.default
+      var v: T.V
+      when v is SomeSortedTree:
+        v.init()
       t = self.tree.insert(t, (x, v))
     t.key[1].addr
 
@@ -122,11 +123,24 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
     var t = self.getAddr(x)
     t[] = v
 
-  proc erase*[T:SomeSortedTree](self: var T, x:T.K):T.Node =
+  proc erase*[T:SomeSortedSet or SomeSortedMap](self: var T, x:T.K):T.Node =
     mixin erase
     var t = self.lower_bound(x)
     if t == self.End or self.getKey(t) != x: return self.End
     else: return self.tree.erase(t)
+  proc erase*[T:SomeSortedMultiSet or SomeSortedMultiMap](self: var T, lb, ub:T.Node):T.Node =
+    if lb != ub:
+      var
+        (L, R) = self.tree.split(lb)
+        (RL, RR) = self.tree.split(ub)
+      self.tree.root = self.tree.join(L, RR)
+    return ub
+
+  proc erase*[T:SomeSortedMultiSet or SomeSortedMultiMap](self: var T, x:T.K):T.Node =
+    #doAssert T.Tree.Countable isnot void
+    mixin erase
+    return self.erase(self.lower_bound(x), self.upper_bound(x))
+
   proc erase*[T:SomeSortedTree](self: var T, t:T.Node):T.Node = self.tree.erase(t)
   proc excl*[T:SomeSortedTree](self: var T, x:T.K):T.Node = self.erase(x)
   proc excl*[T:SomeSortedTree](self: var T, t:T.Node):T.Node = self.erase(t)
