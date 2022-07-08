@@ -57,5 +57,14 @@
 "verify/extra/math/yosupo_bitwise_and_convolution_test.nim": "2022-07-03 22:20:00 +0900",
 "verify/extra/math/yosupo_bitwise_or_convolution_test.nim": "2022-07-03 22:20:00 +0900",
 "verify/extra/math/yosupo_composition_of_formal_power_series_test.nim": "2022-07-03 22:20:00 +0900",
-"verify/extra/math/yosupo_factorization_test.nim": "2021-12-11 23:59:27 +0900"
+"verify/extra/math/yosupo_factorization_test.nim": "2021-12-11 23:59:27 +0900",
+"verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim": "2022-07-03 22:20:00 +0900",
+"verify/extra/math/yosupo_sharp_p_subset_sum_test.nim": "2022-07-03 22:20:00 +0900",
+"verify/extra/math/yosupo_system_of_linear_equations_test.nim": "2022-07-03 22:20:00 +0900",
+"verify/extra/math/yukicoder_factorial_test.nim": "2022-07-03 22:20:00 +0900",
+"verify/extra/string/aoj_alds_1_14_b_kmp_test.nim": "2022-07-03 22:20:00 +0900",
+"verify/extra/string/aoj_alds_1_14_b_test.nim": "2022-07-03 22:20:00 +0900",
+"verify/extra/string/aoj_alds_1_14_d_suffix_array_test.nim": "2022-07-03 22:20:00 +0900",
+"verify/extra/string/yosupo_number_of_substrings_test.nim": "2022-06-06 17:51:24 +0900",
+"verify/extra/string/yosupo_run_enumerate_test.nim": "2022-06-06 17:51:24 +0900"
 }
