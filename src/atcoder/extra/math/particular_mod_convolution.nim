@@ -1,7 +1,9 @@
 when not declared ATCODER_PARTICULAR_MOD_CONVOLUTION:
   const ATCODER_PARTICULAR_MOD_CONVOLUTION* = 1
   import atcoder/modint
-  import atcoder/convolution
+  when not declared ATCODER_CONVOLUTION_HPP:
+    import atcoder/convolution
+    discard
   import std/sequtils
   type ParticularModConvolution* = object
     discard

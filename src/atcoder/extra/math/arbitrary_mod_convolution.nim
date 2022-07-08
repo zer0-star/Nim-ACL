@@ -1,6 +1,8 @@
 when not declared ATCODER_ARBITRARY_MOD_CONVOLUTION:
   const ATCODER_ARBITRARY_MOD_CONVOLUTION* = 1
-  import atcoder/convolution
+  when not declared ATCODER_CONVOLUTION_HPP:
+    import atcoder/convolution
+    discard
   import atcoder/modint
   import atcoder/extra/math/particular_mod_convolution
   import std/sequtils

@@ -157,7 +157,7 @@ when not declared ATCODER_INTERNAL_SUGAR_HPP:
     result.add(newProc(newEmptyNode(), params, body, nnkProcDef))
     for arg in locals: result.add(arg)
   
-  import atcoder/extra/other/internal_underscored_calls
+  import atcoder/extra/forward_compatibility/internal_underscored_calls
 
   macro dup*[T](arg: T, calls: varargs[untyped]): T =
     result = newNimNode(nnkStmtListExpr, arg)
@@ -165,8 +165,7 @@ when not declared ATCODER_INTERNAL_SUGAR_HPP:
     result.add newVarStmt(tmp, arg)
     underscoredCalls(result, calls, tmp)
     result.add tmp
-  
-  
+
   proc transLastStmt(n, res, bracketExpr: NimNode): (NimNode, NimNode, NimNode) =
     # Looks for the last statement of the last statement, etc...
     case n.kind

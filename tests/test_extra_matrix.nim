@@ -4,11 +4,11 @@ import atcoder/modint
 import atcoder/extra/math/matrix
 
 type mint = modint998244353
-type M = MatrixType(mint)
+type M = DynamicMatrixType(mint)
 import rationals
-type MR = MatrixType(Rational[int], ()=>initRational[int](0, 1), ()=>initRational[int](1, 1))
+type MR = DynamicMatrixType(Rational[int], ()=>initRational[int](0, 1), ()=>initRational[int](1, 1))
 converter toRational[T](a:T):Rational[T] = initRational[T](a, T(1))
-type MF = MatrixType(float, ()=>0.0, ()=>1.0, (a:float)=>a<0.00000001)
+type MF = DynamicMatrixType(float, ()=>0.0, ()=>1.0, (a:float)=>a<0.00000001)
 
 test "MatrixOperation":
   var A = M.init([[1, 2], [3, 4], [5, 6]])

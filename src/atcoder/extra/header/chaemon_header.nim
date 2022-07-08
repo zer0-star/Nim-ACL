@@ -26,7 +26,7 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   import std/streams as streams_lib
   import std/deques as deques_lib
 
-  import atcoder/extra/other/internal_sugar
+  import atcoder/extra/forward_compatibility/internal_sugar
 #  import std/sugar
   import atcoder/extra/other/reader
   import atcoder/extra/other/cfor
