@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/string/knuth_morris_pratt.nim
     title: atcoder/extra/string/knuth_morris_pratt.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/string/knuth_morris_pratt.nim
     title: atcoder/extra/string/knuth_morris_pratt.nim
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B
     links:
@@ -31,15 +31,15 @@ data:
     \ main() =\n  let T, P = nextString()\n  let v = KnuthMorrisPratt(T, P)\n  for\
     \ a in v: echo a\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/string/knuth_morris_pratt.nim
-  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/extra/string/knuth_morris_pratt.nim
+  - atcoder/extra/string/knuth_morris_pratt.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/string/aoj_alds_1_14_b_kmp_test.nim
   requiredBy: []
   timestamp: '2022-07-03 22:20:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/string/aoj_alds_1_14_b_kmp_test.nim
 layout: document

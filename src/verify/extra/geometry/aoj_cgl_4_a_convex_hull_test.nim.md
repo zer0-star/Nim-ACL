@@ -67,20 +67,20 @@ data:
     \    echo ch[i].re.int, \" \", ch[i].im.int\n    i.inc\n    if i == ch.len: i\
     \ = 0\n    if i == min_i: break\n"
   dependsOn:
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/geometry/polygon.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/element_concepts.nim
-  - atcoder/header.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/geometry/polygon.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/internal_complex.nim
   - atcoder/header.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/geometry/polygon.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_4_a_convex_hull_test.nim
   requiredBy: []

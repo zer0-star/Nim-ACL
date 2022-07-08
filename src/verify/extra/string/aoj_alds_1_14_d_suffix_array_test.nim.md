@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/string/suffix_array_utils.nim
     title: atcoder/extra/string/suffix_array_utils.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/string/suffix_array_utils.nim
     title: atcoder/extra/string/suffix_array_utils.nim
   - icon: ':question:'
@@ -13,17 +13,17 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/string.nim
     title: atcoder/string.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/string.nim
     title: atcoder/string.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_D
     links:
@@ -38,17 +38,17 @@ data:
     \ S.initSuffixArray\n  for i in 0..<Q:\n    let T = nextString()\n    let range\
     \ = sa.lowerUpperBound(T)\n    echo if range[0] != range[1]: 1 else: 0\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/string/suffix_array_utils.nim
-  - atcoder/extra/string/suffix_array_utils.nim
-  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/string.nim
+  - atcoder/extra/string/suffix_array_utils.nim
+  - atcoder/extra/string/suffix_array_utils.nim
+  - atcoder/header.nim
   - atcoder/string.nim
   isVerificationFile: true
   path: verify/extra/string/aoj_alds_1_14_d_suffix_array_test.nim
   requiredBy: []
   timestamp: '2022-07-03 22:20:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/string/aoj_alds_1_14_d_suffix_array_test.nim
 layout: document

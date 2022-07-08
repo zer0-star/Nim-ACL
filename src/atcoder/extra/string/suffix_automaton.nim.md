@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/string/yosupo_number_of_substrings_test.nim
     title: verify/extra/string/yosupo_number_of_substrings_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/string/yosupo_number_of_substrings_test.nim
     title: verify/extra/string/yosupo_number_of_substrings_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -48,7 +48,7 @@ data:
   path: atcoder/extra/string/suffix_automaton.nim
   requiredBy: []
   timestamp: '2022-06-06 17:51:24+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/string/yosupo_number_of_substrings_test.nim
   - verify/extra/string/yosupo_number_of_substrings_test.nim

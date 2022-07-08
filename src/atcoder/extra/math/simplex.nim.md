@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
   - icon: ':question:'

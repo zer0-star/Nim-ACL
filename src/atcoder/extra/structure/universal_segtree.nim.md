@@ -169,12 +169,12 @@ data:
   dependsOn:
   - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
-  - atcoder/rangeutils.nim
-  - atcoder/internal_bit.nim
   - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
+  - atcoder/rangeutils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/universal_segtree.nim
   requiredBy: []

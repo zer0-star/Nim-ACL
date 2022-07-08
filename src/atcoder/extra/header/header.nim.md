@@ -158,46 +158,46 @@ data:
     \ a mod b != 0: result.inc\n\n  template `/^`*[T:SomeInteger](a, b:T):T = ceilDiv(a,\
     \ b)\n"
   dependsOn:
+  - atcoder/extra/other/internal_sugar.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/assignment_operator.nim
   - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/other/internal_sugar.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/debug.nim
   - atcoder/extra/other/cfor.nim
   - atcoder/extra/other/solve_proc.nim
   - atcoder/extra/other/inf.nim
   - atcoder/extra/other/internal_underscored_calls.nim
   - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/internal_sugar.nim
   - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/seq_array_utils.nim
   - atcoder/extra/other/cfor.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/warlus_operator.nim
   - atcoder/extra/other/internal_sugar.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/cfor.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/debug.nim
   - atcoder/extra/other/internal_underscored_calls.nim
   - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/internal_sugar.nim
   - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/warlus_operator.nim
   - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/other/internal_sugar.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/debug.nim
   - atcoder/extra/other/cfor.nim
   - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/internal_underscored_calls.nim
   - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/internal_sugar.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/cfor.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/warlus_operator.nim
   isVerificationFile: false
   path: atcoder/extra/header/header.nim
   requiredBy: []

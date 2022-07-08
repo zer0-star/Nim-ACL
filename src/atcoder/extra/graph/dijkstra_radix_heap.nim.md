@@ -88,21 +88,21 @@ data:
     \ continue\n        x[].dist = next_cost\n        heap.push(x[].dist, e)\n   \
     \ result = DijkstraResult[G.T, G.U, G.useId](a:a)\n"
   dependsOn:
-  - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/structure/radix_heap.nim
+  - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/extra/structure/radix_heap.nim
-  - atcoder/extra/structure/radix_heap.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/structure/radix_heap.nim
+  - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/structure/radix_heap.nim
+  - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/extra/structure/radix_heap.nim
-  - atcoder/extra/structure/radix_heap.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/structure/radix_heap.nim
+  - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/other/inf.nim
   isVerificationFile: false
   path: atcoder/extra/graph/dijkstra_radix_heap.nim

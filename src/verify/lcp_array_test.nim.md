@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/string.nim
     title: atcoder/string.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/string.nim
     title: atcoder/string.nim
   _extendedRequiredBy: []
@@ -32,8 +32,8 @@ data:
     \ + 1) div 2\nfor v in lcp: ans -= v\necho ans\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/string.nim
+  - atcoder/header.nim
   - atcoder/string.nim
   isVerificationFile: true
   path: verify/lcp_array_test.nim

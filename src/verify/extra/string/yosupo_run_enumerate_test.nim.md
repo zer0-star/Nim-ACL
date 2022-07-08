@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/string/run_enumerate.nim
     title: atcoder/extra/string/run_enumerate.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/string/run_enumerate.nim
     title: atcoder/extra/string/run_enumerate.nim
   - icon: ':question:'
@@ -13,17 +13,17 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/string.nim
     title: atcoder/string.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/string.nim
     title: atcoder/string.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/runenumerate
     links:
@@ -37,17 +37,17 @@ data:
     \ =\n  let\n    s = nextString()\n    ans = RunEnumerate(s)\n  echo ans.len\n\
     \  for (t,l,r) in ans:\n    echo t, \" \",l, \" \",r\n\nmain()\n"
   dependsOn:
-  - atcoder/header.nim
   - atcoder/extra/string/run_enumerate.nim
   - atcoder/header.nim
   - atcoder/string.nim
   - atcoder/extra/string/run_enumerate.nim
+  - atcoder/header.nim
   - atcoder/string.nim
   isVerificationFile: true
   path: verify/extra/string/yosupo_run_enumerate_test.nim
   requiredBy: []
   timestamp: '2022-06-06 17:51:24+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/string/yosupo_run_enumerate_test.nim
 layout: document

@@ -124,12 +124,12 @@ data:
   dependsOn:
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - atcoder/rangeutils.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/succinct_indexable_dictionary.nim
   isVerificationFile: false
   path: atcoder/extra/structure/wavelet_matrix.nim
   requiredBy: []

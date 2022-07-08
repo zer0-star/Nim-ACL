@@ -32,8 +32,8 @@ data:
     \    let u, v = nextInt()\n    g.addEdge(u, v)\n  \n  let p = g.maxMatching()\n\
     \  echo p.len\n  for p in p:\n    echo p[0], \" \", p[1]\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/graph/gabow_edmonds.nim
   - atcoder/header.nim
+  - atcoder/extra/graph/gabow_edmonds.nim
   - atcoder/extra/graph/gabow_edmonds.nim
   - atcoder/header.nim
   isVerificationFile: true

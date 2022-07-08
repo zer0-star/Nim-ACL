@@ -64,20 +64,20 @@ data:
     \  for i in 0..<q:\n    let p1, p2 = initPoint(nextFloat(), nextFloat())\n   \
     \ echo g.convexCut(initLine(p1, p2)).area()\n"
   dependsOn:
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/geometry/polygon.nim
   - atcoder/extra/other/static_var.nim
+  - atcoder/extra/geometry/polygon.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/header.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/geometry/polygon.nim
   - atcoder/extra/geometry/geometry_template.nim
   - atcoder/element_concepts.nim
   - atcoder/header.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/geometry/polygon.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/header.nim
-  - atcoder/extra/other/floatutils.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
   requiredBy: []

@@ -27,15 +27,15 @@ data:
     title: atcoder/extra/math/formal_power_series.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -60,19 +60,19 @@ data:
     \        for i in countup(0, QQ1.len - 1, 2): Q.add(QQ1[i])\n      N = N div 2\n\
     \    result += P[0]\n"
   dependsOn:
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/math/coef_of_generating_function.nim
   requiredBy: []
   timestamp: '2022-06-06 17:51:24+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
   - verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim

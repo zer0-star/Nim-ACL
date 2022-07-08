@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/string.nim
     title: atcoder/string.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/string.nim
     title: atcoder/string.nim
   _extendedRequiredBy: []
@@ -43,8 +43,8 @@ data:
 
     '
   dependsOn:
-  - atcoder/string.nim
   - atcoder/header.nim
+  - atcoder/string.nim
   - atcoder/header.nim
   - atcoder/string.nim
   isVerificationFile: true

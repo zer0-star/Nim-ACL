@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/string/suffix_automaton.nim
     title: atcoder/extra/string/suffix_automaton.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/string/suffix_automaton.nim
     title: atcoder/extra/string/suffix_automaton.nim
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/number_of_substrings
     links:
@@ -33,15 +33,15 @@ data:
     \ ans = -1\n  cnt[0] = 1\n  for i in idx:\n    ans += cnt[i]\n    for k,v in sa[i].to:\n\
     \      cnt[v] += cnt[i]\n  \n  echo ans\n\nmain()\n"
   dependsOn:
-  - atcoder/header.nim
   - atcoder/extra/string/suffix_automaton.nim
   - atcoder/header.nim
   - atcoder/extra/string/suffix_automaton.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/string/yosupo_number_of_substrings_test.nim
   requiredBy: []
   timestamp: '2022-06-06 17:51:24+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/string/yosupo_number_of_substrings_test.nim
 layout: document

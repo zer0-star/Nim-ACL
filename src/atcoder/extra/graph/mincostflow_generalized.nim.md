@@ -185,26 +185,26 @@ data:
     \  var m = self.edges.len\n    assert i in 0 ..< m\n    edges[i].cap = cap\n \
     \   edges[i].cost = cost\n\n"
   dependsOn:
-  - atcoder/internal_scc.nim
-  - atcoder/internal_scc.nim
-  - atcoder/internal_queue.nim
-  - atcoder/internal_queue.nim
-  - atcoder/scc.nim
-  - atcoder/internal_csr.nim
-  - atcoder/scc.nim
-  - atcoder/internal_heap.nim
-  - atcoder/internal_csr.nim
   - atcoder/internal_heap.nim
   - atcoder/internal_scc.nim
-  - atcoder/internal_scc.nim
   - atcoder/internal_queue.nim
+  - atcoder/scc.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_heap.nim
+  - atcoder/internal_csr.nim
   - atcoder/internal_queue.nim
   - atcoder/scc.nim
   - atcoder/internal_csr.nim
+  - atcoder/internal_heap.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_queue.nim
   - atcoder/scc.nim
+  - atcoder/internal_scc.nim
   - atcoder/internal_heap.nim
   - atcoder/internal_csr.nim
-  - atcoder/internal_heap.nim
+  - atcoder/internal_queue.nim
+  - atcoder/scc.nim
+  - atcoder/internal_csr.nim
   isVerificationFile: false
   path: atcoder/extra/graph/mincostflow_generalized.nim
   requiredBy:

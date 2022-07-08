@@ -2,41 +2,41 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/string/run_enumerate.nim
     title: atcoder/extra/string/run_enumerate.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/string/run_enumerate.nim
     title: atcoder/extra/string/run_enumerate.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/string/run_enumerate.nim
     title: atcoder/extra/string/run_enumerate.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/string/run_enumerate.nim
     title: atcoder/extra/string/run_enumerate.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/string/suffix_array_utils.nim
     title: atcoder/extra/string/suffix_array_utils.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/string/suffix_array_utils.nim
     title: atcoder/extra/string/suffix_array_utils.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/string/suffix_array_utils.nim
     title: atcoder/extra/string/suffix_array_utils.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/string/suffix_array_utils.nim
     title: atcoder/extra/string/suffix_array_utils.nim
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/string/aoj_alds_1_14_d_suffix_array_test.nim
     title: verify/extra/string/aoj_alds_1_14_d_suffix_array_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/string/aoj_alds_1_14_d_suffix_array_test.nim
     title: verify/extra/string/aoj_alds_1_14_d_suffix_array_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/string/yosupo_run_enumerate_test.nim
     title: verify/extra/string/yosupo_run_enumerate_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/string/yosupo_run_enumerate_test.nim
     title: verify/extra/string/yosupo_run_enumerate_test.nim
   - icon: ':x:'
@@ -59,7 +59,7 @@ data:
     title: verify/z_algorithm_test.nim
   _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -155,7 +155,7 @@ data:
   - atcoder/extra/string/suffix_array_utils.nim
   - atcoder/extra/string/suffix_array_utils.nim
   timestamp: '2020-09-24 19:39:03+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/lcp_array_test.nim
   - verify/lcp_array_test.nim

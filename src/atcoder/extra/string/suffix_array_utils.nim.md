@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/string.nim
     title: atcoder/string.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/string.nim
     title: atcoder/string.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/string.nim
     title: atcoder/string.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/string.nim
     title: atcoder/string.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/string/aoj_alds_1_14_d_suffix_array_test.nim
     title: verify/extra/string/aoj_alds_1_14_d_suffix_array_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/string/aoj_alds_1_14_d_suffix_array_test.nim
     title: verify/extra/string/aoj_alds_1_14_d_suffix_array_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -59,7 +59,7 @@ data:
   path: atcoder/extra/string/suffix_array_utils.nim
   requiredBy: []
   timestamp: '2022-07-03 22:20:00+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/string/aoj_alds_1_14_d_suffix_array_test.nim
   - verify/extra/string/aoj_alds_1_14_d_suffix_array_test.nim

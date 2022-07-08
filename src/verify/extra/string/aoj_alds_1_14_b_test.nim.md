@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/string/rolling_hash.nim
     title: atcoder/extra/string/rolling_hash.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/string/rolling_hash.nim
     title: atcoder/extra/string/rolling_hash.nim
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B
     links:
@@ -32,15 +32,15 @@ data:
     \ initRollingHash(P)\n  for i in 0..T.len - P.len:\n    if rh[i..<i + P.len] ==\
     \ rh2[0..<P.len]: echo i\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/string/rolling_hash.nim
   - atcoder/header.nim
+  - atcoder/extra/string/rolling_hash.nim
   - atcoder/extra/string/rolling_hash.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/string/aoj_alds_1_14_b_test.nim
   requiredBy: []
   timestamp: '2022-07-03 22:20:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/string/aoj_alds_1_14_b_test.nim
 layout: document
