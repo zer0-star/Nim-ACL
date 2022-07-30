@@ -4,7 +4,7 @@ include atcoder/header
 
 import atcoder/extra/structure/splay_tree
 import atcoder/modint
-import atcoder/extra/other/internal_sugar
+import atcoder/extra/forward_compatibility/internal_sugar
 
 type mint = modint998244353
 

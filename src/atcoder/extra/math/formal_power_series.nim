@@ -5,7 +5,7 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
   import atcoder/element_concepts
 
   type FormalPowerSeries*[T:FieldElem] = seq[T]
-  type poly*[T:FieldElem] = FormalPowerSeries[T]
+  type Poly*[T:FieldElem] = FormalPowerSeries[T]
 
   template initFormalPowerSeries*[T:FieldElem](n:int):FormalPowerSeries[T] =
     block:
@@ -155,6 +155,13 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
     parseStmt(fmt"""let {a.repr} = if {a.repr} == -1: {b.repr} else: {a.repr}""")
   proc shrink*[T](self: var FormalPowerSeries[T]) =
     while self.len > 0 and self[^1] == 0: discard self.pop()
+  proc resize*[T](self: var FormalPowerSeries[T], n:int) =
+    mixin setLen
+    if self.len >= n: return
+    let l = self.len
+    self.setLen(n)
+    for i in l ..< n:
+      self[i] = T(0)
 
   converter toFPS*[T](f:Monomial[T]):FormalPowerSeries[T] = 
     result = newSeq[T](f.d + 1)
@@ -212,7 +219,7 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
 
   proc `mod=`*[T](self: var FormalPowerSeries[T], r:FormalPowerSeries[T]) =
     self -= (self div r) * r
-    self.setLen(r.len - 1)
+    self.resize(r.len - 1)
 
   proc `-`*[T](self: FormalPowerSeries[T]):FormalPowerSeries[T] =
     var ret = self
@@ -356,7 +363,7 @@ proc `{op}`*[T](self: not FormalPowerSeries and not Monomial, r:FormalPowerSerie
         coeff += one
     mixin fft, ifft, dot
     type FFTType = fft(initFormalPowerSeries[T](0)).type
-    mixin inplace_partial_dot, setLen
+    mixin inplace_partial_dot
     var
       b = @[T(1), if 1 < self.len: self[1] else: T(0)]
       c = @[T(1)]
@@ -366,7 +373,7 @@ proc `{op}`*[T](self: not FormalPowerSeries and not Monomial, r:FormalPowerSerie
     var m = 2
     while m < deg:
       var y = b
-      y.setLen(2 * m)
+      y.resize(2 * m)
       var yf = y.fft
       z1f = z2f
       var zf = yf
@@ -379,7 +386,7 @@ proc `{op}`*[T](self: not FormalPowerSeries and not Monomial, r:FormalPowerSerie
       for i in 0..<m:z[i] *= -1
       c = c & z[m div 2..^1]
       z2 = c
-      z2.setLen(2 * m)
+      z2.resize(2 * m)
       z2f = z2.fft
       var x = self[0..<min(self.len, m)]
       inplace_diff(x)
@@ -388,7 +395,7 @@ proc `{op}`*[T](self: not FormalPowerSeries and not Monomial, r:FormalPowerSerie
       inplace_partial_dot(xf, yf, 0..<m, T)
       x = xf.ifft(T)
       x -= b.diff()
-      x.setLen(2 * m)
+      x.resize(2 * m)
       for i in 0..<m - 1: x[m + i] = x[i]; x[i] = T(0)
       xf = x.fft
       inplace_partial_dot(xf, z2f, 0..<2*m, T)
@@ -411,7 +418,7 @@ proc `{op}`*[T](self: not FormalPowerSeries and not Monomial, r:FormalPowerSerie
 
     when T is FiniteFieldElem:
       var self = self
-      self.setLen(deg)
+      self.resize(deg)
       return self.expFast(deg)
     else:
       var
@@ -426,7 +433,7 @@ proc `{op}`*[T](self: not FormalPowerSeries and not Monomial, r:FormalPowerSerie
     mixin pow, init
     var self = self
     deg.revise(self.len)
-    self.setLen(deg)
+    self.resize(deg)
     for i in 0..<deg:
       if not EQUAL(self[i], T(0)):
         let rev = T(1) / self[i]

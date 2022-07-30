@@ -65,13 +65,18 @@ when not declared ATCODER_GRAPH_TEMPLATE_HPP:
   proc addBiEdge*[T, U, adjType, useId](g:var Graph[T, U, adjType, useId], e:Edge[T, U]):void =
     when adjType is ADJTYPE_SEQ | ADJTYPE_TABLE:
 #    var e_rev = initEdge[T](e.src, e.dst, e.weight, e.rev)
-      var e_rev = e
-      swap(e_rev.src, e_rev.dst)
-      let (r, s) = (g[e.src].len, g[e.dst].len)
-      g[e.src].add(e)
-      g[e.dst].add(e_rev)
-      g[e.src][^1].rev = s
-      g[e.dst][^1].rev = r
+      if e.src != e.dst:
+        var e_rev = e
+        swap(e_rev.src, e_rev.dst)
+        let (r, s) = (g[e.src].len, g[e.dst].len)
+        g[e.src].add(e)
+        g[e.dst].add(e_rev)
+        g[e.src][^1].rev = s
+        g[e.dst][^1].rev = r
+      else:
+        let r = g[e.src].len
+        g[e.src].add(e)
+        g[e.src][^1].rev = r
     else:
       static_assert false
 

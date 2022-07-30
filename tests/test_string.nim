@@ -2,7 +2,7 @@ import std/unittest
 import atcoder/string as string_lib
 import std/sequtils, std/algorithm
 import std/math
-include atcoder/extra/other/internal_sugar
+include atcoder/extra/forward_compatibility/internal_sugar
 
 proc `<`(a, b:seq[int]):bool =
   var i = 0

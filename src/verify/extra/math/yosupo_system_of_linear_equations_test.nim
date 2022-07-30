@@ -9,10 +9,10 @@ type mint = modint998244353
 
 block main:
   let N, M = nextInt()
-  type Mat = MatrixType(mint)
+  type Mat = DynamicMatrixType(mint)
   let
-    A:Mat = newSeqWith(N, newSeqWith(M, mint(nextInt())))
-    b:Vector[mint] = newSeqWith(N, mint(nextInt()))
+    A = Mat.init(newSeqWith(N, newSeqWith(M, mint(nextInt()))))
+    b:Mat.Vector = newSeqWith(N, mint(nextInt()))
   let t = linearEquations(A, b)
   if t.isSome():
     let (x, vs) = t.get

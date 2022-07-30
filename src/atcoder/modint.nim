@@ -13,9 +13,9 @@ when not declared ATCODER_MODINT_HPP:
 #  type ModInt* = concept x, type T
 #    T is StaticModInt or T is DynamicModInt
 
-  proc isStaticModInt*(T:typedesc):bool = T is StaticModInt
-  proc isDynamicModInt*(T:typedesc):bool = T is DynamicModInt
-  proc isModInt*(T:typedesc):bool = T.isStaticModInt or T.isDynamicModInt
+  proc isStaticModInt*(T:typedesc[ModInt]):bool = T is StaticModInt
+  proc isDynamicModInt*(T:typedesc[ModInt]):bool = T is DynamicModInt
+  #proc isModInt*(T:typedesc):bool = T.isStaticModInt or T.isDynamicModInt
   proc isStatic*(T:typedesc[ModInt]):bool = T is StaticModInt
 
   import atcoder/internal_math

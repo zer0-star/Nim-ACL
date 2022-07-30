@@ -27,6 +27,7 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   import std/deques as deques_lib
 
   import atcoder/extra/forward_compatibility/internal_sugar
+  include atcoder/extra/forward_compatibility/hash_func
 #  import std/sugar
   import atcoder/extra/other/reader
   import atcoder/extra/other/cfor

@@ -1,7 +1,7 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/queue_operate_all_composite
 
 import atcoder/header
-import atcoder/extra/other/internal_sugar
+import atcoder/extra/forward_compatibility/internal_sugar
 import atcoder/extra/structure/sliding_window_aggregation
 
 import atcoder/modint

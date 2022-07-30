@@ -10,6 +10,11 @@ when not declared ATCODER_MONTGOMERY_MODINT_HPP:
     a:uint32
   type LazyMontgomeryModInt = StaticLazyMontgomeryModInt or DynamicLazyMontgomeryModInt
 
+  proc isStaticModInt*(T:typedesc[LazyMontgomeryModInt]):bool = T is StaticLazyMontgomeryModInt
+  proc isDynamicModInt*(T:typedesc[LazyMontgomeryModInt]):bool = T is DynamicLazyMontgomeryModInt
+  #proc isModInt*(T:typedesc):bool = T.isStaticModInt or T.isDynamicModInt
+  proc isStatic*(T:typedesc[LazyMontgomeryModInt]):bool = T is StaticLazyMontgomeryModInt
+
   proc get_r*(M:uint32):auto =
     result = M
     for i in 0..<4: result *= 2.uint32 - M * result

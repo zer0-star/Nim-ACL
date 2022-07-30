@@ -21,6 +21,7 @@ when not declared ATCODER_DUAL_CUMULATIVE_SUM_HPP:
       self.data.setlen(s.b + 1 + 1)
     self.data[s.a] += x
     self.data[s.b + 1] -= x
+  proc add*[T](self: var DualCumulativeSum[T], i:int, x:T) = self.add(i .. i, x)
 
   proc `[]`*[T](self: var DualCumulativeSum[T], k:int):T =
     if k < 0: return T(0)
