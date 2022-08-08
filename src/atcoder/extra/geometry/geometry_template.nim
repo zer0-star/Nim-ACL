@@ -2,7 +2,8 @@ when not declared ATCODER_GEOMETRY_TEMPLATE_HPP:
   const ATCODER_GEOMETRY_TEMPLATE_HPP* = 1
   import atcoder/extra/other/static_var
   import atcoder/extra/other/floatutils
-  import atcoder/extra/other/internal_complex
+  import complex
+  #import atcoder/extra/other/internal_complex
   import std/math, std/macros
   
   type Point*[Real] = Complex[Real]
@@ -67,15 +68,17 @@ when not declared ATCODER_GEOMETRY_TEMPLATE_HPP:
   
   proc initLine*[Real](a,b:Point[Real]):Line[Real] = Line[Real](a:a, b:b)
   proc initLine*[Real](A, B, C:Real):Line[Real] = # Ax + By = C
-    var a, b: Point
+    # A, Bが両方0であってはならない
+    var a, b: Point[Real]
     if A =~ 0.Real: a = initPoint[Real](0.Real, C / B); b = initPoint[Real](1.Real, C / B)
-    elif B =~ 0.Real: b = initPoint[Real](C / A, 0.Real); b = initPoint[Real](C / A, 1.Real)
+    elif B =~ 0.Real: a = initPoint[Real](C / A, 0.Real); b = initPoint[Real](C / A, 1.Real)
+    elif C =~ 0.Real: a = initPoint[Real](0.Real, 0.Real); b = initPoint[Real](B, -A)
     else: a = initPoint[Real](0.Real, C / B); b = initPoint[Real](C / A, 0.Real)
     return initLine(a, b)
   proc `--`*[Real](a, b:Point[Real]):Line[Real] = initLine(a, b)
   
   proc `$`*[Real](p:Line[Real]):string =
-    return(p.a.toString & " to " & p.b.toString)
+    return "Line[" & p.a.toString & " to " & p.b.toString & "]"
   #proc nextLine():Line = initLine(nextPoint(), nextPoint())
   
   proc initSegment*[Real](a, b:Point[Real]):Segment[Real] = Segment[Real](Line[Real](a:a, b:b))
@@ -164,7 +167,8 @@ when not declared ATCODER_GEOMETRY_TEMPLATE_HPP:
   swappableProc intersect(l: Line[Real], s: Segment[Real]):
     cross(l.b - l.a, s.a - l.a) * cross(l.b - l.a, s.b - l.a) <~ 0.Real
   
-  swappableProc intersect(c: Circle[Real], l: Line[Real]): abs(c.p - c.p.projection(l)) <=~ c.r
+  swappableProc intersect(c: Circle[Real], l: Line[Real]):
+    abs(c.p - c.p.projection(l)) <=~ c.r
   
   swappableProc intersect(c: Circle[Real], p: Point[Real]): abs(abs(p - c.p) - c.r) =~ 0.Real
   

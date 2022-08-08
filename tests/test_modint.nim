@@ -3,11 +3,11 @@ import std/math
 import std/unittest
 
 static:
-  assert StaticModInt[1].isModInt
-  assert StaticModInt[998244353].isModInt
-  assert modint.isModInt
-  assert DynamicModInt[0].isModInt
-  assert not int.isModInt
+  #assert StaticModInt[1].isModInt
+  #assert StaticModInt[998244353].isModInt
+  #assert modint.isModInt
+  #assert DynamicModInt[0].isModInt
+  #assert not int.isModInt
 
   assert StaticModInt[1].is_static_modint
   assert StaticModInt[998244353].is_static_modint
@@ -15,14 +15,14 @@ static:
   assert modint1000000007.is_static_modint
   assert not modint.is_static_modint
   assert not DynamicModInt[0].is_static_modint
-  assert not int.is_static_modint
+  #assert not int.is_static_modint
 
   assert not StaticModInt[1].is_dynamic_modint
   assert not StaticModInt[998244353].is_dynamic_modint
 
   assert modint.is_dynamic_modint
   assert DynamicModInt[0].is_dynamic_modint
-  assert not int.is_dynamic_modint
+  #assert not int.is_dynamic_modint
 
   assert modint is DynamicModInt[-1]
 

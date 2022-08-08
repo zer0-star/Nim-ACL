@@ -2,7 +2,7 @@
 
 include atcoder/header
 
-import atcoder/extra/other/internal_sugar
+import atcoder/extra/forward_compatibility/internal_sugar
 import atcoder/extra/graph/graph_template
 import atcoder/extra/graph/cycle_detection
 import std/options, std/sequtils

@@ -1,7 +1,6 @@
 const
   DO_CHECK = true
   DEBUG = true
-  DO_TEST = false
   USE_DEFAULT_TABLE = true
 
 include lib/header/chaemon_header
@@ -22,7 +21,7 @@ type mint = modint{{ mod }}
 solveProc solve({{formal_arguments}}):
   discard
 
-when not DO_TEST:
+when not defined(DO_TEST):
   {{input_part}}
   solve({{actual_arguments}})
 else:
@@ -32,7 +31,7 @@ else:
 solveProc solve():
   discard
 
-when not DO_TEST:
+when not defined(DO_TEST):
   solve()
 else:
   discard

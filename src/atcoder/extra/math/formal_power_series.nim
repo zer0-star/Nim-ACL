@@ -23,8 +23,6 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
   template init*[T:FieldElem](self:typedesc[FormalPowerSeries[T]], data:typed):auto =
     initFormalPowerSeries[T](data)
 
-#  include atcoder/extra/math/formal_power_series_sparse
-
   # {{{ sparseFormalPowerSeries
 
   type SparseFormalPowerSeries*[T:FieldElem] = seq[tuple[d:int, c:T]] # sorted ascending order
@@ -157,11 +155,11 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
     while self.len > 0 and self[^1] == 0: discard self.pop()
   proc resize*[T](self: var FormalPowerSeries[T], n:int) =
     mixin setLen
-    if self.len >= n: return
     let l = self.len
     self.setLen(n)
-    for i in l ..< n:
-      self[i] = T(0)
+    if l < n:
+      for i in l ..< n:
+        self[i] = T(0)
 
   converter toFPS*[T](f:Monomial[T]):FormalPowerSeries[T] = 
     result = newSeq[T](f.d + 1)
@@ -305,7 +303,7 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
 
   proc `div=`*[T](self: var FormalPowerSeries[T], r: FormalPowerSeries[T]) =
     if self.len < r.len:
-      self.setlen(0)
+      self.resize(0)
     else:
       let n = self.len - r.len + 1
       self = (self.rev().pre(n) * r.rev().inv(n)).pre(n).rev(n)

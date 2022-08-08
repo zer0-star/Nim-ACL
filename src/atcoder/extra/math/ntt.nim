@@ -6,8 +6,10 @@ when not declared ATCODER_NTT_HPP:
   import std/bitops
 
   template get_fft_type*[T:FiniteFieldElem](self: typedesc[T]):typedesc =
-    when T.isStatic and countTrailingZeroBits(T.mod - 1) >= 20: ParticularModConvolution
-    else: ArbitraryModConvolution
+    when T.isStatic and countTrailingZeroBits(T.mod - 1) >= 20:
+      ParticularModConvolution
+    else:
+      ArbitraryModConvolution
   proc fft*[T:FiniteFieldElem](a:seq[T]):auto =
     fft(get_fft_type(T), a)
   proc ifft*(a:auto, T:typedesc[FiniteFieldElem]):auto =

@@ -1,0 +1,4 @@
+#!/usr/bin/zsh
+
+nim cpp -o:/tmp/nim_main_test -d:DO_TEST main.nim
+/tmp/nim_main_test

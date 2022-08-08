@@ -13,10 +13,12 @@ when not declared ATCODER_DEBUG_HPP:
     for i,x in n:
       if x.kind == nnkStrLit:
         a &= fmt"{x.repr}  "
+        if i < n.len - 1:
+          a.add(""", " ",""")
       else:
-        a &= fmt""" "{x.repr} = ", {x.repr}.infRepr """
-      if i < n.len - 1:
-        a.add(""", ", ",""")
+        a &= fmt""" "{x.repr} = ", infRepr({x.repr}) """
+        if i < n.len - 1:
+          a.add(""", ", ",""")
 #    a.add(", \"\\n\"")
     a.add "\n"
 #    a.add "resetAttributes()"

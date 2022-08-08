@@ -10,4 +10,10 @@ when not declared ATCODER_REFERENCE_HPP:
     template lhs: untyped = tmp[]
 
   macro `=&`*(lhs, rhs:untyped) =
-    parseStmt(fmt"""byaddr({lhs.repr}, {rhs.repr}.type, {rhs.repr})""")
+    result = newStmtList()
+    if lhs.kind == nnkPar:
+      for i,t in lhs:
+        var rhs = fmt"""{rhs.repr}[{i}]"""
+        result.add parseStmt(fmt"""byaddr({$t}, {$rhs}.type, {$rhs})""")
+    else:
+      result.add parseStmt(fmt"""byaddr({$lhs}, {$rhs}.type, {$rhs})""")

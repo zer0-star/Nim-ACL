@@ -114,7 +114,7 @@ when not declared ATCODER_SOLVEPROC_HPP:
             raise CheckResult(err: b.astToStr, output: resultOutput)
       )
     if hasNaive:
-      var naiveProcDef = newNimNode(nnkProcDef).add(ident"solve_naive").add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams.copy())).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())
+      var naiveProcDef = newNimNode(nnkProcDef).add(newNimNode(nnkPostFix).add(ident"*").add(ident"solve_naive")).add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams.copy())).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())
       result.add(naiveProcDef)
 
     var naiveParams = mainParams.copy()
@@ -132,7 +132,7 @@ when not declared ATCODER_SOLVEPROC_HPP:
     mainTemplateBody.add quote do:
       resultOutput
     var mainTemplate = quote do:
-      proc `procName`():string {.discardable.} =
+      proc `procName`*():string {.discardable.} =
         `mainTemplateBody`
     mainTemplate[3].add mainParams[1..^1].copy()
     result.add mainTemplate
@@ -163,7 +163,7 @@ when not declared ATCODER_SOLVEPROC_HPP:
       var identDefs = newNimNode(nnkIdentDefs).add(ident"error").add(ident"float").add(ident("NaN"))
       test_params.add identDefs
       test_body.add parseStmt(&"if not compare_answer_string(vsolve, vsolve_naive, error): echo &\"test failed for\\n{vars}\", \"[solve]\\n\", vsolve, \"[solve_naive]\\n\", vsolve_naive;doAssert false")
-      result.add newProc(name = ident"test", params = test_params, body = test_body, pragmas = discardablePragma)
+      result.add newProc(name = newNimNode(nnkPostFix).add(ident("*")).add(ident"test"), params = test_params, body = test_body, pragmas = discardablePragma)
     elif hasCheck:
       var test_body_sub = newStmtList()
       var var_names = newSeq[string]()
@@ -186,9 +186,10 @@ when not declared ATCODER_SOLVEPROC_HPP:
       var test_body = newStmtList()
       var d = &"try:\n  {test_body_sub.repr.strip}\nexcept CheckResult as e:\n  echo &\"check failed for\\n{vars}\", \"[failed statement]\\n\", e.err.strip, \"\\n[output]\\n\", e.output;doAssert false"
       test_body.add parseStmt(d)
-      result.add newProc(name = ident"test", params = test_params, body = test_body, pragmas = discardablePragma)
+      result.add newProc(name = newNimNode(nnkPostFix).add(ident("*")).add(ident"test"), params = test_params, body = test_body, pragmas = discardablePragma)
 
     if hasGenerate:
       discard
     if hasTest:
       discard
+    #echo result.repr
