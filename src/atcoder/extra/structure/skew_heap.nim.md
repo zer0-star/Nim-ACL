@@ -71,10 +71,10 @@ data:
   timestamp: '2020-12-19 22:31:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
-  - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
   - verify/extra/graph/yosupo_directedmst_test.nim
   - verify/extra/graph/yosupo_directedmst_test.nim
+  - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
+  - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
 documentation_of: atcoder/extra/structure/skew_heap.nim
 layout: document
 redirect_from:

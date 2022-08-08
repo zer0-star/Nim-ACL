@@ -88,37 +88,40 @@ data:
     \ = 1\n  import std/macros, std/strformat\n\n  template byaddr*(lhs, typ, ex)\
     \ =\n    when typ is typeof(nil):\n      let tmp = addr(ex)\n    else:\n     \
     \ let tmp: ptr typ = addr(ex)\n    template lhs: untyped = tmp[]\n\n  macro `=&`*(lhs,\
-    \ rhs:untyped) =\n    parseStmt(fmt\"\"\"byaddr({lhs.repr}, {rhs.repr}.type, {rhs.repr})\"\
+    \ rhs:untyped) =\n    result = newStmtList()\n    if lhs.kind == nnkPar:\n   \
+    \   for i,t in lhs:\n        var rhs = fmt\"\"\"{rhs.repr}[{i}]\"\"\"\n      \
+    \  result.add parseStmt(fmt\"\"\"byaddr({$t}, {$rhs}.type, {$rhs})\"\"\")\n  \
+    \  else:\n      result.add parseStmt(fmt\"\"\"byaddr({$lhs}, {$rhs}.type, {$rhs})\"\
     \"\")\n"
   dependsOn: []
   isVerificationFile: false
   path: atcoder/extra/other/reference.nim
   requiredBy:
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/template.nim
-  - atcoder/extra/template/template.nim
   - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/template.nim
+  - atcoder/extra/template/template.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/template.nim
-  - atcoder/extra/template/template.nim
   - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/chaemon_header.nim
-  timestamp: '2021-03-01 01:28:35+09:00'
+  - atcoder/extra/template/template.nim
+  - atcoder/extra/template/template.nim
+  timestamp: '2022-08-08 21:23:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/other/reference.nim

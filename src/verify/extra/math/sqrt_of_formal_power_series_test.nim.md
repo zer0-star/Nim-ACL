@@ -25,16 +25,16 @@ data:
   - icon: ':question:'
     path: atcoder/extra/math/formal_power_series.nim
     title: atcoder/extra/math/formal_power_series.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/math/mod_sqrt.nim
     title: atcoder/extra/math/mod_sqrt.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/math/mod_sqrt.nim
     title: atcoder/extra/math/mod_sqrt.nim
   - icon: ':question:'
@@ -81,9 +81,9 @@ data:
     title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
     links:
@@ -100,37 +100,37 @@ data:
     \    p[i] = mint(nextInt())\n  let q = p.sqrt()\n  echo if q.isSome: q.get.join(\"\
     \ \") else: \"-1\"\n\nmain()\n"
   dependsOn:
-  - atcoder/element_concepts.nim
+  - atcoder/header.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/internal_bit.nim
   - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/extra/math/formal_power_series.nim
   - atcoder/convolution.nim
-  - atcoder/extra/math/ntt.nim
+  - atcoder/internal_math.nim
   - atcoder/modint.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/formal_power_series_sqrt.nim
-  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/header.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/internal_bit.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
   - atcoder/internal_math.nim
   - atcoder/modint.nim
-  - atcoder/internal_bit.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/mod_sqrt.nim
-  - atcoder/header.nim
-  - atcoder/extra/math/formal_power_series_sqrt.nim
-  - atcoder/extra/math/formal_power_series.nim
   - atcoder/convolution.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/math/ntt.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
   isVerificationFile: true
   path: verify/extra/math/sqrt_of_formal_power_series_test.nim
   requiredBy: []
-  timestamp: '2022-07-03 22:20:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-08 21:23:55+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/math/sqrt_of_formal_power_series_test.nim
 layout: document

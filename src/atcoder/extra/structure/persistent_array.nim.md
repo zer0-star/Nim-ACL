@@ -66,10 +66,10 @@ data:
   timestamp: '2020-12-31 00:02:41+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/extra/structure/yosupo_persistent_queue_test.nim
-  - verify/extra/structure/yosupo_persistent_queue_test.nim
   - verify/extra/structure/yosupo_persistent_unionfind_test.nim
   - verify/extra/structure/yosupo_persistent_unionfind_test.nim
+  - verify/extra/structure/yosupo_persistent_queue_test.nim
+  - verify/extra/structure/yosupo_persistent_queue_test.nim
 documentation_of: atcoder/extra/structure/persistent_array.nim
 layout: document
 redirect_from:

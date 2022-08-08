@@ -147,10 +147,10 @@ data:
     path: atcoder/extra/template/vim_template.nim
     title: atcoder/extra/template/vim_template.nim
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
     title: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
     title: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
   - icon: ':heavy_check_mark:'
@@ -217,71 +217,71 @@ data:
   isVerificationFile: false
   path: atcoder/extra/other/inf.nim
   requiredBy:
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/header.nim
+  - atcoder/extra/header/header.nim
+  - atcoder/extra/graph/bellman_ford.nim
+  - atcoder/extra/graph/bellman_ford.nim
+  - atcoder/extra/graph/dijkstra.nim
+  - atcoder/extra/graph/dijkstra.nim
+  - atcoder/extra/graph/warshall_floyd.nim
+  - atcoder/extra/graph/warshall_floyd.nim
+  - atcoder/extra/graph/dijkstra_radix_heap.nim
+  - atcoder/extra/graph/dijkstra_radix_heap.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/debug.nim
   - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/template.nim
-  - atcoder/extra/template/template.nim
   - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/graph/dijkstra.nim
-  - atcoder/extra/graph/dijkstra.nim
-  - atcoder/extra/graph/bellman_ford.nim
-  - atcoder/extra/graph/bellman_ford.nim
-  - atcoder/extra/graph/dijkstra_radix_heap.nim
-  - atcoder/extra/graph/dijkstra_radix_heap.nim
-  - atcoder/extra/graph/warshall_floyd.nim
-  - atcoder/extra/graph/warshall_floyd.nim
+  - atcoder/extra/template/template.nim
+  - atcoder/extra/template/template.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/header.nim
   - atcoder/extra/header/header.nim
+  - atcoder/extra/graph/bellman_ford.nim
+  - atcoder/extra/graph/bellman_ford.nim
+  - atcoder/extra/graph/dijkstra.nim
+  - atcoder/extra/graph/dijkstra.nim
+  - atcoder/extra/graph/warshall_floyd.nim
+  - atcoder/extra/graph/warshall_floyd.nim
+  - atcoder/extra/graph/dijkstra_radix_heap.nim
+  - atcoder/extra/graph/dijkstra_radix_heap.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/debug.nim
   - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/template.nim
-  - atcoder/extra/template/template.nim
   - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/graph/dijkstra.nim
-  - atcoder/extra/graph/dijkstra.nim
-  - atcoder/extra/graph/bellman_ford.nim
-  - atcoder/extra/graph/bellman_ford.nim
-  - atcoder/extra/graph/dijkstra_radix_heap.nim
-  - atcoder/extra/graph/dijkstra_radix_heap.nim
-  - atcoder/extra/graph/warshall_floyd.nim
-  - atcoder/extra/graph/warshall_floyd.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/header.nim
-  - atcoder/extra/header/header.nim
+  - atcoder/extra/template/template.nim
+  - atcoder/extra/template/template.nim
   timestamp: '2022-06-06 17:51:24+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/shortest_path_test.nim
-  - verify/shortest_path_test.nim
-  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
-  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
-  - verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
-  - verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
+  - verify/extra/graph/aoj_grl_1_a_dijkstra_radix_heap_test.nim
+  - verify/extra/graph/aoj_grl_1_a_dijkstra_radix_heap_test.nim
   - verify/extra/graph/aoj_grl_1_b_bellman_ford_test.nim
   - verify/extra/graph/aoj_grl_1_b_bellman_ford_test.nim
   - verify/extra/graph/aoj_grl_1_c_warshall_floyd_test.nim
   - verify/extra/graph/aoj_grl_1_c_warshall_floyd_test.nim
+  - verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
+  - verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
   - verify/extra/graph/yosupo_shortest_path_test.nim
   - verify/extra/graph/yosupo_shortest_path_test.nim
-  - verify/extra/graph/aoj_grl_1_a_dijkstra_radix_heap_test.nim
-  - verify/extra/graph/aoj_grl_1_a_dijkstra_radix_heap_test.nim
+  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
+  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
+  - verify/shortest_path_test.nim
+  - verify/shortest_path_test.nim
 documentation_of: atcoder/extra/other/inf.nim
 layout: document
 redirect_from:

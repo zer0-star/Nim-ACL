@@ -56,7 +56,7 @@ data:
   isVerificationFile: false
   path: atcoder/extra/tree/tree_diameter.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/tree/yosupo_tree_diameter_test.nim

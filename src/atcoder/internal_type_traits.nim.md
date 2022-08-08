@@ -90,10 +90,10 @@ data:
   isVerificationFile: false
   path: atcoder/internal_type_traits.nim
   requiredBy:
-  - atcoder/fenwicktree.nim
-  - atcoder/fenwicktree.nim
   - atcoder/extra/structure/dual_fenwicktree.nim
   - atcoder/extra/structure/dual_fenwicktree.nim
+  - atcoder/fenwicktree.nim
+  - atcoder/fenwicktree.nim
   - atcoder/extra/structure/dual_fenwicktree.nim
   - atcoder/extra/structure/dual_fenwicktree.nim
   timestamp: '2020-12-05 23:18:49+09:00'

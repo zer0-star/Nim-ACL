@@ -39,9 +39,9 @@ data:
   dependsOn:
   - atcoder/extra/string/run_enumerate.nim
   - atcoder/header.nim
-  - atcoder/string.nim
-  - atcoder/extra/string/run_enumerate.nim
   - atcoder/header.nim
+  - atcoder/extra/string/run_enumerate.nim
+  - atcoder/string.nim
   - atcoder/string.nim
   isVerificationFile: true
   path: verify/extra/string/yosupo_run_enumerate_test.nim

@@ -49,30 +49,6 @@ data:
   - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':question:'
-    path: atcoder/extra/other/internal_sugar.nim
-    title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':question:'
-    path: atcoder/extra/other/internal_sugar.nim
-    title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':question:'
-    path: atcoder/extra/other/internal_sugar.nim
-    title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':question:'
-    path: atcoder/extra/other/internal_sugar.nim
-    title: atcoder/extra/other/internal_sugar.nim
-  - icon: ':question:'
-    path: atcoder/extra/other/internal_underscored_calls.nim
-    title: atcoder/extra/other/internal_underscored_calls.nim
-  - icon: ':question:'
-    path: atcoder/extra/other/internal_underscored_calls.nim
-    title: atcoder/extra/other/internal_underscored_calls.nim
-  - icon: ':question:'
-    path: atcoder/extra/other/internal_underscored_calls.nim
-    title: atcoder/extra/other/internal_underscored_calls.nim
-  - icon: ':question:'
-    path: atcoder/extra/other/internal_underscored_calls.nim
-    title: atcoder/extra/other/internal_underscored_calls.nim
   - icon: ':warning:'
     path: atcoder/extra/other/reader.nim
     title: atcoder/extra/other/reader.nim
@@ -158,50 +134,42 @@ data:
     \ a mod b != 0: result.inc\n\n  template `/^`*[T:SomeInteger](a, b:T):T = ceilDiv(a,\
     \ b)\n"
   dependsOn:
-  - atcoder/extra/other/internal_sugar.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/assignment_operator.nim
   - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/internal_sugar.nim
-  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/cfor.nim
+  - atcoder/extra/other/assignment_operator.nim
   - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/warlus_operator.nim
   - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/warlus_operator.nim
   - atcoder/extra/other/cfor.nim
   - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/seq_array_utils.nim
   - atcoder/extra/other/cfor.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/internal_sugar.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/extra/other/reader.nim
   - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/internal_sugar.nim
-  - atcoder/extra/other/solve_proc.nim
   - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/warlus_operator.nim
   - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/warlus_operator.nim
   - atcoder/extra/other/cfor.nim
   - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/cfor.nim
   - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/warlus_operator.nim
   isVerificationFile: false
   path: atcoder/extra/header/header.nim
   requiredBy: []
-  timestamp: '2022-07-03 22:20:00+09:00'
+  timestamp: '2022-08-08 21:23:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/header/header.nim

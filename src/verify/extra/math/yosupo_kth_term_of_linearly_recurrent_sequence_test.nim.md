@@ -19,10 +19,10 @@ data:
   - icon: ':question:'
     path: atcoder/extra/math/arbitrary_mod_convolution.nim
     title: atcoder/extra/math/arbitrary_mod_convolution.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/coef_of_generating_function.nim
     title: atcoder/extra/math/coef_of_generating_function.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/coef_of_generating_function.nim
     title: atcoder/extra/math/coef_of_generating_function.nim
   - icon: ':question:'
@@ -75,9 +75,9 @@ data:
     title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
     links:
@@ -95,35 +95,35 @@ data:
     \ + 1)\n  Q[0] = 1\n  for i in 0..<d: Q[i + 1] -= c[i]\n  var P = (a * Q)[0..<d]\n\
     \  echo (P // Q)[k]\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/math/coef_of_generating_function.nim
-  - atcoder/element_concepts.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/convolution.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/modint.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
-  - atcoder/extra/math/coef_of_generating_function.nim
-  - atcoder/internal_bit.nim
-  - atcoder/element_concepts.nim
   - atcoder/header.nim
   - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/coef_of_generating_function.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/internal_bit.nim
+  - atcoder/extra/math/formal_power_series.nim
   - atcoder/convolution.nim
-  - atcoder/extra/math/ntt.nim
+  - atcoder/internal_math.nim
+  - atcoder/modint.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/header.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/internal_bit.nim
+  - atcoder/extra/math/coef_of_generating_function.nim
+  - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/convolution.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/ntt.nim
   isVerificationFile: true
   path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
   requiredBy: []
-  timestamp: '2022-07-03 22:20:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-08 21:23:55+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
 layout: document

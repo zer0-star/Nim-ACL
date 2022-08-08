@@ -111,35 +111,35 @@ data:
   isVerificationFile: false
   path: atcoder/dsu.nim
   requiredBy:
-  - atcoder/extra/graph/boruvka.nim
-  - atcoder/extra/graph/boruvka.nim
-  - atcoder/extra/graph/kruskal.nim
-  - atcoder/extra/graph/kruskal.nim
   - atcoder/extra/graph/chu_liu_edmonds.nim
   - atcoder/extra/graph/chu_liu_edmonds.nim
+  - atcoder/extra/graph/kruskal.nim
+  - atcoder/extra/graph/kruskal.nim
+  - atcoder/extra/graph/boruvka.nim
+  - atcoder/extra/graph/boruvka.nim
   - atcoder/extra/graph/eulerian_trail.nim
   - atcoder/extra/graph/eulerian_trail.nim
-  - atcoder/extra/graph/boruvka.nim
-  - atcoder/extra/graph/boruvka.nim
-  - atcoder/extra/graph/kruskal.nim
-  - atcoder/extra/graph/kruskal.nim
   - atcoder/extra/graph/chu_liu_edmonds.nim
   - atcoder/extra/graph/chu_liu_edmonds.nim
+  - atcoder/extra/graph/kruskal.nim
+  - atcoder/extra/graph/kruskal.nim
+  - atcoder/extra/graph/boruvka.nim
+  - atcoder/extra/graph/boruvka.nim
   - atcoder/extra/graph/eulerian_trail.nim
   - atcoder/extra/graph/eulerian_trail.nim
   timestamp: '2020-09-18 00:06:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/dsu_test.nim
-  - verify/dsu_test.nim
-  - verify/extra/graph/aoj_grl_2_a_2_minimum_spanning_tree_kruskal_test.nim
-  - verify/extra/graph/aoj_grl_2_a_2_minimum_spanning_tree_kruskal_test.nim
+  - verify/extra/graph/yosupo_directedmst_test.nim
+  - verify/extra/graph/yosupo_directedmst_test.nim
   - verify/extra/graph/aoj_grl_2_a_3_boruvka_test.nim
   - verify/extra/graph/aoj_grl_2_a_3_boruvka_test.nim
   - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
   - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
-  - verify/extra/graph/yosupo_directedmst_test.nim
-  - verify/extra/graph/yosupo_directedmst_test.nim
+  - verify/extra/graph/aoj_grl_2_a_2_minimum_spanning_tree_kruskal_test.nim
+  - verify/extra/graph/aoj_grl_2_a_2_minimum_spanning_tree_kruskal_test.nim
+  - verify/dsu_test.nim
+  - verify/dsu_test.nim
 documentation_of: atcoder/dsu.nim
 layout: document
 redirect_from:

@@ -1,18 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
+  - icon: ':x:'
+    path: atcoder/extra/other/operator.nim
+    title: atcoder/extra/other/operator.nim
+  - icon: ':x:'
+    path: atcoder/extra/other/operator.nim
+    title: atcoder/extra/other/operator.nim
+  - icon: ':x:'
+    path: atcoder/extra/other/operator.nim
+    title: atcoder/extra/other/operator.nim
+  - icon: ':x:'
+    path: atcoder/extra/other/operator.nim
+    title: atcoder/extra/other/operator.nim
   - icon: ':question:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
@@ -80,18 +92,22 @@ data:
     \ 0])\n#  echo A, b, c\n#  var tss = init_two_stage_simplex(A, b, c)\n#  echo\
     \ tss.solution\n\n\n"
   dependsOn:
-  - atcoder/extra/math/matrix.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/math/matrix.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/math/matrix.nim
+  - atcoder/extra/other/operator.nim
+  - atcoder/extra/other/operator.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/math/matrix.nim
   - atcoder/generate_definitions.nim
+  - atcoder/extra/math/matrix.nim
+  - atcoder/extra/other/operator.nim
+  - atcoder/extra/other/operator.nim
   isVerificationFile: false
   path: atcoder/extra/math/simplex.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/math/simplex.nim

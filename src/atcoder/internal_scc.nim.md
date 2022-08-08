@@ -103,14 +103,14 @@ data:
   isVerificationFile: false
   path: atcoder/internal_scc.nim
   requiredBy:
-  - atcoder/scc.nim
-  - atcoder/scc.nim
-  - atcoder/twosat.nim
-  - atcoder/twosat.nim
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/extra/graph/mincostflow_generalized.nim
   - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/twosat.nim
+  - atcoder/twosat.nim
+  - atcoder/scc.nim
+  - atcoder/scc.nim
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/extra/graph/mincostflow_generalized.nim
@@ -118,12 +118,12 @@ data:
   timestamp: '2021-08-18 01:50:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/scc_test.nim
-  - verify/scc_test.nim
   - verify/twosat_test.nim
   - verify/twosat_test.nim
   - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
   - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
+  - verify/scc_test.nim
+  - verify/scc_test.nim
 documentation_of: atcoder/internal_scc.nim
 layout: document
 redirect_from:

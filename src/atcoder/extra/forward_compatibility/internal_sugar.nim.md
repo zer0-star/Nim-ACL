@@ -2,17 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: atcoder/extra/other/internal_underscored_calls.nim
-    title: atcoder/extra/other/internal_underscored_calls.nim
+    path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+    title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - icon: ':question:'
-    path: atcoder/extra/other/internal_underscored_calls.nim
-    title: atcoder/extra/other/internal_underscored_calls.nim
+    path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+    title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - icon: ':question:'
-    path: atcoder/extra/other/internal_underscored_calls.nim
-    title: atcoder/extra/other/internal_underscored_calls.nim
+    path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+    title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - icon: ':question:'
-    path: atcoder/extra/other/internal_underscored_calls.nim
-    title: atcoder/extra/other/internal_underscored_calls.nim
+    path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+    title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   _extendedRequiredBy:
   - icon: ':warning:'
     path: atcoder/extra/header/chaemon_header.nim
@@ -26,18 +26,6 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/header/chaemon_header.nim
     title: atcoder/extra/header/chaemon_header.nim
-  - icon: ':warning:'
-    path: atcoder/extra/header/header.nim
-    title: atcoder/extra/header/header.nim
-  - icon: ':warning:'
-    path: atcoder/extra/header/header.nim
-    title: atcoder/extra/header/header.nim
-  - icon: ':warning:'
-    path: atcoder/extra/header/header.nim
-    title: atcoder/extra/header/header.nim
-  - icon: ':warning:'
-    path: atcoder/extra/header/header.nim
-    title: atcoder/extra/header/header.nim
   - icon: ':warning:'
     path: atcoder/extra/template/atcoder-tools_template.nim
     title: atcoder/extra/template/atcoder-tools_template.nim
@@ -117,12 +105,6 @@ data:
   - icon: ':x:'
     path: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
     title: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
-  - icon: ':x:'
-    path: verify/extra/structure/yosupo_staticrmq_test.nim
-    title: verify/extra/structure/yosupo_staticrmq_test.nim
-  - icon: ':x:'
-    path: verify/extra/structure/yosupo_staticrmq_test.nim
-    title: verify/extra/structure/yosupo_staticrmq_test.nim
   _isVerificationFailed: true
   _pathExtension: nim
   _verificationStatusIcon: ':question:'
@@ -195,10 +177,10 @@ data:
     \ variable name cannot be `result`!\", arg)\n      params.add(newIdentDefs(ident(arg.strVal),\
     \ freshIdentNodes getTypeInst arg))\n    result = newNimNode(nnkCall)\n    result.add(newProc(newEmptyNode(),\
     \ params, body, nnkProcDef))\n    for arg in locals: result.add(arg)\n  \n  import\
-    \ atcoder/extra/other/internal_underscored_calls\n\n  macro dup*[T](arg: T, calls:\
-    \ varargs[untyped]): T =\n    result = newNimNode(nnkStmtListExpr, arg)\n    let\
-    \ tmp = genSym(nskVar, \"dupResult\")\n    result.add newVarStmt(tmp, arg)\n \
-    \   underscoredCalls(result, calls, tmp)\n    result.add tmp\n  \n  \n  proc transLastStmt(n,\
+    \ atcoder/extra/forward_compatibility/internal_underscored_calls\n\n  macro dup*[T](arg:\
+    \ T, calls: varargs[untyped]): T =\n    result = newNimNode(nnkStmtListExpr, arg)\n\
+    \    let tmp = genSym(nskVar, \"dupResult\")\n    result.add newVarStmt(tmp, arg)\n\
+    \    underscoredCalls(result, calls, tmp)\n    result.add tmp\n\n  proc transLastStmt(n,\
     \ res, bracketExpr: NimNode): (NimNode, NimNode, NimNode) =\n    # Looks for the\
     \ last statement of the last statement, etc...\n    case n.kind\n    of nnkIfExpr,\
     \ nnkIfStmt, nnkTryStmt, nnkCaseStmt:\n      result[0] = copyNimTree(n)\n    \
@@ -230,56 +212,50 @@ data:
     \      for i in 1 ..< init.len:\n        call.add init[i]\n    result = newTree(nnkStmtListExpr,\
     \ newVarStmt(res, call), resBody, res)\n"
   dependsOn:
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
-  - atcoder/extra/other/internal_underscored_calls.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   isVerificationFile: false
-  path: atcoder/extra/other/internal_sugar.nim
+  path: atcoder/extra/forward_compatibility/internal_sugar.nim
   requiredBy:
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/template.nim
-  - atcoder/extra/template/template.nim
   - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/header.nim
-  - atcoder/extra/header/header.nim
-  - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/template.nim
   - atcoder/extra/template/template.nim
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/template/vim_template.nim
+  - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/header.nim
-  - atcoder/extra/header/header.nim
-  timestamp: '2021-04-18 04:42:38+09:00'
+  - atcoder/extra/template/template.nim
+  - atcoder/extra/template/template.nim
+  timestamp: '2022-07-09 03:01:13+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/extra/structure/yosupo_staticrmq_test.nim
-  - verify/extra/structure/yosupo_staticrmq_test.nim
   - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   - verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
   - verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
   - verify/extra/graph/yosupo_cycle_detection_test.nim
   - verify/extra/graph/yosupo_cycle_detection_test.nim
-documentation_of: atcoder/extra/other/internal_sugar.nim
+documentation_of: atcoder/extra/forward_compatibility/internal_sugar.nim
 layout: document
 redirect_from:
-- /library/atcoder/extra/other/internal_sugar.nim
-- /library/atcoder/extra/other/internal_sugar.nim.html
-title: atcoder/extra/other/internal_sugar.nim
+- /library/atcoder/extra/forward_compatibility/internal_sugar.nim
+- /library/atcoder/extra/forward_compatibility/internal_sugar.nim.html
+title: atcoder/extra/forward_compatibility/internal_sugar.nim
 ---

@@ -19,16 +19,16 @@ data:
   - icon: ':question:'
     path: atcoder/extra/math/arbitrary_mod_convolution.nim
     title: atcoder/extra/math/arbitrary_mod_convolution.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/factorial.nim
     title: atcoder/extra/math/factorial.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/factorial.nim
     title: atcoder/extra/math/factorial.nim
   - icon: ':question:'
@@ -81,9 +81,9 @@ data:
     title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: https://yukicoder.me/problems/no/502
     links:
@@ -108,37 +108,37 @@ data:
 
     '
   dependsOn:
-  - atcoder/extra/math/combination.nim
-  - atcoder/element_concepts.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/extra/math/factorial.nim
-  - atcoder/convolution.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/modint.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/combination.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
-  - atcoder/internal_bit.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/factorial.nim
   - atcoder/header.nim
   - atcoder/extra/math/formal_power_series.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/internal_bit.nim
+  - atcoder/extra/math/combination.nim
+  - atcoder/extra/math/formal_power_series.nim
   - atcoder/convolution.nim
-  - atcoder/extra/math/ntt.nim
+  - atcoder/internal_math.nim
+  - atcoder/modint.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/convolution.nim
+  - atcoder/header.nim
+  - atcoder/extra/math/combination.nim
+  - atcoder/extra/math/factorial.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/internal_bit.nim
+  - atcoder/extra/math/factorial.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/ntt.nim
   isVerificationFile: true
   path: verify/extra/math/yukicoder_factorial_test.nim
   requiredBy: []
-  timestamp: '2022-07-03 22:20:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-08 21:23:55+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/math/yukicoder_factorial_test.nim
 layout: document

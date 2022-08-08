@@ -39,10 +39,10 @@ data:
     title: atcoder/extra/other/inf.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
     title: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
     title: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
   - icon: ':heavy_check_mark:'
@@ -105,32 +105,32 @@ data:
     \ a[f.dst]\n        if p[].dist > w:\n          p[].dist = w;\n          Q.push(initDijkstraObj(e.dst,\
     \ f.dst, w))\n    result = DijkstraResult[G.T, G.U, G.useId](a:a)\n"
   dependsOn:
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/graph_template.nim
   isVerificationFile: false
   path: atcoder/extra/graph/dijkstra.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/shortest_path_test.nim
-  - verify/shortest_path_test.nim
-  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
-  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
   - verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
   - verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
   - verify/extra/graph/yosupo_shortest_path_test.nim
   - verify/extra/graph/yosupo_shortest_path_test.nim
+  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
+  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
+  - verify/shortest_path_test.nim
+  - verify/shortest_path_test.nim
 documentation_of: atcoder/extra/graph/dijkstra.nim
 layout: document
 redirect_from:

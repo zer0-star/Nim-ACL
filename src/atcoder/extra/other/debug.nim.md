@@ -114,9 +114,10 @@ data:
     setForegroundColor fgYellow\\n\"\n#    a.add \"stdout.write \"\n#    a.add \"\
     stderr.write \"\n    a.add \"styledWriteLine stderr, fgYellow, \"\n    for i,x\
     \ in n:\n      if x.kind == nnkStrLit:\n        a &= fmt\"{x.repr}  \"\n     \
-    \ else:\n        a &= fmt\"\"\" \"{x.repr} = \", {x.repr}.infRepr \"\"\"\n   \
-    \   if i < n.len - 1:\n        a.add(\"\"\", \", \",\"\"\")\n#    a.add(\", \\\
-    \"\\\\n\\\"\")\n    a.add \"\\n\"\n#    a.add \"resetAttributes()\"\n    parseStmt(a)\n\
+    \   if i < n.len - 1:\n          a.add(\"\"\", \" \",\"\"\")\n      else:\n  \
+    \      a &= fmt\"\"\" \"{x.repr} = \", infRepr({x.repr}) \"\"\"\n        if i\
+    \ < n.len - 1:\n          a.add(\"\"\", \", \",\"\"\")\n#    a.add(\", \\\"\\\\\
+    n\\\"\")\n    a.add \"\\n\"\n#    a.add \"resetAttributes()\"\n    parseStmt(a)\n\
     \  template debug*(n: varargs[untyped]): untyped =\n    const EVAL =\n      when\
     \ declared DEBUG: DEBUG\n      else: false\n    when EVAL:\n      debugImpl(n)\n"
   dependsOn:
@@ -127,35 +128,35 @@ data:
   isVerificationFile: false
   path: atcoder/extra/other/debug.nim
   requiredBy:
-  - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/template.nim
-  - atcoder/extra/template/template.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/header.nim
   - atcoder/extra/header/header.nim
   - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/template.nim
-  - atcoder/extra/template/template.nim
   - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/template.nim
+  - atcoder/extra/template/template.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/header.nim
   - atcoder/extra/header/header.nim
-  timestamp: '2022-06-06 17:51:24+09:00'
+  - atcoder/extra/template/vim_template.nim
+  - atcoder/extra/template/vim_template.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/template.nim
+  - atcoder/extra/template/template.nim
+  timestamp: '2022-08-08 21:23:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/other/debug.nim

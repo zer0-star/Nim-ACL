@@ -74,7 +74,7 @@ data:
   isVerificationFile: false
   path: atcoder/extra/tree/heavy_light_decomposition.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim

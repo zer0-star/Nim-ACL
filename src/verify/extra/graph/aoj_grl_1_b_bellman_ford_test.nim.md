@@ -46,18 +46,18 @@ data:
     \ 0..<V:\n      if bf[u] == int.inf: echo \"INF\"\n      else: echo bf[u]\n\n\
     main()\n"
   dependsOn:
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
-  - atcoder/extra/graph/bellman_ford.nim
   - atcoder/header.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/bellman_ford.nim
-  - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/bellman_ford.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_1_b_bellman_ford_test.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/graph/aoj_grl_1_b_bellman_ford_test.nim

@@ -65,18 +65,18 @@ data:
     \    result = BellmanFordResult[G.T, G.U](negative_cycle:negative_cycle, dist:dist,\
     \ prev:prev)\n    when G.U isnot int: result.id = g.id\n"
   dependsOn:
-  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
   isVerificationFile: false
   path: atcoder/extra/graph/bellman_ford.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/graph/aoj_grl_1_b_bellman_ford_test.nim

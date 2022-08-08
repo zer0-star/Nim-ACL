@@ -90,10 +90,10 @@ data:
   timestamp: '2021-11-18 02:47:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
-  - verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
   - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
   - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
+  - verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
+  - verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
 documentation_of: atcoder/extra/structure/link_cut_tree.nim
 layout: document
 redirect_from:

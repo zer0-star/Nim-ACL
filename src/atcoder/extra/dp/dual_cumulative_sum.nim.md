@@ -20,7 +20,8 @@ data:
     \ + 1] -= a[i]\n    return DualCumulativeSum[T](data: data, pos: -1)\n  proc add*[T](self:\
     \ var DualCumulativeSum[T], s:Slice[int], x:T) =\n    doAssert self.pos < s.a\n\
     \    if s.a > s.b: return\n    if self.data.len <= s.b + 1:\n      self.data.setlen(s.b\
-    \ + 1 + 1)\n    self.data[s.a] += x\n    self.data[s.b + 1] -= x\n\n  proc `[]`*[T](self:\
+    \ + 1 + 1)\n    self.data[s.a] += x\n    self.data[s.b + 1] -= x\n  proc add*[T](self:\
+    \ var DualCumulativeSum[T], i:int, x:T) = self.add(i .. i, x)\n\n  proc `[]`*[T](self:\
     \ var DualCumulativeSum[T], k:int):T =\n    if k < 0: return T(0)\n    if self.data.len\
     \ <= k:\n      self.data.setlen(k + 1)\n    while self.pos < k:\n      self.pos\
     \ += 1\n      if self.pos > 0: self.data[self.pos] += self.data[self.pos - 1]\n\
@@ -29,7 +30,7 @@ data:
   isVerificationFile: false
   path: atcoder/extra/dp/dual_cumulative_sum.nim
   requiredBy: []
-  timestamp: '2021-03-01 01:28:35+09:00'
+  timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/dp/dual_cumulative_sum.nim

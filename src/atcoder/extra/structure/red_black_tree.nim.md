@@ -286,10 +286,10 @@ data:
   timestamp: '2022-07-03 22:20:00+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/map_test.nim
-  - verify/map_test.nim
   - verify/extra/structure/yosupo_predecessor_problem_test.nim
   - verify/extra/structure/yosupo_predecessor_problem_test.nim
+  - verify/map_test.nim
+  - verify/map_test.nim
 documentation_of: atcoder/extra/structure/red_black_tree.nim
 layout: document
 redirect_from:

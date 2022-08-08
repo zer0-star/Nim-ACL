@@ -51,17 +51,17 @@ data:
     \ e.dst)\n        total += e.weight\n        ret.add(e)\n    return (total, ret)\n"
   dependsOn:
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/dsu.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/dsu.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/dsu.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/dsu.nim
   - atcoder/dsu.nim
   isVerificationFile: false
   path: atcoder/extra/graph/kruskal.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/graph/aoj_grl_2_a_2_minimum_spanning_tree_kruskal_test.nim

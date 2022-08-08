@@ -13,52 +13,52 @@ data:
   - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_complex.nim
     title: atcoder/extra/other/internal_complex.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_complex.nim
     title: atcoder/extra/other/internal_complex.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_complex.nim
     title: atcoder/extra/other/internal_complex.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_complex.nim
     title: atcoder/extra/other/internal_complex.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
   _extendedRequiredBy:
@@ -87,22 +87,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
     title: verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/geometry/aoj_cgl_3_c_polygon_point_containment_test.nim
     title: verify/extra/geometry/aoj_cgl_3_c_polygon_point_containment_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/geometry/aoj_cgl_3_c_polygon_point_containment_test.nim
     title: verify/extra/geometry/aoj_cgl_3_c_polygon_point_containment_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/geometry/aoj_cgl_4_a_convex_hull_test.nim
     title: verify/extra/geometry/aoj_cgl_4_a_convex_hull_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/geometry/aoj_cgl_4_a_convex_hull_test.nim
     title: verify/extra/geometry/aoj_cgl_4_a_convex_hull_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
     title: verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
     title: verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
   - icon: ':heavy_check_mark:'
@@ -111,15 +111,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
     title: verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
     title: verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
     title: verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A
@@ -187,25 +187,25 @@ data:
     \ for i in 0..<p.len:\n      A += cross_area(c, p[i], p[(i + 1) mod p.len]) /\
     \ Real(2)\n    return A\n  # }}}\n  # }}}\n"
   dependsOn:
+  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/geometry/geometry_template.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/geometry/polygon.nim
@@ -214,21 +214,21 @@ data:
   - atcoder/extra/geometry/visualizer.nim
   - atcoder/extra/geometry/visualizer.nim
   - atcoder/extra/geometry/visualizer.nim
-  timestamp: '2022-02-05 00:42:13+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-08-08 21:23:55+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
-  - verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
   - verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
   - verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
   - verify/extra/geometry/aoj_cgl_4_a_convex_hull_test.nim
   - verify/extra/geometry/aoj_cgl_4_a_convex_hull_test.nim
-  - verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
-  - verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
   - verify/extra/geometry/aoj_cgl_3_c_polygon_point_containment_test.nim
   - verify/extra/geometry/aoj_cgl_3_c_polygon_point_containment_test.nim
   - verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
   - verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
+  - verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
+  - verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
+  - verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
+  - verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
   - verify/extra/geometry/aoj_cgl_3_a_area_test.nim
   - verify/extra/geometry/aoj_cgl_3_a_area_test.nim
 documentation_of: atcoder/extra/geometry/polygon.nim

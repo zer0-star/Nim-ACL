@@ -85,28 +85,28 @@ data:
     \      for i,d in d:ans[i] += d;base[i] += d\n\n  dfs(c)\n  echo ans[1..^1].join(\"\
     \ \")\n\nmain()\n"
   dependsOn:
-  - atcoder/element_concepts.nim
+  - atcoder/header.nim
+  - atcoder/extra/tree/centroid_decomposition.nim
   - atcoder/generate_definitions.nim
+  - atcoder/internal_bit.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/convolution.nim
-  - atcoder/extra/tree/centroid_decomposition.nim
-  - atcoder/internal_bit.nim
-  - atcoder/modint.nim
   - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/internal_bit.nim
   - atcoder/modint.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/header.nim
   - atcoder/convolution.nim
+  - atcoder/header.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/internal_bit.nim
   - atcoder/extra/tree/centroid_decomposition.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: true
   path: verify/extra/graph/centroid_decomposition_test.nim
   requiredBy: []
-  timestamp: '2022-07-03 22:20:00+09:00'
+  timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/graph/centroid_decomposition_test.nim

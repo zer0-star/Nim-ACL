@@ -7,34 +7,34 @@ data:
   - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/geometry/closest_pair.nim
     title: atcoder/extra/geometry/closest_pair.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/geometry/closest_pair.nim
     title: atcoder/extra/geometry/closest_pair.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_complex.nim
     title: atcoder/extra/other/internal_complex.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/internal_complex.nim
     title: atcoder/extra/other/internal_complex.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
   - icon: ':question:'
@@ -45,9 +45,9 @@ data:
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     ERROR: 1e-6
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_5_A
@@ -62,25 +62,25 @@ data:
     import atcoder/extra/geometry/closest_pair\n\nblock main:\n  let\n    n = nextInt()\n\
     \    g = newSeqWith(n, initPoint(nextFloat(), nextFloat()))\n  echo g.closest_pair()\n"
   dependsOn:
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/element_concepts.nim
   - atcoder/header.nim
   - atcoder/extra/geometry/closest_pair.nim
+  - atcoder/header.nim
   - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/geometry/closest_pair.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/extra/geometry/geometry_template.nim
   - atcoder/element_concepts.nim
-  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_5_a_closest_pair_test.nim
   requiredBy: []
-  timestamp: '2022-02-05 00:42:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-08 21:23:55+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/geometry/aoj_cgl_5_a_closest_pair_test.nim
 layout: document

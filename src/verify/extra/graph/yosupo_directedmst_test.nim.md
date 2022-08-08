@@ -52,20 +52,20 @@ data:
     \ = minimumSpanningTreeArborescence[int](edges, N, S).get\n  echo s\n  echo parent.mapIt($it).join(\"\
     \ \")\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/graph/graph_template.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/extra/graph/chu_liu_edmonds.nim
-  - atcoder/dsu.nim
   - atcoder/extra/structure/skew_heap.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/chu_liu_edmonds.nim
   - atcoder/dsu.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/structure/skew_heap.nim
-  - atcoder/header.nim
+  - atcoder/dsu.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_directedmst_test.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/graph/yosupo_directedmst_test.nim

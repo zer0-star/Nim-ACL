@@ -7,28 +7,22 @@ data:
   - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/extra/other/internal_complex.nim
-    title: atcoder/extra/other/internal_complex.nim
-  - icon: ':heavy_check_mark:'
-    path: atcoder/extra/other/internal_complex.nim
-    title: atcoder/extra/other/internal_complex.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
   - icon: ':question:'
@@ -60,22 +54,20 @@ data:
     \ echo \"ONLINE_BACK\"\n    elif c == CCWState.ONLINE_FRONT: echo \"ONLINE_FRONT\"\
     \n    else: echo \"ON_SEGMENT\"\n"
   dependsOn:
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/internal_complex.nim
   - atcoder/header.nim
-  - atcoder/element_concepts.nim
+  - atcoder/header.nim
   - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/other/static_var.nim
   - atcoder/extra/geometry/geometry_template.nim
   - atcoder/element_concepts.nim
-  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_1_c_counter_clockwise_test.nim
   requiredBy: []
-  timestamp: '2022-02-05 00:42:13+09:00'
+  timestamp: '2022-08-08 21:23:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/geometry/aoj_cgl_1_c_counter_clockwise_test.nim

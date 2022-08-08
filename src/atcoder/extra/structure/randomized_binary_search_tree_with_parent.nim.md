@@ -259,18 +259,18 @@ data:
     \ RBST):int {.discardable.} =\n    doAssert self.root.p == nil\n    self.check_tree(self.root)\n\
     \  {.pop.}\n"
   dependsOn:
-  - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/rangeutils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   requiredBy:
@@ -285,12 +285,12 @@ data:
   timestamp: '2022-07-03 22:20:00+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/map_test.nim
-  - verify/map_test.nim
-  - verify/extra/structure/yosupo_predecessor_problem_test.nim
-  - verify/extra/structure/yosupo_predecessor_problem_test.nim
   - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
   - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
+  - verify/extra/structure/yosupo_predecessor_problem_test.nim
+  - verify/extra/structure/yosupo_predecessor_problem_test.nim
+  - verify/map_test.nim
+  - verify/map_test.nim
 documentation_of: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
 layout: document
 redirect_from:

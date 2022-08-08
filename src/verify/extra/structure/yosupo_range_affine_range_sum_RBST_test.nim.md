@@ -75,25 +75,25 @@ data:
     \ let l, r = nextInt()\n    echo seg.prod(l..<r)[0]\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/rangeutils.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/rangeutils.nim
   - atcoder/header.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/rangeutils.nim
+  - atcoder/modint.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
   requiredBy: []
-  timestamp: '2022-07-03 22:20:00+09:00'
+  timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim

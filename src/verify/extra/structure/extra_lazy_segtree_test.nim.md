@@ -64,28 +64,28 @@ data:
     \ S): S = (l.a + r.a, l.size + r.size)\nproc e(): S = (mint(0), 0)\nproc mapping(l:\
     \ F, r: S): S = (r.a * l.a + r.size * l.b, r.size)\nproc composition(l, r: F):\
     \ F = (r.a * l.a, r.b * l.a + l.b)\nproc id(): F = (mint(1), mint(0))\n\nvar seg\
-    \ = init_lazy_segtree(a, op, e, mapping, composition, id)\n\nfor i in 0..<q:\n\
+    \ = init_lazy_segtree[S, F](a, op, e, mapping, composition, id)\n\nfor i in 0..<q:\n\
     \  let t = nextInt()\n  if t == 0:\n    let l, r, c, d = nextInt()\n    seg.apply(l..<r,\
     \ (mint(c), mint(d)))\n  else:\n    let l, r = nextInt()\n    echo seg.prod(l..<r)[0]\n"
   dependsOn:
-  - atcoder/extra/structure/universal_segtree.nim
   - atcoder/header.nim
-  - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
+  - atcoder/header.nim
   - atcoder/extra/structure/universal_segtree.nim
-  - atcoder/rangeutils.nim
+  - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
-  - atcoder/internal_bit.nim
+  - atcoder/modint.nim
+  - atcoder/modint.nim
   - atcoder/rangeutils.nim
-  - atcoder/header.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/internal_bit.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: true
   path: verify/extra/structure/extra_lazy_segtree_test.nim
   requiredBy: []
-  timestamp: '2022-07-03 22:20:00+09:00'
+  timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/structure/extra_lazy_segtree_test.nim

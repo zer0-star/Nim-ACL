@@ -46,7 +46,7 @@ data:
   isVerificationFile: false
   path: atcoder/extra/graph/strong_orientation.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/graph/strong_orientation.nim

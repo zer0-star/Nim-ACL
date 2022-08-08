@@ -38,16 +38,16 @@ data:
     \ i in 0..<E:\n    let\n      a,b,c = nextInt()\n    g.addBiEdge(a,b,c)\n  echo\
     \ prim(g)[0]\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/graph/graph_template.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/extra/graph/prim.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/prim.nim
-  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_2_a_minimum_spanning_tree_prim_test.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/graph/aoj_grl_2_a_minimum_spanning_tree_prim_test.nim

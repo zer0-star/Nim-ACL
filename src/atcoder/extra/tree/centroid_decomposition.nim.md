@@ -51,7 +51,7 @@ data:
   isVerificationFile: false
   path: atcoder/extra/tree/centroid_decomposition.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/graph/centroid_decomposition_test.nim

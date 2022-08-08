@@ -1,12 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
+  - icon: ':x:'
+    path: atcoder/extra/other/operator.nim
+    title: atcoder/extra/other/operator.nim
+  - icon: ':x:'
+    path: atcoder/extra/other/operator.nim
+    title: atcoder/extra/other/operator.nim
   - icon: ':question:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
@@ -33,9 +39,9 @@ data:
     title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
     links:
@@ -47,27 +53,29 @@ data:
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/system_of_linear_equations\n\
     \ninclude atcoder/header\nimport atcoder/modint\nimport atcoder/extra/math/matrix\n\
     import options\n\ntype mint = modint998244353\n\nblock main:\n  let N, M = nextInt()\n\
-    \  type Mat = MatrixType(mint)\n  let\n    A:Mat = newSeqWith(N, newSeqWith(M,\
-    \ mint(nextInt())))\n    b:Vector[mint] = newSeqWith(N, mint(nextInt()))\n  let\
+    \  type Mat = DynamicMatrixType(mint)\n  let\n    A = Mat.init(newSeqWith(N, newSeqWith(M,\
+    \ mint(nextInt()))))\n    b:Mat.Vector = newSeqWith(N, mint(nextInt()))\n  let\
     \ t = linearEquations(A, b)\n  if t.isSome():\n    let (x, vs) = t.get\n    echo\
     \ vs.len\n    echo x.mapIt($it).join(\" \")\n    for v in vs:\n      echo v.mapIt($it).join(\"\
     \ \")\n  else:\n    echo -1\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/extra/math/matrix.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
   - atcoder/header.nim
-  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
   - atcoder/extra/math/matrix.nim
   - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
   - atcoder/internal_math.nim
   - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/math/matrix.nim
+  - atcoder/extra/other/operator.nim
+  - atcoder/extra/other/operator.nim
   isVerificationFile: true
   path: verify/extra/math/yosupo_system_of_linear_equations_test.nim
   requiredBy: []
-  timestamp: '2022-07-03 22:20:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-07-30 23:50:20+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/math/yosupo_system_of_linear_equations_test.nim
 layout: document

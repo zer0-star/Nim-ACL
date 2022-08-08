@@ -51,15 +51,15 @@ data:
     \ V - 1, F)\n  if f.cap < F:\n    echo -1\n  else:\n    echo f.cost\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/internal_heap.nim
-  - atcoder/internal_queue.nim
-  - atcoder/internal_queue.nim
-  - atcoder/mincostflow.nim
-  - atcoder/internal_heap.nim
-  - atcoder/internal_csr.nim
-  - atcoder/mincostflow.nim
   - atcoder/internal_csr.nim
   - atcoder/header.nim
+  - atcoder/internal_csr.nim
+  - atcoder/mincostflow.nim
+  - atcoder/mincostflow.nim
+  - atcoder/internal_queue.nim
+  - atcoder/internal_heap.nim
+  - atcoder/internal_heap.nim
+  - atcoder/internal_queue.nim
   isVerificationFile: true
   path: verify/min_cost_flow_test.nim
   requiredBy: []

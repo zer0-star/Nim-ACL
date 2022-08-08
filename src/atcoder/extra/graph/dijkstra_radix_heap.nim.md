@@ -88,26 +88,26 @@ data:
     \ continue\n        x[].dist = next_cost\n        heap.push(x[].dist, e)\n   \
     \ result = DijkstraResult[G.T, G.U, G.useId](a:a)\n"
   dependsOn:
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/structure/radix_heap.nim
-  - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/structure/radix_heap.nim
-  - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/structure/radix_heap.nim
   - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/structure/radix_heap.nim
+  - atcoder/extra/structure/radix_heap.nim
   - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/structure/radix_heap.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/extra/other/inf.nim
+  - atcoder/extra/structure/radix_heap.nim
   isVerificationFile: false
   path: atcoder/extra/graph/dijkstra_radix_heap.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/graph/aoj_grl_1_a_dijkstra_radix_heap_test.nim

@@ -37,16 +37,16 @@ data:
   - icon: ':question:'
     path: atcoder/extra/math/arbitrary_mod_convolution.nim
     title: atcoder/extra/math/arbitrary_mod_convolution.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
   - icon: ':question:'
@@ -135,15 +135,15 @@ data:
     title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/polynomial_taylor_shift_test.nim
     title: verify/extra/math/polynomial_taylor_shift_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/polynomial_taylor_shift_test.nim
     title: verify/extra/math/polynomial_taylor_shift_test.nim
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://judge.yosupo.jp/problem/polynomial_taylor_shift
@@ -161,55 +161,55 @@ data:
     \    p = (p * bs).pre(n)\n    p = p.rev()\n    for i in 0..<n: p[i] *= T.rfact(i)\n\
     \    return p\n"
   dependsOn:
-  - atcoder/extra/math/combination.nim
-  - atcoder/element_concepts.nim
+  - atcoder/extra/math/formal_power_series.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/internal_bit.nim
+  - atcoder/extra/math/combination.nim
+  - atcoder/extra/math/formal_power_series.nim
   - atcoder/convolution.nim
-  - atcoder/extra/math/ntt.nim
+  - atcoder/internal_math.nim
   - atcoder/modint.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/extra/math/combination.nim
   - atcoder/generate_definitions.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/internal_bit.nim
   - atcoder/internal_math.nim
   - atcoder/modint.nim
-  - atcoder/internal_bit.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/formal_power_series.nim
   - atcoder/convolution.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/combination.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/formal_power_series.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/internal_bit.nim
+  - atcoder/extra/math/combination.nim
+  - atcoder/extra/math/formal_power_series.nim
   - atcoder/convolution.nim
-  - atcoder/extra/math/ntt.nim
+  - atcoder/internal_math.nim
   - atcoder/modint.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/extra/math/combination.nim
   - atcoder/generate_definitions.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/internal_bit.nim
   - atcoder/internal_math.nim
   - atcoder/modint.nim
-  - atcoder/internal_bit.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/formal_power_series.nim
   - atcoder/convolution.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/math/ntt.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
   isVerificationFile: false
   path: atcoder/extra/math/polynomial_taylor_shift.nim
   requiredBy: []
-  timestamp: '2022-07-03 22:20:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-08-08 21:23:55+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/math/polynomial_taylor_shift_test.nim
   - verify/extra/math/polynomial_taylor_shift_test.nim

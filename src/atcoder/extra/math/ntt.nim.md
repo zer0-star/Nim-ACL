@@ -98,28 +98,28 @@ data:
     path: atcoder/modint.nim
     title: atcoder/modint.nim
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/polynomial_taylor_shift.nim
     title: atcoder/extra/math/polynomial_taylor_shift.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/polynomial_taylor_shift.nim
     title: atcoder/extra/math/polynomial_taylor_shift.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/polynomial_taylor_shift.nim
     title: atcoder/extra/math/polynomial_taylor_shift.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/polynomial_taylor_shift.nim
     title: atcoder/extra/math/polynomial_taylor_shift.nim
   _extendedVerifiedWith:
@@ -147,22 +147,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/math/exp_of_formal_power_series_test.nim
     title: verify/extra/math/exp_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/inv_of_formal_power_series_test.nim
     title: verify/extra/math/inv_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/inv_of_formal_power_series_test.nim
     title: verify/extra/math/inv_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/log_of_formal_power_series_test.nim
     title: verify/extra/math/log_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/log_of_formal_power_series_test.nim
     title: verify/extra/math/log_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/polynomial_taylor_shift_test.nim
     title: verify/extra/math/polynomial_taylor_shift_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/polynomial_taylor_shift_test.nim
     title: verify/extra/math/polynomial_taylor_shift_test.nim
   - icon: ':x:'
@@ -171,34 +171,40 @@ data:
   - icon: ':x:'
     path: verify/extra/math/pow_of_formal_power_series_test.nim
     title: verify/extra/math/pow_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/sqrt_of_formal_power_series_test.nim
     title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/sqrt_of_formal_power_series_test.nim
     title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
     title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
     title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
+    title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
+  - icon: ':x:'
+    path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
+    title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
+  - icon: ':x:'
     path: verify/extra/math/yukicoder_factorial_test.nim
     title: verify/extra/math/yukicoder_factorial_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yukicoder_factorial_test.nim
     title: verify/extra/math/yukicoder_factorial_test.nim
   _isVerificationFailed: true
@@ -214,8 +220,8 @@ data:
     \ atcoder/element_concepts\n  include atcoder/extra/math/particular_mod_convolution\n\
     \  include atcoder/extra/math/arbitrary_mod_convolution\n  import std/bitops\n\
     \n  template get_fft_type*[T:FiniteFieldElem](self: typedesc[T]):typedesc =\n\
-    \    when T.isStatic and countTrailingZeroBits(T.mod - 1) >= 20: ParticularModConvolution\n\
-    \    else: ArbitraryModConvolution\n  proc fft*[T:FiniteFieldElem](a:seq[T]):auto\
+    \    when T.isStatic and countTrailingZeroBits(T.mod - 1) >= 20:\n      ParticularModConvolution\n\
+    \    else:\n      ArbitraryModConvolution\n  proc fft*[T:FiniteFieldElem](a:seq[T]):auto\
     \ =\n    fft(get_fft_type(T), a)\n  proc ifft*(a:auto, T:typedesc[FiniteFieldElem]):auto\
     \ =\n    ifft[T](get_fft_type(T), a)\n  proc dot*(a, b:auto, T:typedesc[FiniteFieldElem]):auto\
     \ =\n    dot(get_fft_type(T), a, b)\n  proc inplace_partial_dot*(a:var auto, b:auto,\
@@ -223,78 +229,80 @@ data:
     \ a, b, p)\n  proc multiply*[T:FiniteFieldElem](a, b:seq[T]):seq[T] =\n    convolution(get_fft_type(T),\
     \ a, b)\n"
   dependsOn:
-  - atcoder/convolution.nim
-  - atcoder/element_concepts.nim
   - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
   - atcoder/convolution.nim
   - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/internal_bit.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/element_concepts.nim
   - atcoder/modint.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/convolution.nim
-  - atcoder/element_concepts.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/internal_bit.nim
   - atcoder/internal_math.nim
   - atcoder/convolution.nim
-  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/internal_bit.nim
-  - atcoder/element_concepts.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/convolution.nim
+  - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/internal_bit.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/element_concepts.nim
+  - atcoder/modint.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/internal_math.nim
+  - atcoder/convolution.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: false
   path: atcoder/extra/math/ntt.nim
   requiredBy:
-  - atcoder/extra/math/polynomial_taylor_shift.nim
-  - atcoder/extra/math/polynomial_taylor_shift.nim
   - atcoder/extra/math/composition.nim
   - atcoder/extra/math/composition.nim
   - atcoder/extra/math/polynomial_taylor_shift.nim
   - atcoder/extra/math/polynomial_taylor_shift.nim
   - atcoder/extra/math/composition.nim
   - atcoder/extra/math/composition.nim
-  timestamp: '2022-07-03 22:20:00+09:00'
+  - atcoder/extra/math/polynomial_taylor_shift.nim
+  - atcoder/extra/math/polynomial_taylor_shift.nim
+  timestamp: '2022-08-08 21:23:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - verify/extra/math/sqrt_of_formal_power_series_test.nim
+  - verify/extra/math/arbitrary_mod_convolution_test.nim
+  - verify/extra/math/arbitrary_mod_convolution_test.nim
   - verify/extra/math/exp_of_formal_power_series_test.nim
   - verify/extra/math/exp_of_formal_power_series_test.nim
+  - verify/extra/math/polynomial_taylor_shift_test.nim
+  - verify/extra/math/polynomial_taylor_shift_test.nim
   - verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
   - verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
   - verify/extra/math/inv_of_formal_power_series_test.nim
   - verify/extra/math/inv_of_formal_power_series_test.nim
+  - verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
+  - verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
+  - verify/extra/math/yukicoder_0963_differential_equation_test.nim
+  - verify/extra/math/yukicoder_0963_differential_equation_test.nim
+  - verify/extra/math/yukicoder_factorial_test.nim
+  - verify/extra/math/yukicoder_factorial_test.nim
+  - verify/extra/math/division_of_polynomials_test.nim
+  - verify/extra/math/division_of_polynomials_test.nim
+  - verify/extra/math/sqrt_of_formal_power_series_test.nim
+  - verify/extra/math/sqrt_of_formal_power_series_test.nim
+  - verify/extra/math/pow_of_formal_power_series_test.nim
+  - verify/extra/math/pow_of_formal_power_series_test.nim
+  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
+  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
   - verify/extra/math/log_of_formal_power_series_test.nim
   - verify/extra/math/log_of_formal_power_series_test.nim
   - verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
   - verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - verify/extra/math/yukicoder_factorial_test.nim
-  - verify/extra/math/yukicoder_factorial_test.nim
-  - verify/extra/math/polynomial_taylor_shift_test.nim
-  - verify/extra/math/polynomial_taylor_shift_test.nim
-  - verify/extra/math/division_of_polynomials_test.nim
-  - verify/extra/math/division_of_polynomials_test.nim
-  - verify/extra/math/pow_of_formal_power_series_test.nim
-  - verify/extra/math/pow_of_formal_power_series_test.nim
-  - verify/extra/math/arbitrary_mod_convolution_test.nim
-  - verify/extra/math/arbitrary_mod_convolution_test.nim
 documentation_of: atcoder/extra/math/ntt.nim
 layout: document
 redirect_from:

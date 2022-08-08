@@ -39,16 +39,16 @@ data:
     \  let lca = initDoublingLowestCommonAncestor(g, 0)\n  let Q = nextInt()\n  for\
     \ i in 0..<Q:\n    let x, y = nextInt()\n    echo lca.lca(x, y)\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
-  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim

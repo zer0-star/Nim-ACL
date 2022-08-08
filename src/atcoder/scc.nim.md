@@ -67,10 +67,10 @@ data:
     \    assert 0 <= src and dst < n\n    assert 0 <= dst and dst < n\n    self.internal.add_edge(src,\
     \ dst)\n\n  proc scc*(self:SCCGraph):auto = self.internal.scc()\n"
   dependsOn:
-  - atcoder/internal_scc.nim
-  - atcoder/internal_scc.nim
   - atcoder/internal_csr.nim
   - atcoder/internal_csr.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_scc.nim
   isVerificationFile: false
   path: atcoder/scc.nim
   requiredBy:
@@ -85,10 +85,10 @@ data:
   timestamp: '2021-08-18 01:50:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/scc_test.nim
-  - verify/scc_test.nim
   - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
   - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
+  - verify/scc_test.nim
+  - verify/scc_test.nim
 documentation_of: atcoder/scc.nim
 layout: document
 redirect_from:

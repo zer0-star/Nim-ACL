@@ -37,15 +37,15 @@ data:
     \necho (0 ..< 9).mapIt(N + 9 - it).prod / toSeq(1 .. 9).prod\n"
   dependsOn:
   - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
   - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
   - atcoder/modint.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/modint_test.nim
   requiredBy: []
-  timestamp: '2022-07-03 22:20:00+09:00'
+  timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/modint_test.nim

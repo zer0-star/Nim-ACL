@@ -64,12 +64,12 @@ data:
   isVerificationFile: false
   path: atcoder/internal_heap.nim
   requiredBy:
-  - atcoder/mincostflow.nim
-  - atcoder/mincostflow.nim
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/extra/graph/mincostflow_generalized.nim
   - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/mincostflow.nim
+  - atcoder/mincostflow.nim
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/extra/graph/mincostflow_generalized.nim

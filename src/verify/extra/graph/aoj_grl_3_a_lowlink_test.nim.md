@@ -38,16 +38,16 @@ data:
     \    var x,y = nextInt()\n    g.addBiEdge(x,y)\n  var lowlink = LowLink(g)\n \
     \ lowlink.articulation.sort()\n  for v in lowlink.articulation: echo v\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/header.nim
-  - atcoder/extra/graph/lowlink.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/lowlink.nim
   - atcoder/header.nim
+  - atcoder/extra/graph/lowlink.nim
+  - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_3_a_lowlink_test.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/graph/aoj_grl_3_a_lowlink_test.nim

@@ -152,8 +152,8 @@ data:
     \        type CheckResult {.inject.} = ref object of Exception\n          output,\
     \ err:string\n        template check(b:untyped) =\n          if not b:\n     \
     \       raise CheckResult(err: b.astToStr, output: resultOutput)\n      )\n  \
-    \  if hasNaive:\n      var naiveProcDef = newNimNode(nnkProcDef).add(ident\"solve_naive\"\
-    ).add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams.copy())).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())\n\
+    \  if hasNaive:\n      var naiveProcDef = newNimNode(nnkProcDef).add(newNimNode(nnkPostFix).add(ident\"\
+    *\").add(ident\"solve_naive\")).add(newEmptyNode()).add(newEmptyNode()).add(newNimNode(nnkFormalParams).add(mainParams.copy())).add(discardablePragma).add(newEmptyNode()).add(newEmptyNode())\n\
     \      result.add(naiveProcDef)\n\n    var naiveParams = mainParams.copy()\n \
     \   #result.add newProc(name = ident(procName), params = mainParams.copy(), body\
     \ = mainBody, pragmas = discardablePragma)\n    \n    var mainProcImpl =\n   \
@@ -161,7 +161,7 @@ data:
     \ =\n        `mainBody`\n      var resultOutput {.inject.} = solve()\n    var\
     \ mainTemplateBody = newStmtList().add quote do:\n      `mainProcImpl`\n    if\
     \ hasCheck:\n      mainTemplateBody.add checkBody\n    mainTemplateBody.add quote\
-    \ do:\n      resultOutput\n    var mainTemplate = quote do:\n      proc `procName`():string\
+    \ do:\n      resultOutput\n    var mainTemplate = quote do:\n      proc `procName`*():string\
     \ {.discardable.} =\n        `mainTemplateBody`\n    mainTemplate[3].add mainParams[1..^1].copy()\n\
     \    result.add mainTemplate\n\n    if hasNaive:\n      let naiveProcName = $procName\
     \ & \"naive\"\n      naiveBody = mainBodyHeader().add(newBlockStmt(newEmptyNode(),\
@@ -179,11 +179,11 @@ data:
     NaN\"))\n      test_params.add identDefs\n      test_body.add parseStmt(&\"if\
     \ not compare_answer_string(vsolve, vsolve_naive, error): echo &\\\"test failed\
     \ for\\\\n{vars}\\\", \\\"[solve]\\\\n\\\", vsolve, \\\"[solve_naive]\\\\n\\\"\
-    , vsolve_naive;doAssert false\")\n      result.add newProc(name = ident\"test\"\
-    , params = test_params, body = test_body, pragmas = discardablePragma)\n    elif\
-    \ hasCheck:\n      var test_body_sub = newStmtList()\n      var var_names = newSeq[string]()\n\
-    \      for procName in [$procName]:\n        let var_name = \"v\" & procName\n\
-    \        var_names.add(var_name)\n        var l = newNimNode(nnkCall).add(ident(procName))\n\
+    , vsolve_naive;doAssert false\")\n      result.add newProc(name = newNimNode(nnkPostFix).add(ident(\"\
+    *\")).add(ident\"test\"), params = test_params, body = test_body, pragmas = discardablePragma)\n\
+    \    elif hasCheck:\n      var test_body_sub = newStmtList()\n      var var_names\
+    \ = newSeq[string]()\n      for procName in [$procName]:\n        let var_name\
+    \ = \"v\" & procName\n        var_names.add(var_name)\n        var l = newNimNode(nnkCall).add(ident(procName))\n\
     \        for c in callparams: l.add(c)\n        l.add(ident\"false\")\n      \
     \  test_body_sub.add(\n          newNimNode(nnkLetSection).add(\n            newNimNode(nnkIdentDefs).add(ident(var_name)).add(newEmptyNode()).add(l)\n\
     \          ))\n      var test_params = params\n      var vars = \"\"\n      for\
@@ -192,42 +192,43 @@ data:
     \ = newStmtList()\n      var d = &\"try:\\n  {test_body_sub.repr.strip}\\nexcept\
     \ CheckResult as e:\\n  echo &\\\"check failed for\\\\n{vars}\\\", \\\"[failed\
     \ statement]\\\\n\\\", e.err.strip, \\\"\\\\n[output]\\\\n\\\", e.output;doAssert\
-    \ false\"\n      test_body.add parseStmt(d)\n      result.add newProc(name = ident\"\
-    test\", params = test_params, body = test_body, pragmas = discardablePragma)\n\
-    \n    if hasGenerate:\n      discard\n    if hasTest:\n      discard\n"
+    \ false\"\n      test_body.add parseStmt(d)\n      result.add newProc(name = newNimNode(nnkPostFix).add(ident(\"\
+    *\")).add(ident\"test\"), params = test_params, body = test_body, pragmas = discardablePragma)\n\
+    \n    if hasGenerate:\n      discard\n    if hasTest:\n      discard\n    #echo\
+    \ result.repr\n"
   dependsOn: []
   isVerificationFile: false
   path: atcoder/extra/other/solve_proc.nim
   requiredBy:
-  - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/template.nim
-  - atcoder/extra/template/template.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/header.nim
   - atcoder/extra/header/header.nim
   - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/template.nim
-  - atcoder/extra/template/template.nim
   - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/template.nim
+  - atcoder/extra/template/template.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/header.nim
   - atcoder/extra/header/header.nim
-  timestamp: '2022-06-06 17:51:24+09:00'
+  - atcoder/extra/template/vim_template.nim
+  - atcoder/extra/template/vim_template.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/template.nim
+  - atcoder/extra/template/template.nim
+  timestamp: '2022-08-08 21:23:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/other/solve_proc.nim

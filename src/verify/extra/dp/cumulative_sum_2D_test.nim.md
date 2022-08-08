@@ -46,10 +46,10 @@ data:
     \necho ans\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/extra/dp/dual_cumulative_sum_2d.nim
-  - atcoder/extra/dp/dual_cumulative_sum_2d.nim
-  - atcoder/header.nim
   - atcoder/extra/dp/cumulative_sum_2d.nim
+  - atcoder/header.nim
+  - atcoder/extra/dp/dual_cumulative_sum_2d.nim
+  - atcoder/extra/dp/dual_cumulative_sum_2d.nim
   - atcoder/extra/dp/cumulative_sum_2d.nim
   isVerificationFile: true
   path: verify/extra/dp/cumulative_sum_2D_test.nim

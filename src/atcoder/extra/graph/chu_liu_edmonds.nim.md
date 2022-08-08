@@ -88,28 +88,28 @@ data:
     \      while x != i:\n        usede[x] = true\n        x = paredge[x]\n    return\
     \ (ret, parent).some\n"
   dependsOn:
+  - atcoder/extra/structure/skew_heap.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/dsu.nim
   - atcoder/extra/structure/skew_heap.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/dsu.nim
   - atcoder/extra/structure/skew_heap.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/dsu.nim
-  - atcoder/extra/structure/skew_heap.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/dsu.nim
   - atcoder/extra/structure/skew_heap.nim
+  - atcoder/dsu.nim
   isVerificationFile: false
   path: atcoder/extra/graph/chu_liu_edmonds.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
-  - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
   - verify/extra/graph/yosupo_directedmst_test.nim
   - verify/extra/graph/yosupo_directedmst_test.nim
+  - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
+  - verify/extra/graph/aoj_grl_2_b_minimum_spanning_tree_arborescence_test.nim
 documentation_of: atcoder/extra/graph/chu_liu_edmonds.nim
 layout: document
 redirect_from:
