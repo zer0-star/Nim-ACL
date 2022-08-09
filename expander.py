@@ -3,10 +3,12 @@
 import re
 import argparse
 from logging import Logger, basicConfig, getLogger
-from os import getenv, environ
+import os
+from os import getenv, environ, path
 from pathlib import Path
 from typing import List
 import subprocess
+import tempfile
 
 
 logger = getLogger(__name__)  # type: Logger
@@ -57,10 +59,15 @@ def strip_as(line: str) -> str:
     return line
 
 
+
+
 def main():
     """
     メイン関数
     """
+    td = tempfile.TemporaryDirectory()
+    lib_tmp = Path(td.name)
+    print(lib_tmp)
     lib_path = Path(__file__).parent.resolve()
     basicConfig(
         format="%(asctime)s [%(levelname)s] %(message)s",
@@ -76,15 +83,18 @@ def main():
     parser.add_argument('-cmp', '--compress',
                         action='store_true', help='Compress import')
     parser.add_argument('--lib', help='Path to Atcoder Library')
+    parser.add_argument('-d', '--directory',
+                        action='store_true', help='Submit by directory')
+
     opts = parser.parse_args()
 
     if opts.lib:
-        lib_path = Path(opts.lib)
+        lib_path = Path(opts.lib) / "src"
     elif 'NIM_INCLUDE_PATH' in environ:
-        lib_path = Path(environ['NIM_INCLUDE_PATH'])
+        lib_path = Path(environ['NIM_INCLUDE_PATH']) / "src"
 #    source = open(opts.source, encoding="utf8", errors='ignore').read()
-
-    def read_source(f: str, prefix: str, defined: set, lib_path, start=True,
+    
+    def read_source(f: str, prefix: str, defined: set, lib_path, is_main=True,
                     load_type=None) -> List[str]:
         """
         stringで渡されたsourceを読み。import, includeが出てきたら深堀りする
@@ -93,14 +103,21 @@ def main():
         if f in defined:
             logger.info('already included {:s}, skip'.format(f))
             return []
+
         defined.add(f)
 
-        if start:
+        if is_main:
             source = open(f, encoding="utf8", errors='ignore').read()
         else:
             source = open(str(lib_path / f), encoding="utf8",
                           errors='ignore').read()
             logger.info('{:s} {:s}'.format(load_type, f))
+
+        if not is_main and opts.directory:
+            copy_source_path = lib_tmp / f
+            os.makedirs(copy_source_path.parents[0], exist_ok=True)
+            r = open(Path(lib_path / f)).read()
+            open(copy_source_path, "w").write(r)
 
         result = []
         i = 0
@@ -113,6 +130,7 @@ def main():
                 matched = ATCODER_INCLUDE.match(line)
                 spaces = indent_level(line)
                 if matched:
+                    keyword = line.strip().split()[0]
                     import_start = True
                     fnames = []
                     load_type_local = matched.group(1)
@@ -140,14 +158,15 @@ def main():
                         if fname[0] == '\"':
                             assert fname[-1] == '\"'
                             fname = fname[1:-1]
+                        fname = fname.replace("lib/", "atcoder/extra/")
                         if ATCODER_DIR.match(fname):
                             fname = strip_as(fname)
-                            fname = "src/" + fname
+                            original_fname = fname
                             if not fname.endswith(".nim"):
                                 fname += ".nim"
                             s = read_source(fname, " " * spaces, defined,
                                             lib_path, False, load_type_local)
-                            if opts.single_line and start:
+                            if opts.single_line and is_main:
                                 s0 = ""
 
                                 if opts.compress:
@@ -166,10 +185,14 @@ def main():
                                         s0 += l
                                         s0 += '\\n'
 
-                                url = "https://github.com/zer0-star/Nim-ACL/tree/master/{}".format(fname.replace("lib/", "atcoder/extra/"))
+                                url = "https://github.com/zer0-star/Nim-ACL/tree/master/src/{}".format(fname)
                                 result.append("# see {}".format(url))
-                                result.append("ImportExpand \"{}\" <=== \"{}\"".format(fname, s0))
-                                result.append("")
+                                if opts.directory:
+                                    result.append("{} {}".format(keyword, original_fname))
+                                    result.append("")
+                                else:
+                                    result.append("ImportExpand \"{}\" <=== \"{}\"".format(fname, s0))
+                                    result.append("")
                             else:
                                 import_message = " " * spaces + "#[ " + line_local + " ]#"
                                 result.append(import_message)
@@ -179,7 +202,7 @@ def main():
                 else:
                     result.append(line)
             i += 1
-        if not start:
+        if not is_main:
             result.append("  discard")
         result2 = []
         for line in result:
@@ -187,13 +210,25 @@ def main():
         result = result2
         return result
     result = []
-    if opts.single_line:
+    if opts.single_line and not opts.directory:
         if opts.compress:
             result.append("import macros;macro ImportExpand(s:untyped):untyped = parseStmt(staticExec(\"echo \" & $s[2] & \" | base64 -d | {:s}\"))".format(decompress))
         else:
             result.append("import macros;macro ImportExpand(s:untyped):untyped = parseStmt($s[2])")
 
     result.extend(read_source(opts.source, "", set(), lib_path))
+
+    if opts.directory:
+        global outputPrefix
+        subprocess.run("export XZ_OPT=-9 && tar -Jcvf atcoder.tar.xz atcoder", cwd=lib_tmp, shell=True, stdout=subprocess.PIPE)
+        s = subprocess.run("cat atcoder.tar.xz | base64 -w 0", cwd=lib_tmp, shell=True, stdout=subprocess.PIPE).stdout.decode()
+        outputPrefix += """
+static:
+  when not defined SecondCompile:
+    discard staticExec("echo \\"{:s}\\" | base64 -d > atcoder.tar.xz && tar -Jxvf atcoder.tar.xz && rm atcoder.tar.xz")
+    let (output, ex) = gorgeEx("nim cpp -d:release -d:SecondCompile --path:./ --opt:speed --multimethods:on --warning[SmallLshouldNotBeUsed]:off --checks:off -o:a.out Main.nim")
+    doAssert ex == 0, output;quit(0)
+""".format(s)
 
     output = outputPrefix + '\n\n' + '\n'.join(result) + '\n'
     if opts.console:
