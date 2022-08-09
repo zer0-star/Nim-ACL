@@ -34,9 +34,9 @@ data:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C\n\
     \ninclude atcoder/header\nimport atcoder/scc\n\nproc main() =\n  let V, E = nextInt()\n\
@@ -46,13 +46,13 @@ data:
     \    let a,b = nextInt()\n    echo if belongs[a] == belongs[b]: 1 else: 0\n\n\
     main()\n"
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/internal_csr.nim
   - atcoder/scc.nim
   - atcoder/internal_csr.nim
-  - atcoder/scc.nim
   - atcoder/header.nim
+  - atcoder/scc.nim
   - atcoder/internal_scc.nim
+  - atcoder/internal_csr.nim
+  - atcoder/header.nim
   - atcoder/internal_scc.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim

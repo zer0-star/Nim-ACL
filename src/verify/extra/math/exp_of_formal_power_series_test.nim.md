@@ -76,9 +76,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/exp_of_formal_power_series
     links:
     - https://judge.yosupo.jp/problem/exp_of_formal_power_series
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/exp_of_formal_power_series\n\
     \nimport atcoder/header\nimport atcoder/modint\nimport atcoder/extra/math/ntt\n\
@@ -87,28 +87,28 @@ data:
     \  for i in 0..<N:\n    p[i] = mint.init(nextInt())\n  let q = p.exp()\n  echo\
     \ q.join(\" \")\n\nmain()\n"
   dependsOn:
+  - atcoder/extra/math/ntt.nim
+  - atcoder/internal_math.nim
   - atcoder/header.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/internal_bit.nim
   - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/header.nim
   - atcoder/internal_bit.nim
   - atcoder/extra/math/formal_power_series.nim
-  - atcoder/convolution.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/header.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/modint.nim
-  - atcoder/convolution.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/math/ntt.nim
+  - atcoder/element_concepts.nim
+  - atcoder/modint.nim
+  - atcoder/element_concepts.nim
+  - atcoder/convolution.nim
+  - atcoder/convolution.nim
   isVerificationFile: true
   path: verify/extra/math/exp_of_formal_power_series_test.nim
   requiredBy: []

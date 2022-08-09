@@ -28,9 +28,9 @@ data:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_D
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_D
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_D\n\
     \ninclude atcoder/header\n#import atcoder/string\nimport atcoder/extra/string/suffix_array_utils\n\
@@ -38,12 +38,12 @@ data:
     \ S.initSuffixArray\n  for i in 0..<Q:\n    let T = nextString()\n    let range\
     \ = sa.lowerUpperBound(T)\n    echo if range[0] != range[1]: 1 else: 0\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/string/suffix_array_utils.nim
-  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/string.nim
-  - atcoder/string.nim
   - atcoder/extra/string/suffix_array_utils.nim
+  - atcoder/extra/string/suffix_array_utils.nim
+  - atcoder/header.nim
+  - atcoder/string.nim
   isVerificationFile: true
   path: verify/extra/string/aoj_alds_1_14_d_suffix_array_test.nim
   requiredBy: []

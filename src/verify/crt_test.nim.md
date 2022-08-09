@@ -28,20 +28,20 @@ data:
     PROBLEM: https://yukicoder.me/problems/no/186
     links:
     - https://yukicoder.me/problems/no/186
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://yukicoder.me/problems/no/186\n\nimport atcoder/header\n\
     import atcoder/math\n\nlet X1, Y1, X2, Y2, X3, Y3 = nextInt()\nvar (y, z) = crt(@[X1,\
     \ X2, X3], @[Y1, Y2, Y3])\nif y == 0 and z == 0:\n  echo -1\nelse:\n  if y ==\
     \ 0: y += z\n  echo y\n"
   dependsOn:
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
   - atcoder/math.nim
-  - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/internal_math.nim
-  - atcoder/internal_math.nim
+  - atcoder/header.nim
   - atcoder/math.nim
   isVerificationFile: true
   path: verify/crt_test.nim

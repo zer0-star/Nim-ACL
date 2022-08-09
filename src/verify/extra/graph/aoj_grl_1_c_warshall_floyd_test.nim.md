@@ -28,9 +28,9 @@ data:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C\n\
     \ninclude atcoder/header\nimport atcoder/extra/graph/warshall_floyd\n\nproc main()\
@@ -44,12 +44,12 @@ data:
     \ mat[p[k]][p[k + 1]]\n        assert s == dist[i][j]\n        stdout.write dist[i][j]\n\
     \    echo \"\"\n\nmain()\n"
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/header.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/warshall_floyd.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/header.nim
   - atcoder/extra/graph/warshall_floyd.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_1_c_warshall_floyd_test.nim
   requiredBy: []
