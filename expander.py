@@ -278,6 +278,5 @@ static:
             f.write(md5sum_combined)
 
 
-
 if __name__ == "__main__":
     main()

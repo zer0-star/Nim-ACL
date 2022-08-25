@@ -46,10 +46,12 @@ fw.add(p:int, x:T):void
 
 ```nim
 fw.sum(l..<r):T
+fw[l..<r]:T
 ```
 
 `a[l] + a[l + 1] + ... + a[r - 1]` を返す。
 `T` が整数型(`int / uint / ll / ull`)の場合、答えがオーバーフローしたならば $\bmod 2^{\mathrm{bit}}$ で等しい値が返る。
+Nimに特有の機能として[]演算子でも呼べる他、BackwardsIndexでのアクセスも可能です。例えば、`fw[3..^1]`でインデックス3以降の全ての和が返されます。
 
 **@{keyword.constraints}**
 

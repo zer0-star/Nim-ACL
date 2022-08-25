@@ -44,6 +44,7 @@ test "FenwickTreeTest, NaiveTest":
         for i in l..<r:
           sum += i * i
         check sum == fw.sum(l..<r)
+        check sum == fw[l..<r]
 
 useStaticModInt(mint, 11)
 

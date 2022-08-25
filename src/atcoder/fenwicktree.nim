@@ -40,3 +40,4 @@ when not declared ATCODER_FENWICKTREE_HPP:
     let (l, r) = self.halfOpenEndpoints(p)
     assert 0 <= l and l <= r and r <= self.len
     return cast[FT.T](self.sum(r) - self.sum(l))
+  proc `[]`*[FT:FenwickTree](self: FT, p:RangeType):FT.T = self.sum(p)
