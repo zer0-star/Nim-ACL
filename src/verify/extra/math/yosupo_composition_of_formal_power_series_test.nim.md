@@ -93,34 +93,34 @@ data:
     \ =\n  let\n    N = nextInt()\n    a = newSeqWith(N, mint(nextInt()))\n    b =\
     \ newSeqWith(N, mint(nextInt()))\n  echo composition(b, a).join(\" \")\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/math/ntt.nim
-  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/internal_math.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/element_concepts.nim
+  - atcoder/convolution.nim
+  - atcoder/header.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/convolution.nim
+  - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
   - atcoder/header.nim
   - atcoder/internal_bit.nim
   - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/header.nim
-  - atcoder/internal_bit.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/math/composition.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/modint.nim
   - atcoder/extra/math/ntt.nim
-  - atcoder/element_concepts.nim
-  - atcoder/modint.nim
-  - atcoder/element_concepts.nim
-  - atcoder/convolution.nim
-  - atcoder/convolution.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: true
   path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
   requiredBy: []
-  timestamp: '2022-08-08 21:23:55+09:00'
+  timestamp: '2022-08-25 23:07:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim

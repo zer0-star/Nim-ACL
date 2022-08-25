@@ -39,12 +39,12 @@ data:
     \ 0)\n  for i in 0..<Q:\n    let x, y = nextInt()\n    echo lca.lca(x, y)\n\n\
     main()\n"
   dependsOn:
-  - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
-  - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
-  - atcoder/header.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
+  - atcoder/header.nim
+  - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
   isVerificationFile: true
   path: verify/extra/tree/yosupo_lowest_common_ancestor_test.nim
   requiredBy: []

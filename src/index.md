@@ -153,34 +153,34 @@ data:
       title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - name: atcoder/extra/geometry
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/geometry/closest_pair.nim
       title: atcoder/extra/geometry/closest_pair.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/geometry/closest_pair.nim
       title: atcoder/extra/geometry/closest_pair.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/geometry/geometry_template.nim
       title: atcoder/extra/geometry/geometry_template.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/geometry/geometry_template.nim
       title: atcoder/extra/geometry/geometry_template.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/geometry/polygon.nim
       title: atcoder/extra/geometry/polygon.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/geometry/polygon.nim
       title: atcoder/extra/geometry/polygon.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/geometry/segment_graph.nim
       title: atcoder/extra/geometry/segment_graph.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/geometry/segment_graph.nim
       title: atcoder/extra/geometry/segment_graph.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/geometry/tangent.nim
       title: atcoder/extra/geometry/tangent.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/geometry/tangent.nim
       title: atcoder/extra/geometry/tangent.nim
     - icon: ':warning:'
@@ -502,6 +502,12 @@ data:
       path: atcoder/extra/math/formal_power_series_sqrt.nim
       title: atcoder/extra/math/formal_power_series_sqrt.nim
     - icon: ':warning:'
+      path: atcoder/extra/math/internal_rationals.nim
+      title: atcoder/extra/math/internal_rationals.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/internal_rationals.nim
+      title: atcoder/extra/math/internal_rationals.nim
+    - icon: ':warning:'
       path: atcoder/extra/math/lagrange_polynomial.nim
       title: atcoder/extra/math/lagrange_polynomial.nim
     - icon: ':warning:'
@@ -567,6 +573,12 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/math/simplex.nim
       title: atcoder/extra/math/simplex.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/static_eratosthenes.nim
+      title: atcoder/extra/math/static_eratosthenes.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/static_eratosthenes.nim
+      title: atcoder/extra/math/static_eratosthenes.nim
     - icon: ':warning:'
       path: atcoder/extra/math/zeta_transform.nim
       title: atcoder/extra/math/zeta_transform.nim
@@ -647,10 +659,10 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/other/direction.nim
       title: atcoder/extra/other/direction.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/other/floatutils.nim
       title: atcoder/extra/other/floatutils.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/other/floatutils.nim
       title: atcoder/extra/other/floatutils.nim
     - icon: ':question:'
@@ -665,10 +677,10 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/other/interactive.nim
       title: atcoder/extra/other/interactive.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/other/internal_complex.nim
       title: atcoder/extra/other/internal_complex.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/other/internal_complex.nim
       title: atcoder/extra/other/internal_complex.nim
     - icon: ':warning:'
@@ -725,12 +737,18 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/other/special_judge.nim
       title: atcoder/extra/other/special_judge.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/other/static_var.nim
       title: atcoder/extra/other/static_var.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/other/static_var.nim
       title: atcoder/extra/other/static_var.nim
+    - icon: ':warning:'
+      path: atcoder/extra/other/uncompress.nim
+      title: atcoder/extra/other/uncompress.nim
+    - icon: ':warning:'
+      path: atcoder/extra/other/uncompress.nim
+      title: atcoder/extra/other/uncompress.nim
     - icon: ':warning:'
       path: atcoder/extra/other/warlus_operator.nim
       title: atcoder/extra/other/warlus_operator.nim
@@ -1101,7 +1119,7 @@ data:
       title: verify/extra/dp/cumulative_sum_2D_test.nim
   - name: verify/extra/geometry
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
       title: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
     - icon: ':heavy_check_mark:'
@@ -1131,19 +1149,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
       title: verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/geometry/aoj_cgl_3_c_polygon_point_containment_test.nim
       title: verify/extra/geometry/aoj_cgl_3_c_polygon_point_containment_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/geometry/aoj_cgl_4_a_convex_hull_test.nim
       title: verify/extra/geometry/aoj_cgl_4_a_convex_hull_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
       title: verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
     - icon: ':heavy_check_mark:'
       path: verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
       title: verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/geometry/aoj_cgl_5_a_closest_pair_test.nim
       title: verify/extra/geometry/aoj_cgl_5_a_closest_pair_test.nim
     - icon: ':heavy_check_mark:'
@@ -1155,13 +1173,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/extra/geometry/aoj_cgl_7_e_cross_points_of_circles_test.nim
       title: verify/extra/geometry/aoj_cgl_7_e_cross_points_of_circles_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/geometry/aoj_cgl_7_f_tangent_to_a_circle_test.nim
       title: verify/extra/geometry/aoj_cgl_7_f_tangent_to_a_circle_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim
       title: verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
       title: verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
   - name: verify/extra/graph

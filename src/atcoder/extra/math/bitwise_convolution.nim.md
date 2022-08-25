@@ -47,10 +47,10 @@ data:
   timestamp: '2021-03-01 01:28:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/extra/math/yosupo_bitwise_and_convolution_test.nim
-  - verify/extra/math/yosupo_bitwise_and_convolution_test.nim
   - verify/extra/math/yosupo_bitwise_or_convolution_test.nim
   - verify/extra/math/yosupo_bitwise_or_convolution_test.nim
+  - verify/extra/math/yosupo_bitwise_and_convolution_test.nim
+  - verify/extra/math/yosupo_bitwise_and_convolution_test.nim
 documentation_of: atcoder/extra/math/bitwise_convolution.nim
 layout: document
 redirect_from:

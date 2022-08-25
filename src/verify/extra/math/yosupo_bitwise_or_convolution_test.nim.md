@@ -54,13 +54,13 @@ data:
     \ b).bit_invert.join(\" \")\n\nmain()\n"
   dependsOn:
   - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/bitwise_convolution.nim
-  - atcoder/modint.nim
   - atcoder/header.nim
+  - atcoder/modint.nim
   - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
   - atcoder/header.nim
+  - atcoder/extra/math/bitwise_convolution.nim
   - atcoder/modint.nim
   - atcoder/extra/math/bitwise_convolution.nim
   isVerificationFile: true

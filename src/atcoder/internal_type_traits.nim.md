@@ -92,10 +92,10 @@ data:
   requiredBy:
   - atcoder/extra/structure/dual_fenwicktree.nim
   - atcoder/extra/structure/dual_fenwicktree.nim
-  - atcoder/fenwicktree.nim
-  - atcoder/fenwicktree.nim
   - atcoder/extra/structure/dual_fenwicktree.nim
   - atcoder/extra/structure/dual_fenwicktree.nim
+  - atcoder/fenwicktree.nim
+  - atcoder/fenwicktree.nim
   timestamp: '2020-12-05 23:18:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:

@@ -92,11 +92,6 @@ data:
     \ 0])\n#  echo A, b, c\n#  var tss = init_two_stage_simplex(A, b, c)\n#  echo\
     \ tss.solution\n\n\n"
   dependsOn:
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/matrix.nim
-  - atcoder/extra/other/operator.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/other/operator.nim
   - atcoder/extra/math/matrix.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/math/matrix.nim
@@ -104,6 +99,11 @@ data:
   - atcoder/generate_definitions.nim
   - atcoder/extra/other/operator.nim
   - atcoder/extra/math/matrix.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/matrix.nim
+  - atcoder/extra/other/operator.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/other/operator.nim
   isVerificationFile: false
   path: atcoder/extra/math/simplex.nim
   requiredBy: []

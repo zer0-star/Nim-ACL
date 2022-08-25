@@ -46,18 +46,18 @@ data:
     \   let a = st.get(p)\n    st.set(p, a + x)\n  else:\n    let l, r = nextInt()\n\
     \    echo st.prod(l..<r)\n"
   dependsOn:
+  - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/header.nim
+  - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   - atcoder/header.nim
   - atcoder/extra/structure/universal_segtree.nim
   - atcoder/internal_bit.nim
-  - atcoder/extra/structure/universal_segtree.nim
-  - atcoder/rangeutils.nim
-  - atcoder/header.nim
   - atcoder/internal_bit.nim
   isVerificationFile: true
   path: verify/extra/structure/extra_segtree_test.nim
   requiredBy: []
-  timestamp: '2022-07-30 23:50:20+09:00'
+  timestamp: '2022-08-25 23:07:00+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/structure/extra_segtree_test.nim

@@ -383,112 +383,112 @@ data:
   dependsOn:
   - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
-  - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: atcoder/modint.nim
   requiredBy:
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/extra/math/ntt.nim
   - atcoder/extra/math/ntt.nim
-  - atcoder/extra/math/mod_sqrt.nim
-  - atcoder/extra/math/mod_sqrt.nim
-  - atcoder/extra/math/formal_power_series_sqrt.nim
-  - atcoder/extra/math/formal_power_series_sqrt.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/composition.nim
-  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/extra/math/polynomial_taylor_shift.nim
   - atcoder/extra/math/polynomial_taylor_shift.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
   - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/polynomial_taylor_shift.nim
+  - atcoder/extra/math/polynomial_taylor_shift.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/composition.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - atcoder/extra/math/formal_power_series_sqrt.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/convolution.nim
   - atcoder/convolution.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/extra/math/mod_sqrt.nim
-  - atcoder/extra/math/mod_sqrt.nim
-  - atcoder/extra/math/formal_power_series_sqrt.nim
-  - atcoder/extra/math/formal_power_series_sqrt.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/composition.nim
-  - atcoder/extra/math/composition.nim
-  - atcoder/extra/math/polynomial_taylor_shift.nim
-  - atcoder/extra/math/polynomial_taylor_shift.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
   timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/lazy_segtree_dynamicmodint_test.nim
-  - verify/lazy_segtree_dynamicmodint_test.nim
-  - verify/modint_test.nim
-  - verify/modint_test.nim
-  - verify/convolution_test.nim
-  - verify/convolution_test.nim
   - verify/lazy_segtree_test.nim
   - verify/lazy_segtree_test.nim
   - verify/extra/tree/rerooting_test.nim
   - verify/extra/tree/rerooting_test.nim
-  - verify/extra/math/yosupo_bitwise_and_convolution_test.nim
-  - verify/extra/math/yosupo_bitwise_and_convolution_test.nim
-  - verify/extra/math/arbitrary_mod_convolution_test.nim
-  - verify/extra/math/arbitrary_mod_convolution_test.nim
-  - verify/extra/math/exp_of_formal_power_series_test.nim
-  - verify/extra/math/exp_of_formal_power_series_test.nim
-  - verify/extra/math/polynomial_taylor_shift_test.nim
-  - verify/extra/math/polynomial_taylor_shift_test.nim
-  - verify/extra/math/yosupo_system_of_linear_equations_test.nim
-  - verify/extra/math/yosupo_system_of_linear_equations_test.nim
-  - verify/extra/math/yosupo_bitwise_or_convolution_test.nim
-  - verify/extra/math/yosupo_bitwise_or_convolution_test.nim
-  - verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
-  - verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
-  - verify/extra/math/inv_of_formal_power_series_test.nim
-  - verify/extra/math/inv_of_formal_power_series_test.nim
-  - verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - verify/extra/math/yukicoder_0963_differential_equation_test.nim
-  - verify/extra/math/yukicoder_0963_differential_equation_test.nim
-  - verify/extra/math/yukicoder_factorial_test.nim
-  - verify/extra/math/yukicoder_factorial_test.nim
-  - verify/extra/math/division_of_polynomials_test.nim
-  - verify/extra/math/division_of_polynomials_test.nim
-  - verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - verify/extra/math/pow_of_formal_power_series_test.nim
-  - verify/extra/math/pow_of_formal_power_series_test.nim
-  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - verify/extra/math/log_of_formal_power_series_test.nim
-  - verify/extra/math/log_of_formal_power_series_test.nim
-  - verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - verify/extra/math/convolution_montgomery_test.nim
-  - verify/extra/math/convolution_montgomery_test.nim
-  - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-  - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
+  - verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
+  - verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
   - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
   - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
+  - verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
+  - verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
   - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   - verify/extra/structure/extra_lazy_segtree_test.nim
   - verify/extra/structure/extra_lazy_segtree_test.nim
-  - verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
-  - verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
-  - verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
-  - verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
+  - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
+  - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
   - verify/extra/graph/centroid_decomposition_test.nim
   - verify/extra/graph/centroid_decomposition_test.nim
+  - verify/extra/math/yosupo_bitwise_or_convolution_test.nim
+  - verify/extra/math/yosupo_bitwise_or_convolution_test.nim
+  - verify/extra/math/yosupo_bitwise_and_convolution_test.nim
+  - verify/extra/math/yosupo_bitwise_and_convolution_test.nim
+  - verify/extra/math/inv_of_formal_power_series_test.nim
+  - verify/extra/math/inv_of_formal_power_series_test.nim
+  - verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
+  - verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
+  - verify/extra/math/arbitrary_mod_convolution_test.nim
+  - verify/extra/math/arbitrary_mod_convolution_test.nim
+  - verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
+  - verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
+  - verify/extra/math/division_of_polynomials_test.nim
+  - verify/extra/math/division_of_polynomials_test.nim
+  - verify/extra/math/log_of_formal_power_series_test.nim
+  - verify/extra/math/log_of_formal_power_series_test.nim
+  - verify/extra/math/yukicoder_factorial_test.nim
+  - verify/extra/math/yukicoder_factorial_test.nim
+  - verify/extra/math/yukicoder_0963_differential_equation_test.nim
+  - verify/extra/math/yukicoder_0963_differential_equation_test.nim
+  - verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
+  - verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
+  - verify/extra/math/yosupo_system_of_linear_equations_test.nim
+  - verify/extra/math/yosupo_system_of_linear_equations_test.nim
+  - verify/extra/math/exp_of_formal_power_series_test.nim
+  - verify/extra/math/exp_of_formal_power_series_test.nim
+  - verify/extra/math/sqrt_of_formal_power_series_test.nim
+  - verify/extra/math/sqrt_of_formal_power_series_test.nim
+  - verify/extra/math/polynomial_taylor_shift_test.nim
+  - verify/extra/math/polynomial_taylor_shift_test.nim
+  - verify/extra/math/convolution_montgomery_test.nim
+  - verify/extra/math/convolution_montgomery_test.nim
+  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
+  - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
+  - verify/extra/math/pow_of_formal_power_series_test.nim
+  - verify/extra/math/pow_of_formal_power_series_test.nim
+  - verify/convolution_test.nim
+  - verify/convolution_test.nim
+  - verify/modint_test.nim
+  - verify/modint_test.nim
+  - verify/lazy_segtree_dynamicmodint_test.nim
+  - verify/lazy_segtree_dynamicmodint_test.nim
 documentation_of: atcoder/modint.nim
 layout: document
 redirect_from:

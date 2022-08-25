@@ -57,33 +57,34 @@ data:
     \ {.compileTime.} = ST.S isnot void\n  proc hasLazy(ST:typedesc[segtree]):bool\
     \ {.compileTime.} = ST.F isnot void\n#  proc hasP(ST:typedesc[segtree]):bool {.compileTime.}\
     \ = ST.useP\n  type hasFail* = concept x\n    x.fail is bool\n\n  template calc_op[ST:segtree](self:typedesc[ST],\
-    \ a, b:ST.S):auto =\n    block:\n      let op = ST.p.op\n      op(a, b)\n  template\
-    \ calc_e[ST:segtree](self:typedesc[ST]):auto =\n    block:\n      let e = ST.p.e\n\
-    \      e()\n  template calc_mapping[ST:segtree](self:typedesc[ST], a:ST.F, b:ST.S):auto\
-    \ =\n    block:\n      let mapping = ST.p.mapping\n      mapping(a, b)\n  template\
-    \ calc_composition[ST:segtree](self:typedesc[ST], a, b:ST.F):auto =\n    block:\n\
-    \      let composition = ST.p.composition\n      composition(a, b)\n  template\
-    \ calc_id[ST:segtree](self:typedesc[ST]):auto =\n    block:\n      let id = ST.p.id\n\
-    \      id()\n  template calc_p[ST:segtree](self:typedesc[ST], a:ST.F, s:Slice[int]):auto\
-    \ =\n    block:\n      let p = ST.p.p\n      p(a, s)\n\n  proc update*[ST:segtree](self:var\
-    \ ST, k:int) =\n    self.d[k] = ST.calc_op(self.d[2 * k], self.d[2 * k + 1])\n\
-    \n  proc push*[ST:segtree](self: var ST, k:int)\n  proc all_apply*[ST:segtree](self:var\
-    \ ST, k:int, f:ST.F) =\n    static: assert ST.hasLazy\n    when ST.hasData:\n\
-    \      self.d[k] = ST.calc_mapping(f, self.d[k])\n      if k < self.size:\n  \
-    \      self.lz[k] = ST.calc_composition(f, self.lz[k])\n        when ST.S is hasFail:\n\
-    \          if self.d[k].fail: self.push(k); self.update(k)\n    else:\n      self.lz[k]\
-    \ = ST.calc_composition(f, self.lz[k])\n\n  proc push*[ST:segtree](self: var ST,\
-    \ k:int) =\n    static: assert ST.hasLazy\n    when ST.useP is USEP_TRUE:\n  \
-    \    let m = self.size shr (k.fastLog2 + 1)\n    self.all_apply(2 * k    , when\
-    \ ST.useP is USEP_TRUE: ST.calc_p(self.lz[k], 0 ..< m    ) else: self.lz[k])\n\
-    \    self.all_apply(2 * k + 1, when ST.useP is USEP_TRUE: ST.calc_p(self.lz[k],\
-    \ m ..< m + m) else: self.lz[k])\n    self.lz[k] = ST.calc_id()\n\n#  segtree(int\
-    \ n) : segtree(std::vector<S>(n, e())) {}\n  proc init*[ST:segtree](self: var\
-    \ ST, v:int or seq[ST.S] or seq[ST.F]) =\n    when v is int:\n      when ST.hasData:\n\
-    \        self.init(newSeqWith(v, ST.calc_e()))\n      else:\n        self.init(newSeqWith(v,\
-    \ ST.calc_id()))\n    else:\n      let\n        n = v.len\n        log = ceil_pow2(n)\n\
-    \        size = 1 shl log\n      self.len = n;self.log = log;self.size = size\n\
-    \      when ST.hasLazy:\n        when ST.hasData:\n          self.lz = newSeqWith(size,\
+    \ a, b:ST.S):auto =\n    block:\n      let\n        op = ST.p.op\n        u =\
+    \ op(a, b)\n      u\n  template calc_e[ST:segtree](self:typedesc[ST]):auto =\n\
+    \    block:\n      let\n        e = ST.p.e\n        u = e()\n      u\n  template\
+    \ calc_mapping[ST:segtree](self:typedesc[ST], a:ST.F, b:ST.S):auto =\n    block:\n\
+    \      let\n        mapping = ST.p.mapping\n        u = mapping(a, b)\n      u\n\
+    \  template calc_composition[ST:segtree](self:typedesc[ST], a, b:ST.F):auto =\n\
+    \    block:\n      let\n        composition = ST.p.composition\n        u = composition(a,\
+    \ b)\n      u\n  template calc_id[ST:segtree](self:typedesc[ST]):auto =\n    block:\n\
+    \      let\n        id = ST.p.id\n        u = id()\n      u\n  template calc_p[ST:segtree](self:typedesc[ST],\
+    \ a:ST.F, s:Slice[int]):auto =\n    block:\n      let\n        p = ST.p.p\n  \
+    \      u = p(a, s)\n      u\n\n  proc update*[ST:segtree](self:var ST, k:int)\
+    \ =\n    self.d[k] = ST.calc_op(self.d[2 * k], self.d[2 * k + 1])\n\n  proc push*[ST:segtree](self:\
+    \ var ST, k:int)\n  proc all_apply*[ST:segtree](self:var ST, k:int, f:ST.F) =\n\
+    \    static: assert ST.hasLazy\n    when ST.hasData:\n      self.d[k] = ST.calc_mapping(f,\
+    \ self.d[k])\n      if k < self.size:\n        self.lz[k] = ST.calc_composition(f,\
+    \ self.lz[k])\n        when ST.S is hasFail:\n          if self.d[k].fail: self.push(k);\
+    \ self.update(k)\n    else:\n      self.lz[k] = ST.calc_composition(f, self.lz[k])\n\
+    \n  proc push*[ST:segtree](self: var ST, k:int) =\n    static: assert ST.hasLazy\n\
+    \    when ST.useP is USEP_TRUE:\n      let m = self.size shr (k.fastLog2 + 1)\n\
+    \    self.all_apply(2 * k    , when ST.useP is USEP_TRUE: ST.calc_p(self.lz[k],\
+    \ 0 ..< m    ) else: self.lz[k])\n    self.all_apply(2 * k + 1, when ST.useP is\
+    \ USEP_TRUE: ST.calc_p(self.lz[k], m ..< m + m) else: self.lz[k])\n    self.lz[k]\
+    \ = ST.calc_id()\n\n  proc init*[ST:segtree](self: var ST, v:int or seq[ST.S]\
+    \ or seq[ST.F]) =\n    when v is int:\n      when ST.hasData:\n        self.init(newSeqWith(v,\
+    \ ST.calc_e()))\n      else:\n        self.init(newSeqWith(v, ST.calc_id()))\n\
+    \    else:\n      let\n        n = v.len\n        log = ceil_pow2(n)\n       \
+    \ size = 1 shl log\n      self.len = n;self.log = log;self.size = size\n     \
+    \ when ST.hasLazy:\n        when ST.hasData:\n          self.lz = newSeqWith(size,\
     \ ST.calc_id())\n        else:\n          self.lz = newSeqWith(size * 2, ST.calc_id())\n\
     \      when ST.hasData:\n        self.d = newSeqWith(2 * size, ST.calc_e())\n\
     \        for i in 0..<n: self.d[size + i] = v[i]\n        for i in countdown(size\
@@ -92,51 +93,49 @@ data:
     \ id0, p0:untyped):typedesc[segtree] =\n    segtree[S, F, useP, \n      (op:(proc(l,\
     \ r:S):S)(op0),\n        e:(proc():S)(e0),\n        mapping:(proc(f:F, s:S):S)(mapping0),\n\
     \        composition:(proc(f1:F, f2:F):F)(composition0),\n        id:(proc():F)(id0),\n\
-    \        p:(proc(a:F, s:Slice[int]):F)(p0))]\n\n  template init_segtree*[S](v:seq[S],\
-    \ op, e:untyped):auto =\n    var a: universalSegTreeType[S, void, USEP_FALSE](op,\
-    \ e, nil, nil, nil, nil)\n    a.init(v)\n    a\n  template init_segtree*[S](n:int,\
-    \ op, e:untyped):auto =\n    let e0 = e\n    var v = newSeqWith(n, e0())\n   \
-    \ init_segtree(v, op, e)\n  template init_dual_segtree*[F](v:seq[F], composition,\
-    \ id:untyped):auto =\n    var a: universalSegTreeType[void,F,USEP_FALSE](nil,\
-    \ nil, nil, composition, id, nil)\n    a.init(v)\n    a\n  template init_dual_segtree*[F](n:int,\
-    \ composition, id:untyped):auto =\n    let id0 = id\n    init_dual_segtree[F](newSeqWith(n,\
-    \ id0()), composition, id)\n  #proc init_lazy_segtree*[S,F](v:seq[S], op:static[(S,S)->S],e:static[()->S],mapping:static[(F,S)->S],composition:static[(F,F)->F],id:static[()->F]):auto\
-    \ =\n  template init_lazy_segtree*[S,F](v:seq[S], op,e,mapping,composition,id:untyped):auto\
-    \ =\n    var a: universalSegTreeType[S, F, USEP_FALSE](op, e, mapping, composition,\
-    \ id, nil)\n    a.init(v)\n    a\n  #proc init_lazy_segtree*[S,F](n:int, op:static[(S,S)->S],e:static[()->S],mapping:static[(F,S)->S],composition:static[(F,F)->F],id:static[()->F]):auto\
-    \ =\n  template init_lazy_segtree*[S,F](n:int, op,e,mapping,composition,id:untyped):auto\
-    \ =\n    let e0 = e\n    init_lazy_segtree[S,F](newSeqWith(n, e0()), op,e,mapping,composition,id)\n\
-    \  template init_lazy_segtree*[S,F](v:seq[S], op,e,mapping,composition,id,p):auto\
-    \ =\n    var a:universalSegTreeType[S, F, USEP_TRUE](op, e, mapping, composition,\
-    \ id, p)\n    a.init(v)\n    a\n  template init_lazy_segtree*[S,F](n:int, op,e,mapping,composition,id,p):auto\
-    \ =\n    let e0 = e\n    init_lazy_segtree[S,F](newSeqWith(n, e0()), op,e,mapping,composition,id,p)\n\
-    \n  proc set*[ST:segtree](self: var ST, p:IndexType, x:auto) =\n    var p = self^^p\n\
-    \    assert p in 0..<self.len\n    p += self.size\n    when ST.hasLazy:\n    \
-    \  for i in countdown(self.log, 1): self.push(p shr i)\n    when ST.hasData:\n\
-    \      self.d[p] = x\n      for i in 1..self.log: self.update(p shr i)\n    else:\n\
-    \      self.lz[p] = x\n  proc `[]=`*[ST:segtree](self: var ST, p:int, x:auto)\
-    \ = self.set(p, x)\n\n  proc get*[ST:segtree](self: var ST, p:IndexType):auto\
-    \ =\n    var p = self^^p\n    assert p in 0..<self.len\n    p += self.size\n \
-    \   when ST.hasLazy:\n      for i in countdown(self.log, 1): self.push(p shr i)\n\
-    \    when ST.hasData:\n      return self.d[p]\n    else:\n      return self.lz[p]\n\
-    \  proc `[]`*[ST:segtree](self: var ST, p:IndexType):auto = self.get(p)\n\n  proc\
-    \ prod*[ST:segtree](self:var ST, p:RangeType):ST.S =\n    static: assert ST.hasData\n\
-    \    var (l, r) = self.halfOpenEndpoints(p)\n    assert 0 <= l and l <= r and\
-    \ r <= self.len\n    if l == r: return ST.calc_e()\n    l += self.size;r += self.size\n\
-    \    when ST.hasLazy:\n      for i in countdown(self.log, 1):\n        if ((l\
-    \ shr i) shl i) != l: self.push(l shr i)\n        if ((r shr i) shl i) != r: self.push(r\
-    \ shr i)\n    var sml, smr = ST.calc_e()\n    while l < r:\n      if (l and 1)\
-    \ != 0: sml = ST.calc_op(sml, self.d[l]);l.inc\n      if (r and 1) != 0: r.dec;smr\
-    \ = ST.calc_op(self.d[r], smr)\n      l = l shr 1;r = r shr 1\n    return ST.calc_op(sml,\
-    \ smr)\n  proc `[]`*[ST:segtree](self:var ST, p:RangeType):ST.S = self.prod(p)\n\
-    \n  proc all_prod*[ST:segtree](self:ST):auto = self.d[1]\n\n  proc getPos[ST:segtree](self:\
-    \ ST, k:int, base:int):Slice[int] =\n    static: assert ST.useP is USEP_TRUE\n\
-    \    let\n      h = fastLog2(k)\n      l = self.size shr h\n      base_n = (k\
-    \ - (1 shl h)) * l - base\n    return base_n..<base_n + l\n\n  proc apply*[ST:segtree](self:\
-    \ var ST, p:IndexType, f:ST.F) =\n    var p = self^^p\n    assert p in 0..<self.len\n\
+    \        p:(proc(a:F, s:Slice[int]):F)(p0))]\n\n  template init_segtree*[S](v:int\
+    \ or seq[S], op, e:untyped):auto =\n    when v is int:\n      let e0 = e\n   \
+    \   init_segtree(newSeqWith(n, e0()), op, e)\n    else:\n      var a: universalSegTreeType[S,\
+    \ void, USEP_FALSE](op, e, nil, nil, nil, nil)\n      a.init(v)\n      a\n  template\
+    \ init_dual_segtree*[F](v:int or seq[F], composition, id:untyped):auto =\n   \
+    \ when v is int:\n      let id0 = id\n      init_dual_segtree[F](newSeqWith(v,\
+    \ id0()), composition, id)\n    else:\n      var a: universalSegTreeType[void,F,USEP_FALSE](nil,\
+    \ nil, nil, composition, id, nil)\n      a.init(v)\n      a\n  template init_lazy_segtree*[S,F](v:int\
+    \ or seq[S], op,e,mapping,composition,id:untyped):auto =\n    when v is int:\n\
+    \      let e0 = e\n      init_lazy_segtree[S,F](newSeqWith(v, e0()), op,e,mapping,composition,id)\n\
+    \    else:\n      var a: universalSegTreeType[S, F, USEP_FALSE](op, e, mapping,\
+    \ composition, id, nil)\n      a.init(v)\n      a\n  template init_lazy_segtree*[S,F](v:int\
+    \ or seq[S], op,e,mapping,composition,id,p:untyped):auto =\n    when v is int:\n\
+    \      let e0 = e\n      init_lazy_segtree[S,F](newSeqWith(n, e0()), op,e,mapping,composition,id,p)\n\
+    \    else:\n      var a:universalSegTreeType[S, F, USEP_TRUE](op, e, mapping,\
+    \ composition, id, p)\n      a.init(v)\n      a\n\n  proc set*[ST:segtree](self:\
+    \ var ST, p:IndexType, x:auto) =\n    var p = self^^p\n    assert p in 0..<self.len\n\
     \    p += self.size\n    when ST.hasLazy:\n      for i in countdown(self.log,\
-    \ 1): self.push(p shr i)\n    when ST.hasData:\n      self.d[p] = ST.calc_mapping(when\
-    \ ST.useP is USEP_TRUE: ST.calc_p(f, self.getPos(p, p - self.size)) else: f, self.d[p])\n\
+    \ 1): self.push(p shr i)\n    when ST.hasData:\n      self.d[p] = x\n      for\
+    \ i in 1..self.log: self.update(p shr i)\n    else:\n      self.lz[p] = x\n  proc\
+    \ `[]=`*[ST:segtree](self: var ST, p:int, x:auto) = self.set(p, x)\n\n  proc get*[ST:segtree](self:\
+    \ var ST, p:IndexType):auto =\n    var p = self^^p\n    assert p in 0..<self.len\n\
+    \    p += self.size\n    when ST.hasLazy:\n      for i in countdown(self.log,\
+    \ 1): self.push(p shr i)\n    when ST.hasData:\n      return self.d[p]\n    else:\n\
+    \      return self.lz[p]\n  proc `[]`*[ST:segtree](self: var ST, p:IndexType):auto\
+    \ = self.get(p)\n\n  proc prod*[ST:segtree](self:var ST, p:RangeType):ST.S =\n\
+    \    static: assert ST.hasData\n    var (l, r) = self.halfOpenEndpoints(p)\n \
+    \   assert 0 <= l and l <= r and r <= self.len\n    if l == r: return ST.calc_e()\n\
+    \    l += self.size;r += self.size\n    when ST.hasLazy:\n      for i in countdown(self.log,\
+    \ 1):\n        if ((l shr i) shl i) != l: self.push(l shr i)\n        if ((r shr\
+    \ i) shl i) != r: self.push(r shr i)\n    var sml, smr = ST.calc_e()\n    while\
+    \ l < r:\n      if (l and 1) != 0: sml = ST.calc_op(sml, self.d[l]);l.inc\n  \
+    \    if (r and 1) != 0: r.dec;smr = ST.calc_op(self.d[r], smr)\n      l = l shr\
+    \ 1;r = r shr 1\n    return ST.calc_op(sml, smr)\n  proc `[]`*[ST:segtree](self:var\
+    \ ST, p:RangeType):ST.S = self.prod(p)\n\n  proc all_prod*[ST:segtree](self:ST):auto\
+    \ = self.d[1]\n\n  proc getPos[ST:segtree](self: ST, k:int, base:int):Slice[int]\
+    \ =\n    static: assert ST.useP is USEP_TRUE\n    let\n      h = fastLog2(k)\n\
+    \      l = self.size shr h\n      base_n = (k - (1 shl h)) * l - base\n    return\
+    \ base_n..<base_n + l\n\n  proc apply*[ST:segtree](self: var ST, p:IndexType,\
+    \ f:ST.F) =\n    var p = self^^p\n    assert p in 0..<self.len\n    p += self.size\n\
+    \    when ST.hasLazy:\n      for i in countdown(self.log, 1): self.push(p shr\
+    \ i)\n    when ST.hasData:\n      self.d[p] = ST.calc_mapping(when ST.useP is\
+    \ USEP_TRUE: ST.calc_p(f, self.getPos(p, p - self.size)) else: f, self.d[p])\n\
     \      for i in 1..self.log: self.update(p shr i)\n    else:\n      self.lz[p]\
     \ = when ST.useP is USEP_TRUE: ST.calc_p(f, self.getPos(p, p - self.size)) else:\
     \ f\n  proc apply*[ST:segtree](self: var ST, p:RangeType, f:ST.F) =\n    var (l,\
@@ -173,23 +172,23 @@ data:
     \ sm)\n      if not ((r and -r) != r): break\n    return 0\n"
   dependsOn:
   - atcoder/rangeutils.nim
-  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
-  - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
   - atcoder/internal_bit.nim
   isVerificationFile: false
   path: atcoder/extra/structure/universal_segtree.nim
   requiredBy: []
-  timestamp: '2022-07-30 23:50:20+09:00'
+  timestamp: '2022-08-25 23:07:00+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/extra/structure/extra_lazy_segtree_test.nim
-  - verify/extra/structure/extra_lazy_segtree_test.nim
   - verify/extra/structure/extra_segtree_test.nim
   - verify/extra/structure/extra_segtree_test.nim
+  - verify/extra/structure/extra_lazy_segtree_test.nim
+  - verify/extra/structure/extra_lazy_segtree_test.nim
 documentation_of: atcoder/extra/structure/universal_segtree.nim
 layout: document
 redirect_from:

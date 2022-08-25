@@ -46,15 +46,15 @@ data:
     \necho ans\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/extra/dp/cumulative_sum_2d.nim
-  - atcoder/extra/dp/cumulative_sum_2d.nim
+  - atcoder/extra/dp/dual_cumulative_sum_2d.nim
   - atcoder/extra/dp/dual_cumulative_sum_2d.nim
   - atcoder/header.nim
-  - atcoder/extra/dp/dual_cumulative_sum_2d.nim
+  - atcoder/extra/dp/cumulative_sum_2d.nim
+  - atcoder/extra/dp/cumulative_sum_2d.nim
   isVerificationFile: true
   path: verify/extra/dp/cumulative_sum_2D_test.nim
   requiredBy: []
-  timestamp: '2021-12-11 23:59:27+09:00'
+  timestamp: '2022-08-25 23:07:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/dp/cumulative_sum_2D_test.nim

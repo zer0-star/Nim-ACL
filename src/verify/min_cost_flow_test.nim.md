@@ -56,10 +56,10 @@ data:
   - atcoder/internal_heap.nim
   - atcoder/mincostflow.nim
   - atcoder/internal_queue.nim
-  - atcoder/internal_csr.nim
   - atcoder/internal_heap.nim
   - atcoder/header.nim
   - atcoder/mincostflow.nim
+  - atcoder/internal_csr.nim
   isVerificationFile: true
   path: verify/min_cost_flow_test.nim
   requiredBy: []

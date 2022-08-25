@@ -133,41 +133,41 @@ data:
   isVerificationFile: false
   path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   requiredBy:
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/forward_compatibility/internal_sugar.nim
-  - atcoder/extra/forward_compatibility/internal_sugar.nim
   - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/template.nim
   - atcoder/extra/template/template.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/forward_compatibility/internal_sugar.nim
   - atcoder/extra/forward_compatibility/internal_sugar.nim
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/template.nim
   - atcoder/extra/template/template.nim
+  - atcoder/extra/forward_compatibility/internal_sugar.nim
+  - atcoder/extra/forward_compatibility/internal_sugar.nim
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/chaemon_header.nim
   timestamp: '2022-07-09 03:01:13+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   - verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
   - verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
+  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
+  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   - verify/extra/graph/yosupo_cycle_detection_test.nim
   - verify/extra/graph/yosupo_cycle_detection_test.nim
 documentation_of: atcoder/extra/forward_compatibility/internal_underscored_calls.nim

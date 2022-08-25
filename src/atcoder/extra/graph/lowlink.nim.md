@@ -63,10 +63,10 @@ data:
   timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
-  - verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
   - verify/extra/graph/aoj_grl_3_a_lowlink_test.nim
   - verify/extra/graph/aoj_grl_3_a_lowlink_test.nim
+  - verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
+  - verify/extra/graph/aoj_grl_3_b_lowlink_test.nim
 documentation_of: atcoder/extra/graph/lowlink.nim
 layout: document
 redirect_from:

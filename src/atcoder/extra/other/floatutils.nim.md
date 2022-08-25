@@ -13,77 +13,77 @@ data:
   - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/closest_pair.nim
     title: atcoder/extra/geometry/closest_pair.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/closest_pair.nim
     title: atcoder/extra/geometry/closest_pair.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/closest_pair.nim
     title: atcoder/extra/geometry/closest_pair.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/closest_pair.nim
     title: atcoder/extra/geometry/closest_pair.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/polygon.nim
     title: atcoder/extra/geometry/polygon.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/polygon.nim
     title: atcoder/extra/geometry/polygon.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/polygon.nim
     title: atcoder/extra/geometry/polygon.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/polygon.nim
     title: atcoder/extra/geometry/polygon.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/segment_graph.nim
     title: atcoder/extra/geometry/segment_graph.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/segment_graph.nim
     title: atcoder/extra/geometry/segment_graph.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/segment_graph.nim
     title: atcoder/extra/geometry/segment_graph.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/segment_graph.nim
     title: atcoder/extra/geometry/segment_graph.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/tangent.nim
     title: atcoder/extra/geometry/tangent.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/tangent.nim
     title: atcoder/extra/geometry/tangent.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/tangent.nim
     title: atcoder/extra/geometry/tangent.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/tangent.nim
     title: atcoder/extra/geometry/tangent.nim
   - icon: ':warning:'
@@ -207,10 +207,10 @@ data:
     path: atcoder/extra/template/vim_template.nim
     title: atcoder/extra/template/vim_template.nim
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
     title: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
     title: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
   - icon: ':heavy_check_mark:'
@@ -267,22 +267,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
     title: verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_cgl_3_c_polygon_point_containment_test.nim
     title: verify/extra/geometry/aoj_cgl_3_c_polygon_point_containment_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_cgl_3_c_polygon_point_containment_test.nim
     title: verify/extra/geometry/aoj_cgl_3_c_polygon_point_containment_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_cgl_4_a_convex_hull_test.nim
     title: verify/extra/geometry/aoj_cgl_4_a_convex_hull_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_cgl_4_a_convex_hull_test.nim
     title: verify/extra/geometry/aoj_cgl_4_a_convex_hull_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
     title: verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
     title: verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
   - icon: ':heavy_check_mark:'
@@ -291,10 +291,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
     title: verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_cgl_5_a_closest_pair_test.nim
     title: verify/extra/geometry/aoj_cgl_5_a_closest_pair_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_cgl_5_a_closest_pair_test.nim
     title: verify/extra/geometry/aoj_cgl_5_a_closest_pair_test.nim
   - icon: ':heavy_check_mark:'
@@ -315,27 +315,27 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_cgl_7_e_cross_points_of_circles_test.nim
     title: verify/extra/geometry/aoj_cgl_7_e_cross_points_of_circles_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_cgl_7_f_tangent_to_a_circle_test.nim
     title: verify/extra/geometry/aoj_cgl_7_f_tangent_to_a_circle_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_cgl_7_f_tangent_to_a_circle_test.nim
     title: verify/extra/geometry/aoj_cgl_7_f_tangent_to_a_circle_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim
     title: verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim
     title: verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
     title: verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
     title: verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -371,122 +371,122 @@ data:
     \        m = d\n        echo \"found: \", p, \"/\", q, \"   \", \"error: \", d\n\
     \      q.inc\n    return\n\n  float.initPrec()\n#  float64.initPrec()\n  float32.initPrec()\n"
   dependsOn:
-  - atcoder/extra/other/static_var.nim
-  - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/other/floatutils.nim
   requiredBy:
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/other/binary_search_float.nim
-  - atcoder/extra/other/binary_search_float.nim
-  - atcoder/extra/other/decimal.nim
-  - atcoder/extra/other/decimal.nim
-  - atcoder/extra/geometry/polygon.nim
-  - atcoder/extra/geometry/polygon.nim
-  - atcoder/extra/geometry/closest_pair.nim
-  - atcoder/extra/geometry/closest_pair.nim
-  - atcoder/extra/geometry/triangle.nim
-  - atcoder/extra/geometry/triangle.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/geometry/segment_graph.nim
   - atcoder/extra/geometry/segment_graph.nim
   - atcoder/extra/geometry/visualizer.nim
   - atcoder/extra/geometry/visualizer.nim
+  - atcoder/extra/geometry/polygon.nim
+  - atcoder/extra/geometry/polygon.nim
   - atcoder/extra/geometry/tangent.nim
   - atcoder/extra/geometry/tangent.nim
+  - atcoder/extra/geometry/triangle.nim
+  - atcoder/extra/geometry/triangle.nim
+  - atcoder/extra/geometry/closest_pair.nim
+  - atcoder/extra/geometry/closest_pair.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/template.nim
   - atcoder/extra/template/template.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/other/binary_search_float.nim
   - atcoder/extra/other/binary_search_float.nim
   - atcoder/extra/other/decimal.nim
   - atcoder/extra/other/decimal.nim
-  - atcoder/extra/geometry/polygon.nim
-  - atcoder/extra/geometry/polygon.nim
-  - atcoder/extra/geometry/closest_pair.nim
-  - atcoder/extra/geometry/closest_pair.nim
-  - atcoder/extra/geometry/triangle.nim
-  - atcoder/extra/geometry/triangle.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/geometry/segment_graph.nim
   - atcoder/extra/geometry/segment_graph.nim
   - atcoder/extra/geometry/visualizer.nim
   - atcoder/extra/geometry/visualizer.nim
+  - atcoder/extra/geometry/polygon.nim
+  - atcoder/extra/geometry/polygon.nim
   - atcoder/extra/geometry/tangent.nim
   - atcoder/extra/geometry/tangent.nim
+  - atcoder/extra/geometry/triangle.nim
+  - atcoder/extra/geometry/triangle.nim
+  - atcoder/extra/geometry/closest_pair.nim
+  - atcoder/extra/geometry/closest_pair.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/template.nim
   - atcoder/extra/template/template.nim
+  - atcoder/extra/other/binary_search_float.nim
+  - atcoder/extra/other/binary_search_float.nim
+  - atcoder/extra/other/decimal.nim
+  - atcoder/extra/other/decimal.nim
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/chaemon_header.nim
   timestamp: '2022-02-05 00:42:13+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
-  - verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
+  - verify/extra/geometry/aoj_cgl_1_c_counter_clockwise_test.nim
+  - verify/extra/geometry/aoj_cgl_1_c_counter_clockwise_test.nim
+  - verify/extra/geometry/aoj_cgl_5_a_closest_pair_test.nim
+  - verify/extra/geometry/aoj_cgl_5_a_closest_pair_test.nim
   - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
   - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
+  - verify/extra/geometry/aoj_cgl_1_b_reflection_test.nim
+  - verify/extra/geometry/aoj_cgl_1_b_reflection_test.nim
+  - verify/extra/geometry/aoj_cgl_7_a_circle_intersection_test.nim
+  - verify/extra/geometry/aoj_cgl_7_a_circle_intersection_test.nim
   - verify/extra/geometry/aoj_cgl_2_b_segment_intersect_test.nim
   - verify/extra/geometry/aoj_cgl_2_b_segment_intersect_test.nim
+  - verify/extra/geometry/aoj_cgl_1_a_projection_test.nim
+  - verify/extra/geometry/aoj_cgl_1_a_projection_test.nim
+  - verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
+  - verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
+  - verify/extra/geometry/aoj_cgl_2_d_distance_test.nim
+  - verify/extra/geometry/aoj_cgl_2_d_distance_test.nim
+  - verify/extra/geometry/aoj_cgl_2_a_parallel_orthogonal_test.nim
+  - verify/extra/geometry/aoj_cgl_2_a_parallel_orthogonal_test.nim
+  - verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
+  - verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
+  - verify/extra/geometry/aoj_cgl_7_d_cross_points_of_circle_and_line_test.nim
+  - verify/extra/geometry/aoj_cgl_7_d_cross_points_of_circle_and_line_test.nim
   - verify/extra/geometry/aoj_cgl_4_a_convex_hull_test.nim
   - verify/extra/geometry/aoj_cgl_4_a_convex_hull_test.nim
   - verify/extra/geometry/aoj_cgl_3_c_polygon_point_containment_test.nim
   - verify/extra/geometry/aoj_cgl_3_c_polygon_point_containment_test.nim
-  - verify/extra/geometry/aoj_cgl_1_b_reflection_test.nim
-  - verify/extra/geometry/aoj_cgl_1_b_reflection_test.nim
   - verify/extra/geometry/aoj_cgl_7_f_tangent_to_a_circle_test.nim
   - verify/extra/geometry/aoj_cgl_7_f_tangent_to_a_circle_test.nim
-  - verify/extra/geometry/aoj_cgl_5_a_closest_pair_test.nim
-  - verify/extra/geometry/aoj_cgl_5_a_closest_pair_test.nim
-  - verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
-  - verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
-  - verify/extra/geometry/aoj_cgl_2_a_parallel_orthogonal_test.nim
-  - verify/extra/geometry/aoj_cgl_2_a_parallel_orthogonal_test.nim
-  - verify/extra/geometry/aoj_cgl_7_d_cross_points_of_circle_and_line_test.nim
-  - verify/extra/geometry/aoj_cgl_7_d_cross_points_of_circle_and_line_test.nim
-  - verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim
-  - verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim
-  - verify/extra/geometry/aoj_cgl_2_d_distance_test.nim
-  - verify/extra/geometry/aoj_cgl_2_d_distance_test.nim
-  - verify/extra/geometry/aoj_cgl_1_c_counter_clockwise_test.nim
-  - verify/extra/geometry/aoj_cgl_1_c_counter_clockwise_test.nim
-  - verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
-  - verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
-  - verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
-  - verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
-  - verify/extra/geometry/aoj_cgl_7_e_cross_points_of_circles_test.nim
-  - verify/extra/geometry/aoj_cgl_7_e_cross_points_of_circles_test.nim
-  - verify/extra/geometry/aoj_cgl_1_a_projection_test.nim
-  - verify/extra/geometry/aoj_cgl_1_a_projection_test.nim
+  - verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
+  - verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
   - verify/extra/geometry/aoj_cgl_3_a_area_test.nim
   - verify/extra/geometry/aoj_cgl_3_a_area_test.nim
-  - verify/extra/geometry/aoj_cgl_7_a_circle_intersection_test.nim
-  - verify/extra/geometry/aoj_cgl_7_a_circle_intersection_test.nim
+  - verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim
+  - verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim
   - verify/extra/geometry/aoj_cgl_2_c_cross_point_test.nim
   - verify/extra/geometry/aoj_cgl_2_c_cross_point_test.nim
+  - verify/extra/geometry/aoj_cgl_7_e_cross_points_of_circles_test.nim
+  - verify/extra/geometry/aoj_cgl_7_e_cross_points_of_circles_test.nim
+  - verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
+  - verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
 documentation_of: atcoder/extra/other/floatutils.nim
 layout: document
 redirect_from:

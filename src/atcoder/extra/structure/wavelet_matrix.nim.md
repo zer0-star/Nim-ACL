@@ -123,12 +123,12 @@ data:
     \    return if ret == -1: self.T(-1) else: self.ys[ret]\n"
   dependsOn:
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - atcoder/rangeutils.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
   isVerificationFile: false
   path: atcoder/extra/structure/wavelet_matrix.nim
@@ -136,12 +136,12 @@ data:
   timestamp: '2021-07-15 21:51:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
+  - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
   - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
   - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
   - verify/extra/structure/yosupo_range_kth_smallest_test.nim
   - verify/extra/structure/yosupo_range_kth_smallest_test.nim
-  - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
-  - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
 documentation_of: atcoder/extra/structure/wavelet_matrix.nim
 layout: document
 redirect_from:

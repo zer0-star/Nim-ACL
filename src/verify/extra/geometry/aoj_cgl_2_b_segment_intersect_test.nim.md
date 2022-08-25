@@ -7,22 +7,28 @@ data:
   - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/internal_complex.nim
+    title: atcoder/extra/other/internal_complex.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/internal_complex.nim
+    title: atcoder/extra/other/internal_complex.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
   - icon: ':question:'
@@ -53,19 +59,21 @@ data:
     \ s1.intersect(s2): echo 1\n    else: echo 0\n"
   dependsOn:
   - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
   - atcoder/header.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/header.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/other/floatutils.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_2_b_segment_intersect_test.nim
   requiredBy: []
-  timestamp: '2022-08-08 21:23:55+09:00'
+  timestamp: '2022-08-25 23:07:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/geometry/aoj_cgl_2_b_segment_intersect_test.nim

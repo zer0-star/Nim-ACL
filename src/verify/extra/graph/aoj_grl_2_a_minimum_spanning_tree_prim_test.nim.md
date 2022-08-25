@@ -38,9 +38,9 @@ data:
     \ i in 0..<E:\n    let\n      a,b,c = nextInt()\n    g.addBiEdge(a,b,c)\n  echo\
     \ prim(g)[0]\n\nmain()\n"
   dependsOn:
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
   - atcoder/extra/graph/prim.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
   - atcoder/extra/graph/prim.nim

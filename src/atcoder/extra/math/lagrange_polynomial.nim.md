@@ -46,12 +46,12 @@ data:
     \ i)\n      if ((N - i) and 1) != 0: result -= tmp\n      else: result += tmp\n"
   dependsOn:
   - atcoder/element_concepts.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/combination.nim
   - atcoder/extra/math/combination.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/math/combination.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/math/combination.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/math/combination.nim
   isVerificationFile: false
   path: atcoder/extra/math/lagrange_polynomial.nim

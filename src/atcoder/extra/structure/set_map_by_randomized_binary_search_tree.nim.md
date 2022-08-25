@@ -138,20 +138,20 @@ data:
     \  proc check_tree*(self:SetOrMap) =\n    doAssert self.len + 1 == self.rbst.check_tree()\n\
     \  proc `$`*(self: SetOrMap):string = self.rbst.to_string(self.rbst.root)\n  {.pop.}\n"
   dependsOn:
+  - atcoder/rangeutils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/rangeutils.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/rangeutils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/rangeutils.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   isVerificationFile: false

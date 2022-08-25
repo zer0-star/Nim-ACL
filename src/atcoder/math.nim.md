@@ -70,10 +70,10 @@ data:
   timestamp: '2022-06-06 17:51:24+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/floor_sum_test.nim
-  - verify/floor_sum_test.nim
   - verify/crt_test.nim
   - verify/crt_test.nim
+  - verify/floor_sum_test.nim
+  - verify/floor_sum_test.nim
 documentation_of: atcoder/math.nim
 layout: document
 redirect_from:

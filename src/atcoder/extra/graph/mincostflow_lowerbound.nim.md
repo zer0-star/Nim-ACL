@@ -120,30 +120,30 @@ data:
     \ - e.cap;\n  #    }\n  #  }\n  #  for(auto &p : ans) cout << p << endl;\n  #}\n\
     \  \n  \n  \n"
   dependsOn:
-  - atcoder/scc.nim
   - atcoder/internal_queue.nim
+  - atcoder/internal_scc.nim
   - atcoder/internal_csr.nim
+  - atcoder/scc.nim
+  - atcoder/internal_heap.nim
+  - atcoder/internal_queue.nim
+  - atcoder/extra/graph/mincostflow_generalized.nim
   - atcoder/internal_heap.nim
   - atcoder/extra/graph/mincostflow_generalized.nim
-  - atcoder/scc.nim
-  - atcoder/internal_scc.nim
-  - atcoder/extra/graph/mincostflow_generalized.nim
-  - atcoder/internal_queue.nim
-  - atcoder/internal_csr.nim
-  - atcoder/internal_heap.nim
   - atcoder/internal_scc.nim
   - atcoder/scc.nim
-  - atcoder/internal_queue.nim
   - atcoder/internal_csr.nim
-  - atcoder/internal_heap.nim
-  - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/internal_queue.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_csr.nim
   - atcoder/scc.nim
-  - atcoder/internal_scc.nim
-  - atcoder/extra/graph/mincostflow_generalized.nim
-  - atcoder/internal_queue.nim
-  - atcoder/internal_csr.nim
   - atcoder/internal_heap.nim
+  - atcoder/internal_queue.nim
+  - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/internal_heap.nim
+  - atcoder/extra/graph/mincostflow_generalized.nim
   - atcoder/internal_scc.nim
+  - atcoder/scc.nim
+  - atcoder/internal_csr.nim
   isVerificationFile: false
   path: atcoder/extra/graph/mincostflow_lowerbound.nim
   requiredBy: []

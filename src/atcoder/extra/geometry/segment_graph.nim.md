@@ -13,53 +13,65 @@ data:
   - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/internal_complex.nim
+    title: atcoder/extra/other/internal_complex.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/internal_complex.nim
+    title: atcoder/extra/other/internal_complex.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/internal_complex.nim
+    title: atcoder/extra/other/internal_complex.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/internal_complex.nim
+    title: atcoder/extra/other/internal_complex.nim
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
     title: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
     title: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1033
@@ -100,26 +112,30 @@ data:
     \ - 1])\n    return (ps, g)\n"
   dependsOn:
   - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/floatutils.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/floatutils.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/internal_complex.nim
   isVerificationFile: false
   path: atcoder/extra/geometry/segment_graph.nim
   requiredBy: []
-  timestamp: '2022-08-08 21:23:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-25 23:07:00+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
   - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim

@@ -85,16 +85,16 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/other/debug.nim
     title: atcoder/extra/other/debug.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
   - icon: ':question:'
@@ -169,16 +169,16 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/other/solve_proc.nim
     title: atcoder/extra/other/solve_proc.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
   - icon: ':warning:'
@@ -285,8 +285,8 @@ data:
     \ as macros_lib\n  import std/math as math_lib\n  import std/sets as sets_lib\n\
     \  import std/tables as tables_lib\n  import std/strutils as strutils_lib\n  import\
     \ std/strformat as strformat_lib\n  import std/options as options_lib\n  import\
-    \ std/bitops as bitops_lib\n  import std/streams as streams_lib\n  import std/deques\
-    \ as deques_lib\n\n  import atcoder/extra/forward_compatibility/internal_sugar\n\
+    \ std/bitops as bitops_lib\n  import std/streams as streams_lib\n  import std/lists\
+    \ as lists_lib\n  import std/deques as deques_lib\n\n  import atcoder/extra/forward_compatibility/internal_sugar\n\
     \  include atcoder/extra/forward_compatibility/hash_func\n#  import std/sugar\n\
     \  import atcoder/extra/other/reader\n  import atcoder/extra/other/cfor\n  import\
     \ atcoder/extra/other/sliceutils\n  import atcoder/extra/other/assignment_operator\n\
@@ -303,100 +303,102 @@ data:
     \ if a.len < b.len: return true\n    else: return false\n\n  proc ceilDiv*[T:SomeInteger](a,\
     \ b:T):T =\n    assert b != 0\n    if b < 0: return ceilDiv(-a, -b)\n    result\
     \ = a.floorDiv(b)\n    if a mod b != 0: result.inc\n\n  template `/^`*[T:SomeInteger](a,\
-    \ b:T):T = ceilDiv(a, b)\n"
+    \ b:T):T = ceilDiv(a, b)\n  template `/_`*[T:SomeInteger](a, b:T):T = floorDiv(a,\
+    \ b)\n  proc `pred`[T:SomeInteger](a:seq[T]):seq[T] = a.mapIt(it - 1)\n  proc\
+    \ `succ`[T:SomeInteger](a:seq[T]):seq[T] = a.mapIt(it + 1)\n"
   dependsOn:
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/cfor.nim
-  - atcoder/extra/forward_compatibility/internal_sugar.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/forward_compatibility/hash_func.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/seq_array_utils.nim
   - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/zip.nim
-  - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/cfor.nim
-  - atcoder/extra/other/reference.nim
-  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/sliceutils.nim
-  - atcoder/extra/forward_compatibility/internal_sugar.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/forward_compatibility/hash_func.nim
+  - atcoder/extra/other/warlus_operator.nim
   - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/extra/forward_compatibility/internal_sugar.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/sliceutils.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/forward_compatibility/hash_func.nim
+  - atcoder/extra/other/cfor.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/zip.nim
   - atcoder/extra/other/inf.nim
   - atcoder/extra/other/reference.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/zip.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/sliceutils.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/cfor.nim
-  - atcoder/extra/forward_compatibility/internal_sugar.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/forward_compatibility/hash_func.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/zip.nim
   - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/cfor.nim
   - atcoder/extra/other/reference.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/sliceutils.nim
   - atcoder/extra/forward_compatibility/internal_sugar.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/forward_compatibility/hash_func.nim
-  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/cfor.nim
+  - atcoder/extra/other/reader.nim
   - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/extra/other/zip.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/sliceutils.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/extra/forward_compatibility/internal_sugar.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/sliceutils.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/forward_compatibility/hash_func.nim
+  - atcoder/extra/other/cfor.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/zip.nim
   - atcoder/extra/other/inf.nim
   - atcoder/extra/other/reference.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/zip.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/sliceutils.nim
+  - atcoder/extra/other/reference.nim
+  - atcoder/extra/forward_compatibility/internal_sugar.nim
+  - atcoder/extra/forward_compatibility/hash_func.nim
+  - atcoder/extra/other/cfor.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/extra/other/zip.nim
   isVerificationFile: false
   path: atcoder/extra/header/chaemon_header.nim
   requiredBy:
   - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/template.nim
   - atcoder/extra/template/template.nim
   - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/template.nim
   - atcoder/extra/template/template.nim
-  timestamp: '2022-08-08 21:23:55+09:00'
+  timestamp: '2022-08-25 23:07:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/header/chaemon_header.nim

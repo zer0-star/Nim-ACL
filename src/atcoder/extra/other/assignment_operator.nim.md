@@ -113,18 +113,14 @@ data:
   isVerificationFile: false
   path: atcoder/extra/other/assignment_operator.nim
   requiredBy:
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/header.nim
-  - atcoder/extra/header/header.nim
   - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/template.nim
   - atcoder/extra/template/template.nim
   - atcoder/extra/header/chaemon_header.nim
@@ -133,14 +129,18 @@ data:
   - atcoder/extra/header/header.nim
   - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/template/template.nim
   - atcoder/extra/template/template.nim
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/chaemon_header.nim
+  - atcoder/extra/header/header.nim
+  - atcoder/extra/header/header.nim
   timestamp: '2022-07-03 22:20:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

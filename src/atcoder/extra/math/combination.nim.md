@@ -114,25 +114,25 @@ data:
   isVerificationFile: false
   path: atcoder/extra/math/combination.nim
   requiredBy:
-  - atcoder/extra/math/lagrange_polynomial.nim
-  - atcoder/extra/math/lagrange_polynomial.nim
   - atcoder/extra/math/factorial.nim
   - atcoder/extra/math/factorial.nim
+  - atcoder/extra/math/lagrange_polynomial.nim
+  - atcoder/extra/math/lagrange_polynomial.nim
   - atcoder/extra/math/polynomial_taylor_shift.nim
   - atcoder/extra/math/polynomial_taylor_shift.nim
-  - atcoder/extra/math/lagrange_polynomial.nim
-  - atcoder/extra/math/lagrange_polynomial.nim
   - atcoder/extra/math/factorial.nim
   - atcoder/extra/math/factorial.nim
+  - atcoder/extra/math/lagrange_polynomial.nim
+  - atcoder/extra/math/lagrange_polynomial.nim
   - atcoder/extra/math/polynomial_taylor_shift.nim
   - atcoder/extra/math/polynomial_taylor_shift.nim
   timestamp: '2021-05-19 22:57:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/extra/math/polynomial_taylor_shift_test.nim
-  - verify/extra/math/polynomial_taylor_shift_test.nim
   - verify/extra/math/yukicoder_factorial_test.nim
   - verify/extra/math/yukicoder_factorial_test.nim
+  - verify/extra/math/polynomial_taylor_shift_test.nim
+  - verify/extra/math/polynomial_taylor_shift_test.nim
 documentation_of: atcoder/extra/math/combination.nim
 layout: document
 redirect_from:

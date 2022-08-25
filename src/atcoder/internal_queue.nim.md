@@ -85,29 +85,29 @@ data:
   isVerificationFile: false
   path: atcoder/internal_queue.nim
   requiredBy:
-  - atcoder/extra/graph/mincostflow_lowerbound.nim
-  - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/extra/graph/mincostflow_generalized.nim
   - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/extra/graph/mincostflow_lowerbound.nim
+  - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/extra/graph/maxflow_lowerbound.nim
   - atcoder/extra/graph/maxflow_lowerbound.nim
-  - atcoder/maxflow.nim
-  - atcoder/maxflow.nim
+  - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/extra/graph/mincostflow_lowerbound.nim
+  - atcoder/extra/graph/mincostflow_lowerbound.nim
+  - atcoder/extra/graph/maxflow_lowerbound.nim
+  - atcoder/extra/graph/maxflow_lowerbound.nim
   - atcoder/mincostflow.nim
   - atcoder/mincostflow.nim
-  - atcoder/extra/graph/mincostflow_lowerbound.nim
-  - atcoder/extra/graph/mincostflow_lowerbound.nim
-  - atcoder/extra/graph/mincostflow_generalized.nim
-  - atcoder/extra/graph/mincostflow_generalized.nim
-  - atcoder/extra/graph/maxflow_lowerbound.nim
-  - atcoder/extra/graph/maxflow_lowerbound.nim
+  - atcoder/maxflow.nim
+  - atcoder/maxflow.nim
   timestamp: '2020-09-18 00:33:39+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/min_cost_flow_test.nim
-  - verify/min_cost_flow_test.nim
   - verify/max_flow_test.nim
   - verify/max_flow_test.nim
+  - verify/min_cost_flow_test.nim
+  - verify/min_cost_flow_test.nim
 documentation_of: atcoder/internal_queue.nim
 layout: document
 redirect_from:

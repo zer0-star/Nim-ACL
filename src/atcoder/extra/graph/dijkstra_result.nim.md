@@ -39,10 +39,10 @@ data:
     path: atcoder/extra/graph/dijkstra_radix_heap.nim
     title: atcoder/extra/graph/dijkstra_radix_heap.nim
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
     title: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
     title: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
   - icon: ':heavy_check_mark:'
@@ -107,14 +107,14 @@ data:
   timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/extra/graph/aoj_grl_1_a_dijkstra_radix_heap_test.nim
-  - verify/extra/graph/aoj_grl_1_a_dijkstra_radix_heap_test.nim
-  - verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
-  - verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
-  - verify/extra/graph/yosupo_shortest_path_test.nim
-  - verify/extra/graph/yosupo_shortest_path_test.nim
   - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
   - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
+  - verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
+  - verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim
+  - verify/extra/graph/aoj_grl_1_a_dijkstra_radix_heap_test.nim
+  - verify/extra/graph/aoj_grl_1_a_dijkstra_radix_heap_test.nim
+  - verify/extra/graph/yosupo_shortest_path_test.nim
+  - verify/extra/graph/yosupo_shortest_path_test.nim
   - verify/shortest_path_test.nim
   - verify/shortest_path_test.nim
 documentation_of: atcoder/extra/graph/dijkstra_result.nim

@@ -7,16 +7,16 @@ data:
   - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/geometry_template.nim
     title: atcoder/extra/geometry/geometry_template.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/segment_graph.nim
     title: atcoder/extra/geometry/segment_graph.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/geometry/segment_graph.nim
     title: atcoder/extra/geometry/segment_graph.nim
   - icon: ':question:'
@@ -37,10 +37,10 @@ data:
   - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
   - icon: ':question:'
@@ -49,16 +49,16 @@ data:
   - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/internal_complex.nim
     title: atcoder/extra/other/internal_complex.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/internal_complex.nim
     title: atcoder/extra/other/internal_complex.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/static_var.nim
     title: atcoder/extra/other/static_var.nim
   - icon: ':question:'
@@ -69,9 +69,9 @@ data:
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     ERROR: 1e-5
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1033
@@ -102,33 +102,33 @@ data:
     \        ans.min= dist[(u, v)]\n    if ans.classify == fcInf:\n      echo -1\n\
     \    else:\n      echo ans.radianToDegree\n"
   dependsOn:
-  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/graph/dijkstra.nim
-  - atcoder/extra/geometry/segment_graph.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/header.nim
+  - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/geometry/segment_graph.nim
   - atcoder/header.nim
   - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/dijkstra.nim
-  - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/geometry/segment_graph.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/header.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
   requiredBy: []
-  timestamp: '2022-08-08 21:23:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-25 23:07:00+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
 layout: document

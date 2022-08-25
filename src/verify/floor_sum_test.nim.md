@@ -40,8 +40,8 @@ data:
   - atcoder/header.nim
   - atcoder/math.nim
   - atcoder/internal_math.nim
-  - atcoder/header.nim
   - atcoder/math.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/floor_sum_test.nim
   requiredBy: []

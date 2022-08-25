@@ -146,14 +146,14 @@ data:
   isVerificationFile: false
   path: atcoder/string.nim
   requiredBy:
-  - atcoder/extra/string/suffix_array_utils.nim
-  - atcoder/extra/string/suffix_array_utils.nim
   - atcoder/extra/string/run_enumerate.nim
   - atcoder/extra/string/run_enumerate.nim
   - atcoder/extra/string/suffix_array_utils.nim
   - atcoder/extra/string/suffix_array_utils.nim
   - atcoder/extra/string/run_enumerate.nim
   - atcoder/extra/string/run_enumerate.nim
+  - atcoder/extra/string/suffix_array_utils.nim
+  - atcoder/extra/string/suffix_array_utils.nim
   timestamp: '2020-09-24 19:39:03+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -161,12 +161,12 @@ data:
   - verify/extra/string/yosupo_run_enumerate_test.nim
   - verify/extra/string/aoj_alds_1_14_d_suffix_array_test.nim
   - verify/extra/string/aoj_alds_1_14_d_suffix_array_test.nim
-  - verify/lcp_array_test.nim
-  - verify/lcp_array_test.nim
-  - verify/z_algorithm_test.nim
-  - verify/z_algorithm_test.nim
   - verify/suffix_array_test.nim
   - verify/suffix_array_test.nim
+  - verify/z_algorithm_test.nim
+  - verify/z_algorithm_test.nim
+  - verify/lcp_array_test.nim
+  - verify/lcp_array_test.nim
 documentation_of: atcoder/string.nim
 layout: document
 redirect_from:

@@ -39,17 +39,20 @@ data:
   code: "when not declared ATCODER_LAZYSEGTREE_HPP:\n  const ATCODER_LAZYSEGTREE_HPP*\
     \ = 1\n  \n  import atcoder/internal_bit, atcoder/rangeutils\n  import std/sequtils,\
     \ std/algorithm\n  {.push inline.}\n  type LazySegTree*[S,F;p:static[tuple]] =\
-    \ object\n    len*, size*, log*:int\n    d:seq[S]\n    lz:seq[F]\n\n  template\
+    \ object\n    len*, size*, log*:int\n    d*:seq[S]\n    lz*:seq[F]\n\n  template\
     \ calc_op[ST:LazySegTree](self:typedesc[ST], a, b:ST.S):auto =\n    block:\n \
-    \     ST.p.op(a, b)\n  template calc_e[ST:LazySegTree](self:typedesc[ST]):auto\
-    \ =\n    block:\n      ST.p.e()\n  template calc_mapping[ST:LazySegTree](self:typedesc[ST],\
-    \ a:ST.F, b:ST.S):auto =\n    block:\n      ST.p.mapping(a, b)\n  template calc_composition[ST:LazySegTree](self:typedesc[ST],\
-    \ a, b:ST.F):auto =\n    block:\n      ST.p.composition(a, b)\n  template calc_id[ST:LazySegTree](self:typedesc[ST]):auto\
-    \ =\n    block:\n      ST.p.id()\n\n  proc update[ST:LazySegTree](self:var ST,\
+    \     let u = ST.p.op(a, b)\n      u\n  template calc_e[ST:LazySegTree](self:typedesc[ST]):auto\
+    \ =\n    block:\n      let u = ST.p.e()\n      u\n  template calc_mapping[ST:LazySegTree](self:typedesc[ST],\
+    \ a:ST.F, b:ST.S):auto =\n    block:\n      let u = ST.p.mapping(a, b)\n     \
+    \ u\n  template calc_composition[ST:LazySegTree](self:typedesc[ST], a, b:ST.F):auto\
+    \ =\n    block:\n      # \u3053\u3046\u66F8\u304B\u306A\u3044\u3068\u30D0\u30B0\
+    \u308B\u4E8B\u8C61\u3092\u691C\u51FA\n      let u = ST.p.composition(a, b)\n \
+    \     u\n  template calc_id[ST:LazySegTree](self:typedesc[ST]):auto =\n    block:\n\
+    \      let u = ST.p.id()\n      u\n\n  proc update[ST:LazySegTree](self:var ST,\
     \ k:int) =\n    self.d[k] = ST.calc_op(self.d[2 * k], self.d[2 * k + 1])\n  proc\
     \ all_apply*[ST:LazySegTree](self:var ST, k:int, f:ST.F) =\n    self.d[k] = ST.calc_mapping(f,\
-    \ self.d[k])\n    if k < self.size: self.lz[k] = ST.calc_composition(f, self.lz[k])\n\
-    \  proc all_apply*[ST:LazySegTree](self:var ST, f:ST.F) =\n    self.all_apply(1,\
+    \ self.d[k])\n    if k < self.size:\n      self.lz[k] = ST.calc_composition(f,\
+    \ self.lz[k])\n  proc all_apply*[ST:LazySegTree](self:var ST, f:ST.F) =\n    self.all_apply(1,\
     \ f)\n  proc push*[ST:LazySegTree](self: var ST, k:int) =\n    self.all_apply(2\
     \ * k, self.lz[k])\n    self.all_apply(2 * k + 1, self.lz[k])\n    self.lz[k]\
     \ = ST.calc_id()\n\n  proc init[ST:LazySegTree](self:var ST, v:seq[ST.S]) =\n\
@@ -123,19 +126,19 @@ data:
     \ sm)\n      if not ((r and -r) != r): break\n    return 0\n  {.pop.}\n"
   dependsOn:
   - atcoder/rangeutils.nim
-  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
   - atcoder/internal_bit.nim
   isVerificationFile: false
   path: atcoder/lazysegtree.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-08-25 23:07:00+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/lazy_segtree_dynamicmodint_test.nim
-  - verify/lazy_segtree_dynamicmodint_test.nim
   - verify/lazy_segtree_test.nim
   - verify/lazy_segtree_test.nim
+  - verify/lazy_segtree_dynamicmodint_test.nim
+  - verify/lazy_segtree_dynamicmodint_test.nim
 documentation_of: atcoder/lazysegtree.nim
 layout: document
 redirect_from:

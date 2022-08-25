@@ -181,12 +181,12 @@ data:
     \ j] = G[i][j + n]\n\n  generatePow(StaticMatrix)\n  generatePow(DynamicMatrix)\n"
   dependsOn:
   - atcoder/generate_definitions.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/other/operator.nim
   - atcoder/extra/other/operator.nim
   - atcoder/generate_definitions.nim
+  - atcoder/extra/other/operator.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/other/operator.nim
+  - atcoder/generate_definitions.nim
   - atcoder/extra/other/operator.nim
   isVerificationFile: false
   path: atcoder/extra/math/matrix.nim

@@ -34,22 +34,23 @@ data:
     \  import atcoder/internal_bit\n  import std/sequtils, std/algorithm\n  import\
     \ atcoder/rangeutils\n\n  {.push inline.}\n  type SegTree*[S; p:static[tuple]]\
     \ = object\n    len*, size*, log*:int\n    d: seq[S]\n\n  template calc_op[ST:SegTree](self:typedesc[ST],\
-    \ a, b:ST.S):auto =\n    block:\n      ST.p.op(a, b)\n  template calc_e[ST:SegTree](self:typedesc[ST]):auto\
-    \ =\n    block:\n      ST.p.e()\n  proc update[ST:SegTree](self: var ST, k:int)\
-    \ =\n    self.d[k] = ST.calc_op(self.d[2 * k], self.d[2 * k + 1])\n\n  proc init*[ST:SegTree](self:\
-    \ var ST, v:seq[ST.S]) =\n    let\n      n = v.len\n      log = ceil_pow2(n)\n\
-    \      size = 1 shl log\n    (self.len, self.size, self.log) = (n, size, log)\n\
-    \    if self.d.len < 2 * size:\n      self.d = newSeqWith(2 * size, ST.calc_e())\n\
-    \    else:\n      self.d.fill(0, 2 * size - 1, ST.calc_e())\n    for i in 0..<n:\
-    \ self.d[size + i] = v[i]\n    for i in countdown(size - 1, 1): self.update(i)\n\
-    \  proc init*[ST:SegTree](self: var ST, n:int) =\n    self.init(newSeqWith(n,\
-    \ ST.calc_e()))\n  proc init*[ST:SegTree](self: typedesc[ST], v:seq[ST.S]):auto\
-    \ =\n    result = ST()\n    result.init(v)\n  proc init*[ST:SegTree](self: typedesc[ST],\
-    \ n:int):auto =\n    self.init(newSeqWith(n, ST.calc_e()))\n  template SegTreeType*[S](op0,\
-    \ e0:untyped):typedesc[SegTree] =\n    SegTree[S, (op:(proc(l:S, r:S):S)(op0),\
-    \ e:(proc():S)(e0))]\n  template getType*(ST:typedesc[SegTree], S:typedesc, op,\
-    \ e:untyped):typedesc[SegTree] =\n    SegTreeType[S](op, e)\n\n  template initSegTree*[S](v:seq[S]\
-    \ or int, op, e:untyped):auto =\n    SegTreeType[S](op, e).init(v)\n\n  proc set*[ST:SegTree](self:var\
+    \ a, b:ST.S):auto =\n    block:\n      let u = ST.p.op(a, b)\n      u\n  template\
+    \ calc_e[ST:SegTree](self:typedesc[ST]):auto =\n    block:\n      let u = ST.p.e()\n\
+    \      u\n  proc update[ST:SegTree](self: var ST, k:int) =\n    self.d[k] = ST.calc_op(self.d[2\
+    \ * k], self.d[2 * k + 1])\n\n  proc init*[ST:SegTree](self: var ST, v:seq[ST.S])\
+    \ =\n    let\n      n = v.len\n      log = ceil_pow2(n)\n      size = 1 shl log\n\
+    \    (self.len, self.size, self.log) = (n, size, log)\n    if self.d.len < 2 *\
+    \ size:\n      self.d = newSeqWith(2 * size, ST.calc_e())\n    else:\n      self.d.fill(0,\
+    \ 2 * size - 1, ST.calc_e())\n    for i in 0..<n: self.d[size + i] = v[i]\n  \
+    \  for i in countdown(size - 1, 1): self.update(i)\n  proc init*[ST:SegTree](self:\
+    \ var ST, n:int) =\n    self.init(newSeqWith(n, ST.calc_e()))\n  proc init*[ST:SegTree](self:\
+    \ typedesc[ST], v:seq[ST.S]):auto =\n    result = ST()\n    result.init(v)\n \
+    \ proc init*[ST:SegTree](self: typedesc[ST], n:int):auto =\n    self.init(newSeqWith(n,\
+    \ ST.calc_e()))\n  template SegTreeType*[S](op0, e0:untyped):typedesc[SegTree]\
+    \ =\n    SegTree[S, (op:(proc(l:S, r:S):S)(op0), e:(proc():S)(e0))]\n  template\
+    \ getType*(ST:typedesc[SegTree], S:typedesc, op, e:untyped):typedesc[SegTree]\
+    \ =\n    SegTreeType[S](op, e)\n\n  template initSegTree*[S](v:seq[S] or int,\
+    \ op, e:untyped):auto =\n    SegTreeType[S](op, e).init(v)\n\n  proc set*[ST:SegTree](self:var\
     \ ST, p:IndexType, x:ST.S) =\n    var p = self^^p\n    assert p in 0..<self.len\n\
     \    p += self.size\n    self.d[p] = x\n    for i in 1..self.log: self.update(p\
     \ shr i)\n\n  proc get*[ST:SegTree](self:ST, p:IndexType):ST.S =\n    let p =\
@@ -84,13 +85,13 @@ data:
     \    return 0\n  {.pop.}\n"
   dependsOn:
   - atcoder/rangeutils.nim
-  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
   - atcoder/internal_bit.nim
   isVerificationFile: false
   path: atcoder/segtree.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-08-25 23:07:00+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/segtree_test.nim

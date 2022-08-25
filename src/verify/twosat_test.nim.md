@@ -49,14 +49,14 @@ data:
     \  if a:\n        stdout.write i + 1, \" \"\n      else:\n        stdout.write\
     \ -(i + 1), \" \"\n    echo 0\n  else:\n    echo \"s UNSATISFIABLE\"\n"
   dependsOn:
-  - atcoder/internal_csr.nim
-  - atcoder/header.nim
   - atcoder/twosat.nim
   - atcoder/internal_scc.nim
   - atcoder/internal_csr.nim
   - atcoder/header.nim
-  - atcoder/internal_scc.nim
   - atcoder/twosat.nim
+  - atcoder/header.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_csr.nim
   isVerificationFile: true
   path: verify/twosat_test.nim
   requiredBy: []

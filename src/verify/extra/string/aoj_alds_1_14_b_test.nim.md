@@ -34,8 +34,8 @@ data:
   dependsOn:
   - atcoder/header.nim
   - atcoder/extra/string/rolling_hash.nim
-  - atcoder/extra/string/rolling_hash.nim
   - atcoder/header.nim
+  - atcoder/extra/string/rolling_hash.nim
   isVerificationFile: true
   path: verify/extra/string/aoj_alds_1_14_b_test.nim
   requiredBy: []

@@ -59,10 +59,10 @@ data:
   timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/extra/tree/yosupo_tree_diameter_test.nim
-  - verify/extra/tree/yosupo_tree_diameter_test.nim
   - verify/extra/tree/aoj_grl_5_a_tree_diameter_test.nim
   - verify/extra/tree/aoj_grl_5_a_tree_diameter_test.nim
+  - verify/extra/tree/yosupo_tree_diameter_test.nim
+  - verify/extra/tree/yosupo_tree_diameter_test.nim
 documentation_of: atcoder/extra/tree/tree_diameter.nim
 layout: document
 redirect_from:

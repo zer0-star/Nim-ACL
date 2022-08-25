@@ -14,6 +14,18 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/math/eratosthenes.nim
     title: atcoder/extra/math/eratosthenes.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/static_eratosthenes.nim
+    title: atcoder/extra/math/static_eratosthenes.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/static_eratosthenes.nim
+    title: atcoder/extra/math/static_eratosthenes.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/static_eratosthenes.nim
+    title: atcoder/extra/math/static_eratosthenes.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/static_eratosthenes.nim
+    title: atcoder/extra/math/static_eratosthenes.nim
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: nim
@@ -47,8 +59,12 @@ data:
   isVerificationFile: false
   path: atcoder/extra/math/divisor.nim
   requiredBy:
+  - atcoder/extra/math/static_eratosthenes.nim
+  - atcoder/extra/math/static_eratosthenes.nim
   - atcoder/extra/math/eratosthenes.nim
   - atcoder/extra/math/eratosthenes.nim
+  - atcoder/extra/math/static_eratosthenes.nim
+  - atcoder/extra/math/static_eratosthenes.nim
   - atcoder/extra/math/eratosthenes.nim
   - atcoder/extra/math/eratosthenes.nim
   timestamp: '2021-08-10 01:29:44+09:00'

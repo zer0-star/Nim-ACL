@@ -52,13 +52,13 @@ data:
     \      f = ((h + f0) * r.inv(i shl 1)).pre(i shl 1)\n      i = i shl 1\n    return\
     \ f.pre(deg)\n"
   dependsOn:
-  - atcoder/element_concepts.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/formal_power_series.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/element_concepts.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/math/formal_power_series.nim
   isVerificationFile: false
   path: atcoder/extra/math/formal_power_series_differential_equation.nim
