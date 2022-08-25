@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   - icon: ':x:'
@@ -46,13 +46,13 @@ data:
     \  else:\n    let l, r = nextInt()\n    echo st.prod(l..<r)\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
   - atcoder/internal_bit.nim
   - atcoder/segtree.nim
-  - atcoder/rangeutils.nim
   - atcoder/header.nim
-  - atcoder/internal_bit.nim
   - atcoder/segtree.nim
+  - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
   isVerificationFile: true
   path: verify/segtree_test.nim
   requiredBy: []

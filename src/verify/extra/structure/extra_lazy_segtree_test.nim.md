@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
   - icon: ':question:'
@@ -37,17 +37,17 @@ data:
   - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
     links:
@@ -68,25 +68,25 @@ data:
     \  let t = nextInt()\n  if t == 0:\n    let l, r, c, d = nextInt()\n    seg.apply(l..<r,\
     \ (mint(c), mint(d)))\n  else:\n    let l, r = nextInt()\n    echo seg.prod(l..<r)[0]\n"
   dependsOn:
-  - atcoder/extra/structure/universal_segtree.nim
-  - atcoder/internal_math.nim
   - atcoder/header.nim
-  - atcoder/modint.nim
-  - atcoder/rangeutils.nim
   - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
+  - atcoder/internal_math.nim
   - atcoder/internal_bit.nim
-  - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
   - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/modint.nim
   - atcoder/header.nim
   - atcoder/extra/structure/universal_segtree.nim
-  - atcoder/modint.nim
-  - atcoder/internal_bit.nim
+  - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
   isVerificationFile: true
   path: verify/extra/structure/extra_lazy_segtree_test.nim
   requiredBy: []
   timestamp: '2022-08-25 23:07:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/structure/extra_lazy_segtree_test.nim
 layout: document

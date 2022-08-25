@@ -39,9 +39,9 @@ data:
     \ c)\n  let tree = initHeavyLightDecomposition(g)\n  let Q = nextInt()\n  for\
     \ i in 0..<Q:\n    let u, v = nextInt()\n    echo tree.lca(u, v)\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
   - atcoder/extra/tree/heavy_light_decomposition.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/tree/heavy_light_decomposition.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim

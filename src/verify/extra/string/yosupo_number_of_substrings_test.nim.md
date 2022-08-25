@@ -35,8 +35,8 @@ data:
   dependsOn:
   - atcoder/header.nim
   - atcoder/extra/string/suffix_automaton.nim
-  - atcoder/header.nim
   - atcoder/extra/string/suffix_automaton.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/string/yosupo_number_of_substrings_test.nim
   requiredBy: []

@@ -38,16 +38,16 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/structure/generalized_slope_trick.nim
     title: atcoder/extra/structure/generalized_slope_trick.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/link_cut_tree.nim
     title: atcoder/extra/structure/link_cut_tree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/link_cut_tree.nim
     title: atcoder/extra/structure/link_cut_tree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/link_cut_tree.nim
     title: atcoder/extra/structure/link_cut_tree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/link_cut_tree.nim
     title: atcoder/extra/structure/link_cut_tree.nim
   - icon: ':warning:'
@@ -110,40 +110,40 @@ data:
   - icon: ':x:'
     path: atcoder/extra/structure/sparse_table.nim
     title: atcoder/extra/structure/sparse_table.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
   - icon: ':x:'
@@ -165,40 +165,40 @@ data:
     path: atcoder/segtree.nim
     title: atcoder/segtree.nim
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/aoj_1508_splay_tree_test.nim
     title: verify/extra/structure/aoj_1508_splay_tree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/aoj_1508_splay_tree_test.nim
     title: verify/extra/structure/aoj_1508_splay_tree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
     title: verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
     title: verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
     title: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
     title: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/extra_lazy_segtree_test.nim
     title: verify/extra/structure/extra_lazy_segtree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/extra_lazy_segtree_test.nim
     title: verify/extra/structure/extra_lazy_segtree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/extra_segtree_test.nim
     title: verify/extra/structure/extra_segtree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/extra_segtree_test.nim
     title: verify/extra/structure/extra_segtree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
     title: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
     title: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
   - icon: ':x:'
@@ -275,7 +275,7 @@ data:
     title: verify/segtree_test.nim
   _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -347,7 +347,7 @@ data:
   - atcoder/fenwicktree.nim
   - atcoder/fenwicktree.nim
   timestamp: '2021-07-15 21:51:07+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/lazy_segtree_test.nim
   - verify/lazy_segtree_test.nim

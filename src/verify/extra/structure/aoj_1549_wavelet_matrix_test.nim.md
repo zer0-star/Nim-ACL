@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/succinct_indexable_dictionary.nim
     title: atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/succinct_indexable_dictionary.nim
     title: atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
   - icon: ':question:'
@@ -19,17 +19,17 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1549
     links:
@@ -49,18 +49,18 @@ data:
     \ abs(pred - d)\n  echo ans\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/rangeutils.nim
-  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - atcoder/extra/structure/wavelet_matrix.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/header.nim
+  - atcoder/rangeutils.nim
   - atcoder/extra/structure/wavelet_matrix.nim
-  - atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/rangeutils.nim
   isVerificationFile: true
   path: verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
   requiredBy: []
   timestamp: '2021-12-11 23:59:27+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
 layout: document

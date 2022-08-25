@@ -90,19 +90,19 @@ data:
   dependsOn:
   - atcoder/extra/structure/radix_heap.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/structure/radix_heap.nim
   - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/structure/radix_heap.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/structure/radix_heap.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/structure/radix_heap.nim
   - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/structure/radix_heap.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/dijkstra_result.nim
   isVerificationFile: false
   path: atcoder/extra/graph/dijkstra_radix_heap.nim

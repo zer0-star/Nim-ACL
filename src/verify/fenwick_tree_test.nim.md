@@ -19,10 +19,10 @@ data:
   - icon: ':x:'
     path: atcoder/internal_type_traits.nim
     title: atcoder/internal_type_traits.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
@@ -45,18 +45,18 @@ data:
     \ t == 0:\n    let p, x = nextInt()\n    st.add(p, x)\n  else:\n    let l, r =\
     \ nextInt()\n    echo st.sum(l..<r)\n"
   dependsOn:
-  - atcoder/fenwicktree.nim
   - atcoder/header.nim
   - atcoder/fenwicktree.nim
+  - atcoder/fenwicktree.nim
+  - atcoder/rangeutils.nim
+  - atcoder/header.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_type_traits.nim
-  - atcoder/rangeutils.nim
-  - atcoder/header.nim
   - atcoder/internal_type_traits.nim
   isVerificationFile: true
   path: verify/fenwick_tree_test.nim
   requiredBy: []
-  timestamp: '2021-12-12 01:47:43+09:00'
+  timestamp: '2022-08-26 00:12:53+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/fenwick_tree_test.nim

@@ -1,36 +1,36 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
     title: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
     title: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
   - icon: ':x:'
@@ -41,7 +41,7 @@ data:
     title: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
   _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -76,7 +76,6 @@ data:
     \ s, M1)\n\n  proc alloc*[ST](self:var LinkCutTree[ST], x:ST.D):ST.Node =\n  \
     \  return initNode(self.splay_tree, x)\n"
   dependsOn:
-  - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
@@ -84,11 +83,12 @@ data:
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
+  - atcoder/extra/structure/splay_tree.nim
   isVerificationFile: false
   path: atcoder/extra/structure/link_cut_tree.nim
   requiredBy: []
   timestamp: '2021-11-18 02:47:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
   - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim

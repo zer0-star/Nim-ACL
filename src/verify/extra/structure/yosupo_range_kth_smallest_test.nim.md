@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/succinct_indexable_dictionary.nim
     title: atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/succinct_indexable_dictionary.nim
     title: atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
   - icon: ':question:'
@@ -19,10 +19,10 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
@@ -45,13 +45,13 @@ data:
     \ b, c)\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/rangeutils.nim
-  - atcoder/rangeutils.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/header.nim
-  - atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - atcoder/rangeutils.nim
   - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/rangeutils.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_range_kth_smallest_test.nim
   requiredBy: []

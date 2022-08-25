@@ -43,10 +43,10 @@ data:
   - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
@@ -74,21 +74,21 @@ data:
     \ r, c, d = nextInt()\n    seg.apply(l..<r, (mint(c), mint(d)))\n  else:\n   \
     \ let l, r = nextInt()\n    echo seg.prod(l..<r)[0]\n"
   dependsOn:
+  - atcoder/header.nim
+  - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/modint.nim
+  - atcoder/modint.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/header.nim
-  - atcoder/modint.nim
-  - atcoder/rangeutils.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/generate_definitions.nim
   - atcoder/rangeutils.nim
-  - atcoder/header.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/modint.nim
+  - atcoder/rangeutils.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim

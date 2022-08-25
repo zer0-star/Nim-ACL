@@ -183,28 +183,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
     title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
     title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
     title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
     title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yukicoder_factorial_test.nim
     title: verify/extra/math/yukicoder_factorial_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yukicoder_factorial_test.nim
     title: verify/extra/math/yukicoder_factorial_test.nim
   _isVerificationFailed: true
@@ -229,38 +229,38 @@ data:
     \ a, b, p)\n  proc multiply*[T:FiniteFieldElem](a, b:seq[T]):seq[T] =\n    convolution(get_fft_type(T),\
     \ a, b)\n"
   dependsOn:
-  - atcoder/internal_math.nim
-  - atcoder/convolution.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/generate_definitions.nim
   - atcoder/element_concepts.nim
-  - atcoder/convolution.nim
-  - atcoder/modint.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
   - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
   - atcoder/internal_bit.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/modint.nim
+  - atcoder/modint.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/convolution.nim
+  - atcoder/convolution.nim
   - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/element_concepts.nim
   - atcoder/generate_definitions.nim
   - atcoder/element_concepts.nim
-  - atcoder/internal_bit.nim
-  - atcoder/modint.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/internal_math.nim
-  - atcoder/convolution.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/element_concepts.nim
-  - atcoder/convolution.nim
-  - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
   - atcoder/internal_bit.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
   - atcoder/internal_bit.nim
-  - atcoder/modint.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/modint.nim
+  - atcoder/modint.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/convolution.nim
+  - atcoder/convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/math/ntt.nim
   requiredBy:

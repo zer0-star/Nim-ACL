@@ -38,9 +38,9 @@ data:
     \    var x,y = nextInt()\n    g.addBiEdge(x,y)\n  var lowlink = LowLink(g)\n \
     \ lowlink.articulation.sort()\n  for v in lowlink.articulation: echo v\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/graph/lowlink.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/lowlink.nim
   - atcoder/extra/graph/lowlink.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim

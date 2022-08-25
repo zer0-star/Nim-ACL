@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
@@ -39,11 +39,11 @@ data:
     \ r = nextInt()\n  echo st[l..<r]\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/rangeutils.nim
   - atcoder/extra/structure/sparse_table.nim
-  - atcoder/rangeutils.nim
   - atcoder/header.nim
+  - atcoder/rangeutils.nim
   - atcoder/extra/structure/sparse_table.nim
+  - atcoder/rangeutils.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_staticrmq_test.nim
   requiredBy: []

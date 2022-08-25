@@ -7,10 +7,10 @@ data:
   - icon: ':x:'
     path: atcoder/internal_type_traits.nim
     title: atcoder/internal_type_traits.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
@@ -48,7 +48,8 @@ data:
     \  var r = r\n    while r > 0:\n      result += self.data[r - 1]\n      r -= r\
     \ and -r\n  proc sum*[FT:FenwickTree](self: FT, p:RangeType):FT.T =\n    let (l,\
     \ r) = self.halfOpenEndpoints(p)\n    assert 0 <= l and l <= r and r <= self.len\n\
-    \    return cast[FT.T](self.sum(r) - self.sum(l))\n"
+    \    return cast[FT.T](self.sum(r) - self.sum(l))\n  proc `[]`*[FT:FenwickTree](self:\
+    \ FT, p:RangeType):FT.T = self.sum(p)\n"
   dependsOn:
   - atcoder/rangeutils.nim
   - atcoder/internal_type_traits.nim
@@ -57,7 +58,7 @@ data:
   isVerificationFile: false
   path: atcoder/fenwicktree.nim
   requiredBy: []
-  timestamp: '2021-07-15 21:51:07+09:00'
+  timestamp: '2022-08-26 00:12:53+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/fenwick_tree_test.nim

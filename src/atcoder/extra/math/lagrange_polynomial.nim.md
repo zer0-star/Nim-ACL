@@ -13,16 +13,16 @@ data:
   - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
   _extendedRequiredBy: []
@@ -47,12 +47,12 @@ data:
   dependsOn:
   - atcoder/element_concepts.nim
   - atcoder/extra/math/combination.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/math/combination.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/math/combination.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/math/combination.nim
+  - atcoder/extra/math/combination.nim
+  - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/math/lagrange_polynomial.nim
   requiredBy: []

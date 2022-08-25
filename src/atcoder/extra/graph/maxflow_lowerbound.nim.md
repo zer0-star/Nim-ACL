@@ -71,12 +71,12 @@ data:
   dependsOn:
   - atcoder/internal_queue.nim
   - atcoder/maxflow.nim
-  - atcoder/internal_queue.nim
   - atcoder/maxflow.nim
   - atcoder/internal_queue.nim
-  - atcoder/maxflow.nim
   - atcoder/internal_queue.nim
   - atcoder/maxflow.nim
+  - atcoder/maxflow.nim
+  - atcoder/internal_queue.nim
   isVerificationFile: false
   path: atcoder/extra/graph/maxflow_lowerbound.nim
   requiredBy: []

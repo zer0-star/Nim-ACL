@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
@@ -107,7 +107,6 @@ data:
     \ = self.st.merge_wuh(self.L, g.L)\n    self.R = self.st.merge_wuh(self.R, g.R)\n\
     \    self.min_f += g.min_f;\n"
   dependsOn:
-  - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
@@ -115,6 +114,7 @@ data:
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
+  - atcoder/extra/structure/splay_tree.nim
   isVerificationFile: false
   path: atcoder/extra/structure/generalized_slope_trick.nim
   requiredBy: []

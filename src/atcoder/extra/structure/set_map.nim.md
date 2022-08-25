@@ -49,28 +49,28 @@ data:
   - icon: ':x:'
     path: atcoder/extra/structure/red_black_tree.nim
     title: atcoder/extra/structure/red_black_tree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
@@ -196,28 +196,28 @@ data:
     \      v.addQuoted(node.key[1])\n          a &= k & \": \" & v\n        node =\
     \ node.r\n    return \"{\" & a.join(\", \") & \"}\"\n"
   dependsOn:
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/structure/red_black_tree.nim
-  - atcoder/rangeutils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/rangeutils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/extra/structure/red_black_tree.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/extra/structure/red_black_tree.nim
+  - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/rangeutils.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/red_black_tree.nim
   - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/red_black_tree.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - atcoder/extra/structure/red_black_tree.nim
   isVerificationFile: false

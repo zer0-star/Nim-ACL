@@ -31,10 +31,10 @@ data:
   - icon: ':x:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
   - icon: ':question:'
@@ -43,10 +43,10 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':x:'
+  - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
@@ -72,20 +72,20 @@ data:
     \ 4:\n    var it = st.upper_bound(k)\n    if it == st.begin():\n      echo -1\n\
     \    else:\n      it.dec\n      echo *it\n"
   dependsOn:
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/structure/red_black_tree.nim
   - atcoder/header.nim
-  - atcoder/extra/structure/set_map.nim
-  - atcoder/rangeutils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/set_map.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/header.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/splay_tree.nim
   - atcoder/extra/structure/set_map.nim
-  - atcoder/header.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/red_black_tree.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - atcoder/extra/structure/red_black_tree.nim
   isVerificationFile: true

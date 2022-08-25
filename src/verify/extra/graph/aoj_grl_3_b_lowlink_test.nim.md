@@ -39,9 +39,9 @@ data:
     \ lowlink.bridge.sort()\n  for p in lowlink.bridge: echo p[0], \" \", p[1]\n\n\
     main()\n"
   dependsOn:
-  - atcoder/extra/graph/lowlink.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/lowlink.nim
   - atcoder/extra/graph/lowlink.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim

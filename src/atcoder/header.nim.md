@@ -363,34 +363,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_factorization_test.nim
     title: verify/extra/math/yosupo_factorization_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
     title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
     title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_system_of_linear_equations_test.nim
     title: verify/extra/math/yosupo_system_of_linear_equations_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_system_of_linear_equations_test.nim
     title: verify/extra/math/yosupo_system_of_linear_equations_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
     title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
     title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yukicoder_factorial_test.nim
     title: verify/extra/math/yukicoder_factorial_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yukicoder_factorial_test.nim
     title: verify/extra/math/yukicoder_factorial_test.nim
   - icon: ':heavy_check_mark:'
@@ -423,40 +423,40 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/string/yosupo_run_enumerate_test.nim
     title: verify/extra/string/yosupo_run_enumerate_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/aoj_1508_splay_tree_test.nim
     title: verify/extra/structure/aoj_1508_splay_tree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/aoj_1508_splay_tree_test.nim
     title: verify/extra/structure/aoj_1508_splay_tree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
     title: verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
     title: verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
     title: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
     title: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/extra_lazy_segtree_test.nim
     title: verify/extra/structure/extra_lazy_segtree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/extra_lazy_segtree_test.nim
     title: verify/extra/structure/extra_lazy_segtree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/extra_segtree_test.nim
     title: verify/extra/structure/extra_segtree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/extra_segtree_test.nim
     title: verify/extra/structure/extra_segtree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
     title: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
     title: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
   - icon: ':x:'
