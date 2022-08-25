@@ -3,7 +3,8 @@ when not declared ATCODER_ERATOSTHENES_HPP:
   import atcoder/extra/math/divisor
   type Eratosthenes* = object
     n*:int
-    pdiv*, prime*, index:seq[int]
+    pdiv*, prime*:seq[int32]
+    index:seq[int]
   proc propagate(self:var Eratosthenes, i:int) =
     let p = self.prime[i]
     while self.index[i] < self.n:
@@ -15,18 +16,18 @@ when not declared ATCODER_ERATOSTHENES_HPP:
     self.pdiv.setLen(n)
     let old_n = self.n
     self.n = n
-    for i in old_n ..< self.n:self.pdiv[i] = i
+    for i in old_n ..< self.n:self.pdiv[i] = i.int32
     for i,p in self.prime:
       if p * p > self.n: break
       self.propagate(i)
     for p in old_n ..< self.n:
       if self.pdiv[p] == p:
-        self.prime.add(p)
+        self.prime.add(p.int32)
         self.index.add(p * p)
         self.propagate(self.prime.len - 1)
     self.n = n
   proc initEratosthenes*(n = 10000):Eratosthenes =
-    result = Eratosthenes(n: 2, pdiv: @[0,0])
+    result = Eratosthenes(n: 2, pdiv: @[0'i32,0'i32])
     result.expand(n)
   proc isPrime*(self:var Eratosthenes, n:int): bool =
     self.expand(n + 1)

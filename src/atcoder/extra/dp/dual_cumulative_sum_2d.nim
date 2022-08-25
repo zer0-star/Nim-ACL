@@ -29,8 +29,11 @@ proc initDualCumulativeSum2D*[T](X, Y:int):DualCumulativeSum2D[T] =
 
 proc add*[T](self:var DualCumulativeSum2D[T]; rx, ry: Slice[int], z:T) =
   assert not self.built
-  let (gx, gy) = (rx.b + 1, ry.b + 1)
-  let (sx, sy) = (rx.a, ry.a)
+  var (gx, gy) = (min(rx.b + 1, self.X), min(ry.b + 1, self.Y))
+  var (sx, sy) = (max(rx.a, 0), max(ry.a, 0))
+  if gx < 0 or gy < 0: return
+  if sx >= self.X or sy >= self.Y: return
+  
   self.data[gx][gy] += z
   self.data[sx][gy] -= z
   self.data[gx][sy] -= z

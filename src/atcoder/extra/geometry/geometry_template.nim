@@ -2,8 +2,8 @@ when not declared ATCODER_GEOMETRY_TEMPLATE_HPP:
   const ATCODER_GEOMETRY_TEMPLATE_HPP* = 1
   import atcoder/extra/other/static_var
   import atcoder/extra/other/floatutils
-  import complex
-  #import atcoder/extra/other/internal_complex
+  #import complex
+  import atcoder/extra/other/internal_complex
   import std/math, std/macros
   
   type Point*[Real] = Complex[Real]

@@ -6,30 +6,37 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
   {.push inline.}
   type LazySegTree*[S,F;p:static[tuple]] = object
     len*, size*, log*:int
-    d:seq[S]
-    lz:seq[F]
+    d*:seq[S]
+    lz*:seq[F]
 
   template calc_op[ST:LazySegTree](self:typedesc[ST], a, b:ST.S):auto =
     block:
-      ST.p.op(a, b)
+      let u = ST.p.op(a, b)
+      u
   template calc_e[ST:LazySegTree](self:typedesc[ST]):auto =
     block:
-      ST.p.e()
+      let u = ST.p.e()
+      u
   template calc_mapping[ST:LazySegTree](self:typedesc[ST], a:ST.F, b:ST.S):auto =
     block:
-      ST.p.mapping(a, b)
+      let u = ST.p.mapping(a, b)
+      u
   template calc_composition[ST:LazySegTree](self:typedesc[ST], a, b:ST.F):auto =
     block:
-      ST.p.composition(a, b)
+      # こう書かないとバグる事象を検出
+      let u = ST.p.composition(a, b)
+      u
   template calc_id[ST:LazySegTree](self:typedesc[ST]):auto =
     block:
-      ST.p.id()
+      let u = ST.p.id()
+      u
 
   proc update[ST:LazySegTree](self:var ST, k:int) =
     self.d[k] = ST.calc_op(self.d[2 * k], self.d[2 * k + 1])
   proc all_apply*[ST:LazySegTree](self:var ST, k:int, f:ST.F) =
     self.d[k] = ST.calc_mapping(f, self.d[k])
-    if k < self.size: self.lz[k] = ST.calc_composition(f, self.lz[k])
+    if k < self.size:
+      self.lz[k] = ST.calc_composition(f, self.lz[k])
   proc all_apply*[ST:LazySegTree](self:var ST, f:ST.F) =
     self.all_apply(1, f)
   proc push*[ST:LazySegTree](self: var ST, k:int) =

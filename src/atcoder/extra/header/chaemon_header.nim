@@ -24,6 +24,7 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   import std/options as options_lib
   import std/bitops as bitops_lib
   import std/streams as streams_lib
+  import std/lists as lists_lib
   import std/deques as deques_lib
 
   import atcoder/extra/forward_compatibility/internal_sugar
@@ -65,3 +66,6 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
     if a mod b != 0: result.inc
 
   template `/^`*[T:SomeInteger](a, b:T):T = ceilDiv(a, b)
+  template `/_`*[T:SomeInteger](a, b:T):T = floorDiv(a, b)
+  proc `pred`[T:SomeInteger](a:seq[T]):seq[T] = a.mapIt(it - 1)
+  proc `succ`[T:SomeInteger](a:seq[T]):seq[T] = a.mapIt(it + 1)

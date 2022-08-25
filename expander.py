@@ -59,8 +59,6 @@ def strip_as(line: str) -> str:
     return line
 
 
-
-
 def main():
     """
     メイン関数
@@ -85,6 +83,8 @@ def main():
     parser.add_argument('--lib', help='Path to Atcoder Library')
     parser.add_argument('-d', '--directory',
                         action='store_true', help='Submit by directory')
+    parser.add_argument('-b', '--raw',
+                        action='store_true', help='submit raw data')
 
     opts = parser.parse_args()
 
@@ -93,7 +93,7 @@ def main():
     elif 'NIM_INCLUDE_PATH' in environ:
         lib_path = Path(environ['NIM_INCLUDE_PATH']) / "src"
 #    source = open(opts.source, encoding="utf8", errors='ignore').read()
-    
+
     def read_source(f: str, prefix: str, defined: set, lib_path, is_main=True,
                     load_type=None) -> List[str]:
         """
@@ -217,25 +217,66 @@ def main():
             result.append("import macros;macro ImportExpand(s:untyped):untyped = parseStmt($s[2])")
 
     result.extend(read_source(opts.source, "", set(), lib_path))
-
+    outputSuffix = b""
     if opts.directory:
         global outputPrefix
         subprocess.run("export XZ_OPT=-9 && tar -Jcvf atcoder.tar.xz atcoder", cwd=lib_tmp, shell=True, stdout=subprocess.PIPE)
-        s = subprocess.run("cat atcoder.tar.xz | base64 -w 0", cwd=lib_tmp, shell=True, stdout=subprocess.PIPE).stdout.decode()
-        outputPrefix += """
+        md5sum = subprocess.run("md5sum atcoder.tar.xz", cwd=lib_tmp, shell=True, stdout=subprocess.PIPE).stdout.decode()
+        if opts.raw:
+            d = open(lib_tmp / "atcoder.tar.xz", 'rb').read()
+      #let (output, ex) = gorgeEx("tail -c " & $zs & " " & fn & " > atcoder.tar.xz && tar -Jxvf atcoder.tar.xz && rm atcoder.tar.xz")
+            outputPrefix += """
 static:
   when not defined SecondCompile:
-    discard staticExec("echo \\"{:s}\\" | base64 -d > atcoder.tar.xz && tar -Jxvf atcoder.tar.xz && rm atcoder.tar.xz")
-    let (output, ex) = gorgeEx("nim cpp -d:release -d:SecondCompile --path:./ --opt:speed --multimethods:on --warning[SmallLshouldNotBeUsed]:off --checks:off -o:a.out Main.nim")
-    doAssert ex == 0, output;quit(0)
-""".format(s)
+    template getFileName():string = instantiationInfo().filename
+    let
+      fn = getFileName()
+      zs = {:d}
+    block:
+      let (output, ex) = gorgeEx("if [ -e ./atcoder ]; then exit 1; else exit 0; fi")
+      doAssert ex == 0, "atcoder directory already exisits"
+    block:
+      let (output, ex) = gorgeEx("tail -c " & $zs & " " & fn & " > atcoder.tar.xz")
+      doAssert ex == 0, "tail failed"
+      # md5sum: {:s}
+      let md5sum = staticExec("md5sum " & fn)
+      let tarResult = staticExec("tar -Jxvf atcoder.tar.xz")
+      doAssert false, tarResult
+    let ss = staticExec("MS=`wc --bytes " & fn & " | cut -d' ' -f1`; echo $((MS-{:d}))")
+    discard staticExec("head -c " & ss & " " & fn & " > Main2.nim")
+    let s = staticExec("du -a")
+    doAssert false, s
+    let (output, ex) = gorgeEx("nim cpp -d:release -d:SecondCompile --path:./ --opt:speed --multimethods:on --warning[SmallLshouldNotBeUsed]:off --checks:off -o:a.out Main2.nim")
+    discard staticExec("rm -rf ./atcoder && rm Main2.nim");doAssert ex == 0, output;quit(0)
+""".format(len(d), md5sum, len(d))
+            outputSuffix += d
+        else:
+            s = subprocess.run("cat atcoder.tar.xz | base64 -w 0", cwd=lib_tmp, shell=True, stdout=subprocess.PIPE).stdout.decode()
+            outputPrefix += """
+static:
+  when not defined SecondCompile:
+    # md5sum: {:s}
+    template getFileName():string = instantiationInfo().filename
+    let fn = getFileName()
+    block:
+      let (output, ex) = gorgeEx("if [ -e ./atcoder ]; then exit 1; else exit 0; fi")
+      doAssert ex == 0, "atcoder directory already exisits"
+    discard staticExec("echo \\"{:s}\\" | base64 -d > atcoder.tar.xz && tar -Jxvf atcoder.tar.xz")
+    let (output, ex) = gorgeEx("nim cpp -d:release -d:SecondCompile --path:./ --opt:speed --multimethods:on --warning[SmallLshouldNotBeUsed]:off --checks:off -o:a.out " & fn)
+    discard staticExec("rm -rf ./atcoder");doAssert ex == 0, output;quit(0)
+""".format(md5sum, s)
 
-    output = outputPrefix + '\n\n' + '\n'.join(result) + '\n'
+    output = (outputPrefix + '\n\n' + '\n'.join(result) + '\n').encode() + outputSuffix
     if opts.console:
         print(output)
     else:
-        with open('combined.nim', 'w', encoding="utf8", errors='ignore') as f:
+        #with open('combined.nim', 'w', encoding="utf8", errors='ignore') as f:
+        with open('combined.nim', 'wb') as f:
             f.write(output)
+        md5sum_combined = subprocess.run("md5sum combined.nim", shell=True, stdout=subprocess.PIPE).stdout.decode()
+        with open('/tmp/md5sum_combined.txt', 'w') as f:
+            f.write(md5sum_combined)
+
 
 
 if __name__ == "__main__":
