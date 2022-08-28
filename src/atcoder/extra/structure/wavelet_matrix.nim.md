@@ -123,13 +123,13 @@ data:
     \    return if ret == -1: self.T(-1) else: self.ys[ret]\n"
   dependsOn:
   - atcoder/rangeutils.nim
-  - atcoder/rangeutils.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - atcoder/rangeutils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/wavelet_matrix.nim
   requiredBy: []

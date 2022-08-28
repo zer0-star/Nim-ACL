@@ -519,88 +519,88 @@ data:
   - icon: ':x:'
     path: verify/extra/structure/yosupo_staticrmq_test.nim
     title: verify/extra/structure/yosupo_staticrmq_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/aoj_grl_5_a_tree_diameter_test.nim
     title: verify/extra/tree/aoj_grl_5_a_tree_diameter_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/aoj_grl_5_a_tree_diameter_test.nim
     title: verify/extra/tree/aoj_grl_5_a_tree_diameter_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim
     title: verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim
     title: verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
     title: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
     title: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/rerooting_test.nim
     title: verify/extra/tree/rerooting_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/rerooting_test.nim
     title: verify/extra/tree/rerooting_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/yosupo_lowest_common_ancestor_test.nim
     title: verify/extra/tree/yosupo_lowest_common_ancestor_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/yosupo_lowest_common_ancestor_test.nim
     title: verify/extra/tree/yosupo_lowest_common_ancestor_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/yosupo_tree_diameter_test.nim
     title: verify/extra/tree/yosupo_tree_diameter_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/yosupo_tree_diameter_test.nim
     title: verify/extra/tree/yosupo_tree_diameter_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/fenwick_tree_test.nim
     title: verify/fenwick_tree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/fenwick_tree_test.nim
     title: verify/fenwick_tree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/floor_sum_test.nim
     title: verify/floor_sum_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/floor_sum_test.nim
     title: verify/floor_sum_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_dynamicmodint_test.nim
     title: verify/lazy_segtree_dynamicmodint_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_dynamicmodint_test.nim
     title: verify/lazy_segtree_dynamicmodint_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_test.nim
     title: verify/lazy_segtree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_test.nim
     title: verify/lazy_segtree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/lcp_array_test.nim
     title: verify/lcp_array_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/lcp_array_test.nim
     title: verify/lcp_array_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/map_test.nim
     title: verify/map_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/map_test.nim
     title: verify/map_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/max_flow_test.nim
     title: verify/max_flow_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/max_flow_test.nim
     title: verify/max_flow_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/min_cost_flow_test.nim
     title: verify/min_cost_flow_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/min_cost_flow_test.nim
     title: verify/min_cost_flow_test.nim
   - icon: ':x:'

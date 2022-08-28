@@ -51,12 +51,12 @@ data:
     \ e.dst)\n        total += e.weight\n        ret.add(e)\n    return (total, ret)\n"
   dependsOn:
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/dsu.nim
   - atcoder/dsu.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/dsu.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/dsu.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/dsu.nim
   isVerificationFile: false
   path: atcoder/extra/graph/kruskal.nim

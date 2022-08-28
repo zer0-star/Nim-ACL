@@ -13,17 +13,17 @@ data:
   - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/math.nim
     title: atcoder/math.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/math.nim
     title: atcoder/math.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_floor_of_linear
     links:
@@ -36,17 +36,17 @@ data:
     \nimport atcoder/header, atcoder/math\n\nlet T = nextInt()\n\nfor _ in 0..<T:\n\
     \  let N, M, A, B = nextInt()\n  echo floor_sum(N, M, A, B)\n"
   dependsOn:
-  - atcoder/internal_math.nim
-  - atcoder/header.nim
+  - atcoder/math.nim
   - atcoder/internal_math.nim
   - atcoder/header.nim
   - atcoder/math.nim
-  - atcoder/math.nim
+  - atcoder/header.nim
+  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/floor_sum_test.nim
   requiredBy: []
   timestamp: '2022-06-06 17:51:24+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/floor_sum_test.nim
 layout: document

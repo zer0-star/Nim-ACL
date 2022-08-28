@@ -25,10 +25,10 @@ data:
   - icon: ':question:'
     path: atcoder/internal_math.nim
     title: atcoder/internal_math.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/lazysegtree.nim
     title: atcoder/lazysegtree.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/lazysegtree.nim
     title: atcoder/lazysegtree.nim
   - icon: ':question:'
@@ -45,9 +45,9 @@ data:
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
     links:
@@ -68,25 +68,25 @@ data:
     \ let l, r, c, d = nextInt()\n    seg.apply(l..<r, (mint(c), mint(d)))\n  else:\n\
     \    let l, r = nextInt()\n    echo seg.prod(l..<r)[0]\n"
   dependsOn:
-  - atcoder/modint.nim
-  - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/rangeutils.nim
-  - atcoder/rangeutils.nim
-  - atcoder/header.nim
   - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
-  - atcoder/lazysegtree.nim
   - atcoder/modint.nim
   - atcoder/lazysegtree.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/internal_bit.nim
+  - atcoder/header.nim
+  - atcoder/lazysegtree.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/header.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/lazy_segtree_test.nim
   requiredBy: []
   timestamp: '2022-08-25 23:07:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/lazy_segtree_test.nim
 layout: document

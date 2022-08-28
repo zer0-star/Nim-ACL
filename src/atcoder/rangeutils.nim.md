@@ -62,28 +62,28 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/structure/old_randomized_binary_search_tree.nim
     title: atcoder/extra/structure/old_randomized_binary_search_tree.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
   - icon: ':warning:'
@@ -110,16 +110,16 @@ data:
   - icon: ':x:'
     path: atcoder/extra/structure/sparse_table.nim
     title: atcoder/extra/structure/sparse_table.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
   - icon: ':heavy_check_mark:'
@@ -146,16 +146,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/fenwicktree.nim
     title: atcoder/fenwicktree.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/fenwicktree.nim
     title: atcoder/fenwicktree.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/lazysegtree.nim
     title: atcoder/lazysegtree.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/lazysegtree.nim
     title: atcoder/lazysegtree.nim
   - icon: ':x:'
@@ -243,28 +243,28 @@ data:
   - icon: ':x:'
     path: verify/extra/structure/yosupo_staticrmq_test.nim
     title: verify/extra/structure/yosupo_staticrmq_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/fenwick_tree_test.nim
     title: verify/fenwick_tree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/fenwick_tree_test.nim
     title: verify/fenwick_tree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_dynamicmodint_test.nim
     title: verify/lazy_segtree_dynamicmodint_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_dynamicmodint_test.nim
     title: verify/lazy_segtree_dynamicmodint_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_test.nim
     title: verify/lazy_segtree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_test.nim
     title: verify/lazy_segtree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/map_test.nim
     title: verify/map_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/map_test.nim
     title: verify/map_test.nim
   - icon: ':x:'

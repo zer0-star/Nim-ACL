@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/tree_diameter.nim
     title: atcoder/extra/tree/tree_diameter.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/tree_diameter.nim
     title: atcoder/extra/tree/tree_diameter.nim
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/tree_diameter
     links:
@@ -38,17 +38,17 @@ data:
     \    let x, y, z = nextInt()\n    g.addBiEdge(x,y,z)\n  let (d, a) = g.treeDiameter()\n\
     \  echo d, \" \", a.len\n  echo a.mapIt($it).join(\" \")\n\nmain()\n"
   dependsOn:
-  - atcoder/header.nim
+  - atcoder/extra/tree/tree_diameter.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/header.nim
   - atcoder/extra/tree/tree_diameter.nim
   - atcoder/header.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/tree/tree_diameter.nim
   isVerificationFile: true
   path: verify/extra/tree/yosupo_tree_diameter_test.nim
   requiredBy: []
   timestamp: '2022-07-30 23:50:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/tree/yosupo_tree_diameter_test.nim
 layout: document

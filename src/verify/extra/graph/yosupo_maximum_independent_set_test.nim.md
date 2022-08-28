@@ -34,10 +34,10 @@ data:
     \  for i in 0..<p.len:\n    stdout.write p[i]\n    if i < p.len - 1: stdout.write\
     \ \" \"\n  echo \"\"\n\nmain()\n"
   dependsOn:
-  - atcoder/header.nim
   - atcoder/extra/graph/maximum_independent_set.nim
   - atcoder/header.nim
   - atcoder/extra/graph/maximum_independent_set.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_maximum_independent_set_test.nim
   requiredBy: []

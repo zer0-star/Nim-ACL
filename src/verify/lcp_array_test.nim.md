@@ -15,9 +15,9 @@ data:
     title: atcoder/string.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/number_of_substrings
     links:
@@ -31,15 +31,15 @@ data:
     \ = S.suffixarray()\n  lcp = S.lcp_array(sa)\n  n = S.len\n\nvar ans = n * (n\
     \ + 1) div 2\nfor v in lcp: ans -= v\necho ans\n"
   dependsOn:
-  - atcoder/header.nim
   - atcoder/string.nim
   - atcoder/header.nim
   - atcoder/string.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/lcp_array_test.nim
   requiredBy: []
   timestamp: '2021-12-11 23:59:27+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/lcp_array_test.nim
 layout: document

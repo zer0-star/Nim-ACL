@@ -32,9 +32,9 @@ data:
     \ v)\n  elif t == 1:\n    echo(\n      if uf.same(u, v):\n        1\n      else:\n\
     \        0\n    )\n"
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/dsu.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
   - atcoder/dsu.nim
   isVerificationFile: true
   path: verify/dsu_test.nim

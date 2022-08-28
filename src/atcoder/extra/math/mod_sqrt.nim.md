@@ -86,15 +86,15 @@ data:
   - atcoder/modint.nim
   - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
   - atcoder/modint.nim
   - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
+  - atcoder/modint.nim
   - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
   - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
   isVerificationFile: false
   path: atcoder/extra/math/mod_sqrt.nim
   requiredBy:

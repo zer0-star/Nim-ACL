@@ -13,28 +13,28 @@ data:
   - icon: ':question:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_heap.nim
     title: atcoder/internal_heap.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_heap.nim
     title: atcoder/internal_heap.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_heap.nim
     title: atcoder/internal_heap.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_heap.nim
     title: atcoder/internal_heap.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
   - icon: ':question:'
@@ -185,25 +185,25 @@ data:
     \  var m = self.edges.len\n    assert i in 0 ..< m\n    edges[i].cap = cap\n \
     \   edges[i].cost = cost\n\n"
   dependsOn:
-  - atcoder/internal_scc.nim
-  - atcoder/scc.nim
-  - atcoder/scc.nim
-  - atcoder/internal_scc.nim
+  - atcoder/internal_csr.nim
   - atcoder/internal_queue.nim
-  - atcoder/internal_csr.nim
-  - atcoder/internal_csr.nim
+  - atcoder/scc.nim
+  - atcoder/internal_scc.nim
   - atcoder/internal_queue.nim
   - atcoder/internal_heap.nim
-  - atcoder/internal_heap.nim
-  - atcoder/internal_scc.nim
+  - atcoder/internal_csr.nim
   - atcoder/scc.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_heap.nim
+  - atcoder/internal_csr.nim
+  - atcoder/internal_queue.nim
   - atcoder/scc.nim
   - atcoder/internal_scc.nim
   - atcoder/internal_queue.nim
-  - atcoder/internal_csr.nim
-  - atcoder/internal_csr.nim
-  - atcoder/internal_queue.nim
   - atcoder/internal_heap.nim
+  - atcoder/internal_csr.nim
+  - atcoder/scc.nim
+  - atcoder/internal_scc.nim
   - atcoder/internal_heap.nim
   isVerificationFile: false
   path: atcoder/extra/graph/mincostflow_generalized.nim

@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/binary_tree_node_utils.nim
     title: atcoder/extra/structure/binary_tree_node_utils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/binary_tree_node_utils.nim
     title: atcoder/extra/structure/binary_tree_node_utils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/binary_tree_node_utils.nim
     title: atcoder/extra/structure/binary_tree_node_utils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/binary_tree_node_utils.nim
     title: atcoder/extra/structure/binary_tree_node_utils.nim
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
   _extendedVerifiedWith:
@@ -33,15 +33,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/structure/yosupo_predecessor_problem_test.nim
     title: verify/extra/structure/yosupo_predecessor_problem_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/map_test.nim
     title: verify/map_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/map_test.nim
     title: verify/map_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -284,7 +284,7 @@ data:
   - atcoder/extra/structure/set_map.nim
   - atcoder/extra/structure/set_map.nim
   timestamp: '2022-07-03 22:20:00+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/structure/yosupo_predecessor_problem_test.nim
   - verify/extra/structure/yosupo_predecessor_problem_test.nim

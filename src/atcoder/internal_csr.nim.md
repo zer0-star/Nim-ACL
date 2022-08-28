@@ -32,10 +32,10 @@ data:
   - icon: ':question:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/mincostflow.nim
     title: atcoder/mincostflow.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/mincostflow.nim
     title: atcoder/mincostflow.nim
   - icon: ':question:'
@@ -57,10 +57,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
     title: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/min_cost_flow_test.nim
     title: verify/min_cost_flow_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/min_cost_flow_test.nim
     title: verify/min_cost_flow_test.nim
   - icon: ':x:'

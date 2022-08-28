@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
     title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
   - icon: ':question:'
@@ -74,21 +74,21 @@ data:
     \ nextInt().mint\n      let ret = seg.prod(l..<r)\n      echo ret[0] * x + ret[1]\n"
   dependsOn:
   - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/header.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/extra/forward_compatibility/internal_sugar.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - atcoder/generate_definitions.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_math.nim
-  - atcoder/extra/structure/splay_tree.nim
   - atcoder/extra/forward_compatibility/internal_sugar.nim
-  - atcoder/rangeutils.nim
-  - atcoder/header.nim
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/extra/forward_compatibility/internal_sugar.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - atcoder/modint.nim
+  - atcoder/header.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/header.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   requiredBy: []

@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/binary_tree_node_utils.nim
     title: atcoder/extra/structure/binary_tree_node_utils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/binary_tree_node_utils.nim
     title: atcoder/extra/structure/binary_tree_node_utils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/binary_tree_utils.nim
     title: atcoder/extra/structure/binary_tree_utils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/binary_tree_utils.nim
     title: atcoder/extra/structure/binary_tree_utils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - icon: ':question:'
@@ -76,20 +76,20 @@ data:
   dependsOn:
   - atcoder/modint.nim
   - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/header.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/internal_math.nim
   - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/rangeutils.nim
-  - atcoder/rangeutils.nim
-  - atcoder/header.nim
   - atcoder/generate_definitions.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/rangeutils.nim
   - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/modint.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/header.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/header.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
   requiredBy: []

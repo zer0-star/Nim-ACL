@@ -15,15 +15,15 @@ data:
     title: atcoder/extra/graph/graph_template.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim
     title: verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim
     title: verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -75,7 +75,7 @@ data:
   path: atcoder/extra/tree/heavy_light_decomposition.nim
   requiredBy: []
   timestamp: '2022-07-30 23:50:20+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim
   - verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim

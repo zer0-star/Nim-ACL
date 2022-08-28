@@ -182,40 +182,40 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/centroid_decomposition.nim
     title: atcoder/extra/tree/centroid_decomposition.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/doubling_lowest_common_ancestor.nim
     title: atcoder/extra/tree/doubling_lowest_common_ancestor.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/doubling_lowest_common_ancestor.nim
     title: atcoder/extra/tree/doubling_lowest_common_ancestor.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/doubling_lowest_common_ancestor.nim
     title: atcoder/extra/tree/doubling_lowest_common_ancestor.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/doubling_lowest_common_ancestor.nim
     title: atcoder/extra/tree/doubling_lowest_common_ancestor.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/heavy_light_decomposition.nim
     title: atcoder/extra/tree/heavy_light_decomposition.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/heavy_light_decomposition.nim
     title: atcoder/extra/tree/heavy_light_decomposition.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/heavy_light_decomposition.nim
     title: atcoder/extra/tree/heavy_light_decomposition.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/heavy_light_decomposition.nim
     title: atcoder/extra/tree/heavy_light_decomposition.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/tree_diameter.nim
     title: atcoder/extra/tree/tree_diameter.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/tree_diameter.nim
     title: atcoder/extra/tree/tree_diameter.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/tree_diameter.nim
     title: atcoder/extra/tree/tree_diameter.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/tree_diameter.nim
     title: atcoder/extra/tree/tree_diameter.nim
   _extendedVerifiedWith:
@@ -297,34 +297,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_shortest_path_test.nim
     title: verify/extra/graph/yosupo_shortest_path_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/aoj_grl_5_a_tree_diameter_test.nim
     title: verify/extra/tree/aoj_grl_5_a_tree_diameter_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/aoj_grl_5_a_tree_diameter_test.nim
     title: verify/extra/tree/aoj_grl_5_a_tree_diameter_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim
     title: verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim
     title: verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
     title: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
     title: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/yosupo_lowest_common_ancestor_test.nim
     title: verify/extra/tree/yosupo_lowest_common_ancestor_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/yosupo_lowest_common_ancestor_test.nim
     title: verify/extra/tree/yosupo_lowest_common_ancestor_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/yosupo_tree_diameter_test.nim
     title: verify/extra/tree/yosupo_tree_diameter_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/yosupo_tree_diameter_test.nim
     title: verify/extra/tree/yosupo_tree_diameter_test.nim
   - icon: ':x:'

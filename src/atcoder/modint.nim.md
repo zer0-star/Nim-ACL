@@ -285,28 +285,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
     title: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/rerooting_test.nim
     title: verify/extra/tree/rerooting_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/tree/rerooting_test.nim
     title: verify/extra/tree/rerooting_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_dynamicmodint_test.nim
     title: verify/lazy_segtree_dynamicmodint_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_dynamicmodint_test.nim
     title: verify/lazy_segtree_dynamicmodint_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_test.nim
     title: verify/lazy_segtree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_test.nim
     title: verify/lazy_segtree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/modint_test.nim
     title: verify/modint_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/modint_test.nim
     title: verify/modint_test.nim
   _isVerificationFailed: true

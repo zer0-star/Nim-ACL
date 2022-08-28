@@ -116,10 +116,10 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/structure/universal_segtree_backup.nim
     title: atcoder/extra/structure/universal_segtree_backup.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/lazysegtree.nim
     title: atcoder/lazysegtree.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/lazysegtree.nim
     title: atcoder/lazysegtree.nim
   - icon: ':x:'
@@ -243,16 +243,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/structure/extra_segtree_test.nim
     title: verify/extra/structure/extra_segtree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_dynamicmodint_test.nim
     title: verify/lazy_segtree_dynamicmodint_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_dynamicmodint_test.nim
     title: verify/lazy_segtree_dynamicmodint_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_test.nim
     title: verify/lazy_segtree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_test.nim
     title: verify/lazy_segtree_test.nim
   - icon: ':x:'

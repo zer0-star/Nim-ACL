@@ -229,38 +229,38 @@ data:
     \ a, b, p)\n  proc multiply*[T:FiniteFieldElem](a, b:seq[T]):seq[T] =\n    convolution(get_fft_type(T),\
     \ a, b)\n"
   dependsOn:
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/internal_math.nim
-  - atcoder/internal_bit.nim
   - atcoder/internal_bit.nim
   - atcoder/convolution.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/convolution.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/element_concepts.nim
-  - atcoder/element_concepts.nim
   - atcoder/modint.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/internal_bit.nim
+  - atcoder/convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/internal_math.nim
   - atcoder/internal_bit.nim
+  - atcoder/convolution.nim
+  - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
+  - atcoder/modint.nim
   - atcoder/internal_bit.nim
   - atcoder/convolution.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/convolution.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/element_concepts.nim
-  - atcoder/element_concepts.nim
-  - atcoder/modint.nim
+  - atcoder/internal_math.nim
   isVerificationFile: false
   path: atcoder/extra/math/ntt.nim
   requiredBy:

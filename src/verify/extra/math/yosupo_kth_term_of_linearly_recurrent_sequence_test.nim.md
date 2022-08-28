@@ -95,30 +95,30 @@ data:
     \ + 1)\n  Q[0] = 1\n  for i in 0..<d: Q[i + 1] -= c[i]\n  var P = (a * Q)[0..<d]\n\
     \  echo (P // Q)[k]\n\nmain()\n"
   dependsOn:
-  - atcoder/internal_bit.nim
-  - atcoder/extra/math/coef_of_generating_function.nim
   - atcoder/element_concepts.nim
-  - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/internal_math.nim
   - atcoder/header.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/convolution.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/math/ntt.nim
-  - atcoder/modint.nim
-  - atcoder/header.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/coef_of_generating_function.nim
+  - atcoder/convolution.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/internal_math.nim
+  - atcoder/modint.nim
   - atcoder/convolution.nim
+  - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
+  - atcoder/modint.nim
   - atcoder/extra/math/ntt.nim
+  - atcoder/internal_bit.nim
   - atcoder/extra/math/coef_of_generating_function.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/header.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
   isVerificationFile: true
   path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
   requiredBy: []

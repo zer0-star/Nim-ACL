@@ -39,10 +39,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/string/yosupo_run_enumerate_test.nim
     title: verify/extra/string/yosupo_run_enumerate_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/lcp_array_test.nim
     title: verify/lcp_array_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/lcp_array_test.nim
     title: verify/lcp_array_test.nim
   - icon: ':x:'

@@ -106,29 +106,29 @@ data:
     \ * ret.inv(i shl 1)) * inv2\n      i = i shl 1\n    return ret.pre(deg).some\n"
   dependsOn:
   - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/formal_power_series.nim
   - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/generate_definitions.nim
   - atcoder/element_concepts.nim
-  - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
   - atcoder/modint.nim
   - atcoder/extra/math/mod_sqrt.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/math/formal_power_series.nim
+  - atcoder/element_concepts.nim
   - atcoder/internal_math.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/mod_sqrt.nim
-  - atcoder/element_concepts.nim
-  - atcoder/element_concepts.nim
   - atcoder/modint.nim
   - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/element_concepts.nim
+  - atcoder/internal_math.nim
   isVerificationFile: false
   path: atcoder/extra/math/formal_power_series_sqrt.nim
   requiredBy: []

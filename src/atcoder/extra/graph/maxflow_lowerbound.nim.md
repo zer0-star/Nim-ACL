@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/maxflow.nim
     title: atcoder/maxflow.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/maxflow.nim
     title: atcoder/maxflow.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/maxflow.nim
     title: atcoder/maxflow.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/maxflow.nim
     title: atcoder/maxflow.nim
   _extendedRequiredBy: []
@@ -70,12 +70,12 @@ data:
     #g.addEdge(0, 1, 1, 2)\n#g.addEdge(1, 2, 2, 3)\n#echo g.max_flow(0, 2)\n\n"
   dependsOn:
   - atcoder/internal_queue.nim
-  - atcoder/internal_queue.nim
-  - atcoder/maxflow.nim
   - atcoder/maxflow.nim
   - atcoder/internal_queue.nim
+  - atcoder/maxflow.nim
   - atcoder/internal_queue.nim
   - atcoder/maxflow.nim
+  - atcoder/internal_queue.nim
   - atcoder/maxflow.nim
   isVerificationFile: false
   path: atcoder/extra/graph/maxflow_lowerbound.nim

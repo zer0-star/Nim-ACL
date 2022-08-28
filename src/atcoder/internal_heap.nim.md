@@ -26,22 +26,22 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/graph/mincostflow_lowerbound.nim
     title: atcoder/extra/graph/mincostflow_lowerbound.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/mincostflow.nim
     title: atcoder/mincostflow.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/mincostflow.nim
     title: atcoder/mincostflow.nim
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/min_cost_flow_test.nim
     title: verify/min_cost_flow_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/min_cost_flow_test.nim
     title: verify/min_cost_flow_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -75,7 +75,7 @@ data:
   - atcoder/mincostflow.nim
   - atcoder/mincostflow.nim
   timestamp: '2021-08-23 19:10:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/min_cost_flow_test.nim
   - verify/min_cost_flow_test.nim

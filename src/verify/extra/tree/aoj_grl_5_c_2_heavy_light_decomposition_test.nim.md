@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/heavy_light_decomposition.nim
     title: atcoder/extra/tree/heavy_light_decomposition.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/tree/heavy_light_decomposition.nim
     title: atcoder/extra/tree/heavy_light_decomposition.nim
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_C
     links:
@@ -40,16 +40,16 @@ data:
     \ i in 0..<Q:\n    let u, v = nextInt()\n    echo tree.lca(u, v)\n\nmain()\n"
   dependsOn:
   - atcoder/extra/tree/heavy_light_decomposition.nim
-  - atcoder/header.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
   - atcoder/extra/tree/heavy_light_decomposition.nim
+  - atcoder/header.nim
   - atcoder/extra/graph/graph_template.nim
   isVerificationFile: true
   path: verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim
   requiredBy: []
   timestamp: '2022-07-30 23:50:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim
 layout: document

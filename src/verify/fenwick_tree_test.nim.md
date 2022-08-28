@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/fenwicktree.nim
     title: atcoder/fenwicktree.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/fenwicktree.nim
     title: atcoder/fenwicktree.nim
   - icon: ':question:'
@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_type_traits.nim
     title: atcoder/internal_type_traits.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_type_traits.nim
     title: atcoder/internal_type_traits.nim
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
     links:
@@ -46,18 +46,18 @@ data:
     \ nextInt()\n    echo st.sum(l..<r)\n"
   dependsOn:
   - atcoder/fenwicktree.nim
-  - atcoder/header.nim
+  - atcoder/internal_type_traits.nim
   - atcoder/rangeutils.nim
   - atcoder/fenwicktree.nim
   - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/internal_type_traits.nim
   - atcoder/rangeutils.nim
-  - atcoder/internal_type_traits.nim
-  - atcoder/internal_type_traits.nim
   isVerificationFile: true
   path: verify/fenwick_tree_test.nim
   requiredBy: []
   timestamp: '2022-08-26 00:12:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/fenwick_tree_test.nim
 layout: document

@@ -21,9 +21,9 @@ data:
     title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://yukicoder.me/problems/no/741
     links:
@@ -39,14 +39,14 @@ data:
   - atcoder/modint.nim
   - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
+  - atcoder/modint.nim
   - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
-  - atcoder/modint.nim
   isVerificationFile: true
   path: verify/modint_test.nim
   requiredBy: []
   timestamp: '2022-07-30 23:50:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/modint_test.nim
 layout: document

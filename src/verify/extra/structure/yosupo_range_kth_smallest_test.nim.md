@@ -44,14 +44,14 @@ data:
     \ 18)\nfor i in 0..<Q:\n  let a, b, c = nextInt()\n  echo mat.kth_smallest(a ..<\
     \ b, c)\n"
   dependsOn:
+  - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/rangeutils.nim
+  - atcoder/header.nim
+  - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/header.nim
   - atcoder/rangeutils.nim
-  - atcoder/rangeutils.nim
-  - atcoder/header.nim
-  - atcoder/extra/structure/wavelet_matrix.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - atcoder/extra/structure/wavelet_matrix.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_range_kth_smallest_test.nim
   requiredBy: []
