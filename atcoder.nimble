@@ -6,7 +6,7 @@ description   = "ACL (AtCoder Library) implementation in Nim"
 license       = "CC0"
 srcDir        = "src"
 
-skipDirs      = @["verify", ".verify-helper"]
+skipDirs      = @["verify", ".verify-helper", "lib"]
 
 backend       = "cpp"
 
