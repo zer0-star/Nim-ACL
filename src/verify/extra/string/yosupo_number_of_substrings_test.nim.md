@@ -34,9 +34,9 @@ data:
     \      cnt[v] += cnt[i]\n  \n  echo ans\n\nmain()\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/extra/string/suffix_automaton.nim
-  - atcoder/extra/string/suffix_automaton.nim
   - atcoder/header.nim
+  - atcoder/extra/string/suffix_automaton.nim
+  - atcoder/extra/string/suffix_automaton.nim
   isVerificationFile: true
   path: verify/extra/string/yosupo_number_of_substrings_test.nim
   requiredBy: []

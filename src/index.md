@@ -139,16 +139,16 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/forward_compatibility/hash_func.nim
       title: atcoder/extra/forward_compatibility/hash_func.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/forward_compatibility/internal_sugar.nim
       title: atcoder/extra/forward_compatibility/internal_sugar.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/forward_compatibility/internal_sugar.nim
       title: atcoder/extra/forward_compatibility/internal_sugar.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
       title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
       title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - name: atcoder/extra/geometry
@@ -801,16 +801,16 @@ data:
       title: atcoder/extra/string/suffix_automaton.nim
   - name: atcoder/extra/structure
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: atcoder/extra/structure/binary_tree_node_utils.nim
       title: atcoder/extra/structure/binary_tree_node_utils.nim
-    - icon: ':x:'
+    - icon: ':question:'
       path: atcoder/extra/structure/binary_tree_node_utils.nim
       title: atcoder/extra/structure/binary_tree_node_utils.nim
-    - icon: ':x:'
+    - icon: ':question:'
       path: atcoder/extra/structure/binary_tree_utils.nim
       title: atcoder/extra/structure/binary_tree_utils.nim
-    - icon: ':x:'
+    - icon: ':question:'
       path: atcoder/extra/structure/binary_tree_utils.nim
       title: atcoder/extra/structure/binary_tree_utils.nim
     - icon: ':warning:'
@@ -849,10 +849,10 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/structure/li_chao_tree.nim
       title: atcoder/extra/structure/li_chao_tree.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/structure/link_cut_tree.nim
       title: atcoder/extra/structure/link_cut_tree.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/structure/link_cut_tree.nim
       title: atcoder/extra/structure/link_cut_tree.nim
     - icon: ':warning:'
@@ -867,16 +867,16 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/structure/partially_persistent_dsu.nim
       title: atcoder/extra/structure/partially_persistent_dsu.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/structure/persistent_array.nim
       title: atcoder/extra/structure/persistent_array.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/structure/persistent_array.nim
       title: atcoder/extra/structure/persistent_array.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/structure/persistent_dsu.nim
       title: atcoder/extra/structure/persistent_dsu.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/structure/persistent_dsu.nim
       title: atcoder/extra/structure/persistent_dsu.nim
     - icon: ':heavy_check_mark:'
@@ -885,22 +885,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/structure/radix_heap.nim
       title: atcoder/extra/structure/radix_heap.nim
-    - icon: ':x:'
+    - icon: ':question:'
       path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
       title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-    - icon: ':x:'
+    - icon: ':question:'
       path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
       title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-    - icon: ':x:'
+    - icon: ':question:'
       path: atcoder/extra/structure/red_black_tree.nim
       title: atcoder/extra/structure/red_black_tree.nim
-    - icon: ':x:'
+    - icon: ':question:'
       path: atcoder/extra/structure/red_black_tree.nim
       title: atcoder/extra/structure/red_black_tree.nim
-    - icon: ':x:'
+    - icon: ':question:'
       path: atcoder/extra/structure/set_map.nim
       title: atcoder/extra/structure/set_map.nim
-    - icon: ':x:'
+    - icon: ':question:'
       path: atcoder/extra/structure/set_map.nim
       title: atcoder/extra/structure/set_map.nim
     - icon: ':warning:'
@@ -915,10 +915,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/structure/skew_heap.nim
       title: atcoder/extra/structure/skew_heap.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/structure/sliding_window_aggregation.nim
       title: atcoder/extra/structure/sliding_window_aggregation.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/structure/sliding_window_aggregation.nim
       title: atcoder/extra/structure/sliding_window_aggregation.nim
     - icon: ':warning:'
@@ -939,10 +939,10 @@ data:
     - icon: ':question:'
       path: atcoder/extra/structure/splay_tree.nim
       title: atcoder/extra/structure/splay_tree.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/structure/succinct_indexable_dictionary.nim
       title: atcoder/extra/structure/succinct_indexable_dictionary.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/structure/succinct_indexable_dictionary.nim
       title: atcoder/extra/structure/succinct_indexable_dictionary.nim
     - icon: ':warning:'
@@ -963,10 +963,10 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/structure/universal_segtree_backup.nim
       title: atcoder/extra/structure/universal_segtree_backup.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/structure/wavelet_matrix.nim
       title: atcoder/extra/structure/wavelet_matrix.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/structure/wavelet_matrix.nim
       title: atcoder/extra/structure/wavelet_matrix.nim
     - icon: ':warning:'
@@ -1337,31 +1337,31 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
       title: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
       title: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/structure/yosupo_persistent_queue_test.nim
       title: verify/extra/structure/yosupo_persistent_queue_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/structure/yosupo_persistent_unionfind_test.nim
       title: verify/extra/structure/yosupo_persistent_unionfind_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
       title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/structure/yosupo_predecessor_problem_test.nim
       title: verify/extra/structure/yosupo_predecessor_problem_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
       title: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
       title: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
       title: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/structure/yosupo_range_kth_smallest_test.nim
       title: verify/extra/structure/yosupo_range_kth_smallest_test.nim
     - icon: ':x:'

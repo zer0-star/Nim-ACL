@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/succinct_indexable_dictionary.nim
     title: atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/succinct_indexable_dictionary.nim
     title: atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
   - icon: ':question:'
@@ -46,13 +46,13 @@ data:
     \ .. R, min(X[L], X[R]) - E, max(X[L], X[R]) + E + 1)\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - atcoder/extra/structure/wavelet_matrix.nim
-  - atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
   - atcoder/header.nim
-  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - atcoder/extra/structure/succinct_indexable_dictionary.nim
   - atcoder/extra/structure/wavelet_matrix.nim
-  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/wavelet_matrix.nim
   isVerificationFile: true
   path: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
   requiredBy: []

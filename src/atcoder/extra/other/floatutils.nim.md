@@ -371,14 +371,14 @@ data:
     \        m = d\n        echo \"found: \", p, \"/\", q, \"   \", \"error: \", d\n\
     \      q.inc\n    return\n\n  float.initPrec()\n#  float64.initPrec()\n  float32.initPrec()\n"
   dependsOn:
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/static_var.nim
   isVerificationFile: false
   path: atcoder/extra/other/floatutils.nim
   requiredBy:

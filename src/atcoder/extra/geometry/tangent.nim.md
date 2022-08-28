@@ -107,25 +107,25 @@ data:
     \ vv) * c1.r.complex, c2.p - (uu - vv) * c2.r.complex * s.Real.complex))\n"
   dependsOn:
   - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/element_concepts.nim
+  - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/other/internal_complex.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/element_concepts.nim
+  - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/other/internal_complex.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/static_var.nim
   isVerificationFile: false
   path: atcoder/extra/geometry/tangent.nim
   requiredBy: []

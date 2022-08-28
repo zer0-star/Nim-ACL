@@ -53,15 +53,15 @@ data:
     \ \")\n\nmain()\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/extra/structure/skew_heap.nim
-  - atcoder/extra/structure/skew_heap.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
   - atcoder/extra/graph/chu_liu_edmonds.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/dsu.nim
-  - atcoder/dsu.nim
+  - atcoder/extra/structure/skew_heap.nim
   - atcoder/extra/graph/chu_liu_edmonds.nim
+  - atcoder/extra/structure/skew_heap.nim
+  - atcoder/dsu.nim
+  - atcoder/dsu.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_directedmst_test.nim
   requiredBy: []

@@ -39,9 +39,9 @@ data:
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
     links:
@@ -62,23 +62,23 @@ data:
     \    seg.apply(l..<r, (mint(c), mint(d)))\n  else:\n    let l, r = nextInt()\n\
     \    echo seg.prod(l..<r)[0]\n"
   dependsOn:
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
   - atcoder/header.nim
   - atcoder/generate_definitions.nim
-  - atcoder/internal_math.nim
-  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
-  - atcoder/modint.nim
-  - atcoder/modint.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/structure/splay_tree.nim
   - atcoder/header.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
-  - atcoder/rangeutils.nim
-  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/modint.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
   requiredBy: []
   timestamp: '2022-07-30 23:50:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
 layout: document

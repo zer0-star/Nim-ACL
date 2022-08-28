@@ -67,12 +67,12 @@ data:
   dependsOn:
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/inf.nim
   isVerificationFile: false
   path: atcoder/extra/graph/bellman_ford.nim
   requiredBy: []

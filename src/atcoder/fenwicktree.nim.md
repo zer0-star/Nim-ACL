@@ -52,8 +52,8 @@ data:
     \ FT, p:RangeType):FT.T = self.sum(p)\n"
   dependsOn:
   - atcoder/rangeutils.nim
-  - atcoder/internal_type_traits.nim
   - atcoder/rangeutils.nim
+  - atcoder/internal_type_traits.nim
   - atcoder/internal_type_traits.nim
   isVerificationFile: false
   path: atcoder/fenwicktree.nim

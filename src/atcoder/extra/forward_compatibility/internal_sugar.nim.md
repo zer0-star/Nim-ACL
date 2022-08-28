@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
     title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
     title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
     title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
     title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   _extendedRequiredBy:
@@ -93,21 +93,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_cycle_detection_test.nim
     title: verify/extra/graph/yosupo_cycle_detection_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
     title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
     title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
     title: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
     title: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/nim-lang/Nim/pull/8531#issuecomment-410436458
@@ -244,7 +244,7 @@ data:
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
   timestamp: '2022-07-09 03:01:13+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
   - verify/extra/structure/yosupo_queue_operate_all_composite_test.nim

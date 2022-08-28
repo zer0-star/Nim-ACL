@@ -58,12 +58,12 @@ data:
     \ l <= r and r <= self.len\n    self.add(r, x)\n    self.add(l, -x)\n"
   dependsOn:
   - atcoder/rangeutils.nim
-  - atcoder/internal_type_traits.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_type_traits.nim
-  - atcoder/rangeutils.nim
   - atcoder/internal_type_traits.nim
   - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_type_traits.nim
   - atcoder/internal_type_traits.nim
   isVerificationFile: false
   path: atcoder/extra/structure/dual_fenwicktree.nim

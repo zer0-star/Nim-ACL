@@ -39,11 +39,11 @@ data:
     \ r = nextInt()\n  echo st[l..<r]\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/extra/structure/sparse_table.nim
+  - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
   - atcoder/header.nim
-  - atcoder/rangeutils.nim
   - atcoder/extra/structure/sparse_table.nim
-  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/sparse_table.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_staticrmq_test.nim
   requiredBy: []

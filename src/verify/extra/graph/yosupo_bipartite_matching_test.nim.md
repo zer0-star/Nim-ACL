@@ -33,8 +33,8 @@ data:
     \  echo p.len\n  for p in p:\n    echo p[0], \" \", p[1]\n\nmain()\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/extra/graph/hopcroft_karp.nim
   - atcoder/header.nim
+  - atcoder/extra/graph/hopcroft_karp.nim
   - atcoder/extra/graph/hopcroft_karp.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_bipartite_matching_test.nim

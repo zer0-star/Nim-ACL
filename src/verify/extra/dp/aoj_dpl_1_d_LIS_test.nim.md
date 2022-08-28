@@ -31,8 +31,8 @@ data:
     \nproc main() =\n  let\n    N = nextInt()\n    A = newSeqWith(N, nextInt())\n\
     \  echo longestIncreasingSubsequence(A, true)\n\nmain()\n"
   dependsOn:
-  - atcoder/header.nim
   - atcoder/extra/dp/longest_increasing_subsequence.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/extra/dp/longest_increasing_subsequence.nim
   isVerificationFile: true

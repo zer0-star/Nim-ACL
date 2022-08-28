@@ -45,11 +45,11 @@ data:
     \  echo kruskal(g)[0]\n\nmain()\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/dsu.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/kruskal.nim
   - atcoder/header.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/kruskal.nim
+  - atcoder/dsu.nim
   - atcoder/dsu.nim
   - atcoder/extra/graph/kruskal.nim
   isVerificationFile: true

@@ -34,8 +34,8 @@ data:
   dependsOn:
   - atcoder/header.nim
   - atcoder/extra/math/factorization.nim
-  - atcoder/extra/math/factorization.nim
   - atcoder/header.nim
+  - atcoder/extra/math/factorization.nim
   isVerificationFile: true
   path: verify/extra/math/yosupo_factorization_test.nim
   requiredBy: []

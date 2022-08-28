@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/forward_compatibility/internal_sugar.nim
     title: atcoder/extra/forward_compatibility/internal_sugar.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/forward_compatibility/internal_sugar.nim
     title: atcoder/extra/forward_compatibility/internal_sugar.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
     title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
     title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - icon: ':heavy_check_mark:'
@@ -55,15 +55,15 @@ data:
     \ -1\n\nmain()\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/forward_compatibility/internal_sugar.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/extra/graph/cycle_detection.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - atcoder/extra/graph/cycle_detection.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/forward_compatibility/internal_sugar.nim
   - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/extra/forward_compatibility/internal_sugar.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/extra/graph/cycle_detection.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_cycle_detection_test.nim
   requiredBy: []

@@ -88,16 +88,16 @@ data:
     \      while x != i:\n        usede[x] = true\n        x = paredge[x]\n    return\
     \ (ret, parent).some\n"
   dependsOn:
-  - atcoder/extra/structure/skew_heap.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/structure/skew_heap.nim
-  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/structure/skew_heap.nim
   - atcoder/dsu.nim
   - atcoder/dsu.nim
-  - atcoder/extra/structure/skew_heap.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/structure/skew_heap.nim
-  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/structure/skew_heap.nim
   - atcoder/dsu.nim
   - atcoder/dsu.nim
   isVerificationFile: false

@@ -2,16 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
   _extendedVerifiedWith:
@@ -27,15 +27,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
     title: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/yosupo_range_kth_smallest_test.nim
     title: verify/extra/structure/yosupo_range_kth_smallest_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/structure/yosupo_range_kth_smallest_test.nim
     title: verify/extra/structure/yosupo_range_kth_smallest_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -65,7 +65,7 @@ data:
   - atcoder/extra/structure/wavelet_matrix.nim
   - atcoder/extra/structure/wavelet_matrix.nim
   timestamp: '2021-03-01 01:28:35+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
   - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim

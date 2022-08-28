@@ -47,9 +47,9 @@ data:
     \       st.insert(y, z)\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
+  - atcoder/header.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
   isVerificationFile: true

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/link_cut_tree.nim
     title: atcoder/extra/structure/link_cut_tree.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/link_cut_tree.nim
     title: atcoder/extra/structure/link_cut_tree.nim
   - icon: ':question:'
@@ -53,11 +53,11 @@ data:
   dependsOn:
   - atcoder/header.nim
   - atcoder/extra/structure/link_cut_tree.nim
-  - atcoder/extra/structure/link_cut_tree.nim
-  - atcoder/header.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
+  - atcoder/extra/structure/link_cut_tree.nim
+  - atcoder/header.nim
   - atcoder/extra/structure/splay_tree.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim

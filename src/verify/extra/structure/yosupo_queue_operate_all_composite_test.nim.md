@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/forward_compatibility/internal_sugar.nim
     title: atcoder/extra/forward_compatibility/internal_sugar.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/forward_compatibility/internal_sugar.nim
     title: atcoder/extra/forward_compatibility/internal_sugar.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
     title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
     title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/sliding_window_aggregation.nim
     title: atcoder/extra/structure/sliding_window_aggregation.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/sliding_window_aggregation.nim
     title: atcoder/extra/structure/sliding_window_aggregation.nim
   - icon: ':question:'
@@ -45,9 +45,9 @@ data:
     title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/queue_operate_all_composite
     links:
@@ -66,25 +66,25 @@ data:
     \  else:\n    let x = nextInt().mint\n    let (b, a) = swa.fold_all()\n    echo\
     \ a * x + b\n\n"
   dependsOn:
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
   - atcoder/header.nim
   - atcoder/generate_definitions.nim
-  - atcoder/extra/forward_compatibility/internal_sugar.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/internal_math.nim
-  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
-  - atcoder/extra/structure/sliding_window_aggregation.nim
-  - atcoder/modint.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/modint.nim
-  - atcoder/extra/structure/sliding_window_aggregation.nim
+  - atcoder/internal_math.nim
   - atcoder/extra/forward_compatibility/internal_sugar.nim
   - atcoder/header.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/extra/forward_compatibility/internal_sugar.nim
+  - atcoder/extra/structure/sliding_window_aggregation.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/modint.nim
+  - atcoder/extra/structure/sliding_window_aggregation.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
   requiredBy: []
   timestamp: '2022-07-30 23:50:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
 layout: document

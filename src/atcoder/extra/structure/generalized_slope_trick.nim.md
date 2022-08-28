@@ -108,12 +108,12 @@ data:
     \    self.min_f += g.min_f;\n"
   dependsOn:
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
-  - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/splay_tree.nim
   - atcoder/extra/structure/splay_tree.nim
   isVerificationFile: false
   path: atcoder/extra/structure/generalized_slope_trick.nim

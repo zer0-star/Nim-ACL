@@ -38,11 +38,11 @@ data:
     \    mf.addEdge(a, b, c)\n  echo mf.flow(0, V - 1)\n"
   dependsOn:
   - atcoder/header.nim
-  - atcoder/internal_queue.nim
-  - atcoder/maxflow.nim
-  - atcoder/maxflow.nim
   - atcoder/header.nim
   - atcoder/internal_queue.nim
+  - atcoder/internal_queue.nim
+  - atcoder/maxflow.nim
+  - atcoder/maxflow.nim
   isVerificationFile: true
   path: verify/max_flow_test.nim
   requiredBy: []

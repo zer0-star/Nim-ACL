@@ -95,30 +95,30 @@ data:
     \  var f = DifferentialEquation(g, gp, mint(1), N + 1)\n  for i in 1 .. N: f[N]\
     \ *= mint(i)\n  echo f[N] * 2\n"
   dependsOn:
-  - atcoder/header.nim
+  - atcoder/internal_bit.nim
   - atcoder/element_concepts.nim
+  - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/convolution.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/modint.nim
-  - atcoder/modint.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/convolution.nim
-  - atcoder/convolution.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/internal_bit.nim
   - atcoder/extra/math/formal_power_series_differential_equation.nim
-  - atcoder/internal_bit.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/modint.nim
   - atcoder/generate_definitions.nim
-  - atcoder/internal_bit.nim
   - atcoder/header.nim
   - atcoder/extra/math/formal_power_series_differential_equation.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/extra/math/ntt.nim
   - atcoder/internal_math.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/convolution.nim
   - atcoder/extra/math/ntt.nim
-  - atcoder/element_concepts.nim
   isVerificationFile: true
   path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
   requiredBy: []
