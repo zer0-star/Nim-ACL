@@ -73,5 +73,14 @@
 "verify/extra/structure/aoj_2674_wavelet_matrix_test.nim": "2021-12-11 23:59:27 +0900",
 "verify/extra/structure/extra_lazy_segtree_test.nim": "2022-08-25 23:07:00 +0900",
 "verify/extra/structure/extra_segtree_test.nim": "2022-08-25 23:07:00 +0900",
-"verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim": "2021-12-11 23:59:27 +0900"
+"verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim": "2021-12-11 23:59:27 +0900",
+"verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim": "2022-07-30 23:50:20 +0900",
+"verify/extra/structure/yosupo_persistent_queue_test.nim": "2021-12-11 23:59:27 +0900",
+"verify/extra/structure/yosupo_persistent_unionfind_test.nim": "2021-12-11 23:59:27 +0900",
+"verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim": "2022-07-30 23:50:20 +0900",
+"verify/extra/structure/yosupo_predecessor_problem_test.nim": "2022-07-03 22:20:00 +0900",
+"verify/extra/structure/yosupo_queue_operate_all_composite_test.nim": "2022-07-30 23:50:20 +0900",
+"verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim": "2022-07-30 23:50:20 +0900",
+"verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim": "2022-07-30 23:50:20 +0900",
+"verify/extra/structure/yosupo_range_kth_smallest_test.nim": "2021-12-11 23:59:27 +0900"
 }
