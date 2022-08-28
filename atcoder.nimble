@@ -14,3 +14,6 @@ backend       = "cpp"
 # Dependencies
 
 requires "nim >= 1.0.0"
+
+after install:
+  exec("ln -s ./atcoder/extra lib")
