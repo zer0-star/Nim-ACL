@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/twosat_test.nim
     title: verify/twosat_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/twosat_test.nim
     title: verify/twosat_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -46,13 +46,13 @@ data:
   dependsOn:
   - atcoder/internal_csr.nim
   - atcoder/internal_scc.nim
-  - atcoder/internal_csr.nim
   - atcoder/internal_scc.nim
+  - atcoder/internal_csr.nim
   isVerificationFile: false
   path: atcoder/twosat.nim
   requiredBy: []
   timestamp: '2021-08-18 01:50:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/twosat_test.nim
   - verify/twosat_test.nim

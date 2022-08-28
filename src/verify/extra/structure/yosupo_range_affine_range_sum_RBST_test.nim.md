@@ -75,21 +75,21 @@ data:
     \ let l, r = nextInt()\n    echo seg.prod(l..<r)[0]\n"
   dependsOn:
   - atcoder/modint.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/header.nim
+  - atcoder/rangeutils.nim
   - atcoder/modint.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/header.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/header.nim
-  - atcoder/rangeutils.nim
   - atcoder/internal_math.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/header.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
   requiredBy: []

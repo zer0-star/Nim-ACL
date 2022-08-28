@@ -315,16 +315,16 @@ data:
     \ M1M2M3, 2'u * M1M2M3, 3'u * M1M2M3]\n      x -= offset[diff mod 5]\n      c[i]\
     \ = cast[int](x)\n    return c\n"
   dependsOn:
-  - atcoder/internal_bit.nim
   - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_bit.nim
+  - atcoder/element_concepts.nim
+  - atcoder/modint.nim
+  - atcoder/internal_bit.nim
+  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
   - atcoder/element_concepts.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
-  - atcoder/internal_bit.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/element_concepts.nim
-  - atcoder/internal_math.nim
   isVerificationFile: false
   path: atcoder/convolution.nim
   requiredBy:

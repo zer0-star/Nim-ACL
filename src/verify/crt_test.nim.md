@@ -40,9 +40,9 @@ data:
   - atcoder/math.nim
   - atcoder/internal_math.nim
   - atcoder/header.nim
+  - atcoder/internal_math.nim
   - atcoder/math.nim
   - atcoder/header.nim
-  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/crt_test.nim
   requiredBy: []

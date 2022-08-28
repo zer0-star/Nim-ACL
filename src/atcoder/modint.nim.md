@@ -381,10 +381,10 @@ data:
     \u305F\u3044\u306A\u306E\u304Cint\u306B\u306A\u3063\u3061\u3083\u3046\n  # converter\
     \ toInt*(m: ModInt):int {.inline.} = m.val\n\n\n"
   dependsOn:
-  - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: atcoder/modint.nim
   requiredBy:

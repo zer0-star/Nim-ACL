@@ -55,15 +55,15 @@ data:
     var ans = mint(0)\nfor i, (n, s, t) in d:\n  ans += t\n\necho ans / 2\n"
   dependsOn:
   - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/tree/rerooting.nim
-  - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/header.nim
   - atcoder/modint.nim
-  - atcoder/header.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
   - atcoder/extra/tree/rerooting.nim
   - atcoder/header.nim
-  - atcoder/internal_math.nim
+  - atcoder/extra/tree/rerooting.nim
   isVerificationFile: true
   path: verify/extra/tree/rerooting_test.nim
   requiredBy: []

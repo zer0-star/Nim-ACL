@@ -32,8 +32,8 @@ data:
     \    let u, v = nextInt()\n    g.addEdge(u, v)\n  \n  let p = g.maximum_matching()\n\
     \  echo p.len\n  for p in p:\n    echo p[0], \" \", p[1]\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/graph/hopcroft_karp.nim
   - atcoder/header.nim
+  - atcoder/extra/graph/hopcroft_karp.nim
   - atcoder/extra/graph/hopcroft_karp.nim
   - atcoder/header.nim
   isVerificationFile: true

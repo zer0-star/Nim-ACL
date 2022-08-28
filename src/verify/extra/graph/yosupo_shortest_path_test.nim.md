@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
   - icon: ':question:'
@@ -52,15 +52,15 @@ data:
     \    echo -1\n  else:\n    let p = dist.path(t)\n    echo dist[t], \" \", p.len\
     \ - 1\n    for i in 0..<p.len - 1:\n      echo p[i], \" \", p[i + 1]\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/dijkstra.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
   - atcoder/extra/graph/dijkstra.nim
-  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/dijkstra.nim
+  - atcoder/header.nim
   - atcoder/extra/graph/dijkstra_result.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_shortest_path_test.nim

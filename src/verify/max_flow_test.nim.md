@@ -38,9 +38,9 @@ data:
     \    mf.addEdge(a, b, c)\n  echo mf.flow(0, V - 1)\n"
   dependsOn:
   - atcoder/internal_queue.nim
+  - atcoder/header.nim
   - atcoder/maxflow.nim
   - atcoder/internal_queue.nim
-  - atcoder/header.nim
   - atcoder/maxflow.nim
   - atcoder/header.nim
   isVerificationFile: true

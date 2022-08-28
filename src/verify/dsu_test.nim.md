@@ -34,8 +34,8 @@ data:
   dependsOn:
   - atcoder/dsu.nim
   - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/dsu.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/dsu_test.nim
   requiredBy: []

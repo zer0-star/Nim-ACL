@@ -122,10 +122,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/lazysegtree.nim
     title: atcoder/lazysegtree.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/segtree.nim
     title: atcoder/segtree.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/segtree.nim
     title: atcoder/segtree.nim
   _extendedVerifiedWith:
@@ -255,10 +255,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/lazy_segtree_test.nim
     title: verify/lazy_segtree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/segtree_test.nim
     title: verify/segtree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/segtree_test.nim
     title: verify/segtree_test.nim
   _isVerificationFailed: true

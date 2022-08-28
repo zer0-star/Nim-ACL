@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
   - icon: ':heavy_check_mark:'
@@ -39,10 +39,10 @@ data:
     \ lowlink.articulation.sort()\n  for v in lowlink.articulation: echo v\n\nmain()\n"
   dependsOn:
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/lowlink.nim
+  - atcoder/extra/graph/lowlink.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/lowlink.nim
   - atcoder/header.nim
-  - atcoder/extra/graph/lowlink.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_3_a_lowlink_test.nim

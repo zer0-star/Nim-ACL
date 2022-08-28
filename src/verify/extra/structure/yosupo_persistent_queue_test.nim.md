@@ -35,8 +35,8 @@ data:
     \    else:\n      echo a[head]\n      head.inc\n    S[i] = (a, head, tail)\n\n\
     main()\n"
   dependsOn:
-  - atcoder/header.nim
   - atcoder/extra/structure/persistent_array.nim
+  - atcoder/header.nim
   - atcoder/extra/structure/persistent_array.nim
   - atcoder/header.nim
   isVerificationFile: true

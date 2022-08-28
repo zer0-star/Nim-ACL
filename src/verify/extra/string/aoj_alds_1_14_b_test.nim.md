@@ -32,8 +32,8 @@ data:
     \ initRollingHash(P)\n  for i in 0..T.len - P.len:\n    if rh[i..<i + P.len] ==\
     \ rh2[0..<P.len]: echo i\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/string/rolling_hash.nim
   - atcoder/header.nim
+  - atcoder/extra/string/rolling_hash.nim
   - atcoder/extra/string/rolling_hash.nim
   - atcoder/header.nim
   isVerificationFile: true

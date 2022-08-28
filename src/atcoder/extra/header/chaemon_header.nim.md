@@ -97,16 +97,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
   - icon: ':warning:'
@@ -307,74 +307,74 @@ data:
     \ b)\n  proc `pred`[T:SomeInteger](a:seq[T]):seq[T] = a.mapIt(it - 1)\n  proc\
     \ `succ`[T:SomeInteger](a:seq[T]):seq[T] = a.mapIt(it + 1)\n"
   dependsOn:
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/cfor.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/forward_compatibility/hash_func.nim
-  - atcoder/extra/other/seq_array_utils.nim
   - atcoder/extra/forward_compatibility/internal_sugar.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/sliceutils.nim
-  - atcoder/extra/other/reference.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/extra/other/zip.nim
   - atcoder/extra/other/inf.nim
-  - atcoder/extra/forward_compatibility/hash_func.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/reader.nim
   - atcoder/extra/forward_compatibility/internal_sugar.nim
-  - atcoder/extra/other/cfor.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/sliceutils.nim
-  - atcoder/extra/other/reference.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/zip.nim
   - atcoder/extra/other/inf.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/cfor.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/forward_compatibility/hash_func.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/forward_compatibility/internal_sugar.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/sliceutils.nim
-  - atcoder/extra/other/reference.nim
-  - atcoder/extra/other/debug.nim
   - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - atcoder/extra/other/zip.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/forward_compatibility/hash_func.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/forward_compatibility/internal_sugar.nim
-  - atcoder/extra/other/cfor.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/zip.nim
+  - atcoder/extra/other/cfor.nim
+  - atcoder/extra/other/cfor.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/sliceutils.nim
-  - atcoder/extra/other/reference.nim
-  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/other/zip.nim
+  - atcoder/extra/forward_compatibility/hash_func.nim
+  - atcoder/extra/forward_compatibility/hash_func.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/reference.nim
+  - atcoder/extra/other/reference.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/sliceutils.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/sliceutils.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/forward_compatibility/internal_sugar.nim
   - atcoder/extra/other/inf.nim
+  - atcoder/extra/forward_compatibility/internal_sugar.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/extra/other/zip.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/extra/other/zip.nim
+  - atcoder/extra/other/cfor.nim
+  - atcoder/extra/other/cfor.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/forward_compatibility/hash_func.nim
+  - atcoder/extra/forward_compatibility/hash_func.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/reference.nim
+  - atcoder/extra/other/reference.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/sliceutils.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/sliceutils.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/solve_proc.nim
   isVerificationFile: false
   path: atcoder/extra/header/chaemon_header.nim
   requiredBy:

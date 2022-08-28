@@ -152,30 +152,30 @@ data:
     \    self.canvas_data.poly.add((p, label, color))\n\nproc show*[Real](self: Canvas[Real])\
     \ =\n  self.Win.show()\n  app.run()\n\n"
   dependsOn:
+  - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/geometry/polygon.nim
   - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/extra/geometry/polygon.nim
-  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/geometry/polygon.nim
   - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/extra/geometry/polygon.nim
-  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/floatutils.nim
   isVerificationFile: false
   path: atcoder/extra/geometry/visualizer.nim
   requiredBy: []

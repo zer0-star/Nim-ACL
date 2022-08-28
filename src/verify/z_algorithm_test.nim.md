@@ -7,17 +7,17 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/string.nim
     title: atcoder/string.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/string.nim
     title: atcoder/string.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/zalgorithm
     links:
@@ -51,7 +51,7 @@ data:
   path: verify/z_algorithm_test.nim
   requiredBy: []
   timestamp: '2021-12-11 23:59:27+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/z_algorithm_test.nim
 layout: document

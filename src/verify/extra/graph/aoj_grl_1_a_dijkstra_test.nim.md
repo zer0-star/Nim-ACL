@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
   - icon: ':question:'
@@ -52,15 +52,15 @@ data:
     \ = dijkstra(g, R)\n  for u in 0..<V:\n    if dist[u] == int.inf: echo \"INF\"\
     \n    else: echo dist[u]\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/dijkstra.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/header.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
   - atcoder/extra/graph/dijkstra.nim
-  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/dijkstra.nim
+  - atcoder/header.nim
   - atcoder/extra/graph/dijkstra_result.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_1_a_dijkstra_test.nim

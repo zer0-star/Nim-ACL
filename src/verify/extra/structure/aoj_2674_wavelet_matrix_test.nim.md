@@ -45,14 +45,14 @@ data:
     \ L, R = nextInt() - 1\n  let E = nextInt()\n  echo (R - L + 1) - matrix.range_freq(L\
     \ .. R, min(X[L], X[R]) - E, max(X[L], X[R]) + E + 1)\n"
   dependsOn:
-  - atcoder/extra/structure/wavelet_matrix.nim
-  - atcoder/extra/structure/wavelet_matrix.nim
   - atcoder/rangeutils.nim
-  - atcoder/header.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - atcoder/extra/structure/wavelet_matrix.nim
   - atcoder/header.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
   requiredBy: []

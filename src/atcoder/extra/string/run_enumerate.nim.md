@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/string.nim
     title: atcoder/string.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/string.nim
     title: atcoder/string.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/string.nim
     title: atcoder/string.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/string.nim
     title: atcoder/string.nim
   _extendedRequiredBy: []

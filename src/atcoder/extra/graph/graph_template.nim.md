@@ -38,16 +38,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/cycle_detection.nim
     title: atcoder/extra/graph/cycle_detection.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
   - icon: ':heavy_check_mark:'
@@ -62,16 +62,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra_radix_heap.nim
     title: atcoder/extra/graph/dijkstra_radix_heap.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
   - icon: ':warning:'
@@ -327,15 +327,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/tree/yosupo_tree_diameter_test.nim
     title: verify/extra/tree/yosupo_tree_diameter_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/shortest_path_test.nim
     title: verify/shortest_path_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/shortest_path_test.nim
     title: verify/shortest_path_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -494,7 +494,7 @@ data:
   - atcoder/extra/graph/chu_liu_edmonds.nim
   - atcoder/extra/graph/chu_liu_edmonds.nim
   timestamp: '2022-07-30 23:50:20+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
   - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim

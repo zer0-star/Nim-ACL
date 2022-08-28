@@ -603,40 +603,40 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/min_cost_flow_test.nim
     title: verify/min_cost_flow_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/scc_test.nim
     title: verify/scc_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/scc_test.nim
     title: verify/scc_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/segtree_test.nim
     title: verify/segtree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/segtree_test.nim
     title: verify/segtree_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/shortest_path_test.nim
     title: verify/shortest_path_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/shortest_path_test.nim
     title: verify/shortest_path_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/suffix_array_test.nim
     title: verify/suffix_array_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/suffix_array_test.nim
     title: verify/suffix_array_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/twosat_test.nim
     title: verify/twosat_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/twosat_test.nim
     title: verify/twosat_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/z_algorithm_test.nim
     title: verify/z_algorithm_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/z_algorithm_test.nim
     title: verify/z_algorithm_test.nim
   _isVerificationFailed: true

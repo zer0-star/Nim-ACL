@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
   _extendedRequiredBy: []
@@ -67,12 +67,12 @@ data:
   dependsOn:
   - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/other/inf.nim
   - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/graph_template.nim
   isVerificationFile: false
   path: atcoder/extra/graph/bellman_ford.nim
   requiredBy: []

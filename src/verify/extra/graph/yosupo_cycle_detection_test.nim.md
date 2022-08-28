@@ -19,10 +19,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/cycle_detection.nim
     title: atcoder/extra/graph/cycle_detection.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
   - icon: ':question:'
@@ -55,15 +55,15 @@ data:
     \ -1\n\nmain()\n"
   dependsOn:
   - atcoder/extra/forward_compatibility/internal_sugar.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/cycle_detection.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/forward_compatibility/internal_sugar.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
   - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/header.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - atcoder/extra/graph/cycle_detection.nim
+  - atcoder/extra/graph/cycle_detection.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_cycle_detection_test.nim
   requiredBy: []

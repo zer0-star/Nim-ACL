@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
   - icon: ':heavy_check_mark:'
@@ -37,28 +37,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
   _extendedRequiredBy:
@@ -185,26 +185,26 @@ data:
     \  var m = self.edges.len\n    assert i in 0 ..< m\n    edges[i].cap = cap\n \
     \   edges[i].cost = cost\n\n"
   dependsOn:
-  - atcoder/internal_csr.nim
   - atcoder/internal_queue.nim
   - atcoder/scc.nim
-  - atcoder/internal_scc.nim
-  - atcoder/internal_queue.nim
   - atcoder/internal_heap.nim
   - atcoder/internal_csr.nim
   - atcoder/scc.nim
   - atcoder/internal_scc.nim
+  - atcoder/internal_queue.nim
   - atcoder/internal_heap.nim
+  - atcoder/internal_scc.nim
   - atcoder/internal_csr.nim
   - atcoder/internal_queue.nim
+  - atcoder/scc.nim
+  - atcoder/internal_heap.nim
+  - atcoder/internal_csr.nim
   - atcoder/scc.nim
   - atcoder/internal_scc.nim
   - atcoder/internal_queue.nim
   - atcoder/internal_heap.nim
-  - atcoder/internal_csr.nim
-  - atcoder/scc.nim
   - atcoder/internal_scc.nim
-  - atcoder/internal_heap.nim
+  - atcoder/internal_csr.nim
   isVerificationFile: false
   path: atcoder/extra/graph/mincostflow_generalized.nim
   requiredBy:

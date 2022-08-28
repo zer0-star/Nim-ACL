@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
   _extendedRequiredBy: []
@@ -57,15 +57,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/yosupo_shortest_path_test.nim
     title: verify/extra/graph/yosupo_shortest_path_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/shortest_path_test.nim
     title: verify/shortest_path_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/shortest_path_test.nim
     title: verify/shortest_path_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -105,23 +105,23 @@ data:
     \ a[f.dst]\n        if p[].dist > w:\n          p[].dist = w;\n          Q.push(initDijkstraObj(e.dst,\
     \ f.dst, w))\n    result = DijkstraResult[G.T, G.U, G.useId](a:a)\n"
   dependsOn:
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/dijkstra_result.nim
   isVerificationFile: false
   path: atcoder/extra/graph/dijkstra.nim
   requiredBy: []
   timestamp: '2022-07-30 23:50:20+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
   - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim

@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/string.nim
     title: atcoder/string.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/string.nim
     title: atcoder/string.nim
   _extendedRequiredBy: []
@@ -38,9 +38,9 @@ data:
     \  for (t,l,r) in ans:\n    echo t, \" \",l, \" \",r\n\nmain()\n"
   dependsOn:
   - atcoder/string.nim
-  - atcoder/extra/string/run_enumerate.nim
   - atcoder/header.nim
   - atcoder/string.nim
+  - atcoder/extra/string/run_enumerate.nim
   - atcoder/extra/string/run_enumerate.nim
   - atcoder/header.nim
   isVerificationFile: true

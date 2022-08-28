@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
   _extendedRequiredBy:
@@ -45,15 +45,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
     title: verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/scc_test.nim
     title: verify/scc_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/scc_test.nim
     title: verify/scc_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -69,8 +69,8 @@ data:
   dependsOn:
   - atcoder/internal_csr.nim
   - atcoder/internal_scc.nim
-  - atcoder/internal_csr.nim
   - atcoder/internal_scc.nim
+  - atcoder/internal_csr.nim
   isVerificationFile: false
   path: atcoder/scc.nim
   requiredBy:
@@ -83,7 +83,7 @@ data:
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   timestamp: '2021-08-18 01:50:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
   - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim

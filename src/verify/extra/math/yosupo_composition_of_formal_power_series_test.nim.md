@@ -93,27 +93,27 @@ data:
     \ =\n  let\n    N = nextInt()\n    a = newSeqWith(N, mint(nextInt()))\n    b =\
     \ newSeqWith(N, mint(nextInt()))\n  echo composition(b, a).join(\" \")\n\nmain()\n"
   dependsOn:
+  - atcoder/internal_bit.nim
   - atcoder/element_concepts.nim
+  - atcoder/modint.nim
+  - atcoder/convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/header.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/internal_bit.nim
+  - atcoder/generate_definitions.nim
   - atcoder/extra/math/ntt.nim
   - atcoder/extra/math/composition.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/convolution.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
-  - atcoder/convolution.nim
   - atcoder/element_concepts.nim
-  - atcoder/internal_math.nim
-  - atcoder/internal_bit.nim
   - atcoder/modint.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/internal_bit.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/convolution.nim
   - atcoder/extra/math/composition.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/header.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim

@@ -7,16 +7,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/bellman_ford.nim
     title: atcoder/extra/graph/bellman_ford.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
   - icon: ':question:'
@@ -46,14 +46,14 @@ data:
     \ 0..<V:\n      if bf[u] == int.inf: echo \"INF\"\n      else: echo bf[u]\n\n\
     main()\n"
   dependsOn:
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/other/inf.nim
   - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/bellman_ford.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/extra/graph/bellman_ford.nim
-  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/bellman_ford.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_1_b_bellman_ford_test.nim
   requiredBy: []

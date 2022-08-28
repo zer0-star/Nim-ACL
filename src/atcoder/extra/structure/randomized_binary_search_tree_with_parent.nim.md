@@ -259,18 +259,18 @@ data:
     \ RBST):int {.discardable.} =\n    doAssert self.root.p == nil\n    self.check_tree(self.root)\n\
     \  {.pop.}\n"
   dependsOn:
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/rangeutils.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/rangeutils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   requiredBy:

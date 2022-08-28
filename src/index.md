@@ -30,7 +30,7 @@ data:
     - icon: ':question:'
       path: atcoder/internal_bit.nim
       title: atcoder/internal_bit.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/internal_csr.nim
       title: atcoder/internal_csr.nim
     - icon: ':heavy_check_mark:'
@@ -42,7 +42,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/internal_queue.nim
       title: atcoder/internal_queue.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/internal_scc.nim
       title: atcoder/internal_scc.nim
     - icon: ':heavy_check_mark:'
@@ -69,16 +69,16 @@ data:
     - icon: ':question:'
       path: atcoder/rangeutils.nim
       title: atcoder/rangeutils.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/scc.nim
       title: atcoder/scc.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/segtree.nim
       title: atcoder/segtree.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/string.nim
       title: atcoder/string.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/twosat.nim
       title: atcoder/twosat.nim
   - name: atcoder/extra/dp
@@ -233,10 +233,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/cycle_detection.nim
       title: atcoder/extra/graph/cycle_detection.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/dijkstra.nim
       title: atcoder/extra/graph/dijkstra.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/dijkstra.nim
       title: atcoder/extra/graph/dijkstra.nim
     - icon: ':warning:'
@@ -251,10 +251,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/dijkstra_radix_heap.nim
       title: atcoder/extra/graph/dijkstra_radix_heap.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/dijkstra_result.nim
       title: atcoder/extra/graph/dijkstra_result.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/dijkstra_result.nim
       title: atcoder/extra/graph/dijkstra_result.nim
     - icon: ':warning:'
@@ -275,10 +275,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/gabow_edmonds.nim
       title: atcoder/extra/graph/gabow_edmonds.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/graph_template.nim
       title: atcoder/extra/graph/graph_template.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/graph_template.nim
       title: atcoder/extra/graph/graph_template.nim
     - icon: ':warning:'
@@ -665,10 +665,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/other/floatutils.nim
       title: atcoder/extra/other/floatutils.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/other/inf.nim
       title: atcoder/extra/other/inf.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/other/inf.nim
       title: atcoder/extra/other/inf.nim
     - icon: ':warning:'
@@ -1088,22 +1088,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/modint_test.nim
       title: verify/modint_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/scc_test.nim
       title: verify/scc_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/segtree_test.nim
       title: verify/segtree_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/shortest_path_test.nim
       title: verify/shortest_path_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/suffix_array_test.nim
       title: verify/suffix_array_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/twosat_test.nim
       title: verify/twosat_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/z_algorithm_test.nim
       title: verify/z_algorithm_test.nim
   - name: verify/extra/dp

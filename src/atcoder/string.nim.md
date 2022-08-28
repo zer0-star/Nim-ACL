@@ -45,21 +45,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/lcp_array_test.nim
     title: verify/lcp_array_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/suffix_array_test.nim
     title: verify/suffix_array_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/suffix_array_test.nim
     title: verify/suffix_array_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/z_algorithm_test.nim
     title: verify/z_algorithm_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/z_algorithm_test.nim
     title: verify/z_algorithm_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -155,7 +155,7 @@ data:
   - atcoder/extra/string/suffix_array_utils.nim
   - atcoder/extra/string/suffix_array_utils.nim
   timestamp: '2020-09-24 19:39:03+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/string/yosupo_run_enumerate_test.nim
   - verify/extra/string/yosupo_run_enumerate_test.nim

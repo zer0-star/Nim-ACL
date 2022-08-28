@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
   - icon: ':heavy_check_mark:'
@@ -120,12 +120,12 @@ data:
     \ 0 <= cap\n    assert 0 <= cost\n    var m = self.edges.len\n    assert i in\
     \ 0 ..< m\n    edges[i].cap = cap\n    edges[i].cost = cost\n"
   dependsOn:
-  - atcoder/internal_csr.nim
-  - atcoder/internal_queue.nim
   - atcoder/internal_queue.nim
   - atcoder/internal_heap.nim
   - atcoder/internal_csr.nim
+  - atcoder/internal_queue.nim
   - atcoder/internal_heap.nim
+  - atcoder/internal_csr.nim
   isVerificationFile: false
   path: atcoder/mincostflow.nim
   requiredBy: []

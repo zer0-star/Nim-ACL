@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/string.nim
     title: atcoder/string.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/string.nim
     title: atcoder/string.nim
   _extendedRequiredBy: []
@@ -38,10 +38,10 @@ data:
     \ S.initSuffixArray\n  for i in 0..<Q:\n    let T = nextString()\n    let range\
     \ = sa.lowerUpperBound(T)\n    echo if range[0] != range[1]: 1 else: 0\n\nmain()\n"
   dependsOn:
+  - atcoder/extra/string/suffix_array_utils.nim
   - atcoder/string.nim
-  - atcoder/extra/string/suffix_array_utils.nim
-  - atcoder/extra/string/suffix_array_utils.nim
   - atcoder/header.nim
+  - atcoder/extra/string/suffix_array_utils.nim
   - atcoder/string.nim
   - atcoder/header.nim
   isVerificationFile: true
