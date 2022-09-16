@@ -3,6 +3,7 @@
 from logging import Logger, basicConfig, getLogger
 from os import getenv
 from pathlib import Path
+import os
 
 import markdown
 import toml
@@ -76,7 +77,8 @@ if __name__ == "__main__":
         logger.info('start converting, lang={}'.format(lang))
 #        base_dir : Path = Path('..') / 'document_{}'.format(lang)        
         toml_dir = Path('..') / 'document_{}'.format(lang)
-        for base_dir in [Path('..') / 'document_{}'.format(lang), Path('..') / 'document_{}/extra'.format(lang)]:
+        for x in os.walk(Path('..') / 'document_{}'.format(lang)):
+            base_dir = Path(x[0])
             for md_file in base_dir.glob('*.md'):
                 logger.info('convert {}'.format(md_file))
                 statement = convert(open(md_file).read(), toml_dir)

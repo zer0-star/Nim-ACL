@@ -140,7 +140,8 @@ when not declared ATCODER_MODINT_HPP:
       m.a.dec
 
   generatePow(ModInt)
-
+  
+  # intのところはSomeIntegerに拡張したいがそうするとSystem.nimのuintのconverterとバッティングする。。。
   template useStaticModint*(name, M) =
     generateConverter(name, int, StaticModInt[M])
   template useDynamicModInt*(name, M) =

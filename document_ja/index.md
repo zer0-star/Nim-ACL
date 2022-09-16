@@ -47,7 +47,7 @@
 ACLには収録されていないが、使用頻度が高そうなライブラリを追加しました。
 
 ### データ構造
-- [`SortedSetとSortedMap(C++のset, mapと同機能)`](./extra/sorted_set_map.html)
+- ソート済みのset, table(map)(C++のset, mapと同機能)  [`import atcoder/extra/structure/set_map`](./extra/structure/sorted_set_map.html)
 - Skew Heap
 - dual fenwick tree
 - Splay Tree
@@ -61,17 +61,16 @@ ACLには収録されていないが、使用頻度が高そうなライブラ�
   - Randomized Binary Search Tree
 - Sparse Table
 - 永続関係
-  - [`import atcoder/extra/structure/persistent_array`](./extra/persistent_array.html)
-  - [`import atcoder/extra/structure/persistent_dsu`](./extra/persistent_dsu.html)
+  - 永続配列 [`import atcoder/extra/structure/persistent_array`](./extra/structure/persistent_array.html)
+  - 永続DSU [`import atcoder/extra/structure/persistent_dsu`](./extra/structure/persistent_dsu.html)
   - Partially Persistent DSU
-  - Persistent DSU
 
 
 ### 数学
 - 約数系
-  - 約数列挙
-  - エラトステネス
-  - 素因数分解
+  - 約数列挙 [`import atcoder/extra/math/divisor`](./extra/math/divisor.html)
+  - エラトステネス [`import atcoder/extra/math/eratosthenes`](./extra/math/eratosthenes.html)
+  - 素因数分解(pollard-rho法)[`import atcoder/extra/math/factorization`](./extra/math/factorization.html)
 - 畳み込み関係
   - 任意modの畳み込み
   - 高速フーリエ変換
@@ -92,11 +91,11 @@ ACLには収録されていないが、使用頻度が高そうなライブラ�
   - modintの分数推測
 
 ### グラフ
-- [`import atcoder/extra/graph/graph_template`](./extra/graph_template.html)
+- [`import atcoder/extra/graph/graph_template`](./extra/graph/graph_template.html)
 - 最短経路問題
-  - dijkstra法: [`import atcoder/extra/graph/dijkstra`](./extra/dijkstra.html)
-  - bellman-ford法: [`import atcoder/extra/graph/bellman_ford`](./extra/bellman_ford.html)
-  - warshall-floyd法: [`import atcoder/extra/graph/warshall_floyd`](./extra/warshall_floyd.html)
+  - dijkstra法: [`import atcoder/extra/graph/dijkstra`](./extra/graph/dijkstra.html)
+  - bellman-ford法: [`import atcoder/extra/graph/bellman_ford`](./extra/graph/bellman_ford.html)
+  - warshall-floyd法: [`import atcoder/extra/graph/warshall_floyd`](./extra/graph/warshall_floyd.html)
 - 最小木問題
   - prim法
   - kruskal法
@@ -116,7 +115,7 @@ ACLには収録されていないが、使用頻度が高そうなライブラ�
 - オイラー周回
 - 彩色数
 - トポロジカルソート
-- 強連結の向き付け: [`import atcoder/extra/graph/strong_orientation`](./extra/strong_orientation.html)
+- 強連結の向き付け: [`import atcoder/extra/graph/strong_orientation`](./extra/graph/strong_orientation.html)
 
 ### 木
 - 木の直径

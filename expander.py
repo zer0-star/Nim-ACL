@@ -222,6 +222,7 @@ def main():
         global outputPrefix
         subprocess.run("export XZ_OPT=-9 && tar -Jcvf atcoder.tar.xz atcoder", cwd=lib_tmp, shell=True, stdout=subprocess.PIPE)
         md5sum = subprocess.run("md5sum atcoder.tar.xz", cwd=lib_tmp, shell=True, stdout=subprocess.PIPE).stdout.decode()
+        second_compile_command = "nim cpp -d:release -d:SecondCompile -d:danger --path:./ --opt:speed --multimethods:on --warning[SmallLshouldNotBeUsed]:off --checks:off -o:a.out"
         if opts.raw:
             d = open(lib_tmp / "atcoder.tar.xz", 'rb').read()
       #let (output, ex) = gorgeEx("tail -c " & $zs & " " & fn & " > atcoder.tar.xz && tar -Jxvf atcoder.tar.xz && rm atcoder.tar.xz")
@@ -246,9 +247,9 @@ static:
     discard staticExec("head -c " & ss & " " & fn & " > Main2.nim")
     let s = staticExec("du -a")
     doAssert false, s
-    let (output, ex) = gorgeEx("nim cpp -d:release -d:SecondCompile --path:./ --opt:speed --multimethods:on --warning[SmallLshouldNotBeUsed]:off --checks:off -o:a.out Main2.nim")
+    let (output, ex) = gorgeEx("{:s} Main2.nim")
     discard staticExec("rm -rf ./atcoder && rm Main2.nim");doAssert ex == 0, output;quit(0)
-""".format(len(d), md5sum, len(d))
+""".format(len(d), md5sum, len(d), second_compile_command)
             outputSuffix += d
         else:
             s = subprocess.run("cat atcoder.tar.xz | base64 -w 0", cwd=lib_tmp, shell=True, stdout=subprocess.PIPE).stdout.decode()
@@ -262,9 +263,9 @@ static:
       let (output, ex) = gorgeEx("if [ -e ./atcoder ]; then exit 1; else exit 0; fi")
       doAssert ex == 0, "atcoder directory already exisits"
     discard staticExec("echo \\"{:s}\\" | base64 -d > atcoder.tar.xz && tar -Jxvf atcoder.tar.xz")
-    let (output, ex) = gorgeEx("nim cpp -d:release -d:SecondCompile --path:./ --opt:speed --multimethods:on --warning[SmallLshouldNotBeUsed]:off --checks:off -o:a.out " & fn)
+    let (output, ex) = gorgeEx("{:s} " & fn)
     discard staticExec("rm -rf ./atcoder");doAssert ex == 0, output;quit(0)
-""".format(md5sum, s)
+""".format(md5sum, s, second_compile_command)
 
     output = (outputPrefix + '\n\n' + '\n'.join(result) + '\n').encode() + outputSuffix
     if opts.console:

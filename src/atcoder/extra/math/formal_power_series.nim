@@ -56,7 +56,9 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
       cmp(x[0], y[0])
 
 #  converter toSFPS*[T](a:T):SparseFormalPowerSeries[T] = @[(0, a)]
-  proc deg*[T](a:SparseFormalPowerSeries[T]):int = a[^1].d
+  proc deg*[T](a:SparseFormalPowerSeries[T]):int =
+    if a.len == 0: return int.low
+    else: return a[^1].d
   proc `+=`*[T](a:var SparseFormalPowerSeries[T], b:SparseFormalPowerSeries[T]) =
     var r:SparseFormalPowerSeries[T]
     var i, j = 0
@@ -158,15 +160,16 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
     let l = self.len
     self.setLen(n)
     if l < n:
-      for i in l ..< n:
-        self[i] = T(0)
+      self.fill(l, n - 1, T(0))
 
   converter toFPS*[T](f:Monomial[T]):FormalPowerSeries[T] = 
     result = newSeq[T](f.d + 1)
     result[f.d] = f.c
   converter toFPS*[T](f:SparseFormalPowerSeries[T]):FormalPowerSeries[T] = 
     let d = f.deg
-    result = initFormalPowerSeries[T](newSeqWith(d + 1, T.init(0)))
+    if d < 0: return
+    result.resize(d + 1)
+    result.fill(T(0))
     for p in f: result[p.d] += p.c
 
 #  proc `+`*[T](f, g: Monomial[T]):FormalPowerSeries[T] =

@@ -14,7 +14,6 @@ usage: expander.py [-h] [-c] [-s] [--lib LIB] source
   -s            展開した部分が一行で表示され、提出ソースコードが読みやすくなります。NimおよびNim-ACL利用者を増やすためにもこのオプションを有効にしていただけたら嬉しいです。
 ```
 
-
 ## extra
 ACLにないがよく使いそうなライブラリを独自に実装しています。
 例えば、グラフ関連の処理(ダイクストラ法等)や累積和ライブラリなどがあります。こちらもexpanderで展開可能です。
@@ -26,6 +25,10 @@ ACLにないがよく使いそうなライブラリを独自に実装してい�
 * 本家ACLほどの万全なサポートは行わないが、test, verifyはできるだけ書く
 * READMEもできるだけ書く(英訳はできないかも)
 * 将来ACLに実装された場合は順次そちらに置き換える
+
+## 使用上の注意
+* 本ライブラリをコンパイルする際にはcppでのコンパイル、つまりnim cppが必要です。atcoderでもcppでコンパイルされています。nim cでは動きません。
+* mathという名前の標準ライブラリがあるので、import atcoder/mathとimport mathはバッティングします。両方importしたい場合は後者をimport std/mathとしましょう。
 
 # References
 - https://atcoder.jp/posts/517?lang=ja

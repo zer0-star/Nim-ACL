@@ -39,7 +39,7 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   import atcoder/extra/other/seq_array_utils
   include atcoder/extra/other/debug
   import atcoder/extra/other/reference
-  import atcoder/extra/other/floatutils
+  #import atcoder/extra/other/floatutils
   import atcoder/extra/other/zip
   import atcoder/extra/other/solve_proc
 
@@ -69,3 +69,4 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   template `/_`*[T:SomeInteger](a, b:T):T = floorDiv(a, b)
   proc `pred`[T:SomeInteger](a:seq[T]):seq[T] = a.mapIt(it - 1)
   proc `succ`[T:SomeInteger](a:seq[T]):seq[T] = a.mapIt(it + 1)
+  proc `-`(a, b:char):int = a.ord - b.ord

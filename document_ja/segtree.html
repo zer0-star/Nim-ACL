@@ -103,6 +103,12 @@ var seg = initSegTree[int](10, seg, e)
 <ul>
 <li>$O(n)$</li>
 </ul>
+<h2>タイプだけ設定</h2>
+<pre><code class="nim">  type st_type = SegTreeType[S](op:(S,S)-&gt;S, e:()-&gt;S)
+</code></pre>
+
+<p>コンストラクタは呼ばずにタイプだけ設定できます。<code>st_type.init(v:seq[int])</code>といった具合にタイプからコンストラクタを呼び出したり、<code>var v:seq[st_type]</code>といった具合にsegtreeの配列を宣言するのにお使いください。</p>
+<p>(背景)Nimはいろいろと癖のある言語でsegtreeのobject構造体はマニアック(笑)な構造をしているので直にタイプを呼ぶのは推奨されません。上記のSegTreeTypeのテンプレートをお使いください。</p>
 <h2>set</h2>
 <pre><code class="nim">seg.set(p:int, x:S):void
 seg[p:int] = x:S

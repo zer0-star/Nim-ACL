@@ -1,6 +1,6 @@
 when not declared ATCODER_DEBUG_HPP:
   const ATCODER_DEBUG_HPP* = 1
-  import macros, strformat, terminal
+  import macros, strformat, terminal, strutils
   import atcoder/extra/other/inf
 
   macro debugImpl*(n:varargs[untyped]): untyped =
@@ -12,16 +12,15 @@ when not declared ATCODER_DEBUG_HPP:
     a.add "styledWriteLine stderr, fgYellow, "
     for i,x in n:
       if x.kind == nnkStrLit:
-        a &= fmt"{x.repr}  "
+        a &= fmt"{x.toStrLit}  "
         if i < n.len - 1:
           a.add(""", " ",""")
       else:
-        a &= fmt""" "{x.repr} = ", infRepr({x.repr}) """
+        let s = fmt"{x.toStrLit}".replace("\n", "").replace("  ", " ")
+        a &= fmt""" "{s} = ", infRepr({s}) """
         if i < n.len - 1:
           a.add(""", ", ",""")
-#    a.add(", \"\\n\"")
     a.add "\n"
-#    a.add "resetAttributes()"
     parseStmt(a)
   template debug*(n: varargs[untyped]): untyped =
     const EVAL =

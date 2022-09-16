@@ -13,7 +13,6 @@ when not declared ATCODER_REFERENCE_HPP:
     result = newStmtList()
     if lhs.kind == nnkPar:
       for i,t in lhs:
-        var rhs = fmt"""{rhs.repr}[{i}]"""
-        result.add parseStmt(fmt"""byaddr({$t}, {$rhs}.type, {$rhs})""")
+        result.add parseStmt(fmt"""byaddr({$t}, ({rhs.toStrLit}).type, {rhs.toStrLit})""")
     else:
-      result.add parseStmt(fmt"""byaddr({$lhs}, {$rhs}.type, {$rhs})""")
+      result.add parseStmt(fmt"""byaddr({$lhs}, ({rhs.toStrLit}).type, {rhs.toStrLit})""")

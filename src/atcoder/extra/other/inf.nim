@@ -10,9 +10,13 @@ when not declared ATCODER_INF_HPP:
     when T is seq or T is array:
       "@[" & x.mapIt(it.infRepr).join(", ") & "]"
     elif x is SomeInteger or x is SomeFloat:
-      if x >= T.inf: "inf"
-      elif x <= -T.inf: "-inf"
-      else: $x
+      when x is SomeUnsignedInt:
+        if x >= T.inf: "inf"
+        else: $x
+      else:
+        if x >= T.inf: "inf"
+        elif x <= -T.inf: "-inf"
+        else: $x
     else:
       $x
   proc `∞`*(T:typedesc):T = T.inf

@@ -4,16 +4,16 @@ when not declared ATCODER_SEGTREE_HPP:
   import std/sequtils, std/algorithm
   import atcoder/rangeutils
 
-  {.push inline.}
+  #{.push inline.}
   type SegTree*[S; p:static[tuple]] = object
     len*, size*, log*:int
     d: seq[S]
 
-  template calc_op[ST:SegTree](self:typedesc[ST], a, b:ST.S):auto =
+  template calc_op*[ST:SegTree](self:typedesc[ST], a, b:ST.S):auto =
     block:
       let u = ST.p.op(a, b)
       u
-  template calc_e[ST:SegTree](self:typedesc[ST]):auto =
+  template calc_e*[ST:SegTree](self:typedesc[ST]):auto =
     block:
       let u = ST.p.e()
       u
@@ -120,4 +120,4 @@ when not declared ATCODER_SEGTREE_HPP:
       sm = ST.calc_op(self.d[r], sm)
       if not ((r and -r) != r): break
     return 0
-  {.pop.}
+  #{.pop.}

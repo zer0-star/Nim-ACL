@@ -1,6 +1,8 @@
+when defined SecondCompile:
+  const DO_CHECK = false;const DEBUG = false
+else:
+  const DO_CHECK = true;const DEBUG = true
 const
-  DO_CHECK = true
-  DEBUG = true
   USE_DEFAULT_TABLE = true
 
 include lib/header/chaemon_header

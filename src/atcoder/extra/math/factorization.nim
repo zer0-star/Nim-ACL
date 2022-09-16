@@ -1,6 +1,6 @@
 when not declared ATCODER_FACTORIZATION_HPP:
   const ATCODER_FACTORIZATION_HPP* = 1
-  import math, bitops
+  import math, bitops, tables
   proc mul(a, b, m:int):int {.importcpp: "(__int128)(#) * (#) % (#)", nodecl.}
   proc power(a, b, m:int):int =
     var (a, b) = (a, b)
@@ -48,10 +48,17 @@ when not declared ATCODER_FACTORIZATION_HPP:
       y = f(f(y))
     return gcd(p, n)
   
-  proc factor*(n:int):seq[int] =
+  proc factor*(n:int):seq[(int, int)] =
     if n == 1: return @[]
-    if isPrime(n): return @[n]
+    if isPrime(n): return @[(n, 1)]
     var a = rho(n)
     assert a != n and a != 1
-    result = factor(a)
-    result &= factor(n div a)
+    var v = initTable[int, int]()
+    for (p, e) in factor(a):
+      if p notin v: v[p] = 0
+      v[p] += e
+    for (p, e) in factor(n div a):
+      if p notin v: v[p] = 0
+      v[p] += e
+    for p, e in v:
+      result.add((p, e))

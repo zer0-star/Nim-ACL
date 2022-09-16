@@ -2,13 +2,14 @@ when not declared ATCODER_AHO_CORASICK_HPP:
   const ATCODER_AHO_CORASICK_HPP* = 1
   import tables, deques
   import atcoder/extra/structure/trie
+  import atcoder/extra/other/algorithmutils
 
   template getTrie*(char_sz, margin:static[int]):typedesc = Trie[char_sz, margin]
 
   type AhoCorasick[char_sz, margin:static[int]] = object
-    FAIL: int
-    correct: seq[int]
-    t: getTrie(char_sz + 1, margin)
+    FAIL*: int
+    correct*: seq[int]
+    t*: getTrie(char_sz + 1, margin)
 
   proc initAhoCorasick*[char_sz, margin:static[int]](): AhoCorasick[char_sz, margin] =
     result.FAIL = char_sz
@@ -18,24 +19,6 @@ when not declared ATCODER_AHO_CORASICK_HPP:
   proc add*(self: var AhoCorasick, s:string) =
     self.t.add(s)
 
-  proc setUnion*[T](u, v: seq[T]):seq[T] =
-    result = newSeq[T]()
-    var (i,j) = (0,0)
-    while true:
-      if i < u.len:
-        if j < v.len:
-          if u[i] < v[j]:result.add(u[i]);i+=1
-          elif u[i] > v[j]:result.add(v[j]);j+=1
-          else: result.add(v[j]);i+=1;j+=1
-        else:
-          result.add(u[i]);i+=1
-      else:
-        if j < v.len:
-          result.add(v[j]);j+=1
-        else:
-          break
-  #  echo u, v, result
-  
   proc build*(self: var AhoCorasick, heavy = true):void =
     self.correct.setLen(self.t.len)
     for i in 0..<self.t.len:

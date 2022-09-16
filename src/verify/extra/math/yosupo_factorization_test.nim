@@ -7,6 +7,8 @@ block main:
   let Q = nextInt()
   for _ in 0..<Q:
     let x = factor(nextInt()).sorted()
-    stdout.write(x.len, " ")
-    stdout.write(x.mapIt($it).join(" "))
-    echo ""
+    var ans: seq[int]
+    for (p, e) in x:
+      for _ in 0 ..< e:
+        ans.add p
+    echo ans.len, " ", ans.join(" ")

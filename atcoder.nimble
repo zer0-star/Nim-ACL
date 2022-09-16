@@ -15,8 +15,6 @@ backend       = "cpp"
 
 requires "nim >= 1.0.0"
 
-import std/distros
-
 after install:
   if defined(linux):
     exec("ln -s ./atcoder/extra lib")
