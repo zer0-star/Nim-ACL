@@ -25,10 +25,10 @@ data:
   - icon: ':question:'
     path: atcoder/extra/math/formal_power_series.nim
     title: atcoder/extra/math/formal_power_series.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_differential_equation.nim
     title: atcoder/extra/math/formal_power_series_differential_equation.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_differential_equation.nim
     title: atcoder/extra/math/formal_power_series_differential_equation.nim
   - icon: ':question:'
@@ -75,9 +75,9 @@ data:
     title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: https://yukicoder.me/problems/no/963
     links:
@@ -95,35 +95,35 @@ data:
     \  var f = DifferentialEquation(g, gp, mint(1), N + 1)\n  for i in 1 .. N: f[N]\
     \ *= mint(i)\n  echo f[N] * 2\n"
   dependsOn:
+  - atcoder/extra/math/formal_power_series_differential_equation.nim
   - atcoder/internal_bit.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/convolution.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/header.nim
   - atcoder/element_concepts.nim
   - atcoder/modint.nim
-  - atcoder/convolution.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/formal_power_series_differential_equation.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/header.nim
   - atcoder/internal_math.nim
   - atcoder/extra/math/ntt.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/extra/math/formal_power_series_differential_equation.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/header.nim
   - atcoder/element_concepts.nim
-  - atcoder/modint.nim
-  - atcoder/convolution.nim
-  - atcoder/extra/math/formal_power_series_differential_equation.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/formal_power_series.nim
   - atcoder/generate_definitions.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/extra/math/formal_power_series.nim
-  - atcoder/header.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
+  - atcoder/convolution.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/modint.nim
   isVerificationFile: true
   path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
   requiredBy: []
-  timestamp: '2022-08-08 21:23:55+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-17 04:52:33+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/math/yukicoder_0963_differential_equation_test.nim
 layout: document

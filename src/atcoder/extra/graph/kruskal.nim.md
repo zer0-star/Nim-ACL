@@ -13,16 +13,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/dsu.nim
     title: atcoder/dsu.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
   _extendedRequiredBy: []
@@ -50,13 +50,13 @@ data:
     \ = G.T(0)\n    for e in es:\n      if not uf.same(e.src, e.dst):\n        uf.merge(e.src,\
     \ e.dst)\n        total += e.weight\n        ret.add(e)\n    return (total, ret)\n"
   dependsOn:
-  - atcoder/dsu.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/dsu.nim
   - atcoder/dsu.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/dsu.nim
   - atcoder/dsu.nim
   isVerificationFile: false
   path: atcoder/extra/graph/kruskal.nim

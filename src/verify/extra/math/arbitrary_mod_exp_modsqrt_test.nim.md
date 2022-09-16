@@ -25,10 +25,10 @@ data:
   - icon: ':question:'
     path: atcoder/extra/math/formal_power_series.nim
     title: atcoder/extra/math/formal_power_series.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/math/mod_sqrt.nim
     title: atcoder/extra/math/mod_sqrt.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/math/mod_sqrt.nim
     title: atcoder/extra/math/mod_sqrt.nim
   - icon: ':question:'
@@ -97,33 +97,33 @@ data:
     \ > 0:\n    echo a\n"
   dependsOn:
   - atcoder/internal_bit.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/convolution.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/header.nim
   - atcoder/element_concepts.nim
   - atcoder/modint.nim
-  - atcoder/convolution.nim
+  - atcoder/generate_definitions.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/header.nim
   - atcoder/internal_math.nim
   - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/header.nim
+  - atcoder/element_concepts.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/mod_sqrt.nim
   - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/internal_math.nim
   - atcoder/internal_bit.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/element_concepts.nim
-  - atcoder/modint.nim
   - atcoder/convolution.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/mod_sqrt.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/generate_definitions.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/header.nim
   - atcoder/extra/math/mod_sqrt.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/modint.nim
   isVerificationFile: true
   path: verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim
   requiredBy: []
-  timestamp: '2022-08-08 21:23:55+09:00'
+  timestamp: '2022-09-17 04:52:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/math/arbitrary_mod_exp_modsqrt_test.nim

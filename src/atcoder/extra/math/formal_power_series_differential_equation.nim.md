@@ -27,15 +27,15 @@ data:
     title: atcoder/extra/math/formal_power_series.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
     title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
     title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -52,19 +52,19 @@ data:
     \      f = ((h + f0) * r.inv(i shl 1)).pre(i shl 1)\n      i = i shl 1\n    return\
     \ f.pre(deg)\n"
   dependsOn:
-  - atcoder/extra/math/formal_power_series.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/math/formal_power_series.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/element_concepts.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/formal_power_series.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/math/formal_power_series_differential_equation.nim
   requiredBy: []
-  timestamp: '2022-08-08 21:23:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-17 04:52:33+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/math/yukicoder_0963_differential_equation_test.nim
   - verify/extra/math/yukicoder_0963_differential_equation_test.nim

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/tree/rerooting.nim
     title: atcoder/extra/tree/rerooting.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/tree/rerooting.nim
     title: atcoder/extra/tree/rerooting.nim
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: https://yukicoder.me/problems/no/1333
     links:
@@ -54,21 +54,21 @@ data:
     \  var u, v, w = nextInt()\n  u.dec;v.dec\n  g.addBiEdge(u, v, w)\n\nvar d = g.solve()\n\
     var ans = mint(0)\nfor i, (n, s, t) in d:\n  ans += t\n\necho ans / 2\n"
   dependsOn:
-  - atcoder/modint.nim
+  - atcoder/extra/tree/rerooting.nim
   - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/header.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
   - atcoder/extra/tree/rerooting.nim
   - atcoder/header.nim
-  - atcoder/extra/tree/rerooting.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
+  - atcoder/modint.nim
+  - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/generate_definitions.nim
   isVerificationFile: true
   path: verify/extra/tree/rerooting_test.nim
   requiredBy: []
-  timestamp: '2022-07-30 23:50:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-17 04:52:33+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/tree/rerooting_test.nim
 layout: document

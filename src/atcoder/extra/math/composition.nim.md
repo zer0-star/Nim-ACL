@@ -123,15 +123,15 @@ data:
     title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -178,50 +178,50 @@ data:
     \ ans\n"
   dependsOn:
   - atcoder/internal_bit.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/convolution.nim
+  - atcoder/extra/math/ntt.nim
   - atcoder/element_concepts.nim
   - atcoder/modint.nim
-  - atcoder/convolution.nim
+  - atcoder/generate_definitions.nim
   - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/internal_math.nim
   - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/element_concepts.nim
+  - atcoder/generate_definitions.nim
   - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/internal_math.nim
   - atcoder/internal_bit.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/convolution.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/modint.nim
+  - atcoder/internal_bit.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/convolution.nim
   - atcoder/extra/math/ntt.nim
   - atcoder/element_concepts.nim
   - atcoder/modint.nim
-  - atcoder/convolution.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/formal_power_series.nim
   - atcoder/generate_definitions.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/element_concepts.nim
-  - atcoder/modint.nim
-  - atcoder/convolution.nim
   - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/internal_math.nim
   - atcoder/extra/math/ntt.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/internal_bit.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/formal_power_series.nim
   - atcoder/element_concepts.nim
-  - atcoder/modint.nim
-  - atcoder/convolution.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/formal_power_series.nim
   - atcoder/generate_definitions.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/extra/math/formal_power_series.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
+  - atcoder/convolution.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/modint.nim
   isVerificationFile: false
   path: atcoder/extra/math/composition.nim
   requiredBy: []
-  timestamp: '2022-08-25 23:07:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-17 04:52:33+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
   - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim

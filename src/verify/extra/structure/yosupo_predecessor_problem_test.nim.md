@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/binary_tree_node_utils.nim
     title: atcoder/extra/structure/binary_tree_node_utils.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/binary_tree_node_utils.nim
     title: atcoder/extra/structure/binary_tree_node_utils.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/binary_tree_utils.nim
     title: atcoder/extra/structure/binary_tree_utils.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/binary_tree_utils.nim
     title: atcoder/extra/structure/binary_tree_utils.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - icon: ':heavy_check_mark:'
@@ -31,10 +31,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
   - icon: ':question:'
@@ -72,22 +72,22 @@ data:
     \ 4:\n    var it = st.upper_bound(k)\n    if it == st.begin():\n      echo -1\n\
     \    else:\n      it.dec\n      echo *it\n"
   dependsOn:
-  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/set_map.nim
+  - atcoder/extra/structure/set_map.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/red_black_tree.nim
   - atcoder/extra/structure/red_black_tree.nim
   - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/extra/structure/set_map.nim
-  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/rangeutils.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/extra/structure/red_black_tree.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/extra/structure/set_map.nim
+  - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/header.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_predecessor_problem_test.nim
   requiredBy: []

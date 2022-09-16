@@ -92,18 +92,6 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/geometry/visualizer.nim
     title: atcoder/extra/geometry/visualizer.nim
-  - icon: ':warning:'
-    path: atcoder/extra/header/chaemon_header.nim
-    title: atcoder/extra/header/chaemon_header.nim
-  - icon: ':warning:'
-    path: atcoder/extra/header/chaemon_header.nim
-    title: atcoder/extra/header/chaemon_header.nim
-  - icon: ':warning:'
-    path: atcoder/extra/header/chaemon_header.nim
-    title: atcoder/extra/header/chaemon_header.nim
-  - icon: ':warning:'
-    path: atcoder/extra/header/chaemon_header.nim
-    title: atcoder/extra/header/chaemon_header.nim
   - icon: ':question:'
     path: atcoder/extra/math/arbitrary_mod_convolution.nim
     title: atcoder/extra/math/arbitrary_mod_convolution.nim
@@ -116,28 +104,28 @@ data:
   - icon: ':question:'
     path: atcoder/extra/math/arbitrary_mod_convolution.nim
     title: atcoder/extra/math/arbitrary_mod_convolution.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/coef_of_generating_function.nim
     title: atcoder/extra/math/coef_of_generating_function.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/coef_of_generating_function.nim
     title: atcoder/extra/math/coef_of_generating_function.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/coef_of_generating_function.nim
     title: atcoder/extra/math/coef_of_generating_function.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/coef_of_generating_function.nim
     title: atcoder/extra/math/coef_of_generating_function.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
   - icon: ':warning:'
@@ -152,28 +140,28 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/math/combination_table.nim
     title: atcoder/extra/math/combination_table.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/factorial.nim
     title: atcoder/extra/math/factorial.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/factorial.nim
     title: atcoder/extra/math/factorial.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/factorial.nim
     title: atcoder/extra/math/factorial.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/factorial.nim
     title: atcoder/extra/math/factorial.nim
   - icon: ':question:'
@@ -188,28 +176,28 @@ data:
   - icon: ':question:'
     path: atcoder/extra/math/formal_power_series.nim
     title: atcoder/extra/math/formal_power_series.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_differential_equation.nim
     title: atcoder/extra/math/formal_power_series_differential_equation.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_differential_equation.nim
     title: atcoder/extra/math/formal_power_series_differential_equation.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_differential_equation.nim
     title: atcoder/extra/math/formal_power_series_differential_equation.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_differential_equation.nim
     title: atcoder/extra/math/formal_power_series_differential_equation.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/formal_power_series_sqrt.nim
     title: atcoder/extra/math/formal_power_series_sqrt.nim
   - icon: ':warning:'
@@ -296,66 +284,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/floatutils.nim
     title: atcoder/extra/other/floatutils.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template.nim
-    title: atcoder/extra/template/atcoder-tools_template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template.nim
-    title: atcoder/extra/template/atcoder-tools_template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template.nim
-    title: atcoder/extra/template/atcoder-tools_template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template.nim
-    title: atcoder/extra/template/atcoder-tools_template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template_global.nim
-    title: atcoder/extra/template/atcoder-tools_template_global.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template_global.nim
-    title: atcoder/extra/template/atcoder-tools_template_global.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template_global.nim
-    title: atcoder/extra/template/atcoder-tools_template_global.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template_global.nim
-    title: atcoder/extra/template/atcoder-tools_template_global.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template_with_solve.nim
-    title: atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template_with_solve.nim
-    title: atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template_with_solve.nim
-    title: atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template_with_solve.nim
-    title: atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/template.nim
-    title: atcoder/extra/template/template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/template.nim
-    title: atcoder/extra/template/template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/template.nim
-    title: atcoder/extra/template/template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/template.nim
-    title: atcoder/extra/template/template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/vim_template.nim
-    title: atcoder/extra/template/vim_template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/vim_template.nim
-    title: atcoder/extra/template/vim_template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/vim_template.nim
-    title: atcoder/extra/template/vim_template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/vim_template.nim
-    title: atcoder/extra/template/vim_template.nim
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/convolution_test.nim
@@ -549,40 +477,40 @@ data:
   - icon: ':x:'
     path: verify/extra/math/pow_of_formal_power_series_test.nim
     title: verify/extra/math/pow_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/sqrt_of_formal_power_series_test.nim
     title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/sqrt_of_formal_power_series_test.nim
     title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
     title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
     title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
     title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
     title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yukicoder_factorial_test.nim
     title: verify/extra/math/yukicoder_factorial_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yukicoder_factorial_test.nim
     title: verify/extra/math/yukicoder_factorial_test.nim
   _isVerificationFailed: true
@@ -648,24 +576,12 @@ data:
   - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/extra/math/formal_power_series_sqrt.nim
   - atcoder/extra/math/formal_power_series_sqrt.nim
-  - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/template.nim
-  - atcoder/extra/template/template.nim
   - atcoder/extra/other/binary_search_float.nim
   - atcoder/extra/other/binary_search_float.nim
   - atcoder/extra/other/decimal.nim
   - atcoder/extra/other/decimal.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/geometry/segment_graph.nim
   - atcoder/extra/geometry/segment_graph.nim
   - atcoder/extra/geometry/visualizer.nim
@@ -706,24 +622,12 @@ data:
   - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/extra/math/formal_power_series_sqrt.nim
   - atcoder/extra/math/formal_power_series_sqrt.nim
-  - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/template.nim
-  - atcoder/extra/template/template.nim
   - atcoder/extra/other/binary_search_float.nim
   - atcoder/extra/other/binary_search_float.nim
   - atcoder/extra/other/decimal.nim
   - atcoder/extra/other/decimal.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/chaemon_header.nim
   - atcoder/convolution.nim
   - atcoder/convolution.nim
   timestamp: '2021-05-19 22:57:49+09:00'

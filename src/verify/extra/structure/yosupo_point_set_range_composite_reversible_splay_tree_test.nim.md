@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/forward_compatibility/internal_sugar.nim
     title: atcoder/extra/forward_compatibility/internal_sugar.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/forward_compatibility/internal_sugar.nim
     title: atcoder/extra/forward_compatibility/internal_sugar.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
     title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
     title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
   - icon: ':question:'
@@ -51,9 +51,9 @@ data:
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
     links:
@@ -74,26 +74,26 @@ data:
     \ nextInt().mint\n      let ret = seg.prod(l..<r)\n      echo ret[0] * x + ret[1]\n"
   dependsOn:
   - atcoder/extra/forward_compatibility/internal_sugar.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
+  - atcoder/rangeutils.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - atcoder/rangeutils.nim
   - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
   - atcoder/extra/forward_compatibility/internal_sugar.nim
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/header.nim
-  - atcoder/rangeutils.nim
   - atcoder/modint.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/internal_math.nim
-  - atcoder/generate_definitions.nim
   - atcoder/extra/structure/splay_tree.nim
-  - atcoder/header.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/generate_definitions.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   requiredBy: []
-  timestamp: '2022-07-30 23:50:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-17 04:52:33+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
 layout: document

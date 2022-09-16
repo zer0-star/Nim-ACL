@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
   - icon: ':heavy_check_mark:'
@@ -39,11 +39,11 @@ data:
     \nmain()\n"
   dependsOn:
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/tree/tree_diameter.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
-  - atcoder/extra/tree/tree_diameter.nim
-  - atcoder/extra/tree/tree_diameter.nim
   - atcoder/header.nim
+  - atcoder/extra/tree/tree_diameter.nim
   isVerificationFile: true
   path: verify/extra/tree/aoj_grl_5_a_tree_diameter_test.nim
   requiredBy: []

@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/shortest_path
     links:
@@ -54,21 +54,21 @@ data:
     \  ans.reverse\n    echo dist[t], \" \", ans.len - 1\n    for i in 0..<ans.len\
     \ - 1:\n      echo ans[i], \" \", ans[i+1]\n\nmain()\n"
   dependsOn:
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/dijkstra.nim
+  - atcoder/extra/graph/dijkstra.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
   - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/header.nim
-  - atcoder/extra/graph/dijkstra.nim
-  - atcoder/extra/graph/dijkstra.nim
-  - atcoder/header.nim
   - atcoder/extra/graph/dijkstra_result.nim
   isVerificationFile: true
   path: verify/shortest_path_test.nim
   requiredBy: []
-  timestamp: '2022-07-30 23:50:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-17 04:52:33+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/shortest_path_test.nim
 layout: document

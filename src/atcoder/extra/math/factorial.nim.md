@@ -13,16 +13,16 @@ data:
   - icon: ':question:'
     path: atcoder/element_concepts.nim
     title: atcoder/element_concepts.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/math/combination.nim
     title: atcoder/extra/math/combination.nim
   - icon: ':question:'
@@ -39,15 +39,15 @@ data:
     title: atcoder/extra/math/formal_power_series.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yukicoder_factorial_test.nim
     title: verify/extra/math/yukicoder_factorial_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yukicoder_factorial_test.nim
     title: verify/extra/math/yukicoder_factorial_test.nim
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -82,23 +82,23 @@ data:
     \    result = ModInt(1)\n    for i in 0..<sn: result *= vs[i]\n    for i in sn\
     \ * sn + 1..n: result *= i\n"
   dependsOn:
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/combination.nim
-  - atcoder/extra/math/combination.nim
-  - atcoder/extra/math/formal_power_series.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/math/formal_power_series.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/combination.nim
-  - atcoder/extra/math/combination.nim
   - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/combination.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/math/combination.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/combination.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/combination.nim
   isVerificationFile: false
   path: atcoder/extra/math/factorial.nim
   requiredBy: []
-  timestamp: '2022-08-08 21:23:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-17 04:52:33+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/math/yukicoder_factorial_test.nim
   - verify/extra/math/yukicoder_factorial_test.nim

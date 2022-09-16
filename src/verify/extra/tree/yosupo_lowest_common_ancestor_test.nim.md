@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
   - icon: ':heavy_check_mark:'
@@ -41,10 +41,10 @@ data:
   dependsOn:
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
   - atcoder/header.nim
   - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
   - atcoder/header.nim
+  - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
   isVerificationFile: true
   path: verify/extra/tree/yosupo_lowest_common_ancestor_test.nim
   requiredBy: []

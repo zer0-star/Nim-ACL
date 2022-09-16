@@ -19,17 +19,17 @@ data:
   - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/segtree.nim
     title: atcoder/segtree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/segtree.nim
     title: atcoder/segtree.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
     links:
@@ -45,19 +45,19 @@ data:
     \ == 0:\n    let p, x = nextInt()\n    let a = st.get(p)\n    st.set(p, a + x)\n\
     \  else:\n    let l, r = nextInt()\n    echo st.prod(l..<r)\n"
   dependsOn:
-  - atcoder/segtree.nim
-  - atcoder/rangeutils.nim
-  - atcoder/internal_bit.nim
-  - atcoder/header.nim
-  - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
   - atcoder/segtree.nim
+  - atcoder/segtree.nim
   - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: true
   path: verify/segtree_test.nim
   requiredBy: []
-  timestamp: '2022-08-25 23:07:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-17 04:52:33+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/segtree_test.nim
 layout: document

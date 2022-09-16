@@ -32,9 +32,9 @@ data:
     \ a in v: echo a\n\nmain()\n"
   dependsOn:
   - atcoder/extra/string/knuth_morris_pratt.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
   - atcoder/extra/string/knuth_morris_pratt.nim
-  - atcoder/header.nim
-  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/string/aoj_alds_1_14_b_kmp_test.nim
   requiredBy: []

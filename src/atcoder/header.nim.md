@@ -333,64 +333,64 @@ data:
   - icon: ':x:'
     path: verify/extra/math/pow_of_formal_power_series_test.nim
     title: verify/extra/math/pow_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/sqrt_of_formal_power_series_test.nim
     title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/sqrt_of_formal_power_series_test.nim
     title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_bitwise_and_convolution_test.nim
     title: verify/extra/math/yosupo_bitwise_and_convolution_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_bitwise_and_convolution_test.nim
     title: verify/extra/math/yosupo_bitwise_and_convolution_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_bitwise_or_convolution_test.nim
     title: verify/extra/math/yosupo_bitwise_or_convolution_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_bitwise_or_convolution_test.nim
     title: verify/extra/math/yosupo_bitwise_or_convolution_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_factorization_test.nim
     title: verify/extra/math/yosupo_factorization_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_factorization_test.nim
     title: verify/extra/math/yosupo_factorization_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
     title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
     title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_system_of_linear_equations_test.nim
     title: verify/extra/math/yosupo_system_of_linear_equations_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_system_of_linear_equations_test.nim
     title: verify/extra/math/yosupo_system_of_linear_equations_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
     title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
     title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yukicoder_factorial_test.nim
     title: verify/extra/math/yukicoder_factorial_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yukicoder_factorial_test.nim
     title: verify/extra/math/yukicoder_factorial_test.nim
   - icon: ':heavy_check_mark:'
@@ -441,10 +441,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
     title: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/extra_lazy_segtree_test.nim
     title: verify/extra/structure/extra_lazy_segtree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/extra_lazy_segtree_test.nim
     title: verify/extra/structure/extra_lazy_segtree_test.nim
   - icon: ':heavy_check_mark:'
@@ -459,10 +459,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
     title: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
     title: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
     title: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
   - icon: ':heavy_check_mark:'
@@ -477,10 +477,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/structure/yosupo_persistent_unionfind_test.nim
     title: verify/extra/structure/yosupo_persistent_unionfind_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+    title: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+    title: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
     title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
     title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   - icon: ':heavy_check_mark:'
@@ -489,22 +495,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/structure/yosupo_predecessor_problem_test.nim
     title: verify/extra/structure/yosupo_predecessor_problem_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
     title: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
     title: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
     title: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
     title: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
     title: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
     title: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
   - icon: ':heavy_check_mark:'
@@ -537,10 +543,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
     title: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/tree/rerooting_test.nim
     title: verify/extra/tree/rerooting_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/tree/rerooting_test.nim
     title: verify/extra/tree/rerooting_test.nim
   - icon: ':heavy_check_mark:'
@@ -567,16 +573,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/floor_sum_test.nim
     title: verify/floor_sum_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/lazy_segtree_dynamicmodint_test.nim
     title: verify/lazy_segtree_dynamicmodint_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/lazy_segtree_dynamicmodint_test.nim
     title: verify/lazy_segtree_dynamicmodint_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/lazy_segtree_test.nim
     title: verify/lazy_segtree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/lazy_segtree_test.nim
     title: verify/lazy_segtree_test.nim
   - icon: ':heavy_check_mark:'
@@ -609,16 +615,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/scc_test.nim
     title: verify/scc_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/segtree_test.nim
     title: verify/segtree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/segtree_test.nim
     title: verify/segtree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/shortest_path_test.nim
     title: verify/shortest_path_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/shortest_path_test.nim
     title: verify/shortest_path_test.nim
   - icon: ':heavy_check_mark:'
@@ -741,6 +747,8 @@ data:
   - verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
   - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
   - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
+  - verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+  - verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
   - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   - verify/extra/structure/aoj_1508_splay_tree_test.nim

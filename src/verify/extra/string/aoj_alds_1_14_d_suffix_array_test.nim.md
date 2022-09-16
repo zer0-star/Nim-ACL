@@ -39,11 +39,11 @@ data:
     \ = sa.lowerUpperBound(T)\n    echo if range[0] != range[1]: 1 else: 0\n\nmain()\n"
   dependsOn:
   - atcoder/extra/string/suffix_array_utils.nim
-  - atcoder/string.nim
   - atcoder/header.nim
   - atcoder/extra/string/suffix_array_utils.nim
-  - atcoder/string.nim
   - atcoder/header.nim
+  - atcoder/string.nim
+  - atcoder/string.nim
   isVerificationFile: true
   path: verify/extra/string/aoj_alds_1_14_d_suffix_array_test.nim
   requiredBy: []

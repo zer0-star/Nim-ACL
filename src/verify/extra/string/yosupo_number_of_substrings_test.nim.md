@@ -33,8 +33,8 @@ data:
     \ ans = -1\n  cnt[0] = 1\n  for i in idx:\n    ans += cnt[i]\n    for k,v in sa[i].to:\n\
     \      cnt[v] += cnt[i]\n  \n  echo ans\n\nmain()\n"
   dependsOn:
-  - atcoder/header.nim
   - atcoder/extra/string/suffix_automaton.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/extra/string/suffix_automaton.nim
   isVerificationFile: true

@@ -38,16 +38,16 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/structure/generalized_slope_trick.nim
     title: atcoder/extra/structure/generalized_slope_trick.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/link_cut_tree.nim
     title: atcoder/extra/structure/link_cut_tree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/link_cut_tree.nim
     title: atcoder/extra/structure/link_cut_tree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/link_cut_tree.nim
     title: atcoder/extra/structure/link_cut_tree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/link_cut_tree.nim
     title: atcoder/extra/structure/link_cut_tree.nim
   - icon: ':warning:'
@@ -62,18 +62,30 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/structure/old_randomized_binary_search_tree.nim
     title: atcoder/extra/structure/old_randomized_binary_search_tree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/segtree_2d.nim
+    title: atcoder/extra/structure/segtree_2d.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/segtree_2d.nim
+    title: atcoder/extra/structure/segtree_2d.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/segtree_2d.nim
+    title: atcoder/extra/structure/segtree_2d.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/segtree_2d.nim
+    title: atcoder/extra/structure/segtree_2d.nim
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
@@ -110,28 +122,28 @@ data:
   - icon: ':x:'
     path: atcoder/extra/structure/sparse_table.nim
     title: atcoder/extra/structure/sparse_table.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
   - icon: ':heavy_check_mark:'
@@ -152,16 +164,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/fenwicktree.nim
     title: atcoder/fenwicktree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/lazysegtree.nim
     title: atcoder/lazysegtree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/lazysegtree.nim
     title: atcoder/lazysegtree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/segtree.nim
     title: atcoder/segtree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/segtree.nim
     title: atcoder/segtree.nim
   _extendedVerifiedWith:
@@ -183,10 +195,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
     title: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/extra_lazy_segtree_test.nim
     title: verify/extra/structure/extra_lazy_segtree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/extra_lazy_segtree_test.nim
     title: verify/extra/structure/extra_lazy_segtree_test.nim
   - icon: ':heavy_check_mark:'
@@ -201,16 +213,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
     title: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
     title: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
     title: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+    title: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+    title: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
     title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
     title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   - icon: ':heavy_check_mark:'
@@ -219,16 +237,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/structure/yosupo_predecessor_problem_test.nim
     title: verify/extra/structure/yosupo_predecessor_problem_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
     title: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
     title: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
     title: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
     title: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
   - icon: ':heavy_check_mark:'
@@ -249,16 +267,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/fenwick_tree_test.nim
     title: verify/fenwick_tree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/lazy_segtree_dynamicmodint_test.nim
     title: verify/lazy_segtree_dynamicmodint_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/lazy_segtree_dynamicmodint_test.nim
     title: verify/lazy_segtree_dynamicmodint_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/lazy_segtree_test.nim
     title: verify/lazy_segtree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/lazy_segtree_test.nim
     title: verify/lazy_segtree_test.nim
   - icon: ':heavy_check_mark:'
@@ -267,10 +285,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/map_test.nim
     title: verify/map_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/segtree_test.nim
     title: verify/segtree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/segtree_test.nim
     title: verify/segtree_test.nim
   _isVerificationFailed: true
@@ -306,6 +324,8 @@ data:
   - atcoder/extra/structure/dual_fenwicktree.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/segtree_2d.nim
+  - atcoder/extra/structure/segtree_2d.nim
   - atcoder/extra/structure/old_randomized_binary_search_tree.nim
   - atcoder/extra/structure/old_randomized_binary_search_tree.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
@@ -334,6 +354,8 @@ data:
   - atcoder/extra/structure/dual_fenwicktree.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/segtree_2d.nim
+  - atcoder/extra/structure/segtree_2d.nim
   - atcoder/extra/structure/old_randomized_binary_search_tree.nim
   - atcoder/extra/structure/old_randomized_binary_search_tree.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
@@ -361,6 +383,8 @@ data:
   - verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
   - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
   - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
+  - verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+  - verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
   - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   - verify/extra/structure/aoj_1508_splay_tree_test.nim

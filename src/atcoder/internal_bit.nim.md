@@ -32,16 +32,16 @@ data:
   - icon: ':question:'
     path: atcoder/extra/math/arbitrary_mod_convolution.nim
     title: atcoder/extra/math/arbitrary_mod_convolution.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
   - icon: ':warning:'
@@ -92,16 +92,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/polynomial_taylor_shift.nim
     title: atcoder/extra/math/polynomial_taylor_shift.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: atcoder/extra/structure/segtree_2d.nim
+    title: atcoder/extra/structure/segtree_2d.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/segtree_2d.nim
+    title: atcoder/extra/structure/segtree_2d.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/segtree_2d.nim
+    title: atcoder/extra/structure/segtree_2d.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/segtree_2d.nim
+    title: atcoder/extra/structure/segtree_2d.nim
+  - icon: ':question:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
   - icon: ':warning:'
@@ -116,16 +128,16 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/structure/universal_segtree_backup.nim
     title: atcoder/extra/structure/universal_segtree_backup.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/lazysegtree.nim
     title: atcoder/lazysegtree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/lazysegtree.nim
     title: atcoder/lazysegtree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/segtree.nim
     title: atcoder/segtree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/segtree.nim
     title: atcoder/segtree.nim
   _extendedVerifiedWith:
@@ -195,46 +207,46 @@ data:
   - icon: ':x:'
     path: verify/extra/math/pow_of_formal_power_series_test.nim
     title: verify/extra/math/pow_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/sqrt_of_formal_power_series_test.nim
     title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/sqrt_of_formal_power_series_test.nim
     title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
     title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
     title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
     title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
     title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yukicoder_factorial_test.nim
     title: verify/extra/math/yukicoder_factorial_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yukicoder_factorial_test.nim
     title: verify/extra/math/yukicoder_factorial_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/extra_lazy_segtree_test.nim
     title: verify/extra/structure/extra_lazy_segtree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/extra_lazy_segtree_test.nim
     title: verify/extra/structure/extra_lazy_segtree_test.nim
   - icon: ':heavy_check_mark:'
@@ -243,22 +255,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/structure/extra_segtree_test.nim
     title: verify/extra/structure/extra_segtree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+    title: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+    title: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+  - icon: ':x:'
     path: verify/lazy_segtree_dynamicmodint_test.nim
     title: verify/lazy_segtree_dynamicmodint_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/lazy_segtree_dynamicmodint_test.nim
     title: verify/lazy_segtree_dynamicmodint_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/lazy_segtree_test.nim
     title: verify/lazy_segtree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/lazy_segtree_test.nim
     title: verify/lazy_segtree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/segtree_test.nim
     title: verify/segtree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/segtree_test.nim
     title: verify/segtree_test.nim
   _isVerificationFailed: true
@@ -282,6 +300,8 @@ data:
   requiredBy:
   - atcoder/extra/structure/universal_segtree_backup.nim
   - atcoder/extra/structure/universal_segtree_backup.nim
+  - atcoder/extra/structure/segtree_2d.nim
+  - atcoder/extra/structure/segtree_2d.nim
   - atcoder/extra/structure/universal_segtree.nim
   - atcoder/extra/structure/universal_segtree.nim
   - atcoder/extra/math/ntt.nim
@@ -304,6 +324,8 @@ data:
   - atcoder/lazysegtree.nim
   - atcoder/extra/structure/universal_segtree_backup.nim
   - atcoder/extra/structure/universal_segtree_backup.nim
+  - atcoder/extra/structure/segtree_2d.nim
+  - atcoder/extra/structure/segtree_2d.nim
   - atcoder/extra/structure/universal_segtree.nim
   - atcoder/extra/structure/universal_segtree.nim
   - atcoder/extra/math/ntt.nim
@@ -329,6 +351,8 @@ data:
   - verify/lazy_segtree_test.nim
   - verify/extra/structure/extra_segtree_test.nim
   - verify/extra/structure/extra_segtree_test.nim
+  - verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+  - verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
   - verify/extra/structure/extra_lazy_segtree_test.nim
   - verify/extra/structure/extra_lazy_segtree_test.nim
   - verify/extra/graph/centroid_decomposition_test.nim

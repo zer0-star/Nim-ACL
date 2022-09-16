@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/dijkstra.nim
     title: atcoder/extra/graph/dijkstra.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/dijkstra_result.nim
     title: atcoder/extra/graph/dijkstra_result.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
   - icon: ':question:'
@@ -52,20 +52,20 @@ data:
     \    echo -1\n  else:\n    let p = dist.path(t)\n    echo dist[t], \" \", p.len\
     \ - 1\n    for i in 0..<p.len - 1:\n      echo p[i], \" \", p[i + 1]\n\nmain()\n"
   dependsOn:
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/dijkstra.nim
+  - atcoder/extra/graph/dijkstra.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
   - atcoder/extra/graph/dijkstra_result.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/header.nim
-  - atcoder/extra/graph/dijkstra.nim
-  - atcoder/extra/graph/dijkstra.nim
-  - atcoder/header.nim
   - atcoder/extra/graph/dijkstra_result.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_shortest_path_test.nim
   requiredBy: []
-  timestamp: '2022-07-30 23:50:20+09:00'
+  timestamp: '2022-09-17 04:52:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/graph/yosupo_shortest_path_test.nim

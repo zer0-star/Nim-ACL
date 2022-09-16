@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/forward_compatibility/internal_sugar.nim
     title: atcoder/extra/forward_compatibility/internal_sugar.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/forward_compatibility/internal_sugar.nim
     title: atcoder/extra/forward_compatibility/internal_sugar.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
     title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
     title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - icon: ':heavy_check_mark:'
@@ -19,10 +19,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/cycle_detection.nim
     title: atcoder/extra/graph/cycle_detection.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
   - icon: ':question:'
@@ -54,16 +54,16 @@ data:
     \      for e in c:\n        e.weight\n    echo v.join(\"\\n\")\n  else:\n    echo\
     \ -1\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/forward_compatibility/internal_sugar.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/forward_compatibility/internal_sugar.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/header.nim
+  - atcoder/extra/graph/cycle_detection.nim
   - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - atcoder/extra/graph/cycle_detection.nim
-  - atcoder/extra/graph/cycle_detection.nim
-  - atcoder/header.nim
+  - atcoder/extra/forward_compatibility/internal_sugar.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_cycle_detection_test.nim
   requiredBy: []

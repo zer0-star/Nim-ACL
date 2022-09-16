@@ -13,17 +13,35 @@ data:
   - icon: ':question:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: atcoder/extra/structure/segtree_2d.nim
+    title: atcoder/extra/structure/segtree_2d.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/segtree_2d.nim
+    title: atcoder/extra/structure/segtree_2d.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/segtree_2d.nim
+    title: atcoder/extra/structure/segtree_2d.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/segtree_2d.nim
+    title: atcoder/extra/structure/segtree_2d.nim
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+    title: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+    title: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+  - icon: ':x:'
     path: verify/segtree_test.nim
     title: verify/segtree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/segtree_test.nim
     title: verify/segtree_test.nim
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -32,10 +50,10 @@ data:
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_SEGTREE_HPP:\n  const ATCODER_SEGTREE_HPP* = 1\n\
     \  import atcoder/internal_bit\n  import std/sequtils, std/algorithm\n  import\
-    \ atcoder/rangeutils\n\n  {.push inline.}\n  type SegTree*[S; p:static[tuple]]\
-    \ = object\n    len*, size*, log*:int\n    d: seq[S]\n\n  template calc_op[ST:SegTree](self:typedesc[ST],\
+    \ atcoder/rangeutils\n\n  #{.push inline.}\n  type SegTree*[S; p:static[tuple]]\
+    \ = object\n    len*, size*, log*:int\n    d: seq[S]\n\n  template calc_op*[ST:SegTree](self:typedesc[ST],\
     \ a, b:ST.S):auto =\n    block:\n      let u = ST.p.op(a, b)\n      u\n  template\
-    \ calc_e[ST:SegTree](self:typedesc[ST]):auto =\n    block:\n      let u = ST.p.e()\n\
+    \ calc_e*[ST:SegTree](self:typedesc[ST]):auto =\n    block:\n      let u = ST.p.e()\n\
     \      u\n  proc update[ST:SegTree](self: var ST, k:int) =\n    self.d[k] = ST.calc_op(self.d[2\
     \ * k], self.d[2 * k + 1])\n\n  proc init*[ST:SegTree](self: var ST, v:seq[ST.S])\
     \ =\n    let\n      n = v.len\n      log = ceil_pow2(n)\n      size = 1 shl log\n\
@@ -82,18 +100,24 @@ data:
     \    r = (2 * r + 1)\n          if f(ST.calc_op(self.d[r], sm)):\n           \
     \ sm = ST.calc_op(self.d[r], sm)\n            r.dec\n        return r + 1 - self.size\n\
     \      sm = ST.calc_op(self.d[r], sm)\n      if not ((r and -r) != r): break\n\
-    \    return 0\n  {.pop.}\n"
+    \    return 0\n  #{.pop.}\n"
   dependsOn:
-  - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
+  - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
   isVerificationFile: false
   path: atcoder/segtree.nim
-  requiredBy: []
-  timestamp: '2022-08-25 23:07:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  requiredBy:
+  - atcoder/extra/structure/segtree_2d.nim
+  - atcoder/extra/structure/segtree_2d.nim
+  - atcoder/extra/structure/segtree_2d.nim
+  - atcoder/extra/structure/segtree_2d.nim
+  timestamp: '2022-09-17 04:52:33+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+  - verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
   - verify/segtree_test.nim
   - verify/segtree_test.nim
 documentation_of: atcoder/segtree.nim

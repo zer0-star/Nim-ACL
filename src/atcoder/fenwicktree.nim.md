@@ -51,10 +51,10 @@ data:
     \    return cast[FT.T](self.sum(r) - self.sum(l))\n  proc `[]`*[FT:FenwickTree](self:\
     \ FT, p:RangeType):FT.T = self.sum(p)\n"
   dependsOn:
-  - atcoder/rangeutils.nim
+  - atcoder/internal_type_traits.nim
   - atcoder/internal_type_traits.nim
   - atcoder/rangeutils.nim
-  - atcoder/internal_type_traits.nim
+  - atcoder/rangeutils.nim
   isVerificationFile: false
   path: atcoder/fenwicktree.nim
   requiredBy: []

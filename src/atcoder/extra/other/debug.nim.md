@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
   _extendedRequiredBy:
@@ -109,17 +109,18 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_DEBUG_HPP:\n  const ATCODER_DEBUG_HPP* = 1\n  import\
-    \ macros, strformat, terminal\n  import atcoder/extra/other/inf\n\n  macro debugImpl*(n:varargs[untyped]):\
-    \ untyped =\n    #  var a = \"stderr.write \"\n    var a = \"\"\n#    a.add \"\
-    setForegroundColor fgYellow\\n\"\n#    a.add \"stdout.write \"\n#    a.add \"\
-    stderr.write \"\n    a.add \"styledWriteLine stderr, fgYellow, \"\n    for i,x\
-    \ in n:\n      if x.kind == nnkStrLit:\n        a &= fmt\"{x.repr}  \"\n     \
-    \   if i < n.len - 1:\n          a.add(\"\"\", \" \",\"\"\")\n      else:\n  \
-    \      a &= fmt\"\"\" \"{x.repr} = \", infRepr({x.repr}) \"\"\"\n        if i\
-    \ < n.len - 1:\n          a.add(\"\"\", \", \",\"\"\")\n#    a.add(\", \\\"\\\\\
-    n\\\"\")\n    a.add \"\\n\"\n#    a.add \"resetAttributes()\"\n    parseStmt(a)\n\
-    \  template debug*(n: varargs[untyped]): untyped =\n    const EVAL =\n      when\
-    \ declared DEBUG: DEBUG\n      else: false\n    when EVAL:\n      debugImpl(n)\n"
+    \ macros, strformat, terminal, strutils\n  import atcoder/extra/other/inf\n\n\
+    \  macro debugImpl*(n:varargs[untyped]): untyped =\n    #  var a = \"stderr.write\
+    \ \"\n    var a = \"\"\n#    a.add \"setForegroundColor fgYellow\\n\"\n#    a.add\
+    \ \"stdout.write \"\n#    a.add \"stderr.write \"\n    a.add \"styledWriteLine\
+    \ stderr, fgYellow, \"\n    for i,x in n:\n      if x.kind == nnkStrLit:\n   \
+    \     a &= fmt\"{x.toStrLit}  \"\n        if i < n.len - 1:\n          a.add(\"\
+    \"\", \" \",\"\"\")\n      else:\n        let s = fmt\"{x.toStrLit}\".replace(\"\
+    \\n\", \"\").replace(\"  \", \" \")\n        a &= fmt\"\"\" \"{s} = \", infRepr({s})\
+    \ \"\"\"\n        if i < n.len - 1:\n          a.add(\"\"\", \", \",\"\"\")\n\
+    \    a.add \"\\n\"\n    parseStmt(a)\n  template debug*(n: varargs[untyped]):\
+    \ untyped =\n    const EVAL =\n      when declared DEBUG: DEBUG\n      else: false\n\
+    \    when EVAL:\n      debugImpl(n)\n"
   dependsOn:
   - atcoder/extra/other/inf.nim
   - atcoder/extra/other/inf.nim
@@ -156,7 +157,7 @@ data:
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/header.nim
   - atcoder/extra/header/header.nim
-  timestamp: '2022-08-08 21:23:55+09:00'
+  timestamp: '2022-09-17 04:52:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/other/debug.nim

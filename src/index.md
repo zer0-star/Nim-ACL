@@ -48,7 +48,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/internal_type_traits.nim
       title: atcoder/internal_type_traits.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/lazysegtree.nim
       title: atcoder/lazysegtree.nim
     - icon: ':heavy_check_mark:'
@@ -72,7 +72,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/scc.nim
       title: atcoder/scc.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/segtree.nim
       title: atcoder/segtree.nim
     - icon: ':heavy_check_mark:'
@@ -139,16 +139,16 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/forward_compatibility/hash_func.nim
       title: atcoder/extra/forward_compatibility/hash_func.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/forward_compatibility/internal_sugar.nim
       title: atcoder/extra/forward_compatibility/internal_sugar.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/forward_compatibility/internal_sugar.nim
       title: atcoder/extra/forward_compatibility/internal_sugar.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
       title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
       title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - name: atcoder/extra/geometry
@@ -233,10 +233,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/cycle_detection.nim
       title: atcoder/extra/graph/cycle_detection.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/graph/dijkstra.nim
       title: atcoder/extra/graph/dijkstra.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/graph/dijkstra.nim
       title: atcoder/extra/graph/dijkstra.nim
     - icon: ':warning:'
@@ -251,10 +251,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/dijkstra_radix_heap.nim
       title: atcoder/extra/graph/dijkstra_radix_heap.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/graph/dijkstra_result.nim
       title: atcoder/extra/graph/dijkstra_result.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/graph/dijkstra_result.nim
       title: atcoder/extra/graph/dijkstra_result.nim
     - icon: ':warning:'
@@ -275,10 +275,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/graph/gabow_edmonds.nim
       title: atcoder/extra/graph/gabow_edmonds.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/graph/graph_template.nim
       title: atcoder/extra/graph/graph_template.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/graph/graph_template.nim
       title: atcoder/extra/graph/graph_template.nim
     - icon: ':warning:'
@@ -399,22 +399,22 @@ data:
     - icon: ':question:'
       path: atcoder/extra/math/arbitrary_mod_convolution.nim
       title: atcoder/extra/math/arbitrary_mod_convolution.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/bitwise_convolution.nim
       title: atcoder/extra/math/bitwise_convolution.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/bitwise_convolution.nim
       title: atcoder/extra/math/bitwise_convolution.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/coef_of_generating_function.nim
       title: atcoder/extra/math/coef_of_generating_function.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/coef_of_generating_function.nim
       title: atcoder/extra/math/coef_of_generating_function.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/math/combination.nim
       title: atcoder/extra/math/combination.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/math/combination.nim
       title: atcoder/extra/math/combination.nim
     - icon: ':warning:'
@@ -423,10 +423,10 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/math/combination_table.nim
       title: atcoder/extra/math/combination_table.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/composition.nim
       title: atcoder/extra/math/composition.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/composition.nim
       title: atcoder/extra/math/composition.nim
     - icon: ':warning:'
@@ -465,16 +465,16 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/math/exp_old.nim
       title: atcoder/extra/math/exp_old.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/factorial.nim
       title: atcoder/extra/math/factorial.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/factorial.nim
       title: atcoder/extra/math/factorial.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/factorization.nim
       title: atcoder/extra/math/factorization.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/factorization.nim
       title: atcoder/extra/math/factorization.nim
     - icon: ':warning:'
@@ -489,16 +489,16 @@ data:
     - icon: ':question:'
       path: atcoder/extra/math/formal_power_series.nim
       title: atcoder/extra/math/formal_power_series.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/formal_power_series_differential_equation.nim
       title: atcoder/extra/math/formal_power_series_differential_equation.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/formal_power_series_differential_equation.nim
       title: atcoder/extra/math/formal_power_series_differential_equation.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/formal_power_series_sqrt.nim
       title: atcoder/extra/math/formal_power_series_sqrt.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/formal_power_series_sqrt.nim
       title: atcoder/extra/math/formal_power_series_sqrt.nim
     - icon: ':warning:'
@@ -519,16 +519,16 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/math/longdouble.nim
       title: atcoder/extra/math/longdouble.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/matrix.nim
       title: atcoder/extra/math/matrix.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/math/matrix.nim
       title: atcoder/extra/math/matrix.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/math/mod_sqrt.nim
       title: atcoder/extra/math/mod_sqrt.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/math/mod_sqrt.nim
       title: atcoder/extra/math/mod_sqrt.nim
     - icon: ':warning:'
@@ -665,10 +665,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/other/floatutils.nim
       title: atcoder/extra/other/floatutils.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/other/inf.nim
       title: atcoder/extra/other/inf.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/other/inf.nim
       title: atcoder/extra/other/inf.nim
     - icon: ':warning:'
@@ -689,10 +689,10 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/other/listutils.nim
       title: atcoder/extra/other/listutils.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/other/operator.nim
       title: atcoder/extra/other/operator.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/other/operator.nim
       title: atcoder/extra/other/operator.nim
     - icon: ':warning:'
@@ -801,16 +801,16 @@ data:
       title: atcoder/extra/string/suffix_automaton.nim
   - name: atcoder/extra/structure
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/structure/binary_tree_node_utils.nim
       title: atcoder/extra/structure/binary_tree_node_utils.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/structure/binary_tree_node_utils.nim
       title: atcoder/extra/structure/binary_tree_node_utils.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/structure/binary_tree_utils.nim
       title: atcoder/extra/structure/binary_tree_utils.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/structure/binary_tree_utils.nim
       title: atcoder/extra/structure/binary_tree_utils.nim
     - icon: ':warning:'
@@ -849,10 +849,10 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/structure/li_chao_tree.nim
       title: atcoder/extra/structure/li_chao_tree.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/structure/link_cut_tree.nim
       title: atcoder/extra/structure/link_cut_tree.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/structure/link_cut_tree.nim
       title: atcoder/extra/structure/link_cut_tree.nim
     - icon: ':warning:'
@@ -885,10 +885,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/structure/radix_heap.nim
       title: atcoder/extra/structure/radix_heap.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
       title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
       title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     - icon: ':heavy_check_mark:'
@@ -897,6 +897,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/structure/red_black_tree.nim
       title: atcoder/extra/structure/red_black_tree.nim
+    - icon: ':x:'
+      path: atcoder/extra/structure/segtree_2d.nim
+      title: atcoder/extra/structure/segtree_2d.nim
+    - icon: ':x:'
+      path: atcoder/extra/structure/segtree_2d.nim
+      title: atcoder/extra/structure/segtree_2d.nim
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/structure/set_map.nim
       title: atcoder/extra/structure/set_map.nim
@@ -915,10 +921,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/structure/skew_heap.nim
       title: atcoder/extra/structure/skew_heap.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/structure/sliding_window_aggregation.nim
       title: atcoder/extra/structure/sliding_window_aggregation.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/structure/sliding_window_aggregation.nim
       title: atcoder/extra/structure/sliding_window_aggregation.nim
     - icon: ':warning:'
@@ -933,10 +939,10 @@ data:
     - icon: ':x:'
       path: atcoder/extra/structure/sparse_table.nim
       title: atcoder/extra/structure/sparse_table.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/structure/splay_tree.nim
       title: atcoder/extra/structure/splay_tree.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/structure/splay_tree.nim
       title: atcoder/extra/structure/splay_tree.nim
     - icon: ':heavy_check_mark:'
@@ -951,10 +957,10 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/structure/trie.nim
       title: atcoder/extra/structure/trie.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/structure/universal_segtree.nim
       title: atcoder/extra/structure/universal_segtree.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/extra/structure/universal_segtree.nim
       title: atcoder/extra/structure/universal_segtree.nim
     - icon: ':warning:'
@@ -1027,10 +1033,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/tree/heavy_light_decomposition.nim
       title: atcoder/extra/tree/heavy_light_decomposition.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/tree/rerooting.nim
       title: atcoder/extra/tree/rerooting.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/tree/rerooting.nim
       title: atcoder/extra/tree/rerooting.nim
     - icon: ':heavy_check_mark:'
@@ -1067,10 +1073,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/floor_sum_test.nim
       title: verify/floor_sum_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/lazy_segtree_dynamicmodint_test.nim
       title: verify/lazy_segtree_dynamicmodint_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/lazy_segtree_test.nim
       title: verify/lazy_segtree_test.nim
     - icon: ':heavy_check_mark:'
@@ -1085,16 +1091,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/min_cost_flow_test.nim
       title: verify/min_cost_flow_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/modint_test.nim
       title: verify/modint_test.nim
     - icon: ':heavy_check_mark:'
       path: verify/scc_test.nim
       title: verify/scc_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/segtree_test.nim
       title: verify/segtree_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/shortest_path_test.nim
       title: verify/shortest_path_test.nim
     - icon: ':heavy_check_mark:'
@@ -1270,34 +1276,34 @@ data:
     - icon: ':x:'
       path: verify/extra/math/pow_of_formal_power_series_test.nim
       title: verify/extra/math/pow_of_formal_power_series_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/math/sqrt_of_formal_power_series_test.nim
       title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/math/yosupo_bitwise_and_convolution_test.nim
       title: verify/extra/math/yosupo_bitwise_and_convolution_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/math/yosupo_bitwise_or_convolution_test.nim
       title: verify/extra/math/yosupo_bitwise_or_convolution_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
       title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/math/yosupo_factorization_test.nim
       title: verify/extra/math/yosupo_factorization_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
       title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
       title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/math/yosupo_system_of_linear_equations_test.nim
       title: verify/extra/math/yosupo_system_of_linear_equations_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
       title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/math/yukicoder_factorial_test.nim
       title: verify/extra/math/yukicoder_factorial_test.nim
   - name: verify/extra/string
@@ -1328,7 +1334,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
       title: verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/structure/extra_lazy_segtree_test.nim
       title: verify/extra/structure/extra_lazy_segtree_test.nim
     - icon: ':heavy_check_mark:'
@@ -1337,7 +1343,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
       title: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
       title: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
     - icon: ':heavy_check_mark:'
@@ -1346,19 +1352,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/extra/structure/yosupo_persistent_unionfind_test.nim
       title: verify/extra/structure/yosupo_persistent_unionfind_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
+      path: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+      title: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+    - icon: ':x:'
       path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
       title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
     - icon: ':heavy_check_mark:'
       path: verify/extra/structure/yosupo_predecessor_problem_test.nim
       title: verify/extra/structure/yosupo_predecessor_problem_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
       title: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
       title: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
       title: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
     - icon: ':heavy_check_mark:'
@@ -1378,7 +1387,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
       title: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/tree/rerooting_test.nim
       title: verify/extra/tree/rerooting_test.nim
     - icon: ':heavy_check_mark:'

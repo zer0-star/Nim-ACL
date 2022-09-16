@@ -89,10 +89,9 @@ data:
     \ =\n    when typ is typeof(nil):\n      let tmp = addr(ex)\n    else:\n     \
     \ let tmp: ptr typ = addr(ex)\n    template lhs: untyped = tmp[]\n\n  macro `=&`*(lhs,\
     \ rhs:untyped) =\n    result = newStmtList()\n    if lhs.kind == nnkPar:\n   \
-    \   for i,t in lhs:\n        var rhs = fmt\"\"\"{rhs.repr}[{i}]\"\"\"\n      \
-    \  result.add parseStmt(fmt\"\"\"byaddr({$t}, {$rhs}.type, {$rhs})\"\"\")\n  \
-    \  else:\n      result.add parseStmt(fmt\"\"\"byaddr({$lhs}, {$rhs}.type, {$rhs})\"\
-    \"\")\n"
+    \   for i,t in lhs:\n        result.add parseStmt(fmt\"\"\"byaddr({$t}, ({rhs.toStrLit}).type,\
+    \ {rhs.toStrLit})\"\"\")\n    else:\n      result.add parseStmt(fmt\"\"\"byaddr({$lhs},\
+    \ ({rhs.toStrLit}).type, {rhs.toStrLit})\"\"\")\n"
   dependsOn: []
   isVerificationFile: false
   path: atcoder/extra/other/reference.nim
@@ -121,7 +120,7 @@ data:
   - atcoder/extra/template/template.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
-  timestamp: '2022-08-08 21:23:55+09:00'
+  timestamp: '2022-09-17 04:52:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/other/reference.nim

@@ -37,16 +37,16 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/other/debug.nim
     title: atcoder/extra/other/debug.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
   - icon: ':warning:'
@@ -134,42 +134,42 @@ data:
     \ a mod b != 0: result.inc\n\n  template `/^`*[T:SomeInteger](a, b:T):T = ceilDiv(a,\
     \ b)\n"
   dependsOn:
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/debug.nim
   - atcoder/extra/other/assignment_operator.nim
   - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/cfor.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/cfor.nim
   - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/cfor.nim
   - atcoder/extra/other/reader.nim
   - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/other/seq_array_utils.nim
   - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/cfor.nim
-  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/seq_array_utils.nim
   - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/reader.nim
   - atcoder/extra/other/cfor.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/debug.nim
   - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/cfor.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/cfor.nim
+  - atcoder/extra/other/debug.nim
   isVerificationFile: false
   path: atcoder/extra/header/header.nim
   requiredBy: []
-  timestamp: '2022-08-08 21:23:55+09:00'
+  timestamp: '2022-09-17 04:52:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/header/header.nim

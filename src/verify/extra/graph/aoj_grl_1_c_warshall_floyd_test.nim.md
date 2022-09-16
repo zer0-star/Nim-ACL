@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/extra/graph/warshall_floyd.nim
     title: atcoder/extra/graph/warshall_floyd.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/other/inf.nim
     title: atcoder/extra/other/inf.nim
   - icon: ':question:'
@@ -46,14 +46,14 @@ data:
   dependsOn:
   - atcoder/extra/other/inf.nim
   - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/warshall_floyd.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/extra/graph/warshall_floyd.nim
-  - atcoder/header.nim
+  - atcoder/extra/graph/warshall_floyd.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_1_c_warshall_floyd_test.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-09-17 04:52:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/graph/aoj_grl_1_c_warshall_floyd_test.nim

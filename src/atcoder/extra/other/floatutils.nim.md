@@ -111,18 +111,6 @@ data:
     path: atcoder/extra/geometry/visualizer.nim
     title: atcoder/extra/geometry/visualizer.nim
   - icon: ':warning:'
-    path: atcoder/extra/header/chaemon_header.nim
-    title: atcoder/extra/header/chaemon_header.nim
-  - icon: ':warning:'
-    path: atcoder/extra/header/chaemon_header.nim
-    title: atcoder/extra/header/chaemon_header.nim
-  - icon: ':warning:'
-    path: atcoder/extra/header/chaemon_header.nim
-    title: atcoder/extra/header/chaemon_header.nim
-  - icon: ':warning:'
-    path: atcoder/extra/header/chaemon_header.nim
-    title: atcoder/extra/header/chaemon_header.nim
-  - icon: ':warning:'
     path: atcoder/extra/other/binary_search_float.nim
     title: atcoder/extra/other/binary_search_float.nim
   - icon: ':warning:'
@@ -146,66 +134,6 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/other/decimal.nim
     title: atcoder/extra/other/decimal.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template.nim
-    title: atcoder/extra/template/atcoder-tools_template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template.nim
-    title: atcoder/extra/template/atcoder-tools_template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template.nim
-    title: atcoder/extra/template/atcoder-tools_template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template.nim
-    title: atcoder/extra/template/atcoder-tools_template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template_global.nim
-    title: atcoder/extra/template/atcoder-tools_template_global.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template_global.nim
-    title: atcoder/extra/template/atcoder-tools_template_global.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template_global.nim
-    title: atcoder/extra/template/atcoder-tools_template_global.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template_global.nim
-    title: atcoder/extra/template/atcoder-tools_template_global.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template_with_solve.nim
-    title: atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template_with_solve.nim
-    title: atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template_with_solve.nim
-    title: atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/atcoder-tools_template_with_solve.nim
-    title: atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/template.nim
-    title: atcoder/extra/template/template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/template.nim
-    title: atcoder/extra/template/template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/template.nim
-    title: atcoder/extra/template/template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/template.nim
-    title: atcoder/extra/template/template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/vim_template.nim
-    title: atcoder/extra/template/vim_template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/vim_template.nim
-    title: atcoder/extra/template/vim_template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/vim_template.nim
-    title: atcoder/extra/template/vim_template.nim
-  - icon: ':warning:'
-    path: atcoder/extra/template/vim_template.nim
-    title: atcoder/extra/template/vim_template.nim
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
@@ -371,13 +299,13 @@ data:
     \        m = d\n        echo \"found: \", p, \"/\", q, \"   \", \"error: \", d\n\
     \      q.inc\n    return\n\n  float.initPrec()\n#  float64.initPrec()\n  float32.initPrec()\n"
   dependsOn:
-  - atcoder/element_concepts.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   isVerificationFile: false
   path: atcoder/extra/other/floatutils.nim
@@ -396,22 +324,10 @@ data:
   - atcoder/extra/geometry/closest_pair.nim
   - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/template.nim
-  - atcoder/extra/template/template.nim
   - atcoder/extra/other/binary_search_float.nim
   - atcoder/extra/other/binary_search_float.nim
   - atcoder/extra/other/decimal.nim
   - atcoder/extra/other/decimal.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/geometry/segment_graph.nim
   - atcoder/extra/geometry/segment_graph.nim
   - atcoder/extra/geometry/visualizer.nim
@@ -426,22 +342,10 @@ data:
   - atcoder/extra/geometry/closest_pair.nim
   - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/template/atcoder-tools_template_global.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/template.nim
-  - atcoder/extra/template/template.nim
   - atcoder/extra/other/binary_search_float.nim
   - atcoder/extra/other/binary_search_float.nim
   - atcoder/extra/other/decimal.nim
   - atcoder/extra/other/decimal.nim
-  - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/header/chaemon_header.nim
   timestamp: '2022-02-05 00:42:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

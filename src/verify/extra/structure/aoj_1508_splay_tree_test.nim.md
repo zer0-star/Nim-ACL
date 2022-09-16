@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
   - icon: ':question:'
@@ -46,12 +46,12 @@ data:
     \ st.initNode(z), r)\n        # type 3\n#        st.erase(st.get_node(y))\n# \
     \       st.insert(y, z)\n"
   dependsOn:
-  - atcoder/rangeutils.nim
-  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
-  - atcoder/header.nim
+  - atcoder/extra/structure/splay_tree.nim
   isVerificationFile: true
   path: verify/extra/structure/aoj_1508_splay_tree_test.nim
   requiredBy: []

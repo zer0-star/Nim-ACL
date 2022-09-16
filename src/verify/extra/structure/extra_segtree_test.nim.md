@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
   - icon: ':question:'
@@ -46,14 +46,14 @@ data:
     \   let a = st.get(p)\n    st.set(p, a + x)\n  else:\n    let l, r = nextInt()\n\
     \    echo st.prod(l..<r)\n"
   dependsOn:
-  - atcoder/rangeutils.nim
-  - atcoder/extra/structure/universal_segtree.nim
   - atcoder/internal_bit.nim
   - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/extra/structure/universal_segtree.nim
   - atcoder/internal_bit.nim
-  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/structure/extra_segtree_test.nim
   requiredBy: []

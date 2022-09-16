@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/extra/graph/graph_template.nim
     title: atcoder/extra/graph/graph_template.nim
   - icon: ':heavy_check_mark:'
@@ -41,9 +41,9 @@ data:
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
-  - atcoder/extra/graph/prim.nim
-  - atcoder/extra/graph/prim.nim
   - atcoder/header.nim
+  - atcoder/extra/graph/prim.nim
+  - atcoder/extra/graph/prim.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_2_a_minimum_spanning_tree_prim_test.nim
   requiredBy: []

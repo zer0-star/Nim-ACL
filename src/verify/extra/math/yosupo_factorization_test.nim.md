@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/factorization.nim
     title: atcoder/extra/math/factorization.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/math/factorization.nim
     title: atcoder/extra/math/factorization.nim
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: atcoder/header.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/factorize
     links:
@@ -29,18 +29,18 @@ data:
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/factorize\n\ninclude\
     \ atcoder/header\nimport atcoder/extra/math/factorization\n\nblock main:\n  let\
     \ Q = nextInt()\n  for _ in 0..<Q:\n    let x = factor(nextInt()).sorted()\n \
-    \   stdout.write(x.len, \" \")\n    stdout.write(x.mapIt($it).join(\" \"))\n \
-    \   echo \"\"\n"
+    \   var ans: seq[int]\n    for (p, e) in x:\n      for _ in 0 ..< e:\n       \
+    \ ans.add p\n    echo ans.len, \" \", ans.join(\" \")\n"
   dependsOn:
   - atcoder/extra/math/factorization.nim
   - atcoder/header.nim
-  - atcoder/extra/math/factorization.nim
   - atcoder/header.nim
+  - atcoder/extra/math/factorization.nim
   isVerificationFile: true
   path: verify/extra/math/yosupo_factorization_test.nim
   requiredBy: []
-  timestamp: '2021-12-11 23:59:27+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-17 04:52:33+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/math/yosupo_factorization_test.nim
 layout: document

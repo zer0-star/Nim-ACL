@@ -88,15 +88,15 @@ data:
     \ = round_to_int(x)\n"
   dependsOn:
   - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/other/floatutils.nim
   isVerificationFile: false
