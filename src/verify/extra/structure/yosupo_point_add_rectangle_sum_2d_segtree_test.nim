@@ -29,7 +29,7 @@ for _ in 0 ..< Q:
 var st = initSegTree2D(v0, proc(a, b:int):int = a + b, proc():int = 0)
 
 for i in 0 ..< N:
-  st[x[i], y[i]] = st[x[i], y[i]] + w[i]
+  st.add(x[i], y[i], w[i])
 
 for v in qv:
   let t = v[0]
@@ -38,7 +38,7 @@ for v in qv:
       x = v[1]
       y = v[2]
       w = v[3]
-    st[x, y] = st[x, y] + w
+    st.add(x, y, w)
   else:
     let
       l = v[1]
@@ -46,3 +46,5 @@ for v in qv:
       r = v[3]
       u = v[4]
     echo st[l ..< r, d ..< u]
+
+

@@ -1,6 +1,7 @@
 when not declared ATCODER_ROLLING_HASH_HPP:
   const ATCODER_ROLLING_HASH_HPP* = 1
-  import sequtils
+  import std/sequtils
+  import atcoder/rangeutils
   
   template MASK*(n:static[int]):auto = (1'u shl n.uint) - 1
   
@@ -52,6 +53,7 @@ when not declared ATCODER_ROLLING_HASH_HPP:
   proc hash*(a:RH):Hash = a.h.hash
   
   type RollingHash*[RH] = object
+    len*: int
     hashed, power: seq[RH]
   
   proc initRollingHash*(s:string):auto =
@@ -64,23 +66,26 @@ when not declared ATCODER_ROLLING_HASH_HPP:
       power[i + 1] = power[i] * RH(base)
       hashed[i + 1] = calcMod(multRaw(hashed[i], RH(base)) + RH(s[i]))
   #    if hashed[i + 1] >= MOD: hashed[i + 1] -= MOD
-    return RollingHash[RH](hashed: hashed, power: power)
+    return RollingHash[RH](hashed: hashed, power: power, len: sz)
   
-  proc `[]`*(self: RollingHash; s:Slice[int]):RH =
-    result = RH(self.hashed[s.b+1].h + (RH.MOD shl 2) - multRaw(self.hashed[s.a], self.power[s.len]).h)
+  proc `[]`*(self: RollingHash; s:RangeType):RH =
+    let (l, r) = self.halfOpenEndpoints(s)
+    result = RH(self.hashed[r].h + (RH.MOD shl 2) - multRaw(self.hashed[l], self.power[r - l]).h)
     result = result.calcMod()
   
   proc connect*(self: RollingHash; h1, h2:uint, h2len:int):RH =
     result = multRaw(RH(h1), self.power[h2len]) + RH(h2)
     result = result.calcMod
   
-  proc LCP*(self, b:RollingHash; p1, p2:Slice[int]):int =
+  proc LCP*(self, b:RollingHash; p1, p2:RangeType):int =
+    let
+      (l1, r1) = self.halfOpenEndpoints(p1)
+      (l2, r2) = b.halfOpenEndpoints(p2)
     var
-      len = min(p1.len, p2.len)
       low = -1
-      high = len + 1
+      high = min(r1 - l1, r2 - l2) + 1
     while high - low > 1:
       let mid = (low + high) div 2
-      if self[p1.a..<p1.a + mid] == b[p2.a..<p2.a + mid]: low = mid
+      if self[l1 ..< l1 + mid] == b[l2 ..< l2 + mid]: low = mid
       else: high = mid
     return low

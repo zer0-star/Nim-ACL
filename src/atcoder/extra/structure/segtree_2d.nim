@@ -34,18 +34,20 @@ when not declared ATCODER_SEGTREE_2D_HPP:
       let xi = result.xs.lowerBound(x)
       setYs(0, xi, y, 0, N2)
     for i in 0 ..< result.ys.len:
-      result.ys[i].sort;result.ys[i] = result.ys[i].deduplicate(true)
+      result.ys[i].sort
+      result.ys[i] = result.ys[i].deduplicate(true)
       result.segt[i].init(result.ys[i].len)
 
-  proc set*[ST:SegTree2D](self:var ST, i, xi, y: int, v:ST.S, l, r:int) =
+  proc add*[ST:SegTree2D](self:var ST, i, xi, y: int, v:ST.S, l, r:int) =
     let yi = self.ys[i].lowerBound(y)
-    self.segt[i][yi] = v
+    doAssert self.ys[i][yi] == y
     if r - l > 1:
       let m = (l + r) shr 1
       if xi in l ..< m:
-        self.set(i * 2 + 1, xi, y, v, l, m)
+        self.add(i * 2 + 1, xi, y, v, l, m)
       else:
-        self.set(i * 2 + 2, xi, y, v, m, r)
+        self.add(i * 2 + 2, xi, y, v, m, r)
+    self.segt[i][yi] = self.SegTree.calc_op(self.segt[i][yi], v)
   proc get*[ST:SegTree2D](self:ST, i, xi, y: int, l, r:int):ST.S =
     if r - l > 1:
       let m = (l + r) shr 1
@@ -55,8 +57,8 @@ when not declared ATCODER_SEGTREE_2D_HPP:
         return self.get(i * 2 + 2, xi, y, m, r)
     else:
       let yi = self.ys[i].lowerBound(y)
+      doAssert self.ys[i][yi] == y
       return self.segt[i][yi]
-
 
   proc prod*[ST:SegTree2D](self: ST, i, xil, xir, yl, yr, l, r:int):int =
     if xir <= l or r <= xil: return self.SegTree.calc_e()
@@ -68,13 +70,15 @@ when not declared ATCODER_SEGTREE_2D_HPP:
     else:
       let m = (l + r) shr 1
       return self.SegTree.calc_op(self.prod(i * 2 + 1, xil, xir, yl, yr, l, m), self.prod(i * 2 + 2, xil, xir, yl, yr, m, r))
-  
-  proc set*[ST:SegTree2D](self: var ST, x, y:int, v:ST.S) =
+
+  proc add*[ST:SegTree2D](self: var ST, x, y:int, v:ST.S) =
     let xi = self.xs.lowerBound(x)
-    self.set(0, xi, y, v, 0, self.N2)
-  proc `[]=`*[ST:SegTree2D](self: var ST, x, y:int, v:ST.S) = self.set(x, y, v)
+    doAssert self.xs[xi] == x
+    self.add(0, xi, y, v, 0, self.N2)
+  #proc `[]=`*[ST:SegTree2D](self: var ST, x, y:int, v:ST.S) = self.add(x, y, v)
   proc get*[ST:SegTree2D](self: var ST, x, y:int):ST.S =
     let xi = self.xs.lowerBound(x)
+    doAssert self.xs[xi] == x
     return self.get(0, xi, y, 0, self.N2)
   proc `[]`*[ST:SegTree2D](self: var ST, x, y:int):ST.S = self.get(x, y)
 

@@ -1,11 +1,10 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/staticrmq
 
 include atcoder/header
-import atcoder/extra/other/internal_sugar
 import atcoder/extra/structure/sparse_table
 
-f(p, q:int) => min(p, q)
-e() => int.inf
+proc f(p, q:int):int = min(p, q)
+proc e():int = int.inf
 
 let N, Q = nextInt()
 let a = newSeqWith(N, nextInt())

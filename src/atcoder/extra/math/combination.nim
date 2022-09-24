@@ -14,7 +14,7 @@ when not defined ATCODER_COMBINATION_HPP:
         cmb.fact_a = @[T(1)]
         cmb.rfact_a = @[T(1)]
       let sz_old = cmb.fact_a.len - 1
-      let sz = max(sz_old * 2, k)
+      let sz = min(max(sz_old * 2, k), T.mod - 1)
       cmb.fact_a.setlen(sz + 1)
       cmb.rfact_a.setlen(sz + 1)
       for i in sz_old + 1..sz: cmb.fact_a[i] = cmb.fact_a[i-1] * T(i)

@@ -6,8 +6,6 @@ when not declared ATCODER_DEBUG_HPP:
   macro debugImpl*(n:varargs[untyped]): untyped =
     #  var a = "stderr.write "
     var a = ""
-#    a.add "setForegroundColor fgYellow\n"
-#    a.add "stdout.write "
 #    a.add "stderr.write "
     a.add "styledWriteLine stderr, fgYellow, "
     for i,x in n:
@@ -17,7 +15,8 @@ when not declared ATCODER_DEBUG_HPP:
           a.add(""", " ",""")
       else:
         let s = fmt"{x.toStrLit}".replace("\n", "").replace("  ", " ")
-        a &= fmt""" "{s} = ", infRepr({s}) """
+        var name = s.escape(prefix = "", suffix = "")
+        a &= fmt""" "{name} = ", infRepr({s}) """
         if i < n.len - 1:
           a.add(""", ", ",""")
     a.add "\n"

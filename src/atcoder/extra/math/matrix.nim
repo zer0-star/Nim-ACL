@@ -35,11 +35,11 @@ when not declared ATCODER_MATRIX_HPP:
       result[i] = A.data[i * A.M ..< (i + 1) * A.M]
 
   proc `[]`*[M:StaticMatrix](self:M, i, j:int):M.T = self.data[i][j]
+  proc `[]`*[M:StaticMatrix](self:var M, i, j:int):var M.T = self.data[i][j]
   proc `[]=`*[M:StaticMatrix](self:var M, i, j:int, a:M.T) = self.data[i][j] = a
-  proc `[]`*[M:DynamicMatrix](self:M, i, j:int):M.T =
-    self.data[i * self.M + j]
-  proc `[]=`*[M:DynamicMatrix](self:var M, i, j:int, a:M.T) =
-    self.data[i * self.M + j] = a
+  proc `[]`*[M:DynamicMatrix](self:M, i, j:int):M.T = self.data[i * self.M + j]
+  proc `[]`*[M:DynamicMatrix](self:var M, i, j:int):var M.T = self.data[i * self.M + j]
+  proc `[]=`*[M:DynamicMatrix](self:var M, i, j:int, a:M.T) = self.data[i * self.M + j] = a
 
   proc init*[M:DynamicMatrix](self:typedesc[M] or M, n, m:int):M =
     result.N = n;result.M = m
