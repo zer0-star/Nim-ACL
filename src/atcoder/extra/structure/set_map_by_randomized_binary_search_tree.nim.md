@@ -1,52 +1,52 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/binary_tree_node_utils.nim
     title: atcoder/extra/structure/binary_tree_node_utils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/binary_tree_node_utils.nim
     title: atcoder/extra/structure/binary_tree_node_utils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/binary_tree_node_utils.nim
     title: atcoder/extra/structure/binary_tree_node_utils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/binary_tree_node_utils.nim
     title: atcoder/extra/structure/binary_tree_node_utils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/binary_tree_utils.nim
     title: atcoder/extra/structure/binary_tree_utils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/binary_tree_utils.nim
     title: atcoder/extra/structure/binary_tree_utils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/binary_tree_utils.nim
     title: atcoder/extra/structure/binary_tree_utils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/binary_tree_utils.nim
     title: atcoder/extra/structure/binary_tree_utils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
@@ -139,25 +139,25 @@ data:
     \  proc `$`*(self: SetOrMap):string = self.rbst.to_string(self.rbst.root)\n  {.pop.}\n"
   dependsOn:
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/rangeutils.nim
-  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
   - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/rangeutils.nim
-  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/extra/structure/binary_tree_utils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
   requiredBy: []
-  timestamp: '2022-07-03 22:20:00+09:00'
+  timestamp: '2022-09-24 20:04:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim

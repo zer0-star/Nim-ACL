@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
   - icon: ':question:'
@@ -31,10 +31,10 @@ data:
   - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
@@ -62,22 +62,22 @@ data:
     \    seg.apply(l..<r, (mint(c), mint(d)))\n  else:\n    let l, r = nextInt()\n\
     \    echo seg.prod(l..<r)[0]\n"
   dependsOn:
-  - atcoder/internal_math.nim
-  - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/header.nim
   - atcoder/rangeutils.nim
-  - atcoder/rangeutils.nim
-  - atcoder/modint.nim
-  - atcoder/extra/structure/splay_tree.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/modint.nim
+  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
   - atcoder/generate_definitions.nim
   - atcoder/generate_definitions.nim
+  - atcoder/header.nim
+  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
   requiredBy: []
-  timestamp: '2022-09-17 04:52:33+09:00'
+  timestamp: '2022-09-24 20:04:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim

@@ -40,10 +40,10 @@ data:
     \ i in 0..<Q:\n    let x, y = nextInt()\n    echo lca.lca(x, y)\n\nmain()\n"
   dependsOn:
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/header.nim
   - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
   - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
   isVerificationFile: true
   path: verify/extra/tree/aoj_grl_5_c_lowest_common_ancestor_test.nim

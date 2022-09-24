@@ -32,13 +32,13 @@ data:
     \ \")\n\nmain()\n"
   dependsOn:
   - atcoder/extra/dp/slide_min.nim
-  - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/extra/dp/slide_min.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/dp/aoj_dsl_3_d_slidemin_test.nim
   requiredBy: []
-  timestamp: '2021-12-11 23:59:27+09:00'
+  timestamp: '2022-09-24 20:04:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/dp/aoj_dsl_3_d_slidemin_test.nim

@@ -70,10 +70,12 @@ data:
     \ M):int = M.M\n  proc getSeq[M:DynamicMatrix](A:M):seq[seq[M.T]] =\n    result\
     \ = newSeq[seq[M.T]](A.N)\n    for i in 0..<A.N:\n      result[i] = A.data[i *\
     \ A.M ..< (i + 1) * A.M]\n\n  proc `[]`*[M:StaticMatrix](self:M, i, j:int):M.T\
+    \ = self.data[i][j]\n  proc `[]`*[M:StaticMatrix](self:var M, i, j:int):var M.T\
     \ = self.data[i][j]\n  proc `[]=`*[M:StaticMatrix](self:var M, i, j:int, a:M.T)\
-    \ = self.data[i][j] = a\n  proc `[]`*[M:DynamicMatrix](self:M, i, j:int):M.T =\n\
-    \    self.data[i * self.M + j]\n  proc `[]=`*[M:DynamicMatrix](self:var M, i,\
-    \ j:int, a:M.T) =\n    self.data[i * self.M + j] = a\n\n  proc init*[M:DynamicMatrix](self:typedesc[M]\
+    \ = self.data[i][j] = a\n  proc `[]`*[M:DynamicMatrix](self:M, i, j:int):M.T =\
+    \ self.data[i * self.M + j]\n  proc `[]`*[M:DynamicMatrix](self:var M, i, j:int):var\
+    \ M.T = self.data[i * self.M + j]\n  proc `[]=`*[M:DynamicMatrix](self:var M,\
+    \ i, j:int, a:M.T) = self.data[i * self.M + j] = a\n\n  proc init*[M:DynamicMatrix](self:typedesc[M]\
     \ or M, n, m:int):M =\n    result.N = n;result.M = m\n    result.data.setLen(n\
     \ * m)\n    for i in 0..<result.data.len:\n      result.data[i] = M.p.zero()\n\
     \  proc init*[M:DynamicMatrix](self:typedesc[M] or M, n:int):M = M.init(n, n)\n\
@@ -181,13 +183,13 @@ data:
     \ j] = G[i][j + n]\n\n  generatePow(StaticMatrix)\n  generatePow(DynamicMatrix)\n"
   dependsOn:
   - atcoder/extra/other/operator.nim
-  - atcoder/extra/other/operator.nim
   - atcoder/generate_definitions.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/other/operator.nim
   - atcoder/extra/other/operator.nim
   - atcoder/generate_definitions.nim
   - atcoder/generate_definitions.nim
+  - atcoder/extra/other/operator.nim
   isVerificationFile: false
   path: atcoder/extra/math/matrix.nim
   requiredBy:
@@ -195,7 +197,7 @@ data:
   - atcoder/extra/math/simplex.nim
   - atcoder/extra/math/simplex.nim
   - atcoder/extra/math/simplex.nim
-  timestamp: '2022-07-30 23:50:20+09:00'
+  timestamp: '2022-09-24 20:04:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/math/yosupo_system_of_linear_equations_test.nim

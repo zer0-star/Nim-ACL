@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
@@ -125,14 +125,14 @@ data:
     \ sm)\n            r.dec\n        return r + 1 - self.size\n      sm = ST.calc_op(self.d[r],\
     \ sm)\n      if not ((r and -r) != r): break\n    return 0\n  {.pop.}\n"
   dependsOn:
-  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
   isVerificationFile: false
   path: atcoder/lazysegtree.nim
   requiredBy: []
-  timestamp: '2022-08-25 23:07:00+09:00'
+  timestamp: '2022-09-24 20:04:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/lazy_segtree_test.nim

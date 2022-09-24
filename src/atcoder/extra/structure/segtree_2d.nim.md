@@ -13,16 +13,16 @@ data:
   - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   - icon: ':x:'
@@ -67,51 +67,53 @@ data:
     \ m = (l + r) shr 1\n        if xi in l ..< m:\n          setYs(i * 2 + 1, xi,\
     \ y, l, m)\n        else:\n          setYs(i * 2 + 2, xi, y, m, r)\n\n    for\
     \ (x, y) in v:\n      let xi = result.xs.lowerBound(x)\n      setYs(0, xi, y,\
-    \ 0, N2)\n    for i in 0 ..< result.ys.len:\n      result.ys[i].sort;result.ys[i]\
+    \ 0, N2)\n    for i in 0 ..< result.ys.len:\n      result.ys[i].sort\n      result.ys[i]\
     \ = result.ys[i].deduplicate(true)\n      result.segt[i].init(result.ys[i].len)\n\
-    \n  proc set*[ST:SegTree2D](self:var ST, i, xi, y: int, v:ST.S, l, r:int) =\n\
-    \    let yi = self.ys[i].lowerBound(y)\n    self.segt[i][yi] = v\n    if r - l\
-    \ > 1:\n      let m = (l + r) shr 1\n      if xi in l ..< m:\n        self.set(i\
-    \ * 2 + 1, xi, y, v, l, m)\n      else:\n        self.set(i * 2 + 2, xi, y, v,\
-    \ m, r)\n  proc get*[ST:SegTree2D](self:ST, i, xi, y: int, l, r:int):ST.S =\n\
-    \    if r - l > 1:\n      let m = (l + r) shr 1\n      if xi in l ..< m:\n   \
-    \     return self.get(i * 2 + 1, xi, y, l, m)\n      else:\n        return self.get(i\
+    \n  proc add*[ST:SegTree2D](self:var ST, i, xi, y: int, v:ST.S, l, r:int) =\n\
+    \    let yi = self.ys[i].lowerBound(y)\n    doAssert self.ys[i][yi] == y\n   \
+    \ if r - l > 1:\n      let m = (l + r) shr 1\n      if xi in l ..< m:\n      \
+    \  self.add(i * 2 + 1, xi, y, v, l, m)\n      else:\n        self.add(i * 2 +\
+    \ 2, xi, y, v, m, r)\n    self.segt[i][yi] = self.SegTree.calc_op(self.segt[i][yi],\
+    \ v)\n  proc get*[ST:SegTree2D](self:ST, i, xi, y: int, l, r:int):ST.S =\n   \
+    \ if r - l > 1:\n      let m = (l + r) shr 1\n      if xi in l ..< m:\n      \
+    \  return self.get(i * 2 + 1, xi, y, l, m)\n      else:\n        return self.get(i\
     \ * 2 + 2, xi, y, m, r)\n    else:\n      let yi = self.ys[i].lowerBound(y)\n\
-    \      return self.segt[i][yi]\n\n\n  proc prod*[ST:SegTree2D](self: ST, i, xil,\
-    \ xir, yl, yr, l, r:int):int =\n    if xir <= l or r <= xil: return self.SegTree.calc_e()\n\
-    \    elif xil <= l and r <= xir:\n      let\n        yil = self.ys[i].lowerBound(yl)\n\
-    \        yir = self.ys[i].lowerBound(yr)\n      return self.segt[i][yil ..< yir]\n\
-    \    else:\n      let m = (l + r) shr 1\n      return self.SegTree.calc_op(self.prod(i\
-    \ * 2 + 1, xil, xir, yl, yr, l, m), self.prod(i * 2 + 2, xil, xir, yl, yr, m,\
-    \ r))\n  \n  proc set*[ST:SegTree2D](self: var ST, x, y:int, v:ST.S) =\n    let\
-    \ xi = self.xs.lowerBound(x)\n    self.set(0, xi, y, v, 0, self.N2)\n  proc `[]=`*[ST:SegTree2D](self:\
-    \ var ST, x, y:int, v:ST.S) = self.set(x, y, v)\n  proc get*[ST:SegTree2D](self:\
-    \ var ST, x, y:int):ST.S =\n    let xi = self.xs.lowerBound(x)\n    return self.get(0,\
-    \ xi, y, 0, self.N2)\n  proc `[]`*[ST:SegTree2D](self: var ST, x, y:int):ST.S\
-    \ = self.get(x, y)\n\n  proc prod*[ST:SegTree2D](self: var ST, xp, yp: Slice[int]\
-    \ or int):ST.S =\n    when xp is int:\n      let xp = xp .. xp\n    when yp is\
-    \ int:\n      let yp = yp .. yp\n    let\n      xl = xp.a\n      xr = xp.b + 1\n\
-    \      yl = yp.a\n      yr = yp.b + 1\n      xil = self.xs.lowerBound(xl)\n  \
-    \    xir = self.xs.lowerBound(xr)\n    self.prod(0, xil, xir, yl, yr, 0, self.N2)\n\
-    \  proc `[]`*[ST:SegTree2D](self: var ST, xp, yp: Slice[int] or int):ST.S = self.prod(xp,\
-    \ yp)\n"
+    \      doAssert self.ys[i][yi] == y\n      return self.segt[i][yi]\n\n  proc prod*[ST:SegTree2D](self:\
+    \ ST, i, xil, xir, yl, yr, l, r:int):int =\n    if xir <= l or r <= xil: return\
+    \ self.SegTree.calc_e()\n    elif xil <= l and r <= xir:\n      let\n        yil\
+    \ = self.ys[i].lowerBound(yl)\n        yir = self.ys[i].lowerBound(yr)\n     \
+    \ return self.segt[i][yil ..< yir]\n    else:\n      let m = (l + r) shr 1\n \
+    \     return self.SegTree.calc_op(self.prod(i * 2 + 1, xil, xir, yl, yr, l, m),\
+    \ self.prod(i * 2 + 2, xil, xir, yl, yr, m, r))\n\n  proc add*[ST:SegTree2D](self:\
+    \ var ST, x, y:int, v:ST.S) =\n    let xi = self.xs.lowerBound(x)\n    doAssert\
+    \ self.xs[xi] == x\n    self.add(0, xi, y, v, 0, self.N2)\n  #proc `[]=`*[ST:SegTree2D](self:\
+    \ var ST, x, y:int, v:ST.S) = self.add(x, y, v)\n  proc get*[ST:SegTree2D](self:\
+    \ var ST, x, y:int):ST.S =\n    let xi = self.xs.lowerBound(x)\n    doAssert self.xs[xi]\
+    \ == x\n    return self.get(0, xi, y, 0, self.N2)\n  proc `[]`*[ST:SegTree2D](self:\
+    \ var ST, x, y:int):ST.S = self.get(x, y)\n\n  proc prod*[ST:SegTree2D](self:\
+    \ var ST, xp, yp: Slice[int] or int):ST.S =\n    when xp is int:\n      let xp\
+    \ = xp .. xp\n    when yp is int:\n      let yp = yp .. yp\n    let\n      xl\
+    \ = xp.a\n      xr = xp.b + 1\n      yl = yp.a\n      yr = yp.b + 1\n      xil\
+    \ = self.xs.lowerBound(xl)\n      xir = self.xs.lowerBound(xr)\n    self.prod(0,\
+    \ xil, xir, yl, yr, 0, self.N2)\n  proc `[]`*[ST:SegTree2D](self: var ST, xp,\
+    \ yp: Slice[int] or int):ST.S = self.prod(xp, yp)\n"
   dependsOn:
-  - atcoder/internal_bit.nim
   - atcoder/segtree.nim
-  - atcoder/segtree.nim
-  - atcoder/rangeutils.nim
-  - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
-  - atcoder/segtree.nim
-  - atcoder/segtree.nim
   - atcoder/rangeutils.nim
-  - atcoder/rangeutils.nim
+  - atcoder/segtree.nim
   - atcoder/internal_bit.nim
+  - atcoder/rangeutils.nim
+  - atcoder/segtree.nim
+  - atcoder/internal_bit.nim
+  - atcoder/rangeutils.nim
+  - atcoder/segtree.nim
+  - atcoder/internal_bit.nim
+  - atcoder/rangeutils.nim
   isVerificationFile: false
   path: atcoder/extra/structure/segtree_2d.nim
   requiredBy: []
-  timestamp: '2022-09-17 04:52:33+09:00'
+  timestamp: '2022-09-24 20:04:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim

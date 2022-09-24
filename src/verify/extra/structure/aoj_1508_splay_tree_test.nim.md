@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
   - icon: ':question:'
@@ -13,17 +13,17 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1508
     links:
@@ -46,17 +46,17 @@ data:
     \ st.initNode(z), r)\n        # type 3\n#        st.erase(st.get_node(y))\n# \
     \       st.insert(y, z)\n"
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
   - atcoder/extra/structure/splay_tree.nim
   isVerificationFile: true
   path: verify/extra/structure/aoj_1508_splay_tree_test.nim
   requiredBy: []
-  timestamp: '2021-12-11 23:59:27+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-24 20:04:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/structure/aoj_1508_splay_tree_test.nim
 layout: document

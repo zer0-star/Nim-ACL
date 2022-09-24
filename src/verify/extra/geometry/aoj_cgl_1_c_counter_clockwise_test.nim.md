@@ -60,18 +60,18 @@ data:
     \ echo \"ONLINE_BACK\"\n    elif c == CCWState.ONLINE_FRONT: echo \"ONLINE_FRONT\"\
     \n    else: echo \"ON_SEGMENT\"\n"
   dependsOn:
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/header.nim
-  - atcoder/element_concepts.nim
+  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/header.nim
-  - atcoder/element_concepts.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/internal_complex.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_1_c_counter_clockwise_test.nim
   requiredBy: []

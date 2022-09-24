@@ -19,10 +19,10 @@ data:
   - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   - icon: ':x:'
@@ -52,25 +52,25 @@ data:
     \ nextInt()\n  if t == 0:\n    let x, y, w = nextInt()\n    v0.add (x, y)\n  \
     \  qv.add @[t, x, y, w]\n  else:\n    let l, d, r, u = nextInt()\n    qv.add @[t,\
     \ l, d, r, u]\n\nvar st = initSegTree2D(v0, proc(a, b:int):int = a + b, proc():int\
-    \ = 0)\n\nfor i in 0 ..< N:\n  st[x[i], y[i]] = st[x[i], y[i]] + w[i]\n\nfor v\
-    \ in qv:\n  let t = v[0]\n  if t == 0:\n    let\n      x = v[1]\n      y = v[2]\n\
-    \      w = v[3]\n    st[x, y] = st[x, y] + w\n  else:\n    let\n      l = v[1]\n\
-    \      d = v[2]\n      r = v[3]\n      u = v[4]\n    echo st[l ..< r, d ..< u]\n"
+    \ = 0)\n\nfor i in 0 ..< N:\n  st.add(x[i], y[i], w[i])\n\nfor v in qv:\n  let\
+    \ t = v[0]\n  if t == 0:\n    let\n      x = v[1]\n      y = v[2]\n      w = v[3]\n\
+    \    st.add(x, y, w)\n  else:\n    let\n      l = v[1]\n      d = v[2]\n     \
+    \ r = v[3]\n      u = v[4]\n    echo st[l ..< r, d ..< u]\n\n\n"
   dependsOn:
-  - atcoder/internal_bit.nim
-  - atcoder/extra/structure/segtree_2d.nim
   - atcoder/extra/structure/segtree_2d.nim
   - atcoder/segtree.nim
-  - atcoder/header.nim
+  - atcoder/rangeutils.nim
   - atcoder/segtree.nim
-  - atcoder/header.nim
-  - atcoder/rangeutils.nim
-  - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
+  - atcoder/internal_bit.nim
+  - atcoder/rangeutils.nim
+  - atcoder/header.nim
+  - atcoder/extra/structure/segtree_2d.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
   requiredBy: []
-  timestamp: '2022-09-17 04:52:33+09:00'
+  timestamp: '2022-09-24 20:04:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim

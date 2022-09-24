@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/bitwise_convolution.nim
     title: atcoder/extra/math/bitwise_convolution.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/bitwise_convolution.nim
     title: atcoder/extra/math/bitwise_convolution.nim
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
     links:
@@ -53,21 +53,21 @@ data:
     \  var b = newSeqWith(2^N, mint(nextInt())).bit_invert\n  echo OrConvolution(a,\
     \ b).bit_invert.join(\" \")\n\nmain()\n"
   dependsOn:
+  - atcoder/modint.nim
+  - atcoder/extra/math/bitwise_convolution.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/header.nim
+  - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
   - atcoder/extra/math/bitwise_convolution.nim
-  - atcoder/extra/math/bitwise_convolution.nim
-  - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/header.nim
-  - atcoder/modint.nim
-  - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/generate_definitions.nim
   isVerificationFile: true
   path: verify/extra/math/yosupo_bitwise_or_convolution_test.nim
   requiredBy: []
   timestamp: '2022-09-17 04:52:33+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/math/yosupo_bitwise_or_convolution_test.nim
 layout: document

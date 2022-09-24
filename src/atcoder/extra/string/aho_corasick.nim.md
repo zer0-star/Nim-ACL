@@ -69,14 +69,14 @@ data:
     \      let nxt = self.move(c, now)\n      sum += nxt[0]\n      now = nxt[1]\n\
     \    return (sum, now)\n"
   dependsOn:
-  - atcoder/extra/other/algorithmutils.nim
-  - atcoder/extra/other/algorithmutils.nim
   - atcoder/extra/structure/trie.nim
   - atcoder/extra/structure/trie.nim
   - atcoder/extra/other/algorithmutils.nim
   - atcoder/extra/other/algorithmutils.nim
   - atcoder/extra/structure/trie.nim
   - atcoder/extra/structure/trie.nim
+  - atcoder/extra/other/algorithmutils.nim
+  - atcoder/extra/other/algorithmutils.nim
   isVerificationFile: false
   path: atcoder/extra/string/aho_corasick.nim
   requiredBy: []

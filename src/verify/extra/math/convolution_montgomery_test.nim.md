@@ -87,22 +87,22 @@ data:
 
     '
   dependsOn:
-  - atcoder/internal_bit.nim
-  - atcoder/convolution.nim
-  - atcoder/convolution.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/modint_montgomery.nim
-  - atcoder/extra/math/modint_montgomery.nim
-  - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
-  - atcoder/header.nim
-  - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   - atcoder/internal_bit.nim
+  - atcoder/element_concepts.nim
   - atcoder/modint.nim
+  - atcoder/internal_bit.nim
+  - atcoder/extra/math/modint_montgomery.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
   - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
   - atcoder/generate_definitions.nim
+  - atcoder/convolution.nim
+  - atcoder/extra/math/modint_montgomery.nim
+  - atcoder/convolution.nim
   isVerificationFile: true
   path: verify/extra/math/convolution_montgomery_test.nim
   requiredBy: []

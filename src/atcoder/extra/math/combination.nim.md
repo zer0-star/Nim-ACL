@@ -78,11 +78,11 @@ data:
     \ or x is var Combination\n\n  proc enhance[T:FieldElem](cmb: var Combination[T],\
     \ k:int):auto =\n    if k >= cmb.fact_a.len:\n      if cmb.fact_a.len == 0:\n\
     \        cmb.fact_a = @[T(1)]\n        cmb.rfact_a = @[T(1)]\n      let sz_old\
-    \ = cmb.fact_a.len - 1\n      let sz = max(sz_old * 2, k)\n      cmb.fact_a.setlen(sz\
-    \ + 1)\n      cmb.rfact_a.setlen(sz + 1)\n      for i in sz_old + 1..sz: cmb.fact_a[i]\
-    \ = cmb.fact_a[i-1] * T(i)\n      cmb.rfact_a[sz] = T(1) / cmb.fact_a[sz]\n  \
-    \    for i in countdown(sz - 1, sz_old + 1): cmb.rfact_a[i] = cmb.rfact_a[i +\
-    \ 1] * T(i + 1)\n    return cmb.addr\n\n  proc enhance(T:typedesc[FieldElem],\
+    \ = cmb.fact_a.len - 1\n      let sz = min(max(sz_old * 2, k), T.mod - 1)\n  \
+    \    cmb.fact_a.setlen(sz + 1)\n      cmb.rfact_a.setlen(sz + 1)\n      for i\
+    \ in sz_old + 1..sz: cmb.fact_a[i] = cmb.fact_a[i-1] * T(i)\n      cmb.rfact_a[sz]\
+    \ = T(1) / cmb.fact_a[sz]\n      for i in countdown(sz - 1, sz_old + 1): cmb.rfact_a[i]\
+    \ = cmb.rfact_a[i + 1] * T(i + 1)\n    return cmb.addr\n\n  proc enhance(T:typedesc[FieldElem],\
     \ k:int):auto {.discardable.} =\n    var cmb{.global.} = Combination[T]()\n  \
     \  return cmb.enhance(k)\n\n  template zero*(T:typedesc[FieldElem]):T = T(0)\n\
     \  template zero*[T:FieldElem](cmb:Combination[T]):T = T(0)\n  \n  template fact*(T:CombinationC,\
@@ -126,7 +126,7 @@ data:
   - atcoder/extra/math/lagrange_polynomial.nim
   - atcoder/extra/math/polynomial_taylor_shift.nim
   - atcoder/extra/math/polynomial_taylor_shift.nim
-  timestamp: '2021-05-19 22:57:49+09:00'
+  timestamp: '2022-09-24 20:04:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/extra/math/yukicoder_factorial_test.nim

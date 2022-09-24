@@ -134,42 +134,42 @@ data:
     \ a mod b != 0: result.inc\n\n  template `/^`*[T:SomeInteger](a, b:T):T = ceilDiv(a,\
     \ b)\n"
   dependsOn:
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/debug.nim
   - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/assignment_operator.nim
-  - atcoder/extra/other/cfor.nim
   - atcoder/extra/other/reader.nim
   - atcoder/extra/other/warlus_operator.nim
   - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/cfor.nim
   - atcoder/extra/other/debug.nim
   - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/debug.nim
-  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/cfor.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/seq_array_utils.nim
   - atcoder/extra/other/inf.nim
-  - atcoder/extra/other/assignment_operator.nim
   - atcoder/extra/other/cfor.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/seq_array_utils.nim
   - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/seq_array_utils.nim
-  - atcoder/extra/other/warlus_operator.nim
-  - atcoder/extra/other/solve_proc.nim
-  - atcoder/extra/other/reader.nim
-  - atcoder/extra/other/cfor.nim
   - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/reader.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/cfor.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/seq_array_utils.nim
+  - atcoder/extra/other/inf.nim
+  - atcoder/extra/other/cfor.nim
+  - atcoder/extra/other/solve_proc.nim
+  - atcoder/extra/other/debug.nim
+  - atcoder/extra/other/warlus_operator.nim
+  - atcoder/extra/other/assignment_operator.nim
+  - atcoder/extra/other/reader.nim
   isVerificationFile: false
   path: atcoder/extra/header/header.nim
   requiredBy: []
-  timestamp: '2022-09-17 04:52:33+09:00'
+  timestamp: '2022-09-24 20:04:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/header/header.nim

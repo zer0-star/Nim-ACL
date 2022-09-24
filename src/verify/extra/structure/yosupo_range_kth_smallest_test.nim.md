@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/structure/succinct_indexable_dictionary.nim
     title: atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/structure/succinct_indexable_dictionary.nim
     title: atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/structure/wavelet_matrix.nim
     title: atcoder/extra/structure/wavelet_matrix.nim
   - icon: ':question:'
@@ -19,17 +19,17 @@ data:
   - icon: ':question:'
     path: atcoder/header.nim
     title: atcoder/header.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
     links:
@@ -44,19 +44,19 @@ data:
     \ 18)\nfor i in 0..<Q:\n  let a, b, c = nextInt()\n  echo mat.kth_smallest(a ..<\
     \ b, c)\n"
   dependsOn:
-  - atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - atcoder/extra/structure/succinct_indexable_dictionary.nim
-  - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/extra/structure/succinct_indexable_dictionary.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
   - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/extra/structure/succinct_indexable_dictionary.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_range_kth_smallest_test.nim
   requiredBy: []
-  timestamp: '2021-12-11 23:59:27+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-24 20:04:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/structure/yosupo_range_kth_smallest_test.nim
 layout: document

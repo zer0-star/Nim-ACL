@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   - icon: ':x:'
@@ -45,18 +45,18 @@ data:
     \ == 0:\n    let p, x = nextInt()\n    let a = st.get(p)\n    st.set(p, a + x)\n\
     \  else:\n    let l, r = nextInt()\n    echo st.prod(l..<r)\n"
   dependsOn:
-  - atcoder/internal_bit.nim
   - atcoder/segtree.nim
-  - atcoder/segtree.nim
-  - atcoder/header.nim
-  - atcoder/header.nim
-  - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
+  - atcoder/segtree.nim
+  - atcoder/internal_bit.nim
+  - atcoder/rangeutils.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/segtree_test.nim
   requiredBy: []
-  timestamp: '2022-09-17 04:52:33+09:00'
+  timestamp: '2022-09-24 20:04:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/segtree_test.nim

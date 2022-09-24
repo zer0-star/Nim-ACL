@@ -86,16 +86,16 @@ data:
     path: atcoder/modint.nim
     title: atcoder/modint.nim
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
   - icon: ':question:'
@@ -171,22 +171,22 @@ data:
   - icon: ':x:'
     path: verify/extra/math/pow_of_formal_power_series_test.nim
     title: verify/extra/math/pow_of_formal_power_series_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/sqrt_of_formal_power_series_test.nim
     title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/sqrt_of_formal_power_series_test.nim
     title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
   - icon: ':x:'
@@ -256,34 +256,34 @@ data:
     \ b.map(f1))\n      c2 = convolution(a.map(f2), b.map(f2))\n    return calc_garner[T](c0,\
     \ c1, c2, a.len + b.len - 1)\n"
   dependsOn:
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/internal_bit.nim
+  - atcoder/modint.nim
+  - atcoder/internal_bit.nim
+  - atcoder/element_concepts.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
   - atcoder/convolution.nim
   - atcoder/convolution.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/internal_math.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/internal_bit.nim
+  - atcoder/modint.nim
+  - atcoder/internal_bit.nim
   - atcoder/element_concepts.nim
+  - atcoder/modint.nim
   - atcoder/internal_math.nim
-  - atcoder/element_concepts.nim
-  - atcoder/internal_bit.nim
-  - atcoder/modint.nim
-  - atcoder/modint.nim
   - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
-  - atcoder/internal_bit.nim
   - atcoder/convolution.nim
   - atcoder/convolution.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/element_concepts.nim
-  - atcoder/internal_math.nim
-  - atcoder/element_concepts.nim
-  - atcoder/internal_bit.nim
-  - atcoder/modint.nim
-  - atcoder/modint.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: atcoder/extra/math/arbitrary_mod_convolution.nim
   requiredBy:

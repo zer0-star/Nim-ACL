@@ -32,9 +32,9 @@ data:
     \    let u, v = nextInt()\n    g.addEdge(u, v)\n  \n  let p = g.maxMatching()\n\
     \  echo p.len\n  for p in p:\n    echo p[0], \" \", p[1]\n\nmain()\n"
   dependsOn:
-  - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/extra/graph/gabow_edmonds.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
   - atcoder/extra/graph/gabow_edmonds.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_matching_on_general_graph_test.nim

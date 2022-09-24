@@ -39,11 +39,11 @@ data:
     \ prim(g)[0]\n\nmain()\n"
   dependsOn:
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/graph/prim.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/extra/graph/prim.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/header.nim
-  - atcoder/header.nim
-  - atcoder/extra/graph/prim.nim
-  - atcoder/extra/graph/prim.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_2_a_minimum_spanning_tree_prim_test.nim
   requiredBy: []

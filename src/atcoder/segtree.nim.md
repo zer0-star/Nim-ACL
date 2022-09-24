@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: atcoder/internal_bit.nim
     title: atcoder/internal_bit.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy:
@@ -102,10 +102,10 @@ data:
     \      sm = ST.calc_op(self.d[r], sm)\n      if not ((r and -r) != r): break\n\
     \    return 0\n  #{.pop.}\n"
   dependsOn:
-  - atcoder/internal_bit.nim
-  - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
+  - atcoder/internal_bit.nim
+  - atcoder/rangeutils.nim
   isVerificationFile: false
   path: atcoder/segtree.nim
   requiredBy:
@@ -113,7 +113,7 @@ data:
   - atcoder/extra/structure/segtree_2d.nim
   - atcoder/extra/structure/segtree_2d.nim
   - atcoder/extra/structure/segtree_2d.nim
-  timestamp: '2022-09-17 04:52:33+09:00'
+  timestamp: '2022-09-24 20:04:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim

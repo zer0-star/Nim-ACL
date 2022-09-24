@@ -42,10 +42,10 @@ data:
   dependsOn:
   - atcoder/extra/structure/persistent_dsu.nim
   - atcoder/extra/structure/persistent_array.nim
-  - atcoder/extra/structure/persistent_array.nim
   - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/extra/structure/persistent_dsu.nim
+  - atcoder/extra/structure/persistent_array.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_persistent_unionfind_test.nim
   requiredBy: []

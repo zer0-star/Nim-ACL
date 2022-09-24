@@ -82,22 +82,22 @@ data:
     \    result = ModInt(1)\n    for i in 0..<sn: result *= vs[i]\n    for i in sn\
     \ * sn + 1..n: result *= i\n"
   dependsOn:
+  - atcoder/extra/math/combination.nim
   - atcoder/element_concepts.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/combination.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/extra/math/combination.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/math/combination.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/combination.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/math/combination.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/formal_power_series.nim
   isVerificationFile: false
   path: atcoder/extra/math/factorial.nim
   requiredBy: []
-  timestamp: '2022-09-17 04:52:33+09:00'
+  timestamp: '2022-09-24 20:04:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/math/yukicoder_factorial_test.nim

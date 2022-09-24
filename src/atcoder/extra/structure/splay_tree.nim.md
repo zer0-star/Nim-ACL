@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy:
@@ -26,41 +26,41 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/structure/generalized_slope_trick.nim
     title: atcoder/extra/structure/generalized_slope_trick.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/link_cut_tree.nim
     title: atcoder/extra/structure/link_cut_tree.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/link_cut_tree.nim
     title: atcoder/extra/structure/link_cut_tree.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/link_cut_tree.nim
     title: atcoder/extra/structure/link_cut_tree.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/link_cut_tree.nim
     title: atcoder/extra/structure/link_cut_tree.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/aoj_1508_splay_tree_test.nim
     title: verify/extra/structure/aoj_1508_splay_tree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/aoj_1508_splay_tree_test.nim
     title: verify/extra/structure/aoj_1508_splay_tree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
     title: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
     title: verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
   - icon: ':x:'
@@ -75,10 +75,10 @@ data:
   - icon: ':x:'
     path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
     title: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_predecessor_problem_test.nim
     title: verify/extra/structure/yosupo_predecessor_problem_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_predecessor_problem_test.nim
     title: verify/extra/structure/yosupo_predecessor_problem_test.nim
   - icon: ':x:'
@@ -87,15 +87,15 @@ data:
   - icon: ':x:'
     path: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
     title: verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/map_test.nim
     title: verify/map_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/map_test.nim
     title: verify/map_test.nim
   _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -323,8 +323,8 @@ data:
   - atcoder/extra/structure/link_cut_tree.nim
   - atcoder/extra/structure/generalized_slope_trick.nim
   - atcoder/extra/structure/generalized_slope_trick.nim
-  timestamp: '2021-11-18 02:47:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-09-24 20:04:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
   - verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim

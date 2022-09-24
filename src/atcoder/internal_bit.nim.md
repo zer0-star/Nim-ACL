@@ -32,16 +32,16 @@ data:
   - icon: ':question:'
     path: atcoder/extra/math/arbitrary_mod_convolution.nim
     title: atcoder/extra/math/arbitrary_mod_convolution.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/composition.nim
     title: atcoder/extra/math/composition.nim
   - icon: ':warning:'
@@ -104,16 +104,16 @@ data:
   - icon: ':x:'
     path: atcoder/extra/structure/segtree_2d.nim
     title: atcoder/extra/structure/segtree_2d.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/universal_segtree.nim
     title: atcoder/extra/structure/universal_segtree.nim
   - icon: ':warning:'
@@ -207,52 +207,52 @@ data:
   - icon: ':x:'
     path: verify/extra/math/pow_of_formal_power_series_test.nim
     title: verify/extra/math/pow_of_formal_power_series_test.nim
-  - icon: ':x:'
-    path: verify/extra/math/sqrt_of_formal_power_series_test.nim
-    title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - icon: ':x:'
-    path: verify/extra/math/sqrt_of_formal_power_series_test.nim
-    title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - icon: ':x:'
-    path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-    title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - icon: ':x:'
-    path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-    title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - icon: ':x:'
-    path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-    title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':x:'
-    path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-    title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':x:'
-    path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-    title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - icon: ':x:'
-    path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-    title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - icon: ':x:'
-    path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
-    title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
-  - icon: ':x:'
-    path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
-    title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
-  - icon: ':x:'
-    path: verify/extra/math/yukicoder_factorial_test.nim
-    title: verify/extra/math/yukicoder_factorial_test.nim
-  - icon: ':x:'
-    path: verify/extra/math/yukicoder_factorial_test.nim
-    title: verify/extra/math/yukicoder_factorial_test.nim
-  - icon: ':x:'
-    path: verify/extra/structure/extra_lazy_segtree_test.nim
-    title: verify/extra/structure/extra_lazy_segtree_test.nim
-  - icon: ':x:'
-    path: verify/extra/structure/extra_lazy_segtree_test.nim
-    title: verify/extra/structure/extra_lazy_segtree_test.nim
   - icon: ':heavy_check_mark:'
+    path: verify/extra/math/sqrt_of_formal_power_series_test.nim
+    title: verify/extra/math/sqrt_of_formal_power_series_test.nim
+  - icon: ':heavy_check_mark:'
+    path: verify/extra/math/sqrt_of_formal_power_series_test.nim
+    title: verify/extra/math/sqrt_of_formal_power_series_test.nim
+  - icon: ':heavy_check_mark:'
+    path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
+    title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
+  - icon: ':heavy_check_mark:'
+    path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
+    title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
+  - icon: ':heavy_check_mark:'
+    path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
+    title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
+  - icon: ':heavy_check_mark:'
+    path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
+    title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
+  - icon: ':x:'
+    path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
+    title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
+  - icon: ':x:'
+    path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
+    title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
+  - icon: ':x:'
+    path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
+    title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
+  - icon: ':x:'
+    path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
+    title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
+  - icon: ':x:'
+    path: verify/extra/math/yukicoder_factorial_test.nim
+    title: verify/extra/math/yukicoder_factorial_test.nim
+  - icon: ':x:'
+    path: verify/extra/math/yukicoder_factorial_test.nim
+    title: verify/extra/math/yukicoder_factorial_test.nim
+  - icon: ':x:'
+    path: verify/extra/structure/extra_lazy_segtree_test.nim
+    title: verify/extra/structure/extra_lazy_segtree_test.nim
+  - icon: ':x:'
+    path: verify/extra/structure/extra_lazy_segtree_test.nim
+    title: verify/extra/structure/extra_lazy_segtree_test.nim
+  - icon: ':x:'
     path: verify/extra/structure/extra_segtree_test.nim
     title: verify/extra/structure/extra_segtree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/extra_segtree_test.nim
     title: verify/extra/structure/extra_segtree_test.nim
   - icon: ':x:'

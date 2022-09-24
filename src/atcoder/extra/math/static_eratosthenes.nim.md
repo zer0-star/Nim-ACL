@@ -48,7 +48,7 @@ data:
   isVerificationFile: false
   path: atcoder/extra/math/static_eratosthenes.nim
   requiredBy: []
-  timestamp: '2022-08-25 23:07:59+09:00'
+  timestamp: '2022-09-24 20:04:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/math/static_eratosthenes.nim

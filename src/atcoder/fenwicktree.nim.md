@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/internal_type_traits.nim
     title: atcoder/internal_type_traits.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/internal_type_traits.nim
     title: atcoder/internal_type_traits.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/fenwick_tree_test.nim
     title: verify/fenwick_tree_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/fenwick_tree_test.nim
     title: verify/fenwick_tree_test.nim
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://en.wikipedia.org/wiki/Fenwick_tree
@@ -51,15 +51,15 @@ data:
     \    return cast[FT.T](self.sum(r) - self.sum(l))\n  proc `[]`*[FT:FenwickTree](self:\
     \ FT, p:RangeType):FT.T = self.sum(p)\n"
   dependsOn:
-  - atcoder/internal_type_traits.nim
-  - atcoder/internal_type_traits.nim
   - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
+  - atcoder/internal_type_traits.nim
+  - atcoder/internal_type_traits.nim
   isVerificationFile: false
   path: atcoder/fenwicktree.nim
   requiredBy: []
-  timestamp: '2022-08-26 00:12:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-24 20:04:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/fenwick_tree_test.nim
   - verify/fenwick_tree_test.nim

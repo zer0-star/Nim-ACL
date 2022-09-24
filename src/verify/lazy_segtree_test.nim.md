@@ -37,10 +37,10 @@ data:
   - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
@@ -68,24 +68,24 @@ data:
     \ let l, r, c, d = nextInt()\n    seg.apply(l..<r, (mint(c), mint(d)))\n  else:\n\
     \    let l, r = nextInt()\n    echo seg.prod(l..<r)[0]\n"
   dependsOn:
+  - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
-  - atcoder/internal_math.nim
-  - atcoder/internal_bit.nim
-  - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/header.nim
-  - atcoder/lazysegtree.nim
   - atcoder/rangeutils.nim
   - atcoder/lazysegtree.nim
   - atcoder/modint.nim
-  - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
   - atcoder/modint.nim
+  - atcoder/lazysegtree.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
   - atcoder/generate_definitions.nim
   - atcoder/generate_definitions.nim
+  - atcoder/header.nim
+  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/lazy_segtree_test.nim
   requiredBy: []
-  timestamp: '2022-09-17 04:52:33+09:00'
+  timestamp: '2022-09-24 20:04:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/lazy_segtree_test.nim

@@ -40,10 +40,10 @@ data:
     main()\n"
   dependsOn:
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/header.nim
   - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
   - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/tree/doubling_lowest_common_ancestor.nim
   isVerificationFile: true
   path: verify/extra/tree/yosupo_lowest_common_ancestor_test.nim

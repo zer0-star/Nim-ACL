@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
     title: atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/splay_tree.nim
     title: atcoder/extra/structure/splay_tree.nim
   - icon: ':question:'
@@ -43,10 +43,10 @@ data:
   - icon: ':question:'
     path: atcoder/modint.nim
     title: atcoder/modint.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
   _extendedRequiredBy: []
@@ -74,25 +74,25 @@ data:
     \ nextInt().mint\n      let ret = seg.prod(l..<r)\n      echo ret[0] * x + ret[1]\n"
   dependsOn:
   - atcoder/extra/forward_compatibility/internal_sugar.nim
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/internal_math.nim
-  - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/header.nim
-  - atcoder/rangeutils.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - atcoder/rangeutils.nim
   - atcoder/modint.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
   - atcoder/extra/forward_compatibility/internal_sugar.nim
-  - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/header.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - atcoder/extra/structure/splay_tree.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/generate_definitions.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   requiredBy: []
-  timestamp: '2022-09-17 04:52:33+09:00'
+  timestamp: '2022-09-24 20:04:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim

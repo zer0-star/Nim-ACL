@@ -25,16 +25,16 @@ data:
   - icon: ':question:'
     path: atcoder/extra/math/formal_power_series.nim
     title: atcoder/extra/math/formal_power_series.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/mod_sqrt.nim
     title: atcoder/extra/math/mod_sqrt.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/mod_sqrt.nim
     title: atcoder/extra/math/mod_sqrt.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/mod_sqrt.nim
     title: atcoder/extra/math/mod_sqrt.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/mod_sqrt.nim
     title: atcoder/extra/math/mod_sqrt.nim
   - icon: ':question:'
@@ -75,15 +75,15 @@ data:
     title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/sqrt_of_formal_power_series_test.nim
     title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/sqrt_of_formal_power_series_test.nim
     title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -106,34 +106,34 @@ data:
     \ * ret.inv(i shl 1)) * inv2\n      i = i shl 1\n    return ret.pre(deg).some\n"
   dependsOn:
   - atcoder/extra/math/mod_sqrt.nim
-  - atcoder/internal_math.nim
   - atcoder/element_concepts.nim
-  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/element_concepts.nim
+  - atcoder/modint.nim
+  - atcoder/modint.nim
   - atcoder/extra/math/mod_sqrt.nim
   - atcoder/internal_math.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/element_concepts.nim
-  - atcoder/modint.nim
-  - atcoder/modint.nim
   - atcoder/generate_definitions.nim
   - atcoder/generate_definitions.nim
-  - atcoder/extra/math/mod_sqrt.nim
-  - atcoder/internal_math.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/mod_sqrt.nim
   - atcoder/internal_math.nim
   - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   - atcoder/modint.nim
   - atcoder/modint.nim
+  - atcoder/extra/math/mod_sqrt.nim
+  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
   - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/formal_power_series.nim
   isVerificationFile: false
   path: atcoder/extra/math/formal_power_series_sqrt.nim
   requiredBy: []
   timestamp: '2022-09-17 04:52:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/math/sqrt_of_formal_power_series_test.nim
   - verify/extra/math/sqrt_of_formal_power_series_test.nim

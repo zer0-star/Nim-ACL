@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/binary_tree_node_utils.nim
     title: atcoder/extra/structure/binary_tree_node_utils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/binary_tree_node_utils.nim
     title: atcoder/extra/structure/binary_tree_node_utils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/binary_tree_node_utils.nim
     title: atcoder/extra/structure/binary_tree_node_utils.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/binary_tree_node_utils.nim
     title: atcoder/extra/structure/binary_tree_node_utils.nim
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - icon: ':question:'
+  - icon: ':x:'
     path: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
     title: atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
   - icon: ':warning:'
@@ -51,10 +51,10 @@ data:
     path: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
     title: atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_predecessor_problem_test.nim
     title: verify/extra/structure/yosupo_predecessor_problem_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/structure/yosupo_predecessor_problem_test.nim
     title: verify/extra/structure/yosupo_predecessor_problem_test.nim
   - icon: ':x:'
@@ -63,15 +63,15 @@ data:
   - icon: ':x:'
     path: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
     title: verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/map_test.nim
     title: verify/map_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/map_test.nim
     title: verify/map_test.nim
   _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -177,7 +177,7 @@ data:
   - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
   - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
   timestamp: '2022-07-03 22:20:00+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
   - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
