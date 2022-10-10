@@ -4,31 +4,31 @@ when not declared ATCODER_LONGDOUBLE_HPP:
     discard
   type float128* = LongDouble
 
-  proc getLongDouble*(a:SomeNumber):LongDouble {.importcpp: "(long double)(#)", nodecl.}
+  proc getLongDouble*(a:SomeNumber):LongDouble {.importcpp: "((long double)(#))", nodecl.}
   proc initLongDouble*(a:float):LongDouble = getLongDouble(a.cdouble)
-  converter toLongDouble*(a:int):LongDouble = getLongDouble(a.cint)
+  converter toLongDouble*(a:int):LongDouble = getLongDouble(a.clonglong)
   converter toLongDouble*(a:float):LongDouble = getLongDouble(a.cdouble)
 #  converter toLongDouble*(a:LongDouble):LongDouble = a
-  proc toCDouble*(a:LongDouble):cdouble {.importcpp: "(double)(#)", nodecl.}
+  proc toCDouble*(a:LongDouble):cdouble {.importcpp: "((double)(#))", nodecl.}
   converter toFloat*(a:LongDouble):float = toCDouble(a).float
   converter toFloat64*(a:LongDouble):float64 = toCDouble(a).float64
   converter toFloat32*(a:LongDouble):float32 = toCDouble(a).float32
   proc init*(T:typedesc[LongDouble], a:SomeNumber):LongDouble = LongDouble(a)
   
-  proc `+`*(a, b:LongDouble):LongDouble {.importcpp: "(#) + (@)", nodecl.}
-  proc `-`*(a, b:LongDouble):LongDouble {.importcpp: "(#) - (@)", nodecl.}
-  proc `*`*(a, b:LongDouble):LongDouble {.importcpp: "(#) * (@)", nodecl.}
-  proc `/`*(a, b:LongDouble):LongDouble {.importcpp: "(#) / (@)", nodecl.}
-  proc `+=`*(a:var LongDouble, b:LongDouble) {.importcpp: "(#) += (@)", nodecl.}
-  proc `-=`*(a:var LongDouble, b:LongDouble) {.importcpp: "(#) -= (@)", nodecl.}
-  proc `*=`*(a:var LongDouble, b:LongDouble) {.importcpp: "(#) *= (@)", nodecl.}
-  proc `/=`*(a:var LongDouble, b:LongDouble) {.importcpp: "(#) /= (@)", nodecl.}
-  proc `<`*(a, b:LongDouble):bool {.importcpp: "(#) < (@)", nodecl.}
-  proc `<=`*(a, b:LongDouble):bool {.importcpp: "(#) <= (@)", nodecl.}
-  proc `>`*(a, b:LongDouble):bool {.importcpp: "(#) > (@)", nodecl.}
-  proc `>=`*(a, b:LongDouble):bool {.importcpp: "(#) >= (@)", nodecl.}
-  proc `-`*(a:LongDouble):LongDouble {.importcpp: "-(#)", nodecl.}
-  proc getString*(a:LongDouble, s:var cstring) {.header:"<string>", importcpp: "(@) = std::to_string(#).c_str()", nodecl.}
+  proc `+`*(a, b:LongDouble):LongDouble {.importcpp: "((#) + (@))", nodecl.}
+  proc `-`*(a, b:LongDouble):LongDouble {.importcpp: "((#) - (@))", nodecl.}
+  proc `*`*(a, b:LongDouble):LongDouble {.importcpp: "((#) * (@))", nodecl.}
+  proc `/`*(a, b:LongDouble):LongDouble {.importcpp: "((#) / (@))", nodecl.}
+  proc `+=`*(a:var LongDouble, b:LongDouble) {.importcpp: "((#) += (@))", nodecl.}
+  proc `-=`*(a:var LongDouble, b:LongDouble) {.importcpp: "((#) -= (@))", nodecl.}
+  proc `*=`*(a:var LongDouble, b:LongDouble) {.importcpp: "((#) *= (@))", nodecl.}
+  proc `/=`*(a:var LongDouble, b:LongDouble) {.importcpp: "((#) /= (@))", nodecl.}
+  proc `<`*(a, b:LongDouble):bool {.importcpp: "((#) < (@))", nodecl.}
+  proc `<=`*(a, b:LongDouble):bool {.importcpp: "((#) <= (@))", nodecl.}
+  proc `>`*(a, b:LongDouble):bool {.importcpp: "((#) > (@))", nodecl.}
+  proc `>=`*(a, b:LongDouble):bool {.importcpp: "((#) >= (@))", nodecl.}
+  proc `-`*(a:LongDouble):LongDouble {.importcpp: "(-(#))", nodecl.}
+  proc getString*(a:LongDouble, s:var cstring) {.header:"<string>", importcpp: "(@) = (char*)(std::to_string(#).c_str())", nodecl.}
   proc `$`*(a:LongDouble):string =
     var s:cstring
     getString(a, s)

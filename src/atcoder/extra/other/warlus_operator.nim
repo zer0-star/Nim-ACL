@@ -4,11 +4,15 @@ when not declared ATCODER_CHAEMON_WARLUS_OPERATOR_HPP:
   proc discardableId*[T](x: T): T {.discardable.} = x
 
   proc warlusImpl(x, y:NimNode):NimNode =
+    # すでに定義されているものに代入するような使い方はあまりしない
+    # またこの書き方をすると関数とかで不便になることが多いのでどうしようか
+    #return quote do:
+    #  when declaredInScope(`x`):
+    #    `x` = `y`
+    #  else:
+    #    var `x` = `y`
     return quote do:
-      when declaredInScope(`x`):
-        `x` = `y`
-      else:
-        var `x` = `y`
+      var `x` = `y`
 
   macro `:=`*(x, y: untyped): untyped =
     result = newStmtList()

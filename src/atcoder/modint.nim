@@ -141,24 +141,34 @@ when not declared ATCODER_MODINT_HPP:
 
   generatePow(ModInt)
   
-  # intのところはSomeIntegerに拡張したいがそうするとSystem.nimのuintのconverterとバッティングする。。。
+  # TODO: intのところはSomeIntegerに拡張したいがそうするとSystem.nimのuintのconverterとバッティングする。。。
   template useStaticModint*(name, M) =
     generateConverter(name, int, StaticModInt[M])
   template useDynamicModInt*(name, M) =
     generateConverter(name, int, DynamicModInt[M])
 
+  # TODO: Nimのstatic[int]を使うconverterがバグっていて個々に宣言しないとconverterが使えない
+  # したがって、下記以外のmodintを使う場合はuseStaticModIntあるいはuseDynamicModIntで宣言が必要
   useStaticModInt(modint998244353, 998244353)
   useStaticModInt(modint1000000007, 1000000007)
   useDynamicModInt(modint, -1)
 
   import std/math as math_lib_modint
-  proc estimateRational*(a:ModInt, ub:int = int(sqrt(float(ModInt.mod)))):string =
-    for d in 1..ub:
+  proc estimateRational*(a:ModInt, ub:int = int(sqrt(float(ModInt.mod))), output_stderr:static[bool] = false):string =
+    var v:seq[tuple[s, n, d: int]]
+    for d in 1 .. ub:
       var n = (a * d).val
-      if n <= ub:
-        return $n & " / " & $d
-    stderr.write "estimate failed"
-    return "??? / ???"
+      # n or mod - n
+      if n * 2 > a.mod:
+        n = - (a.mod - n)
+      if gcd(n, d) > 1: continue
+      v.add((n.abs + d, n, d))
+    v.sort
+    when output_stderr:
+      stderr.write "estimation result: ", v
+    return $v[0].n & "/" & $v[0].d
+
+  # TODO:
   # Modint -> intのconverterあるとmint(2) * 3みたいなのがintになっちゃう
   # converter toInt*(m: ModInt):int {.inline.} = m.val
 

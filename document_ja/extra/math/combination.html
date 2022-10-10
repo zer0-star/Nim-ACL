@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Uikit -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
+    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
+    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <!-- Katex -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
+        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
+        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <!-- Ace editor-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+
+    <style>
+        h2 {
+            border-bottom:1px solid #CCC;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(
+                document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false }],
+                ignoredTags: [],
+            })
+            for (e of document.getElementsByClassName("sample-code")) {
+                var editor = ace.edit(e);
+                editor.setOption("maxLines", "Infinity");
+                editor.setReadOnly(true);
+                editor.getSession().setMode("ace/mode/nim");                
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
+        </div>
+    </div>
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1>組み合わせライブラリ</h1>
+<p>これ一つで階乗、階乗の逆元、ならし$O(1)$の逆元、組み合わせ($nCr$, $nPr$, $nHr$)のすべてが求められるライブラリです。
+配列の確保更新は倍々に自動で行うので、不要です。</p>
+<h2>階乗</h2>
+<pre><code class="nim">T.fact(n:int):T
+</code></pre>
+
+<p>$n!$の値を計算します。</p>
+<p><strong>計算量</strong></p>
+<ul>
+<li>ならし$O(1)$</li>
+</ul>
+<h2>階乗の逆元</h2>
+<pre><code class="nim">T.rfact(n:int):T
+T.invfact(n:int):T
+</code></pre>
+
+<p>$n!$の逆元の値を計算します。</p>
+<p><strong>計算量</strong></p>
+<ul>
+<li>ならし$O(1)$</li>
+</ul>
+<h2>逆元</h2>
+<pre><code class="nim">T.inv(n:int):T
+</code></pre>
+
+<p>$n$の逆元の値を計算します。返り値は<code>T(1) / T(n)</code>あるいは<code>T(n).inv()</code>と同じですが、例えばTがmodintの場合前者はならし$O(1)$で計算できるのに対して、後者は毎回$O(log n)$かかります。$n$が小さくてたくさん呼ぶときなどは前者が便利です。</p>
+<p><strong>計算量</strong></p>
+<ul>
+<li>ならし$O(1)$</li>
+</ul>
+<h2>順列・組み合わせ</h2>
+<p>順列、組み合わせを$O(n)$のサイズの配列を作ることで実現します。
+atcoderの時間・領域のリミットを考えると$n$は$10^7$以下程度が限界です。それより大きい場合は下記の大きい数の場合をご検討ください。
+$C, H, R$の定義は高校の教科書などを参考にしてください。</p>
+<h3>順列</h3>
+<pre><code class="nim">T.P(n, r:int):T
+</code></pre>
+
+<p>$nPr$の値を$T$型で計算します。</p>
+<p><strong>計算量</strong></p>
+<ul>
+<li>ならし$O(1)$</li>
+</ul>
+<h3>組み合わせ</h3>
+<pre><code class="nim">T.C(n, r:int):T
+</code></pre>
+
+<p>$nCr$の値を$T$型で計算します。</p>
+<p><strong>計算量</strong></p>
+<ul>
+<li>ならし$O(1)$</li>
+</ul>
+<h3>重複組み合わせ</h3>
+<pre><code class="nim">T.H(n, r:int):T
+</code></pre>
+
+<p>$nHr$の値を$T$型で計算します。</p>
+<p><strong>計算量</strong></p>
+<ul>
+<li>ならし$O(1)$</li>
+</ul>
+<h2>大きい数について</h2>
+<p>上記と同じですが、$n$が大きい数の場合に$O(r)$かけて計算することができます。
+「大きい数」の目安は長さ$n$の配列が作れない、つまり$10^7$以上程度です。</p>
+<h3>順列</h3>
+<pre><code class="nim">T.P_large(n, r:int):T
+</code></pre>
+
+<p>$nPr$の値を$T$型で計算します。</p>
+<p><strong>計算量</strong></p>
+<ul>
+<li>$O(r)$</li>
+</ul>
+<h2>組み合わせ</h2>
+<pre><code class="nim">T.C_large(n, r:int):T
+</code></pre>
+
+<p>$nCr$の値を$T$型で計算します。</p>
+<p><strong>計算量</strong></p>
+<ul>
+<li>$O(r)$</li>
+</ul>
+<h2>重複組み合わせ</h2>
+<pre><code class="nim">T.H_large(n, r:int):T
+</code></pre>
+
+<p>$nHr$の値を$T$型で計算します。</p>
+<p><strong>計算量</strong></p>
+<ul>
+<li>ならし$O(r)$</li>
+</ul>
+        </div>
+    </section>
+</body>
+
+</html>

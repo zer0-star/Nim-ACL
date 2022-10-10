@@ -29,19 +29,20 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
 
   import atcoder/extra/forward_compatibility/internal_sugar
   include atcoder/extra/forward_compatibility/hash_func
-#  import std/sugar
   import atcoder/extra/other/reader
   import atcoder/extra/other/cfor
   import atcoder/extra/other/sliceutils
   import atcoder/extra/other/assignment_operator
   import atcoder/extra/other/inf
   import atcoder/extra/other/warlus_operator
+  import atcoder/extra/other/shadowing
   import atcoder/extra/other/seq_array_utils
   include atcoder/extra/other/debug
   import atcoder/extra/other/reference
   #import atcoder/extra/other/floatutils
   import atcoder/extra/other/zip
   import atcoder/extra/other/solve_proc
+  import atcoder/extra/other/divutils
 
   when declared USE_DEFAULT_TABLE:
     when USE_DEFAULT_TABLE:
@@ -59,14 +60,8 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
     if a.len < b.len: return true
     else: return false
 
-  proc ceilDiv*[T:SomeInteger](a, b:T):T =
-    assert b != 0
-    if b < 0: return ceilDiv(-a, -b)
-    result = a.floorDiv(b)
-    if a mod b != 0: result.inc
-
-  template `/^`*[T:SomeInteger](a, b:T):T = ceilDiv(a, b)
-  template `/_`*[T:SomeInteger](a, b:T):T = floorDiv(a, b)
   proc `pred`[T:SomeInteger](a:seq[T]):seq[T] = a.mapIt(it - 1)
   proc `succ`[T:SomeInteger](a:seq[T]):seq[T] = a.mapIt(it + 1)
   proc `-`(a, b:char):int = a.ord - b.ord
+  proc `+`(a:char, b:int):char = (a.ord + b).chr
+  proc `-`(a:char, b:int):char = (a.ord - b).chr

@@ -31,6 +31,8 @@ when not declared ATCODER_GRAPH_TEMPLATE_HPP:
         id*:proc(u:U):int
     Matrix*[T] = seq[seq[T]]
 
+  proc `@`*(e:Edge):auto = e.weight
+
   proc initEdge*[T, U](src,dst:U,weight:T = 1,rev:int = -1):Edge[T, U] =
     return Edge[T, U](src:src, dst:dst, weight:weight, rev:rev)
   proc `<`*[T, U](a, b:Edge[T, U]):bool = a.weight < b.weight

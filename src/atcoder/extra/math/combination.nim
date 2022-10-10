@@ -31,6 +31,7 @@ when not defined ATCODER_COMBINATION_HPP:
   
   template fact*(T:CombinationC, k:int):auto = T.enhance(k)[].fact_a[k]
   template rfact*(T:CombinationC, k:int):auto = T.enhance(k)[].rfact_a[k]
+  template invfact*(T:CombinationC, k:int):auto = T.enhance(k)[].rfact_a[k]
   template inv*(T:CombinationC, k:int):auto = T.fact(k - 1) * T.rfact(k)
 
   template resetCombination*(T:typedesc[FieldElem] or var Combination) =

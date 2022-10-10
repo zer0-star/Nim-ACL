@@ -37,6 +37,7 @@ when not declared ATCODER_DEVISOR_HPP:
         for k in 0 ..< s:
           result[j] = result[k] * t
           j.inc
+        if i == e: break
         t *= p
     result.sort()
   proc divisor*(f:openArray[int]):seq[int] = # primes => divisor

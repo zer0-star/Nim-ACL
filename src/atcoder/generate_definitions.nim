@@ -3,8 +3,7 @@ when not declared ATCODER_GENERATE_DEFINITIONS_NIM:
   import std/macros
 
   type hasInv* = concept x
-    var t: x
-    t.inv()
+    x.inv()
 
   template generateDefinitions*(name, l, r, typeObj, typeBase, body: untyped): untyped {.dirty.} =
     proc name*(l, r: typeObj): auto {.inline.} =
@@ -22,7 +21,7 @@ when not declared ATCODER_GENERATE_DEFINITIONS_NIM:
       when name is hasInv:
         if p < 0: return pow(m.inv(), -p)
       else:
-        assert p >= 0
+        doAssert p >= 0
       if (p.type)(0) <= p:
         var
           p = p.uint
