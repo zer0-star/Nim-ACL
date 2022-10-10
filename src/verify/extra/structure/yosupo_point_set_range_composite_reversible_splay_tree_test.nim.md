@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: atcoder/extra/forward_compatibility/internal_since.nim
+    title: atcoder/extra/forward_compatibility/internal_since.nim
+  - icon: ':question:'
+    path: atcoder/extra/forward_compatibility/internal_since.nim
+    title: atcoder/extra/forward_compatibility/internal_since.nim
+  - icon: ':question:'
     path: atcoder/extra/forward_compatibility/internal_sugar.nim
     title: atcoder/extra/forward_compatibility/internal_sugar.nim
   - icon: ':question:'
@@ -58,9 +64,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
     links:
     - https://judge.yosupo.jp/problem/point_set_range_composite
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/point_set_range_composite\n\
     \ninclude atcoder/header\n\nimport atcoder/extra/structure/splay_tree\nimport\
@@ -73,26 +79,28 @@ data:
     \     seg.set(p, (a, b))\n    else:\n      let l, r = nextInt()\n      let x =\
     \ nextInt().mint\n      let ret = seg.prod(l..<r)\n      echo ret[0] * x + ret[1]\n"
   dependsOn:
-  - atcoder/extra/forward_compatibility/internal_sugar.nim
-  - atcoder/rangeutils.nim
   - atcoder/modint.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/rangeutils.nim
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/header.nim
+  - atcoder/generate_definitions.nim
   - atcoder/extra/forward_compatibility/internal_sugar.nim
   - atcoder/generate_definitions.nim
-  - atcoder/header.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/forward_compatibility/internal_since.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/extra/forward_compatibility/internal_since.nim
+  - atcoder/extra/forward_compatibility/internal_sugar.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   requiredBy: []
-  timestamp: '2022-09-24 20:04:56+09:00'
+  timestamp: '2022-10-10 21:34:07+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim

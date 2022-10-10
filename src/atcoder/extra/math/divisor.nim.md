@@ -33,9 +33,9 @@ data:
   attributes:
     links:
     - https://atcoder.jp/contests/abc212/submissions/24699873
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_DEVISOR_HPP:\n  const ATCODER_DEVISOR_HPP* = 1\n\
     \  import std/algorithm\n  proc divisor*(n:int):seq[int] =\n    result = newSeq[int]()\n\
@@ -51,23 +51,24 @@ data:
     \ => divisor\n    result = @[1]\n    for (p, e) in f:\n      let s = result.len\n\
     \      result.setLen(s * (e + 1))\n      var (j, t) = (s, p)\n      for i in 1\
     \ .. e:\n        for k in 0 ..< s:\n          result[j] = result[k] * t\n    \
-    \      j.inc\n        t *= p\n    result.sort()\n  proc divisor*(f:openArray[int]):seq[int]\
-    \ = # primes => divisor\n    let f = sorted(f)\n    var\n      v = newSeq[(int,int)]()\n\
-    \      i = 0\n    while i < f.len:\n      var j = i\n      while j < f.len and\
-    \ f[i] == f[j]: j.inc\n      v.add((f[i], j - i))\n      i = j\n    return v.divisor\n"
+    \      j.inc\n        if i == e: break\n        t *= p\n    result.sort()\n  proc\
+    \ divisor*(f:openArray[int]):seq[int] = # primes => divisor\n    let f = sorted(f)\n\
+    \    var\n      v = newSeq[(int,int)]()\n      i = 0\n    while i < f.len:\n \
+    \     var j = i\n      while j < f.len and f[i] == f[j]: j.inc\n      v.add((f[i],\
+    \ j - i))\n      i = j\n    return v.divisor\n"
   dependsOn: []
   isVerificationFile: false
   path: atcoder/extra/math/divisor.nim
   requiredBy:
-  - atcoder/extra/math/static_eratosthenes.nim
-  - atcoder/extra/math/static_eratosthenes.nim
   - atcoder/extra/math/eratosthenes.nim
   - atcoder/extra/math/eratosthenes.nim
   - atcoder/extra/math/static_eratosthenes.nim
   - atcoder/extra/math/static_eratosthenes.nim
   - atcoder/extra/math/eratosthenes.nim
   - atcoder/extra/math/eratosthenes.nim
-  timestamp: '2022-09-24 20:04:56+09:00'
+  - atcoder/extra/math/static_eratosthenes.nim
+  - atcoder/extra/math/static_eratosthenes.nim
+  timestamp: '2022-10-10 21:34:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/math/divisor.nim

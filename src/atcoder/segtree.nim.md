@@ -26,6 +26,18 @@ data:
   - icon: ':x:'
     path: atcoder/extra/structure/segtree_2d.nim
     title: atcoder/extra/structure/segtree_2d.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/segtree_2d_backup.nim
+    title: atcoder/extra/structure/segtree_2d_backup.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/segtree_2d_backup.nim
+    title: atcoder/extra/structure/segtree_2d_backup.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/segtree_2d_backup.nim
+    title: atcoder/extra/structure/segtree_2d_backup.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/segtree_2d_backup.nim
+    title: atcoder/extra/structure/segtree_2d_backup.nim
   _extendedVerifiedWith:
   - icon: ':x:'
     path: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
@@ -44,9 +56,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_SEGTREE_HPP:\n  const ATCODER_SEGTREE_HPP* = 1\n\
     \  import atcoder/internal_bit\n  import std/sequtils, std/algorithm\n  import\
@@ -102,15 +114,19 @@ data:
     \      sm = ST.calc_op(self.d[r], sm)\n      if not ((r and -r) != r): break\n\
     \    return 0\n  #{.pop.}\n"
   dependsOn:
+  - atcoder/internal_bit.nim
+  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
   isVerificationFile: false
   path: atcoder/segtree.nim
   requiredBy:
+  - atcoder/extra/structure/segtree_2d_backup.nim
+  - atcoder/extra/structure/segtree_2d_backup.nim
   - atcoder/extra/structure/segtree_2d.nim
   - atcoder/extra/structure/segtree_2d.nim
+  - atcoder/extra/structure/segtree_2d_backup.nim
+  - atcoder/extra/structure/segtree_2d_backup.nim
   - atcoder/extra/structure/segtree_2d.nim
   - atcoder/extra/structure/segtree_2d.nim
   timestamp: '2022-09-24 20:04:56+09:00'

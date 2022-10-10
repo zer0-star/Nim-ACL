@@ -123,20 +123,20 @@ data:
     title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# TODO incomplete...\nwhen not declared ATCODER_COMPOSITION_HPP:\n  const\
     \ ATCODER_COMPOSITION_HPP* = 1\n  import std/math, std/bitops, std/sequtils\n\
@@ -177,51 +177,51 @@ data:
     \    # step 4,5\n    for i in 0..<K: ans += (QP[i] * TS[i]).pre(deg)\n    return\
     \ ans\n"
   dependsOn:
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/internal_bit.nim
   - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/internal_bit.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/convolution.nim
   - atcoder/generate_definitions.nim
-  - atcoder/extra/math/ntt.nim
   - atcoder/convolution.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/internal_bit.nim
-  - atcoder/modint.nim
-  - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/extra/math/ntt.nim
-  - atcoder/internal_bit.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/internal_math.nim
   - atcoder/modint.nim
   - atcoder/internal_math.nim
+  - atcoder/modint.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/convolution.nim
   - atcoder/generate_definitions.nim
-  - atcoder/extra/math/ntt.nim
   - atcoder/convolution.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/internal_bit.nim
+  - atcoder/internal_bit.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/internal_math.nim
+  - atcoder/modint.nim
+  - atcoder/internal_math.nim
   isVerificationFile: false
   path: atcoder/extra/math/composition.nim
   requiredBy: []
-  timestamp: '2022-09-17 04:52:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-10 21:34:07+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
   - verify/extra/math/yosupo_composition_of_formal_power_series_test.nim

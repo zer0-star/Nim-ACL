@@ -40,9 +40,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
     links:
     - https://judge.yosupo.jp/problem/point_add_rectangle_sum
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/point_add_rectangle_sum\n\
     \ninclude atcoder/header\nimport atcoder/extra/structure/segtree_2d\n\nlet N,\
@@ -57,20 +57,20 @@ data:
     \    st.add(x, y, w)\n  else:\n    let\n      l = v[1]\n      d = v[2]\n     \
     \ r = v[3]\n      u = v[4]\n    echo st[l ..< r, d ..< u]\n\n\n"
   dependsOn:
+  - atcoder/segtree.nim
   - atcoder/extra/structure/segtree_2d.nim
-  - atcoder/segtree.nim
-  - atcoder/rangeutils.nim
-  - atcoder/segtree.nim
   - atcoder/internal_bit.nim
   - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/segtree_2d.nim
   - atcoder/header.nim
-  - atcoder/extra/structure/segtree_2d.nim
+  - atcoder/segtree.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
   requiredBy: []
-  timestamp: '2022-09-24 20:04:56+09:00'
+  timestamp: '2022-10-10 21:34:07+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim

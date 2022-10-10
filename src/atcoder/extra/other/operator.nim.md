@@ -15,17 +15,17 @@ data:
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
   - icon: ':warning:'
-    path: atcoder/extra/math/simplex.nim
-    title: atcoder/extra/math/simplex.nim
+    path: atcoder/extra/math/simplex_old.nim
+    title: atcoder/extra/math/simplex_old.nim
   - icon: ':warning:'
-    path: atcoder/extra/math/simplex.nim
-    title: atcoder/extra/math/simplex.nim
+    path: atcoder/extra/math/simplex_old.nim
+    title: atcoder/extra/math/simplex_old.nim
   - icon: ':warning:'
-    path: atcoder/extra/math/simplex.nim
-    title: atcoder/extra/math/simplex.nim
+    path: atcoder/extra/math/simplex_old.nim
+    title: atcoder/extra/math/simplex_old.nim
   - icon: ':warning:'
-    path: atcoder/extra/math/simplex.nim
-    title: atcoder/extra/math/simplex.nim
+    path: atcoder/extra/math/simplex_old.nim
+    title: atcoder/extra/math/simplex_old.nim
   _extendedVerifiedWith:
   - icon: ':x:'
     path: verify/extra/math/yosupo_system_of_linear_equations_test.nim
@@ -38,9 +38,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_OPERATOR_HPP:\n  const ATCODER_OPERATOR_HPP* =\
     \ 1\n  import macros, tables\n\n  macro getOperator*(head:typedesc, body: untyped):untyped\
@@ -102,14 +102,14 @@ data:
   isVerificationFile: false
   path: atcoder/extra/other/operator.nim
   requiredBy:
-  - atcoder/extra/math/simplex.nim
-  - atcoder/extra/math/simplex.nim
   - atcoder/extra/math/matrix.nim
   - atcoder/extra/math/matrix.nim
-  - atcoder/extra/math/simplex.nim
-  - atcoder/extra/math/simplex.nim
+  - atcoder/extra/math/simplex_old.nim
+  - atcoder/extra/math/simplex_old.nim
   - atcoder/extra/math/matrix.nim
   - atcoder/extra/math/matrix.nim
+  - atcoder/extra/math/simplex_old.nim
+  - atcoder/extra/math/simplex_old.nim
   timestamp: '2022-07-30 23:50:20+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:

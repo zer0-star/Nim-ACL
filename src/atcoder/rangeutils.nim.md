@@ -98,6 +98,18 @@ data:
   - icon: ':x:'
     path: atcoder/extra/structure/segtree_2d.nim
     title: atcoder/extra/structure/segtree_2d.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/segtree_2d_backup.nim
+    title: atcoder/extra/structure/segtree_2d_backup.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/segtree_2d_backup.nim
+    title: atcoder/extra/structure/segtree_2d_backup.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/segtree_2d_backup.nim
+    title: atcoder/extra/structure/segtree_2d_backup.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/segtree_2d_backup.nim
+    title: atcoder/extra/structure/segtree_2d_backup.nim
   - icon: ':x:'
     path: atcoder/extra/structure/set_map.nim
     title: atcoder/extra/structure/set_map.nim
@@ -314,9 +326,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_RANGEUTILS_HPP:\n  const ATCODER_RANGEUTILS_HPP*\
     \ = 1\n  type RangeType* = Slice[int] | HSlice[int, BackwardsIndex] | Slice[BackwardsIndex]\n\
@@ -328,111 +340,115 @@ data:
   isVerificationFile: false
   path: atcoder/rangeutils.nim
   requiredBy:
-  - atcoder/extra/structure/set_map.nim
-  - atcoder/extra/structure/set_map.nim
-  - atcoder/extra/structure/link_cut_tree.nim
-  - atcoder/extra/structure/link_cut_tree.nim
-  - atcoder/extra/structure/wavelet_matrix.nim
-  - atcoder/extra/structure/wavelet_matrix.nim
-  - atcoder/extra/structure/sparse_table.nim
-  - atcoder/extra/structure/sparse_table.nim
-  - atcoder/extra/structure/generalized_slope_trick.nim
-  - atcoder/extra/structure/generalized_slope_trick.nim
-  - atcoder/extra/structure/dual_fenwicktree.nim
-  - atcoder/extra/structure/dual_fenwicktree.nim
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/structure/segtree_2d.nim
-  - atcoder/extra/structure/segtree_2d.nim
-  - atcoder/extra/structure/old_randomized_binary_search_tree.nim
-  - atcoder/extra/structure/old_randomized_binary_search_tree.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/extra/structure/universal_segtree.nim
-  - atcoder/extra/structure/universal_segtree.nim
-  - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
-  - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
   - atcoder/extra/string/rolling_hash.nim
   - atcoder/extra/string/rolling_hash.nim
   - atcoder/extra/dp/cumulative_sum.nim
   - atcoder/extra/dp/cumulative_sum.nim
+  - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/extra/structure/dual_fenwicktree.nim
+  - atcoder/extra/structure/dual_fenwicktree.nim
+  - atcoder/extra/structure/generalized_slope_trick.nim
+  - atcoder/extra/structure/generalized_slope_trick.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/set_map.nim
+  - atcoder/extra/structure/set_map.nim
+  - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+  - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/old_randomized_binary_search_tree.nim
+  - atcoder/extra/structure/old_randomized_binary_search_tree.nim
+  - atcoder/extra/structure/sparse_table.nim
+  - atcoder/extra/structure/sparse_table.nim
+  - atcoder/extra/structure/segtree_2d_backup.nim
+  - atcoder/extra/structure/segtree_2d_backup.nim
+  - atcoder/extra/structure/segtree_2d.nim
+  - atcoder/extra/structure/segtree_2d.nim
+  - atcoder/extra/structure/link_cut_tree.nim
+  - atcoder/extra/structure/link_cut_tree.nim
   - atcoder/segtree.nim
   - atcoder/segtree.nim
-  - atcoder/lazysegtree.nim
-  - atcoder/lazysegtree.nim
-  - atcoder/extra/structure/set_map.nim
-  - atcoder/extra/structure/set_map.nim
-  - atcoder/extra/structure/link_cut_tree.nim
-  - atcoder/extra/structure/link_cut_tree.nim
-  - atcoder/extra/structure/wavelet_matrix.nim
-  - atcoder/extra/structure/wavelet_matrix.nim
-  - atcoder/extra/structure/sparse_table.nim
-  - atcoder/extra/structure/sparse_table.nim
-  - atcoder/extra/structure/generalized_slope_trick.nim
-  - atcoder/extra/structure/generalized_slope_trick.nim
-  - atcoder/extra/structure/dual_fenwicktree.nim
-  - atcoder/extra/structure/dual_fenwicktree.nim
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/structure/segtree_2d.nim
-  - atcoder/extra/structure/segtree_2d.nim
-  - atcoder/extra/structure/old_randomized_binary_search_tree.nim
-  - atcoder/extra/structure/old_randomized_binary_search_tree.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/extra/structure/universal_segtree.nim
-  - atcoder/extra/structure/universal_segtree.nim
-  - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
-  - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+  - atcoder/fenwicktree.nim
+  - atcoder/fenwicktree.nim
   - atcoder/extra/string/rolling_hash.nim
   - atcoder/extra/string/rolling_hash.nim
   - atcoder/extra/dp/cumulative_sum.nim
   - atcoder/extra/dp/cumulative_sum.nim
-  - atcoder/fenwicktree.nim
-  - atcoder/fenwicktree.nim
+  - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/extra/structure/universal_segtree.nim
+  - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/extra/structure/wavelet_matrix.nim
+  - atcoder/extra/structure/dual_fenwicktree.nim
+  - atcoder/extra/structure/dual_fenwicktree.nim
+  - atcoder/extra/structure/generalized_slope_trick.nim
+  - atcoder/extra/structure/generalized_slope_trick.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/splay_tree.nim
+  - atcoder/extra/structure/set_map.nim
+  - atcoder/extra/structure/set_map.nim
+  - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+  - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/old_randomized_binary_search_tree.nim
+  - atcoder/extra/structure/old_randomized_binary_search_tree.nim
+  - atcoder/extra/structure/sparse_table.nim
+  - atcoder/extra/structure/sparse_table.nim
+  - atcoder/extra/structure/segtree_2d_backup.nim
+  - atcoder/extra/structure/segtree_2d_backup.nim
+  - atcoder/extra/structure/segtree_2d.nim
+  - atcoder/extra/structure/segtree_2d.nim
+  - atcoder/extra/structure/link_cut_tree.nim
+  - atcoder/extra/structure/link_cut_tree.nim
+  - atcoder/lazysegtree.nim
+  - atcoder/lazysegtree.nim
   timestamp: '2022-09-24 20:04:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - verify/lazy_segtree_dynamicmodint_test.nim
+  - verify/lazy_segtree_dynamicmodint_test.nim
   - verify/lazy_segtree_test.nim
   - verify/lazy_segtree_test.nim
-  - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
-  - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
+  - verify/extra/string/aoj_alds_1_14_b_test.nim
+  - verify/extra/string/aoj_alds_1_14_b_test.nim
   - verify/extra/structure/extra_segtree_test.nim
   - verify/extra/structure/extra_segtree_test.nim
-  - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-  - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-  - verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
-  - verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
-  - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
-  - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
-  - verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
-  - verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
-  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
-  - verify/extra/structure/aoj_1508_splay_tree_test.nim
-  - verify/extra/structure/aoj_1508_splay_tree_test.nim
-  - verify/extra/structure/yosupo_predecessor_problem_test.nim
-  - verify/extra/structure/yosupo_predecessor_problem_test.nim
   - verify/extra/structure/yosupo_staticrmq_test.nim
   - verify/extra/structure/yosupo_staticrmq_test.nim
   - verify/extra/structure/extra_lazy_segtree_test.nim
   - verify/extra/structure/extra_lazy_segtree_test.nim
-  - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-  - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
+  - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
+  - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
+  - verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
+  - verify/extra/structure/yosupo_range_affine_range_sum_splay_tree_test.nim
   - verify/extra/structure/yosupo_range_kth_smallest_test.nim
   - verify/extra/structure/yosupo_range_kth_smallest_test.nim
+  - verify/extra/structure/yosupo_predecessor_problem_test.nim
+  - verify/extra/structure/yosupo_predecessor_problem_test.nim
+  - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
+  - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
+  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
+  - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
+  - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
+  - verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
+  - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
+  - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
+  - verify/extra/structure/aoj_1508_splay_tree_test.nim
+  - verify/extra/structure/aoj_1508_splay_tree_test.nim
+  - verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+  - verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
   - verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
   - verify/extra/structure/yosupo_dynamic_tree_vertex_add_path_sum_link_cut_tree_test.nim
-  - verify/extra/string/aoj_alds_1_14_b_test.nim
-  - verify/extra/string/aoj_alds_1_14_b_test.nim
   - verify/segtree_test.nim
   - verify/segtree_test.nim
-  - verify/fenwick_tree_test.nim
-  - verify/fenwick_tree_test.nim
   - verify/map_test.nim
   - verify/map_test.nim
-  - verify/lazy_segtree_dynamicmodint_test.nim
-  - verify/lazy_segtree_dynamicmodint_test.nim
+  - verify/fenwick_tree_test.nim
+  - verify/fenwick_tree_test.nim
 documentation_of: atcoder/rangeutils.nim
 layout: document
 redirect_from:

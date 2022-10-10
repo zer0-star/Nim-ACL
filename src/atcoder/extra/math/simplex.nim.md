@@ -1,42 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':x:'
-    path: atcoder/extra/math/matrix.nim
-    title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
-    path: atcoder/extra/math/matrix.nim
-    title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
-    path: atcoder/extra/math/matrix.nim
-    title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
-    path: atcoder/extra/math/matrix.nim
-    title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/operator.nim
-    title: atcoder/extra/other/operator.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/operator.nim
-    title: atcoder/extra/other/operator.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/operator.nim
-    title: atcoder/extra/other/operator.nim
-  - icon: ':x:'
-    path: atcoder/extra/other/operator.nim
-    title: atcoder/extra/other/operator.nim
-  - icon: ':question:'
-    path: atcoder/generate_definitions.nim
-    title: atcoder/generate_definitions.nim
-  - icon: ':question:'
-    path: atcoder/generate_definitions.nim
-    title: atcoder/generate_definitions.nim
-  - icon: ':question:'
-    path: atcoder/generate_definitions.nim
-    title: atcoder/generate_definitions.nim
-  - icon: ':question:'
-    path: atcoder/generate_definitions.nim
-    title: atcoder/generate_definitions.nim
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -44,70 +8,54 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
-  code: "\n#when false:\nwhen not declared ATCODER_SIMPLEX_HPP:\n  const ATCODER_SIMPLEX_HPP*\
-    \ = 1\n  import atcoder/extra/math/matrix\n\n  const EPS = 1e-8\n  type Status\
-    \ = enum\n    OPTIMAL, UNBOUNDED, NOSOLUTION, UNKNOWN\n  type two_stage_simplex*[T]\
-    \ = object\n    N, M:int\n    st:Status\n    a:MatrixType(T)\n    s:seq[int]\n\
-    \ \n  proc status*[T](self:two_stage_simplex[T]):Status = self.st\n  proc solution*[T](self:two_stage_simplex[T]):tuple[val:T,\
-    \ x:seq[T]] = \n    var x = newSeq[T](self.M)\n    for i in 0..<self.N:\n    \
-    \  x[self.s[i+1]] = self.a[i+1][^1]\n    return (-self.a[0][self.M], x)\n  proc\
-    \ solve*[T](self:var two_stage_simplex[T]):Status =\n    self.M += self.N; self.N\
-    \ += 1\n    self.solve_sub() # solve stage one\n    if self.solution().val > EPS:\
-    \ return NOSOLUTION\n    self.N -= 1; self.M -= self.N\n    swap self.a[0], self.a[^1];\
-    \ discard self.a.pop() # modify table\n    for i in 0..self.N:\n      swap self.a[i][self.M],\
-    \ self.a[i][^1]\n      self.a[i].setlen(self.M+1)\n    return self.solve_sub()\
-    \ # solve stage two\n  proc solve_sub*[T](self:var two_stage_simplex[T]):Status\
-    \ {.discardable.} =\n    var p, q:int\n    while true:\n      #print();\n    \
-    \  q = 0\n      while q <= self.M and self.a[0][q] >= -EPS: q.inc\n      if q\
-    \ >= self.M: break\n      p = 0\n      while p <= self.N and self.a[p][q] <= EPS:\
-    \ p.inc\n      if p > self.N: break\n      for i in p+1..self.N: # bland's care\
-    \ for cyclation\n        if self.a[i][q] > EPS:\n          let\n            l\
-    \ = self.a[i][self.M]/self.a[i][q]\n            r = self.a[p][self.M]/self.a[p][q]\n\
-    \          if l < r or (l == r and self.s[i] < self.s[q]):\n            p = i\n\
-    \          #if self.a[i][self.M]/self.a[i][q] < self.a[p][self.M]/self.a[p][q]\
-    \ or\n          #   (self.a[i][self.M]/self.a[i][q] == self.a[p][self.M]/self.a[p][q]\
-    \ and self.s[i] < self.s[q]):\n          #  p = i\n      self.pivot(p, q)\n  \
-    \  if q >= self.M: return OPTIMAL\n    else: return UNBOUNDED\n  proc pivot*[T](self:\
-    \ var two_stage_simplex[T], p, q:int) =\n    for j in 0..self.N:\n      for k\
-    \ in countdown(self.M, 0):\n        if j != p and k != q:\n          self.a[j][k]\
-    \ -= self.a[p][k]*self.a[j][q]/self.a[p][q]\n    for j in 0..self.N:\n      if\
-    \ j != p: self.a[j][q] = 0\n    for k in 0..self.M:\n      if k != q: self.a[p][k]\
-    \ = self.a[p][k]/self.a[p][q]\n    self.a[p][q] = T(1)\n    self.s[p] = q\n\n\
-    \  proc init_two_stage_simplex*[T](A:MatrixType(float), b, c:seq[T]):two_stage_simplex[T]\
-    \ =\n    let\n      N = A.len\n      M = A[0].len\n    var\n      a = MatrixType(T).init(N\
-    \ + 2, M + N + 1)\n      s = newSeq[int](N + 2)\n    for j in 0..<M: a[N+1][j]\
-    \ = c[j] # make simplex table\n    for i in 0..<N:\n      for j in 0..<M:\n  \
-    \      a[i+1][j] = A[i][j]\n    for i in 0..<N: a[i+1][M+N] = b[i] # add helper\
-    \ table\n    for i in 0..<N: a[ 0 ][i+M] = 1\n    for i in 0..<N: a[i+1][i+M]\
-    \ = 1\n    for i in 0..<N: s[i+1]      = i+M\n    for i in 1..N:\n      for j\
-    \ in 0..N+M:\n        a[0][j] += a[i][j];\n    result = two_stage_simplex[T](N:N,\
-    \ M:M, st:Status.UNKNOWN, a:a, s:s)\n    result.st = result.solve()\n\n#block:\n\
-    #  type MT = MatrixType(float)\n#  var A = MT.init(\n#    [\n#      [1, 2, 1,\
-    \ 0, 0], \n#      [1, 1, 0, 1, 0], \n#      [3, 1, 0, 0, 1]\n#    ]\n#  )\n# \
-    \ var b = MT.initVector([14, 8, 18])\n#  var c = MT.initVector([-2, -3, 0, 0,\
-    \ 0])\n#  echo A, b, c\n#  var tss = init_two_stage_simplex(A, b, c)\n#  echo\
-    \ tss.solution\n\n\n"
-  dependsOn:
-  - atcoder/extra/other/operator.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/matrix.nim
-  - atcoder/extra/other/operator.nim
-  - atcoder/extra/math/matrix.nim
-  - atcoder/extra/other/operator.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/matrix.nim
-  - atcoder/extra/other/operator.nim
-  - atcoder/extra/math/matrix.nim
+  code: "when not declared ATCODER_SIMPLEX_HPP:\n  const ATCODER_SIMPLEX_HPP* = 1\n\
+    \  type TwoStageSimplexResult* = enum\n    OPTIMAL, UNBOUNDED, NOSOLUTION, UNKNOWN\n\
+    \  import std/sequtils, std/math\n  \n  proc twoStageSimplex*[T](A: seq[seq[T]],\
+    \ b, c:seq[T]):tuple[status:TwoStageSimplexResult, v:T ,x:seq[T]] =\n    var EPS:T\n\
+    \    if sizeof(T) == 16:\n      EPS = T(1) / T(10^11)\n    elif sizeof(T) == 8:\n\
+    \      EPS = T(1) / T(10^9)\n\n    var\n      (A, b, c) = (A, b, c)\n      (N,\
+    \ M) = (A.len, A[0].len)\n      a = newSeqWith(N + 2, newSeq[T](M + N + 1))\n\
+    \      s = newSeq[int](N + 2)\n\n    for i in 0 ..< N:\n      let u = b[i] < -EPS\n\
+    \      if u:\n        b[i] = -b[i]\n        for j in 0 ..< M:\n          A[i][j]\
+    \ = -A[i][j]\n    for j in 0 ..< M: a[N + 1][j] = c[j]\n    for i in 0 ..< N:\n\
+    \      for j in 0 ..< M:\n        a[i+1][j] = A[i][j]\n    for i in 0 ..< N: a[i+1][M+N]\
+    \ = b[i] # add helper table\n    for i in 0 ..< N: a[ 0 ][i+M] = T(1)\n    for\
+    \ i in 0 ..< N: a[i+1][i+M] = T(1)\n    for i in 0 ..< N: s[i+1]      = i+M\n\
+    \    for i in 1 .. N:\n      for j in 0 .. N + M:\n        a[0][j] -= a[i][j]\n\
+    \    proc print() =\n      echo \"s = \", s\n      echo \"a = \"\n      for i\
+    \ in 0 ..< a.len:\n        echo a[i].join(\"\\t\")\n\n    proc solve():TwoStageSimplexResult\
+    \ =\n      proc solve_sub():TwoStageSimplexResult =\n        proc pivot(p, q:int)\
+    \ =\n          for j in 0 .. N:\n            for k in countdown(M, 0):\n     \
+    \         if j != p and k != q:\n                a[j][k] -= a[p][k] * a[j][q]\
+    \ / a[p][q]\n          for j in 0 .. N:\n            if j != p: a[j][q] = T(0)\n\
+    \          for k in 0 .. M:\n            if k != q:\n              a[p][k] = a[p][k]\
+    \ / a[p][q]\n          a[p][q] = T(1)\n          s[p] = q\n\n        var p, q:\
+    \ int\n        while true:\n          q = 0\n          while q < M and a[0][q]\
+    \ >= -EPS: q.inc\n          if q >= M: break\n          p = 0\n          while\
+    \ p <= N and a[p][q] <= EPS: p.inc\n          if p > N:\n            break\n \
+    \         for i in p + 1 ..< N: # bland's care for cyclation\n            if a[i][q]\
+    \ > EPS:\n              let\n                l = a[i][M] / a[i][q]\n         \
+    \       r = a[p][M] / a[p][q]\n              if l + EPS < r or (l < r + EPS and\
+    \ s[i] < s[q]): p = i\n          pivot(p, q)\n        if q >= M: return OPTIMAL\n\
+    \        else:   return UNBOUNDED\n\n      M += N\n      N += 1\n      discard\
+    \ solve_sub() # solve stage one\n      if -a[0][M] > EPS: return NOSOLUTION\n\
+    \      N -= 1; M -= N\n      swap a[0], a[^1]\n      discard a.pop() # modify\
+    \ table\n      for i in 0 .. N:\n        swap a[i][M], a[i][^1]\n        a[i].setLen(M\
+    \ + 1)\n  \n      return solve_sub() # solve stage two\n  \n    result.status\
+    \ = solve()\n    if result.status == OPTIMAL:\n      var x: seq[T] \n      proc\
+    \ solution():T =\n        x = newSeqWith(M, T(0))\n        for i in 0 ..< N:\n\
+    \          if s[i + 1] in 0 ..< x.len:\n            x[s[i+1]] = a[i+1][^1]\n \
+    \         else:\n            discard\n        return -a[0][M]\n      result.v\
+    \ = solution()\n      result.x = x\n"
+  dependsOn: []
   isVerificationFile: false
   path: atcoder/extra/math/simplex.nim
   requiredBy: []
-  timestamp: '2022-09-24 20:04:56+09:00'
+  timestamp: '2022-10-10 21:34:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/math/simplex.nim

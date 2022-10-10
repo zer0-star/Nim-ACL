@@ -32,9 +32,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_INTERNAL_TYPE_TRAITS_HPP:\n  const ATCODER_INTERNAL_TYPE_TRAITS_HPP*\
     \ = 1\n\n  ##ifndef _MSC_VER\n  #template <class T>\n  #using is_signed_int128\
@@ -92,10 +92,10 @@ data:
   requiredBy:
   - atcoder/extra/structure/dual_fenwicktree.nim
   - atcoder/extra/structure/dual_fenwicktree.nim
-  - atcoder/extra/structure/dual_fenwicktree.nim
-  - atcoder/extra/structure/dual_fenwicktree.nim
   - atcoder/fenwicktree.nim
   - atcoder/fenwicktree.nim
+  - atcoder/extra/structure/dual_fenwicktree.nim
+  - atcoder/extra/structure/dual_fenwicktree.nim
   timestamp: '2020-12-05 23:18:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:

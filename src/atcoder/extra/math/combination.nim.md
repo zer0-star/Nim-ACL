@@ -68,9 +68,9 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not defined ATCODER_COMBINATION_HPP:\n  const ATCODER_COMBINATION_HPP*\
     \ = 1\n  import atcoder/element_concepts\n\n  type Combination*[T] = object\n\
@@ -87,6 +87,7 @@ data:
     \  return cmb.enhance(k)\n\n  template zero*(T:typedesc[FieldElem]):T = T(0)\n\
     \  template zero*[T:FieldElem](cmb:Combination[T]):T = T(0)\n  \n  template fact*(T:CombinationC,\
     \ k:int):auto = T.enhance(k)[].fact_a[k]\n  template rfact*(T:CombinationC, k:int):auto\
+    \ = T.enhance(k)[].rfact_a[k]\n  template invfact*(T:CombinationC, k:int):auto\
     \ = T.enhance(k)[].rfact_a[k]\n  template inv*(T:CombinationC, k:int):auto = T.fact(k\
     \ - 1) * T.rfact(k)\n\n  template resetCombination*(T:typedesc[FieldElem] or var\
     \ Combination) =\n    var p = T.enhance(-1)\n    p[].fact_a.setLen(0)\n    p[].rfact_a.setLen(0)\n\
@@ -116,23 +117,23 @@ data:
   requiredBy:
   - atcoder/extra/math/factorial.nim
   - atcoder/extra/math/factorial.nim
-  - atcoder/extra/math/lagrange_polynomial.nim
-  - atcoder/extra/math/lagrange_polynomial.nim
   - atcoder/extra/math/polynomial_taylor_shift.nim
   - atcoder/extra/math/polynomial_taylor_shift.nim
+  - atcoder/extra/math/lagrange_polynomial.nim
+  - atcoder/extra/math/lagrange_polynomial.nim
   - atcoder/extra/math/factorial.nim
   - atcoder/extra/math/factorial.nim
-  - atcoder/extra/math/lagrange_polynomial.nim
-  - atcoder/extra/math/lagrange_polynomial.nim
   - atcoder/extra/math/polynomial_taylor_shift.nim
   - atcoder/extra/math/polynomial_taylor_shift.nim
-  timestamp: '2022-09-24 20:04:56+09:00'
+  - atcoder/extra/math/lagrange_polynomial.nim
+  - atcoder/extra/math/lagrange_polynomial.nim
+  timestamp: '2022-10-10 21:34:07+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/extra/math/yukicoder_factorial_test.nim
-  - verify/extra/math/yukicoder_factorial_test.nim
   - verify/extra/math/polynomial_taylor_shift_test.nim
   - verify/extra/math/polynomial_taylor_shift_test.nim
+  - verify/extra/math/yukicoder_factorial_test.nim
+  - verify/extra/math/yukicoder_factorial_test.nim
 documentation_of: atcoder/extra/math/combination.nim
 layout: document
 redirect_from:

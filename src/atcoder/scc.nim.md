@@ -56,9 +56,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_SCC_HPP:\n  const ATCODER_SCC_HPP* = 1\n\n  import\
     \ atcoder/internal_scc\n\n  type SCCGraph* = object\n    internal: internal_scc_graph\n\
@@ -68,27 +68,27 @@ data:
     \ dst)\n\n  proc scc*(self:SCCGraph):auto = self.internal.scc()\n"
   dependsOn:
   - atcoder/internal_csr.nim
-  - atcoder/internal_csr.nim
   - atcoder/internal_scc.nim
+  - atcoder/internal_csr.nim
   - atcoder/internal_scc.nim
   isVerificationFile: false
   path: atcoder/scc.nim
   requiredBy:
-  - atcoder/extra/graph/mincostflow_generalized.nim
-  - atcoder/extra/graph/mincostflow_generalized.nim
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/extra/graph/mincostflow_generalized.nim
   - atcoder/extra/graph/mincostflow_generalized.nim
   - atcoder/extra/graph/mincostflow_lowerbound.nim
   - atcoder/extra/graph/mincostflow_lowerbound.nim
+  - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/extra/graph/mincostflow_generalized.nim
   timestamp: '2021-08-18 01:50:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
-  - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
   - verify/scc_test.nim
   - verify/scc_test.nim
+  - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
+  - verify/extra/graph/aoj_grl_3_c_strongly_connected_components_test.nim
 documentation_of: atcoder/scc.nim
 layout: document
 redirect_from:
