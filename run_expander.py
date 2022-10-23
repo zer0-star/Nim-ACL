@@ -20,6 +20,6 @@ else:
     print("Undefined Extension")
     exit(1)
 
-os.system("python3 {} {} --lib {}".format(expander_path, file_name, lib_path))
+os.system("python3 {} {} -s --compress --directory --lib {}".format(expander_path, file_name, lib_path))
 os.system("cat {} | xsel --clipboard --input".format(combined_file_name))
 os.system("rm {}".format(combined_file_name))

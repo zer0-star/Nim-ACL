@@ -2,39 +2,50 @@ when not declared ATCODER_HEAVY_LIGHT_DECOMPOSITION_HPP:
   import std/sugar
   import atcoder/extra/graph/graph_template
   type HeavyLightDecomposition[T] = object
-    sz*, in_a, out_a, head, rev, par, dep*:seq[int]
+    sz*, in_a*, out_a*, head*, rev*, par*, dep, heavy_child*:seq[int]
+    heavy_path*, light_child*: seq[seq[int]]
   proc initHeavyLightDecomposition*[G:Graph](g:G, s = 0):HeavyLightDecomposition[G.T] =
     type T = G.T
     var
-      g = g
-      sz, in_a, out_a, head, rev, par, dep = newSeq[int](g.len)
+      sz, in_a, out_a, head, rev, par, dep, heavy_child = newSeq[int](g.len)
+      heavy_path, light_child = newSeq[seq[int]](g.len)
+
     head[s] = s
-    proc dfsSz(idx, p, d:int) =
+    proc dfsSz(g:G, idx, p, d:int) =
       dep[idx] = d
       par[idx] = p
       sz[idx] = 1
-      if g[idx].len > 0 and g[idx][0].dst == p: swap(g[idx][0].dst, g[idx][^1].dst)
-      for e in g[idx].mitems:
+      heavy_child[idx] = -1
+      for e in g[idx]:
         if e.dst == p: continue
-        dfsSz(e.dst, idx, d + 1)
+        g.dfsSz(e.dst, idx, d + 1)
         sz[idx] += sz[e.dst];
-        if sz[g[idx][0].dst] < sz[e.dst]:
-          swap(g[idx][0].dst, e.dst)
+        if heavy_child[idx] == -1 or sz[heavy_child[idx]] < sz[e.dst]:
+          heavy_child[idx] = e.dst
 
-    proc dfsHld(idx, par:int, times:var int) =
+    proc dfsHld(g:G, idx, par:int, times:var int) =
       in_a[idx] = times
       times += 1
-      rev[in_a[idx]] = idx;
+      rev[in_a[idx]] = idx
+      heavy_path[head[idx]].add idx
+      # heavy_index[idx]を先に回る
+      var child:seq[int]
+      if heavy_child[idx] != -1:
+        child.add heavy_child[idx]
       for e in g[idx]:
-        if e.dst == par: continue
-        head[e.dst] = if g[idx][0].dst == e.dst: head[idx] else: e.dst
-        dfsHld(e.dst, idx, times)
+        if e.dst == par or e.dst == heavy_child[idx]: continue
+        light_child[idx].add e.dst
+        child.add e.dst
+      for c in child:
+        head[c] = if heavy_child[idx] == c: head[idx] else: c
+        g.dfsHld(c, idx, times)
       out_a[idx] = times
 
-    dfsSz(s, -1, 0)
+    g.dfsSz(s, -1, 0)
     var t = 0
-    dfs_hld(s, -1, t)
-    result = HeavyLightDecomposition[T](sz:sz, in_a:in_a, out_a:out_a, head:head, rev:rev, par:par, dep:dep)
+    g.dfs_hld(s, -1, t)
+    result = HeavyLightDecomposition[T](sz:sz.move, in_a:in_a.move, out_a:out_a.move, head:head.move, rev:rev.move, par:par.move, dep:dep.move,
+      heavy_child:heavy_child.move, heavy_path:heavy_path.move, light_child:light_child.move)
   
   proc la*[T](self:HeavyLightDecomposition[T]; v, k:int):int =
     var (v, k) = (v, k)
@@ -73,3 +84,22 @@ when not declared ATCODER_HEAVY_LIGHT_DECOMPOSITION_HPP:
       q(self.in_a[self.head[v]], self.in_a[v] + 1)
       v = self.par[self.head[v]]
     q(self.in_a[u] + edge.int, self.in_a[v] + 1)
+
+  proc get_heavy_path*[T](self:HeavyLightDecomposition[T], g:Graph, u:int):tuple[heavy:seq[int], light:seq[seq[int]]] =
+    doAssert self.head[u] == u
+    let h = self.head[u]
+    var
+      heavy = newSeq[int]()
+      light = newSeq[seq[int]]()
+    var u = u
+    while true:
+      heavy.add u
+      var light_dst = newSeq[int]()
+      for ei,e in g[u]:
+        if e.dst == self.par[u] or ei == self.heavy_index[u]: continue
+        light_dst.add e.dst
+      light.add(light_dst)
+      if self.heavy_index[u] == -1: break
+      u = g[u][self.heavy_index[u]].dst
+    return (heavy, light)
+

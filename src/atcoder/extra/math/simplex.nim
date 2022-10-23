@@ -5,16 +5,17 @@ when not declared ATCODER_SIMPLEX_HPP:
   import std/sequtils, std/math
   
   proc twoStageSimplex*[T](A: seq[seq[T]], b, c:seq[T]):tuple[status:TwoStageSimplexResult, v:T ,x:seq[T]] =
-    var EPS:T
-    if sizeof(T) == 16:
-      EPS = T(1) / T(10^11)
-    elif sizeof(T) == 8:
-      EPS = T(1) / T(10^9)
+    var EPS = T.getEps()
+    #if sizeof(T) == 16:
+    #  EPS = T(1) / T(10^11)
+    #elif sizeof(T) == 8:
+    #  EPS = T(1) / T(10^9)
+
 
     var
       (A, b, c) = (A, b, c)
       (N, M) = (A.len, A[0].len)
-      a = newSeqWith(N + 2, newSeq[T](M + N + 1))
+      a = newSeqWith(N + 2, newSeqWith(M + N + 1, T(0)))
       s = newSeq[int](N + 2)
 
     for i in 0 ..< N:
@@ -23,11 +24,11 @@ when not declared ATCODER_SIMPLEX_HPP:
         b[i] = -b[i]
         for j in 0 ..< M:
           A[i][j] = -A[i][j]
-    for j in 0 ..< M: a[N + 1][j] = c[j]
+    for j in 0 ..< M: a[N + 1][j] = c[j].clone()
     for i in 0 ..< N:
       for j in 0 ..< M:
-        a[i+1][j] = A[i][j]
-    for i in 0 ..< N: a[i+1][M+N] = b[i] # add helper table
+        a[i+1][j] = A[i][j].clone()
+    for i in 0 ..< N: a[i+1][M+N] = b[i].clone() # add helper table
     for i in 0 ..< N: a[ 0 ][i+M] = T(1)
     for i in 0 ..< N: a[i+1][i+M] = T(1)
     for i in 0 ..< N: s[i+1]      = i+M
@@ -82,7 +83,11 @@ when not declared ATCODER_SIMPLEX_HPP:
       swap a[0], a[^1]
       discard a.pop() # modify table
       for i in 0 .. N:
-        swap a[i][M], a[i][^1]
+        #swap a[i][M], a[i][^1]
+        block:
+          var tmp = a[i][M].clone()
+          a[i][M] = a[i][^1].clone()
+          a[i][^1] = tmp
         a[i].setLen(M + 1)
   
       return solve_sub() # solve stage two

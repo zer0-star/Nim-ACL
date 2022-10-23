@@ -7,7 +7,7 @@ when not declared ATCODER_PERSISTENT_ARRAY_HPP:
       data:T
       child:array[1 shl LOG, PersistentArrayNode[T]]
     PersistentArray*[T] = object
-      root: PersistentArrayNode[T]
+      root*: PersistentArrayNode[T]
 
   proc build[T](t:var PersistentArrayNode[T], data:T, k:int):PersistentArrayNode[T] =
     if t == nil: t = PersistentArrayNode[T]()

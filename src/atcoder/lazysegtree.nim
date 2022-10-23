@@ -9,24 +9,24 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
     d*:seq[S]
     lz*:seq[F]
 
-  template calc_op[ST:LazySegTree](self:typedesc[ST], a, b:ST.S):auto =
+  template calc_op*[ST:LazySegTree](self:ST or typedesc[ST], a, b:ST.S):auto =
     block:
       let u = ST.p.op(a, b)
       u
-  template calc_e[ST:LazySegTree](self:typedesc[ST]):auto =
+  template calc_e*[ST:LazySegTree](self:ST or typedesc[ST]):auto =
     block:
       let u = ST.p.e()
       u
-  template calc_mapping[ST:LazySegTree](self:typedesc[ST], a:ST.F, b:ST.S):auto =
+  template calc_mapping*[ST:LazySegTree](self:ST or typedesc[ST], a:ST.F, b:ST.S):auto =
     block:
       let u = ST.p.mapping(a, b)
       u
-  template calc_composition[ST:LazySegTree](self:typedesc[ST], a, b:ST.F):auto =
+  template calc_composition*[ST:LazySegTree](self:ST or typedesc[ST], a, b:ST.F):auto =
     block:
       # こう書かないとバグる事象を検出
       let u = ST.p.composition(a, b)
       u
-  template calc_id[ST:LazySegTree](self:typedesc[ST]):auto =
+  template calc_id*[ST:LazySegTree](self:ST or typedesc[ST]):auto =
     block:
       let u = ST.p.id()
       u
@@ -65,12 +65,12 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
   proc init*[ST:LazySegTree](self: typedesc[ST], v:seq[ST.S] or int):ST = result.init(v)
 
   template LazySegTreeType[S, F](op0, e0, mapping0, composition0, id0:untyped):typedesc[LazySegTree] =
-    LazySegTree[S, F,
-      (op:(proc(l, r:S):S)(op0),
-        e:(proc():S)(e0),
-        mapping:(proc(f:F, s:S):S)(mapping0),
-        composition:(proc(f1:F, f2:F):F)(composition0),
-        id:(proc():F)(id0))]
+    proc op1(a, b:S):S {.gensym inline.} = op0(a, b)
+    proc e1():S {.gensym inline.} = e0()
+    proc mapping1(f:F, s:S):S {.gensym inline.} = mapping0(f, s)
+    proc composition1(f1, f2:F):F {.gensym inline.} = composition0(f1, f2)
+    proc id1():F {.gensym inline.} = id0()
+    LazySegTree[S, F, (op:op1, e:e1, mapping:mapping1, composition:composition1, id:id1)]
 
   template getType*(ST:typedesc[LazySegTree], S, F:typedesc, op, e, mapping, composition, id:untyped):typedesc[LazySegTree] =
     LazySegTreeType[S, F](op, e, mapping, composition, id)

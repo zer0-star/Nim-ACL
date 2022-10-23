@@ -9,11 +9,11 @@ when not declared ATCODER_SEGTREE_HPP:
     len*, size*, log*:int
     d: seq[S]
 
-  template calc_op*[ST:SegTree](self:typedesc[ST], a, b:ST.S):auto =
+  template calc_op*[ST:SegTree](self:ST or typedesc[ST], a, b:ST.S):auto =
     block:
       let u = ST.p.op(a, b)
       u
-  template calc_e*[ST:SegTree](self:typedesc[ST]):auto =
+  template calc_e*[ST:SegTree](self:ST or typedesc[ST]):auto =
     block:
       let u = ST.p.e()
       u
@@ -40,7 +40,9 @@ when not declared ATCODER_SEGTREE_HPP:
   proc init*[ST:SegTree](self: typedesc[ST], n:int):auto =
     self.init(newSeqWith(n, ST.calc_e()))
   template SegTreeType*[S](op0, e0:untyped):typedesc[SegTree] =
-    SegTree[S, (op:(proc(l:S, r:S):S)(op0), e:(proc():S)(e0))]
+    proc op1(l, r:S):S {.gensym inline.} = op0(l, r)
+    proc e1():S {.gensym inline.} = e0()
+    SegTree[S, (op:op1, e:e1)]
   template getType*(ST:typedesc[SegTree], S:typedesc, op, e:untyped):typedesc[SegTree] =
     SegTreeType[S](op, e)
 

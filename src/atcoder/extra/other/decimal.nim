@@ -1,10 +1,9 @@
-import "~/git/nim-decimal/decimal/decimal"
-import "~/git/nim-decimal/decimal/decimal_lowlevel"
+import atcoder/extra/other/decimal_gmp
 import atcoder/extra/other/floatutils
 import atcoder/extra/other/static_var
 
-converter toDecimal*(a:int):DecimalType = newDecimal(a)
-converter toDecimal*(s:string):DecimalType = newDecimal(s)
+#converter toDecimal*(a:int):Decimal = Decimal(a)
+#converter toDecimal*(s:string):Decimal = Decimal(s)
 
 proc calcPi*[Real]():Real =
   var
@@ -13,35 +12,56 @@ proc calcPi*[Real]():Real =
     c = Real(1) / Real(4)
     d = Real(1)
 
-  var prev = newDecimal(0)
+  var prev = Decimal(0)
 
   while true:
-    let p = (a + b)^2/(Real(4) * c)
+    let s = a + b
+    let p = s * s / (Real(4) * c)
     if p == prev: break
     prev = p
     var
       na = (a + b) / Real(2)
       nb = sqrt(a * b)
-      nc = c - d * (a - na)^2
+      nc = c - d * (a - na) * (a - na)
       nd = Real(2) * d
-    swap(na, a)
-    swap(nb, b)
-    swap(nc, c)
-    swap(nd, d)
+    #swap(na, a)
+    #swap(nb, b)
+    #swap(nc, c)
+    #swap(nd, d)
+    a = na.move
+    b = nb.move
+    c = nc.move
+    d = nd.move
   return prev
 
-proc initPrec*(Real:typedesc[DecimalType], n:int) =
+proc exp*(x:Decimal):Decimal =
+  result = Decimal(0)
+  var
+    p = Decimal(1)
+    i = 0
+  while true:
+    var result_old = result.clone()
+    result += p
+    if result == result_old: break
+    p *= x
+    i.inc
+    p /= Decimal(i)
+
+proc initPrec*(Real:typedesc[Decimal], n:int) =
   setPrec(n)
-  var INF_VAL = newDecimal()
-  mpd_setspecial(INF_VAL[], MPD_POS, MPD_INF)
-  DecimalType$.pi = calcPi[Real]()
-  DecimalType$.eps = newDecimal(10)^(-(n - 5))
-  DecimalType$.inf = INF_VAL
+  # とりあえずINFは呼ばないように
+  var INF_VAL = Decimal(0)
+  #mpd_setspecial(INF_VAL[], MPD_POS, MPD_INF)
+  #Decimal$.pi = calcPi[Real]()
+  #Decimal$.eps = Decimal(10)^(-(n div 5 - 5))
+  #Decimal$.eps = Decimal(1) / Decimal(10)^(n div 4)
+  #Decimal$.inf = INF_VAL
+  #echo "eps: ", Decimal$.eps
 
-#  DecimalType.getParameters()[] = (n, calcPi[Real](), newDecimal(10)^(-(n - 5)), INF_VAL)
+  Decimal.getParameters()[] = (n, calcPi[Real](), machine_epsilon() * Decimal(10)^10, INF_VAL)
 
-proc sin_impl*(x:DecimalType):DecimalType =
-  result = newDecimal(0)
+proc sin_impl*(x:Decimal):Decimal =
+  result = Decimal(0)
   let mx2 = - x * x
   var
     i = 1
@@ -53,16 +73,16 @@ proc sin_impl*(x:DecimalType):DecimalType =
     p *= mx2 / ((i + 1) * (i + 2))
     i += 2
 
-proc sin*(x:DecimalType):DecimalType =
-  let r = rem(x, ((DecimalType$.pi) * 2))
+proc sin*(x:Decimal):Decimal =
+  let r = rem(x, ((Decimal$.pi) * 2))
   return sin_impl(r)
 
-proc cos_impl(x:DecimalType):DecimalType =
-  result = newDecimal(0)
+proc cos_impl(x:Decimal):Decimal =
+  result = Decimal(0)
   let mx2 = - x * x
   var
     i = 0
-    p = newDecimal(1)
+    p = Decimal(1)
   while true:
     var next = result + p
     if next == result: break
@@ -70,28 +90,28 @@ proc cos_impl(x:DecimalType):DecimalType =
     p *= mx2 / ((i + 1) * (i + 2))
     i += 2
 
-proc cos*(x:DecimalType):DecimalType =
-  let r = rem(x, ((DecimalType$.pi) * 2))
+proc cos*(x:Decimal):Decimal =
+  let r = rem(x, ((Decimal$.pi) * 2))
   return cos_impl(r)
 
-proc tan*(x:DecimalType):DecimalTYpe = sin(x) / cos(x)
+proc tan*(x:Decimal):Decimal = sin(x) / cos(x)
 
-proc sinh*(x:DecimalType):DecimalType =
-  return (exp(x) - exp(-x)) / newDecimal(2)
+proc sinh*(x:Decimal):Decimal =
+  return (exp(x) - exp(-x)) / Decimal(2)
 
-proc cosh*(x:DecimalType):DecimalType =
-  return (exp(x) + exp(-x)) / newDecimal(2)
+proc cosh*(x:Decimal):Decimal =
+  return (exp(x) + exp(-x)) / Decimal(2)
 
-proc hypot*(x, y:DecimalType):DecimalType = sqrt(x * x + y * y)
+proc hypot*(x, y:Decimal):Decimal = sqrt(x * x + y * y)
 
-proc pow*(a, b:DecimalType):DecimalType = a ^ b
+#proc pow*(a, b:Decimal):Decimal = a ^ b
 
-proc arcsin*(x:DecimalType):DecimalType =
-  result = newDecimal(0)
+proc arcsin*(x:Decimal):Decimal =
+  result = Decimal(0)
   var
     n = 0
     p = x
-    t = 1 / newDecimal(2)
+    t = 1 / Decimal(2)
     x2 = x * x
   while true:
     var next = result + p / (2 * n + 1)
@@ -104,13 +124,13 @@ proc arcsin*(x:DecimalType):DecimalType =
     n.inc
     p /= n
 
-proc arccos*(x:DecimalType):DecimalType =
-  (DecimalType$.pi) / newDecimal(2) - arcsin(x)
+proc arccos*(x:Decimal):Decimal =
+  (Decimal$.pi) / Decimal(2) - arcsin(x)
 
-proc arctan2*(y, x:DecimalType):DecimalType =
+proc arctan2*(y, x:Decimal):Decimal =
   var
     a = x / sqrt(x * x + y * y)
-    b = newDecimal(1)
+    b = Decimal(1)
   while true:
     var
       na = (a + b) / 2
@@ -119,7 +139,7 @@ proc arctan2*(y, x:DecimalType):DecimalType =
     a = na.move
     b = nb.move
   return y / (a * sqrt(x * x + y * y))
-proc arctan*(x:DecimalType):DecimalType =
-  return arctan2(x, newDecimal(1))
+proc arctan*(x:Decimal):Decimal =
+  return arctan2(x, Decimal(1))
 
-proc round*(x:DecimalType):DecimalType = round_to_int(x)
+#proc round*(x:Decimal):Decimal = round_to_int(x)
