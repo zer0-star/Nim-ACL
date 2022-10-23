@@ -22,19 +22,19 @@ data:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D\n\
     \ninclude atcoder/header\n\nimport atcoder/extra/dp/slide_min\n\nproc main() =\n\
     \  let\n    N, L = nextInt()\n    a = newSeqWith(N, nextInt())\n  echo a.slideMin(L).join(\"\
     \ \")\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/dp/slide_min.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   - atcoder/extra/dp/slide_min.nim
-  - atcoder/header.nim
+  - atcoder/extra/dp/slide_min.nim
   isVerificationFile: true
   path: verify/extra/dp/aoj_dsl_3_d_slidemin_test.nim
   requiredBy: []

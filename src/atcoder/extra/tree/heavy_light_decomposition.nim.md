@@ -26,26 +26,33 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_HEAVY_LIGHT_DECOMPOSITION_HPP:\n  import std/sugar\n\
     \  import atcoder/extra/graph/graph_template\n  type HeavyLightDecomposition[T]\
-    \ = object\n    sz*, in_a, out_a, head, rev, par, dep*:seq[int]\n  proc initHeavyLightDecomposition*[G:Graph](g:G,\
-    \ s = 0):HeavyLightDecomposition[G.T] =\n    type T = G.T\n    var\n      g =\
-    \ g\n      sz, in_a, out_a, head, rev, par, dep = newSeq[int](g.len)\n    head[s]\
-    \ = s\n    proc dfsSz(idx, p, d:int) =\n      dep[idx] = d\n      par[idx] = p\n\
-    \      sz[idx] = 1\n      if g[idx].len > 0 and g[idx][0].dst == p: swap(g[idx][0].dst,\
-    \ g[idx][^1].dst)\n      for e in g[idx].mitems:\n        if e.dst == p: continue\n\
-    \        dfsSz(e.dst, idx, d + 1)\n        sz[idx] += sz[e.dst];\n        if sz[g[idx][0].dst]\
-    \ < sz[e.dst]:\n          swap(g[idx][0].dst, e.dst)\n\n    proc dfsHld(idx, par:int,\
-    \ times:var int) =\n      in_a[idx] = times\n      times += 1\n      rev[in_a[idx]]\
-    \ = idx;\n      for e in g[idx]:\n        if e.dst == par: continue\n        head[e.dst]\
-    \ = if g[idx][0].dst == e.dst: head[idx] else: e.dst\n        dfsHld(e.dst, idx,\
-    \ times)\n      out_a[idx] = times\n\n    dfsSz(s, -1, 0)\n    var t = 0\n   \
-    \ dfs_hld(s, -1, t)\n    result = HeavyLightDecomposition[T](sz:sz, in_a:in_a,\
-    \ out_a:out_a, head:head, rev:rev, par:par, dep:dep)\n  \n  proc la*[T](self:HeavyLightDecomposition[T];\
+    \ = object\n    sz*, in_a*, out_a*, head*, rev*, par*, dep, heavy_child*:seq[int]\n\
+    \    heavy_path*, light_child*: seq[seq[int]]\n  proc initHeavyLightDecomposition*[G:Graph](g:G,\
+    \ s = 0):HeavyLightDecomposition[G.T] =\n    type T = G.T\n    var\n      sz,\
+    \ in_a, out_a, head, rev, par, dep, heavy_child = newSeq[int](g.len)\n      heavy_path,\
+    \ light_child = newSeq[seq[int]](g.len)\n\n    head[s] = s\n    proc dfsSz(g:G,\
+    \ idx, p, d:int) =\n      dep[idx] = d\n      par[idx] = p\n      sz[idx] = 1\n\
+    \      heavy_child[idx] = -1\n      for e in g[idx]:\n        if e.dst == p: continue\n\
+    \        g.dfsSz(e.dst, idx, d + 1)\n        sz[idx] += sz[e.dst];\n        if\
+    \ heavy_child[idx] == -1 or sz[heavy_child[idx]] < sz[e.dst]:\n          heavy_child[idx]\
+    \ = e.dst\n\n    proc dfsHld(g:G, idx, par:int, times:var int) =\n      in_a[idx]\
+    \ = times\n      times += 1\n      rev[in_a[idx]] = idx\n      heavy_path[head[idx]].add\
+    \ idx\n      # heavy_index[idx]\u3092\u5148\u306B\u56DE\u308B\n      var child:seq[int]\n\
+    \      if heavy_child[idx] != -1:\n        child.add heavy_child[idx]\n      for\
+    \ e in g[idx]:\n        if e.dst == par or e.dst == heavy_child[idx]: continue\n\
+    \        light_child[idx].add e.dst\n        child.add e.dst\n      for c in child:\n\
+    \        head[c] = if heavy_child[idx] == c: head[idx] else: c\n        g.dfsHld(c,\
+    \ idx, times)\n      out_a[idx] = times\n\n    g.dfsSz(s, -1, 0)\n    var t =\
+    \ 0\n    g.dfs_hld(s, -1, t)\n    result = HeavyLightDecomposition[T](sz:sz.move,\
+    \ in_a:in_a.move, out_a:out_a.move, head:head.move, rev:rev.move, par:par.move,\
+    \ dep:dep.move,\n      heavy_child:heavy_child.move, heavy_path:heavy_path.move,\
+    \ light_child:light_child.move)\n  \n  proc la*[T](self:HeavyLightDecomposition[T];\
     \ v, k:int):int =\n    var (v, k) = (v, k)\n    while true:\n      let u = self.head[v]\n\
     \      if self.in_a[v] - k >= self.in_a[u]: return self.rev[self.in_a[v] - k]\n\
     \      k -= self.in_a[v] - self.in_a[u] + 1\n      v = self.par[u]\n\n  proc lca*[T](self:HeavyLightDecomposition[T];\
@@ -65,7 +72,14 @@ data:
     \ true:\n      if self.in_a[u] > self.in_a[v]: swap(u, v)\n      if self.head[u]\
     \ == self.head[v]: break\n      q(self.in_a[self.head[v]], self.in_a[v] + 1)\n\
     \      v = self.par[self.head[v]]\n    q(self.in_a[u] + edge.int, self.in_a[v]\
-    \ + 1)\n"
+    \ + 1)\n\n  proc get_heavy_path*[T](self:HeavyLightDecomposition[T], g:Graph,\
+    \ u:int):tuple[heavy:seq[int], light:seq[seq[int]]] =\n    doAssert self.head[u]\
+    \ == u\n    let h = self.head[u]\n    var\n      heavy = newSeq[int]()\n     \
+    \ light = newSeq[seq[int]]()\n    var u = u\n    while true:\n      heavy.add\
+    \ u\n      var light_dst = newSeq[int]()\n      for ei,e in g[u]:\n        if\
+    \ e.dst == self.par[u] or ei == self.heavy_index[u]: continue\n        light_dst.add\
+    \ e.dst\n      light.add(light_dst)\n      if self.heavy_index[u] == -1: break\n\
+    \      u = g[u][self.heavy_index[u]].dst\n    return (heavy, light)\n\n"
   dependsOn:
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
@@ -74,7 +88,7 @@ data:
   isVerificationFile: false
   path: atcoder/extra/tree/heavy_light_decomposition.nim
   requiredBy: []
-  timestamp: '2022-10-10 21:34:07+09:00'
+  timestamp: '2022-10-23 18:37:31+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/tree/aoj_grl_5_c_2_heavy_light_decomposition_test.nim

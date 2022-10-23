@@ -27,6 +27,30 @@ data:
     title: atcoder/generate_definitions.nim
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: atcoder/extra/math/characteristic_polynomial.nim
+    title: atcoder/extra/math/characteristic_polynomial.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/characteristic_polynomial.nim
+    title: atcoder/extra/math/characteristic_polynomial.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/characteristic_polynomial.nim
+    title: atcoder/extra/math/characteristic_polynomial.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/characteristic_polynomial.nim
+    title: atcoder/extra/math/characteristic_polynomial.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/kitamasa.nim
+    title: atcoder/extra/math/kitamasa.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/kitamasa.nim
+    title: atcoder/extra/math/kitamasa.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/kitamasa.nim
+    title: atcoder/extra/math/kitamasa.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/kitamasa.nim
+    title: atcoder/extra/math/kitamasa.nim
+  - icon: ':warning:'
     path: atcoder/extra/math/simplex_old.nim
     title: atcoder/extra/math/simplex_old.nim
   - icon: ':warning:'
@@ -50,9 +74,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_MATRIX_HPP:\n  const ATCODER_MATRIX_HPP* = 1\n\
     \  import std/sequtils, std/algorithm\n  import atcoder/generate_definitions\n\
@@ -183,20 +207,28 @@ data:
     \ j] = G[i][j + n]\n\n  generatePow(StaticMatrix)\n  generatePow(DynamicMatrix)\n"
   dependsOn:
   - atcoder/extra/other/operator.nim
-  - atcoder/generate_definitions.nim
   - atcoder/extra/other/operator.nim
   - atcoder/generate_definitions.nim
-  - atcoder/extra/other/operator.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/other/operator.nim
+  - atcoder/extra/other/operator.nim
+  - atcoder/generate_definitions.nim
   - atcoder/generate_definitions.nim
   isVerificationFile: false
   path: atcoder/extra/math/matrix.nim
   requiredBy:
+  - atcoder/extra/math/characteristic_polynomial.nim
+  - atcoder/extra/math/characteristic_polynomial.nim
   - atcoder/extra/math/simplex_old.nim
   - atcoder/extra/math/simplex_old.nim
+  - atcoder/extra/math/kitamasa.nim
+  - atcoder/extra/math/kitamasa.nim
+  - atcoder/extra/math/characteristic_polynomial.nim
+  - atcoder/extra/math/characteristic_polynomial.nim
   - atcoder/extra/math/simplex_old.nim
   - atcoder/extra/math/simplex_old.nim
+  - atcoder/extra/math/kitamasa.nim
+  - atcoder/extra/math/kitamasa.nim
   timestamp: '2022-10-10 21:34:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:

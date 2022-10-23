@@ -37,21 +37,18 @@ data:
   - icon: ':question:'
     path: atcoder/extra/math/arbitrary_mod_convolution.nim
     title: atcoder/extra/math/arbitrary_mod_convolution.nim
-  - icon: ':question:'
-    path: atcoder/extra/math/combination.nim
-    title: atcoder/extra/math/combination.nim
-  - icon: ':question:'
-    path: atcoder/extra/math/combination.nim
-    title: atcoder/extra/math/combination.nim
-  - icon: ':question:'
-    path: atcoder/extra/math/combination.nim
-    title: atcoder/extra/math/combination.nim
-  - icon: ':question:'
-    path: atcoder/extra/math/combination.nim
-    title: atcoder/extra/math/combination.nim
-  - icon: ':question:'
-    path: atcoder/extra/math/formal_power_series.nim
-    title: atcoder/extra/math/formal_power_series.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/characteristic_polynomial.nim
+    title: atcoder/extra/math/characteristic_polynomial.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/characteristic_polynomial.nim
+    title: atcoder/extra/math/characteristic_polynomial.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/characteristic_polynomial.nim
+    title: atcoder/extra/math/characteristic_polynomial.nim
+  - icon: ':warning:'
+    path: atcoder/extra/math/characteristic_polynomial.nim
+    title: atcoder/extra/math/characteristic_polynomial.nim
   - icon: ':question:'
     path: atcoder/extra/math/formal_power_series.nim
     title: atcoder/extra/math/formal_power_series.nim
@@ -61,6 +58,21 @@ data:
   - icon: ':question:'
     path: atcoder/extra/math/formal_power_series.nim
     title: atcoder/extra/math/formal_power_series.nim
+  - icon: ':question:'
+    path: atcoder/extra/math/formal_power_series.nim
+    title: atcoder/extra/math/formal_power_series.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/matrix.nim
+    title: atcoder/extra/math/matrix.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/matrix.nim
+    title: atcoder/extra/math/matrix.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/matrix.nim
+    title: atcoder/extra/math/matrix.nim
+  - icon: ':x:'
+    path: atcoder/extra/math/matrix.nim
+    title: atcoder/extra/math/matrix.nim
   - icon: ':question:'
     path: atcoder/extra/math/ntt.nim
     title: atcoder/extra/math/ntt.nim
@@ -85,6 +97,18 @@ data:
   - icon: ':question:'
     path: atcoder/extra/math/particular_mod_convolution.nim
     title: atcoder/extra/math/particular_mod_convolution.nim
+  - icon: ':x:'
+    path: atcoder/extra/other/operator.nim
+    title: atcoder/extra/other/operator.nim
+  - icon: ':x:'
+    path: atcoder/extra/other/operator.nim
+    title: atcoder/extra/other/operator.nim
+  - icon: ':x:'
+    path: atcoder/extra/other/operator.nim
+    title: atcoder/extra/other/operator.nim
+  - icon: ':x:'
+    path: atcoder/extra/other/operator.nim
+    title: atcoder/extra/other/operator.nim
   - icon: ':question:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
@@ -134,89 +158,89 @@ data:
     path: atcoder/modint.nim
     title: atcoder/modint.nim
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/extra/math/polynomial_taylor_shift_test.nim
-    title: verify/extra/math/polynomial_taylor_shift_test.nim
-  - icon: ':heavy_check_mark:'
-    path: verify/extra/math/polynomial_taylor_shift_test.nim
-    title: verify/extra/math/polynomial_taylor_shift_test.nim
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    links:
-    - https://judge.yosupo.jp/problem/polynomial_taylor_shift
+    links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
-  code: "when not declared ATCODER_POLYNOMIAL_TAYLOR_SHIFT_HPP:\n  const ATCODER_POLYNOMIAL_TAYLOR_SHIFT_HPP*\
-    \ = 1\n  import atcoder/extra/math/ntt\n  import atcoder/extra/math/formal_power_series\n\
-    \  import atcoder/extra/math/combination\n  import std/sequtils\n  # https://judge.yosupo.jp/problem/polynomial_taylor_shift\n\
-    \  proc taylor_shift*[T](self:FormalPowerSeries[T], c:T):FormalPowerSeries[T]\
-    \ =\n    let n = self.len\n    var p = self\n    for i in 0..<n: p[i] *= T.fact(i)\n\
-    \    p = p.rev()\n    var bs = initFormalPowerSeries[T](newSeqWith(n, T(1)))\n\
-    \    for i in 1..<n:\n      bs[i] = bs[i - 1] * c * T.rfact(i) * T.fact(i - 1)\n\
-    \    p = (p * bs).pre(n)\n    p = p.rev()\n    for i in 0..<n: p[i] *= T.rfact(i)\n\
-    \    return p\n"
+  code: "when not declared ATCODER_KITAMASA_HPP:\n  const ATCODER_KITAMASA_HPP* =\
+    \ 1\n\n  import atcoder/extra/math/ntt\n  import atcoder/extra/math/formal_power_series\n\
+    \  import atcoder/extra/math/matrix\n  import atcoder/extra/math/characteristic_polynomial\n\
+    \n  proc kitamasa*[M:SomeMatrix](A:M, b:M.Vector, k:int):M.Vector =\n    # A^n\
+    \ * b\u3092\u9AD8\u901F\u306B\u8A08\u7B97\u3059\u308B\n    var c = initFormalPowerSeries[M.T](A.characteristicPolynomial())\n\
+    \    let n = A.height\n    var\n      k = k\n      a, p = initFormalPowerSeries[M.T](n)\n\
+    \    p[0] = 1\n    a[1] = 1\n    while k > 0:\n      if k mod 2 == 1:\n      \
+    \  p = p * a mod c\n      k = k div 2\n      a = a * a mod c\n    result = M.initVector(n)\n\
+    \    block:\n      var b = b\n      for t in p:\n        for i in 0 ..< n:\n \
+    \         result[i] += b[i] * t\n        b = A * b\n"
   dependsOn:
+  - atcoder/extra/math/characteristic_polynomial.nim
   - atcoder/extra/math/ntt.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/convolution.nim
   - atcoder/convolution.nim
+  - atcoder/extra/math/matrix.nim
   - atcoder/modint.nim
   - atcoder/modint.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/extra/math/combination.nim
+  - atcoder/extra/other/operator.nim
   - atcoder/generate_definitions.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/matrix.nim
   - atcoder/internal_math.nim
+  - atcoder/extra/math/characteristic_polynomial.nim
   - atcoder/internal_math.nim
   - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/combination.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/other/operator.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/internal_bit.nim
   - atcoder/internal_bit.nim
+  - atcoder/extra/math/characteristic_polynomial.nim
   - atcoder/extra/math/ntt.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/convolution.nim
   - atcoder/convolution.nim
+  - atcoder/extra/math/matrix.nim
   - atcoder/modint.nim
   - atcoder/modint.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/extra/math/combination.nim
+  - atcoder/extra/other/operator.nim
   - atcoder/generate_definitions.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/matrix.nim
   - atcoder/internal_math.nim
+  - atcoder/extra/math/characteristic_polynomial.nim
   - atcoder/internal_math.nim
   - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/combination.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/other/operator.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/math/arbitrary_mod_convolution.nim
   - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/internal_bit.nim
   - atcoder/internal_bit.nim
   isVerificationFile: false
-  path: atcoder/extra/math/polynomial_taylor_shift.nim
+  path: atcoder/extra/math/kitamasa.nim
   requiredBy: []
-  timestamp: '2022-10-10 21:34:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/extra/math/polynomial_taylor_shift_test.nim
-  - verify/extra/math/polynomial_taylor_shift_test.nim
-documentation_of: atcoder/extra/math/polynomial_taylor_shift.nim
+  timestamp: '2022-10-23 18:37:31+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: atcoder/extra/math/kitamasa.nim
 layout: document
 redirect_from:
-- /library/atcoder/extra/math/polynomial_taylor_shift.nim
-- /library/atcoder/extra/math/polynomial_taylor_shift.nim.html
-title: atcoder/extra/math/polynomial_taylor_shift.nim
+- /library/atcoder/extra/math/kitamasa.nim
+- /library/atcoder/extra/math/kitamasa.nim.html
+title: atcoder/extra/math/kitamasa.nim
 ---

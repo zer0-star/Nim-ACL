@@ -44,9 +44,9 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_SEGTREE_2D_HPP:\n  const ATCODER_SEGTREE_2D_HPP*\
     \ = 1\n  import atcoder/segtree\n  type SegTree2D*[S; SegTree] = object\n    N2:\
@@ -92,22 +92,22 @@ data:
     \ xil, xir, yl, yr, 0, self.N2)\n  proc `[]`*[ST:SegTree2D](self: var ST, xp,\
     \ yp: Slice[int] or int):ST.S = self.prod(xp, yp)\n"
   dependsOn:
-  - atcoder/segtree.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
-  - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   - atcoder/segtree.nim
-  - atcoder/segtree.nim
-  - atcoder/internal_bit.nim
   - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
+  - atcoder/segtree.nim
+  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
   - atcoder/segtree.nim
+  - atcoder/internal_bit.nim
+  - atcoder/rangeutils.nim
+  - atcoder/segtree.nim
+  - atcoder/internal_bit.nim
   isVerificationFile: false
   path: atcoder/extra/structure/segtree_2d_backup.nim
   requiredBy: []
-  timestamp: '2022-10-10 21:34:07+09:00'
+  timestamp: '2022-10-23 18:37:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/structure/segtree_2d_backup.nim

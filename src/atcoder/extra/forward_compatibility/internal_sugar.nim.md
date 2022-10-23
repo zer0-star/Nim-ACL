@@ -123,9 +123,9 @@ data:
   attributes:
     links:
     - https://github.com/nim-lang/Nim/pull/8531#issuecomment-410436458
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_INTERNAL_SUGAR_HPP:\n  const ATCODER_INTERNAL_SUGAR_HPP*\
     \ = 1\n  import atcoder/extra/forward_compatibility/internal_since\n  until (1,\
@@ -230,48 +230,48 @@ data:
     \          call.add init[i]\n      result = newTree(nnkStmtListExpr, newVarStmt(res,\
     \ call), resBody, res)\n  since (1, 1):\n    import sugar\n"
   dependsOn:
-  - atcoder/extra/forward_compatibility/internal_since.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - atcoder/extra/forward_compatibility/internal_since.nim
   - atcoder/extra/forward_compatibility/internal_since.nim
   - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - atcoder/extra/forward_compatibility/internal_since.nim
+  - atcoder/extra/forward_compatibility/internal_since.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   isVerificationFile: false
   path: atcoder/extra/forward_compatibility/internal_sugar.nim
   requiredBy:
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/vim_template.nim
+  - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/template.nim
   - atcoder/extra/template/template.nim
-  - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/vim_template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
-  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/vim_template.nim
+  - atcoder/extra/template/vim_template.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/atcoder-tools_template_global.nim
   - atcoder/extra/template/template.nim
   - atcoder/extra/template/template.nim
-  - atcoder/extra/template/vim_template.nim
-  - atcoder/extra/template/vim_template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
+  - atcoder/extra/template/atcoder-tools_template_with_solve.nim
   - atcoder/extra/header/chaemon_header.nim
   - atcoder/extra/header/chaemon_header.nim
   timestamp: '2022-10-10 21:34:07+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
-  - verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
   - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
   - verify/extra/structure/yosupo_point_set_range_composite_reversible_splay_tree_test.nim
+  - verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
+  - verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
   - verify/extra/graph/yosupo_cycle_detection_test.nim
   - verify/extra/graph/yosupo_cycle_detection_test.nim
 documentation_of: atcoder/extra/forward_compatibility/internal_sugar.nim

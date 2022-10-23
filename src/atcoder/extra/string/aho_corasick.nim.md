@@ -32,9 +32,9 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_AHO_CORASICK_HPP:\n  const ATCODER_AHO_CORASICK_HPP*\
     \ = 1\n  import tables, deques\n  import atcoder/extra/structure/trie\n  import\
@@ -69,14 +69,14 @@ data:
     \      let nxt = self.move(c, now)\n      sum += nxt[0]\n      now = nxt[1]\n\
     \    return (sum, now)\n"
   dependsOn:
-  - atcoder/extra/other/algorithmutils.nim
+  - atcoder/extra/structure/trie.nim
   - atcoder/extra/structure/trie.nim
   - atcoder/extra/other/algorithmutils.nim
-  - atcoder/extra/structure/trie.nim
   - atcoder/extra/other/algorithmutils.nim
   - atcoder/extra/structure/trie.nim
-  - atcoder/extra/other/algorithmutils.nim
   - atcoder/extra/structure/trie.nim
+  - atcoder/extra/other/algorithmutils.nim
+  - atcoder/extra/other/algorithmutils.nim
   isVerificationFile: false
   path: atcoder/extra/string/aho_corasick.nim
   requiredBy: []

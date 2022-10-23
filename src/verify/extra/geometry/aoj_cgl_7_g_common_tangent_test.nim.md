@@ -53,9 +53,9 @@ data:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_G
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_G
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_G\n\
     # verify-helper: ERROR 1e-5\n\ninclude atcoder/header\nimport atcoder/extra/other/floatutils\n\
@@ -67,18 +67,18 @@ data:
     \ -1\n    elif x >~ y: 1\n    else: 0\n  for a in ans:\n    echo a.toString()\n"
   dependsOn:
   - atcoder/extra/geometry/tangent.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/geometry/geometry_template.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/geometry/tangent.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/internal_complex.nim
-  - atcoder/header.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/static_var.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim

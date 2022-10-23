@@ -58,9 +58,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/queue_operate_all_composite
     links:
     - https://judge.yosupo.jp/problem/queue_operate_all_composite
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/queue_operate_all_composite\n\
     \nimport atcoder/header\nimport atcoder/extra/forward_compatibility/internal_sugar\n\
@@ -72,22 +72,22 @@ data:
     \  else:\n    let x = nextInt().mint\n    let (b, a) = swa.fold_all()\n    echo\
     \ a * x + b\n\n"
   dependsOn:
-  - atcoder/modint.nim
-  - atcoder/extra/forward_compatibility/internal_since.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/extra/forward_compatibility/internal_since.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/extra/structure/sliding_window_aggregation.nim
   - atcoder/extra/forward_compatibility/internal_sugar.nim
   - atcoder/generate_definitions.nim
-  - atcoder/extra/structure/sliding_window_aggregation.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/extra/forward_compatibility/internal_since.nim
+  - atcoder/header.nim
+  - atcoder/extra/forward_compatibility/internal_since.nim
+  - atcoder/internal_math.nim
   - atcoder/internal_math.nim
   - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/forward_compatibility/internal_sugar.nim
   - atcoder/modint.nim
   - atcoder/header.nim
+  - atcoder/modint.nim
   - atcoder/extra/structure/sliding_window_aggregation.nim
-  - atcoder/header.nim
+  - atcoder/extra/forward_compatibility/internal_sugar.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
   requiredBy: []

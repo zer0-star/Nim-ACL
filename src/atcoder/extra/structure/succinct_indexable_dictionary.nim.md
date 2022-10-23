@@ -38,9 +38,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared SUCCINCT_INDEXABLE_DICTIONARY_HPP:\n  const SUCCINCT_INDEXABLE_DICTIONARY_HPP*\
     \ = 1\n  import bitops\n  type SuccinctIndexableDictionary* = object\n    len,\
@@ -67,12 +67,12 @@ data:
   timestamp: '2021-03-01 01:28:35+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
-  - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
-  - verify/extra/structure/yosupo_range_kth_smallest_test.nim
-  - verify/extra/structure/yosupo_range_kth_smallest_test.nim
   - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
   - verify/extra/structure/aoj_1549_wavelet_matrix_test.nim
+  - verify/extra/structure/yosupo_range_kth_smallest_test.nim
+  - verify/extra/structure/yosupo_range_kth_smallest_test.nim
+  - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
+  - verify/extra/structure/aoj_2674_wavelet_matrix_test.nim
 documentation_of: atcoder/extra/structure/succinct_indexable_dictionary.nim
 layout: document
 redirect_from:

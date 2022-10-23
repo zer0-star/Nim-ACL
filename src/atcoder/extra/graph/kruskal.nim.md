@@ -38,9 +38,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_KRUSKAL_HPP:\n  const ATCODER_KRUSKAL_HPP* = 1\n\
     \  import atcoder/extra/graph/graph_template\n  import atcoder/dsu\n  proc kruskal*[G:Graph](g:G):(G.T,\
@@ -50,14 +50,14 @@ data:
     \ = G.T(0)\n    for e in es:\n      if not uf.same(e.src, e.dst):\n        uf.merge(e.src,\
     \ e.dst)\n        total += e.weight\n        ret.add(e)\n    return (total, ret)\n"
   dependsOn:
-  - atcoder/dsu.nim
-  - atcoder/dsu.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/dsu.nim
   - atcoder/dsu.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/dsu.nim
+  - atcoder/dsu.nim
   isVerificationFile: false
   path: atcoder/extra/graph/kruskal.nim
   requiredBy: []

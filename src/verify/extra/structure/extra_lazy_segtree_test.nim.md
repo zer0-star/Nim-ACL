@@ -52,9 +52,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
     links:
     - https://judge.yosupo.jp/problem/range_affine_range_sum
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/range_affine_range_sum\n\
     import atcoder/modint\nimport atcoder/header, atcoder/extra/structure/universal_segtree\n\
@@ -68,20 +68,20 @@ data:
     \  let t = nextInt()\n  if t == 0:\n    let l, r, c, d = nextInt()\n    seg.apply(l..<r,\
     \ (mint(c), mint(d)))\n  else:\n    let l, r = nextInt()\n    echo seg.prod(l..<r)[0]\n"
   dependsOn:
+  - atcoder/generate_definitions.nim
   - atcoder/modint.nim
   - atcoder/extra/structure/universal_segtree.nim
-  - atcoder/header.nim
-  - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/rangeutils.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/internal_math.nim
-  - atcoder/rangeutils.nim
   - atcoder/extra/structure/universal_segtree.nim
-  - atcoder/header.nim
-  - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/rangeutils.nim
   - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_math.nim
+  - atcoder/internal_bit.nim
+  - atcoder/modint.nim
+  - atcoder/header.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/structure/extra_lazy_segtree_test.nim
   requiredBy: []

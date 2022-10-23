@@ -58,9 +58,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/predecessor_problem
     links:
     - https://judge.yosupo.jp/problem/predecessor_problem
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/predecessor_problem\n\
     \ninclude atcoder/header\nimport atcoder/extra/structure/set_map\n\nvar st = initSortedSet[int]()\n\
@@ -72,22 +72,22 @@ data:
     \ 4:\n    var it = st.upper_bound(k)\n    if it == st.begin():\n      echo -1\n\
     \    else:\n      it.dec\n      echo *it\n"
   dependsOn:
-  - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/structure/red_black_tree.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
   - atcoder/extra/structure/set_map.nim
   - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
-  - atcoder/extra/structure/red_black_tree.nim
-  - atcoder/rangeutils.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/binary_tree_utils.nim
   - atcoder/extra/structure/set_map.nim
+  - atcoder/extra/structure/red_black_tree.nim
+  - atcoder/extra/structure/binary_tree_node_utils.nim
+  - atcoder/extra/structure/red_black_tree.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
+  - atcoder/rangeutils.nim
+  - atcoder/header.nim
   - atcoder/rangeutils.nim
   - atcoder/extra/structure/splay_tree.nim
-  - atcoder/extra/structure/binary_tree_node_utils.nim
-  - atcoder/extra/structure/randomized_binary_search_tree_with_parent.nim
   - atcoder/header.nim
-  - atcoder/extra/structure/binary_tree_utils.nim
-  - atcoder/header.nim
+  - atcoder/extra/structure/splay_tree.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_predecessor_problem_test.nim
   requiredBy: []

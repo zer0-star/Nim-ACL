@@ -405,12 +405,18 @@ data:
     - icon: ':question:'
       path: atcoder/extra/math/arbitrary_mod_convolution.nim
       title: atcoder/extra/math/arbitrary_mod_convolution.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/bitwise_convolution.nim
       title: atcoder/extra/math/bitwise_convolution.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/bitwise_convolution.nim
       title: atcoder/extra/math/bitwise_convolution.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/characteristic_polynomial.nim
+      title: atcoder/extra/math/characteristic_polynomial.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/characteristic_polynomial.nim
+      title: atcoder/extra/math/characteristic_polynomial.nim
     - icon: ':x:'
       path: atcoder/extra/math/coef_of_generating_function.nim
       title: atcoder/extra/math/coef_of_generating_function.nim
@@ -429,10 +435,10 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/math/combination_table.nim
       title: atcoder/extra/math/combination_table.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/composition.nim
       title: atcoder/extra/math/composition.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/composition.nim
       title: atcoder/extra/math/composition.nim
     - icon: ':warning:'
@@ -501,10 +507,10 @@ data:
     - icon: ':x:'
       path: atcoder/extra/math/formal_power_series_differential_equation.nim
       title: atcoder/extra/math/formal_power_series_differential_equation.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/formal_power_series_sqrt.nim
       title: atcoder/extra/math/formal_power_series_sqrt.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/formal_power_series_sqrt.nim
       title: atcoder/extra/math/formal_power_series_sqrt.nim
     - icon: ':warning:'
@@ -513,6 +519,12 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/math/internal_rationals.nim
       title: atcoder/extra/math/internal_rationals.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/kitamasa.nim
+      title: atcoder/extra/math/kitamasa.nim
+    - icon: ':warning:'
+      path: atcoder/extra/math/kitamasa.nim
+      title: atcoder/extra/math/kitamasa.nim
     - icon: ':warning:'
       path: atcoder/extra/math/lagrange_polynomial.nim
       title: atcoder/extra/math/lagrange_polynomial.nim
@@ -531,10 +543,10 @@ data:
     - icon: ':x:'
       path: atcoder/extra/math/matrix.nim
       title: atcoder/extra/math/matrix.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/mod_sqrt.nim
       title: atcoder/extra/math/mod_sqrt.nim
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/mod_sqrt.nim
       title: atcoder/extra/math/mod_sqrt.nim
     - icon: ':warning:'
@@ -689,6 +701,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/extra/other/floatutils.nim
       title: atcoder/extra/other/floatutils.nim
+    - icon: ':warning:'
+      path: atcoder/extra/other/fold.nim
+      title: atcoder/extra/other/fold.nim
+    - icon: ':warning:'
+      path: atcoder/extra/other/fold.nim
+      title: atcoder/extra/other/fold.nim
     - icon: ':question:'
       path: atcoder/extra/other/inf.nim
       title: atcoder/extra/other/inf.nim
@@ -897,16 +915,16 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/structure/partially_persistent_dsu.nim
       title: atcoder/extra/structure/partially_persistent_dsu.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/structure/persistent_array.nim
       title: atcoder/extra/structure/persistent_array.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/structure/persistent_array.nim
       title: atcoder/extra/structure/persistent_array.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/structure/persistent_dsu.nim
       title: atcoder/extra/structure/persistent_dsu.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: atcoder/extra/structure/persistent_dsu.nim
       title: atcoder/extra/structure/persistent_dsu.nim
     - icon: ':heavy_check_mark:'
@@ -1312,16 +1330,16 @@ data:
     - icon: ':x:'
       path: verify/extra/math/pow_of_formal_power_series_test.nim
       title: verify/extra/math/pow_of_formal_power_series_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/math/sqrt_of_formal_power_series_test.nim
       title: verify/extra/math/sqrt_of_formal_power_series_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/math/yosupo_bitwise_and_convolution_test.nim
       title: verify/extra/math/yosupo_bitwise_and_convolution_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/math/yosupo_bitwise_or_convolution_test.nim
       title: verify/extra/math/yosupo_bitwise_or_convolution_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
       title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     - icon: ':heavy_check_mark:'
@@ -1382,10 +1400,10 @@ data:
     - icon: ':x:'
       path: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
       title: verify/extra/structure/yosupo_dynamic_tree_vertex_set_path_composite_link_cut_tree_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/structure/yosupo_persistent_queue_test.nim
       title: verify/extra/structure/yosupo_persistent_queue_test.nim
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/extra/structure/yosupo_persistent_unionfind_test.nim
       title: verify/extra/structure/yosupo_persistent_unionfind_test.nim
     - icon: ':x:'
