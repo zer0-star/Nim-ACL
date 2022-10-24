@@ -1,14 +1,14 @@
 when not declared ATCODER_EXTRA_HOPCROFT_KARP:
   const ATCODER_EXTRA_HOPCROFT_KARP* = 1
   import std/sequtils, std/deques
-  import options
+  import std/options
 
   type HopcroftKarp* = object
     n, m:int
     graph: seq[seq[int]]
     dist, match: seq[int]
     used, vv:seq[bool]
-    maximum_matching_result: Option[seq[(int, int)]]
+    maximum_matching_result, minimum_edge_cover_result: Option[seq[(int, int)]]
     minimum_vertex_cover_result, maximum_stable_set_result: Option[(seq[int], seq[int])]
 
   proc initHopcroftKarp*(n, m:int): HopcroftKarp =
@@ -93,3 +93,26 @@ when not declared ATCODER_EXTRA_HOPCROFT_KARP:
       var s = self.minimum_vertex_cover_result.get[1]
       for u in 0..<self.m:
         if u notin s: result[1].add u
+  # 未テスト
+  proc minimum_edge_cover*(self: var HopcroftKarp):seq[(int, int)] =
+    if self.minimum_edge_cover_result.isSome(): return self.minimum_edge_cover_result.get
+    if not self.maximum_matching_result.isSome(): discard self.maximum_matching()
+    var
+      matchedL = newSeqWith(self.n, false)
+      addedL = newSeqWith(self.n, false)
+      matchedR = newSeqWith(self.m, false)
+      addedR = newSeqWith(self.m, false)
+    for (l, r) in self.maximum_matching_result.get():
+      matchedL[l] = true
+      matchedR[r] = true
+    result = self.maximum_matching_result.get()
+    for u in 0 ..< self.n:
+      for v in self.graph[u]:
+        if not matchedL[u] and not addedL[u]:
+          doAssert matchedR[v]
+          result.add (u, v)
+          addedL[u] = true
+        if not matchedR[v] and not addedR[v]:
+          doAssert matchedL[u]
+          result.add (u, v)
+          addedR[v] = true

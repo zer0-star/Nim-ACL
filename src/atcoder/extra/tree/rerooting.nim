@@ -15,12 +15,12 @@ when not declared ATCODER_REROOTING_HPP:
   proc initReRootingImpl*[T, Weight](V:int, f:proc(a:T, v:int, w:Weight):T, merge:proc(a, b:T):T, mi:T, g:proc(a:T, v:int):T):ReRooting[T, Weight] =
     ReRooting[T, Weight](V:V, f:f, merge:merge, mi:mi, g:g, G:newSeq[seq[tuple[dst:int, weight:Weight]]](V), dp:newSeq[seq[T]](V))
   proc initReRooting*[T, Weight](V:int, f:proc(a:T, v:int, w:Weight):T, merge:proc(a, b:T):T, mi:T, g:proc(a:T, v:int):T):ReRooting[T, Weight] =
-    initReRooting[T, Weight](V, f, merge, mi, g)
+    initReRootingImpl[T, Weight](V, f, merge, mi, g)
   proc initReRooting*[T](V:int, f:proc(a:T, v:int):T, merge:proc(a, b:T):T, mi:T, g:proc(a:T, v:int):T):ReRooting[T, int] =
     proc f0(a:T, v:int, w:int):T = f(a, v)
     initReRootingImpl[T, int](V, f0, merge, mi, g)
   proc initReRooting*[T, Weight](V:int, f:proc(a:T, v:int, w:Weight):T, merge:proc(a, b:T):T, mi:T):ReRooting[T, Weight] =
-    proc g(a:T, v:int):T {.inline.} = a
+    proc g(a:T, v:int):T = a
     initReRooting[T, Weight](V, f, merge, mi, g)
 
   #void read(int idx = 1) {
