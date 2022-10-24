@@ -72,22 +72,22 @@ data:
     \  else:\n    let x = nextInt().mint\n    let (b, a) = swa.fold_all()\n    echo\
     \ a * x + b\n\n"
   dependsOn:
+  - atcoder/modint.nim
   - atcoder/extra/structure/sliding_window_aggregation.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/generate_definitions.nim
   - atcoder/extra/forward_compatibility/internal_sugar.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/generate_definitions.nim
   - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - atcoder/extra/forward_compatibility/internal_since.nim
   - atcoder/header.nim
-  - atcoder/extra/forward_compatibility/internal_since.nim
-  - atcoder/internal_math.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/modint.nim
-  - atcoder/header.nim
+  - atcoder/generate_definitions.nim
   - atcoder/modint.nim
   - atcoder/extra/structure/sliding_window_aggregation.nim
+  - atcoder/internal_math.nim
   - atcoder/extra/forward_compatibility/internal_sugar.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
+  - atcoder/extra/forward_compatibility/internal_since.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_queue_operate_all_composite_test.nim
   requiredBy: []

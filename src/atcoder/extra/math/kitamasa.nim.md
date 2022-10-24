@@ -61,16 +61,16 @@ data:
   - icon: ':question:'
     path: atcoder/extra/math/formal_power_series.nim
     title: atcoder/extra/math/formal_power_series.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
   - icon: ':question:'
@@ -97,16 +97,16 @@ data:
   - icon: ':question:'
     path: atcoder/extra/math/particular_mod_convolution.nim
     title: atcoder/extra/math/particular_mod_convolution.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/operator.nim
     title: atcoder/extra/other/operator.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/operator.nim
     title: atcoder/extra/other/operator.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/operator.nim
     title: atcoder/extra/other/operator.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/operator.nim
     title: atcoder/extra/other/operator.nim
   - icon: ':question:'
@@ -179,58 +179,58 @@ data:
     \    block:\n      var b = b\n      for t in p:\n        for i in 0 ..< n:\n \
     \         result[i] += b[i] * t\n        b = A * b\n"
   dependsOn:
-  - atcoder/extra/math/characteristic_polynomial.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/convolution.nim
-  - atcoder/convolution.nim
-  - atcoder/extra/math/matrix.nim
-  - atcoder/modint.nim
-  - atcoder/modint.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/extra/other/operator.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/extra/math/matrix.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/characteristic_polynomial.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/formal_power_series.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/operator.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
-  - atcoder/extra/math/particular_mod_convolution.nim
   - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
-  - atcoder/extra/math/characteristic_polynomial.nim
-  - atcoder/extra/math/ntt.nim
-  - atcoder/extra/math/formal_power_series.nim
   - atcoder/convolution.nim
-  - atcoder/convolution.nim
-  - atcoder/extra/math/matrix.nim
-  - atcoder/modint.nim
-  - atcoder/modint.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
   - atcoder/extra/math/particular_mod_convolution.nim
-  - atcoder/extra/other/operator.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/generate_definitions.nim
   - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/internal_bit.nim
+  - atcoder/convolution.nim
+  - atcoder/modint.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/characteristic_polynomial.nim
+  - atcoder/modint.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/characteristic_polynomial.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/generate_definitions.nim
   - atcoder/extra/math/matrix.nim
   - atcoder/internal_math.nim
-  - atcoder/extra/math/characteristic_polynomial.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/matrix.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/other/operator.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/other/operator.nim
+  - atcoder/internal_bit.nim
+  - atcoder/convolution.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
   - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/extra/math/ntt.nim
+  - atcoder/extra/math/particular_mod_convolution.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/ntt.nim
   - atcoder/internal_bit.nim
-  - atcoder/internal_bit.nim
+  - atcoder/convolution.nim
+  - atcoder/modint.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/characteristic_polynomial.nim
+  - atcoder/modint.nim
+  - atcoder/extra/math/formal_power_series.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/extra/math/characteristic_polynomial.nim
+  - atcoder/extra/math/arbitrary_mod_convolution.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/matrix.nim
+  - atcoder/internal_math.nim
+  - atcoder/extra/math/matrix.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/operator.nim
   isVerificationFile: false
   path: atcoder/extra/math/kitamasa.nim
   requiredBy: []

@@ -33,8 +33,8 @@ data:
     \        0\n    )\n"
   dependsOn:
   - atcoder/dsu.nim
-  - atcoder/header.nim
   - atcoder/dsu.nim
+  - atcoder/header.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/dsu_test.nim

@@ -39,7 +39,7 @@ data:
   isVerificationFile: true
   path: verify/extra/graph/yosupo_bipartite_matching_test.nim
   requiredBy: []
-  timestamp: '2021-12-11 23:59:27+09:00'
+  timestamp: '2022-10-24 18:34:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/graph/yosupo_bipartite_matching_test.nim

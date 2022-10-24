@@ -60,18 +60,18 @@ data:
     \      for e in c:\n        e.weight\n    echo v.join(\"\\n\")\n  else:\n    echo\
     \ -1\n\nmain()\n"
   dependsOn:
-  - atcoder/extra/forward_compatibility/internal_sugar.nim
-  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/extra/forward_compatibility/internal_since.nim
-  - atcoder/extra/graph/cycle_detection.nim
-  - atcoder/extra/forward_compatibility/internal_since.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/extra/graph/cycle_detection.nim
   - atcoder/extra/forward_compatibility/internal_sugar.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/extra/forward_compatibility/internal_since.nim
+  - atcoder/header.nim
+  - atcoder/extra/graph/cycle_detection.nim
+  - atcoder/extra/graph/graph_template.nim
+  - atcoder/extra/forward_compatibility/internal_sugar.nim
+  - atcoder/header.nim
+  - atcoder/extra/forward_compatibility/internal_since.nim
   isVerificationFile: true
   path: verify/extra/graph/yosupo_cycle_detection_test.nim
   requiredBy: []

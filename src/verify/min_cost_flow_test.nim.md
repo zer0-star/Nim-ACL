@@ -50,15 +50,15 @@ data:
     \   let a, b, c, d = nextInt()\n    mcf.addEdge(a, b, c, d)\n  var f = mcf.flow(0,\
     \ V - 1, F)\n  if f.cap < F:\n    echo -1\n  else:\n    echo f.cost\n"
   dependsOn:
-  - atcoder/internal_heap.nim
+  - atcoder/internal_queue.nim
   - atcoder/mincostflow.nim
   - atcoder/internal_heap.nim
   - atcoder/mincostflow.nim
   - atcoder/internal_queue.nim
   - atcoder/internal_csr.nim
   - atcoder/internal_csr.nim
-  - atcoder/internal_queue.nim
   - atcoder/header.nim
+  - atcoder/internal_heap.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/min_cost_flow_test.nim

@@ -55,20 +55,20 @@ data:
     \ v, w.mint)\n\ng.solve()\nvar ans = mint(0)\nfor i in 0 ..< N:\n  ans += g[i].t\n\
     #for i, (n, s, t) in d:\n#  ans += t\n\necho ans / 2\n"
   dependsOn:
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/tree/rerooting.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/header.nim
-  - atcoder/internal_math.nim
-  - atcoder/internal_math.nim
-  - atcoder/modint.nim
-  - atcoder/header.nim
   - atcoder/modint.nim
   - atcoder/extra/tree/rerooting.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/extra/tree/rerooting.nim
+  - atcoder/internal_math.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/tree/rerooting_test.nim
   requiredBy: []
-  timestamp: '2022-10-23 18:37:31+09:00'
+  timestamp: '2022-10-24 18:34:10+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/extra/tree/rerooting_test.nim

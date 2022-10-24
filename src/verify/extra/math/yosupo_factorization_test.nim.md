@@ -33,8 +33,8 @@ data:
     \ ans.add p\n    echo ans.len, \" \", ans.join(\" \")\n"
   dependsOn:
   - atcoder/extra/math/factorization.nim
-  - atcoder/extra/math/factorization.nim
   - atcoder/header.nim
+  - atcoder/extra/math/factorization.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/math/yosupo_factorization_test.nim

@@ -46,11 +46,11 @@ data:
   dependsOn:
   - atcoder/scc.nim
   - atcoder/scc.nim
-  - atcoder/internal_csr.nim
   - atcoder/internal_scc.nim
   - atcoder/internal_csr.nim
-  - atcoder/internal_scc.nim
+  - atcoder/internal_csr.nim
   - atcoder/header.nim
+  - atcoder/internal_scc.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/scc_test.nim

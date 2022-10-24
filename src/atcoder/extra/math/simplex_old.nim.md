@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/operator.nim
     title: atcoder/extra/other/operator.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/operator.nim
     title: atcoder/extra/other/operator.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/operator.nim
     title: atcoder/extra/other/operator.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/operator.nim
     title: atcoder/extra/other/operator.nim
   - icon: ':question:'
@@ -93,17 +93,17 @@ data:
     \ tss.solution\n\n\n"
   dependsOn:
   - atcoder/extra/other/operator.nim
+  - atcoder/extra/other/operator.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/extra/math/matrix.nim
   - atcoder/extra/math/matrix.nim
   - atcoder/extra/other/operator.nim
-  - atcoder/extra/math/matrix.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/generate_definitions.nim
   - atcoder/extra/other/operator.nim
-  - atcoder/extra/math/matrix.nim
-  - atcoder/extra/other/operator.nim
-  - atcoder/extra/math/matrix.nim
   - atcoder/generate_definitions.nim
   - atcoder/generate_definitions.nim
+  - atcoder/extra/math/matrix.nim
+  - atcoder/extra/math/matrix.nim
   isVerificationFile: false
   path: atcoder/extra/math/simplex_old.nim
   requiredBy: []

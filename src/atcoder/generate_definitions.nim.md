@@ -68,16 +68,16 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/math/kitamasa.nim
     title: atcoder/extra/math/kitamasa.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
   - icon: ':heavy_check_mark:'
@@ -273,28 +273,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
     title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
     title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_system_of_linear_equations_test.nim
     title: verify/extra/math/yosupo_system_of_linear_equations_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_system_of_linear_equations_test.nim
     title: verify/extra/math/yosupo_system_of_linear_equations_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
     title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
     title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
   - icon: ':x:'

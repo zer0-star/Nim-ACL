@@ -38,8 +38,8 @@ data:
     \    mf.addEdge(a, b, c)\n  echo mf.flow(0, V - 1)\n"
   dependsOn:
   - atcoder/maxflow.nim
-  - atcoder/maxflow.nim
   - atcoder/internal_queue.nim
+  - atcoder/maxflow.nim
   - atcoder/internal_queue.nim
   - atcoder/header.nim
   - atcoder/header.nim

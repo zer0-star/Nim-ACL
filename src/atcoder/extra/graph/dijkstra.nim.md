@@ -106,16 +106,16 @@ data:
     \ f.dst, w))\n    result = DijkstraResult[G.T, G.U, G.useId](a:a)\n"
   dependsOn:
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/other/inf.nim
+  - atcoder/extra/graph/dijkstra_result.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/other/inf.nim
   - atcoder/extra/graph/dijkstra_result.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/other/inf.nim
   isVerificationFile: false
   path: atcoder/extra/graph/dijkstra.nim

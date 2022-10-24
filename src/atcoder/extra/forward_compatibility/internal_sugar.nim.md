@@ -231,13 +231,13 @@ data:
     \ call), resBody, res)\n  since (1, 1):\n    import sugar\n"
   dependsOn:
   - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
-  - atcoder/extra/forward_compatibility/internal_since.nim
-  - atcoder/extra/forward_compatibility/internal_since.nim
-  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
   - atcoder/extra/forward_compatibility/internal_since.nim
   - atcoder/extra/forward_compatibility/internal_since.nim
   - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/extra/forward_compatibility/internal_underscored_calls.nim
+  - atcoder/extra/forward_compatibility/internal_since.nim
+  - atcoder/extra/forward_compatibility/internal_since.nim
   isVerificationFile: false
   path: atcoder/extra/forward_compatibility/internal_sugar.nim
   requiredBy:

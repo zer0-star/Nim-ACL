@@ -69,14 +69,14 @@ data:
     \  #  }\n  #  for(auto &p : ans) cout << p << endl;\n  #}\n  \n#var g = initMaxFlowLowerBound[int](3)\n\
     #g.addEdge(0, 1, 1, 2)\n#g.addEdge(1, 2, 2, 3)\n#echo g.max_flow(0, 2)\n\n"
   dependsOn:
-  - atcoder/internal_queue.nim
-  - atcoder/internal_queue.nim
-  - atcoder/maxflow.nim
   - atcoder/maxflow.nim
   - atcoder/internal_queue.nim
+  - atcoder/maxflow.nim
   - atcoder/internal_queue.nim
   - atcoder/maxflow.nim
+  - atcoder/internal_queue.nim
   - atcoder/maxflow.nim
+  - atcoder/internal_queue.nim
   isVerificationFile: false
   path: atcoder/extra/graph/maxflow_lowerbound.nim
   requiredBy: []

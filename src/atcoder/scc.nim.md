@@ -67,8 +67,8 @@ data:
     \    assert 0 <= src and dst < n\n    assert 0 <= dst and dst < n\n    self.internal.add_edge(src,\
     \ dst)\n\n  proc scc*(self:SCCGraph):auto = self.internal.scc()\n"
   dependsOn:
-  - atcoder/internal_csr.nim
   - atcoder/internal_scc.nim
+  - atcoder/internal_csr.nim
   - atcoder/internal_csr.nim
   - atcoder/internal_scc.nim
   isVerificationFile: false

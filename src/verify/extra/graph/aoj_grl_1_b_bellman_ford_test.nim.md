@@ -46,12 +46,12 @@ data:
     \ 0..<V:\n      if bf[u] == int.inf: echo \"INF\"\n      else: echo bf[u]\n\n\
     main()\n"
   dependsOn:
+  - atcoder/extra/graph/bellman_ford.nim
+  - atcoder/extra/graph/bellman_ford.nim
   - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/other/inf.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/bellman_ford.nim
-  - atcoder/extra/graph/bellman_ford.nim
   - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/extra/other/inf.nim
   - atcoder/header.nim
   isVerificationFile: true

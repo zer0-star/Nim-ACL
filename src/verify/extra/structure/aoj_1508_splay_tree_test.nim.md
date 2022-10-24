@@ -47,11 +47,11 @@ data:
     \       st.insert(y, z)\n"
   dependsOn:
   - atcoder/rangeutils.nim
+  - atcoder/extra/structure/splay_tree.nim
   - atcoder/rangeutils.nim
   - atcoder/header.nim
   - atcoder/extra/structure/splay_tree.nim
   - atcoder/header.nim
-  - atcoder/extra/structure/splay_tree.nim
   isVerificationFile: true
   path: verify/extra/structure/aoj_1508_splay_tree_test.nim
   requiredBy: []

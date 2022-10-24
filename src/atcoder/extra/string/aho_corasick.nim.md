@@ -70,13 +70,13 @@ data:
     \    return (sum, now)\n"
   dependsOn:
   - atcoder/extra/structure/trie.nim
-  - atcoder/extra/structure/trie.nim
   - atcoder/extra/other/algorithmutils.nim
   - atcoder/extra/other/algorithmutils.nim
   - atcoder/extra/structure/trie.nim
   - atcoder/extra/structure/trie.nim
   - atcoder/extra/other/algorithmutils.nim
   - atcoder/extra/other/algorithmutils.nim
+  - atcoder/extra/structure/trie.nim
   isVerificationFile: false
   path: atcoder/extra/string/aho_corasick.nim
   requiredBy: []

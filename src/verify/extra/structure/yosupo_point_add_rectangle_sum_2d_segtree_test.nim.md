@@ -57,15 +57,15 @@ data:
     \    st.add(x, y, w)\n  else:\n    let\n      l = v[1]\n      d = v[2]\n     \
     \ r = v[3]\n      u = v[4]\n    echo st[l ..< r, d ..< u]\n\n\n"
   dependsOn:
-  - atcoder/extra/structure/segtree_2d.nim
+  - atcoder/internal_bit.nim
+  - atcoder/segtree.nim
+  - atcoder/rangeutils.nim
   - atcoder/extra/structure/segtree_2d.nim
   - atcoder/rangeutils.nim
-  - atcoder/segtree.nim
-  - atcoder/internal_bit.nim
-  - atcoder/rangeutils.nim
-  - atcoder/segtree.nim
-  - atcoder/internal_bit.nim
   - atcoder/header.nim
+  - atcoder/extra/structure/segtree_2d.nim
+  - atcoder/internal_bit.nim
+  - atcoder/segtree.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim

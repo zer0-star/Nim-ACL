@@ -183,22 +183,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
     title: verify/extra/math/yosupo_composition_of_formal_power_series_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
     title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
     title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
     title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
     title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
     title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
   - icon: ':x:'
@@ -327,16 +327,16 @@ data:
     \ M1M2M3, 2'u * M1M2M3, 3'u * M1M2M3]\n      x -= offset[diff mod 5]\n      c[i]\
     \ = cast[int](x)\n    return c\n"
   dependsOn:
-  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
+  - atcoder/internal_bit.nim
   - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   - atcoder/generate_definitions.nim
   - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/modint.nim
   - atcoder/internal_bit.nim
   - atcoder/internal_math.nim
-  - atcoder/internal_bit.nim
-  - atcoder/modint.nim
-  - atcoder/modint.nim
   isVerificationFile: false
   path: atcoder/convolution.nim
   requiredBy:

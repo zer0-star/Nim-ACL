@@ -45,12 +45,12 @@ data:
     \  echo kruskal(g)[0]\n\nmain()\n"
   dependsOn:
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/kruskal.nim
+  - atcoder/dsu.nim
   - atcoder/extra/graph/kruskal.nim
   - atcoder/dsu.nim
-  - atcoder/dsu.nim
+  - atcoder/extra/graph/kruskal.nim
   - atcoder/header.nim
+  - atcoder/extra/graph/graph_template.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_2_a_2_minimum_spanning_tree_kruskal_test.nim

@@ -37,12 +37,12 @@ data:
     \ =\n  let\n    s = nextString()\n    ans = RunEnumerate(s)\n  echo ans.len\n\
     \  for (t,l,r) in ans:\n    echo t, \" \",l, \" \",r\n\nmain()\n"
   dependsOn:
-  - atcoder/string.nim
-  - atcoder/string.nim
+  - atcoder/extra/string/run_enumerate.nim
   - atcoder/extra/string/run_enumerate.nim
   - atcoder/header.nim
+  - atcoder/string.nim
   - atcoder/header.nim
-  - atcoder/extra/string/run_enumerate.nim
+  - atcoder/string.nim
   isVerificationFile: true
   path: verify/extra/string/yosupo_run_enumerate_test.nim
   requiredBy: []

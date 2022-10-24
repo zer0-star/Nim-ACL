@@ -28,19 +28,19 @@ data:
     \ Weight] =\n    ReRooting[T, Weight](V:V, f:f, merge:merge, mi:mi, g:g, G:newSeq[seq[tuple[dst:int,\
     \ weight:Weight]]](V), dp:newSeq[seq[T]](V))\n  proc initReRooting*[T, Weight](V:int,\
     \ f:proc(a:T, v:int, w:Weight):T, merge:proc(a, b:T):T, mi:T, g:proc(a:T, v:int):T):ReRooting[T,\
-    \ Weight] =\n    initReRooting[T, Weight](V, f, merge, mi, g)\n  proc initReRooting*[T](V:int,\
+    \ Weight] =\n    initReRootingImpl[T, Weight](V, f, merge, mi, g)\n  proc initReRooting*[T](V:int,\
     \ f:proc(a:T, v:int):T, merge:proc(a, b:T):T, mi:T, g:proc(a:T, v:int):T):ReRooting[T,\
     \ int] =\n    proc f0(a:T, v:int, w:int):T = f(a, v)\n    initReRootingImpl[T,\
     \ int](V, f0, merge, mi, g)\n  proc initReRooting*[T, Weight](V:int, f:proc(a:T,\
     \ v:int, w:Weight):T, merge:proc(a, b:T):T, mi:T):ReRooting[T, Weight] =\n   \
-    \ proc g(a:T, v:int):T {.inline.} = a\n    initReRooting[T, Weight](V, f, merge,\
-    \ mi, g)\n\n  #void read(int idx = 1) {\n  #  int a, b;\n  #  for (int i = 0;\
-    \ i < V - 1; ++i) {\n  #    cin >> a >> b;\n  #    a -= idx, b -= idx;\n  #  \
-    \  G[a].emplace_back(b);\n  #    G[b].emplace_back(a);\n  #  }\n  #}\n\n  proc\
-    \ add_edge*[T, Weight](self: var ReRooting[T, Weight], a, b:int) =\n    self.G[a].add((b,\
-    \ Weight.default))\n    self.G[b].add((a, Weight.default))\n  proc add_bi_edge*[T,\
-    \ Weight](self: var ReRooting[T, Weight], a, b:int, w:Weight) =\n    self.G[a].add((b,\
-    \ w))\n    self.G[b].add((a, w))\n  proc add_bi_edge*[T, Weight](self: var ReRooting[T,\
+    \ proc g(a:T, v:int):T = a\n    initReRooting[T, Weight](V, f, merge, mi, g)\n\
+    \n  #void read(int idx = 1) {\n  #  int a, b;\n  #  for (int i = 0; i < V - 1;\
+    \ ++i) {\n  #    cin >> a >> b;\n  #    a -= idx, b -= idx;\n  #    G[a].emplace_back(b);\n\
+    \  #    G[b].emplace_back(a);\n  #  }\n  #}\n\n  proc add_edge*[T, Weight](self:\
+    \ var ReRooting[T, Weight], a, b:int) =\n    self.G[a].add((b, Weight.default))\n\
+    \    self.G[b].add((a, Weight.default))\n  proc add_bi_edge*[T, Weight](self:\
+    \ var ReRooting[T, Weight], a, b:int, w:Weight) =\n    self.G[a].add((b, w))\n\
+    \    self.G[b].add((a, w))\n  proc add_bi_edge*[T, Weight](self: var ReRooting[T,\
     \ Weight], a, b:int, w1, w2:Weight) =\n    self.G[a].add((b, w1))\n    self.G[b].add((a,\
     \ w2))\n\n  proc dfs1*[T, Weight](self:var ReRooting[T, Weight], p, v:int):T =\n\
     \    var res = self.mi\n    for i in 0 ..< self.G[v].len:\n      let e = self.G[v][i]\n\
@@ -64,7 +64,7 @@ data:
   isVerificationFile: false
   path: atcoder/extra/tree/rerooting.nim
   requiredBy: []
-  timestamp: '2022-10-23 18:37:31+09:00'
+  timestamp: '2022-10-24 18:34:10+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/tree/rerooting_test.nim

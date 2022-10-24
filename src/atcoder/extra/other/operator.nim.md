@@ -26,16 +26,16 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/math/kitamasa.nim
     title: atcoder/extra/math/kitamasa.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
   - icon: ':warning:'
@@ -51,15 +51,15 @@ data:
     path: atcoder/extra/math/simplex_old.nim
     title: atcoder/extra/math/simplex_old.nim
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_system_of_linear_equations_test.nim
     title: verify/extra/math/yosupo_system_of_linear_equations_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_system_of_linear_equations_test.nim
     title: verify/extra/math/yosupo_system_of_linear_equations_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -143,7 +143,7 @@ data:
   - atcoder/extra/math/matrix.nim
   - atcoder/extra/math/matrix.nim
   timestamp: '2022-07-30 23:50:20+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/math/yosupo_system_of_linear_equations_test.nim
   - verify/extra/math/yosupo_system_of_linear_equations_test.nim

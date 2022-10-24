@@ -417,10 +417,10 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/math/characteristic_polynomial.nim
       title: atcoder/extra/math/characteristic_polynomial.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/coef_of_generating_function.nim
       title: atcoder/extra/math/coef_of_generating_function.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/coef_of_generating_function.nim
       title: atcoder/extra/math/coef_of_generating_function.nim
     - icon: ':question:'
@@ -501,10 +501,10 @@ data:
     - icon: ':question:'
       path: atcoder/extra/math/formal_power_series.nim
       title: atcoder/extra/math/formal_power_series.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/formal_power_series_differential_equation.nim
       title: atcoder/extra/math/formal_power_series_differential_equation.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/formal_power_series_differential_equation.nim
       title: atcoder/extra/math/formal_power_series_differential_equation.nim
     - icon: ':heavy_check_mark:'
@@ -537,10 +537,10 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/math/longdouble.nim
       title: atcoder/extra/math/longdouble.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/matrix.nim
       title: atcoder/extra/math/matrix.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/math/matrix.nim
       title: atcoder/extra/math/matrix.nim
     - icon: ':heavy_check_mark:'
@@ -731,10 +731,10 @@ data:
     - icon: ':warning:'
       path: atcoder/extra/other/listutils.nim
       title: atcoder/extra/other/listutils.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/other/operator.nim
       title: atcoder/extra/other/operator.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/extra/other/operator.nim
       title: atcoder/extra/other/operator.nim
     - icon: ':warning:'
@@ -1345,16 +1345,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/extra/math/yosupo_factorization_test.nim
       title: verify/extra/math/yosupo_factorization_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
       title: verify/extra/math/yosupo_kth_term_of_linearly_recurrent_sequence_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
       title: verify/extra/math/yosupo_sharp_p_subset_sum_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/math/yosupo_system_of_linear_equations_test.nim
       title: verify/extra/math/yosupo_system_of_linear_equations_test.nim
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/extra/math/yukicoder_0963_differential_equation_test.nim
       title: verify/extra/math/yukicoder_0963_differential_equation_test.nim
     - icon: ':x:'

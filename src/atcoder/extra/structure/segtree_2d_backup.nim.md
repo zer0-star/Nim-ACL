@@ -92,18 +92,18 @@ data:
     \ xil, xir, yl, yr, 0, self.N2)\n  proc `[]`*[ST:SegTree2D](self: var ST, xp,\
     \ yp: Slice[int] or int):ST.S = self.prod(xp, yp)\n"
   dependsOn:
+  - atcoder/internal_bit.nim
+  - atcoder/segtree.nim
   - atcoder/rangeutils.nim
+  - atcoder/rangeutils.nim
+  - atcoder/internal_bit.nim
   - atcoder/segtree.nim
   - atcoder/internal_bit.nim
-  - atcoder/rangeutils.nim
   - atcoder/segtree.nim
-  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
-  - atcoder/segtree.nim
-  - atcoder/internal_bit.nim
   - atcoder/rangeutils.nim
-  - atcoder/segtree.nim
   - atcoder/internal_bit.nim
+  - atcoder/segtree.nim
   isVerificationFile: false
   path: atcoder/extra/structure/segtree_2d_backup.nim
   requiredBy: []

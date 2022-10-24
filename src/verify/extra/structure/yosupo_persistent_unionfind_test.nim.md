@@ -40,11 +40,11 @@ data:
     \ v)\n    else:\n      echo if G[k].leader(u) == G[k].leader(v): 1 else: 0\n\n\
     main()\n"
   dependsOn:
+  - atcoder/extra/structure/persistent_dsu.nim
+  - atcoder/extra/structure/persistent_dsu.nim
   - atcoder/extra/structure/persistent_array.nim
   - atcoder/header.nim
-  - atcoder/extra/structure/persistent_dsu.nim
   - atcoder/extra/structure/persistent_array.nim
-  - atcoder/extra/structure/persistent_dsu.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/structure/yosupo_persistent_unionfind_test.nim

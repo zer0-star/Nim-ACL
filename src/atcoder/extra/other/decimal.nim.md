@@ -89,16 +89,16 @@ data:
     \ = na.move\n    b = nb.move\n  return y / (a * sqrt(x * x + y * y))\nproc arctan*(x:Decimal):Decimal\
     \ =\n  return arctan2(x, Decimal(1))\n\n#proc round*(x:Decimal):Decimal = round_to_int(x)\n"
   dependsOn:
-  - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/floatutils.nim
   - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/static_var.nim
   isVerificationFile: false

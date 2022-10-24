@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/operator.nim
     title: atcoder/extra/other/operator.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/operator.nim
     title: atcoder/extra/other/operator.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/operator.nim
     title: atcoder/extra/other/operator.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/other/operator.nim
     title: atcoder/extra/other/operator.nim
   - icon: ':question:'
@@ -63,15 +63,15 @@ data:
     path: atcoder/extra/math/simplex_old.nim
     title: atcoder/extra/math/simplex_old.nim
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_system_of_linear_equations_test.nim
     title: verify/extra/math/yosupo_system_of_linear_equations_test.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/extra/math/yosupo_system_of_linear_equations_test.nim
     title: verify/extra/math/yosupo_system_of_linear_equations_test.nim
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -207,13 +207,13 @@ data:
     \ j] = G[i][j + n]\n\n  generatePow(StaticMatrix)\n  generatePow(DynamicMatrix)\n"
   dependsOn:
   - atcoder/extra/other/operator.nim
-  - atcoder/extra/other/operator.nim
   - atcoder/generate_definitions.nim
   - atcoder/generate_definitions.nim
   - atcoder/extra/other/operator.nim
   - atcoder/extra/other/operator.nim
   - atcoder/generate_definitions.nim
   - atcoder/generate_definitions.nim
+  - atcoder/extra/other/operator.nim
   isVerificationFile: false
   path: atcoder/extra/math/matrix.nim
   requiredBy:
@@ -230,7 +230,7 @@ data:
   - atcoder/extra/math/kitamasa.nim
   - atcoder/extra/math/kitamasa.nim
   timestamp: '2022-10-10 21:34:07+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/math/yosupo_system_of_linear_equations_test.nim
   - verify/extra/math/yosupo_system_of_linear_equations_test.nim

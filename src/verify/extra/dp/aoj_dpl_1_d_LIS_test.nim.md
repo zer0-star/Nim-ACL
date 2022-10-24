@@ -33,8 +33,8 @@ data:
   dependsOn:
   - atcoder/extra/dp/longest_increasing_subsequence.nim
   - atcoder/header.nim
-  - atcoder/header.nim
   - atcoder/extra/dp/longest_increasing_subsequence.nim
+  - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/dp/aoj_dpl_1_d_LIS_test.nim
   requiredBy: []
