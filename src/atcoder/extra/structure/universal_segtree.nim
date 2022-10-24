@@ -110,7 +110,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
   template initSegtree*[S](v:int or seq[S], op, e:untyped):auto =
     when v is int:
       let e0 = e
-      initSegtree(newSeqWith(n, e0()), op, e)
+      initSegtree(newSeqWith(v, e0()), op, e)
     else:
       proc op0(a, b:S):S {.gensym inline.} = op(a, b)
       proc e0():S {.gensym inline.} = e()
