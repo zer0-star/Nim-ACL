@@ -32,8 +32,8 @@ jobs:
         with:
           nim-version: 1.0.6
 
-          #- name: Run nimble test
-          #  run: nimble test
+        #- name: Run nimble test
+        #  run: nimble test
 
       - run: |
         #mv src/* ./
