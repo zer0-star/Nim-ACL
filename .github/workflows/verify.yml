@@ -32,10 +32,8 @@ jobs:
         with:
           nim-version: 1.0.6
 
-      #- name: Run nimble test
-      #  run: nimble test
-
-      - run: |
+      - name: copy document_ja
+        run: |
         #mv src/* ./
           mkdir -p .verify-helper/docs/static/
           mv document_ja/ .verify-helper/docs/static/
