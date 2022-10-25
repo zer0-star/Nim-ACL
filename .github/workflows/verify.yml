@@ -54,6 +54,7 @@ jobs:
           git switch gh-pages
           rm -rf docs
           cp -R src docs
+          git add -A
           git add docs
           git commit -m "[workflow] copy docs $(git rev-parse HEAD~1)"
           git push "https://${{ secrets.GH_PAT }}@github.com/zer0-star/Nim-ACL.git" gh-pages
