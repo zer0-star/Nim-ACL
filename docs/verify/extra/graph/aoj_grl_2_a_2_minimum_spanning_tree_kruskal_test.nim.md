@@ -34,9 +34,9 @@ data:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A\n\
     \ninclude atcoder/header\n\nimport atcoder/extra/graph/graph_template\nimport\
@@ -44,18 +44,18 @@ data:
     \    g = initGraph(V)\n  for i in 0..<E:\n    let a, b, c = nextInt()\n    g.addBiEdge(a,b,c)\n\
     \  echo kruskal(g)[0]\n\nmain()\n"
   dependsOn:
-  - atcoder/dsu.nim
   - atcoder/extra/graph/graph_template.nim
+  - atcoder/dsu.nim
+  - atcoder/extra/graph/kruskal.nim
+  - atcoder/dsu.nim
   - atcoder/extra/graph/kruskal.nim
   - atcoder/header.nim
-  - atcoder/dsu.nim
   - atcoder/extra/graph/graph_template.nim
-  - atcoder/extra/graph/kruskal.nim
   - atcoder/header.nim
   isVerificationFile: true
   path: verify/extra/graph/aoj_grl_2_a_2_minimum_spanning_tree_kruskal_test.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-10-10 21:34:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/graph/aoj_grl_2_a_2_minimum_spanning_tree_kruskal_test.nim

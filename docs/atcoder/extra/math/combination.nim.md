@@ -68,9 +68,9 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not defined ATCODER_COMBINATION_HPP:\n  const ATCODER_COMBINATION_HPP*\
     \ = 1\n  import atcoder/element_concepts\n\n  type Combination*[T] = object\n\
@@ -78,15 +78,16 @@ data:
     \ or x is var Combination\n\n  proc enhance[T:FieldElem](cmb: var Combination[T],\
     \ k:int):auto =\n    if k >= cmb.fact_a.len:\n      if cmb.fact_a.len == 0:\n\
     \        cmb.fact_a = @[T(1)]\n        cmb.rfact_a = @[T(1)]\n      let sz_old\
-    \ = cmb.fact_a.len - 1\n      let sz = max(sz_old * 2, k)\n      cmb.fact_a.setlen(sz\
-    \ + 1)\n      cmb.rfact_a.setlen(sz + 1)\n      for i in sz_old + 1..sz: cmb.fact_a[i]\
-    \ = cmb.fact_a[i-1] * T(i)\n      cmb.rfact_a[sz] = T(1) / cmb.fact_a[sz]\n  \
-    \    for i in countdown(sz - 1, sz_old + 1): cmb.rfact_a[i] = cmb.rfact_a[i +\
-    \ 1] * T(i + 1)\n    return cmb.addr\n\n  proc enhance(T:typedesc[FieldElem],\
+    \ = cmb.fact_a.len - 1\n      let sz = min(max(sz_old * 2, k), T.mod - 1)\n  \
+    \    cmb.fact_a.setlen(sz + 1)\n      cmb.rfact_a.setlen(sz + 1)\n      for i\
+    \ in sz_old + 1..sz: cmb.fact_a[i] = cmb.fact_a[i-1] * T(i)\n      cmb.rfact_a[sz]\
+    \ = T(1) / cmb.fact_a[sz]\n      for i in countdown(sz - 1, sz_old + 1): cmb.rfact_a[i]\
+    \ = cmb.rfact_a[i + 1] * T(i + 1)\n    return cmb.addr\n\n  proc enhance(T:typedesc[FieldElem],\
     \ k:int):auto {.discardable.} =\n    var cmb{.global.} = Combination[T]()\n  \
     \  return cmb.enhance(k)\n\n  template zero*(T:typedesc[FieldElem]):T = T(0)\n\
     \  template zero*[T:FieldElem](cmb:Combination[T]):T = T(0)\n  \n  template fact*(T:CombinationC,\
     \ k:int):auto = T.enhance(k)[].fact_a[k]\n  template rfact*(T:CombinationC, k:int):auto\
+    \ = T.enhance(k)[].rfact_a[k]\n  template invfact*(T:CombinationC, k:int):auto\
     \ = T.enhance(k)[].rfact_a[k]\n  template inv*(T:CombinationC, k:int):auto = T.fact(k\
     \ - 1) * T.rfact(k)\n\n  template resetCombination*(T:typedesc[FieldElem] or var\
     \ Combination) =\n    var p = T.enhance(-1)\n    p[].fact_a.setLen(0)\n    p[].rfact_a.setLen(0)\n\
@@ -114,10 +115,6 @@ data:
   isVerificationFile: false
   path: atcoder/extra/math/combination.nim
   requiredBy:
-  - atcoder/extra/math/lagrange_polynomial.nim
-  - atcoder/extra/math/lagrange_polynomial.nim
-  - atcoder/extra/math/polynomial_taylor_shift.nim
-  - atcoder/extra/math/polynomial_taylor_shift.nim
   - atcoder/extra/math/factorial.nim
   - atcoder/extra/math/factorial.nim
   - atcoder/extra/math/lagrange_polynomial.nim
@@ -126,13 +123,17 @@ data:
   - atcoder/extra/math/polynomial_taylor_shift.nim
   - atcoder/extra/math/factorial.nim
   - atcoder/extra/math/factorial.nim
-  timestamp: '2021-05-19 22:57:49+09:00'
+  - atcoder/extra/math/lagrange_polynomial.nim
+  - atcoder/extra/math/lagrange_polynomial.nim
+  - atcoder/extra/math/polynomial_taylor_shift.nim
+  - atcoder/extra/math/polynomial_taylor_shift.nim
+  timestamp: '2022-10-10 21:34:07+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/extra/math/yukicoder_factorial_test.nim
-  - verify/extra/math/yukicoder_factorial_test.nim
   - verify/extra/math/polynomial_taylor_shift_test.nim
   - verify/extra/math/polynomial_taylor_shift_test.nim
+  - verify/extra/math/yukicoder_factorial_test.nim
+  - verify/extra/math/yukicoder_factorial_test.nim
 documentation_of: atcoder/extra/math/combination.nim
 layout: document
 redirect_from:

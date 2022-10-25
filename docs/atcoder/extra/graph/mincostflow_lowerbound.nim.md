@@ -13,64 +13,64 @@ data:
   - icon: ':warning:'
     path: atcoder/extra/graph/mincostflow_generalized.nim
     title: atcoder/extra/graph/mincostflow_generalized.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_csr.nim
     title: atcoder/internal_csr.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_heap.nim
     title: atcoder/internal_heap.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_heap.nim
     title: atcoder/internal_heap.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_heap.nim
     title: atcoder/internal_heap.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_heap.nim
     title: atcoder/internal_heap.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_queue.nim
     title: atcoder/internal_queue.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.nim
     title: atcoder/internal_scc.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/scc.nim
     title: atcoder/scc.nim
   _extendedRequiredBy: []
@@ -80,9 +80,9 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_MINCOSTFLOW_LOWERBOUND_HPP:\n  const ATCODER_MINCOSTFLOW_LOWERBOUND_HPP*\
     \ = 1\n  import lib/graph/mincostflow_generalized\n  import std/options\n  \n\
@@ -120,30 +120,30 @@ data:
     \ - e.cap;\n  #    }\n  #  }\n  #  for(auto &p : ans) cout << p << endl;\n  #}\n\
     \  \n  \n  \n"
   dependsOn:
-  - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/scc.nim
+  - atcoder/internal_queue.nim
+  - atcoder/internal_heap.nim
+  - atcoder/scc.nim
   - atcoder/internal_scc.nim
   - atcoder/internal_queue.nim
-  - atcoder/scc.nim
-  - atcoder/internal_csr.nim
-  - atcoder/internal_scc.nim
   - atcoder/extra/graph/mincostflow_generalized.nim
   - atcoder/internal_csr.nim
-  - atcoder/scc.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_csr.nim
   - atcoder/internal_heap.nim
-  - atcoder/internal_heap.nim
-  - atcoder/internal_queue.nim
   - atcoder/extra/graph/mincostflow_generalized.nim
+  - atcoder/scc.nim
+  - atcoder/internal_queue.nim
+  - atcoder/internal_heap.nim
+  - atcoder/scc.nim
   - atcoder/internal_scc.nim
   - atcoder/internal_queue.nim
-  - atcoder/scc.nim
-  - atcoder/internal_csr.nim
-  - atcoder/internal_scc.nim
   - atcoder/extra/graph/mincostflow_generalized.nim
   - atcoder/internal_csr.nim
-  - atcoder/scc.nim
+  - atcoder/internal_scc.nim
+  - atcoder/internal_csr.nim
   - atcoder/internal_heap.nim
-  - atcoder/internal_heap.nim
-  - atcoder/internal_queue.nim
+  - atcoder/extra/graph/mincostflow_generalized.nim
   isVerificationFile: false
   path: atcoder/extra/graph/mincostflow_lowerbound.nim
   requiredBy: []

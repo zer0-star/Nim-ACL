@@ -50,9 +50,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_FACTORIAL_HPP:\n  const ATCODER_FACTORIAL_HPP*\
     \ = 1\n  import atcoder/extra/math/combination\n  import atcoder/extra/math/formal_power_series\n\
@@ -82,22 +82,22 @@ data:
     \    result = ModInt(1)\n    for i in 0..<sn: result *= vs[i]\n    for i in sn\
     \ * sn + 1..n: result *= i\n"
   dependsOn:
-  - atcoder/extra/math/combination.nim
-  - atcoder/extra/math/combination.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/math/formal_power_series.nim
-  - atcoder/extra/math/combination.nim
-  - atcoder/extra/math/combination.nim
   - atcoder/element_concepts.nim
+  - atcoder/extra/math/combination.nim
+  - atcoder/extra/math/combination.nim
   - atcoder/extra/math/formal_power_series.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/math/formal_power_series.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/math/combination.nim
+  - atcoder/extra/math/combination.nim
   isVerificationFile: false
   path: atcoder/extra/math/factorial.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-10-10 21:34:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/math/yukicoder_factorial_test.nim

@@ -13,8 +13,38 @@ data:
   - icon: ':x:'
     path: atcoder/rangeutils.nim
     title: atcoder/rangeutils.nim
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: atcoder/extra/structure/segtree_2d.nim
+    title: atcoder/extra/structure/segtree_2d.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/segtree_2d.nim
+    title: atcoder/extra/structure/segtree_2d.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/segtree_2d.nim
+    title: atcoder/extra/structure/segtree_2d.nim
+  - icon: ':x:'
+    path: atcoder/extra/structure/segtree_2d.nim
+    title: atcoder/extra/structure/segtree_2d.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/segtree_2d_backup.nim
+    title: atcoder/extra/structure/segtree_2d_backup.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/segtree_2d_backup.nim
+    title: atcoder/extra/structure/segtree_2d_backup.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/segtree_2d_backup.nim
+    title: atcoder/extra/structure/segtree_2d_backup.nim
+  - icon: ':warning:'
+    path: atcoder/extra/structure/segtree_2d_backup.nim
+    title: atcoder/extra/structure/segtree_2d_backup.nim
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+    title: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+  - icon: ':x:'
+    path: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+    title: verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
   - icon: ':x:'
     path: verify/segtree_test.nim
     title: verify/segtree_test.nim
@@ -26,30 +56,32 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_SEGTREE_HPP:\n  const ATCODER_SEGTREE_HPP* = 1\n\
     \  import atcoder/internal_bit\n  import std/sequtils, std/algorithm\n  import\
-    \ atcoder/rangeutils\n\n  {.push inline.}\n  type SegTree*[S; p:static[tuple]]\
-    \ = object\n    len*, size*, log*:int\n    d: seq[S]\n\n  template calc_op[ST:SegTree](self:typedesc[ST],\
-    \ a, b:ST.S):auto =\n    block:\n      ST.p.op(a, b)\n  template calc_e[ST:SegTree](self:typedesc[ST]):auto\
-    \ =\n    block:\n      ST.p.e()\n  proc update[ST:SegTree](self: var ST, k:int)\
-    \ =\n    self.d[k] = ST.calc_op(self.d[2 * k], self.d[2 * k + 1])\n\n  proc init*[ST:SegTree](self:\
-    \ var ST, v:seq[ST.S]) =\n    let\n      n = v.len\n      log = ceil_pow2(n)\n\
-    \      size = 1 shl log\n    (self.len, self.size, self.log) = (n, size, log)\n\
-    \    if self.d.len < 2 * size:\n      self.d = newSeqWith(2 * size, ST.calc_e())\n\
-    \    else:\n      self.d.fill(0, 2 * size - 1, ST.calc_e())\n    for i in 0..<n:\
-    \ self.d[size + i] = v[i]\n    for i in countdown(size - 1, 1): self.update(i)\n\
-    \  proc init*[ST:SegTree](self: var ST, n:int) =\n    self.init(newSeqWith(n,\
+    \ atcoder/rangeutils\n\n  #{.push inline.}\n  type SegTree*[S; p:static[tuple]]\
+    \ = object\n    len*, size*, log*:int\n    d: seq[S]\n\n  template calc_op*[ST:SegTree](self:ST\
+    \ or typedesc[ST], a, b:ST.S):auto =\n    block:\n      let u = ST.p.op(a, b)\n\
+    \      u\n  template calc_e*[ST:SegTree](self:ST or typedesc[ST]):auto =\n   \
+    \ block:\n      let u = ST.p.e()\n      u\n  proc update[ST:SegTree](self: var\
+    \ ST, k:int) =\n    self.d[k] = ST.calc_op(self.d[2 * k], self.d[2 * k + 1])\n\
+    \n  proc init*[ST:SegTree](self: var ST, v:seq[ST.S]) =\n    let\n      n = v.len\n\
+    \      log = ceil_pow2(n)\n      size = 1 shl log\n    (self.len, self.size, self.log)\
+    \ = (n, size, log)\n    if self.d.len < 2 * size:\n      self.d = newSeqWith(2\
+    \ * size, ST.calc_e())\n    else:\n      self.d.fill(0, 2 * size - 1, ST.calc_e())\n\
+    \    for i in 0..<n: self.d[size + i] = v[i]\n    for i in countdown(size - 1,\
+    \ 1): self.update(i)\n  proc init*[ST:SegTree](self: var ST, n:int) =\n    self.init(newSeqWith(n,\
     \ ST.calc_e()))\n  proc init*[ST:SegTree](self: typedesc[ST], v:seq[ST.S]):auto\
     \ =\n    result = ST()\n    result.init(v)\n  proc init*[ST:SegTree](self: typedesc[ST],\
     \ n:int):auto =\n    self.init(newSeqWith(n, ST.calc_e()))\n  template SegTreeType*[S](op0,\
-    \ e0:untyped):typedesc[SegTree] =\n    SegTree[S, (op:(proc(l:S, r:S):S)(op0),\
-    \ e:(proc():S)(e0))]\n  template getType*(ST:typedesc[SegTree], S:typedesc, op,\
-    \ e:untyped):typedesc[SegTree] =\n    SegTreeType[S](op, e)\n\n  template initSegTree*[S](v:seq[S]\
-    \ or int, op, e:untyped):auto =\n    SegTreeType[S](op, e).init(v)\n\n  proc set*[ST:SegTree](self:var\
+    \ e0:untyped):typedesc[SegTree] =\n    proc op1(l, r:S):S {.gensym inline.} =\
+    \ op0(l, r)\n    proc e1():S {.gensym inline.} = e0()\n    SegTree[S, (op:op1,\
+    \ e:e1)]\n  template getType*(ST:typedesc[SegTree], S:typedesc, op, e:untyped):typedesc[SegTree]\
+    \ =\n    SegTreeType[S](op, e)\n\n  template initSegTree*[S](v:seq[S] or int,\
+    \ op, e:untyped):auto =\n    SegTreeType[S](op, e).init(v)\n\n  proc set*[ST:SegTree](self:var\
     \ ST, p:IndexType, x:ST.S) =\n    var p = self^^p\n    assert p in 0..<self.len\n\
     \    p += self.size\n    self.d[p] = x\n    for i in 1..self.log: self.update(p\
     \ shr i)\n\n  proc get*[ST:SegTree](self:ST, p:IndexType):ST.S =\n    let p =\
@@ -81,18 +113,28 @@ data:
     \    r = (2 * r + 1)\n          if f(ST.calc_op(self.d[r], sm)):\n           \
     \ sm = ST.calc_op(self.d[r], sm)\n            r.dec\n        return r + 1 - self.size\n\
     \      sm = ST.calc_op(self.d[r], sm)\n      if not ((r and -r) != r): break\n\
-    \    return 0\n  {.pop.}\n"
+    \    return 0\n  #{.pop.}\n"
   dependsOn:
-  - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
+  - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_bit.nim
   isVerificationFile: false
   path: atcoder/segtree.nim
-  requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  requiredBy:
+  - atcoder/extra/structure/segtree_2d.nim
+  - atcoder/extra/structure/segtree_2d.nim
+  - atcoder/extra/structure/segtree_2d_backup.nim
+  - atcoder/extra/structure/segtree_2d_backup.nim
+  - atcoder/extra/structure/segtree_2d.nim
+  - atcoder/extra/structure/segtree_2d.nim
+  - atcoder/extra/structure/segtree_2d_backup.nim
+  - atcoder/extra/structure/segtree_2d_backup.nim
+  timestamp: '2022-10-23 18:37:31+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
+  - verify/extra/structure/yosupo_point_add_rectangle_sum_2d_segtree_test.nim
   - verify/segtree_test.nim
   - verify/segtree_test.nim
 documentation_of: atcoder/segtree.nim

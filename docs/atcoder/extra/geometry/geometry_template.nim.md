@@ -264,21 +264,21 @@ data:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_A
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_D
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_E
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_GEOMETRY_TEMPLATE_HPP:\n  const ATCODER_GEOMETRY_TEMPLATE_HPP*\
     \ = 1\n  import atcoder/extra/other/static_var\n  import atcoder/extra/other/floatutils\n\
-    \  import atcoder/extra/other/internal_complex\n  import std/math, std/macros\n\
-    \  \n  type Point*[Real] = Complex[Real]\n  \n  #proc initPoint(re:float, im:float):Point\
-    \ = Point(re:re, im:im)\n  proc initPoint*[Real](re, im:Real):Point[Real] = Point[Real](re:re.Real,\
-    \ im:im.Real)\n  #converter toPoint*[Real](p:(Real, Real)):Point[Real] = initPoint(p[0],\
-    \ p[1])\n  #proc nextPoint():Point = return initPoint(nextFloat(), nextFloat())\n\
-    \  \n  proc `*`*[Real](p:Point[Real], d:Real):Point[Real] =\n    return Point[Real](re:p.re\
-    \ * d, im:p.im * d)\n  \n  proc toString*[Real](p:Point[Real]):string = $(p.re)\
-    \ & \" \" & $(p.im)\n  \n  # rotate point p counterclockwise by theta rad\n  proc\
-    \ rotate*[Real](theta:Real, p:Point):Point =\n    return initPoint[Real](cos(theta)\
+    \  #import complex\n  import atcoder/extra/other/internal_complex\n  import std/math,\
+    \ std/macros\n  \n  type Point*[Real] = Complex[Real]\n  \n  #proc initPoint(re:float,\
+    \ im:float):Point = Point(re:re, im:im)\n  proc initPoint*[Real](re, im:Real):Point[Real]\
+    \ = Point[Real](re:re.Real, im:im.Real)\n  #converter toPoint*[Real](p:(Real,\
+    \ Real)):Point[Real] = initPoint(p[0], p[1])\n  #proc nextPoint():Point = return\
+    \ initPoint(nextFloat(), nextFloat())\n  \n  proc `*`*[Real](p:Point[Real], d:Real):Point[Real]\
+    \ =\n    return Point[Real](re:p.re * d, im:p.im * d)\n  \n  proc toString*[Real](p:Point[Real]):string\
+    \ = $(p.re) & \" \" & $(p.im)\n  \n  # rotate point p counterclockwise by theta\
+    \ rad\n  proc rotate*[Real](theta:Real, p:Point):Point =\n    return initPoint[Real](cos(theta)\
     \ * p.re - sin(theta) * p.im, sin(theta) * p.re + cos(theta) * p.im)\n  \n  proc\
     \ radianToDegree*[Real](r:Real):Real = r * 180.Real / Real$.pi\n  proc degreeToRadian*[Real](d:Real):Real\
     \ = d * Real$.pi / 180.Real\n  \n  # smaller angle of the a-b-c\n  proc getAngle*[Real](a,b,c:Point[Real]):Real\
@@ -299,14 +299,16 @@ data:
     \ distinct Line[Real]\n  proc a*[Real](self:Segment[Real]):Point[Real] = Line[Real](self).a\n\
     \  proc b*[Real](self:Segment[Real]):Point[Real] = Line[Real](self).b\n  \n  proc\
     \ initLine*[Real](a,b:Point[Real]):Line[Real] = Line[Real](a:a, b:b)\n  proc initLine*[Real](A,\
-    \ B, C:Real):Line[Real] = # Ax + By = C\n    var a, b: Point\n    if A =~ 0.Real:\
-    \ a = initPoint[Real](0.Real, C / B); b = initPoint[Real](1.Real, C / B)\n   \
-    \ elif B =~ 0.Real: b = initPoint[Real](C / A, 0.Real); b = initPoint[Real](C\
-    \ / A, 1.Real)\n    else: a = initPoint[Real](0.Real, C / B); b = initPoint[Real](C\
+    \ B, C:Real):Line[Real] = # Ax + By = C\n    # A, B\u304C\u4E21\u65B90\u3067\u3042\
+    \u3063\u3066\u306F\u306A\u3089\u306A\u3044\n    var a, b: Point[Real]\n    if\
+    \ A =~ 0.Real: a = initPoint[Real](0.Real, C / B); b = initPoint[Real](1.Real,\
+    \ C / B)\n    elif B =~ 0.Real: a = initPoint[Real](C / A, 0.Real); b = initPoint[Real](C\
+    \ / A, 1.Real)\n    elif C =~ 0.Real: a = initPoint[Real](0.Real, 0.Real); b =\
+    \ initPoint[Real](B, -A)\n    else: a = initPoint[Real](0.Real, C / B); b = initPoint[Real](C\
     \ / A, 0.Real)\n    return initLine(a, b)\n  proc `--`*[Real](a, b:Point[Real]):Line[Real]\
-    \ = initLine(a, b)\n  \n  proc `$`*[Real](p:Line[Real]):string =\n    return(p.a.toString\
-    \ & \" to \" & p.b.toString)\n  #proc nextLine():Line = initLine(nextPoint(),\
-    \ nextPoint())\n  \n  proc initSegment*[Real](a, b:Point[Real]):Segment[Real]\
+    \ = initLine(a, b)\n  \n  proc `$`*[Real](p:Line[Real]):string =\n    return \"\
+    Line[\" & p.a.toString & \" to \" & p.b.toString & \"]\"\n  #proc nextLine():Line\
+    \ = initLine(nextPoint(), nextPoint())\n  \n  proc initSegment*[Real](a, b:Point[Real]):Segment[Real]\
     \ = Segment[Real](Line[Real](a:a, b:b))\n  proc `!!`*[Real](a, b:Point[Real]):Segment[Real]\
     \ =\n    initSegment[Real](a, b)\n  #proc nextSegment():Segment = initSegment(nextPoint(),\
     \ nextPoint())\n  # }}}\n  \n  # Circle {{{\n  type Circle*[Real] = object\n \
@@ -347,7 +349,7 @@ data:
     \  \n  swappableProc intersect(s: Segment[Real], p: Point[Real]):\n    ccw(s.a,\
     \ s.b, p).int == 0\n  swappableProc intersect(l: Line[Real], s: Segment[Real]):\n\
     \    cross(l.b - l.a, s.a - l.a) * cross(l.b - l.a, s.b - l.a) <~ 0.Real\n  \n\
-    \  swappableProc intersect(c: Circle[Real], l: Line[Real]): abs(c.p - c.p.projection(l))\
+    \  swappableProc intersect(c: Circle[Real], l: Line[Real]):\n    abs(c.p - c.p.projection(l))\
     \ <=~ c.r\n  \n  swappableProc intersect(c: Circle[Real], p: Point[Real]): abs(abs(p\
     \ - c.p) - c.r) =~ 0.Real\n  \n  # http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B\n\
     \  proc intersect*[Real](s, t: Segment[Real]):bool =\n    return ccw(s.a, s.b,\
@@ -396,94 +398,94 @@ data:
     \ * c1.r),\n            c1.p + initPoint[Real](cos(t - a) * c1.r, sin(t - a) *\
     \ c1.r))\n  # }}}\n"
   dependsOn:
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/internal_complex.nim
-  - atcoder/extra/other/static_var.nim
+  - atcoder/element_concepts.nim
   - atcoder/element_concepts.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/internal_complex.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/element_concepts.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/internal_complex.nim
-  - atcoder/element_concepts.nim
+  - atcoder/extra/other/static_var.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/other/static_var.nim
   isVerificationFile: false
   path: atcoder/extra/geometry/geometry_template.nim
   requiredBy:
-  - atcoder/extra/geometry/tangent.nim
-  - atcoder/extra/geometry/tangent.nim
-  - atcoder/extra/geometry/visualizer.nim
-  - atcoder/extra/geometry/visualizer.nim
-  - atcoder/extra/geometry/polygon.nim
-  - atcoder/extra/geometry/polygon.nim
-  - atcoder/extra/geometry/closest_pair.nim
-  - atcoder/extra/geometry/closest_pair.nim
-  - atcoder/extra/geometry/segment_graph.nim
-  - atcoder/extra/geometry/segment_graph.nim
   - atcoder/extra/geometry/triangle.nim
   - atcoder/extra/geometry/triangle.nim
   - atcoder/extra/geometry/tangent.nim
   - atcoder/extra/geometry/tangent.nim
-  - atcoder/extra/geometry/visualizer.nim
-  - atcoder/extra/geometry/visualizer.nim
-  - atcoder/extra/geometry/polygon.nim
-  - atcoder/extra/geometry/polygon.nim
-  - atcoder/extra/geometry/closest_pair.nim
-  - atcoder/extra/geometry/closest_pair.nim
   - atcoder/extra/geometry/segment_graph.nim
   - atcoder/extra/geometry/segment_graph.nim
+  - atcoder/extra/geometry/closest_pair.nim
+  - atcoder/extra/geometry/closest_pair.nim
+  - atcoder/extra/geometry/polygon.nim
+  - atcoder/extra/geometry/polygon.nim
+  - atcoder/extra/geometry/visualizer.nim
+  - atcoder/extra/geometry/visualizer.nim
   - atcoder/extra/geometry/triangle.nim
   - atcoder/extra/geometry/triangle.nim
-  timestamp: '2022-02-05 00:42:13+09:00'
+  - atcoder/extra/geometry/tangent.nim
+  - atcoder/extra/geometry/tangent.nim
+  - atcoder/extra/geometry/segment_graph.nim
+  - atcoder/extra/geometry/segment_graph.nim
+  - atcoder/extra/geometry/closest_pair.nim
+  - atcoder/extra/geometry/closest_pair.nim
+  - atcoder/extra/geometry/polygon.nim
+  - atcoder/extra/geometry/polygon.nim
+  - atcoder/extra/geometry/visualizer.nim
+  - atcoder/extra/geometry/visualizer.nim
+  timestamp: '2022-08-25 23:07:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/extra/geometry/aoj_cgl_2_d_distance_test.nim
+  - verify/extra/geometry/aoj_cgl_2_d_distance_test.nim
+  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
+  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
+  - verify/extra/geometry/aoj_cgl_2_a_parallel_orthogonal_test.nim
+  - verify/extra/geometry/aoj_cgl_2_a_parallel_orthogonal_test.nim
+  - verify/extra/geometry/aoj_cgl_7_a_circle_intersection_test.nim
+  - verify/extra/geometry/aoj_cgl_7_a_circle_intersection_test.nim
   - verify/extra/geometry/aoj_cgl_1_a_projection_test.nim
   - verify/extra/geometry/aoj_cgl_1_a_projection_test.nim
+  - verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
+  - verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
+  - verify/extra/geometry/aoj_cgl_5_a_closest_pair_test.nim
+  - verify/extra/geometry/aoj_cgl_5_a_closest_pair_test.nim
   - verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
   - verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
   - verify/extra/geometry/aoj_cgl_4_a_convex_hull_test.nim
   - verify/extra/geometry/aoj_cgl_4_a_convex_hull_test.nim
-  - verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim
-  - verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim
-  - verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
-  - verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
-  - verify/extra/geometry/aoj_cgl_2_d_distance_test.nim
-  - verify/extra/geometry/aoj_cgl_2_d_distance_test.nim
-  - verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
-  - verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
-  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
-  - verify/extra/geometry/aoj_1033_segment_arrangement_test.nim
-  - verify/extra/geometry/aoj_cgl_3_a_area_test.nim
-  - verify/extra/geometry/aoj_cgl_3_a_area_test.nim
-  - verify/extra/geometry/aoj_cgl_2_b_segment_intersect_test.nim
-  - verify/extra/geometry/aoj_cgl_2_b_segment_intersect_test.nim
-  - verify/extra/geometry/aoj_cgl_2_c_cross_point_test.nim
-  - verify/extra/geometry/aoj_cgl_2_c_cross_point_test.nim
-  - verify/extra/geometry/aoj_cgl_2_a_parallel_orthogonal_test.nim
-  - verify/extra/geometry/aoj_cgl_2_a_parallel_orthogonal_test.nim
-  - verify/extra/geometry/aoj_cgl_5_a_closest_pair_test.nim
-  - verify/extra/geometry/aoj_cgl_5_a_closest_pair_test.nim
-  - verify/extra/geometry/aoj_cgl_7_a_circle_intersection_test.nim
-  - verify/extra/geometry/aoj_cgl_7_a_circle_intersection_test.nim
-  - verify/extra/geometry/aoj_cgl_7_e_cross_points_of_circles_test.nim
-  - verify/extra/geometry/aoj_cgl_7_e_cross_points_of_circles_test.nim
-  - verify/extra/geometry/aoj_cgl_1_b_reflection_test.nim
-  - verify/extra/geometry/aoj_cgl_1_b_reflection_test.nim
-  - verify/extra/geometry/aoj_cgl_7_d_cross_points_of_circle_and_line_test.nim
-  - verify/extra/geometry/aoj_cgl_7_d_cross_points_of_circle_and_line_test.nim
-  - verify/extra/geometry/aoj_cgl_1_c_counter_clockwise_test.nim
-  - verify/extra/geometry/aoj_cgl_1_c_counter_clockwise_test.nim
   - verify/extra/geometry/aoj_cgl_3_c_polygon_point_containment_test.nim
   - verify/extra/geometry/aoj_cgl_3_c_polygon_point_containment_test.nim
+  - verify/extra/geometry/aoj_cgl_1_c_counter_clockwise_test.nim
+  - verify/extra/geometry/aoj_cgl_1_c_counter_clockwise_test.nim
+  - verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
+  - verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
+  - verify/extra/geometry/aoj_cgl_7_d_cross_points_of_circle_and_line_test.nim
+  - verify/extra/geometry/aoj_cgl_7_d_cross_points_of_circle_and_line_test.nim
+  - verify/extra/geometry/aoj_cgl_2_c_cross_point_test.nim
+  - verify/extra/geometry/aoj_cgl_2_c_cross_point_test.nim
+  - verify/extra/geometry/aoj_cgl_3_a_area_test.nim
+  - verify/extra/geometry/aoj_cgl_3_a_area_test.nim
+  - verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim
+  - verify/extra/geometry/aoj_cgl_7_g_common_tangent_test.nim
+  - verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
+  - verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
+  - verify/extra/geometry/aoj_cgl_1_b_reflection_test.nim
+  - verify/extra/geometry/aoj_cgl_1_b_reflection_test.nim
+  - verify/extra/geometry/aoj_cgl_7_e_cross_points_of_circles_test.nim
+  - verify/extra/geometry/aoj_cgl_7_e_cross_points_of_circles_test.nim
   - verify/extra/geometry/aoj_cgl_7_f_tangent_to_a_circle_test.nim
   - verify/extra/geometry/aoj_cgl_7_f_tangent_to_a_circle_test.nim
-  - verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
-  - verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
+  - verify/extra/geometry/aoj_cgl_2_b_segment_intersect_test.nim
+  - verify/extra/geometry/aoj_cgl_2_b_segment_intersect_test.nim
 documentation_of: atcoder/extra/geometry/geometry_template.nim
 layout: document
 redirect_from:

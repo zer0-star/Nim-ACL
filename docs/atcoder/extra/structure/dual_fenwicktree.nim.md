@@ -33,9 +33,9 @@ data:
   attributes:
     links:
     - https://en.wikipedia.org/wiki/Fenwick_tree
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_FENWICKTREE_HPP:\n  const ATCODER_FENWICKTREE_HPP*\
     \ = 1\n  import std/sequtils\n  import atcoder/internal_type_traits\n  import\
@@ -57,18 +57,18 @@ data:
     \ x:FT.T) =\n    let (l, r) = self.halfOpenEndpoints(p)\n    assert 0 <= l and\
     \ l <= r and r <= self.len\n    self.add(r, x)\n    self.add(l, -x)\n"
   dependsOn:
-  - atcoder/rangeutils.nim
   - atcoder/internal_type_traits.nim
   - atcoder/rangeutils.nim
-  - atcoder/internal_type_traits.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_type_traits.nim
+  - atcoder/internal_type_traits.nim
+  - atcoder/rangeutils.nim
   - atcoder/rangeutils.nim
   - atcoder/internal_type_traits.nim
   isVerificationFile: false
   path: atcoder/extra/structure/dual_fenwicktree.nim
   requiredBy: []
-  timestamp: '2021-07-15 21:51:07+09:00'
+  timestamp: '2022-09-24 20:04:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/extra/structure/dual_fenwicktree.nim

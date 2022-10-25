@@ -32,14 +32,14 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_PERSISTENT_ARRAY_HPP:\n  const ATCODER_PERSISTENT_ARRAY_HPP*\
     \ = 1\n  const LOG = 3\n  \n  type\n    PersistentArrayNode*[T] = ref object\n\
     \      data:T\n      child:array[1 shl LOG, PersistentArrayNode[T]]\n    PersistentArray*[T]\
-    \ = object\n      root: PersistentArrayNode[T]\n\n  proc build[T](t:var PersistentArrayNode[T],\
+    \ = object\n      root*: PersistentArrayNode[T]\n\n  proc build[T](t:var PersistentArrayNode[T],\
     \ data:T, k:int):PersistentArrayNode[T] =\n    if t == nil: t = PersistentArrayNode[T]()\n\
     \    if k == 0:\n      t.data = data\n      return t\n    let p = build(t.child[k\
     \ and ((1 shl LOG) - 1)], data, k shr LOG)\n    t.child[k and ((1 shl LOG) - 1)]\
@@ -63,7 +63,7 @@ data:
   - atcoder/extra/structure/persistent_dsu.nim
   - atcoder/extra/structure/persistent_dsu.nim
   - atcoder/extra/structure/persistent_dsu.nim
-  timestamp: '2020-12-31 00:02:41+09:00'
+  timestamp: '2022-10-23 18:37:31+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/extra/structure/yosupo_persistent_unionfind_test.nim

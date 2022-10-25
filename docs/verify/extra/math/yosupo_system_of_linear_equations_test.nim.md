@@ -1,12 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/extra/math/matrix.nim
     title: atcoder/extra/math/matrix.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/operator.nim
+    title: atcoder/extra/other/operator.nim
+  - icon: ':heavy_check_mark:'
+    path: atcoder/extra/other/operator.nim
+    title: atcoder/extra/other/operator.nim
   - icon: ':question:'
     path: atcoder/generate_definitions.nim
     title: atcoder/generate_definitions.nim
@@ -33,41 +39,43 @@ data:
     title: atcoder/modint.nim
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: nim
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
     links:
     - https://judge.yosupo.jp/problem/system_of_linear_equations
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "# verify-helper: PROBLEM https://judge.yosupo.jp/problem/system_of_linear_equations\n\
     \ninclude atcoder/header\nimport atcoder/modint\nimport atcoder/extra/math/matrix\n\
     import options\n\ntype mint = modint998244353\n\nblock main:\n  let N, M = nextInt()\n\
-    \  type Mat = MatrixType(mint)\n  let\n    A:Mat = newSeqWith(N, newSeqWith(M,\
-    \ mint(nextInt())))\n    b:Vector[mint] = newSeqWith(N, mint(nextInt()))\n  let\
+    \  type Mat = DynamicMatrixType(mint)\n  let\n    A = Mat.init(newSeqWith(N, newSeqWith(M,\
+    \ mint(nextInt()))))\n    b:Mat.Vector = newSeqWith(N, mint(nextInt()))\n  let\
     \ t = linearEquations(A, b)\n  if t.isSome():\n    let (x, vs) = t.get\n    echo\
     \ vs.len\n    echo x.mapIt($it).join(\" \")\n    for v in vs:\n      echo v.mapIt($it).join(\"\
     \ \")\n  else:\n    echo -1\n"
   dependsOn:
   - atcoder/modint.nim
-  - atcoder/internal_math.nim
-  - atcoder/extra/math/matrix.nim
-  - atcoder/generate_definitions.nim
-  - atcoder/extra/math/matrix.nim
-  - atcoder/header.nim
-  - atcoder/generate_definitions.nim
+  - atcoder/extra/other/operator.nim
+  - atcoder/extra/other/operator.nim
   - atcoder/modint.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/internal_math.nim
+  - atcoder/generate_definitions.nim
+  - atcoder/header.nim
+  - atcoder/extra/math/matrix.nim
   - atcoder/internal_math.nim
   - atcoder/header.nim
+  - atcoder/extra/math/matrix.nim
   isVerificationFile: true
   path: verify/extra/math/yosupo_system_of_linear_equations_test.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-10 21:34:07+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/extra/math/yosupo_system_of_linear_equations_test.nim
 layout: document

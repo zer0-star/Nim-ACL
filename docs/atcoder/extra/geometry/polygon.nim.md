@@ -129,9 +129,9 @@ data:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_H
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_POLYGON_HPP:\n  const ATCODER_POLYGON_HPP* = 1\n\
     \  import std/sugar, std/algorithm, std/math\n  import atcoder/extra/other/floatutils\n\
@@ -188,24 +188,24 @@ data:
     \ Real(2)\n    return A\n  # }}}\n  # }}}\n"
   dependsOn:
   - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/element_concepts.nim
+  - atcoder/element_concepts.nim
+  - atcoder/extra/other/floatutils.nim
+  - atcoder/extra/other/internal_complex.nim
+  - atcoder/extra/geometry/geometry_template.nim
+  - atcoder/extra/other/static_var.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/other/static_var.nim
   - atcoder/extra/geometry/geometry_template.nim
   - atcoder/element_concepts.nim
+  - atcoder/element_concepts.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/internal_complex.nim
-  - atcoder/element_concepts.nim
-  - atcoder/extra/other/static_var.nim
   - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/extra/other/floatutils.nim
-  - atcoder/extra/other/internal_complex.nim
   - atcoder/extra/other/static_var.nim
-  - atcoder/extra/geometry/geometry_template.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/other/floatutils.nim
   - atcoder/extra/other/internal_complex.nim
-  - atcoder/element_concepts.nim
   - atcoder/extra/other/static_var.nim
   isVerificationFile: false
   path: atcoder/extra/geometry/polygon.nim
@@ -214,23 +214,23 @@ data:
   - atcoder/extra/geometry/visualizer.nim
   - atcoder/extra/geometry/visualizer.nim
   - atcoder/extra/geometry/visualizer.nim
-  timestamp: '2022-02-05 00:42:13+09:00'
+  timestamp: '2022-08-25 23:07:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
+  - verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
   - verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
   - verify/extra/geometry/aoj_cgl_7_h_intersection_of_circle_and_polygon_test.nim
   - verify/extra/geometry/aoj_cgl_4_a_convex_hull_test.nim
   - verify/extra/geometry/aoj_cgl_4_a_convex_hull_test.nim
-  - verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
-  - verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
-  - verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
-  - verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
-  - verify/extra/geometry/aoj_cgl_3_a_area_test.nim
-  - verify/extra/geometry/aoj_cgl_3_a_area_test.nim
   - verify/extra/geometry/aoj_cgl_3_c_polygon_point_containment_test.nim
   - verify/extra/geometry/aoj_cgl_3_c_polygon_point_containment_test.nim
-  - verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
-  - verify/extra/geometry/aoj_cgl_4_b_diameter_of_a_convex_polygon_test.nim
+  - verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
+  - verify/extra/geometry/aoj_cgl_4_c_convex_cut_test.nim
+  - verify/extra/geometry/aoj_cgl_3_a_area_test.nim
+  - verify/extra/geometry/aoj_cgl_3_a_area_test.nim
+  - verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
+  - verify/extra/geometry/aoj_cgl_3_b_is_convex_test.nim
 documentation_of: atcoder/extra/geometry/polygon.nim
 layout: document
 redirect_from:

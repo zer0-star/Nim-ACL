@@ -26,19 +26,22 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_MONTGOMERY_MODINT_HPP:\n  const ATCODER_MONTGOMERY_MODINT_HPP*\
     \ = 1\n\n  import std/macros\n  import atcoder/generate_definitions\n\n  type\
     \ StaticLazyMontgomeryModInt*[M:static[uint32]] = object\n    a:uint32\n  type\
     \ DynamicLazyMontgomeryModInt*[T:static[int]] = object\n    a:uint32\n  type LazyMontgomeryModInt\
-    \ = StaticLazyMontgomeryModInt or DynamicLazyMontgomeryModInt\n\n  proc get_r*(M:uint32):auto\
-    \ =\n    result = M\n    for i in 0..<4: result *= 2.uint32 - M * result\n  proc\
-    \ get_n2*(M:uint32):auto = (((not M.uint) + 1.uint) mod M.uint).uint32\n\n  proc\
-    \ getMontgomeryParameters(M:uint32):tuple[M, r, n2:uint32] =\n    (M, get_r(M),\
-    \ get_n2(M))\n\n  proc getParameters*[T:static[int]](t:typedesc[DynamicLazyMontgomeryModInt[T]]):ptr[tuple[M,\
+    \ = StaticLazyMontgomeryModInt or DynamicLazyMontgomeryModInt\n\n  proc isStaticModInt*(T:typedesc[LazyMontgomeryModInt]):bool\
+    \ = T is StaticLazyMontgomeryModInt\n  proc isDynamicModInt*(T:typedesc[LazyMontgomeryModInt]):bool\
+    \ = T is DynamicLazyMontgomeryModInt\n  #proc isModInt*(T:typedesc):bool = T.isStaticModInt\
+    \ or T.isDynamicModInt\n  proc isStatic*(T:typedesc[LazyMontgomeryModInt]):bool\
+    \ = T is StaticLazyMontgomeryModInt\n\n  proc get_r*(M:uint32):auto =\n    result\
+    \ = M\n    for i in 0..<4: result *= 2.uint32 - M * result\n  proc get_n2*(M:uint32):auto\
+    \ = (((not M.uint) + 1.uint) mod M.uint).uint32\n\n  proc getMontgomeryParameters(M:uint32):tuple[M,\
+    \ r, n2:uint32] =\n    (M, get_r(M), get_n2(M))\n\n  proc getParameters*[T:static[int]](t:typedesc[DynamicLazyMontgomeryModInt[T]]):ptr[tuple[M,\
     \ r, n2:uint32]] =\n    var p {.global.} : tuple[M, r, n2:uint32] = getMontgomeryParameters(998244353.uint32)\n\
     \    return p.addr\n\n  proc checkParameters(M, r:uint32) =\n    assert r * M\
     \ == 1, \"invalid, r * mod != 1\"\n    assert M < (1 shl 30), \"invalid, mod >=\
@@ -97,7 +100,7 @@ data:
   isVerificationFile: false
   path: atcoder/extra/math/modint_montgomery.nim
   requiredBy: []
-  timestamp: '2022-06-06 17:51:24+09:00'
+  timestamp: '2022-10-10 21:34:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/extra/math/convolution_montgomery_test.nim

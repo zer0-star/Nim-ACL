@@ -74,9 +74,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/nim.py\"\
     , line 86, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "when not declared ATCODER_BINARY_TREE_UTILS_HPP:\n  const ATCODER_BINARY_TREE_UTILS_HPP*\
     \ = 1\n  include atcoder/extra/structure/binary_tree_node_utils\n  {.push discardable\
@@ -125,31 +125,36 @@ data:
     \ self.tree.insert(it, x)\n  proc incl*[T:SomeSortedSet | SomeSortedMultiSet](self:var\
     \ T, x:T.K):T.Node =\n    self.insert(x)\n  proc incl*[T:SomeSortedMap | SomeSortedMultiMap](self:var\
     \ T, x:(T.K, T.V)):T.Node =\n    self.insert(x)\n\n  template getAddr*[T:SomeSortedMap](self:var\
-    \ T, x:T.K):auto =\n    mixin default\n    var t = self.lower_bound(x)\n    if\
-    \ t == self.End or t.key[0] != x:\n      var v = T.V.default\n      t = self.tree.insert(t,\
-    \ (x, v))\n    t.key[1].addr\n\n  template `[]`*[T:SomeSortedMap](self: var T,\
-    \ x:T.K):auto =\n    var t = self.getAddr(x)\n    t[]\n  proc `[]=`*[T:SomeSortedMap](self:\
-    \ var T, x:T.K, v:T.V) =\n    var t = self.getAddr(x)\n    t[] = v\n\n  proc erase*[T:SomeSortedTree](self:\
-    \ var T, x:T.K):T.Node =\n    mixin erase\n    var t = self.lower_bound(x)\n \
-    \   if t == self.End or self.getKey(t) != x: return self.End\n    else: return\
-    \ self.tree.erase(t)\n  proc erase*[T:SomeSortedTree](self: var T, t:T.Node):T.Node\
-    \ = self.tree.erase(t)\n  proc excl*[T:SomeSortedTree](self: var T, x:T.K):T.Node\
-    \ = self.erase(x)\n  proc excl*[T:SomeSortedTree](self: var T, t:T.Node):T.Node\
-    \ = self.erase(t)\n\n  proc kth_element*[T:SomeSortedTree](self: var T, t:T.Node,\
-    \ k:int):T.Node =\n#    static:\n#      assert T.Tree.Countable isnot void\n \
-    \   let p = t.l.cnt\n    if k < p: return self.kth_element(t.l, k)\n    elif k\
-    \ > p: return self.kth_element(t.r, k - p - 1)\n    else: return t\n  \n  proc\
-    \ kth_element*[T:SomeSortedTree](self: var T, k:int):T.Node =\n    return self.kth_element(self.tree.root,\
-    \ k)\n  proc `{}`*[T:SomeSortedTree](self: var T, k:int):T.Node =\n    return\
-    \ self.kth_element(k)\n\n  proc index*[T:SomeSortedTree](self:T, t:T.Node):int\
-    \ =\n#    static:\n#      assert T.Tree.Countable isnot void\n    return index(t)\n\
-    \  proc distance*[T:SomeSortedTree](self:T, t1, t2:T.Node):int =\n#    static:\n\
-    #      assert T.Tree.Countable isnot void\n    return index(t2) - index(t1)\n\n\
-    \  iterator items*[T:SomeSortedSet or SomeSortedMultiSet](self:T):T.K =\n    var\
-    \ it = self.begin\n    while it != self.End:\n      yield it.key\n      it.inc\n\
-    \  iterator pairs*[T:SomeSortedMap or SomeSortedMultiMap](self:T):(T.K, T.V) =\n\
-    \    var it = self.begin\n    while it != self.End:\n      yield it.key\n    \
-    \  it.inc\n  proc `end`*[Tree:SomeSortedTree](self:Tree):Tree.Node = self.End\n\
+    \ T, x:T.K):auto =\n    var t = self.lower_bound(x)\n    if t == self.End or t.key[0]\
+    \ != x:\n      var v: T.V\n      when v is SomeSortedTree:\n        v.init()\n\
+    \      t = self.tree.insert(t, (x, v))\n    t.key[1].addr\n\n  template `[]`*[T:SomeSortedMap](self:\
+    \ var T, x:T.K):auto =\n    var t = self.getAddr(x)\n    t[]\n  proc `[]=`*[T:SomeSortedMap](self:\
+    \ var T, x:T.K, v:T.V) =\n    var t = self.getAddr(x)\n    t[] = v\n\n  proc erase*[T:SomeSortedSet\
+    \ or SomeSortedMap](self: var T, x:T.K):T.Node =\n    mixin erase\n    var t =\
+    \ self.lower_bound(x)\n    if t == self.End or self.getKey(t) != x: return self.End\n\
+    \    else: return self.tree.erase(t)\n  proc erase*[T:SomeSortedMultiSet or SomeSortedMultiMap](self:\
+    \ var T, lb, ub:T.Node):T.Node =\n    if lb != ub:\n      var\n        (L, R)\
+    \ = self.tree.split(lb)\n        (RL, RR) = self.tree.split(ub)\n      self.tree.root\
+    \ = self.tree.join(L, RR)\n    return ub\n\n  proc erase*[T:SomeSortedMultiSet\
+    \ or SomeSortedMultiMap](self: var T, x:T.K):T.Node =\n    #doAssert T.Tree.Countable\
+    \ isnot void\n    mixin erase\n    return self.erase(self.lower_bound(x), self.upper_bound(x))\n\
+    \n  proc erase*[T:SomeSortedTree](self: var T, t:T.Node):T.Node = self.tree.erase(t)\n\
+    \  proc excl*[T:SomeSortedTree](self: var T, x:T.K):T.Node = self.erase(x)\n \
+    \ proc excl*[T:SomeSortedTree](self: var T, t:T.Node):T.Node = self.erase(t)\n\
+    \n  proc kth_element*[T:SomeSortedTree](self: var T, t:T.Node, k:int):T.Node =\n\
+    #    static:\n#      assert T.Tree.Countable isnot void\n    let p = t.l.cnt\n\
+    \    if k < p: return self.kth_element(t.l, k)\n    elif k > p: return self.kth_element(t.r,\
+    \ k - p - 1)\n    else: return t\n  \n  proc kth_element*[T:SomeSortedTree](self:\
+    \ var T, k:int):T.Node =\n    return self.kth_element(self.tree.root, k)\n  proc\
+    \ `{}`*[T:SomeSortedTree](self: var T, k:int):T.Node =\n    return self.kth_element(k)\n\
+    \n  proc index*[T:SomeSortedTree](self:T, t:T.Node):int =\n#    static:\n#   \
+    \   assert T.Tree.Countable isnot void\n    return index(t)\n  proc distance*[T:SomeSortedTree](self:T,\
+    \ t1, t2:T.Node):int =\n#    static:\n#      assert T.Tree.Countable isnot void\n\
+    \    return index(t2) - index(t1)\n\n  iterator items*[T:SomeSortedSet or SomeSortedMultiSet](self:T):T.K\
+    \ =\n    var it = self.begin\n    while it != self.End:\n      yield it.key\n\
+    \      it.inc\n  iterator pairs*[T:SomeSortedMap or SomeSortedMultiMap](self:T):(T.K,\
+    \ T.V) =\n    var it = self.begin\n    while it != self.End:\n      yield it.key\n\
+    \      it.inc\n  proc `end`*[Tree:SomeSortedTree](self:Tree):Tree.Node = self.End\n\
     \  {.pop.}\n"
   dependsOn:
   - atcoder/extra/structure/binary_tree_node_utils.nim
@@ -171,15 +176,15 @@ data:
   - atcoder/extra/structure/set_map.nim
   - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
   - atcoder/extra/structure/set_map_by_randomized_binary_search_tree.nim
-  timestamp: '2021-11-18 02:47:29+09:00'
+  timestamp: '2022-07-03 22:20:00+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/map_test.nim
-  - verify/map_test.nim
-  - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
-  - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
   - verify/extra/structure/yosupo_predecessor_problem_test.nim
   - verify/extra/structure/yosupo_predecessor_problem_test.nim
+  - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
+  - verify/extra/structure/yosupo_range_affine_range_sum_RBST_test.nim
+  - verify/map_test.nim
+  - verify/map_test.nim
 documentation_of: atcoder/extra/structure/binary_tree_utils.nim
 layout: document
 redirect_from:
