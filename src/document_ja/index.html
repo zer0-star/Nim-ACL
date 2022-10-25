@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Uikit -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
+    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
+    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <!-- Katex -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
+        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
+        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <!-- Ace editor-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+
+    <style>
+        h2 {
+            border-bottom:1px solid #CCC;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(
+                document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false }],
+                ignoredTags: [],
+            })
+            for (e of document.getElementsByClassName("sample-code")) {
+                var editor = ace.edit(e);
+                editor.setOption("maxLines", "Infinity");
+                editor.setReadOnly(true);
+                editor.getSession().setMode("ace/mode/nim");                
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
+        </div>
+    </div>
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1>AC(AtCoder) Library Document</h1>
+<h2>インストール方法</h2>
+<ul>
+<li>zipファイルを解凍すると、<code>ac-library</code>フォルダ, そしてその中に<code>atcoder</code>フォルダが入っているはずです。</li>
+<li>g++を使っている場合, <code>atcoder</code>フォルダを<code>main.cpp</code>と同じ場所に置いて、<code>g++ main.cpp -std=c++14 -I .</code>でコンパイルできます。  <ul>
+<li><code>-std=c++14</code>か<code>-std=c++17</code>をつけてコンパイルする必要があります。</li>
+</ul>
+</li>
+<li>詳しくは <a href="./appendix.html">Appendix</a> を参照してください。</li>
+</ul>
+<h2>お約束</h2>
+<ul>
+<li>制約外の入力を入れたときの挙動はすべて未定義です。</li>
+<li>このドキュメントでは長い型を便宜上短く書きます<ul>
+<li><code>unsigned int</code> → <code>uint</code></li>
+<li><code>long long</code> → <code>ll</code></li>
+<li><code>unsigned long long</code> → <code>ull</code></li>
+</ul>
+</li>
+<li>$0^0$ は $1$ です</li>
+<li>明記されていない場合、多重辺や自己ループも入力可能です。</li>
+</ul>
+<h2>リスト</h2>
+<p><code>import atcoder/all</code> : 一括include</p>
+<h3>データ構造</h3>
+<ul>
+<li><a href="./fenwicktree.html"><code>import atcoder/fenwicktree</code></a></li>
+<li><a href="./segtree.html"><code>import atcoder/segtree</code></a></li>
+<li><a href="./lazysegtree.html"><code>import atcoder/lazysegtree</code></a></li>
+<li><a href="./string.html"><code>import atcoder/string</code></a></li>
+</ul>
+<h3>数学</h3>
+<ul>
+<li><a href="./math.html"><code>import atcoder/math</code></a></li>
+<li><a href="./convolution.html"><code>import atcoder/convolution</code></a></li>
+<li>💻<a href="./modint.html"><code>import atcoder/modint</code></a></li>
+</ul>
+<h3>グラフ</h3>
+<ul>
+<li><a href="./dsu.html"><code>import atcoder/dsu</code></a></li>
+<li><a href="./maxflow.html"><code>import atcoder/maxflow</code></a></li>
+<li><a href="./mincostflow.html"><code>import atcoder/mincostflow</code></a></li>
+<li><a href="./scc.html"><code>import atcoder/scc</code></a></li>
+<li><a href="./twosat.html"><code>import atcoder/twosat</code></a></li>
+</ul>
+<h2>エキストラライブラリ</h2>
+<p>ACLには収録されていないが、使用頻度が高そうなライブラリを追加しました。</p>
+<h3>データ構造</h3>
+<ul>
+<li>ソート済みのset, table(map)(C++のset, mapと同機能)  <a href="./extra/structure/sorted_set_map.html"><code>import atcoder/extra/structure/set_map</code></a></li>
+<li>Skew Heap</li>
+<li>dual fenwick tree</li>
+<li>Splay Tree</li>
+<li>Universal SegTree</li>
+<li>Wavelet Matrix</li>
+<li>weighted Union Find</li>
+<li>Sliding Window Aggregation</li>
+<li>Radix Heap</li>
+<li>二分木関係<ul>
+<li>Link Cut Tree</li>
+<li>Randomized Binary Search Tree</li>
+</ul>
+</li>
+<li>Sparse Table</li>
+<li>永続関係<ul>
+<li>永続配列 <a href="./extra/structure/persistent_array.html"><code>import atcoder/extra/structure/persistent_array</code></a></li>
+<li>永続DSU <a href="./extra/structure/persistent_dsu.html"><code>import atcoder/extra/structure/persistent_dsu</code></a></li>
+<li>Partially Persistent DSU</li>
+</ul>
+</li>
+</ul>
+<h3>数学</h3>
+<ul>
+<li>約数系<ul>
+<li>約数列挙 <a href="./extra/math/divisor.html"><code>import atcoder/extra/math/divisor</code></a></li>
+<li>エラトステネス <a href="./extra/math/eratosthenes.html"><code>import atcoder/extra/math/eratosthenes</code></a></li>
+<li>素因数分解(pollard-rho法)<a href="./extra/math/factorization.html"><code>import atcoder/extra/math/factorization</code></a></li>
+</ul>
+</li>
+<li>畳み込み関係<ul>
+<li>任意modの畳み込み</li>
+<li>高速フーリエ変換</li>
+<li>NTT</li>
+<li>bitwise畳み込み</li>
+</ul>
+</li>
+<li>形式的べき級数関係<ul>
+<li>形式的べき級数</li>
+<li>形式的べき級数(sparse)</li>
+</ul>
+</li>
+<li>行列</li>
+<li>順列・組み合わせ関係<ul>
+<li>コンビネーション(階乗・逆元)<a href="./extra/math/combination.html"><code>import atcode/extra/math/combination</code></a></li>
+<li>コンビネーションテーブル</li>
+</ul>
+</li>
+<li>進数変換</li>
+<li>大きな数の階乗</li>
+<li>modint関係<ul>
+<li>モンゴメリ演算によるmodint</li>
+<li>modintによる平方根</li>
+<li>modintの分数推測</li>
+</ul>
+</li>
+</ul>
+<h3>グラフ</h3>
+<ul>
+<li><a href="./extra/graph/graph_template.html"><code>import atcoder/extra/graph/graph_template</code></a></li>
+<li>最短経路問題<ul>
+<li>dijkstra法: <a href="./extra/graph/dijkstra.html"><code>import atcoder/extra/graph/dijkstra</code></a></li>
+<li>bellman-ford法: <a href="./extra/graph/bellman_ford.html"><code>import atcoder/extra/graph/bellman_ford</code></a></li>
+<li>warshall-floyd法: <a href="./extra/graph/warshall_floyd.html"><code>import atcoder/extra/graph/warshall_floyd</code></a></li>
+</ul>
+</li>
+<li>最小木問題<ul>
+<li>prim法</li>
+<li>kruskal法</li>
+<li>volvka法</li>
+</ul>
+</li>
+<li>有向グラフの最小木問題<ul>
+<li>Chu-Liu-Edmonds</li>
+</ul>
+</li>
+<li>二部グラフの最大マッチング(最小頂点被覆)<ul>
+<li>hopcroft-karp法</li>
+</ul>
+</li>
+<li>一般グラフのマッチング<ul>
+<li>gabow-edmonds法</li>
+</ul>
+</li>
+<li>割当問題
+　- ハンガリアン法</li>
+<li>橋と結節点<ul>
+<li>lowlink</li>
+</ul>
+</li>
+<li>最大独立集合</li>
+<li>サイクルの検出</li>
+<li>オイラー周回</li>
+<li>彩色数</li>
+<li>トポロジカルソート</li>
+<li>強連結の向き付け: <a href="./extra/graph/strong_orientation.html"><code>import atcoder/extra/graph/strong_orientation</code></a></li>
+</ul>
+<h3>木</h3>
+<ul>
+<li>木の直径</li>
+<li>重心分解</li>
+<li>lowest common ancestor</li>
+<li>Heavy-Light Decomposition</li>
+<li>全方位DP(rerooting): <a href="./extra/tree/rerooting.html"><code>import atcoder/extra/tree/rerooting</code></a></li>
+</ul>
+<h3>その他</h3>
+<ul>
+<li>Assignment Operator</li>
+<li>二分探索<ul>
+<li>整数版</li>
+<li>不動小数版</li>
+</ul>
+</li>
+<li>bitset</li>
+<li>bitutils</li>
+<li>座標圧縮</li>
+<li>debug.nim</li>
+<li>decimal.nim</li>
+<li>サイコロ</li>
+<li>方向(direction.nim)</li>
+<li>floatutils.nim</li>
+<li>無限(inf.nim)</li>
+<li>インタラクティブ用マクロ</li>
+<li>internal関係<ul>
+<li>internal_complex.nim</li>
+<li>internal_sugar.nim</li>
+</ul>
+</li>
+<li>listutils</li>
+<li>読み込み用(reader.nim)</li>
+<li>参照渡し</li>
+<li>seq_array_utils</li>
+<li>sliceutils</li>
+<li>solve関数用マクロ</li>
+<li>special_judge.nim</li>
+<li>static_var.nim</li>
+<li>セイウチ演算子</li>
+<li>zip.nim</li>
+</ul>
+<h2>付録</h2>
+<ul>
+<li><a href="./appendix.html">Appendix / FAQ</a></li>
+</ul>
+<h2>テスト</h2>
+<ul>
+<li><a href="https://atcoder.jp/contests/practice2">こちら</a> で実際にこの Library を使う問題を解いてみることができます。</li>
+</ul>
+<h2>ライセンス</h2>
+<p>ヘッダファイル群(同梱の <code>atcoder</code> フォルダ以下)はCC0ライセンスで公開しています。詳しくは<code>atcoder/LICENSE</code>を参照してください。</p>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Uikit -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
+    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
+    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <!-- Katex -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
+        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
+        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <!-- Ace editor-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+
+    <style>
+        h2 {
+            border-bottom:1px solid #CCC;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(
+                document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false }],
+                ignoredTags: [],
+            })
+            for (e of document.getElementsByClassName("sample-code")) {
+                var editor = ace.edit(e);
+                editor.setOption("maxLines", "Infinity");
+                editor.setReadOnly(true);
+                editor.getSession().setMode("ace/mode/nim");                
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
+        </div>
+    </div>
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1>永続DSU</h1>
+<p>永続配列と同様に、<code>=</code>演算子で、ある時点でのDSUの状態を「コピー」してそれぞれ別のデータ構造として更新が可能です。
+当然中身をすべてコピーしないため、高速です。</p>
+<h2>コンストラクタ</h2>
+<pre><code class="nim">var d = initPersistentDSU[T](sz:int):PersistentDSU
+</code></pre>
+
+<p>$sz$をサイズとするDSUを作成します。通常のDSU同様、最初はすべて独立した状態になっています。</p>
+<h2>merge</h2>
+<pre><code class="nim">d.merge(a, b:int):int
+</code></pre>
+
+<p>通常のDSU同様、辺$(a, b)$を足します。</p>
+<h2>same</h2>
+<pre><code class="nim">a.same(a, b:int):bool
+</code></pre>
+
+<p>通常のDSU同様、頂点$a, b$が連結かどうかを返します</p>
+<h2>leader</h2>
+<pre><code class="nim">d.leader(a:int):int
+</code></pre>
+
+<p>通常のDSU同様、$a$の属する連結成分の代表元を返します</p>
+<h2>DSUのコピー</h2>
+<pre><code class="nim">var d2 = d
+</code></pre>
+
+<p>永続配列同様、<code>=</code>演算子で高速に「コピー」が可能でコピー後に<code>d</code>に対して行う処理は<code>d2</code>には影響しません</p>
+        </div>
+    </section>
+</body>
+
+</html>
