@@ -36,13 +36,12 @@ jobs:
         run: |
           mv document_ja/ src
 
-      #- name: Run tests
-      #  env:
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #    YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
-      #    GH_PAT: ${{ secrets.GH_PAT }}
-      #      #run: oj-verify all
-      #  run: cd src && oj-verify all
+      - name: Run tests
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: cd src && oj-verify all
       
       - name: Copy documents to /docs
         env:

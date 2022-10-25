@@ -26,6 +26,10 @@ ACLにないがよく使いそうなライブラリを独自に実装してい�
 * READMEもできるだけ書く(英訳はできないかも)
 * 将来ACLに実装された場合は順次そちらに置き換える
 
+## ドキュメント
+* ドキュメントはこちらです。
+  * https://zer0-star.github.io/Nim-ACL/document_ja/index.html
+
 ## 使用上の注意
 * 本ライブラリをコンパイルする際にはcppでのコンパイル、つまりnim cppが必要です。atcoderでもcppでコンパイルされています。nim cでは動きません。
 * mathという名前の標準ライブラリがあるので、import atcoder/mathとimport mathはバッティングします。両方importしたい場合は後者をimport std/mathとしましょう。
