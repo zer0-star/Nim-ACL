@@ -34,8 +34,7 @@ jobs:
 
       - name: copy document_ja
         run: |
-          mkdir -p .verify-helper/docs/static/
-          mv document_ja/ .verify-helper/docs/static/
+          mv document_ja/ src
 
       #- name: Run tests
       #  env:
