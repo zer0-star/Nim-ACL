@@ -1,5 +1,6 @@
 when not declared ATCODER_FENWICKTREE_HPP:
   const ATCODER_FENWICKTREE_HPP* = 1
+
   import std/sequtils
   import atcoder/internal_type_traits
   import atcoder/rangeutils
