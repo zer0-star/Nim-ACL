@@ -34,7 +34,6 @@ jobs:
 
       - name: copy document_ja
         run: |
-        #mv src/* ./
           mkdir -p .verify-helper/docs/static/
           mv document_ja/ .verify-helper/docs/static/
 
