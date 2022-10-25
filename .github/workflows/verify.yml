@@ -32,21 +32,21 @@ jobs:
         with:
           nim-version: 1.0.6
 
-        #- name: Run nimble test
-        #  run: nimble test
+      #- name: Run nimble test
+      #  run: nimble test
 
       - run: |
         #mv src/* ./
           mkdir -p .verify-helper/docs/static/
           mv document_ja/ .verify-helper/docs/static/
 
-        #- name: Run tests
-        #  env:
-        #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        #    YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
-        #    GH_PAT: ${{ secrets.GH_PAT }}
-        #      #run: oj-verify all
-        #  run: cd src && oj-verify all
+      #- name: Run tests
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #    YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
+      #    GH_PAT: ${{ secrets.GH_PAT }}
+      #      #run: oj-verify all
+      #  run: cd src && oj-verify all
       
       - name: Copy documents to /docs
         env:
