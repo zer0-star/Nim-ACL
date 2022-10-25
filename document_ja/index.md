@@ -122,6 +122,7 @@ ACLには収録されていないが、使用頻度が高そうなライブラ�
 - 重心分解
 - lowest common ancestor
 - Heavy-Light Decomposition
+- 全方位DP(rerooting): [`import atcoder/extra/tree/rerooting`](./extra/tree/rerooting.html)
 
 ### その他
 - Assignment Operator

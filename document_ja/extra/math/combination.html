@@ -143,6 +143,12 @@ $C, H, R$の定義は高校の教科書などを参考にしてください。</
 <ul>
 <li>ならし$O(r)$</li>
 </ul>
+<h2>データのリセット</h2>
+<pre><code class="nim">T.resetCombination()
+</code></pre>
+
+<p>確保した配列を一度リセットします。dynamic modintなどでmodを変えた場合に一度リセットしてください。
+リセットせず前のmodでの計算結果をベースに呼び出した場合の動作は未定義です。</p>
         </div>
     </section>
 </body>

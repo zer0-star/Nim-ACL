@@ -22,6 +22,10 @@ when not declared ATCODER_REROOTING_HPP:
   proc initReRooting*[T, Weight](V:int, f:proc(a:T, v:int, w:Weight):T, merge:proc(a, b:T):T, mi:T):ReRooting[T, Weight] =
     proc g(a:T, v:int):T = a
     initReRooting[T, Weight](V, f, merge, mi, g)
+  proc initReRooting*[T](V:int, f:proc(a:T, v:int):T, merge:proc(a, b:T):T, mi:T):ReRooting[T, int] =
+    proc f0(a:T, v:int, w:int):T = f(a, v)
+    proc g0(a:T, v:int):T = a
+    initReRootingImpl[T, int](V, f0, merge, mi, g0)
 
   #void read(int idx = 1) {
   #  int a, b;

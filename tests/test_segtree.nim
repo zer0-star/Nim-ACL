@@ -153,3 +153,11 @@ test "SegtreeTest, CompareNaiveBackwards":
 test "SegtreeTest, Assign":
   var seg0:SegTreeType[string](op, e)
   seg0.init(10)
+
+test "SegtreeTest, DifferentLambda":
+  # 異なる無名関数を呼んだときのバグ修正
+  var st = initSegTree[int](10, proc(a, b:int):int = a + b, proc():int = 3)
+  var st2 = initSegTree[int](10, proc(a, b:int):int = a + b, proc():int = 7)
+  check st.calc_e() == 3
+  check st2.calc_e() == 7
+  # 前はst2.calc_e()が3になってしまっていた
