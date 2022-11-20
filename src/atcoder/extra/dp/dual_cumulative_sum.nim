@@ -5,15 +5,22 @@ when not declared ATCODER_DUAL_CUMULATIVE_SUM_HPP:
   type DualCumulativeSum*[T] = object
     pos: int
     data: seq[T]
-
+  proc init*[T](self: var DualCumulativeSum[T], sz:int = 100) = 
+    self.data.setLen(sz)
+    self.data.fill(T(0))
+    self.pos = -1
   proc initDualCumulativeSum*[T](sz:int = 100):DualCumulativeSum[T] =
-    DualCumulativeSum[T](data: newSeqWith(sz, T(0)), pos: -1)
-  proc initDualCumulativeSum*[T](a:seq[T]):DualCumulativeSum[T] =
+    result.init(sz)
+  proc init*[T](self: var DualCumulativeSum[T], a:seq[T]) = 
     var data = a
     data.add(T(0))
     for i in 0..<a.len:
       data[i + 1] -= a[i]
-    return DualCumulativeSum[T](data: data, pos: -1)
+    self.data = data.move()
+    self.pos = -1
+
+  proc initDualCumulativeSum*[T](a:seq[T]):DualCumulativeSum[T] =
+    result.init(a)
   proc add*[T](self: var DualCumulativeSum[T], s:Slice[int], x:T) =
     doAssert self.pos < s.a
     if s.a > s.b: return

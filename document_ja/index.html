@@ -55,10 +55,7 @@
 <h2>インストール方法</h2>
 <ul>
 <li>zipファイルを解凍すると、<code>ac-library</code>フォルダ, そしてその中に<code>atcoder</code>フォルダが入っているはずです。</li>
-<li>g++を使っている場合, <code>atcoder</code>フォルダを<code>main.cpp</code>と同じ場所に置いて、<code>g++ main.cpp -std=c++14 -I .</code>でコンパイルできます。  <ul>
-<li><code>-std=c++14</code>か<code>-std=c++17</code>をつけてコンパイルする必要があります。</li>
-</ul>
-</li>
+<li>g++を使っている場合, <code>atcoder</code>フォルダを<code>main.nim</code>と同じ場所に置いて、<code>nim cpp main.nim --include:.</code>でコンパイルできます。  </li>
 <li>詳しくは <a href="./appendix.html">Appendix</a> を参照してください。</li>
 </ul>
 <h2>お約束</h2>
@@ -138,13 +135,13 @@
 </ul>
 </li>
 <li>形式的べき級数関係<ul>
-<li>形式的べき級数</li>
+<li>形式的べき級数 <a href="./extra/math/formal_power_series.html"><code>import atcoder/extra/math/formal_power_series</code></a></li>
 <li>形式的べき級数(sparse)</li>
 </ul>
 </li>
 <li>行列</li>
 <li>順列・組み合わせ関係<ul>
-<li>コンビネーション(階乗・逆元)<a href="./extra/math/combination.html"><code>import atcode/extra/math/combination</code></a></li>
+<li>コンビネーション(階乗・逆元)<a href="./extra/math/combination.html"><code>import atcoder/extra/math/combination</code></a></li>
 <li>コンビネーションテーブル</li>
 </ul>
 </li>

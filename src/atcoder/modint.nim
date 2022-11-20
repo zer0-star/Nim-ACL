@@ -23,6 +23,7 @@ when not declared ATCODER_MODINT_HPP:
   proc getBarrett*[T:static[int]](t:typedesc[DynamicModInt[T]]):ptr Barrett =
     var Barrett_of_DynamicModInt {.global.} = initBarrett(998244353.uint)
     return Barrett_of_DynamicModInt.addr
+  
   proc getMod*[T:static[int]](t:typedesc[DynamicModInt[T]]):uint32 {.inline.} =
     (t.getBarrett)[].m.uint32
   proc setMod*[T:static[int]](t:typedesc[DynamicModInt[T]], M:SomeInteger){.inline.} =
@@ -90,24 +91,28 @@ when not declared ATCODER_MODINT_HPP:
     if int(m.a) == 0: return m
     else: return T(a:m.umod() - m.a)
 
-  proc `+=`*[T:ModInt](m: var T; n: SomeInteger | T) {.inline.} =
+  proc `+=`*[T:ModInt](m: var T; n: SomeInteger | T):T {.inline discardable.} =
     m.a += T.init(n).a
     if m.a >= T.umod: m.a -= T.umod
+    return m
 
-  proc `-=`*[T:ModInt](m: var T; n: SomeInteger | T) {.inline.} =
+  proc `-=`*[T:ModInt](m: var T; n: SomeInteger | T):T {.inline discardable.} =
     m.a -= T.init(n).a
     if m.a >= T.umod: m.a += T.umod
+    return m
 
-  proc `*=`*[T:ModInt](m: var T; n: SomeInteger | T) {.inline.} =
+  proc `*=`*[T:ModInt](m: var T; n: SomeInteger | T):T {.inline discardable.} =
     when T is StaticModInt:
       m.a = (m.a.uint * T.init(n).a.uint mod T.umod).uint32
     elif T is DynamicModInt:
       m.a = T.getBarrett[].mul(m.a.uint, T.init(n).a.uint).uint32
     else:
       static: assert false
+    return m
 
-  proc `/=`*[T:ModInt](m: var T; n: SomeInteger | T) {.inline.} =
+  proc `/=`*[T:ModInt](m: var T; n: SomeInteger | T):T {.inline discardable.} =
     m.a = (m.a.uint * T.init(n).inv().a.uint mod T.umod).uint32
+    return m
 
   generateDefinitions(`+`, m, n, ModInt, SomeInteger):
     result = T.init(m)
@@ -128,16 +133,20 @@ when not declared ATCODER_MODINT_HPP:
   generateDefinitions(`==`, m, n, ModInt, SomeInteger):
     result = (T.init(m).val() == T.init(n).val())
 
-  proc inc*(m: var ModInt) {.inline.} =
+  proc inc*(m: var ModInt):ModInt {.inline discardable.} =
     m.a.inc
     if m.a == m.umod.uint32:
       m.a = 0
+    return m
+  proc `++`*(m: var ModInt):ModInt {.inline discardable.} = m.inc
 
-  proc dec*(m: var ModInt) {.inline.} =
+  proc dec*(m: var ModInt):ModInt {.inline discardable.} =
     if m.a == 0.uint32:
       m.a = m.umod - 1
     else:
       m.a.dec
+    return m
+  proc `--`*(m: var ModInt):ModInt {.inline discardable.} = m.dec
 
   generatePow(ModInt)
   

@@ -2,10 +2,10 @@ when not declared ATCODER_WARSHALL_FLOYD_HPP:
   const ATCODER_WARSHALL_FLOYD_HPP* = 1
   import std/sequtils
   import atcoder/extra/other/inf
-  type WarshallFloydType*[T] = object
+  type WarshallFloydResult*[T] = object
     dist:seq[seq[T]]
     inter:seq[seq[int]]
-  proc warshallFloyd*[T](dist: seq[seq[T]]): WarshallFloydType[T] =
+  proc warshallFloyd*[T](dist: seq[seq[T]]): WarshallFloydResult[T] =
     let N = dist.len
     var dist = dist
     var inter = newSeqWith(N, newSeqWith(N, -1))
@@ -20,7 +20,7 @@ when not declared ATCODER_WARSHALL_FLOYD_HPP:
     result.dist = dist
     result.inter = inter
 
-  proc path*[T](self: WarshallFloydType[T], s, t:int):seq[int] =
+  proc path*[T](self: WarshallFloydResult[T], s, t:int):seq[int] =
     var path = newSeq[int]()
     proc buildPath(s, t:int) =
       let u = self.inter[s][t]
@@ -30,5 +30,5 @@ when not declared ATCODER_WARSHALL_FLOYD_HPP:
     path.add(t)
     return path
 
-  proc `[]`*[T](self: WarshallFloydType[T], u:int):seq[T] = self.dist[u]
-  proc `[]`*[T](self: WarshallFloydType[T], s, t:int):T = self.dist[s][t]
+  proc `[]`*[T](self: WarshallFloydResult[T], u:int):seq[T] = self.dist[u]
+  proc `[]`*[T](self: WarshallFloydResult[T], s, t:int):T = self.dist[s][t]

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Uikit -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
+    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
+    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <!-- Katex -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
+        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
+        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <!-- Ace editor-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+
+    <style>
+        h2 {
+            border-bottom:1px solid #CCC;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(
+                document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false }],
+                ignoredTags: [],
+            })
+            for (e of document.getElementsByClassName("sample-code")) {
+                var editor = ace.edit(e);
+                editor.setOption("maxLines", "Infinity");
+                editor.setReadOnly(true);
+                editor.getSession().setMode("ace/mode/nim");                
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
+        </div>
+    </div>
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1>ベルマンフォード法</h1>
+<p>重みが任意のグラフの単一始点最短距離を計算します。</p>
+<pre><code class="nim">var d = bellman_ford(g:Graph, s:U or seq[U])
+</code></pre>
+
+<p>グラフ$g$の頂点$s$を始点とするベルマンフォード法を実行。
+$s$はseqでも指定することができます。その場合は複数始点($s$の元はすべて距離0)で実行できます。
+$d$は内部的にはBellmanFordResultというobjectで渡されていて、下記のような呼び出しが可能である。</p>
+<h2>距離の取得</h2>
+<pre><code class="nim">d[u:int]:T
+</code></pre>
+
+<p>$s$から$u$までの距離を返します。</p>
+<h2>直前ノードの取得</h2>
+<pre><code class="nim">d.prev(u):U
+</code></pre>
+
+<p>$s$から$u$までの最短経路上で$u$の前のノード(の1つ)を返します。</p>
+<h2>最短経路の取得</h2>
+<pre><code class="nim">d.path(t:int):seq[int]
+</code></pre>
+
+<p>頂点$t$までの最短経路を取得。
+戻り値は$s$で始まり$t$で終わるノード列となる。(Edge[T]で返すべきか。。。)</p>
+<p><strong>制約</strong></p>
+<ul>
+<li>$0 \leq n \leq 10^8$</li>
+</ul>
+<p><strong>計算量</strong></p>
+<p>追加した辺の本数を $m$ として
+- $O(n * m)$だと思う(たぶん)</p>
+        </div>
+    </section>
+</body>
+
+</html>

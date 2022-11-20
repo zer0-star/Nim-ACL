@@ -3,8 +3,7 @@
 ## インストール方法
 
 - zipファイルを解凍すると、`ac-library`フォルダ, そしてその中に`atcoder`フォルダが入っているはずです。
-- g++を使っている場合, `atcoder`フォルダを`main.cpp`と同じ場所に置いて、`g++ main.cpp -std=c++14 -I .`でコンパイルできます。  
-  - `-std=c++14`か`-std=c++17`をつけてコンパイルする必要があります。
+- g++を使っている場合, `atcoder`フォルダを`main.nim`と同じ場所に置いて、`nim cpp main.nim --include:.`でコンパイルできます。  
 - 詳しくは [Appendix](./appendix.html) を参照してください。
 
 ## お約束
@@ -77,11 +76,11 @@ ACLには収録されていないが、使用頻度が高そうなライブラ�
   - NTT
   - bitwise畳み込み
 - 形式的べき級数関係
-  - 形式的べき級数
+  - 形式的べき級数 [`import atcoder/extra/math/formal_power_series`](./extra/math/formal_power_series.html)
   - 形式的べき級数(sparse)
 - 行列
 - 順列・組み合わせ関係
-  - コンビネーション(階乗・逆元)[`import atcode/extra/math/combination`](./extra/math/combination.html)
+  - コンビネーション(階乗・逆元)[`import atcoder/extra/math/combination`](./extra/math/combination.html)
   - コンビネーションテーブル
 - 進数変換
 - 大きな数の階乗

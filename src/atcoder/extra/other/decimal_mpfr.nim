@@ -100,6 +100,7 @@ proc mpfr_cmp*(op1, op2: mpfr_t): cint {.importc.}
 proc mpfr_cmp_d*(op1: mpfr_t, op2: cdouble): cint {.importc.}
 
 # funcs
+proc mpfr_abs*(rop, op: mpfr_t, rnd: mpfr_rnd_t): cint {.importc.}
 proc mpfr_sqrt*(rop, op: mpfr_t, rnd: mpfr_rnd_t): cint {.importc.}
 proc mpfr_rootn_ui*(rop, op: mpfr_t, n: culong, rnd: mpfr_rnd_t): cint {.importc.} # x ^ y
 proc mpfr_fac_ui*(rop: mpfr_t, op: culong, rnd: mpfr_rnd_t): cint {.importc.}
@@ -171,6 +172,9 @@ proc newMpfr*(): mpfr =
 #  if a.is_notinit(): a = newMpfr()
 #  a.set b
 # 代わりにコピーするときはcloneをつけよう
+proc `=`*(a:var mpfr, b:mpfr) =
+  a = newMpfr()
+  a.set b
 proc clone*(x: mpfr):mpfr =
   result = newMpfr()
   result.set x
@@ -183,11 +187,15 @@ proc set_prec*(x: var mpfr, prec: int) = mpfr_set_prec(x, prec.mpfr_prec_t)
 
 proc get_exp_range*: (int, int) = (mpfr_get_emin().int, mpfr_get_emax().int)
 
-converter itom*(i: int): mpfr = result = newMpfr(); discard mpfr_set_si(result,i.clong, mpfr_rand)
-converter ftom*(f: float): mpfr = result = newMpfr(); discard mpfr_set_d(result,
+proc itom*(i: int): mpfr = result = newMpfr(); discard mpfr_set_si(result,i.clong, mpfr_rand)
+proc ftom*(f: float): mpfr = result = newMpfr(); discard mpfr_set_d(result,
     f.cdouble, mpfr_rand)
-converter stom*(s: string): mpfr = result = newMpfr(); discard mpfr_set_str(
+proc stom*(s: string): mpfr = result = newMpfr(); discard mpfr_set_str(
     result, s.cstring, 10, mpfr_rand)
+
+converter toMpfr*(i:int):mpfr = i.itom
+converter toMpfr*(f:float):mpfr = f.ftom
+converter toMpfr*(s:string):mpfr = s.stom
 #converter mtof*(x: mpfr): float = mpfr_get_d(x, mpfr_rand).float
 #converter mtof32*(x: mpfr): float32 = mpfr_get_flt(x, mpfr_rand).float32
 
@@ -290,6 +298,7 @@ proc `<`*(x: mpfr, y: string): bool = mpfr_cmp(x, y.stom) < 0
 proc `!`*(n: uint): mpfr = result = newMpfr(); discard mpfr_fac_ui(result,
     n.culong, mpfr_rand)
 proc sqrt*(x: mpfr): mpfr = result = newMpfr(); discard mpfr_sqrt(result, x, mpfr_rand)
+proc abs*(x: mpfr): mpfr = result = newMpfr(); discard mpfr_abs(result, x, mpfr_rand)
 proc root*(x: mpfr, n: int): mpfr = result = newMpfr(); discard mpfr_rootn_ui(
     result, x, n.culong, mpfr_rand)
 proc arctan2*(y, x: mpfr): mpfr = result = newMpfr(); discard mpfr_atan2(result,
@@ -309,17 +318,21 @@ proc sign*(x: mpfr): cint = mpfr_signbit(x)
 # consts
 proc log2*(): mpfr = result = newMpfr(); discard mpfr_const_log2(result, mpfr_rand)
 #proc e*(): mpfr = result = newMpfr(); discard mpfr_const_euler(result, mpfr_rand)
-proc e*(): mpfr = exp(mpfr(1))
+proc e*(): mpfr = exp(1.itom)
 proc catalan*(): mpfr = result = newMpfr(); discard mpfr_const_catalan(result, mpfr_rand)
 proc pi*(): mpfr = result = newMpfr(); discard mpfr_const_pi(result, mpfr_rand)
 
+proc half*():mpfr = 1.itom / 2.itom
+
 proc machine_epsilon*(): mpfr =
   var
-    l = mpfr(0)
-    r = mpfr(1)
-    one = mpfr(1)
+    l = 0.itom
+    r = 1.itom
+  let
+    one = 1.itom
+    half = half()
   while l < r:
-    let m = (l + r) / mpfr(2)
+    let m = (l + r) * half
     let prev_d = r - l
     if one + m == one:
       l = m
@@ -381,7 +394,7 @@ proc pown*(z: cmpfr, n: int): cmpfr =
 
 proc pow*(z: cmpfr, n: int): cmpfr =
   let
-    rn = z.abs().pow(n)
+    rn = z.abs().pow(n.itom)
     na = z.arg() * n.itom
   cmpfr(re: rn * cos(na), im: rn * sin(na))
 
@@ -389,18 +402,18 @@ proc pow*(s, z: cmpfr): cmpfr = # s^z
   let
     c = z.re
     d = z.im
-    m = pow(s.sqmag, c/mpfr(2)) * exp(-d * s.arg)
-    half = mpfr(1) / mpfr(2)
+    m = pow(s.sqmag, c/2.itom) * exp(-d * s.arg)
+    half = half()
     theta = c * s.arg + half * d * log(s.sqmag)
   result = cmpfr(re: m * cos(theta), im: m * sin(theta))
 
 proc sqrt*(z: cmpfr): cmpfr =
   let a = z.abs()
-  let half = mpfr(1) / mpfr(2)
+  let half = half()
   cmpfr(re: sqrt((a+z.re) * half), im: sqrt((a-z.re) * half) * sign(z.im).float)
 
 proc log*(z: cmpfr): cmpfr = cmpfr(re: z.abs.log, im: z.arg)
-proc exp*(z: cmpfr): cmpfr = cmpfr(re: e(), im: mpfr(0)).pow(z)
+proc exp*(z: cmpfr): cmpfr = cmpfr(re: e(), im: 0.itom).pow(z)
 
 proc cosh*(z: cmpfr): cmpfr = cmpfr(re: cosh(z.re) * cos(z.im), im: sinh(z.re) * sin(z.im))
 proc sinh*(z: cmpfr): cmpfr = cmpfr(re: sinh(z.re) * cos(z.im), im: cosh(z.re) * sin(z.im))
@@ -411,7 +424,7 @@ proc cos*(z: cmpfr): cmpfr = cmpfr(re: cos(z.re) * cosh(z.im), im: -sin(z.re) *
 proc tan*(z: cmpfr): cmpfr = z.sin()/z.cos()
 
 proc arcsinh*(z: cmpfr): cmpfr =
-  let t = cmpfr(re: (z.re-z.im) * (z.re+z.im)+mpfr(1), im: mpfr(2)*z.re*z.im).sqrt
+  let t = cmpfr(re: (z.re-z.im) * (z.re+z.im)+1.itom, im: 2.itom*z.re*z.im).sqrt
   (t + z).log
 
 proc arcsin*(z: cmpfr): cmpfr =
@@ -423,17 +436,17 @@ proc arccos*(z: cmpfr): cmpfr =
   let
     t = z.arcsin()
     #pi_2 = 1.7514
-    pi_2 = pi() / mpfr(2)
+    pi_2 = pi() / 2.itom
   cmpfr(re: pi_2 - t.re, im: -t.im)
 
 proc arctan*(z: cmpfr): cmpfr =
   let 
-    half = mpfr(1) / mpfr(2)
+    half = half()
     quarter = half * half
   cmpfr(
-    re: half * arctan2(mpfr(2)*z.re, mpfr(1) - z.re*z.re - z.im*z.im),
-    im: quarter * log((z.re*z.re + (z.im+mpfr(1))*(z.im+mpfr(1))) / (z.re*z.re + (
-        z.im-mpfr(1))*(z.im-mpfr(1))))
+    re: half * arctan2(2.itom*z.re, 1.itom - z.re*z.re - z.im*z.im),
+    im: quarter * log((z.re*z.re + (z.im+1.itom)*(z.im+1.itom)) / (z.re*z.re + (
+        z.im-1.itom)*(z.im-1.itom)))
   )
 
 proc calcPi*[Real]():Real =

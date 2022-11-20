@@ -1,26 +1,44 @@
 when not declared ATCODER_BITSET_HPP:
   const ATCODER_BITSET_HPP* = 1
-  import strutils, sequtils, algorithm, bitops
+  import std/strutils, std/sequtils, std/algorithm, std/bitops, std/math
   import atcoder/extra/other/bitutils
   
   const BitWidth = 64
   
   # bitset
   type BitSet*[N:static[int]] = object
-    data: array[(N + BitWidth - 1) div BitWidth, uint64]
-  
-  proc initBitSet*[N:static[int]](): BitSet[N] =
+    data*: array[(N + BitWidth - 1) div BitWidth, uint64]
+
+  {.push experimental: "callOperator".}
+  type initBitSetType = object
+  var initBitSet*: initBitSetType
+  type initBitSetTypeN[N:static[int]] = object
+  template `[]`*(t:initBitSetType, N:static[int]):auto =
+    var u = initBitSetTypeN[N]()
+    u
+  proc `()`*[N:static[int]](self:initBitSetTypeN[N]):BitSet[N] =
     discard
-  proc initBitSet1*[N:static[int]](): BitSet[N] =
+  proc `()`*[N:static[int]](self:initBitSetTypeN[N], b:SomeInteger):BitSet[N] =
+    result.data[0] = b.uint64
+  {.pop.}
+  #proc initBitSet*(N:static[int]): BitSet[N] =
+  #  discard
+  #proc initBitSet*(N:static[int], b:uint64): BitSet[N] =
+  #  result.data[0] = b.uint64
+
+  proc initBitSet1*(N:static[int]): BitSet[N] =
     result = initBitSet(N)
     let
       q = N div BitWidth
       r = N mod BitWidth
     for i in 0..<q:result.data[i] = (not 0'u64)
     if r > 0:result.data[q] = ((1'u64 shl uint64(r)) - 1)
-  proc init*[N:static[int]](self: BitSet[N]):BitSet[N] = initBitSet[N]()
-  proc init1*[N:static[int]](self: BitSet[N]):BitSet[N] = initBitSet1[N]()
-  proc getSize*[N:static[int]](self: BitSet[N]):int = N
+
+  proc init*[N:static[int]](self: BitSet[N] or typedesc[BitSet[N]]):BitSet[N] = initBitSet[N]()
+  # TODO: qがN桁より大きいとき
+  proc init*[N:static[int]](self: BitSet[N] or typedesc[BitSet[N]], q:SomeInteger):BitSet[N] = initBitSet[N](q)
+  proc init1*[N:static[int]](self: BitSet[N] or typedesc[BitSet[N]]):BitSet[N] = initBitSet1(N)
+  proc getSize*[N:static[int]](self: BitSet[N] or typedesc[BitSet[N]]):int = N
 
   # dynamic bitset
   type DynamicBitSet* = object
@@ -96,6 +114,22 @@ when not declared ATCODER_BITSET_HPP:
   proc count*(a: SomeBitSet): int =
     result = 0
     for i in 0 ..< a.data.len: result += a.data[i].popCount
+  proc firstSetBit*(a: SomeBitSet):int =
+    var b = 0
+    for i in 0 ..< a.data.len:
+      let f = firstSetBit(a.data[i])
+      if f != BitWidth: return b + f
+      b += BitWidth
+    return a.N
+  proc fastLog2*(a:SomeBitSet):int =
+    var
+      b = 0
+      ans = -1
+    for i in 0 ..< a.data.len:
+      if a.data[i] != 0:
+        ans = b + fastLog2(a.data[i])
+      b += BitWidth
+    return ans
 
   proc `[]`*(b:SomeBitSet,n:int):int =
     let N = b.getSize()
@@ -106,8 +140,8 @@ when not declared ATCODER_BITSET_HPP:
     return b.data[q][r].int
   proc `[]=`*(b:var SomeBitSet, n:int, t:int) =
     let N = b.getSize()
-    assert 0 <= n and n < N
-    assert t == 0 or t == 1
+    assert n in 0 ..< N
+    assert t in 0 .. 1
     let
       q = n div BitWidth
       r = n mod BitWidth
@@ -115,20 +149,22 @@ when not declared ATCODER_BITSET_HPP:
   
   proc `shl`*(a: SomeBitSet, n:int): auto =
     result = a.init()
-    var r = int(n mod BitWidth)
-    if r < 0: r += BitWidth
+    var r = floormod(n, BitWidth).int
     let q = (n - r) div BitWidth
     let maskl = allSetBits[uint64](BitWidth - r)
+
     for i in 0..<a.data.len:
       let d = (a.data[i] and maskl) shl uint64(r)
       let i2 = i + q
-      if 0 <= i2 and i2 < a.data.len: result.data[i2] = result.data[i2] or d
+      if i2 in 0 ..< a.data.len:
+        result.data[i2] = result.data[i2] or d
     if r != 0:
       let maskr = allSetBits[uint64](r) shl uint64(BitWidth - r)
       for i in 0..<a.data.len:
         let d = (a.data[i] and maskr) shr uint64(BitWidth - r)
         let i2 = i + q + 1
-        if 0 <= i2 and i2 < a.data.len: result.data[i2] = result.data[i2] or d
+        if i2 in 0 ..< a.data.len:
+          result.data[i2] = result.data[i2] or d
     block:
       let r = a.getSize() mod BitWidth
       if r != 0:

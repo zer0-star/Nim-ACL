@@ -5,4 +5,5 @@ if [ $? -ne 0 ]; then
   echo "compile error"
   exit 1
 fi
+echo "compile succeeded"
 /tmp/nim_main_test

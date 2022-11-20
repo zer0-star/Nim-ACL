@@ -38,10 +38,7 @@ when not declared ATCODER_BITUTILS_HPP:
     result = ""
     for i in countdown(n-1,0):result.add if b[i] == 1: '1' else: '0'
   proc allSetBits*[B:SomeInteger](n:int):B =
-    if n == 64:
-      return not uint64(0)
-    else:
-      return (B(1) shl B(n)) - B(1)
+    return (not B(0)) shr (8 * sizeof(B) - n)
   iterator subsets*(v:seq[int], B:typedesc[SomeInteger] = int):B =
     var s = B(0)
     yield s

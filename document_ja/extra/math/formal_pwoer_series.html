@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Uikit -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
+    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
+    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <!-- Katex -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
+        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
+        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <!-- Ace editor-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+
+    <style>
+        h2 {
+            border-bottom:1px solid #CCC;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(
+                document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false }],
+                ignoredTags: [],
+            })
+            for (e of document.getElementsByClassName("sample-code")) {
+                var editor = ace.edit(e);
+                editor.setOption("maxLines", "Infinity");
+                editor.setReadOnly(true);
+                editor.getSession().setMode("ace/mode/nim");                
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
+        </div>
+    </div>
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1>形式的べき級数ライブラリ</h1>
+<p>形式的べき級数を扱うライブラリです。加減乗除や逆元、exp, logなどが計算できます。
+形式的べき級数については<a href="https://trap.jp/post/1657/">https://trap.jp/post/1657/</a>を参照してください。</p>
+<h2>importのしかた</h2>
+<p>形式的べき級数ライブラリを使うためには畳み込みを指定する必要があります。</p>
+<pre><code class="nim">import atcoder/extra/math/ntt
+import atcoder/extra/math/formal_power_series
+</code></pre>
+
+<p>modint等の有限modを用いる場合は畳み込み用にnttを用います。</p>
+<pre><code class="nim">import atcoder/extra/math/fft
+import atcoder/extra/math/formal_power_series
+</code></pre>
+
+<p>float, Decimal等の浮動小数を用いる場合はFFTをimportします。(この使い方はatcoderで出現することが少なくあまり検証されていないかも)</p>
+<h2>形式的べき級数の宣言</h2>
+<pre><code class="nim">var f = initFormalPowerSeries[T](n:int)
+</code></pre>
+
+<p>$T$型で$n$項の形式的べき級数を作成します。すべての項は$T(0)$で初期化されます。</p>
+<pre><code class="nim">var f = initFormalPowerSeries[T](a:seq[S] or array[S])
+</code></pre>
+
+<p>$T$型で配列(可変のseqまたは固定のarray)$a$に対応する形式的べき級数を作成します。つまり、$a=(a_1,a_2, \ldots ,a_n)$のときは
+$f = \sum_{i=0}^n a_ix^i$となります。</p>
+<h1>種々の処理</h1>
+<p>以下の処理のいずれでも引数の最後にdegを指定することでdeg項まで求めることができます。指定しなかった場合は引数と同じ項数になります。</p>
+<h2>加減乗除</h2>
+<pre><code class="nim">f, g:FormalPowerSeries[T]
+f += g
+f + g: FormalPowerSeries[T]
+f -= g
+f - g: FormalPowerSeries[T]
+f *= g
+f * g: FormalPowerSeries[T]
+f / g
+f /= g: FormalPowerSeries[T]
+</code></pre>
+
+<p>加減乗除が可能です。</p>
+<p><strong>計算量</strong></p>
+<ul>
+<li>加算・減算: $O(n)$</li>
+<li>乗算・除算: $O(n \log n)$</li>
+</ul>
+<h2>log, シフト, pre</h2>
+<pre><code class="nim">f: FormalPowerSeries[T]
+log(f): FormalPowerSeries[T]
+log(f, deg): FormalPowerSeries[T]
+shl(f, sz:int)
+shr(f, sz:int)
+pre(f, sz:int)
+</code></pre>
+
+<p>log, シフト, preを行います。</p>
+<h2>逆元・exp・べき乗</h2>
+<pre><code class="nim">f: FormalPowerSeries[T]
+inv(f): FormalPowerSeries[T]
+inv(f, deg:int): FormalPowerSeries[T]
+exp(f): FormalPowerSeries[T]
+exp(f, deg: int): FormalPowerSeries[T]
+k:int
+pow(f, k):FormalPowerSeries[T]
+pow(f, k, deg):FormalPowerSeries[T]
+</code></pre>
+
+<p>逆元・expを計算します。逆元は$f*g=1$となる$g$, expは
+$$
+exp(f) = \sum_{i=0}^\infty \frac{x^i}{i!}
+$$
+です。べき乗は$f$を$k$回書けたものとなります。</p>
+<p><strong>計算量</strong>
+- $O(n\log n)$</p>
+<h2>微分・積分</h2>
+<pre><code class="nim">f: FormalPowerSeries[T]
+diff(f)
+integral(f)
+</code></pre>
+
+<p>微分と積分をします。</p>
+<h2>割り算</h2>
+<pre><code class="nim">f, g:FormalPowerSeries[T]
+f div g
+f.div=g
+f mod g
+f.mod=g
+</code></pre>
+
+<p>多項式としての割り算を行い商やあまりを求めます</p>
+<pre><code class="nim">powMod(f, n:int, g)
+</code></pre>
+
+<p>$f^n$を$g$で割ったあまりを求めます</p>
+        </div>
+    </section>
+</body>
+
+</html>

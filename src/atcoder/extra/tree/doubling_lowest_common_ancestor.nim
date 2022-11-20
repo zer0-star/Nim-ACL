@@ -44,3 +44,7 @@ when not declared ATCODER_LOWEST_COMMON_ANCESTOR_DOUBLING:
         u = self.table[i][u]
         v = self.table[i][v]
     return self.table[0][u]
+  
+  proc dist*[T](self: DoublingLowestCommonAncestor[T], u, v:int):int =
+    let w = self.lca(u, v)
+    return self.dep[u] + self.dep[v] - self.dep[w] * 2
