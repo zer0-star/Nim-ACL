@@ -65,7 +65,6 @@ def main():
     """
     td = tempfile.TemporaryDirectory()
     lib_tmp = Path(td.name)
-    print(lib_tmp)
     lib_path = Path(__file__).parent.resolve()
     basicConfig(
         format="%(asctime)s [%(levelname)s] %(message)s",
