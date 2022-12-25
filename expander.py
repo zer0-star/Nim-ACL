@@ -268,7 +268,7 @@ static:
 
     output = (outputPrefix + '\n\n' + '\n'.join(result) + '\n').encode() + outputSuffix
     if opts.console:
-        print(output)
+        print(output.decode())
     else:
         #with open('combined.nim', 'w', encoding="utf8", errors='ignore') as f:
         with open('combined.nim', 'wb') as f:
