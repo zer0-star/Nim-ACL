@@ -1,17 +1,17 @@
 when not declared ATCODER_CHAEMON_HEADER_HPP:
   const ATCODER_CHAEMON_HEADER_HPP* = 1
 
-  {.hints:off warnings:off assertions:on optimization:speed.}
+  {.hints: off warnings: off assertions: on optimization: speed.}
   when declared(DO_CHECK):
     when DO_CHECK:
       static: echo "check is on"
-      {.checks:on.}
+      {.checks: on.}
     else:
       static: echo "check is off"
-      {.checks:off.}
+      {.checks: off.}
   else:
     static: echo "check is on"
-    {.checks:on.}
+    {.checks: on.}
 
   import std/algorithm as algorithm_lib
   import std/sequtils as sequtils_lib
@@ -53,15 +53,25 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   # converter toBool[T:ref object](x:T):bool = x != nil
   # converter toBool[T](x:T):bool = x != T(0)
   # misc
-  proc `<`[T](a, b:seq[T]):bool =
+  proc `<`[T](a, b: seq[T]): bool =
     for i in 0 ..< min(a.len, b.len):
       if a[i] < b[i]: return true
       elif a[i] > b[i]: return false
     if a.len < b.len: return true
     else: return false
 
-  proc `pred`[T:SomeInteger](a:seq[T]):seq[T] = a.mapIt(it - 1)
-  proc `succ`[T:SomeInteger](a:seq[T]):seq[T] = a.mapIt(it + 1)
-  proc `-`(a, b:char):int = a.ord - b.ord
-  proc `+`(a:char, b:int):char = (a.ord + b).chr
-  proc `-`(a:char, b:int):char = (a.ord - b).chr
+  proc `pred`*[T: SomeInteger](a: seq[T]): seq[T] = a.mapIt(it - 1)
+  proc `succ`*[T: SomeInteger](a: seq[T]): seq[T] = a.mapIt(it + 1)
+  macro `Pred`*(a: varargs[untyped]): auto =
+    result = newStmtList()
+    for a in a:
+      result.add quote do:
+        var `a` = pred(`a`)
+  macro `Succ`*(a: varargs[untyped]): auto =
+    result = newStmtList()
+    for a in a:
+      result.add quote do:
+        var `a` = succ(`a`)
+  proc `-`(a, b: char): int = a.ord - b.ord
+  proc `+`(a: char, b: int): char = (a.ord + b).chr
+  proc `-`(a: char, b: int): char = (a.ord - b).chr

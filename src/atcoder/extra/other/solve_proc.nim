@@ -40,7 +40,9 @@ when not declared ATCODER_SOLVEPROC_HPP:
           resultPointer[] &= $s
           when output_stdout: stdout.write $s
         resultPointer[] &= "\n"
-        when output_stdout: stdout.write "\n"
+        when output_stdout:
+          stdout.write "\n"
+          # flushFile(stdout)
 
   macro solveProc*(head, body:untyped):untyped =
     var prev_type:NimNode

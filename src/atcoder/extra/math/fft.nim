@@ -1,4 +1,3 @@
-#{{{ FastFourierTransform
 when not declared ATCODER_FFT_HPP:
   const ATCODER_FFT_HPP* = 1
 
@@ -121,4 +120,3 @@ when not declared ATCODER_FFT_HPP:
     r = ifft(dot(a.fft(), b.fft(), T), T)
     r.setLen(n + m - 1)
     return r.mapIt(it.T)
-#}}}

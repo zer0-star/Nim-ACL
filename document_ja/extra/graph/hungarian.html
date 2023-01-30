@@ -51,34 +51,21 @@
     </div>
     <section class="uk-section">
         <div class="uk-container">
-            <h1>ワーシャル・フロイト法</h1>
-<p>重みが任意のグラフの全頂点間最短距離を計算します。</p>
-<pre><code class="nim">var d = warshall_floyd[T](g:seq[seq[T]])
+            <h1>ハンガリアン法</h1>
+<p>割当問題をハンガリアンで解きます</p>
+<pre><code class="nim">var (ans, p) = hungarian[T](a:seq[seq[T]]):(T, seq[int])
 </code></pre>
 
-<p>距離を表す2次元配列$g$のワーシャルフロイト法を実行します。$g[i][j]$には$i\to j$の距離を表します。
-$d$は内部的にはWarshallFloydResultというobjectで渡されていて、下記のような呼び出しが可能です。</p>
-<h2>距離の取得</h2>
-<pre><code class="nim">d[s:int]:seq[T]
-</code></pre>
-
-<p>$s$からの距離の配列を返します。</p>
-<pre><code class="nim">d[s, t:int]:T
-</code></pre>
-
-<p>$s$から$t$への距離を返します</p>
-<h2>パスの取得</h2>
-<pre><code class="nim">d.path(s, t)
-</code></pre>
-
-<p>$s$から$t$までの最短経路パスを返します</p>
+<p>$N$人の人と$N$個の仕事があり、それぞれ$0,1,\ldots,N-1$の番号が与えられていて、各人に1つの仕事を与えることを考えます。
+<code>a[i][j]</code>に人$i$が仕事$j$を行ったときのパフォーマンスを入力しパフォーマンスの合計を最大化します。
+上記のように呼び出すことで<code>ans</code>にパフォーマンスの最大値、<code>p[i]</code>に人$i$に与えるべき仕事の番号を表します。</p>
 <p><strong>制約</strong></p>
 <ul>
-<li>$0 \leq n \leq 10^8$</li>
+<li>$0 \leq N \leq 10^8$</li>
 </ul>
 <p><strong>計算量</strong></p>
 <ul>
-<li>$O(n^3)$</li>
+<li>$O(N^3)$</li>
 </ul>
         </div>
     </section>

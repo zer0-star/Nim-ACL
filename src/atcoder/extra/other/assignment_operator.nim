@@ -16,6 +16,6 @@ when not declared ATCODER_ASSIGNMENT_OPERATOR_HPP:
       var op_raw = op
       if op_raw[0] == '`':
         op_raw = op_raw[1..^2]
-      strBody &= fmt"""proc `{op_raw}=`*[S, T](a:var S, b:T):auto {{.inline discardable.}} = (mixin {op};a = `{op_raw}`(a, b);return a){'\n'}"""
+      strBody &= fmt"""proc `{op_raw}=`*[S:SomeInteger, T:SomeInteger](a:var S, b:T):auto {{.inline discardable.}} = (mixin {op};a = `{op_raw}`(a, b);return a){'\n'}"""
     parseStmt(strBody)
   generateAssignmentOperator(`mod`, `div`, `and`, `or`, `xor`, `shr`, `shl`, `<<`, `>>`, `%`, `//`, `&`, `|`, `^`)

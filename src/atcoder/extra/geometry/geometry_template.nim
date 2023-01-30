@@ -9,7 +9,10 @@ when not declared ATCODER_GEOMETRY_TEMPLATE_HPP:
   type Point*[Real] = Complex[Real]
   
   #proc initPoint(re:float, im:float):Point = Point(re:re, im:im)
-  proc initPoint*[Real](re, im:Real):Point[Real] = Point[Real](re:re.Real, im:im.Real)
+  #proc initPoint*[Real](re, im:Real):Point[Real] = Point[Real](re:re.Real, im:im.Real)
+  proc initPoint*[Real](re, im:Real):Point[Real] = Point[Real](re:Real(re), im:Real(im))
+  proc initPoint*[Real; S: not Real, T](re:S, im:T):Point[Real] = Point[Real](re:Real(re), im:Real(im))
+  proc initPoint*[Real; T: not Real](re:Real, im:T):Point[Real] = Point[Real](re:Real(re), im:Real(im))
   #converter toPoint*[Real](p:(Real, Real)):Point[Real] = initPoint(p[0], p[1])
   #proc nextPoint():Point = return initPoint(nextFloat(), nextFloat())
   

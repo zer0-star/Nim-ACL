@@ -8,7 +8,7 @@ when not declared ATCODER_ROLLING_HASH_HPP:
   const base* = 1000000007'u
   
   type RH_Base*[Mod:static[uint], base:static[uint]] = object
-    h:uint
+    h*:uint
   
   type RH* = RH_Base[(1'u shl 61) - 1, base]
   

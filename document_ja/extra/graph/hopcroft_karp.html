@@ -51,34 +51,44 @@
     </div>
     <section class="uk-section">
         <div class="uk-container">
-            <h1>ワーシャル・フロイト法</h1>
-<p>重みが任意のグラフの全頂点間最短距離を計算します。</p>
-<pre><code class="nim">var d = warshall_floyd[T](g:seq[seq[T]])
+            <h1>二部グラフの最大マッチング・最小頂点被覆</h1>
+<p>Hopcroft-Karp法によって二部グラフの最大マッチングを求めます。</p>
+<pre><code class="nim">var a = initHopcroftKarp(n, m:int)
 </code></pre>
 
-<p>距離を表す2次元配列$g$のワーシャルフロイト法を実行します。$g[i][j]$には$i\to j$の距離を表します。
-$d$は内部的にはWarshallFloydResultというobjectで渡されていて、下記のような呼び出しが可能です。</p>
-<h2>距離の取得</h2>
-<pre><code class="nim">d[s:int]:seq[T]
+<p>二部グラフの左側の頂点数を$n$, 右側の頂点数を$m$としたグラフを作ります。</p>
+<h1>頂点の追加</h1>
+<pre><code class="nim">a.addEdge(u, v:int)
 </code></pre>
 
-<p>$s$からの距離の配列を返します。</p>
-<pre><code class="nim">d[s, t:int]:T
+<p>左の頂点$u$と右の頂点$v$を結ぶ辺を追加します。</p>
+<h1>最大マッチング</h1>
+<pre><code class="nim">a.maximum_maching():seq[(int, int)]
 </code></pre>
 
-<p>$s$から$t$への距離を返します</p>
-<h2>パスの取得</h2>
-<pre><code class="nim">d.path(s, t)
+<p>最大マッチングの一例を表すタプルの配列を返します</p>
+<h1>最小頂点被覆</h1>
+<pre><code class="nim">a.minimum_vertex_cover():(seq[int], seq[int])
 </code></pre>
 
-<p>$s$から$t$までの最短経路パスを返します</p>
+<p>最小頂点被覆、すなわち頂点集合$S$であってどの辺をとってもいずれかの端点が$S$に含まれるようなものの最小の頂点集合を返します。返り値の1つめの要素は最小頂点被覆に選ぶべき左の頂点集合、2つめの要素は右の頂点集合です。</p>
+<h1>最小独立集合</h1>
+<pre><code class="nim">a.minimum_stable_set():(seq[int], seq[int])
+</code></pre>
+
+<p>最小独立集合、すなわち頂点の集合であって任意の2つの頂点が辺で結ばれていない最小のものを返します。</p>
+<h1>最小辺被覆</h1>
+<pre><code class="nim">a.minimum_edge_cover():seq[(int, int)]
+</code></pre>
+
+<p>最小辺被覆、すなわち辺の集合$S$であって、どの頂点をとっても$S$のいずれかの端点になっているようなものの最小のものを返します。</p>
 <p><strong>制約</strong></p>
 <ul>
-<li>$0 \leq n \leq 10^8$</li>
+<li>$0 \leq n, m \leq 10^8$</li>
 </ul>
 <p><strong>計算量</strong></p>
 <ul>
-<li>$O(n^3)$</li>
+<li>頂点数を$V$, 辺数を$E$として$O(E\sqrt(V))$</li>
 </ul>
         </div>
     </section>

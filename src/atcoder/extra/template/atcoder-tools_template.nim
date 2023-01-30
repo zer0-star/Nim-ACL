@@ -18,7 +18,6 @@ import atcoder/modint
 const MOD = {{ mod }}
 type mint = modint{{ mod }}
 {% endif %}
-
 {% if prediction_success %}
 solveProc solve({{formal_arguments}}):
   discard

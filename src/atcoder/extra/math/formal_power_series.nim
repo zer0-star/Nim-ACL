@@ -7,6 +7,13 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
   type FormalPowerSeries*[T:FieldElem] = seq[T]
   type Poly*[T:FieldElem] = FormalPowerSeries[T]
 
+
+  template hasFFT*(T:typedesc):bool =
+    mixin fft
+    type hasFFTC = concept x
+      @[x].fft()
+    T is hasFFTC
+
   template initFormalPowerSeries*[T:FieldElem](n:int):FormalPowerSeries[T] =
     block:
       FormalPowerSeries[T](newSeq[T](n))
@@ -149,7 +156,6 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
     return (q, a[0..<max_deg])
   proc `div`*[T:FieldElem](a: FormalPowerSeries[T], b:SparseFormalPowerSeries[T]):auto = a.divMod(b)[0]
   proc `mod`*[T:FieldElem](a: FormalPowerSeries[T], b:SparseFormalPowerSeries[T]):auto = a.divMod(b)[1]
-  # }}}
 
   macro revise*(a, b) =
     parseStmt(fmt"""let {a.repr} = if {a.repr} == -1: {b.repr} else: {a.repr}""")
@@ -184,7 +190,6 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
   proc `*`*[T](a:SomeInteger, f:Monomial[T]):Monomial[T] =
     result = f
     result.c *= T.init(a)
-  # }}}
 
   # operators +=, -=, *=, mod=, -, /= {{{
   proc `+=`*[T](self: var FormalPowerSeries[T], r:FormalPowerSeries[T]) =
@@ -205,18 +210,33 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
 
   proc `*=`*[T](self: var FormalPowerSeries[T], v:T) = self.applyIt(it * v)
 
-  proc multRaw*[T](a, b:FormalPowerSeries[T]):FormalPowerSeries[T] =
+  proc mult_naive*[T](a, b:FormalPowerSeries[T]):FormalPowerSeries[T] =
     result = initFormalPowerSeries[T](a.len + b.len - 1)
     for i in 0..<a.len:
       for j in 0..<b.len:
         result[i + j] += a[i] * b[j]
+  proc div_naive*[T](a, b:FormalPowerSeries[T], deg = -1):FormalPowerSeries[T] =
+    mixin inv
+    var deg = if deg == -1: a.len else: deg
+    result = newSeq[T](deg)
+    # a = b * result
+    var b0inv = b[0].inv
+    for i in 0 ..< deg:
+      var u = a[i]
+      for j in 1 ..< min(i + 1, b.len):
+        u -= b[j] * result[i - j]
+      u *= b0inv
+      result[i] = u
 
   proc `*=`*[T](self: var FormalPowerSeries[T],  r: FormalPowerSeries[T]) =
     if self.len == 0 or r.len == 0:
       self.setlen(0)
     else:
-      mixin multiply
-      self = multiply(self, r)
+      when T.hasFFT:
+        mixin multiply
+        self = multiply(self, r)
+      else:
+        self = mult_naive(self, r)
 
   proc `mod=`*[T](self: var FormalPowerSeries[T], r:FormalPowerSeries[T]) =
     self -= (self div r) * r
@@ -302,7 +322,10 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
         i = i shl 1
       return ret.pre(deg)
   proc `/=`*[T](self: var FormalPowerSeries[T], r: FormalPowerSeries[T]) =
-    self *= r.inv()
+    when T.hasFFT():
+      self *= r.inv()
+    else:
+      self = self.divNaive(r)
 
   proc `div=`*[T](self: var FormalPowerSeries[T], r: FormalPowerSeries[T]) =
     if self.len < r.len:

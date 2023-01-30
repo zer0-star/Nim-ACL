@@ -6,25 +6,53 @@ when not declared ATCODER_INTERNAL_MATH_HPP:
   # Reference: https:#en.wikipedia.org/wiki/Barrett_reduction
   # NOTE: reconsider after Ice Lake
   type Barrett* = object
-    m*, im:uint
+    m*, im*:uint
 
   # @param m `1 <= m`
-  proc initBarrett*(m:uint):auto = Barrett(m:m, im:(0'u - 1'u) div m + 1)
+  proc initBarrett*(m:uint):auto = Barrett(m:m, im:cast[uint](-1) div m + 1)
 
   # @return m
   proc umod*(self: Barrett):uint =
     self.m
 
   {.emit: """
+#include<cstdio>
 inline unsigned long long calc_mul(const unsigned long long &a, const unsigned long long &b){
   return (unsigned long long)(((unsigned __int128)(a)*b) >> 64);
 }
 """.}
-  proc calc_mul*(a,b:culonglong):culonglong {.importcpp: "calc_mul(#,#)", nodecl.}
+  proc calc_mul*(a,b:culonglong):culonglong {.importcpp: "calc_mul(#,#)", nodecl, inline.}
   # @param a `0 <= a < m`
   # @param b `0 <= b < m`
   # @return `a * b % m`
-  proc mul*(self: Barrett, a:uint, b:uint):uint =
+  proc quo*(self: Barrett, n:int | uint):int =
+    let n = n.uint
+    let x = calc_mul(n.culonglong, self.im.culonglong).uint
+    let r = n - x * self.m
+    return int(if self.m <= r: x - 1 else: x)
+  proc rem*(self: Barrett, n:int | uint):int =
+    let n = n.uint
+    let x = calc_mul(n.culonglong, self.im.culonglong).uint
+    let r = n - x * self.m
+    return int(if self.m <= r: r + self.m else: r)
+  proc quorem*(self: Barrett, n:int | uint):(int, int) =
+    let n = n.uint
+    let x = calc_mul(n.culonglong, self.im.culonglong).uint
+    let r = n - x * self.m
+    return if self.m <= r: (int(x - 1), int(r + self.m)) else: (int(x), int(r))
+
+  proc pow*(self: Barrett, n:uint | int, p:int):int =
+    var
+      a = self.rem(n)
+      r:uint = if self.m == 1: 0 else: 1
+      p = p
+    while p > 0:
+      if (p and 1) != 0: r = self.mul(r, a.uint)
+      a = self.mul(a.uint, a.uint).int
+      p = p shr 1
+    return int(r)
+
+  proc mul*(self: Barrett, a:uint, b:uint):uint {.inline.} =
     # [1] m = 1
     # a = b = im = 0, so okay
 
@@ -44,15 +72,15 @@ inline unsigned long long calc_mul(const unsigned long long &a, const unsigned l
     #      unsigned long long x =
     #        (unsigned long long)(((unsigned __int128)(z)*im) >> 64);
     #  #endif
-    let x = calc_mul(z.culonglong, self.im.culonglong).uint
-    var v = z - x * self.m
-    if self.m <= v: v += self.m
-    return v
+    #let x = calc_mul(z.culonglong, self.im.culonglong).uint
+    #result = z - x * self.m
+    #if self.m <= result: result += self.m
+    return self.rem(z).uint
 
   # @param n `0 <= n`
   # @param m `1 <= m`
   # @return `(x ** n) % m`
-  proc pow_mod_constexpr*(x,n,m:int):int =
+  proc pow_mod_constexpr*(x, n, m:int):int =
     if m == 1: return 0
     var
       r = 1

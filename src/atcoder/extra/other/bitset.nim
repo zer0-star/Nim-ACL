@@ -3,11 +3,19 @@ when not declared ATCODER_BITSET_HPP:
   import std/strutils, std/sequtils, std/algorithm, std/bitops, std/math
   import atcoder/extra/other/bitutils
   
-  const BitWidth = 64
-  
+  const
+    BitWidth = 64
+    BitWidthLog2 = 6
+
+  proc getBitDivMod(N:int):(int, int) =
+    let
+      q = N shr BitWidthLog2
+      r = N - q shl BitWidthLog2
+    return (q, r)
+
   # bitset
   type BitSet*[N:static[int]] = object
-    data*: array[(N + BitWidth - 1) div BitWidth, uint64]
+    data*: array[(N + BitWidth - 1) shr BitWidthLog2, uint64]
 
   {.push experimental: "callOperator".}
   type initBitSetType = object
@@ -28,9 +36,7 @@ when not declared ATCODER_BITSET_HPP:
 
   proc initBitSet1*(N:static[int]): BitSet[N] =
     result = initBitSet(N)
-    let
-      q = N div BitWidth
-      r = N mod BitWidth
+    let (q, r) = getBitDivMod(N)
     for i in 0..<q:result.data[i] = (not 0'u64)
     if r > 0:result.data[q] = ((1'u64 shl uint64(r)) - 1)
 
@@ -46,13 +52,11 @@ when not declared ATCODER_BITSET_HPP:
     data: seq[uint64]
   
   proc initDynamicBitSet*(N:int): DynamicBitSet =
-    let size = (N + BitWidth - 1) div BitWidth
+    let size = (N + BitWidth - 1) shr BitWidthLog2
     return DynamicBitSet(N:N, data:newSeqWith(size, 0'u64))
   proc initDynamicBitSet1*(N:int): DynamicBitSet =
     result = initDynamicBitSet(N)
-    let
-      q = N div BitWidth
-      r = N mod BitWidth
+    let (q, r) = getBitDivMod(N)
     for i in 0..<q:result.data[i] = (not 0'u64)
     if r > 0:result.data[q] = ((1'u64 shl uint64(r)) - 1)
   proc init*(self: DynamicBitSet):DynamicBitSet = initDynamicBitSet(self.N)
@@ -69,9 +73,7 @@ when not declared ATCODER_BITSET_HPP:
   
   proc `$`*(a: SomeBitSet):string =
     let N = a.getSize()
-    var
-      q = N div BitWidth
-      r = N mod BitWidth
+    let (q, r) = getBitDivMod(N)
     var v = newSeq[string]()
     for i in 0..<q: v.add(a.data[i].toBin(BitWidth))
     if r > 0: v.add(a.data[q].toBin(r))
@@ -81,21 +83,25 @@ when not declared ATCODER_BITSET_HPP:
   proc `not`*(a: SomeBitSet): auto =
     result = a.init1()
     for i in 0..<a.data.len: result.data[i] = (not a.data[i]) and result.data[i]
+  proc `or=`*[BS:SomeBitSet](a: var BS, b: BS): auto =
+    for i in 0..<a.data.len: a.data[i] = a.data[i] or b.data[i]
   proc `or`*(a, b: SomeBitSet): auto =
-    result = a.init()
-    for i in 0..<a.data.len: result.data[i] = a.data[i] or b.data[i]
+    result = a
+    result.or=b
+  proc `and=`*[BS:SomeBitSet](a: var BS, b: BS): auto =
+    for i in 0..<a.data.len: a.data[i] = a.data[i] and b.data[i]
   proc `and`*(a, b: SomeBitSet): auto =
-    result = a.init()
-    for i in 0..<a.data.len: result.data[i] = a.data[i] and b.data[i]
+    result = a
+    result.and=b
+  proc `xor=`*[BS:SomeBitSet](a: var BS, b: BS): auto =
+    for i in 0..<a.data.len: a.data[i] = a.data[i] xor b.data[i]
   proc `xor`*(a, b: SomeBitSet): auto =
-    result = a.init()
-    for i in 0..<a.data.len: result.data[i] = a.data[i] xor b.data[i]
-  
+    result = a
+    result.xor=b
+
   proc any*(a: SomeBitSet): bool = 
     let N = a.getSize()
-    var
-      q = N div BitWidth
-      r = N mod BitWidth
+    let (q, r) = getBitDivMod(N)
     for i in 0..<q:
       if a.data[i] != 0.uint64: return true
     if r > 0 and (a.data[^1] and setBits[uint64](r)) != 0.uint64: return true
@@ -103,9 +109,7 @@ when not declared ATCODER_BITSET_HPP:
   
   proc all*(a: SomeBitSet): bool =
     let N = a.getSize()
-    var
-      q = N div BitWidth
-      r = N mod BitWidth
+    let (q, r) = getBitDivMod(N)
     for i in 0..<q:
       if (not a.data[i]) != 0.uint64: return false
     if r > 0 and a.data[^1] != setBits[uint64](r): return false
@@ -134,39 +138,35 @@ when not declared ATCODER_BITSET_HPP:
   proc `[]`*(b:SomeBitSet,n:int):int =
     let N = b.getSize()
     assert 0 <= n and n < N
-    let
-      q = n div BitWidth
-      r = n mod BitWidth
+    let (q, r) = getBitDivMod(n)
     return b.data[q][r].int
   proc `[]=`*(b:var SomeBitSet, n:int, t:int) =
     let N = b.getSize()
     assert n in 0 ..< N
     assert t in 0 .. 1
-    let
-      q = n div BitWidth
-      r = n mod BitWidth
+    let (q, r) = getBitDivMod(n)
     b.data[q][r] = t
   
   proc `shl`*(a: SomeBitSet, n:int): auto =
     result = a.init()
-    var r = floormod(n, BitWidth).int
-    let q = (n - r) div BitWidth
+    #var r = floormod(n, BitWidth).int
+    #let q = (n - r) div BitWidth
+    let (q, r) = getBitDivMod(n)
     let maskl = allSetBits[uint64](BitWidth - r)
-
     for i in 0..<a.data.len:
-      let d = (a.data[i] and maskl) shl uint64(r)
       let i2 = i + q
       if i2 in 0 ..< a.data.len:
+        let d = (a.data[i] and maskl) shl uint64(r)
         result.data[i2] = result.data[i2] or d
     if r != 0:
       let maskr = allSetBits[uint64](r) shl uint64(BitWidth - r)
       for i in 0..<a.data.len:
-        let d = (a.data[i] and maskr) shr uint64(BitWidth - r)
         let i2 = i + q + 1
         if i2 in 0 ..< a.data.len:
+          let d = (a.data[i] and maskr) shr uint64(BitWidth - r)
           result.data[i2] = result.data[i2] or d
     block:
-      let r = a.getSize() mod BitWidth
+      let (q, r) = getBitDivMod(a.getSize())
       if r != 0:
         let mask = not (allSetBits[uint64](BitWidth - r) shl uint64(r))
         result.data[^1] = result.data[^1] and mask

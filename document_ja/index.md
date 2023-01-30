@@ -92,29 +92,31 @@ ACLには収録されていないが、使用頻度が高そうなライブラ�
 ### グラフ
 - [`import atcoder/extra/graph/graph_template`](./extra/graph/graph_template.html)
 - 最短経路問題
-  - dijkstra法: [`import atcoder/extra/graph/dijkstra`](./extra/graph/dijkstra.html)
-  - bellman-ford法: [`import atcoder/extra/graph/bellman_ford`](./extra/graph/bellman_ford.html)
-  - warshall-floyd法: [`import atcoder/extra/graph/warshall_floyd`](./extra/graph/warshall_floyd.html)
+  - dijkstra法
+    - [`import atcoder/extra/graph/dijkstra`](./extra/graph/dijkstra.html)
+  - bellman-ford法
+    - [`import atcoder/extra/graph/bellman_ford`](./extra/graph/bellman_ford.html)
+  - warshall-floyd法
+    - [`import atcoder/extra/graph/warshall_floyd`](./extra/graph/warshall_floyd.html)
 - 最小木問題
   - prim法
   - kruskal法
   - volvka法
 - 有向グラフの最小木問題
   - Chu-Liu-Edmonds
-- 二部グラフの最大マッチング(最小頂点被覆)
-  - hopcroft-karp法
-- 一般グラフのマッチング
-  - gabow-edmonds法
-- 割当問題
-　- ハンガリアン法
-- 橋と結節点
-  - lowlink
+- 二部グラフの最大マッチング・最小頂点被覆(hopcroft-karp法)
+  - [`import atcoder/extra/graph/hopcroft_karp`](./extra/graph/hopcroft_karp.html)
+- 一般グラフのマッチング(gabow-edmonds法)
+- 割当問題(ハンガリアン法)
+  - [`import atcoder/extra/graph/hungarian`](./extra/graph/hungarian.html)
+- 橋と結節点(lowlink)
 - 最大独立集合
 - サイクルの検出
 - オイラー周回
 - 彩色数
 - トポロジカルソート
-- 強連結の向き付け: [`import atcoder/extra/graph/strong_orientation`](./extra/graph/strong_orientation.html)
+- 強連結の向き付け
+  - [`import atcoder/extra/graph/strong_orientation`](./extra/graph/strong_orientation.html)
 
 ### 木
 - 木の直径
