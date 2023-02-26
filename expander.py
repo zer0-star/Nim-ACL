@@ -174,8 +174,10 @@ def main():
                                         s0 += '\n'
 
                                     with open('/tmp/expander_tmp.txt', 'w') as f:
-                                        f.write(s0 + "\n")
-                                    s0 = subprocess.run("cat /tmp/expander_tmp.txt | {:s} -9 | base64 -w 0".format(compress_type), shell=True, stdout=subprocess.PIPE).stdout.decode()
+                                        #f.write(s0 + "\n")
+                                        f.write(s0)
+                                    #s0 = subprocess.run("cat /tmp/expander_tmp.txt | {:s} -9 | base64 -w 0".format(compress_type), shell=True, stdout=subprocess.PIPE).stdout.decode()
+                                    s0 = subprocess.run("cat /tmp/expander_tmp.txt | {:s} -9 | base64 -b 0".format(compress_type), shell=True, stdout=subprocess.PIPE).stdout.decode()
                                     #s0 = base64.b64encode(s0.encode()).decode()
                                 else:
                                     for l in s:
@@ -251,7 +253,11 @@ static:
 """.format(len(d), md5sum, len(d), second_compile_command)
             outputSuffix += d
         else:
-            s = subprocess.run("cat atcoder.tar.xz | base64 -w 0", cwd=lib_tmp, shell=True, stdout=subprocess.PIPE).stdout.decode()
+            #s = subprocess.run("cat atcoder.tar.xz | base64 -w 0", cwd=lib_tmp, shell=True, stdout=subprocess.PIPE).stdout.decode()
+            s = subprocess.run("cat atcoder.tar.xz | base64 -b 0", cwd=lib_tmp, shell=True, stdout=subprocess.PIPE).stdout.decode()
+            if s[-1] == '\n':
+                print("WARNING!!! newline")
+                s = s.strip()
             outputPrefix += """
 static:
   when not defined SecondCompile:

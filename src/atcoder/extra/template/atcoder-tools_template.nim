@@ -23,8 +23,7 @@ solveProc solve({{formal_arguments}}):
   discard
 
 when not defined(DO_TEST):
-  {{input_part}}
-  solve({{actual_arguments}})
+  {{input_part_with_solve_function}}
 else:
   discard
 {% else %}

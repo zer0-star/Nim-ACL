@@ -8,7 +8,7 @@ args = sys.argv
 file_name = args[1]
 ext = os.path.splitext(file_name)[1]
 combined_file_name = "combined" + ext
-home_dir = "/home/chaemon"
+home_dir = "~/"
 
 if ext == '.cpp':
     expander_path = home_dir + "/git/ac-library/expander.py"
@@ -21,5 +21,8 @@ else:
     exit(1)
 
 os.system("python3 {} {} -s --compress --directory --lib {}".format(expander_path, file_name, lib_path))
-os.system("cat {} | xsel --clipboard --input".format(combined_file_name))
+# ubuntu(linux)
+#os.system("cat {} | xsel --clipboard --input".format(combined_file_name))
+# mac
+os.system("cat {} | pbcopy".format(combined_file_name))
 os.system("rm {}".format(combined_file_name))
