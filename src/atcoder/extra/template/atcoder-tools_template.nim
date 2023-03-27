@@ -4,6 +4,8 @@ else:
   const DO_CHECK = true;const DEBUG = true
 const
   USE_DEFAULT_TABLE = true
+  DO_TEST = false
+
 
 include lib/header/chaemon_header
 
@@ -31,7 +33,7 @@ else:
 solveProc solve():
   discard
 
-when not defined(DO_TEST):
+when not DO_TEST:
   solve()
 else:
   discard

@@ -1,6 +1,6 @@
 when not declared ATCODER_BITUTILS_HPP:
   const ATCODER_BITUTILS_HPP* = 1
-  import bitops
+  import std/bitops
 
   proc `<<`*[B:SomeInteger](b:B, n:SomeInteger):B = b shl n
   proc `>>`*[B:SomeInteger](b:B, n:SomeInteger):B = b shr n

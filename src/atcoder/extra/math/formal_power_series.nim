@@ -236,6 +236,8 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
         mixin multiply
         self = multiply(self, r)
       else:
+        static:
+          echo("Warning: multiply is slow, please write import atcoder/extra/math/ntt")
         self = mult_naive(self, r)
 
   proc `mod=`*[T](self: var FormalPowerSeries[T], r:FormalPowerSeries[T]) =
@@ -325,6 +327,8 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
     when T.hasFFT():
       self *= r.inv()
     else:
+      static:
+        echo("Warning: div is slow, please write import atcoder/extra/math/ntt")
       self = self.divNaive(r)
 
   proc `div=`*[T](self: var FormalPowerSeries[T], r: FormalPowerSeries[T]) =
@@ -335,14 +339,15 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
       self = (self.rev().pre(n) * r.rev().inv(n)).pre(n).rev(n)
 
 # operators +, -, *, div, mod {{{
-  macro declareFormalPowerSeriesOperators(op) =
-    fmt"""proc `{op}`*[T](self:FormalPowerSeries[T];r:FormalPowerSeries[T] or T):FormalPowerSeries[T] = result = self;result {op}= r
-proc `{op}`*[T](self: not FormalPowerSeries and not Monomial, r:FormalPowerSeries[T]):FormalPowerSeries[T] = result = initFormalPowerSeries[T](@[T(self)]);result {op}= r""".parseStmt
-  
-  declareFormalPowerSeriesOperators(`+`)
-  declareFormalPowerSeriesOperators(`-`)
-  declareFormalPowerSeriesOperators(`*`)
-  declareFormalPowerSeriesOperators(`/`)
+  macro declareFormalPowerSeriesOperators(op, op_eq) =
+    result = quote do:
+      proc `op`*[T](self:FormalPowerSeries[T];r:FormalPowerSeries[T] or T):FormalPowerSeries[T] = result = self;`op_eq`(result, r)
+      proc `op`*[T](self: not FormalPowerSeries and not Monomial, r:FormalPowerSeries[T]):FormalPowerSeries[T] = result = initFormalPowerSeries[T](@[T(self)]);`op_eq`(result, r)
+
+  declareFormalPowerSeriesOperators(`+`, `+=`)
+  declareFormalPowerSeriesOperators(`-`, `-=`)
+  declareFormalPowerSeriesOperators(`*`, `*=`)
+  declareFormalPowerSeriesOperators(`/`, `/=`)
   
   proc `div`*[T](self, r:FormalPowerSeries[T]):FormalPowerSeries[T] = result = self;result.`div=` (r)
   proc `mod`*[T](self, r:FormalPowerSeries[T]):FormalPowerSeries[T] = result = self;result.`mod=` (r)

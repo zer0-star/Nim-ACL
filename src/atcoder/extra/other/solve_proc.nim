@@ -186,7 +186,7 @@ when not declared ATCODER_SOLVEPROC_HPP:
         vars &= &"  {p.repr} = {{{p.repr}}}\\n"
       test_params[0] = ident"bool"
       var test_body = newStmtList()
-      var d = &"try:\n  {test_body_sub.repr.strip}\nexcept CheckResult as e:\n  echo &\"check failed for\\n{vars}\", \"[failed statement]\\n\", e.err.strip, \"\\n[output]\\n\", e.output;doAssert false"
+      var d = &"try:\n  {test_body_sub.repr.strip}\nexcept CheckResult as errObj:\n  echo &\"check failed for\\n{vars}\", \"[failed statement]\\n\", errObj.err.strip, \"\\n[output]\\n\", errObj.output;doAssert false"
       test_body.add parseStmt(d)
       result.add newProc(name = newNimNode(nnkPostFix).add(ident("*")).add(ident"test"), params = test_params, body = test_body, pragmas = discardablePragma)
 

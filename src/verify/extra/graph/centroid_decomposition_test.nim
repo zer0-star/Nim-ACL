@@ -15,7 +15,7 @@ proc main():void =
     let a, b = nextInt()
     g.addBiEdge(a, b)
   
-  let (c, tree) = g.CentroidDecomposition()
+  let (c, tree) = g.centroidDecomposition()
   
   var
     used = newSeqWith(N, false)

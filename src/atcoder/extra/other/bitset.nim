@@ -71,14 +71,17 @@ when not declared ATCODER_BITSET_HPP:
       if (b and (1'u64 shl uint64(i))) != 0'u64: result &= "1"
       else: result &= "0"
   
-  proc `$`*(a: SomeBitSet):string =
+  #proc `$`*(a: SomeBitSet, n:int = -1):string =
+  proc toStr*(a: SomeBitSet, n:int = -1):string =
     let N = a.getSize()
     let (q, r) = getBitDivMod(N)
     var v = newSeq[string]()
     for i in 0..<q: v.add(a.data[i].toBin(BitWidth))
     if r > 0: v.add(a.data[q].toBin(r))
     v.reverse()
-    return v.join("")
+    result = v.join("")
+    if n >= 0:
+      result = result[^n .. ^1]
   
   proc `not`*(a: SomeBitSet): auto =
     result = a.init1()
@@ -99,20 +102,20 @@ when not declared ATCODER_BITSET_HPP:
     result = a
     result.xor=b
 
-  proc any*(a: SomeBitSet): bool = 
+  proc any*(a: SomeBitSet): bool =
     let N = a.getSize()
     let (q, r) = getBitDivMod(N)
-    for i in 0..<q:
-      if a.data[i] != 0.uint64: return true
-    if r > 0 and (a.data[^1] and setBits[uint64](r)) != 0.uint64: return true
+    for i in 0 ..< q:
+      if a.data[i] != uint64(0): return true
+    if r > 0 and (a.data[^1] and allSetBits[uint64](r)) != uint64(0): return true
     return false
   
   proc all*(a: SomeBitSet): bool =
     let N = a.getSize()
     let (q, r) = getBitDivMod(N)
-    for i in 0..<q:
-      if (not a.data[i]) != 0.uint64: return false
-    if r > 0 and a.data[^1] != setBits[uint64](r): return false
+    for i in 0 ..< q:
+      if (not a.data[i]) != uint64(0): return false
+    if r > 0 and a.data[^1] != allSetBits[uint64](r): return false
     return true
 
   proc count*(a: SomeBitSet): int =
@@ -171,3 +174,11 @@ when not declared ATCODER_BITSET_HPP:
         let mask = not (allSetBits[uint64](BitWidth - r) shl uint64(r))
         result.data[^1] = result.data[^1] and mask
   proc `shr`*(a: SomeBitSet, n:int): auto = a shl (-n)
+  proc `<`*(a, b:SomeBitSet):bool =
+    for i in countdown(a.data.len - 1, 0):
+      if a[i] != b[i]: return a[i] < b[i]
+    return false
+  proc `<=`*(a, b:SomeBitSet):bool =
+    for i in countdown(a.data.len - 1, 0):
+      if a[i] != b[i]: return a[i] < b[i]
+    return true

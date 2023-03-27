@@ -1,7 +1,7 @@
 when not declared ATCODER_BINARY_SEARCH_FLOAT_HPP:
   const ATCODER_BINARY_SEARCH_FLOAT_HPP* = 1
   import atcoder/extra/other/floatutils
-  import atcoder/extra/math/longdouble
+  #import atcoder/extra/math/longdouble
 
   proc minLeft*[Real](f:proc(x:Real):bool, s: Slice[Real]):Real =
     var (l, r) = (s.a, s.b)

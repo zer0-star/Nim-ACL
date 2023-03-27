@@ -4,10 +4,10 @@ when not declared ATCODER_INTERACTIVE_HPP:
 
   macro solveInteractive*(head, body:untyped) =
     var solveProcBody = newStmtList()
-    solveProcBody.add parseStmt("when DEBUG: (var outputString:string;var fd_pipe: array[2, cint];discard pipe(fd_pipe);discard close(cint(0));discard dup2(fd_pipe[0], cint(0));discard close(fd_pipe[0]);fd_pipe[0] = cint(0))")
-    solveProcBody.add parseStmt "when DEBUG:\n  proc addStdin(s:string) = (var s = s.cstring; discard(write(fd_pipe[1], s, s.len + 1)))"
-    solveProcBody.add parseStmt "when DEBUG:\n  proc judgeEcho(x:varargs[string, `$`]) = (addStdin(x.join() & \"\\n\");echo \" \".repeat(20), x.join())"
-    solveProcBody.add parseStmt "proc askEcho(x:varargs[string, `$`]) = (let s = x.join() & \"\\n\"; when DEBUG: outputString.add(s);stdout.write s;flushFile(stdout);)"
+    solveProcBody.add parseStmt("when DO_TEST: (var outputString:string;var fd_pipe: array[2, cint];discard pipe(fd_pipe);discard close(cint(0));discard dup2(fd_pipe[0], cint(0));discard close(fd_pipe[0]);fd_pipe[0] = cint(0))")
+    solveProcBody.add parseStmt "when DO_TEST:\n  proc addStdin(s:string) = (var s = s.cstring; discard(write(fd_pipe[1], s, s.len + 1)))"
+    solveProcBody.add parseStmt "when DO_TEST:\n  proc judgeEcho(x:varargs[string, `$`]) = (addStdin(x.join() & \"\\n\");echo \" \".repeat(20), x.join())"
+    solveProcBody.add parseStmt "proc askEcho(x:varargs[string, `$`]) = (let s = x.join() & \"\\n\"; when DO_TEST: outputString.add(s);stdout.write s;flushFile(stdout);)"
 
     proc dfs(body:NimNode):NimNode =
       result = newStmtList()
@@ -25,7 +25,7 @@ when not declared ATCODER_INTERACTIVE_HPP:
             else:
               doAssert false
             result.add(newNimNode(nnkWhenStmt).add(
-              newNimNode(nnkElifBranch).add(ident"DEBUG").add(tmp)
+              newNimNode(nnkElifBranch).add(ident"DO_TEST").add(tmp)
             ))
           else: result.add(a)
         elif a.kind == nnkProcDef:
@@ -42,7 +42,7 @@ when not declared ATCODER_INTERACTIVE_HPP:
           result.add(a)
     solveProcBody.add dfs(body)
     result = newStmtList()
-    result.add parseStmt("when DEBUG: import posix, strutils, streams")
+    result.add parseStmt("when DO_TEST: import posix, strutils, streams")
     var procDef = newStmtList()
     var params = @[ident"auto"]
     for i in 1..<head.len:
@@ -50,10 +50,10 @@ when not declared ATCODER_INTERACTIVE_HPP:
       identDefs.add(head[i][0]).add(head[i][1]).add(newEmptyNode())
       params.add identDefs
     procDef.add newNimNode(nnkWhenStmt).add(
-      newNimNode(nnkElifBranch).add(ident"DEBUG").add(
+      newNimNode(nnkElifBranch).add(ident"DO_TEST").add(
         newProc(name = head[0], params = params, body = solveProcBody))).add(
       newNimNode(nnkElse).add(
         newProc(name = head[0], params = @[ident"auto"], body = solveProcBody))
       )
     result.add procDef
-#    echo result.repr
+    #echo result.repr

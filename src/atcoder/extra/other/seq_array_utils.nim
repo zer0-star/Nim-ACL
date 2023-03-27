@@ -1,6 +1,6 @@
 when not declared ATCODER_SEQ_ARRAY_UTILS:
   const ATCODER_SEQ_ARRAY_UTILS* = 1
-  import std/strformat, std/macros
+  import std/strformat, std/macros, std/strutils, std/sequtils
   type SeqType = object
   type ArrayType = object
   let
@@ -27,7 +27,8 @@ when not declared ATCODER_SEQ_ARRAY_UTILS:
   macro `[]`*(x:ArrayType or SeqType, args:varargs[untyped]):auto =
     var a:string
     if $x == "Seq" and args.len == 1 and args[0].kind != nnkExprColonExpr:
-      a = fmt"newSeq[{args[0].repr}]()"
+      #a = fmt"newSeq[{args[0].repr}]()"
+      a = fmt"block:{'\n'}  var a: seq[{args[0].repr}];a"
     else:
       let tail = args[^1]
       assert tail.kind == nnkExprColonExpr, "Wrong format of tail"
@@ -44,3 +45,26 @@ when not declared ATCODER_SEQ_ARRAY_UTILS:
       else:
         assert(false)
     parseStmt(a)
+
+  macro `@`*(n: untyped, a:untyped):auto =
+    if n.kind == nnkBracket:
+      var v: seq[string]
+      for n in n:
+        v.add n.repr
+      var s = v.join(",")
+      result = parseStmt(fmt"Seq[{s}: {a.repr}]")
+    else:
+      result = quote do:
+        Seq[`n`: `a`]
+  proc `@`*[T](a:typedesc[T]):seq[T] =
+    Seq[a]
+  macro `@@`*(n: untyped, a:untyped):auto =
+    if n.kind == nnkBracket:
+      var v: seq[string]
+      for n in n:
+        v.add n.repr
+      var s = v.join(",")
+      result = parseStmt(fmt"Array[{s}: {a.repr}]")
+    else:
+      result = quote do:
+        Array[`n`: `a`]

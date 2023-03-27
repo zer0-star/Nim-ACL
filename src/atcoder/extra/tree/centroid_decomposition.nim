@@ -2,7 +2,7 @@ when not declared ATCODER_CENTROID_DECOMPOSITION_HPP:
   const ATCODER_CENTROID_DECOMPOSITION_HPP* = 1
   import atcoder/extra/graph/graph_template
 
-  proc CentroidDecomposition*[G:Graph](g:G, root = 0):auto =
+  proc centroidDecomposition*[G:Graph](g:G, root = 0):auto =
     var
       sub = newSeq[int](g.len)
       v = newSeq[bool](g.len)
