@@ -16,7 +16,7 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   import std/algorithm as algorithm_lib
   import std/sequtils as sequtils_lib
   import std/macros as macros_lib
-  import std/math as math_lib
+  import std/math as math_lib except ceilDiv
   import std/sets as sets_lib
   import std/tables as tables_lib
   import std/strutils as strutils_lib

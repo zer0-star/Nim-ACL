@@ -2,8 +2,8 @@ when not declared ATCODER_GEOMETRY_TEMPLATE_HPP:
   const ATCODER_GEOMETRY_TEMPLATE_HPP* = 1
   import atcoder/extra/other/static_var
   import atcoder/extra/other/floatutils
-  #import complex
-  import atcoder/extra/other/internal_complex
+  import complex
+  #import atcoder/extra/other/internal_complex
   import std/math, std/macros
   
   type Point*[Real] = Complex[Real]
@@ -147,12 +147,12 @@ when not declared ATCODER_GEOMETRY_TEMPLATE_HPP:
   # http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A
   swappableProc projection(p:Point[Real], l:Line[Real]):
     let t = dot(p - l.a, l.a - l.b) / norm(l.a - l.b)
-    return l.a + (l.a - l.b) * complex(t)
+    return Point[Real](l.a + (l.a - l.b) * complex(t))
   swappableProc projection(p:Point[Real], l:Segment[Real]):
     projection(p, Line[Real](l))
   # http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B
   swappableProc reflection(p: Point[Real], l: Line[Real]):
-    return p + (p.projection(l) - p) * complex(2.Real)
+    return Point[Real](p + (p.projection(l) - p) * complex(2.Real))
   swappableProc reflection(p: Point[Real], l: Segment[Real]):
     reflection(p, Line[Real](l))
 

@@ -73,6 +73,5 @@ when not declared ATCODER_BINARY_TREE_NODE_UTILS_HPP:
     var it = s.a
     while true:
       yield it
-      if it == s.b: return
+      if it == s.b: break
       it.inc
-

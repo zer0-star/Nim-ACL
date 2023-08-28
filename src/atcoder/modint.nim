@@ -17,6 +17,8 @@ when not declared ATCODER_MODINT_HPP:
   proc isDynamicModInt*(T:typedesc[ModInt]):bool = T is DynamicModInt
   #proc isModInt*(T:typedesc):bool = T.isStaticModInt or T.isDynamicModInt
   proc isStatic*(T:typedesc[ModInt]):bool = T is StaticModInt
+  proc getMod*[M:static[int]](t:typedesc[StaticModInt[M]]):int {.inline.} = M
+
 
   import atcoder/internal_math
 

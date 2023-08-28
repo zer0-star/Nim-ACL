@@ -6,6 +6,7 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
 
   type FormalPowerSeries*[T:FieldElem] = seq[T]
   type Poly*[T:FieldElem] = FormalPowerSeries[T]
+  type FPS*[T:FieldElem] = FormalPowerSeries[T]
 
 
   template hasFFT*(T:typedesc):bool =
@@ -157,10 +158,16 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
   proc `div`*[T:FieldElem](a: FormalPowerSeries[T], b:SparseFormalPowerSeries[T]):auto = a.divMod(b)[0]
   proc `mod`*[T:FieldElem](a: FormalPowerSeries[T], b:SparseFormalPowerSeries[T]):auto = a.divMod(b)[1]
 
+  proc EQUAL*[T](a, b:T):bool =
+    when T is hasInf:
+      return (abs(a - b) < T(0.0000001))
+    else:
+      return a == b
+
   macro revise*(a, b) =
     parseStmt(fmt"""let {a.repr} = if {a.repr} == -1: {b.repr} else: {a.repr}""")
   proc shrink*[T](self: var FormalPowerSeries[T]) =
-    while self.len > 0 and self[^1] == 0: discard self.pop()
+    while self.len > 0 and EQUAL(self[^1], T(0)): discard self.pop()
   proc resize*[T](self: var FormalPowerSeries[T], n:int) =
     mixin setLen
     let l = self.len
@@ -168,10 +175,10 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
     if l < n:
       self.fill(l, n - 1, T(0))
 
-  converter toFPS*[T](f:Monomial[T]):FormalPowerSeries[T] = 
+  converter toFPS*[T](f:Monomial[T]):FormalPowerSeries[T] =
     result = newSeq[T](f.d + 1)
     result[f.d] = f.c
-  converter toFPS*[T](f:SparseFormalPowerSeries[T]):FormalPowerSeries[T] = 
+  converter toFPS*[T](f:SparseFormalPowerSeries[T]):FormalPowerSeries[T] =
     let d = f.deg
     if d < 0: return
     result.resize(d + 1)
@@ -243,6 +250,14 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
   proc `mod=`*[T](self: var FormalPowerSeries[T], r:FormalPowerSeries[T]) =
     self -= (self div r) * r
     self.resize(r.len - 1)
+    self.shrink()
+  #proc `divMod`*[T](self, r: FormalPowerSeries[T]):(FPS[T], FPS[T]) =
+  #  var self = self
+  #  let q = self div r
+  #  self -= q * r
+  #  self.resize(r.len - 1)
+  #  self.shrink()
+  #  return (q, self)
 
   proc `-`*[T](self: FormalPowerSeries[T]):FormalPowerSeries[T] =
     var ret = self
@@ -279,12 +294,6 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
     result = initFormalPowerSeries[T](n + 1)
     result[0] = T(0)
     for i in 0..<n: result[i + 1] = self[i] / T(i + 1)
-  proc EQUAL*[T](a, b:T):bool =
-    when T is hasInf:
-      return (abs(a - b) < T(0.0000001))
-    else:
-      return a == b
-
   # F(0) must not be 0
   proc inv*[T](self: FormalPowerSeries[T], deg = -1):auto =
     assert(not EQUAL(self[0], T(0)))
@@ -480,9 +489,11 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
       r += w * v
       w *= x
     return r
-#  {.experimental: "callOperator".}
-#  template `()`*[T](self: FormalPowerSeries[T], x:T):T = self.eval(x)
-#  proc `()`*[T](self: FormalPowerSeries[T], x:T):T = self.eval(x)
+
+  {.push experimental: "callOperator".}
+  template `()`*[T](self: FormalPowerSeries[T], x:T):T = self.eval(x)
+  ##proc `()`*[T](self: FormalPowerSeries[T], x:T):T = self.eval(x)
+  {.pop.}
 
   proc powMod*[T](self: FormalPowerSeries[T], n:int, M:FormalPowerSeries[T]):auto =
     assert not EQUAL(M[^1], T(0))
@@ -508,4 +519,14 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
       x -= getDiv(x) * M
       x = x.pre(M.len - 1)
       n = n shr 1
-
+  proc gcdImpl*[T](a, b:FormalPowerSeries[T]):FormalPowerSeries[T] =
+    if a.len < b.len: return gcdImpl(b, a)
+    if b.len == 0: return a
+    let r = a mod b
+    #echo a.len, " ", b.len, " ", r.len
+    return gcdImpl(b, r)
+  proc gcd*[T](a, b:FormalPowerSeries[T]):FormalPowerSeries[T] =
+    var (a, b) = (a, b)
+    a.shrink
+    b.shrink
+    return gcdImpl(a, b)

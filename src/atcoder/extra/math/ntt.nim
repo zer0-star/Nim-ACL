@@ -11,9 +11,11 @@ when not declared ATCODER_NTT_HPP:
     else:
       ArbitraryModConvolution
   proc fft*[T:FiniteFieldElem](a:seq[T]):auto =
-    fft(get_fft_type(T), a)
+    type fft_type = get_fft_type(T)
+    fft(fft_type, a)
   proc ifft*(a:auto, T:typedesc[FiniteFieldElem]):auto =
-    ifft[T](get_fft_type(T), a)
+    type fft_type = get_fft_type(T)
+    ifft[T](fft_type, a)
   proc dot*(a, b:auto, T:typedesc[FiniteFieldElem]):auto =
     dot(get_fft_type(T), a, b)
   proc inplace_partial_dot*(a:var auto, b:auto, p:Slice[int], T:typedesc[FiniteFieldElem]) =

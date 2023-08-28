@@ -18,7 +18,8 @@ when not declared ATCODER_LOWEST_COMMON_ANCESTOR_DOUBLING:
       table[0][idx] = par
       dep[idx] = d
       for e in g[idx]:
-        if e.dst != par: dfs(e.dst, idx, d + 1)
+        if e.dst != par:
+          dfs(e.dst, idx, d + 1)
     dfs(r, -1, 0)
     for k in 0..<LOG-1:
       for i in 0..<table[k].len:

@@ -1,6 +1,8 @@
 when not declared ATCODER_DIVUTILS_HPP:
   const ATCODER_DIVUTILS_HPP* = 1
-  import std/math
+  import std/math except ceilDiv
+  # 1.6.14ではceilDivが定義されている #しかし、正でないといけない。。。不便
+  # import std/math except ceilDivすればよさそう
   proc ceilDiv*[T:SomeInteger](a, b:T):T =
     assert b != 0
     if b < 0: return ceilDiv(-a, -b)

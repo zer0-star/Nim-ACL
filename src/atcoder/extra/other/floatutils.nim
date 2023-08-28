@@ -68,7 +68,7 @@ when not declared ATCODER_FLOAT_UTILS_HPP:
         eps2 = eps2 / Real(2)
       Real$.eps = eps2 * Real(5000)
     when Real is float:
-      Real$.eps = 1e-11
+      Real$.eps = 1e-12
 
     # float comp
     # TODO: relative error

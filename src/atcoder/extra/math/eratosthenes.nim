@@ -50,3 +50,11 @@ when not declared ATCODER_ERATOSTHENES_HPP:
   proc divisor*(self: var Eratosthenes, n:int):seq[int] =
     var f = self.factor(n)
     return f.divisor()
+  iterator enumPrime*(self:var Eratosthenes, P = int.high):int =
+    if P >= 2:
+      yield 2
+      var p = 3
+      while true:
+        if p > P: break
+        if self.isPrime(p): yield p
+        p += 2
