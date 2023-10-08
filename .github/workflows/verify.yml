@@ -36,13 +36,6 @@ jobs:
         run: |
           mv document_ja/ src
 
-      - name: Run tests
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
-          GH_PAT: ${{ secrets.GH_PAT }}
-        run: cd src && oj-verify all
-      
       - name: Copy documents to /docs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -57,3 +50,12 @@ jobs:
           git add docs
           git commit -m "[workflow] copy docs $(git rev-parse HEAD~1)"
           git push "https://${{ secrets.GH_PAT }}@github.com/zer0-star/Nim-ACL.git" gh-pages
+
+      - name: Run tests
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: cd src && oj-verify all
+      
+
