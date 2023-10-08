@@ -10,9 +10,10 @@ when not declared ATCODER_MAXFLOW_LOWERBOUND_HPP:
     #latte, malta:int
     X, Y, V: int
     sum: Cap
+    built: bool
   
   proc initMaxFlowLowerBound*[Cap](V:int):MaxFlowLowerBound[Cap] =
-    MaxFlowLowerBound[Cap](V:V, flow:initMFGraph[Cap](V + 2), X:V, Y:V + 1, sum:Cap(0), in_cap:newSeq[Cap](V))
+    MaxFlowLowerBound[Cap](V:V, flow:initMFGraph[Cap](V + 2), X:V, Y:V + 1, sum:Cap(0), in_cap:newSeq[Cap](V), built: false)
   
   proc add_edge*[Cap](self: var MaxFlowLowerBound[Cap], src, dst:int, low, high: Cap) =
     doAssert src != dst
@@ -30,14 +31,17 @@ when not declared ATCODER_MAXFLOW_LOWERBOUND_HPP:
         self.flow.add_edge(i, self.Y, -self.in_cap[i])
   
   proc can_flow*[Cap](self: var MaxFlowLowerBound[Cap]):bool =
-    self.build()
+    if not self.built:
+      self.build()
+      self.built = true
     var ret = self.flow.flow(self.X, self.Y)
-    #echo "base: ", ret
+    echo "base: ", ret
     return ret >= self.sum
   
   proc can_flow*[Cap](self: var MaxFlowLowerBound[Cap], s, t:int):bool =
     assert s != t
-    self.flow.add_edge(t, s, Cap.high div 10)
+    if not self.built:
+      self.flow.add_edge(t, s, Cap.high div 10)
     #self.latte = &flow.graph[t].back()
     #self.malta = &flow.graph[s].back()
     return self.can_flow()

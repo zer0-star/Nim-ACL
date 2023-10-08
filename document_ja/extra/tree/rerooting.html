@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/css/uikit.min.css" />    
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit-icons.min.js"></script>
     <!-- Katex -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
         integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
@@ -54,11 +57,10 @@
             <h1>全方位木DP</h1>
 <p>木に対して、全方位木DPを行います。全方位DPについては例えば<a href="https://algo-logic.info/tree-dp/">https://algo-logic.info/tree-dp/</a>をご覧ください。</p>
 <h2>データ構造の作成</h2>
-<pre><code class="nim">(1) var a = initRerooting[T, Weight](N:int, f:proc(a:T, c:int, w:Weight), merge:proc(a, b:T):T, mi:T, g:proc(a:T, v:int):T)
+<pre><code class="language-nim">(1) var a = initRerooting[T, Weight](N:int, f:proc(a:T, c:int, w:Weight), merge:proc(a, b:T):T, mi:T, g:proc(a:T, v:int):T)
 (2) var a = initRerooting[T](N:int, f:proc(a:T, c:int), merge:proc(a, b:T):T, mi:T, g:proc(a:T, v:int):T)
 (3) var a = initRerooting[T, Weight](N:int, f:proc(a:T, c:int, w:Weight), merge:proc(a, b:T):T, mi:T)
 </code></pre>
-
 <p>全方位木DPによるデータ構造を作ります。ノード数が$N$, 各ノードに$T$型のデータを持ち、各辺には$Weight$型のデータを持ちます。
 頂点$v$とその子$c$について、まず$c$のデータを$f$で加工します。<code>f(a:T, c:int, w:Weight)</code>の形で指定できて、$a$が$c$のデータ、$w$が$c\to v$を結ぶ辺の$Weight$で、それに対応するようなprocを指定してください。
 $v$の各子$c$について加工した結果を$merge$関数でマージします。この関数は結合的である必要があります。最後にマージ結果を$g$で加工して、その結果が$v$に格納されます。つまり、各頂点$v$のデータを$T_v$, $v$の子を$c_1, c_2, \ldots, c_k$として$c_i$から$v$への辺の重みを$w_{c_i}$とすると、
@@ -72,11 +74,10 @@ $$
 <li>merge関数は結合則が成り立つ。つまり、3つ以上あるデータをどの順番でマージしても結果が同じである</li>
 </ul>
 <h2>辺の追加</h2>
-<pre><code class="nim">(1) a.addEdge(u, v:int)
+<pre><code class="language-nim">(1) a.addEdge(u, v:int)
 (2) a.addEdge(u, v:int, w:Weight)
 (3) a.addEdge(u, v:int, w_1, w_2:Weight)
 </code></pre>
-
 <p>$u$と$v$の間に双方向の辺を張ります。(2)のように重みを指定したり、(3)のように向きによって重みを変えることもできます。
 (3)の場合、$u$から$v$への辺の重みが$w_1$, $v$から$u$への辺の重みが$w_2$です。</p>
 <p>必ず木になるように追加してください。多重辺やループがある場合の動作は未定義です。</p>
@@ -85,17 +86,15 @@ $$
 <li>追加は木になるように行わなければならない</li>
 </ul>
 <h2>計算</h2>
-<pre><code class="nim">a.solve()
+<pre><code class="language-nim">a.solve()
 </code></pre>
-
 <p><strong>計算量</strong></p>
 <ul>
 <li>$O(N)$</li>
 </ul>
 <h2>結果の取得</h2>
-<pre><code class="nim">a[u:int]:T
+<pre><code class="language-nim">a[u:int]:T
 </code></pre>
-
 <p>ノード$u$での結果を取得します。つまり、もとの木において$u$を根として上記の計算をすべての頂点で行った場合に$u$に格納されるデータを返します。</p>
 <ul>
 <li>$O(d)$ ($d$は$u$と隣接する辺の本数)</li>

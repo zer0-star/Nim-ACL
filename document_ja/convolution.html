@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/css/uikit.min.css" />    
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit-icons.min.js"></script>
     <!-- Katex -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
         integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
@@ -56,10 +59,9 @@
 <p>$$c_i = \sum_{j = 0}^i a_j b_{i - j}$$</p>
 <p>を計算します。</p>
 <h2>convolution</h2>
-<pre><code class="nim">(1) convolution[T:SomeInteger](a:seq[T], b:seq[T], m:static[int]):seq[T]
+<pre><code class="language-nim">(1) convolution[T:SomeInteger](a:seq[T], b:seq[T], m:static[int]):seq[T]
 💻(2) convolution[T:StaticModInt](a:seq[StaticModInt], b:seq[StaticModInt]):seq[StaticModInt]
 </code></pre>
-
 <p>畳み込みを $\bmod m$ で計算します。$a, b$ の少なくとも一方が空配列の場合は空配列を返します。</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -74,9 +76,8 @@
 <li>$O(n\log{n} + \log{\mathrm{mod}})$</li>
 </ul>
 <h2>convolution_ll</h2>
-<pre><code class="nim">convolution_ll(a:seq[int], b:seq[int]):seq[int]
+<pre><code class="language-nim">convolution_ll(a:seq[int], b:seq[int]):seq[int]
 </code></pre>
-
 <p>畳み込みを計算します。$a, b$ の少なくとも一方が空配列の場合は空配列を返します。</p>
 <p><strong>制約</strong></p>
 <ul>

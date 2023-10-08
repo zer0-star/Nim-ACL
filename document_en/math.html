@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/css/uikit.min.css" />    
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit-icons.min.js"></script>
     <!-- Katex -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
         integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
@@ -54,9 +57,8 @@
             <h1>Math</h1>
 <p>It contains number-theoretic algorithms.</p>
 <h2>pow_mod</h2>
-<pre><code class="cpp">ll pow_mod(ll x, ll n, int m)
+<pre><code class="language-cpp">ll pow_mod(ll x, ll n, int m)
 </code></pre>
-
 <p>It returns $x^n \bmod m$.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -68,9 +70,8 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2>inv_mod</h2>
-<pre><code class="cpp">ll inv_mod(ll x, ll m)
+<pre><code class="language-cpp">ll inv_mod(ll x, ll m)
 </code></pre>
-
 <p>It returns an integer $y$ such that $0 \le y &lt; m$ and  $xy \equiv 1 \pmod m$.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -82,9 +83,8 @@
 <li>$O(\log m)$</li>
 </ul>
 <h2>crt</h2>
-<pre><code class="cpp">pair&lt;ll, ll&gt; crt(vector&lt;ll&gt; r, vector&lt;ll&gt; m)
+<pre><code class="language-cpp">pair&lt;ll, ll&gt; crt(vector&lt;ll&gt; r, vector&lt;ll&gt; m)
 </code></pre>
-
 <p>Given two arrays $r,m$ with length $n$, it solves the modular equation system</p>
 <p>$$x \equiv r[i] \pmod{m[i]}, \forall i \in \lbrace 0,1,\cdots, n - 1 \rbrace.$$</p>
 <p>If there is no solution, it returns $(0, 0)$. Otherwise, all the solutions can be written as the form $x \equiv y \pmod z$, using integers
@@ -100,9 +100,8 @@ $y, z$ $(0 \leq y &lt; z = \mathrm{lcm}(m[i]))$. It returns this $(y, z)$ as a p
 <li>$O(n \log{\mathrm{lcm}(m[i])})$</li>
 </ul>
 <h2>floor_sum</h2>
-<pre><code class="cpp">ll floor_sum(ll n, ll m, ll a, ll b)
+<pre><code class="language-cpp">ll floor_sum(ll n, ll m, ll a, ll b)
 </code></pre>
-
 <p>It returns $\sum_{i = 0}^{n - 1} \mathrm{floor}(\frac{a \times i + b}{m})$.</p>
 <p><strong>Constraints</strong></p>
 <ul>

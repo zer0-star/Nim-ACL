@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/css/uikit.min.css" />    
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit-icons.min.js"></script>
     <!-- Katex -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
         integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
@@ -53,24 +56,20 @@
         <div class="uk-container">
             <h1>ワーシャル・フロイト法</h1>
 <p>重みが任意のグラフの全頂点間最短距離を計算します。</p>
-<pre><code class="nim">var d = warshall_floyd[T](g:seq[seq[T]])
+<pre><code class="language-nim">var d = warshall_floyd[T](g:seq[seq[T]])
 </code></pre>
-
 <p>距離を表す2次元配列$g$のワーシャルフロイト法を実行します。$g[i][j]$には$i\to j$の距離を表します。
 $d$は内部的にはWarshallFloydResultというobjectで渡されていて、下記のような呼び出しが可能です。</p>
 <h2>距離の取得</h2>
-<pre><code class="nim">d[s:int]:seq[T]
+<pre><code class="language-nim">d[s:int]:seq[T]
 </code></pre>
-
 <p>$s$からの距離の配列を返します。</p>
-<pre><code class="nim">d[s, t:int]:T
+<pre><code class="language-nim">d[s, t:int]:T
 </code></pre>
-
 <p>$s$から$t$への距離を返します</p>
 <h2>パスの取得</h2>
-<pre><code class="nim">d.path(s, t)
+<pre><code class="language-nim">d.path(s, t)
 </code></pre>
-
 <p>$s$から$t$までの最短経路パスを返します</p>
 <p><strong>制約</strong></p>
 <ul>

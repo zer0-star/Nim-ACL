@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/css/uikit.min.css" />    
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit-icons.min.js"></script>
     <!-- Katex -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
         integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
@@ -59,9 +62,8 @@
 </ul>
 <p>というクローズを足し、これをすべて満たす変数の割当があるかを解きます。</p>
 <h2>コンストラクタ</h2>
-<pre><code class="nim">ts = initTwoSat(n:int):TwoSat
+<pre><code class="language-nim">ts = initTwoSat(n:int):TwoSat
 </code></pre>
-
 <p>$n$ 変数の2-SATを作ります。</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -72,9 +74,8 @@
 <li>$O(n)$</li>
 </ul>
 <h2>add_clause</h2>
-<pre><code class="nim">ts.add_clause(i:int, f:bool, j:int, g:bool):void
+<pre><code class="language-nim">ts.add_clause(i:int, f:bool, j:int, g:bool):void
 </code></pre>
-
 <p>$(x_i = f) \lor (x_j = g)$ というクローズを足します。</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -86,9 +87,8 @@
 <li>ならし $O(1)$</li>
 </ul>
 <h2>satisfiable</h2>
-<pre><code class="nim">ts.satisfiable():bool
+<pre><code class="language-nim">ts.satisfiable():bool
 </code></pre>
-
 <p>条件を足す割当が存在するかどうかを判定する。割当が存在するならば<code>true</code>、そうでないなら<code>false</code>を返す。</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -100,9 +100,8 @@
 <li>$O(n + m)$</li>
 </ul>
 <h2>answer</h2>
-<pre><code class="nim">ts.answer():seq[bool]
+<pre><code class="language-nim">ts.answer():seq[bool]
 </code></pre>
-
 <p>最後に呼んだ <code>satisfiable</code> の、クローズを満たす割当を返す。<code>satisfiable</code> を呼ぶ前や、<code>satisfiable</code> で割当が存在しなかったときにこの関数を呼ぶと、中身が未定義の長さ $n$ の vectorを返す。</p>
 <p><strong>計算量</strong></p>
 <ul>

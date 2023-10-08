@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/css/uikit.min.css" />    
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit-icons.min.js"></script>
     <!-- Katex -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
         integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
@@ -53,9 +56,8 @@
         <div class="uk-container">
             <h1>強連結な向き付け</h1>
 <p>橋のない無向グラフ$G$とその辺のリスト$es$が与えられたときに、$G$を強連結有向グラフとなるような$es$の向きを返す。</p>
-<pre><code class="nim">var d = strong_orientation(g:Graph, es:Edges[T, U]):seq[int]
+<pre><code class="language-nim">var d = strong_orientation(g:Graph, es:Edges[T, U]):seq[int]
 </code></pre>
-
 <p>$G$の各辺の重みは対応する$es$のインデックス(0-based)の値を入れておく。
 $i$番目の戻り値は$d[i]$が1ならば$es[i]$と同じ向き、$-1$ならば$es[i]$と逆向きを表す。</p>
 <p>本アルゴリズムを利用する問題としてはARC111Dを参照。</p>

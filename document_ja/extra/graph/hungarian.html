@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/css/uikit.min.css" />    
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit-icons.min.js"></script>
     <!-- Katex -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
         integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
@@ -53,9 +56,8 @@
         <div class="uk-container">
             <h1>ハンガリアン法</h1>
 <p>割当問題をハンガリアンで解きます</p>
-<pre><code class="nim">var (ans, p) = hungarian[T](a:seq[seq[T]]):(T, seq[int])
+<pre><code class="language-nim">var (ans, p) = hungarian[T](a:seq[seq[T]]):(T, seq[int])
 </code></pre>
-
 <p>$N$人の人と$N$個の仕事があり、それぞれ$0,1,\ldots,N-1$の番号が与えられていて、各人に1つの仕事を与えることを考えます。
 <code>a[i][j]</code>に人$i$が仕事$j$を行ったときのパフォーマンスを入力しパフォーマンスの合計を最大化します。
 上記のように呼び出すことで<code>ans</code>にパフォーマンスの最大値、<code>p[i]</code>に人$i$に与えるべき仕事の番号を表します。</p>

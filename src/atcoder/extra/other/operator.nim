@@ -68,11 +68,11 @@ when not declared ATCODER_OPERATOR_HPP:
       name = ident(nameStr)
       var p = newNimNode(nnkLambda).add(
         newEmptyNode(),
-        newEmptyNode(), 
-        newEmptyNode(), 
-        params, 
-        newEmptyNode(), 
-        newEmptyNode(), 
+        newEmptyNode(),
+        newEmptyNode(),
+        params,
+        newEmptyNode(),
+        newEmptyNode(),
         body)
       t[nameStr] = p
     var
@@ -84,23 +84,23 @@ when not declared ATCODER_OPERATOR_HPP:
       divOp = t["divide"]
       isZeroOp = t["isZero"]
     s.add quote do:
-      (hasZero: `hasZero`, zeroOp: `zeroOp`, 
-      hasUnit: `hasUnit`, unitOp: `unitOp`, 
-      hasAdd: `hasAdd`, addOp: `addOp`, 
-      hasSubt: `hasSubt`, subtOp:`subtOp`, 
-      hasMult: `hasMult`, multOp:`multOp`, 
-      hasDiv: `hasDiv`, divOp:`divOp`, 
+      (hasZero: `hasZero`, zeroOp: `zeroOp`,
+      hasUnit: `hasUnit`, unitOp: `unitOp`,
+      hasAdd: `hasAdd`, addOp: `addOp`,
+      hasSubt: `hasSubt`, subtOp:`subtOp`,
+      hasMult: `hasMult`, multOp:`multOp`,
+      hasDiv: `hasDiv`, divOp:`divOp`,
       hasIsZero: `hasIsZero`, isZeroOp:`isZeroOp`)
     result.add newBlockStmt(s)
     return
   
   type OperatorType*[hZ, Z, hU, U, hA, A, hS, S, hM, M, hD, D, hIZ, IZ] = tuple[
-    hasZero: hZ, zeroOp: Z, 
-    hasUnit: hU, unitOp: U, 
-    hasAdd: hA, addOp: A, 
-    hasSubt: hS, subtOp: S, 
-    hasMult: hM, multOp: M, 
-    hasDiv: hD, divOp: D, 
+    hasZero: hZ, zeroOp: Z,
+    hasUnit: hU, unitOp: U,
+    hasAdd: hA, addOp: A,
+    hasSubt: hS, subtOp: S,
+    hasMult: hM, multOp: M,
+    hasDiv: hD, divOp: D,
     hasIsZero: hIZ, isZeroOp:IZ
   ]
   
@@ -147,3 +147,17 @@ when not declared ATCODER_OPERATOR_HPP:
           a < 0.0000001
         else:
           a == T(0)
+
+  template getDefaultOperator*(T:typedesc; z, u:T):tuple =
+    getOperator(T):
+      proc zero() = z
+      proc unit() = u
+      proc add(a, b:T):T = a + b
+      proc subt(a, b:T):T = a - b
+      proc mult(a, b:T):T = a * b
+      proc divide(a, b:T):T = T(a / b)
+      proc isZero(a:T):bool =
+        when T is SomeFloat:
+          a < 0.0000001
+        else:
+          a == z

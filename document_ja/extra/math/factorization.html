@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/css/uikit.min.css" />    
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit-icons.min.js"></script>
     <!-- Katex -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
         integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
@@ -55,18 +58,16 @@
 <p>pollard_rho法による素因数分解を行います。
 $O(\sqrt n)$でも間に合わない大きな数を分解しない限りは遅いと思われるので、エラトステネス法等のアルゴリズムを用いましょう</p>
 <h3>素数判定</h3>
-<pre><code class="nim">isPrime(n: int):bool
+<pre><code class="language-nim">isPrime(n: int):bool
 </code></pre>
-
 <p>素数かどうか判定します。</p>
 <p><strong>計算量</strong></p>
 <ul>
 <li>??</li>
 </ul>
 <h3>素因数分解</h3>
-<pre><code class="nim">factor(n: int):seq[(int, int)]
+<pre><code class="language-nim">factor(n: int):seq[(int, int)]
 </code></pre>
-
 <p>素因数分解します。</p>
 <p><strong>計算量</strong></p>
 <ul>

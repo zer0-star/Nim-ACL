@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/css/uikit.min.css" />    
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit-icons.min.js"></script>
     <!-- Katex -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
         integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
@@ -56,27 +59,23 @@
 扱う整数$n$が100万程度と小さく、$O(n)$の計算量と空間をかけていいのであれば、エラトステネス法の利用をおすすめします。
 また、さらに大きく$O(\sqrt n)$もかけられない場合はpollard ryo法をおすすめします</p>
 <h3>約数</h3>
-<pre><code class="nim">divisor(n:int):seq[int]
+<pre><code class="language-nim">divisor(n:int):seq[int]
 </code></pre>
-
 <p>約数を返します。</p>
 <p><strong>計算量</strong></p>
 <ul>
 <li>$O(\sqrt n)$</li>
 </ul>
 <h3>素因数分解</h3>
-<pre><code class="nim">prime_factorization(n: int): seq[(int, int)]
+<pre><code class="language-nim">prime_factorization(n: int): seq[(int, int)]
 </code></pre>
-
 <p>素因数分解します。(素因数, 指数)の配列が返されます</p>
 <h3>約数列挙</h3>
-<pre><code class="nim">divisor(f: openArray[(int, int)]):seq[int]
+<pre><code class="language-nim">divisor(f: openArray[(int, int)]):seq[int]
 </code></pre>
-
 <p>素因数分解した配列から約数の配列に変換します。渡した配列の第一引数に素数以外の数がある場合や素数が重複している場合の動作は未定義です。</p>
-<pre><code class="nim">divisor(f: openArray[int]):seq[int]
+<pre><code class="language-nim">divisor(f: openArray[int]):seq[int]
 </code></pre>
-
 <p>素数の配列から約数の配列に変換します。引数の素数は割れる数だけ重複させてください。
 配列に素数でない数がある場合の動作は未定義です。</p>
         </div>

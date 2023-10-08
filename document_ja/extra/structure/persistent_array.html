@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/css/uikit.min.css" />    
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit-icons.min.js"></script>
     <!-- Katex -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
         integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
@@ -55,27 +58,23 @@
 <p>通常の配列の機能と同様、<code>=</code>演算子で、ある時点での配列変数を「コピー」してそれぞれ別の配列として更新が可能
 通常の配列でこれを行うと配列のすべてのデータがコピーされて時間がかかるが、永続配列はそうならないような実装となる</p>
 <h2>コンストラクタ</h2>
-<pre><code class="nim">a = initPersistentArray[T](v:seq[T]):PersistentArray
+<pre><code class="language-nim">a = initPersistentArray[T](v:seq[T]):PersistentArray
 </code></pre>
-
 <p>$v$を初期値とする配列を作成する</p>
 <h2>値の代入</h2>
-<pre><code class="nim">a[k] = val
+<pre><code class="language-nim">a[k] = val
 </code></pre>
-
 <p>通常の配列と同様, $a$のインデックス$k$にvalに更新します。</p>
 <h2>値の参照</h2>
-<pre><code class="nim">var x = a[k]
+<pre><code class="language-nim">var x = a[k]
 </code></pre>
-
 <p>通常の配列と同様, $a$のインデックス$k$を参照可能である。</p>
 <h2>配列のコピー</h2>
-<pre><code class="nim">var b = a
+<pre><code class="language-nim">var b = a
 </code></pre>
-
 <p>通常の配列でこれを行うと<code>a</code>の全要素がコピーされて<code>b</code>が作成されますが、永続配列の場合はそれを行わずに実現し、<code>b</code>に対しても<code>a</code>とは独立に更新や参照が可能です。
 以下のように代入前に$a$を$b$にコピー(実際はコピーしていない)しておくと<code>b[k]</code>の値は更新されず、更新後も<code>b</code>によって更新前の値が保持され<code>b</code>に対して別の更新をすることも可能です。</p>
-<pre><code class="nim">var a = initPersistentArray[int](@[3, 1, 4, 1, 5])
+<pre><code class="language-nim">var a = initPersistentArray[int](@[3, 1, 4, 1, 5])
 var b = a # 実際にはaのすべての要素をコピーしているわけではない
 a[2] = 7
 echo a[2] # 7
@@ -85,7 +84,6 @@ b[3] = 9
 echo b[3] # 9
 echo a[3] # 1
 </code></pre>
-
 <p><strong>計算量</strong></p>
 <p>配列のサイズを$N$として</p>
 <ul>

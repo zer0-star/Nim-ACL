@@ -71,6 +71,8 @@ when not declared ATCODER_MATRIX_HPP:
     for i in 0..<a.len: result[i] = M.T(a[i])
   template initVector*[M:StaticMatrix | StaticMatrixObj](self:M or typedesc[M], n:static[int]):auto =
     var a:StaticVector[M.T, n.int]
+    for i in 0 ..< n:
+      a[i] = M.p.zero()
     a
   template initVector*[M:StaticMatrix | StaticMatrixObj](self:M or typedesc[M], a:array):auto =
     var v = M.initVector(a.len)

@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/css/uikit.min.css" />    
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit-icons.min.js"></script>
     <!-- Katex -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
         integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
@@ -66,21 +69,20 @@
 <p>を $O(\log N)$ で行うことが出来ます。詳細な要件は <a href="./appendix.html">Appendix</a> を参照してください。</p>
 <p>また、このライブラリはオラクルとして<code>op, e</code>の2種類を使用しますが、これらが定数時間で動くものと仮定したときの計算量を記述します。オラクル内部の計算量が $O(f(n))$ である場合はすべての計算量が $O(f(n))$ 倍となります。</p>
 <h2>コンストラクタ</h2>
-<pre><code class="nim">(1) var seg = initSegTree[S](n:int, op:(S,S)-&gt;S, e:()-&gt;S):segtree[S]
+<pre><code class="language-nim">(1) var seg = initSegTree[S](n:int, op:(S,S)-&gt;S, e:()-&gt;S):segtree[S]
     var seg = SegTreeType(S, op:(S,S)-&gt;S, e:()-&gt;S).init(n)
     var seg = SegTree.getType(S, op:(S,S)-&gt;S, e:()-&gt;S).init(n)
 (2) var seg = initSegTree[S](v:seq[S], op:(S,S)-&gt;S, e:()-&gt;S):segtree[S]
     var seg = SegTreeType(S, op:(S,S)-&gt;S, e:()-&gt;S).init(v)
     var seg = SegTree.getType(S, op:(S,S)-&gt;S, e:()-&gt;S).init(v)
 </code></pre>
-
 <ul>
 <li>型 <code>S</code></li>
 <li>二項演算 <code>op(a:S, b:S):S</code></li>
 <li>単位元 <code>e():S</code></li>
 </ul>
 <p>を定義する必要があります。例として、Range Min Queryならば</p>
-<pre><code class="nim">proc op(a:int, b:int):int =
+<pre><code class="language-nim">proc op(a:int, b:int):int =
     return min(a, b)
 
 proc e():int =
@@ -88,7 +90,6 @@ proc e():int =
 
 var seg = initSegTree[int](10, seg, e)
 </code></pre>
-
 <p>のようになります。</p>
 <ul>
 <li>(1): 長さ <code>n</code> の数列 <code>a</code> を作ります。初期値は全部<code>e()</code>です。</li>
@@ -104,16 +105,14 @@ var seg = initSegTree[int](10, seg, e)
 <li>$O(n)$</li>
 </ul>
 <h2>タイプだけ設定</h2>
-<pre><code class="nim">  type st_type = SegTreeType[S](op:(S,S)-&gt;S, e:()-&gt;S)
+<pre><code class="language-nim">  type st_type = SegTreeType[S](op:(S,S)-&gt;S, e:()-&gt;S)
 </code></pre>
-
 <p>コンストラクタは呼ばずにタイプだけ設定できます。<code>st_type.init(v:seq[int])</code>といった具合にタイプからコンストラクタを呼び出したり、<code>var v:seq[st_type]</code>といった具合にsegtreeの配列を宣言するのにお使いください。</p>
 <p>(背景)Nimはいろいろと癖のある言語でsegtreeのobject構造体はマニアック(笑)な構造をしているので直にタイプを呼ぶのは推奨されません。上記のSegTreeTypeのテンプレートをお使いください。</p>
 <h2>set</h2>
-<pre><code class="nim">seg.set(p:int, x:S):void
+<pre><code class="language-nim">seg.set(p:int, x:S):void
 seg[p:int] = x:S
 </code></pre>
-
 <p><code>a[p]</code> に <code>x</code> を代入します。</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -124,10 +123,9 @@ seg[p:int] = x:S
 <li>$O(\log n)$</li>
 </ul>
 <h2>get</h2>
-<pre><code class="nim">seg.get(p:int):S
+<pre><code class="language-nim">seg.get(p:int):S
 seg[p:int]:S
 </code></pre>
-
 <p><code>a[p]</code> を返します。</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -138,10 +136,9 @@ seg[p:int]:S
 <li>$O(1)$</li>
 </ul>
 <h2>prod</h2>
-<pre><code class="nim">seg.prod(l..&lt;r):S
+<pre><code class="language-nim">seg.prod(l..&lt;r):S
 seg[l..&lt;r]:S
 </code></pre>
-
 <p><code>op(a[l], ..., a[r - 1])</code> を、モノイドの性質を満たしていると仮定して計算します。$l = r$ のときは <code>e()</code> を返します。</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -152,19 +149,17 @@ seg[l..&lt;r]:S
 <li>$O(\log n)$</li>
 </ul>
 <h2>all_prod</h2>
-<pre><code class="nim">seg.all_prod():S
+<pre><code class="language-nim">seg.all_prod():S
 </code></pre>
-
 <p><code>op(a[0], ..., a[n - 1])</code> を計算します。$n = 0$ のときは <code>e()</code> を返します。</p>
 <p><strong>計算量</strong></p>
 <ul>
 <li>$O(1)$</li>
 </ul>
 <h2>max_right</h2>
-<pre><code class="nim">(1) seg.max_right&lt;f&gt;(l:int):int
+<pre><code class="language-nim">(1) seg.max_right&lt;f&gt;(l:int):int
 (2💻) seg.max_right[F](l:int, f:F):int
 </code></pre>
-
 <ul>
 <li>(1): 関数 <code>bool f(S x)</code> を定義する必要があります。segtreeの上で二分探索をします。  </li>
 <li>(2): <code>S</code>を引数にとり<code>bool</code>を返す関数オブジェクトを渡して使用します。  </li>
@@ -186,10 +181,9 @@ seg[l..&lt;r]:S
 <li>$O(\log n)$</li>
 </ul>
 <h2>min_left</h2>
-<pre><code class="nim">(1) seg.min_left[f](r:int):int
+<pre><code class="language-nim">(1) seg.min_left[f](r:int):int
 (2💻) seg.min_left[F](r:int, f:F):int
 </code></pre>
-
 <ul>
 <li>(1): 関数 <code>bool f(S x)</code> を定義する必要があります。segtreeの上で二分探索をします。  </li>
 <li>(2): <code>S</code>を引数にとり<code>bool</code>を返す関数オブジェクトを渡して使用します。  </li>

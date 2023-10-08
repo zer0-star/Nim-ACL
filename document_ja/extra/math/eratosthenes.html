@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/css/uikit.min.css" />    
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit-icons.min.js"></script>
     <!-- Katex -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
         integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
@@ -54,49 +57,43 @@
             <h1>エラトステネス法</h1>
 <p>エラトステネス法で素数を列挙したり、与えられた整数を素因数分解したり約数を列挙したりします。</p>
 <h3>コンストラクタ</h3>
-<pre><code class="nim">var es = initEratosthenes(n: int = 10000)
+<pre><code class="language-nim">var es = initEratosthenes(n: int = 10000)
 </code></pre>
-
 <p>エラトステネス法のオブジェクトを作成します。サイズ$n$を指定すると$n$未満の整数についての配列を作ります。
 これより大きい数についての下記のクエリが渡されたときは倍々に再構築されるので、範囲外アクセス等は気にせずに済みます。
 したがって、ならしコスト$O(n)$となりますが、使うサイズが決まっている場合は最初からそのサイズで構築した方がオーバーヘッドが少なくて済みます。</p>
 <h3>素数判定</h3>
-<pre><code class="nim">es.isPrime(n:int)
+<pre><code class="language-nim">es.isPrime(n:int)
 </code></pre>
-
 <p>$n$が素数かどうかを判定する</p>
 <p><strong>計算量</strong></p>
 <ul>
 <li>$O(1)$</li>
 </ul>
 <h3>素因数</h3>
-<pre><code class="nim">es.primeDivisor(n:int):int
+<pre><code class="language-nim">es.primeDivisor(n:int):int
 </code></pre>
-
 <p>$n$の素因数を一つ返します</p>
 <p><strong>計算量</strong></p>
 <ul>
 <li>$O(1)$</li>
 </ul>
 <h3>素因数分解</h3>
-<pre><code class="nim">es.factor(n:int):seq[(int, int)]
+<pre><code class="language-nim">es.factor(n:int):seq[(int, int)]
 </code></pre>
-
 <p>$n$を素因数分解して素因数、指数の配列を返します</p>
 <p><strong>計算量</strong>
 - 素因数の個数分の計算量がかかります</p>
 <h3>素数取得</h3>
-<pre><code class="nim">es.getPrime(i:int):int
+<pre><code class="language-nim">es.getPrime(i:int):int
 es[i: int]:int
 </code></pre>
-
 <p>インデックス$i$の素数を返します。つまり、小さい方から$i+1$番目の素数が返ります。</p>
 <p><strong>計算量</strong>
 - ならしコスト$O(1)$です。</p>
 <h3>約数取得</h3>
-<pre><code class="nim">es.divisor(n: int): seq[int]
+<pre><code class="language-nim">es.divisor(n: int): seq[int]
 </code></pre>
-
 <p>$n$の約数を返します。</p>
         </div>
     </section>

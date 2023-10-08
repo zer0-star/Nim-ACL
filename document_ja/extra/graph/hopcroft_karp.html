@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/css/uikit.min.css" />    
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit-icons.min.js"></script>
     <!-- Katex -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
         integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
@@ -53,34 +56,28 @@
         <div class="uk-container">
             <h1>二部グラフの最大マッチング・最小頂点被覆</h1>
 <p>Hopcroft-Karp法によって二部グラフの最大マッチングを求めます。</p>
-<pre><code class="nim">var a = initHopcroftKarp(n, m:int)
+<pre><code class="language-nim">var a = initHopcroftKarp(n, m:int)
 </code></pre>
-
 <p>二部グラフの左側の頂点数を$n$, 右側の頂点数を$m$としたグラフを作ります。</p>
-<h1>頂点の追加</h1>
-<pre><code class="nim">a.addEdge(u, v:int)
+<h2>頂点の追加</h2>
+<pre><code class="language-nim">a.addEdge(u, v:int)
 </code></pre>
-
 <p>左の頂点$u$と右の頂点$v$を結ぶ辺を追加します。</p>
-<h1>最大マッチング</h1>
-<pre><code class="nim">a.maximum_maching():seq[(int, int)]
+<h2>最大マッチング</h2>
+<pre><code class="language-nim">a.maximum_maching():seq[(int, int)]
 </code></pre>
-
 <p>最大マッチングの一例を表すタプルの配列を返します</p>
-<h1>最小頂点被覆</h1>
-<pre><code class="nim">a.minimum_vertex_cover():(seq[int], seq[int])
+<h2>最小頂点被覆</h2>
+<pre><code class="language-nim">a.minimum_vertex_cover():(seq[int], seq[int])
 </code></pre>
-
 <p>最小頂点被覆、すなわち頂点集合$S$であってどの辺をとってもいずれかの端点が$S$に含まれるようなものの最小の頂点集合を返します。返り値の1つめの要素は最小頂点被覆に選ぶべき左の頂点集合、2つめの要素は右の頂点集合です。</p>
-<h1>最小独立集合</h1>
-<pre><code class="nim">a.minimum_stable_set():(seq[int], seq[int])
+<h2>最小独立集合</h2>
+<pre><code class="language-nim">a.minimum_stable_set():(seq[int], seq[int])
 </code></pre>
-
 <p>最小独立集合、すなわち頂点の集合であって任意の2つの頂点が辺で結ばれていない最小のものを返します。</p>
-<h1>最小辺被覆</h1>
-<pre><code class="nim">a.minimum_edge_cover():seq[(int, int)]
+<h2>最小辺被覆</h2>
+<pre><code class="language-nim">a.minimum_edge_cover():seq[(int, int)]
 </code></pre>
-
 <p>最小辺被覆、すなわち辺の集合$S$であって、どの頂点をとっても$S$のいずれかの端点になっているようなものの最小のものを返します。</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -88,7 +85,8 @@
 </ul>
 <p><strong>計算量</strong></p>
 <ul>
-<li>頂点数を$V$, 辺数を$E$として$O(E\sqrt(V))$</li>
+<li>最大マッチング: 頂点数を$V$, 辺数を$E$として$O(E\sqrt(V))$</li>
+<li>最大マッチング以外の計算量は$O(E)$</li>
 </ul>
         </div>
     </section>

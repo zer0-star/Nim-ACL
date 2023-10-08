@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/css/uikit.min.css" />    
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit-icons.min.js"></script>
     <!-- Katex -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
         integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
@@ -59,11 +62,10 @@
 </ul>
 <p>を $O(\log N)$ で求めることが出来るデータ構造です。</p>
 <h2>コンストラクタ</h2>
-<pre><code class="nim">var fw = initFenwickTree[T](n:int):fenwick_tree[T]
+<pre><code class="language-nim">var fw = initFenwickTree[T](n:int):fenwick_tree[T]
 var fw = FenwickTreeType(T).init(n)
 var fw = FenwickTree.getType(T).init(n)
 </code></pre>
-
 <ul>
 <li>長さ $n$ の配列 $a_0, a_1, \cdots, a_{n-1}$ を作ります。初期値はすべて $0$ です。</li>
 </ul>
@@ -77,9 +79,8 @@ var fw = FenwickTree.getType(T).init(n)
 <li>$O(n)$</li>
 </ul>
 <h2>add</h2>
-<pre><code class="nim">fw.add(p:int, x:T):void
+<pre><code class="language-nim">fw.add(p:int, x:T):void
 </code></pre>
-
 <p><code>a[p] += x</code> を行う</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -90,10 +91,9 @@ var fw = FenwickTree.getType(T).init(n)
 <li>$O(\log n)$</li>
 </ul>
 <h2>sum</h2>
-<pre><code class="nim">fw.sum(l..&lt;r):T
+<pre><code class="language-nim">fw.sum(l..&lt;r):T
 fw[l..&lt;r]:T
 </code></pre>
-
 <p><code>a[l] + a[l + 1] + ... + a[r - 1]</code> を返す。
 <code>T</code> が整数型(<code>int / uint / ll / ull</code>)の場合、答えがオーバーフローしたならば $\bmod 2^{\mathrm{bit}}$ で等しい値が返る。
 Nimに特有の機能として[]演算子でも呼べる他、BackwardsIndexでのアクセスも可能です。例えば、<code>fw[3..^1]</code>でインデックス3以降の全ての和が返されます。</p>

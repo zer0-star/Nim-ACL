@@ -8,6 +8,12 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
   type Poly*[T:FieldElem] = FormalPowerSeries[T]
   type FPS*[T:FieldElem] = FormalPowerSeries[T]
 
+  proc `$`*(f:seq): string {.inline.} =
+    var s:seq[int]
+    for i in f.len:
+      s.add $(f[i]) & " x^" & i
+    return s.join("+")
+
 
   template hasFFT*(T:typedesc):bool =
     mixin fft
@@ -530,3 +536,6 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
     a.shrink
     b.shrink
     return gcdImpl(a, b)
+
+
+

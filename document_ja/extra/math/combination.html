@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/css/uikit.min.css" />    
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit-icons.min.js"></script>
     <!-- Katex -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
         integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
@@ -55,28 +58,25 @@
 <p>これ一つで階乗、階乗の逆元、ならし$O(1)$の逆元、組み合わせ($nCr$, $nPr$, $nHr$)のすべてが求められるライブラリです。
 配列の確保更新は倍々に自動で行うので、不要です。</p>
 <h2>階乗</h2>
-<pre><code class="nim">T.fact(n:int):T
+<pre><code class="language-nim">T.fact(n:int):T
 </code></pre>
-
 <p>$n!$の値を計算します。</p>
 <p><strong>計算量</strong></p>
 <ul>
 <li>ならし$O(1)$</li>
 </ul>
 <h2>階乗の逆元</h2>
-<pre><code class="nim">T.rfact(n:int):T
+<pre><code class="language-nim">T.rfact(n:int):T
 T.invfact(n:int):T
 </code></pre>
-
 <p>$n!$の逆元の値を計算します。</p>
 <p><strong>計算量</strong></p>
 <ul>
 <li>ならし$O(1)$</li>
 </ul>
 <h2>逆元</h2>
-<pre><code class="nim">T.inv(n:int):T
+<pre><code class="language-nim">T.inv(n:int):T
 </code></pre>
-
 <p>$n$の逆元の値を計算します。返り値は<code>T(1) / T(n)</code>あるいは<code>T(n).inv()</code>と同じですが、例えばTがmodintの場合前者はならし$O(1)$で計算できるのに対して、後者は毎回$O(log n)$かかります。$n$が小さくてたくさん呼ぶときなどは前者が便利です。</p>
 <p><strong>計算量</strong></p>
 <ul>
@@ -87,27 +87,24 @@ T.invfact(n:int):T
 atcoderの時間・領域のリミットを考えると$n$は$10^7$以下程度が限界です。それより大きい場合は下記の大きい数の場合をご検討ください。
 $C, H, R$の定義は高校の教科書などを参考にしてください。</p>
 <h3>順列</h3>
-<pre><code class="nim">T.P(n, r:int):T
+<pre><code class="language-nim">T.P(n, r:int):T
 </code></pre>
-
 <p>$nPr$の値を$T$型で計算します。</p>
 <p><strong>計算量</strong></p>
 <ul>
 <li>ならし$O(1)$</li>
 </ul>
 <h3>組み合わせ</h3>
-<pre><code class="nim">T.C(n, r:int):T
+<pre><code class="language-nim">T.C(n, r:int):T
 </code></pre>
-
 <p>$nCr$の値を$T$型で計算します。</p>
 <p><strong>計算量</strong></p>
 <ul>
 <li>ならし$O(1)$</li>
 </ul>
 <h3>重複組み合わせ</h3>
-<pre><code class="nim">T.H(n, r:int):T
+<pre><code class="language-nim">T.H(n, r:int):T
 </code></pre>
-
 <p>$nHr$の値を$T$型で計算します。</p>
 <p><strong>計算量</strong></p>
 <ul>
@@ -117,36 +114,32 @@ $C, H, R$の定義は高校の教科書などを参考にしてください。</
 <p>上記と同じですが、$n$が大きい数の場合に$O(r)$かけて計算することができます。
 「大きい数」の目安は長さ$n$の配列が作れない、つまり$10^7$以上程度です。</p>
 <h3>順列</h3>
-<pre><code class="nim">T.P_large(n, r:int):T
+<pre><code class="language-nim">T.P_large(n, r:int):T
 </code></pre>
-
 <p>$nPr$の値を$T$型で計算します。</p>
 <p><strong>計算量</strong></p>
 <ul>
 <li>$O(r)$</li>
 </ul>
 <h2>組み合わせ</h2>
-<pre><code class="nim">T.C_large(n, r:int):T
+<pre><code class="language-nim">T.C_large(n, r:int):T
 </code></pre>
-
 <p>$nCr$の値を$T$型で計算します。</p>
 <p><strong>計算量</strong></p>
 <ul>
 <li>$O(r)$</li>
 </ul>
 <h2>重複組み合わせ</h2>
-<pre><code class="nim">T.H_large(n, r:int):T
+<pre><code class="language-nim">T.H_large(n, r:int):T
 </code></pre>
-
 <p>$nHr$の値を$T$型で計算します。</p>
 <p><strong>計算量</strong></p>
 <ul>
 <li>ならし$O(r)$</li>
 </ul>
 <h2>データのリセット</h2>
-<pre><code class="nim">T.resetCombination()
+<pre><code class="language-nim">T.resetCombination()
 </code></pre>
-
 <p>確保した配列を一度リセットします。dynamic modintなどでmodを変えた場合に一度リセットしてください。
 リセットせず前のmodでの計算結果をベースに呼び出した場合の動作は未定義です。</p>
         </div>
