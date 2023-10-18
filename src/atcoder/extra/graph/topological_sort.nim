@@ -2,7 +2,7 @@
 when not declared ATCODER_TOPOLOGICAL_SORT_HPP:
   const ATCODER_TOPOLOGICAL_SORT_HPP* = 1
   import atcoder/extra/graph/graph_template
-  proc topologicalSort*(g:Graph[int]):seq[int] =
+  proc topologicalSort*(g:Graph):seq[int] =
     let N = g.len
     var deg = newSeq[int](N)
     for i in 0..<N:
