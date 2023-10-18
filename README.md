@@ -26,6 +26,13 @@ ACLにないがよく使いそうなライブラリを独自に実装してい�
 * READMEもできるだけ書く(英訳はできないかも)
 * 将来ACLに実装された場合は順次そちらに置き換える
 
+## verifyの実施方法
+- [online-judge-tools/verification-helper](https://github.com/online-judge-tools/verification-helper/blob/master/README.ja.md#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)を参考にpip installする
+- [このドキュメント](https://github.com/online-judge-tools/verification-helper/blob/master/.verify-helper/docs/static/document.ja.md#%E5%AF%BE%E5%BF%9C%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E4%B8%80%E8%A6%A7)を参考にYUKICODER_TOKEN を取得し、環境変数を設定する。`export YUKICODER_TOKEN=xxx`
+- `src/`に移動する
+- すべてのverifyを通すには`oj-verify run`を実行する。初回は遅いので`-j N`(Nは論理コア数)をつけ並列処理が有効にすると良い
+- 個別にveifyした場合は`oj-verify verify/crt_test.nim`のようにpathを指定する
+
 ## ドキュメント
 * ドキュメントはこちらです。
   * https://zer0-star.github.io/Nim-ACL/document_ja/index.html
