@@ -33,6 +33,10 @@ ACLにないがよく使いそうなライブラリを独自に実装してい�
 - すべてのverifyを通すには`oj-verify run`を実行する。初回は遅いので`-j N`(Nは論理コア数)をつけ並列処理が有効にすると良い
 - 個別にveifyした場合は`oj-verify verify/crt_test.nim`のようにpathを指定する
 
+apple silicon上でverifyに失敗した場合
+- apple siliconはonline-judge側でスタックサイズを大きくすることができなません。`ulimit -s 65000`の実行で多くのテストが成功するようになります
+- `aoj_cgl_2_d_distance_test.nim`はアーキテクチャの都合上通すことが不可能です
+
 ## ドキュメント
 * ドキュメントはこちらです。
   * https://zer0-star.github.io/Nim-ACL/document_ja/index.html
