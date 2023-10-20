@@ -30,24 +30,23 @@ when not declared ATCODER_FACTORIZATION_HPP:
         p = mul(p, p, n);
       if p != n - 1 and i != s: return false
     return true
-  
+
   proc rho(n:int):int =
-    proc f(a:int):auto = mul(a, a, n) + 1
-    var
-      (x,y,p,i,t) = (0,0,2,1,0)
-      q:int
-    while t mod 40 != 0 or gcd(p, n) == 1:
-      t.inc
-      if x == y:
-        i.inc
-        x = i
+    if n mod 2 == 0: return 2
+    for c in 1..<n:
+      proc f(a:int):auto = (mul(a, a, n) + c) mod n
+      var
+        x = c
         y = f(x)
-      q = mul(p, abs(y - x), n)
-      if q != 0:p = q
-      x = f(x)
-      y = f(f(y))
-    return gcd(p, n)
-  
+      while true:
+        let p = gcd((y-x+n),n)
+        if p == n:
+          break
+        if p != 1:
+          return p
+        x = f(x)
+        y = f(f(y))
+
   proc factor*(n:int):seq[(int, int)] =
     if n == 1: return @[]
     if isPrime(n): return @[(n, 1)]
