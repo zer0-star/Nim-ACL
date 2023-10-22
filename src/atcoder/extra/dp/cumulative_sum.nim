@@ -11,9 +11,12 @@ when not declared ATCODER_CUMULATIVE_SUM_HPP:
     result = CumulativeSum[T, false](data: newSeqWith(n + 1, T.default), pos:0, len:n)
   proc initCumulativeSumReverse*[T](n:int):CumulativeSum[T, true] =
     result = CumulativeSum[T, true](data: newSeqWith(n + 1, T.default), pos:0, len:n)
-
-  proc initCumulativeSum*(n:int, T:typedesc, reverse:static[bool] = false):CumulativeSum[T, reverse] =
-    result = CumulativeSum[T, reverse](data: newSeqWith(n + 1, T.default), pos:0, len:n)
+  proc initCumulativeSum*[T](v:seq[T]):CumulativeSum[T, false] =
+    result = CumulativeSum[T, false](data: newSeqWith(v.len + 1, T.default), pos:0, len:v.len)
+    for i, a in v: result.add(i, a)
+  proc initCumulativeSumReverse*[T](v:seq[T]):CumulativeSum[T, true] =
+    result = CumulativeSum[T, true](data: newSeqWith(v.len + 1, T.default), pos:0, len:v.len)
+    for i, a in v: result.add(i, a)
 
   proc `[]=`*[T;reverse:static[bool]](self: var CumulativeSum[T, reverse], k:IndexType, x:T) =
     var k = self^^k
@@ -27,17 +30,11 @@ when not declared ATCODER_CUMULATIVE_SUM_HPP:
     if k < self.pos: doAssert(false)
     if self.data.len < k + 2: self.data.setLen(k + 2)
     self.data[k + 1] += x
-  proc initCumulativeSum*[T](v:seq[T]):CumulativeSum[T, false] =
-    result = CumulativeSum[T, false](data: newSeqWith(v.len + 1, T.default), pos:0, len:v.len)
-    for i, a in v: result.add(i, a)
 
   proc propagate*[T;reverse:static[bool]](self: var CumulativeSum[T, reverse]) =
     if self.data.len < self.pos + 2: self.data.setLen(self.pos + 2)
     self.data[self.pos + 1] += self.data[self.pos]
     self.pos.inc
-  proc initCumulativeSum*[T](data:seq[T], reverse:static[bool] = false):CumulativeSum =
-    result = initCumulativeSum[T, reverse]()
-    for i,d in data: result[i] = d
   proc sum*[T;reverse:static[bool]](self: var CumulativeSum[T, reverse], k:int):T =
     if k < 0: return T(0)
     while self.pos < k: self.propagate()
