@@ -477,12 +477,22 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
     mixin pow, init
     var self = self
     deg.revise(self.len)
+    if k == 0:
+      result = initFormalPowerSeries[T](deg)
+      result[0] = T(1)
+      return
     self.resize(deg)
     for i in 0..<deg:
       if not EQUAL(self[i], T(0)):
         let rev = T(1) / self[i]
         result = (((self * rev) shr i).log(deg) * T.init(k)).exp() * (self[i].pow(k))
-        if i * k > deg: return initFormalPowerSeries[T](deg)
+        #if i * k > deg:
+        var p:int
+        if i == 0: p = 0
+        elif k > deg: p = deg + 1
+        else: p = i * k
+        if p > deg:
+          return initFormalPowerSeries[T](deg)
         result = (result shl (i * k)).pre(deg)
         if result.len < deg: result.setlen(deg)
         return
