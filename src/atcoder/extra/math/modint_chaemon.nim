@@ -2,6 +2,9 @@
 when not declared ATCODER_MODINT_CHAEMON_HPP:
   const ATCODER_MODINT_CHAEMON_HPP* = 1
   import std/strformat, std/macros
+  {. warning[UnusedImport]:off .}
+  import std/distros # for detect arm/arm64
+
   # ModInt[Mod] {{{
   type ModInt*[Mod: static[int]] = object
     v:int32
@@ -30,7 +33,7 @@ converter to{t.repr}*(a:SomeInteger):{t.repr} = initModInt(a, {Mod.repr})
    
   # DynamicModInt {{{
   type DMint* = object
-    v:int32
+    v*:int32
    
   proc setModSub*(self:typedesc[not ModInt], m:int = -1, update = false):int32 =
     {.noSideEffect.}:
@@ -39,25 +42,30 @@ converter to{t.repr}*(a:SomeInteger):{t.repr} = initModInt(a, {Mod.repr})
       return DMOD
    
   proc fastMod*(a:int,m:uint32):uint32{.inline.} =
-    var
-      minus = false
-      a = a
-    if a < 0:
-      minus = true
-      a = -a
-    elif a < m.int:
-      return a.uint32
-    var
-      xh = (a shr 32).uint32
-      xl = a.uint32
-      d:uint32
-    asm """
-      "divl %4; \n\t"
-      : "=a" (`d`), "=d" (`result`)
-      : "d" (`xh`), "a" (`xl`), "r" (`m`)
-    """
-    if minus and result > 0'u32: result = m - result
-  proc initDMint*(a:SomeInteger, Mod:int):DMint = result.v = fastMod(a.int, Mod.uint32).int32
+    when defined(arm) or defined(arm64):
+      return (a mod int(m)).uint32
+    else:
+      var
+        minus = false
+        a = a
+      if a < 0:
+        minus = true
+        a = -a
+      elif a < m.int:
+        return a.uint32
+      var
+        xh = (a shr 32).uint32
+        xl = a.uint32
+        d:uint32
+      asm """
+        "divl %4; \n\t"
+        : "=a" (`d`), "=d" (`result`)
+        : "d" (`xh`), "a" (`xl`), "r" (`m`)
+      """
+      if minus and result > 0'u32: result = m - result
+
+  proc initDMint*(a:SomeInteger, Mod:int):DMint =
+    result.v = fastMod(a.int, Mod.uint32).int32
    
   proc getMod*[T:not ModInt](self: T):int32 = T.type.setModSub()
   proc getMod*(self: typedesc[not ModInt]):int32 = self.setModSub()
@@ -83,9 +91,11 @@ converter to{t.repr}*(a:SomeInteger):{t.repr} = initModInt(a, {Mod.repr})
       r.v = fastMod(a.int, self.getMod().uint32).int32
       r
     else: a
-   
-  macro declareDMintConverter*(t:untyped) =
-    parseStmt(fmt"""
+
+  macro declareDMintConverter*(tt:untyped) =
+    block:
+      let t {.inject.} = tt
+      parseStmt(fmt"""
 converter to{t.repr}*(a:SomeInteger):{t.repr} =
   let Mod = {t.repr}.getMod()
   if Mod > 0:
@@ -94,15 +104,18 @@ converter to{t.repr}*(a:SomeInteger):{t.repr} =
     result.v = a.int32
   return result
 """)
-   
+
   declareDMintConverter(DMint)
-   
-  macro declareDMint*(t:untyped) =
-    parseStmt(fmt"""
-  type {t.repr} {{.borrow: `.`.}} = distinct DMint
-  declareDMintConverter({t.repr})
-  """)
-   
+
+  macro declareDMint*(tt:untyped) =
+    block:
+      let
+        t {.inject.} = tt
+      parseStmt(fmt"""
+type {t.repr} {{.borrow: `.`.}} = distinct DMint
+declareDMintConverter({t.repr})
+""")
+
   proc `*=`*(self:var ModIntC, a:SomeIntC) =
     when self is ModInt:
       self.v = (self.v.int * self.init(a).v.int mod self.getMod().int).int32
@@ -113,7 +126,7 @@ converter to{t.repr}*(a:SomeInteger):{t.repr} =
   proc `-`*(self:ModIntC):auto =
     if self.v == 0: return self
     else: return self.init(self.getMod() - self.v)
-#  proc `$`*(a:ModIntC):string = return $(a.v)
+  proc `$`*(a:ModIntC):string = return $(a.v)
    
   proc `+=`*(self:var ModIntC; a:SomeIntC) =
     self.v += self.init(a).v
