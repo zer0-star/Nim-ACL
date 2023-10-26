@@ -1,6 +1,6 @@
 # ModInt {{{
-when not declared ATCODER_MODINT_CHAEMON_HPP:
-  const ATCODER_MODINT_CHAEMON_HPP* = 1
+when not declared ATCODER_MODINT_ASM_HPP:
+  const ATCODER_MODINT_ASM_HPP* = 1
   import std/strformat, std/macros
   {. warning[UnusedImport]:off .}
   import std/distros # for detect arm/arm64
