@@ -35,7 +35,6 @@ ACLにないがよく使いそうなライブラリを独自に実装してい�
 
 apple silicon上でverifyに失敗した場合
 - apple siliconはonline-judge側でスタックサイズを大きくすることができなません。`ulimit -s 65000`の実行で多くのテストが成功するようになります
-- `aoj_cgl_2_d_distance_test.nim`はアーキテクチャの都合上通すことが不可能です
 
 ## ドキュメント
 * ドキュメントはこちらです。
