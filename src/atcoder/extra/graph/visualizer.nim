@@ -1,7 +1,7 @@
 when not declared ATCODER_GRAPH_VISUALIZER_HPP:
   const ATCODER_GRAPH_VISUALIZER_HPP* = 1
   import atcoder/extra/graph/graph_template
-  import std/strformat, std/sets
+  import std/strformat, std/sets, std/strutils, std/browsers
   proc visualize*(g:Graph, labels:seq[string] = @[], base = 0) =
     var
       node_data:seq[string]
@@ -37,8 +37,8 @@ when not declared ATCODER_GRAPH_VISUALIZER_HPP:
 
     <style type="text/css">
         #mynetwork {
-            width: 1800px;
-            height:900px;
+            width: 100%;
+            height: 100%;
             border: 1px solid lightgray;
         }
     </style>
@@ -68,7 +68,7 @@ when not declared ATCODER_GRAPH_VISUALIZER_HPP:
     var options = {
         physics: {
             barnesHut: {
-                avoidOverlap: 0.5
+                avoidOverlap: 0.3
             }
         }
     };
@@ -82,4 +82,5 @@ when not declared ATCODER_GRAPH_VISUALIZER_HPP:
     html = html.replace("<<<EDGE_DATA>>>", edge_data.join(","))
     var f = open("./graph.html", FileMode.fmWrite)
     f.write(html)
+    openDefaultBrowser("./graph.html")
     defer: close(f)
