@@ -159,14 +159,9 @@ when not declared ATCODER_GEOMETRY_TEMPLATE_HPP:
   # }}}
   
   # intersect function {{{
-  swappableProc intersect(l: Line[Real], p: Point[Real]):
-    return abs(ccw(l.a, l.b, p).int) != 1
-
   proc intersect*[Real](l, m: Line[Real]):bool =
     abs(cross(l.b - l.a, m.b - m.a)) >~ 0.Real or abs(cross(l.b - l.a, m.b - l.a)) <~ 0.Real
   
-  swappableProc intersect(s: Segment[Real], p: Point[Real]):
-    ccw(s.a, s.b, p).int == 0
   swappableProc intersect(l: Line[Real], s: Segment[Real]):
     cross(l.b - l.a, s.a - l.a) * cross(l.b - l.a, s.b - l.a) <~ 0.Real
   
@@ -212,7 +207,8 @@ when not declared ATCODER_GEOMETRY_TEMPLATE_HPP:
   
   swappableProc distance(s: Segment[Real], p: Point[Real]):
     let r = p.projection(s)
-    if intersect(s, r): return abs(r - p)
+    let cp = dot(r-s.a, s.b-s.a)
+    if cp >= 0 and cp <= abs(s.b-s.a)^2: return abs(r - p)
     return min(abs(s.a - p), abs(s.b - p))
   
   # http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D
