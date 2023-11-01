@@ -206,7 +206,7 @@ when not declared ATCODER_GEOMETRY_TEMPLATE_HPP:
     if intersect(l, m): 0.Real else: distance(l, m.a)
   
   swappableProc distance(s: Segment[Real], p: Point[Real]):
-    let r p= p.projection(s)
+    let r = p.projection(s)
     let d = dot(r-s.a, s.b-s.a)
     if d >= 0 and d <= abs(s.b-s.a)^2: return abs(r - p)
     return min(abs(s.a - p), abs(s.b - p))
