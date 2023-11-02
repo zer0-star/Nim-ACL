@@ -160,7 +160,14 @@ when not declared ATCODER_GEOMETRY_TEMPLATE_HPP:
   
   # intersect function {{{
   proc intersect*[Real](l, m: Line[Real]):bool =
-    abs(cross(l.b - l.a, m.b - m.a)) >~ 0.Real or abs(cross(l.b - l.a, m.b - l.a)) <~ 0.Real
+    cross(l.b - l.a, m.b - m.a) >~ 0 or cross(l.b - l.a, m.b - l.a) <~ 0
+
+  swappableProc intersect(l: Line[Real], p: Point[Real]):
+    cross(l.a-l.b, p-l.b) =~ 0 or cross(l.b-l.a, p-l.a) =~ 0
+
+  swappableProc intersect(s: Segment[Real], p: Point[Real]):
+    let dotp = dot(s.a-s.b, p-s.b)
+    intersect(Line[Real](s), p) and (0 <=~ dotp) and (dotp <=~ norm(s.a-s.b))
   
   swappableProc intersect(l: Line[Real], s: Segment[Real]):
     cross(l.b - l.a, s.a - l.a) * cross(l.b - l.a, s.b - l.a) <~ 0.Real
