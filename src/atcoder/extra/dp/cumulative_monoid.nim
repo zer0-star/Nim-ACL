@@ -55,3 +55,16 @@ when not declared ATCODER_CUMULATIVE_MONOID_HPP:
 #   (size: 6, d: @[17, 16, 11, 8, 6, 0])
 #   (size: 6, d: @[0, 1, 5, 5, 5, 6])
 #   6
+
+# example
+import std/sugar
+var x = @[1,5,3,2,6]
+echo initCumulativeMonoid(x, `+`, () => 0)
+echo initCumulativeMonoidRev(x, `+`, () => 0)
+echo initCumulativeMonoid(x, max, () => 0).d[5]
+
+import atcoder/extra/math/matrix
+let unit = StaticMatrixType(int).unit(2) # [[1,0],[0,1]]
+var ms = newSeqWith(5, unit)
+echo initCumulativeMonoid[StaticMatrix](`*`, ()=>unit, false).init(ms)
+
