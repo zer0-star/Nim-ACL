@@ -61,16 +61,18 @@ when not declared ATCODER_FLOAT_UTILS_HPP:
       Real$.pi = pi()
     #echo machineEpsilon(Real)
     #Real$.eps = machineEpsilon(Real) * Real(10000)
-    block:
-      let one = Real(1)
-      var eps2 = one
-      while not (one + eps2 == one):
-        eps2 = eps2 / Real(2)
-      Real$.eps = eps2 * Real(5000)
-    when Real is float:
-      Real$.eps = 1e-12
+    when Real is float | float64:
+      Real$.eps = 1e-9
+    elif Real is float32:
+      Real$.eps = 1e-7
+    else:
+      block:
+        let one = Real(1)
+        var eps2 = one
+        while not (one + eps2 == one):
+          eps2 = eps2 / Real(2)
+        Real$.eps = eps2 * Real(1000000)
 
-    # float comp
     # TODO: relative error
     proc `=~`*(a, b: Real): bool = abs(a - b) < Real$.eps
     proc `!=~`*(a, b: Real): bool = abs(a - b) > Real$.eps
