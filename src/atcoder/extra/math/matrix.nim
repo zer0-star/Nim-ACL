@@ -166,7 +166,21 @@ when not declared ATCODER_MATRIX_HPP:
     for i in 0..<self.height:
       for j in 0..<self.width:
           result[i] = M.p.add(result[i], M.p.mult(self[i, j], v[j]))
-  
+
+  proc `*=`*[M:SomeMatrix](self: var M, B: M.T) =
+    for i in 0..<self.height:
+      for j in 0..<self.width:
+        self[i, j] *= B
+
+  proc `-`*[M:SomeMatrix](self: M):auto =
+    result = self
+    for i in 0..<self.height:
+      for j in 0..<self.width:
+        result[i, j] = -result[i, j]
+
+
+  proc `*`*[M:DynamicMatrix](self:M, B:M.T):auto = (var C = self); C *= B; C
+
   proc `+`*[M:SomeMatrix](self: M, B:M):auto =
     result = self; result += B
   proc `-`*[M:SomeMatrix](self: M, B:M):auto =
@@ -250,6 +264,7 @@ when not declared ATCODER_MATRIX_HPP:
   
   import std/options
 
+  # Ax = b, A: (n, m), x: (m), b: (n)
   proc linearEquations*[M:SomeMatrix](A:M, b:SomeVector):auto =
     let (n, m) = (A.height, A.width)
     assert n == b.len
@@ -297,6 +312,11 @@ when not declared ATCODER_MATRIX_HPP:
     for i in 0..<n:
       for j in 0..<n:
         result[i, j] = G[i][j + n]
+
+  proc `/=`*[M:SomeMatrix](self: var M, B: M) = self *= B.inv
+  proc `/`*[M:SomeMatrix](self, B: M):M =
+    result = self
+    result /= B
 
   generatePow(StaticMatrix)
   generatePow(DynamicMatrix)
