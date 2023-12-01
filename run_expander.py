@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-import sys, subprocess, os
+import sys, subprocess, os, platform
 
 args = sys.argv
 
@@ -22,7 +22,15 @@ else:
 
 os.system("python3 {} {} -s --compress --directory --lib {}".format(expander_path, file_name, lib_path))
 # ubuntu(linux)
-#os.system("cat {} | xsel --clipboard --input".format(combined_file_name))
-# mac
-os.system("cat {} | pbcopy".format(combined_file_name))
+
+s = platform.system()
+
+if s == 'Linux':
+    os.system("cat {} | xsel --clipboard --input".format(combined_file_name))
+elif s == 'Darwin':
+    os.system("cat {} | pbcopy".format(combined_file_name))
+elif s == 'Windows':
+    pass
+else:
+    print("不明なplatform")
 os.system("rm {}".format(combined_file_name))
