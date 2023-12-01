@@ -3,12 +3,13 @@
 import re
 import argparse
 from logging import Logger, basicConfig, getLogger
-import os
+import os, platform
 from os import getenv, environ, path
 from pathlib import Path
 from typing import List
-import subprocess
-import tempfile
+import subprocess, tempfile
+
+system_name = platform.system()
 
 
 logger = getLogger(__name__)  # type: Logger
@@ -176,8 +177,12 @@ def main():
                                     with open('/tmp/expander_tmp.txt', 'w') as f:
                                         #f.write(s0 + "\n")
                                         f.write(s0)
-                                    #s0 = subprocess.run("cat /tmp/expander_tmp.txt | {:s} -9 | base64 -w 0".format(compress_type), shell=True, stdout=subprocess.PIPE).stdout.decode()
-                                    s0 = subprocess.run("cat /tmp/expander_tmp.txt | {:s} -9 | base64 -b 0".format(compress_type), shell=True, stdout=subprocess.PIPE).stdout.decode()
+                                    if system_name == 'Darwin':
+                                        s0 = subprocess.run("cat /tmp/expander_tmp.txt | {:s} -9 | base64 -b 0".format(compress_type), shell=True, stdout=subprocess.PIPE).stdout.decode()
+                                    elif system_name == 'Linux':
+                                        s0 = subprocess.run("cat /tmp/expander_tmp.txt | {:s} -9 | base64 -w 0".format(compress_type), shell=True, stdout=subprocess.PIPE).stdout.decode()
+                                    else:
+                                        print("unknown system")
                                     #s0 = base64.b64encode(s0.encode()).decode()
                                 else:
                                     for l in s:
@@ -253,8 +258,12 @@ static:
 """.format(len(d), md5sum, len(d), second_compile_command)
             outputSuffix += d
         else:
-            #s = subprocess.run("cat atcoder.tar.xz | base64 -w 0", cwd=lib_tmp, shell=True, stdout=subprocess.PIPE).stdout.decode()
-            s = subprocess.run("cat atcoder.tar.xz | base64 -b 0", cwd=lib_tmp, shell=True, stdout=subprocess.PIPE).stdout.decode()
+            if system_name == 'Darwin':
+                s = subprocess.run("cat atcoder.tar.xz | base64 -b 0", cwd=lib_tmp, shell=True, stdout=subprocess.PIPE).stdout.decode()
+            elif system_name == 'Linux':
+                s = subprocess.run("cat atcoder.tar.xz | base64 -w 0", cwd=lib_tmp, shell=True, stdout=subprocess.PIPE).stdout.decode()
+            else:
+                print('unknown system')
             if s[-1] == '\n':
                 print("WARNING!!! newline")
                 s = s.strip()

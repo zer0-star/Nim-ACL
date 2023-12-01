@@ -24,10 +24,10 @@ when not declared ATCODER_GRAPH_VISUALIZER_HPP:
         let v = e.dst
         var edge_label = if isEdgeWeighted: fmt"'{$e.weight}'" else: "undefined"
         if e.rev == -1:
-          edge_data.add(fmt"{{from: {$u}, to: {$v}, arrows: 'to', label: {edge_label} }}")
+          edge_data.add(fmt"{{from: {$u}, to: {$v}, arrows: 'to', label: {edge_label}, smooth: false }}")
         else:
           if (u, v) in undirected_edges: continue
-          edge_data.add(fmt"{{from: {$u}, to: {$v}, label: {edge_label} }}")
+          edge_data.add(fmt"{{from: {$u}, to: {$v}, label: {edge_label}, smooth: false }}")
           undirected_edges.incl((u, v))
           undirected_edges.incl((v, u))
     var html = """
@@ -66,11 +66,7 @@ when not declared ATCODER_GRAPH_VISUALIZER_HPP:
         edges: edges
     };
     var options = {
-        physics: {
-            barnesHut: {
-                avoidOverlap: 0.3
-            }
-        }
+        physics: { enabled: false}
     };
 
     // initialize your network!
