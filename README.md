@@ -34,7 +34,7 @@ ACLにないがよく使いそうなライブラリを独自に実装してい�
 - 個別にveifyした場合は`oj-verify verify/crt_test.nim`のようにpathを指定する
 
 apple silicon上でverifyに失敗した場合
-- apple siliconはonline-judge側でスタックサイズを大きくすることができなません。`ulimit -s 65000`の実行で多くのテストが成功するようになります
+- apple siliconはonline-judge側でスタックサイズを大きくすることができません。`ulimit -s 65000`の実行で多くのテストが成功するようになります
 
 ## ドキュメント
 * ドキュメントはこちらです。
