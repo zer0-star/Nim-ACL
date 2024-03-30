@@ -14,16 +14,16 @@ when not defined ATCODER_COMBINATION_HPP:
         cmb.fact_a = @[T(1)]
         cmb.rfact_a = @[T(1)]
       let sz_old = cmb.fact_a.len - 1
-      let sz = min(max(sz_old * 2, k), T.mod - 1)
+      let sz = min(max((sz_old + 1) * 2, k), T.mod - 1)
       cmb.fact_a.setlen(sz + 1)
       cmb.rfact_a.setlen(sz + 1)
-      for i in sz_old + 1..sz: cmb.fact_a[i] = cmb.fact_a[i-1] * T(i)
+      for i in sz_old + 1 .. sz: cmb.fact_a[i] = cmb.fact_a[i-1] * T(i)
       cmb.rfact_a[sz] = T(1) / cmb.fact_a[sz]
       for i in countdown(sz - 1, sz_old + 1): cmb.rfact_a[i] = cmb.rfact_a[i + 1] * T(i + 1)
     return cmb.addr
 
   proc enhance(T:typedesc[FieldElem], k:int):auto {.discardable.} =
-    var cmb{.global.} = Combination[T]()
+    var cmb{.global.}:Combination[T]
     return cmb.enhance(k)
 
   template zero*(T:typedesc[FieldElem]):T = T(0)

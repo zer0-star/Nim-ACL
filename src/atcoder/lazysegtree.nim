@@ -64,7 +64,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
   proc init*[ST:LazySegTree](self: var ST, n:int) = self.init(newSeqWith(n, ST.calc_e()))
   proc init*[ST:LazySegTree](self: typedesc[ST], v:seq[ST.S] or int):ST = result.init(v)
 
-  template LazySegTreeType[S, F](op0, e0, mapping0, composition0, id0:untyped):typedesc[LazySegTree] =
+  template LazySegTreeType*[S, F](op0, e0, mapping0, composition0, id0:untyped):typedesc[LazySegTree] =
     proc op1(a, b:S):S {.gensym inline.} = op0(a, b)
     proc e1():S {.gensym inline.} = e0()
     proc mapping1(f:F, s:S):S {.gensym inline.} = mapping0(f, s)

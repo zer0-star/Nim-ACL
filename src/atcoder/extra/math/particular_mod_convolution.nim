@@ -1,9 +1,7 @@
 when not declared ATCODER_PARTICULAR_MOD_CONVOLUTION:
   const ATCODER_PARTICULAR_MOD_CONVOLUTION* = 1
   import atcoder/element_concepts
-  when not declared ATCODER_CONVOLUTION_HPP:
-    import atcoder/convolution
-    discard
+  import atcoder/convolution
   import std/sequtils
   type ParticularModConvolution* = object
     discard
@@ -32,7 +30,8 @@ when not declared ATCODER_PARTICULAR_MOD_CONVOLUTION:
     let iz = T.init(a.len).inv()
     a.applyIt(it * iz)
 
-  proc convolution*[T:FiniteFieldElem](t:typedesc[ParticularModConvolution], a, b:seq[T]):auto {.inline.} = convolution(a, b)
+  proc convolution*[T:FiniteFieldElem](t:typedesc[ParticularModConvolution], a, b:seq[T]):auto {.inline.} =
+    convolution(a, b)
   proc ntt_doubling*[T](t:typedesc[ParticularModConvolution], a:var seq[T]) =
     let M = a.len
     var b = a

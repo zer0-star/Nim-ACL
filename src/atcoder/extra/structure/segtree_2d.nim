@@ -3,8 +3,8 @@ when not declared ATCODER_SEGTREE_2D_HPP:
   import atcoder/segtree
   type SegTree2D*[S; SegTree] = object
     N2: int
-    xs: seq[S]
-    ys: seq[seq[S]]
+    xs: seq[int]
+    ys: seq[seq[int]]
     segt: seq[SegTree]
 
   proc initSegTree2D*[S](v: seq[tuple[x, y:int]], op: static[proc(a, b:S):S], e: static[proc():S]):auto =

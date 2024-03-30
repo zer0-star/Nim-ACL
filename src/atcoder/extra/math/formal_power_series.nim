@@ -14,7 +14,6 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
       s.add $(f[i]) & " x^" & i
     return s.join("+")
 
-
   template hasFFT*(T:typedesc):bool =
     mixin fft
     type hasFFTC = concept x
