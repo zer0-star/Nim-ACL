@@ -321,14 +321,17 @@ when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
   proc empty*[RBST:SomeRBST](self: var RBST, t:RBST.Node):bool = self.len == 0
 
   proc insert_index*[RBST:SomeRBST](self: var RBST, k:int, v:RBST.D):RBST.Node {.discardable.} =
-    result = self.insert_index(self.root, k, v)
+    self.insert_index(self.root, k, v)
     self.root.p = nil
+    return self.root
   proc insert*[RBST:SomeRBST](self: var RBST, p:RBST.Node, v:RBST.D):RBST.Node {.discardable.} =
-    result = self.insert(self.root, p, v)
+    self.insert(self.root, p, v)
     self.root.p = nil
+    return self.root
   proc erase_index*[RBST:SomeRBST](self: var RBST, k:int):RBST.Node {.discardable.} =
-    result = self.erase_index(self.root, k)
+    self.erase_index(self.root, k)
     self.root.p = nil
+    return self.root
   proc erase*[RBST:SomeRBST](self: var RBST, p:RBST.Node):RBST.Node {.discardable.} =
     result = self.erase(self.root, p)
     self.root.p = nil

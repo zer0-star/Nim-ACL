@@ -124,8 +124,8 @@ when not declared ATCODER_BITSET_HPP:
   proc firstSetBit*(a: SomeBitSet):int =
     var b = 0
     for i in 0 ..< a.data.len:
-      let f = firstSetBit(a.data[i])
-      if f != BitWidth: return b + f
+      if a.data[i] != uint64(0):
+        return b + firstSetBit(a.data[i])
       b += BitWidth
     return a.N
   proc fastLog2*(a:SomeBitSet):int =
@@ -152,9 +152,9 @@ when not declared ATCODER_BITSET_HPP:
   
   proc `shl`*(a: SomeBitSet, n:int): auto =
     result = a.init()
-    #var r = floormod(n, BitWidth).int
-    #let q = (n - r) div BitWidth
-    let (q, r) = getBitDivMod(n)
+    var r = floormod(n, BitWidth).int
+    let q = (n - r) div BitWidth
+    #let (q, r) = getBitDivMod(n)
     let maskl = allSetBits[uint64](BitWidth - r)
     for i in 0..<a.data.len:
       let i2 = i + q

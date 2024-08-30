@@ -34,17 +34,17 @@ when not declared ATCODER_SEGTREE_2D_HPP:
 
   proc add*[ST:SegTree2D](self: var ST, x, y:int, v:ST.S) =
     let xi = self.xs.lowerBound(x)
-    doAssert self.xs[xi] == x
+    assert self.xs[xi] == x
     var i = xi + self.N2
     while i > 0:
       let yi = self.ys[i].lowerBound(y)
-      doAssert self.ys[i][yi] == y
+      assert self.ys[i][yi] == y
       self.segt[i][yi] = self.SegTree.calc_op(self.segt[i][yi], v)
       i = i shr 1
 
   proc get*[ST:SegTree2D](self: var ST, x, y:int):ST.S =
     let xi = self.xs.lowerBound(x)
-    doAssert self.xs[xi] == x
+    assert self.xs[xi] == x
     result = self.SegTree.calc_e()
     var i = xi + self.N2
     while i > 0:
@@ -59,6 +59,8 @@ when not declared ATCODER_SEGTREE_2D_HPP:
       let xp = xp .. xp
     when yp is int:
       let yp = yp .. yp
+    if xp.a > xp.b or yp.a > yp.b:
+      return self.SegTree.calc_e()
     var
       sml, smr = self.SegTree.calc_e()
     let
