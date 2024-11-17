@@ -210,12 +210,18 @@ when not declared ATCODER_SPLAY_TREE_HPP:
   
   proc get_left*[T:SomeSplayTree](self:T, t:T.Node):T.Node =
     var t = t
-    while t.l != self.leaf: t = t.l
+    while true:
+      self.push(t)
+      if t.l == self.leaf: break
+      t = t.l
     return t
   
   proc get_right*[T:SomeSplayTree](self:T, t:T.Node):T.Node =
     var t = t
-    while t.r != self.leaf: t = t.r
+    while true:
+      self.push(t)
+      if t.r == self.leaf: break
+      t = t.r
     return t
   
   proc erase*[T:SomeSplayTree](self:T, root:var T.Node, t:T.Node, return_right:static[bool] = true):T.Node =
