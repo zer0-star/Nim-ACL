@@ -71,14 +71,11 @@ when not declared ATCODER_SOLVEPROC_HPP:
           hasCheck = true
           var checkStmt = if b.len == 2: b[1] else: b[2]
           var strmName = if b.len == 2: ident("strm") else: b[1]
-          checkBody.add(newNimNode(nnkWhenStmt).add(
-            newNimNode(nnkElifBranch).add(ident"DO_CHECK").add(
-              newBlockStmt(newEmptyNode(), 
-                newStmtList().add(
-                  quote do:
-                    var `strmName` = newStringStream(resultOutput)
-                ).add(checkStmt)
-          ))))
+          checkBody.add quote do:
+            when DO_CHECK:
+              block:
+                var `strmName` = newStringStream(resultOutput)
+                `checkStmt`
         elif b[0] == ident"Naive":
           hasNaive = true
           naiveBody.add b[1]

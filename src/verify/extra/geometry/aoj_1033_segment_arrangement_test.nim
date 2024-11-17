@@ -18,11 +18,9 @@ block main:
       segs.add(initSegment(p, q))
     let start, goal = initPoint(nextFloat(), nextFloat())
     var (ps, g) = segment_arrangement(segs)
-    for v in g.mitems:
-      var hs = v.toHashSet()
-      v.setlen(0)
-      for h in hs: v.add(h)
-      v.sort()
+    for i in 0 ..< g.len:
+      g[i].sort()
+      g[i] = g[i].deduplicate(isSorted = true)
     var si, gi = -1
     for i,p in ps:
       if start == ps[i]: si = i

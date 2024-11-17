@@ -30,7 +30,7 @@ when not declared ATCODER_MATRIX_HPP:
   template width*(self: DynamicMatrix):int = self.M
   template width*[M:StaticMatrix](self: M):int = M.M
   proc getSeq[M:DynamicMatrix](A:M):seq[seq[M.T]] =
-    result = newSeq[seq[M.T]](A.N)
+    result.setLen(A.N)
     for i in 0..<A.N:
       result[i] = A.data[i * A.M ..< (i + 1) * A.M]
 
@@ -130,7 +130,12 @@ when not declared ATCODER_MATRIX_HPP:
     for i in 0..<n:
       for j in 0..<m:
         self[i, j] = M.p.subt(self[i, j], B[i, j])
-  
+
+  proc `-=`*[V:SomeVector](self: var V, B:V) =
+    let n = self.len
+    for i in 0..<n:
+      self[i] = self[i] - B[i] # todo
+
   proc `*=`*[M:SomeMatrix](self: var M, B: M) =
     #let (n,m,p) = (self.height, B.width, self.width)
     #assert p == B.height

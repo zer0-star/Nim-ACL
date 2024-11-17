@@ -12,24 +12,10 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   else:
     static: echo "check is on"
     {.checks:on.}
-
-  import std/algorithm as algorithm_lib
-  import std/sequtils as sequtils_lib
-  import std/macros as macros_lib
-  import std/math as math_lib
-  import std/sets as sets_lib
-  import std/tables as tables_lib
-  import std/strutils as strutils_lib
-  import std/strformat as strformat_lib
-  import std/options as options_lib
-  import std/bitops as bitops_lib
-  import std/streams as streams_lib
-
-
-  import atcoder/extra/other/internal_sugar
+  #import atcoder/extra/other/internal_sugar
 #  import std/sugar
   import atcoder/extra/other/reader
-  import atcoder/extra/other/cfor
+  #import atcoder/extra/other/cfor
   import atcoder/extra/other/assignment_operator
   import atcoder/extra/other/inf
   import atcoder/extra/other/warlus_operator
@@ -37,6 +23,7 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   include atcoder/extra/other/debug
   import atcoder/extra/other/solve_proc
 
+  import std/tables as tables_lib
   when declared USE_DEFAULT_TABLE:
     when USE_DEFAULT_TABLE:
       proc `[]`[A, B](self: var Table[A, B], key: A): var B =
@@ -46,7 +33,7 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   # converter toBool[T:ref object](x:T):bool = x != nil
   # converter toBool[T](x:T):bool = x != T(0)
   # misc
-  proc `<`[T](a, b:seq[T]):bool =
+  proc `<`*[T](a, b:seq[T]):bool =
     for i in 0 ..< min(a.len, b.len):
       if a[i] < b[i]: return true
       elif a[i] > b[i]: return false
@@ -60,3 +47,7 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
     if a mod b != 0: result.inc
 
   template `/^`*[T:SomeInteger](a, b:T):T = ceilDiv(a, b)
+
+  proc `-`(a, b: char): int = a.ord - b.ord
+  proc `+`(a: char, b: int): char = (a.ord + b).chr
+  proc `-`(a: char, b: int): char = (a.ord - b).chr
