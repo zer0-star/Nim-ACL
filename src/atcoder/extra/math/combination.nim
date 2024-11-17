@@ -23,7 +23,9 @@ when not defined ATCODER_COMBINATION_HPP:
     return cmb.addr
 
   proc enhance(T:typedesc[FieldElem], k:int):auto {.discardable.} =
-    var cmb{.global.} = Combination[T]()
+    var cmb{.global.} :Combination[T]
+    once:
+      cmb = Combination[T]()
     return cmb.enhance(k)
 
   template zero*(T:typedesc[FieldElem]):T = T(0)
