@@ -3,8 +3,8 @@ when not declared ATCODER_WARSHALL_FLOYD_HPP:
   import std/sequtils
   import atcoder/extra/other/inf
   type WarshallFloydResult*[T] = object
-    dist:seq[seq[T]]
-    inter:seq[seq[int]]
+    dist*:seq[seq[T]]
+    inter*:seq[seq[int]]
   proc warshallFloyd*[T](dist: seq[seq[T]]): WarshallFloydResult[T] =
     let N = dist.len
     var dist = dist

@@ -210,12 +210,18 @@ when not declared ATCODER_SPLAY_TREE_HPP:
   
   proc get_left*[T:SomeSplayTree](self:T, t:T.Node):T.Node =
     var t = t
-    while t.l != self.leaf: t = t.l
+    while true:
+      self.push(t)
+      if t.l == self.leaf: break
+      t = t.l
     return t
   
   proc get_right*[T:SomeSplayTree](self:T, t:T.Node):T.Node =
     var t = t
-    while t.r != self.leaf: t = t.r
+    while true:
+      self.push(t)
+      if t.r == self.leaf: break
+      t = t.r
     return t
   
   proc erase*[T:SomeSplayTree](self:T, root:var T.Node, t:T.Node, return_right:static[bool] = true):T.Node =
@@ -321,8 +327,10 @@ when not declared ATCODER_SPLAY_TREE_HPP:
     if l == self.leaf: self.splay(r); return r
     if r == self.leaf: self.splay(l); return l
     self.splay(l); self.splay(r)
+
     l = self.get_right(l)
     self.splay(l)
+
     l.r = r
     r.p = l
     self.update(l)
@@ -435,7 +443,7 @@ when not declared ATCODER_SPLAY_TREE_HPP:
     t = self.merge(x[0], y[0], y[1])
 
   proc write_tree*[T:SomeSplayTree](self:T, t:T.Node, h = 0) =
-    if h > 5:
+    if h > 10:
       echo "too deep!!!!!!!!!!!!!!"
       return
     for i in 0..<h:
@@ -444,7 +452,10 @@ when not declared ATCODER_SPLAY_TREE_HPP:
       echo "*"
     else:
 #      assert t.id != -1
-      echo t.key, " ", t.id
+      var msg = $(t.key) & " " & $(t.id)
+      when T.hasRev isnot void:
+        msg = msg & " " & $(t.rev)
+      echo msg
       self.write_tree(t.l, h + 1)
       self.write_tree(t.r, h + 1)
   proc write_tree*[T:SomeSplayTree](self:T) =
