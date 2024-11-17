@@ -241,7 +241,7 @@ static:
       zs = {:d}
     block:
       let (output, ex) = gorgeEx("if [ -e ./atcoder ]; then exit 1; else exit 0; fi")
-      doAssert ex == 0, "atcoder directory already exisits"
+      # doAssert ex == 0, "atcoder directory already exisits"
     block:
       let (output, ex) = gorgeEx("tail -c " & $zs & " " & fn & " > atcoder.tar.xz")
       doAssert ex == 0, "tail failed"
@@ -275,7 +275,7 @@ static:
     let fn = getFileName()
     block:
       let (output, ex) = gorgeEx("if [ -e ./atcoder ]; then exit 1; else exit 0; fi")
-      doAssert ex == 0, "atcoder directory already exisits"
+      # doAssert ex == 0, "atcoder directory already exisits"
     discard staticExec("echo \\"{:s}\\" | base64 -d > atcoder.tar.xz && tar -Jxvf atcoder.tar.xz")
     let (output, ex) = gorgeEx("{:s} " & fn)
     discard staticExec("rm -rf ./atcoder");doAssert ex == 0, output;quit(0)

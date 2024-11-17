@@ -1,5 +1,6 @@
 import atcoder/modint as modint_lib
 import std/math
+import std/sequtils
 import std/unittest
 
 static:
@@ -320,3 +321,7 @@ test "ModintTest, ConstructorStatic":
   var m:mint
   check 0 == m.val()
 
+test "ModintTest, DynamicModintSum":
+  type mint = modint
+  mint.setMod(998244353)
+  check 10 == newSeqWith(10, mint(1)).sum.val

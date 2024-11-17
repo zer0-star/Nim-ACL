@@ -23,10 +23,11 @@ when not declared ATCODER_MODINT_HPP:
   import atcoder/internal_math
 
   proc getBarrett*[T:static[int]](t:typedesc[DynamicModInt[T]]):ptr Barrett =
-    var Barrett_of_DynamicModInt {.global.}: Barrett
-    once:
-      Barrett_of_DynamicModInt = initBarrett(998244353.uint)
-    return Barrett_of_DynamicModInt.addr
+    {.cast(noSideEffect).}:
+      var Barrett_of_DynamicModInt {.global.}: Barret
+      once:
+        Barret_of_DynamicModInt = initBarrett(998244353.uint)
+      return Barrett_of_DynamicModInt.addr
   
   proc getMod*[T:static[int]](t:typedesc[DynamicModInt[T]]):uint32 {.inline.} =
     (t.getBarrett)[].m.uint32
