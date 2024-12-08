@@ -61,7 +61,7 @@ when not declared ATCODER_REROOTING_HPP:
       if self.G[v][i].dst == p:
         self.dp[v][i] = from_par
         break
-    var pR = newSeq[T, Weight](self.G[v].len + 1)
+    var pR = newSeq[T](self.G[v].len + 1)
     pR[self.G[v].len] = self.mi
     for i in countdown(self.G[v].len, 1):
       let e = self.G[v][i - 1]

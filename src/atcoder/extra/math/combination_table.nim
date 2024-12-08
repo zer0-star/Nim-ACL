@@ -10,7 +10,9 @@ when not defined ATCODER_COMBINATION_HPP:
     x is typedesc[RingElem] or x is var Combination
 
   proc getAddr(T:typedesc[RingElem]):auto {.discardable.} =
-    var cmb_a{.global.} = Combination[T]()
+    var cmb_a{.global.}:Combination[T]
+    once:
+      cmb_a = Combination[T]()
     return cmb_a.addr
 
   template zero*(T:typedesc[RingElem]):T = T(0)

@@ -24,7 +24,10 @@ when not declared ATCODER_MONTGOMERY_MODINT_HPP:
     (M, get_r(M), get_n2(M))
 
   proc getParameters*[T:static[int]](t:typedesc[DynamicLazyMontgomeryModInt[T]]):ptr[tuple[M, r, n2:uint32]] =
-    var p {.global.} : tuple[M, r, n2:uint32] = getMontgomeryParameters(998244353.uint32)
+    {.cast(noSideEffect).}:
+      var p {.global.} : tuple[M, r, n2:uint32]
+      once:
+        p = getMontgomeryParameters(998244353.uint32)
     return p.addr
 
   proc checkParameters(M, r:uint32) =
