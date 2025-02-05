@@ -1,6 +1,6 @@
 when not declared ATCODER_RED_BLACK_TREE_HPP:
   const ATCODER_RED_BLACK_TREE_HPP* = 1
-  import std/sugar
+  #import std/sugar
 #  {.experimental: "codeReordering".}
   {.push inline, discardable.}
   type
@@ -16,7 +16,9 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
       next_id*: int32
     RedBlackTree*[K] = RedBlackTreeType[K, RedBlackTreeNode[K]]
   proc getleaf*[K](self: RedBlackTree[K]):RedBlackTreeNode[K] =
-    var leaf_node {.global.} :RedBlackTreeNode[K] = nil
+    var leaf_node {.global.} :RedBlackTreeNode[K]
+    once:
+      leaf_node = nil
     if leaf_node == nil:
       leaf_node = self.Node(color: Color.black, id: -1)
       (leaf_node.l, leaf_node.r) = (leaf_node, leaf_node)
@@ -25,8 +27,10 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
     return leaf_node
 
   proc newNode*[T:RedBlackTree](self: var T, parent: T.Node): T.Node =
-    result = T.Node(p:parent, l:self.leaf, r: self.leaf, color: Color.red, id: self.next_id)
-    result.cnt = 1
+    type Node_T = T.Node
+    #result = T.Node(p:parent) # なぜかこうしないといけない。。。
+    #result = new T.Node
+    result = Node_T(p:parent, l:self.leaf, r: self.leaf, color: Color.red, id: self.next_id, cnt: 1)
 
   proc newNode*[T:RedBlackTree](self: var T, parent: T.Node, key: T.K): T.Node =
     result = self.newNode(parent)
@@ -41,13 +45,17 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
       self.root.p = nil
       self.root.color = Color.black
       self.update(root)
-    self.next_id = 0
+    #self.next_id = 0
+    self.next_id = 100
 
   include atcoder/extra/structure/binary_tree_node_utils
 
   # checker, write
   proc write*[T:RedBlackTree](rbt: T, self: T.Node, h = 0) =
     for i in 0..<h: stderr.write " | "
+    if self == nil:
+      stderr.write "nil node?????\n"
+      return
     if self.id == -1:
       stderr.write "*\n"
     else:
@@ -86,9 +94,13 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
         doAssert node.l.color == Color.black and node.r.color == Color.black
       let d = if node.id >= 0: 1 else: 0
       doAssert node.cnt == node.l.cnt + node.r.cnt + d
-      if node.level != node.l.level + (if node.l.color == Color.black: 1 else: 0) or node.level != node.r.level + (if node.r.color == Color.black: 1 else: 0):
+      let
+        lev_l = node.l.level + (if node.l.color == Color.black: 1 else: 0)
+        lev_r = node.r.level + (if node.r.color == Color.black: 1 else: 0)
+      if node.level != lev_l  or node.level != lev_r:
         echo "found!!"
         echo "node: ", node.id
+        echo "node.level, lev_l, lev_r: ", node.level, " ", lev_l, " ", lev_r
         self.write(node)
       doAssert node.level == node.l.level + (if node.l.color == Color.black: 1 else: 0)
       doAssert node.level == node.r.level + (if node.r.color == Color.black: 1 else: 0)
@@ -143,6 +155,7 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
     return left
 
   proc insert*[T:RedBlackTree](self: var T, node:T.Node, next:T.Node): T.Node {.discardable.} =
+
     proc fixInsert(self: var T, node: T.Node) =
       var curr = node
       #while curr != self.root and curr.p.color == Color.red:
@@ -190,6 +203,7 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
       # insert at next.l
       next.l = node
       node.p = next
+      #self.write()
     else:
       var curr = next.l.rightMost
       # insert at curr.r
@@ -200,8 +214,24 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
     return node
 
   proc insert*[T:RedBlackTree](self: var T, next:T.Node, x:T.K): T.Node {.discardable.} =
+    when false:
+      echo "next: ", next.id, " ", next.key
+      if next.p == nil: echo "nil"
+      else:
+        echo next.p.l.id # なぜか0になる
+      self.write
     var node = self.newNode(T.Node(nil), x)
-    return self.insert(node, next)
+    when false:
+      echo "insert ", node.id, " ", node.key
+      echo "next: ", next.id, " ", next.key
+      if next.p == nil: echo "nil"
+      else:
+        echo next.p.l.id # なぜか0になる
+      self.write
+    result = self.insert(node, next)
+
+
+
 
 
   #proc getNodeStr(self:RedBlackTreeNode):string =
@@ -457,7 +487,7 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
         else:
           doAssert false
         N = P
-    var (L, N, R) = self.expose(N)
+    var (L, _, R) = self.expose(N)
     for (P, d) in path:
       if d == 0:
         P.r.p = nil

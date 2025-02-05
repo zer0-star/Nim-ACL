@@ -96,8 +96,10 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
 
   proc insert*[T:SomeSortedSet](self: var T, x:T.K):T.Node =
     var t = self.lower_bound(x)
-    if t != self.End and t.key == x: return t
-    else: return self.tree.insert(t, x)
+    if t != self.End and t.key == x:
+      return t
+    else:
+      return self.tree.insert(t, x)
   proc insert*[T:SomeSortedMap](self: var T, x:(T.K, T.V)):T.Node =
     var it = self.lower_bound(x[0])
     if it != self.End and it.key[0] == x[0]: it.key[1] = x[1]; return it
@@ -131,8 +133,8 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
   proc erase*[T:SomeSortedMultiSet or SomeSortedMultiMap](self: var T, lb, ub:T.Node):T.Node =
     if lb != ub:
       var
-        (L, R) = self.tree.split(lb)
-        (RL, RR) = self.tree.split(ub)
+        (L, _) = self.tree.split(lb)
+        (_, RR) = self.tree.split(ub)
       self.tree.root = self.tree.join(L, RR)
     return ub
 

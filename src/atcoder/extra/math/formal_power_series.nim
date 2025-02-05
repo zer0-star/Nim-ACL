@@ -24,13 +24,13 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
   template initFormalPowerSeries*[T:FieldElem](n:int):FormalPowerSeries[T] =
     block:
       FormalPowerSeries[T](newSeq[T](n))
-  template initFormalPowerSeries*[T:FieldElem;U: not T](data:openArray[U]):FormalPowerSeries[T] =
+  template initFormalPowerSeries*[T:FieldElem](data:seq[int or float]):FormalPowerSeries[T] =
     block:
       var result = newSeq[T](data.len)
       for i, it in data:
         result[i] = T(it)
       FormalPowerSeries[T](result)
-  template initFormalPowerSeries*[T:FieldElem](data:openArray[T]):FormalPowerSeries[T] =
+  template initFormalPowerSeries*[T:FieldElem](data:seq[T]):FormalPowerSeries[T] =
     block:
       data
 
@@ -317,12 +317,15 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
           var f, g = initFormalPowerSeries[T](2 * d)
           for j in 0..<min(n, 2 * d): f[j] = self[j]
           for j in 0..<d: g[j] = res[j]
-          let g1 = fft(g)
-          f = ifft(dot(fft(f), g1, T), T)
+          var
+            fftf = fft(f)
+            fftg = fft(g)
+          f = ifft(dot(fftf, fftg, T), T)
           for j in 0..<d:
             f[j] = T(0)
             f[j + d] = -f[j + d]
-          f = ifft(dot(fft(f), g1, T), T)
+          fftf = fft(f)
+          f = ifft(dot(fftf, fftg, T), T)
           f[0..<d] = res[0..<d]
           res = f
           d = d shl 1
@@ -351,7 +354,9 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
       self.resize(0)
     else:
       let n = self.len - r.len + 1
-      self = (self.rev().pre(n) * r.rev().inv(n)).pre(n).rev(n)
+      #self = (self.rev().pre(n) * r.rev().inv(n)).pre(n).rev(n)
+      var u = (self.rev().pre(n) * r.rev().inv(n)).pre(n).rev(n)
+      self = u.move
 
 # operators +, -, *, div, mod {{{
   macro declareFormalPowerSeriesOperators(op, op_eq) =

@@ -40,21 +40,21 @@ when not declared ATCODER_ZETA_TRANSFORM_HPP:
   proc zeta_superset*[T](f:openArray[T],
     add:proc(a:var T, b:T):void =
       proc(a:var T, b:T):void =
-        a += b) =
+        a += b):seq[T] =
     zeta_transform[T](f, false, add)
   proc movius_superset*[T](f:openArray[T],
     subt:proc(a:var T, b:T):void =
       proc(a:var T, b:T):void =
-        a -= b):seq[T] = 
+        a -= b):seq[T] =
     movius_transform[T](f, false, subt)
   proc zeta_subset*[T](f:openArray[T],
     add:proc(a:var T, b:T):void =
       proc(a:var T, b:T):void =
-        a += b) =
+        a += b):seq[T] =
     zeta_transform[T](f, true, add)
   proc movius_subset*[T](f:openArray[T],
     subt:proc(a:var T, b:T):void =
       proc(a:var T, b:T):void =
-        a -= b):seq[T] = 
+        a -= b):seq[T] =
     movius_transform[T](f, true)
 

@@ -16,7 +16,7 @@ when not declared ATCODER_NTT_HPP:
   proc ifft*(a:auto, T:typedesc[FiniteFieldElem]):auto =
     type fft_type = get_fft_type(T)
     ifft[T](fft_type, a)
-  proc dot*(a, b:auto, T:typedesc[FiniteFieldElem]):auto =
+  proc dot*(a, b:auto, T:typedesc[FiniteFieldElem]):auto = # TODO: このdotがorcでばぐる特にaを変数ではなくfft(f)みたいに関数で読んだ場合
     dot(get_fft_type(T), a, b)
   proc inplace_partial_dot*(a:var auto, b:auto, p:Slice[int], T:typedesc[FiniteFieldElem]) =
     inplace_partial_dot(get_fft_type(T), a, b, p)

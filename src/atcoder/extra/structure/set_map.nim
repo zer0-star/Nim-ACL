@@ -34,10 +34,10 @@ when not declared ATCODER_SET_MAP_HPP:
 
     type SetOrMap = SortedMultiSetType or SortedSetType or SortedMultiMapType or SortedMapType
     proc init*[Tree:SetOrMap](self: var Tree) =
-      when Tree.V is void:
-        type T = Tree.K
-      else:
-        type T = (Tree.K, Tree.V)
+      #when Tree.V is void:
+      #  type T = Tree.K
+      #else:
+      #  type T = (Tree.K, Tree.V)
       type Node = Tree.Node
       var End = Node(id: -2)
       End.cnt = 0
@@ -97,7 +97,8 @@ when not declared ATCODER_SET_MAP_HPP:
   
 #    proc `$`*(self: SetOrMap):string = self.Tree(self).to_string(self.root)
   {.pop.}
-  proc check_tree*(self:SetOrMap) = self.tree.check_tree
+  proc check_tree*(self:SetOrMap) = self.tree.check_tree()
+  proc write*(self:SetOrMap) = self.tree.write()
 
   template SortedSet*(K:typedesc, countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):typedesc =
     SortedSetType[K, when countable: int else: void, (comp,)]

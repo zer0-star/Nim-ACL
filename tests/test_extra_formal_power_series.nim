@@ -5,7 +5,7 @@ import atcoder/extra/math/formal_power_series
 
 block:
   type mint = modint998244353
-  let p = initFormalPowerSeries[mint]([3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9, 3, 2, 3, 8, 4, 6, 2, 6])
+  let p = initFormalPowerSeries[mint](@[3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9, 3, 2, 3, 8, 4, 6, 2, 6])
 
   test "InvTest":
     let
@@ -23,7 +23,7 @@ block:
     check q.log()[0..<p.len] == p
 
   test "DivModTest":
-    let m = initFormalPowerSeries[mint]([2, 7, 1, 8])
+    let m = initFormalPowerSeries[mint](@[2, 7, 1, 8])
     let q = p div m
     let r = p mod m
     let ms = @[(0, mint(2)), (1, mint(7)), (2, mint(1)), (3, mint(8))]
@@ -34,7 +34,7 @@ block:
 
   test "powModTest":
     let
-      m = initFormalPowerSeries[mint]([2, 7, 1, 8])
+      m = initFormalPowerSeries[mint](@[2, 7, 1, 8])
       a = 3782
       b = 9265
     let u = (powMod(p, a, m) * powMod(p, b, m) mod m)[0..<m.len-1]
@@ -43,7 +43,7 @@ block:
 
 block:
   type mint = modint1000000007
-  let p = initFormalPowerSeries[mint]([3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9, 3, 2, 3, 8, 4, 6, 2, 6])
+  let p = initFormalPowerSeries[mint](@[3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9, 3, 2, 3, 8, 4, 6, 2, 6])
   test "InvTestArbitrary":
     let
       q = p.inv
@@ -60,7 +60,7 @@ block:
     check q.log()[0..<p.len] == p
 
   test "DivModTestArbitrary":
-    let m = initFormalPowerSeries[mint]([2, 7, 1, 8])
+    let m = initFormalPowerSeries[mint](@[2, 7, 1, 8])
     let q = p div m
     let r = p mod m
     let ms = @[(0, mint(2)), (1, mint(7)), (2, mint(1)), (3, mint(8))]
@@ -71,7 +71,7 @@ block:
 
   test "powModTestArbitrary":
     let
-      m = initFormalPowerSeries[mint]([2, 7, 1, 8])
+      m = initFormalPowerSeries[mint](@[2, 7, 1, 8])
       a = 3782
       b = 9265
     let u = (powMod(p, a, m) * powMod(p, b, m) mod m)[0..<m.len-1]
@@ -81,7 +81,7 @@ block:
 block:
   type mint = modint
   mint.setMod(1000000009)
-  let p = initFormalPowerSeries[mint]([3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9, 3, 2, 3, 8, 4, 6, 2, 6])
+  let p = initFormalPowerSeries[mint](@[3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9, 3, 2, 3, 8, 4, 6, 2, 6])
   test "InvTestArbitraryDinamic":
     let
       q = p.inv
@@ -98,7 +98,7 @@ block:
     check q.log()[0..<p.len] == p
 
   test "DivModTestArbitraryDinamic":
-    let m = initFormalPowerSeries[mint]([2, 7, 1, 8])
+    let m = initFormalPowerSeries[mint](@[2, 7, 1, 8])
     let q = p div m
     let r = p mod m
     let ms = @[(0, mint(2)), (1, mint(7)), (2, mint(1)), (3, mint(8))]
@@ -109,7 +109,7 @@ block:
 
   test "powModTestArbitraryDinamic":
     let
-      m = initFormalPowerSeries[mint]([2, 7, 1, 8])
+      m = initFormalPowerSeries[mint](@[2, 7, 1, 8])
       a = 3782
       b = 9265
     let u = (powMod(p, a, m) * powMod(p, b, m) mod m)[0..<m.len-1]

@@ -30,7 +30,8 @@ when not declared ATCODER_MATRIX_HPP:
   template width*(self: DynamicMatrix):int = self.M
   template width*[M:StaticMatrix](self: M):int = M.M
   proc getSeq[M:DynamicMatrix](A:M):seq[seq[M.T]] =
-    result = newSeq[seq[M.T]](A.N)
+    #result = newSeq[seq[M.T]](A.N) # なぜかこれがバグる
+    result.setLen(A.N)
     for i in 0..<A.N:
       result[i] = A.data[i * A.M ..< (i + 1) * A.M]
 
