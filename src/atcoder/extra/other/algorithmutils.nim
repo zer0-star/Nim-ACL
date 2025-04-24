@@ -20,6 +20,11 @@ when not declared ATCODER_ALGORITHM_UTILS_HPP:
       yield result
       if not a.prevPermutation(): break
 
+  proc copy*[T](a:seq[T], p:Slice[int], b:var seq[T], i = 0) =
+    for j in p:
+      b[i + j - p.a] = a[j]
+  proc reverse*[T](a:var seq[T], p:Slice[int]) = a.reverse(p.a, p.b)
+
   proc unguarded_partition[T](a:var openArray[T], first, last:int, target:T, comp: proc(a, b:T):bool):int =
     var
       l = first

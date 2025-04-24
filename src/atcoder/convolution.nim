@@ -187,10 +187,11 @@ when not declared ATCODER_CONVOLUTION_HPP:
   
     type mint = StaticModInt[M.int]
     static:
+      assert mint is FieldElem
       assert mint is FiniteFieldElem
     return convolution(
-      a.map((x:T) => mint.init(x)), 
-      b.map((x:T) => mint.init(x))
+      a.map((x:T) => initModInt(x, M.int)), 
+      b.map((x:T) => initModInt(x, M.int))
     ).map((x:mint) => T(x.val()))
 
   proc convolution_ll*(a, b:seq[int]):seq[int] =

@@ -152,9 +152,9 @@ when not declared ATCODER_BITSET_HPP:
   
   proc `shl`*(a: SomeBitSet, n:int): auto =
     result = a.init()
-    #var r = floormod(n, BitWidth).int
-    #let q = (n - r) div BitWidth
-    let (q, r) = getBitDivMod(n)
+    var r = floormod(n, BitWidth).int
+    let q = (n - r) div BitWidth
+    #let (q, r) = getBitDivMod(n)
     let maskl = allSetBits[uint64](BitWidth - r)
     for i in 0..<a.data.len:
       let i2 = i + q
