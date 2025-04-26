@@ -36,3 +36,15 @@ proc unionSet[T](self:var WeightedUnionFind[T], x,y:int, w:T):bool{.discardable.
 
 proc diff[T](self:var WeightedUnionFind[T], x,y:int):T =
   return self.weight(y) - self.weight(x)
+
+proc groups[T](self: var WeightedUnionFind[T]): seq[seq[int]] =
+  var
+    leaderBuf = newSeq[int](self.data.len)
+    groupSize = newSeq[int](self.data.len)
+  for i in 0..<self.data.len:
+    leaderBuf[i] = self.root(i)
+    groupSize[leaderBuf[i]].inc
+  result = (0..<self.data.len).mapIt(newSeqOfCap[int](groupSize[it]))
+  for i, ldr in leaderBuf:
+    result[ldr].add i
+  result.keepItIf(it.len > 0)
