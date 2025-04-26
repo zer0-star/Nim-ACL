@@ -4,6 +4,7 @@ when not declared ATCODER_MULTIPRECISION_HPP:
   import atcoder/extra/math/convolution_int128
   import atcoder/convolution
   import std/sequtils, std/unicode
+  import atcoder/extra/other/reader
   #const offset = 30
   #type TENS = object
   #  constexpr TENS() : _tend() {
@@ -27,8 +28,8 @@ when not declared ATCODER_MULTIPRECISION_HPP:
   type bigint* = object
     #using M = bigint;
     #inline constexpr static bigintImpl::TENS tens = {};
-    neg: bool
-    dat: seq[int32]
+    neg*: bool
+    dat*: seq[int32]
 
   const
     D = 1000000000
@@ -106,8 +107,8 @@ when not declared ATCODER_MULTIPRECISION_HPP:
   proc inner_shrink(a: var seq[int32]) =
     while a.len > 0 and a[^1] == 0: discard a.pop()
   # 末尾 0 を削除
-  proc inner_shrink(a: var bigint) =
-    while a.size > 0 and a.dat[^1] == 0: discard a.dat.pop()
+  #proc inner_shrink(a: var bigint) =
+  #  while a.size > 0 and a.dat[^1] == 0: discard a.dat.pop()
   # a + b
   proc inner_add(a, b:seq[int32]):seq[int32] =
     var c = newSeq[int32](max(a.len, b.len) + 1)
@@ -168,11 +169,13 @@ when not declared ATCODER_MULTIPRECISION_HPP:
     block:
       var i = 0
       while true:
-        if i >= m.len and x == 0: break
-        if i < m.len: x += m[i]
+        if i >= m.len:
+          if int128.`==`(x, 0): break
+        else: x += m[i]
         result.add(to_int32(x mod D))
         x = x div D
         i.inc
+    #echo a.len, " ", b.len, " ", result.len
     result.inner_shrink()
   # a * b (naive)
   proc inner_mul_naive*(a, b: seq[int32]):seq[int32] =
@@ -219,7 +222,7 @@ when not declared ATCODER_MULTIPRECISION_HPP:
     for i in countdown(a.len - 1, 0):
       result = result * D + a[i]
   
-  proc inner_to_i128(a:seq[int32]):Int128 =
+  proc inner_to_int128(a:seq[int32]):Int128 =
     result = 0
     for i in countdown(a.len - 1, 0):
       result = result * D + a[i]
@@ -461,21 +464,15 @@ when not declared ATCODER_MULTIPRECISION_HPP:
   ##  }
   ##  return a * powl(10, b);
   ##}
-  #long long to_ll() const {
-  #  long long res = _to_ll(dat);
-  #  return neg ? -res : res;
-  #}
-  #__int128_t to_i128() const {
-  #  __int128_t res = _to_i128(dat);
-  #  return neg ? -res : res;
-  #}
-  #
-  #friend istream& operator>>(istream& is, M& m) {
-  #  string s;
-  #  is >> s;
-  #  m = M{s};
-  #  return is;
-  #}
+  proc to_int*(self: bigint):int =
+    var res = inner_to_int(self.dat)
+    return if self.neg: -res else: res
+  proc to_i128*(self: bigint): Int128 =
+    var res = inner_to_int128(self.dat)
+    return if self.neg: -res else: res
+  
+  proc nextBigInt*():bigint =
+    return bigint(nextString())
   #
   #friend ostream& operator<<(ostream& os, const M& m) {
   #  return os << m.to_string();

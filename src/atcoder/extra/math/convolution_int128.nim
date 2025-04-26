@@ -30,6 +30,8 @@ when not declared ATCODER_EXTRA_CONVOLUTION128_HPP:
       c2 = convolution(a, b, MOD2)
       c3 = convolution(a, b, MOD3)
     doAssert (i1 * ((MOD2 * MOD3) mod MOD1)) mod MOD1 == 1
+    doAssert (i2 * ((MOD3 * MOD1) mod MOD2)) mod MOD2 == 1
+    doAssert (i3 * ((MOD1 * MOD2) mod MOD3)) mod MOD3 == 1
     var c = newSeq[Int128](n + m - 1)
     for i in 0..<n + m - 1:
       var x = Int128(0)
@@ -53,12 +55,15 @@ when not declared ATCODER_EXTRA_CONVOLUTION128_HPP:
       #   ((1) mod MOD1) mod 5 = 2
       #   ((2) mod MOD1) mod 5 = 3
       #   ((3) mod MOD1) mod 5 = 4
-      let v = toUInt((x << 64) >> 64)
-      var diff = c1[i] - toint(v mod MOD1)
+      #let v = toUInt((x << 64) >> 64)
+      var diff = c1[i] - x mod MOD1
       if diff < 0: diff += MOD1.int
       #const offset = [0'u, 0'u, M1M2M3, 2'u * M1M2M3, 3'u * M1M2M3]
       let offset = [Int128(0), Int128(0), M1M2M3, M1M2M3 * Int128(2), M1M2M3 * Int128(3)]
-      x -= offset[diff mod 5]
+      x -= offset[to_int(diff mod 5)]
       c[i] = x
+      doAssert to_int(x mod Int128(MOD1)) == c1[i]
+      doAssert to_int(x mod Int128(MOD2)) == c2[i]
+      doAssert to_int(x mod Int128(MOD3)) == c3[i]
     return c
 
