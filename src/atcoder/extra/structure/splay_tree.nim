@@ -51,7 +51,6 @@ when not declared ATCODER_SPLAY_TREE_HPP:
       let s = ST.p.s
       s(a)
 
-
   proc initNode*[ST:SomeSplayTree](self:var ST, key:ST.D):auto =
     type 
       D = ST.D
@@ -334,21 +333,21 @@ when not declared ATCODER_SPLAY_TREE_HPP:
     self.update(l)
     return l
   
-  proc split_index3*[T:SomeSplayTree](self: T, t:T.Node, a, b:int):(T.Node, T.Node, T.Node) =
+  proc split_index3*[T:SomeSplayTree](self:var T, t:T.Node, a, b:int):(T.Node, T.Node, T.Node) =
     self.splay(t)
     var
       x = self.split_index(t, a)
       y = self.split_index(x[1], b - a)
     return (x[0], y[0], y[1])
   
-  proc build_node*[T:SomeSplayTree](self: T, l, r:int, v:seq[T.Node]):T.Node =
+  proc build_node*[T:SomeSplayTree](self:var T, l, r:int, v:seq[T.Node]):T.Node =
     if l + 1 >= r: return v[l]
     return self.merge(self.build_node(l, (l + r) shr 1, v), self.build_node((l + r) shr 1, r, v))
   
-  proc build_node*[T:SomeSplayTree](self: T, v:seq[T.Node]):T.Node =
+  proc build_node*[T:SomeSplayTree](self:var T, v:seq[T.Node]):T.Node =
     return self.build_node(0, v.len, v)
   
-  proc push_front_node*[T:SomeSplayTree](self: T, t:var T.Node, z:T.Node) =
+  proc push_front_node*[T:SomeSplayTree](self:var T, t:var T.Node, z:T.Node) =
     if t != self.leaf:
       self.splay(t)
       var cur = self.get_left(t)
@@ -358,7 +357,7 @@ when not declared ATCODER_SPLAY_TREE_HPP:
       self.splay(z)
     t = z
 
-  proc push_back_node*[T:SomeSplayTree](self: T, t:var T.Node, z:T.Node) =
+  proc push_back_node*[T:SomeSplayTree](self:var T, t:var T.Node, z:T.Node) =
     if t != self.leaf:
       self.splay(t)
       var cur = self.get_right(t)
@@ -368,7 +367,7 @@ when not declared ATCODER_SPLAY_TREE_HPP:
       self.splay(z)
     t = z
 
-  proc insert_node_index*[T:SomeSplayTree](self: T, t:var T.Node, k:int, v:T.Node) =
+  proc insert_node_index*[T:SomeSplayTree](self: var T, t:var T.Node, k:int, v:T.Node) =
     self.splay(t)
     var x = self.split_index(t, k)
     t = self.merge(self.merge(x[0], v), x[1])
@@ -411,17 +410,17 @@ when not declared ATCODER_SPLAY_TREE_HPP:
     for i in 0..<v.len: vs[i] = self.initNode(v[i])
     t = self.build_node(vs)
 
-  proc set*[T:SomeSplayTree](self:T, t:var T.Node, k:int, x:T.D) =
+  proc set*[T:SomeSplayTree](self:var T, t:var T.Node, k:int, x:T.D) =
     self.splay(t)
     self.setImpl(t, k, x)
 
-  proc push_front*[T:SomeSplayTree](self:T, t:var T.Node, x:T.D) =
+  proc push_front*[T:SomeSplayTree](self:var T, t:var T.Node, x:T.D) =
     self.push_front_node(t, self.initNode(x))
   
-  proc push_back*[T:SomeSplayTree](self:T, t:var T.Node, x:T.D) =
+  proc push_back*[T:SomeSplayTree](self:var T, t:var T.Node, x:T.D) =
     self.push_back_node(t, self.initNode(x))
   
-  proc insert_index*[T:SomeSplayTree](self:T, t:var T.Node, k:int, x:T.D) =
+  proc insert_index*[T:SomeSplayTree](self:var T, t:var T.Node, k:int, x:T.D) =
     self.insert_node_index(t, k, self.initNode(x))
 
   proc apply_all*[T:SomeSplayTree](self:T, t:var T.Node, pp:T.L) =
