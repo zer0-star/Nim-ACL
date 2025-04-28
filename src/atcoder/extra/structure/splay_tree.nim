@@ -104,7 +104,7 @@ when not declared ATCODER_SPLAY_TREE_HPP:
     proc s(a:D):D = a
     return initReversibleSplayTree[D](f, s, M1)
   proc initLazyReversibleSplayTree*[D, L](f:static[proc(a, b:D):D], g:static[proc(b:L, a:D):D], h:static[proc(a, b:L):L], s:static[proc(a:D):D], M1:D, OM0:L):auto =
-    result = getSplayTreeType(D, L, useRev, useSum, (op:f, mapping:g, composition:h, s:s)).init()
+    result = getSplayTreeType(D, L, useRev, useSum, (op:f, mapping:g, composition:h, s:s, p:nil)).init()
     result.M1 = M1
     result.OM0 = OM0
   proc initLazyReversibleSplayTree*[D, L](f:static[proc(a, b:D):D], g:static[proc(b:L, a:D):D], h:static[proc(a, b:L):L], M1:D, OM0:L):auto =
@@ -122,6 +122,7 @@ when not declared ATCODER_SPLAY_TREE_HPP:
   
 #  proc count*[T:SomeSplayTree](self:T, t:T.Node):int = return if t != nil: t.len else: 0
   proc count*[T:SomeSplayTree](self:T, t:T.Node):int = t.cnt
+  proc count*[T:SomeSplayTree](self:T):int = self.count(self.root)
 
   proc update*[T:SomeSplayTree](self:T, t:T.Node):auto {.discardable.} =
     t.cnt = 1
@@ -206,7 +207,7 @@ when not declared ATCODER_SPLAY_TREE_HPP:
         else:
           if q.r == t: self.rotl(q); self.rotl(t)
           else: self.rotr(t); self.rotl(t)
-  
+
   proc get_left*[T:SomeSplayTree](self:T, t:T.Node):T.Node =
     var t = t
     while true:
@@ -223,13 +224,9 @@ when not declared ATCODER_SPLAY_TREE_HPP:
       t = t.r
     return t
   
-  proc erase*[T:SomeSplayTree](self:T, root:var T.Node, t:T.Node, return_right:static[bool] = true):T.Node =
+  proc erase*[T:SomeSplayTree](self:T, root:T.Node, t:T.Node, return_right:static[bool] = true):T.Node =
     var t = t
     self.splay(t)
-    #when return_right:
-    #  result = self.get_left(t.r)
-    #else:
-    #  result = self.get_right(t.l)
     var (x, y) = (t.l, t.r)
   # TODO
   # delete t
@@ -249,20 +246,20 @@ when not declared ATCODER_SPLAY_TREE_HPP:
     swap(root, t)
     return root
 
-  proc sub_get_node*[T:SomeSplayTree](self:T, t:var T.Node, k:int):T.Node {.discardable.} =
+  proc getNodeImpl*[T:SomeSplayTree](self:T, t:var T.Node, k:int):T.Node {.discardable.} =
     self.push(t)
     if k < self.count(t.l):
-      return self.sub_get_node(t.l, k)
+      return self.getNodeImpl(t.l, k)
     elif k == self.count(t.l):
 #      self.splay(t)
       return t
     else:
-      return self.sub_get_node(t.r, k - self.count(t.l) - 1)
+      return self.getNodeImpl(t.r, k - self.count(t.l) - 1)
 
-  proc get_node*[T:SomeSplayTree](self:T, t:var T.Node, k:int):T.Node =
+  proc get_node*[T:SomeSplayTree](self: T, t:var T.Node, k:int):T.Node =
     self.splay(t)
 #    doAssert 0 <= k and k < self.count(t)
-    result = self.sub_get_node(t, k)
+    result = self.getNodeImpl(t, k)
     self.splay(result)
 #    self.update(result)
 
@@ -305,7 +302,7 @@ when not declared ATCODER_SPLAY_TREE_HPP:
     elif self.count(t) <= k:
       return (t, self.leaf)
     var t = t
-    t = self.get_node(t, k)
+    t = self.getNode(t, k)
     return self.split(t)
 
     ##    assert u != self.leaf
@@ -333,13 +330,22 @@ when not declared ATCODER_SPLAY_TREE_HPP:
     self.update(l)
     return l
   
-  proc split_index3*[T:SomeSplayTree](self:var T, t:T.Node, a, b:int):(T.Node, T.Node, T.Node) =
+  proc split_index3*[T:SomeSplayTree](self: T, t:T.Node, a, b:int):(T.Node, T.Node, T.Node) =
     self.splay(t)
     var
       x = self.split_index(t, a)
       y = self.split_index(x[1], b - a)
     return (x[0], y[0], y[1])
-  
+
+  proc reverse*[T:SomeSplayTree](self:var T, p: Slice[int]) =
+    static: assert T.hasRev isnot void
+    let
+      l = p.a
+      r = p.b + 1
+    var (a0, a1, a2) = self.split_index3(self.root, l, r)
+    self.toggle(a1)
+    self.root = self.merge(self.merge(a0, a1), a2)
+
   proc build_node*[T:SomeSplayTree](self:var T, l, r:int, v:seq[T.Node]):T.Node =
     if l + 1 >= r: return v[l]
     return self.merge(self.build_node(l, (l + r) shr 1, v), self.build_node((l + r) shr 1, r, v))
@@ -367,7 +373,7 @@ when not declared ATCODER_SPLAY_TREE_HPP:
       self.splay(z)
     t = z
 
-  proc insert_node_index*[T:SomeSplayTree](self: var T, t:var T.Node, k:int, v:T.Node) =
+  proc insert_node_index*[T:SomeSplayTree](self:var T, t:var T.Node, k:int, v:T.Node) =
     self.splay(t)
     var x = self.split_index(t, k)
     t = self.merge(self.merge(x[0], v), x[1])
@@ -390,9 +396,8 @@ when not declared ATCODER_SPLAY_TREE_HPP:
 
   proc sum*[T:SomeSplayTree](self:T, t:T.Node):auto =
     static: assert T.hasSum isnot void
-#    return if t != self.leaf: t.sum else: self.M1
     return t.sum
-#    return if t != self.leaf: t.sum else: self.M1
+
   proc alloc*[T:SomeSplayTree](self:var T, x:T.D):auto =
     return self.initNode(x)
   
@@ -406,13 +411,15 @@ when not declared ATCODER_SPLAY_TREE_HPP:
     return ret
   
   proc build*[T:SomeSplayTree](self:var T, t:var T.Node, v:seq[T.D]) =
+    if v.len == 0: return
     var vs = newSeq[T.Node](v.len)
     for i in 0..<v.len: vs[i] = self.initNode(v[i])
     t = self.build_node(vs)
 
   proc set*[T:SomeSplayTree](self:var T, t:var T.Node, k:int, x:T.D) =
     self.splay(t)
-    self.setImpl(t, k, x)
+    let r = self.setImpl(t, k, x)
+    self.root = r
 
   proc push_front*[T:SomeSplayTree](self:var T, t:var T.Node, x:T.D) =
     self.push_front_node(t, self.initNode(x))
@@ -439,8 +446,8 @@ when not declared ATCODER_SPLAY_TREE_HPP:
     self.apply_all(y[0], pp)
     t = self.merge(x[0], y[0], y[1])
 
-  proc write_tree*[T:SomeSplayTree](self:T, t:T.Node, h = 0) =
-    if h > 5:
+  proc write_treeImpl*[T:SomeSplayTree](self:T, t:T.Node, h = 0) =
+    if h > 10:
       echo "too deep!!!!!!!!!!!!!!"
       return
     for i in 0..<h:
@@ -449,14 +456,16 @@ when not declared ATCODER_SPLAY_TREE_HPP:
       echo "*"
     else:
 #      assert t.id != -1
-      echo t.key, " ", t.id
-      self.write_tree(t.l, h + 1)
-      self.write_tree(t.r, h + 1)
-  proc write_tree*[T:SomeSplayTree](self:T) =
+      echo t.key, " ", t.id, " ", t.cnt
+      self.write_treeImpl(t.l, h + 1)
+      self.write_treeImpl(t.r, h + 1)
+  proc write_tree*[T:SomeSplayTree](self:T, t:T.Node) =
     echo "==== tree ===== "
+    self.write_treeImpl(t)
+  proc write_tree*[T:SomeSplayTree](self:T) =
     self.write_tree(self.root)
 
-  proc setImpl*[T:SomeSplayTree](self:T, t:var T.Node, k:int, x:T.D):T.Node {.discardable.} =
+  proc setImpl*[T:SomeSplayTree](self:T, t: T.Node, k:int, x:T.D):T.Node {.discardable.} =
     self.push(t)
     if k < self.count(t.l):
       return self.setImpl(t.l, k, x)
@@ -473,9 +482,11 @@ when not declared ATCODER_SPLAY_TREE_HPP:
   proc erase_index*[T:SomeSplayTree](self: var T, k:int) = self.erase_index(self.root, k)
   proc erase*[T:SomeSplayTree](self:var T, t:T.Node, return_right:static[bool] = true):T.Node =
     self.erase(self.root, t, return_right)
-  proc get_node*[T:SomeSplayTree](self:var T, k:int):T.Node = self.get_node(self.root, k)
-  proc get*[T:SomeSplayTree](self:var T, k:int):T.D = self.get_node(k).D
-  proc `[]`*[T:SomeSplayTree](self:var T, k:int):T.D = self.get_node(k).D
+  proc get_node*[T:SomeSplayTree](self:var T, k:int):T.Node =
+    result = self.get_node(self.root, k)
+    self.root = result
+  proc get*[T:SomeSplayTree](self:var T, k:int):T.D = self.get_node(k).key
+  proc `[]`*[T:SomeSplayTree](self:var T, k:int):T.D = self.get_node(k).key
   proc set*[T:SomeSplayTree](self:var T, k:int, x:T.D) = self.set(self.root, k, x)
   proc `[]=`*[T:SomeSplayTree](self:var T, k:int, x:T.D) = self.set(self.root, k, x)
   proc push_front*[T:SomeSplayTree](self: var T, z:T.D) = self.push_front(self.root, z)
@@ -487,4 +498,17 @@ when not declared ATCODER_SPLAY_TREE_HPP:
   proc apply*[T:SomeSplayTree](self:var T, s:Slice[int], pp:T.L) = self.apply(self.root, s, pp)
   proc prod*[T:SomeSplayTree](self:var T, s:Slice[int]):T.D = self.prod(self.root, s)
   proc `[]`*[T:SomeSplayTree](self:var T, s:Slice[int]):T.D = self.prod(self.root, s)
+
+  # TODO: toSeqを呼ぶとcntが書き換わる -> get_nodeでsplayやるのでself.rootを書き換えないといけない
+  proc toSeq*[T:SomeSplayTree](self:var T):seq[T.D] =
+    let c = self.count
+    result = newSeq[T.D](c)
+    for i in 0 ..< c:
+      when true:
+        let u = self.get(i)
+      else:
+        var (a0, a1, a2) = self.split_index3(self.root, i, i + 1)
+        let u = a1.key
+        self.root = self.merge(self.merge(a0, a1), a2)
+      result[i] = u
   {.pop.}
