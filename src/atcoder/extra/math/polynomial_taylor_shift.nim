@@ -13,7 +13,10 @@ when not declared ATCODER_POLYNOMIAL_TAYLOR_SHIFT_HPP:
     var bs = initFormalPowerSeries[T](newSeqWith(n, T(1)))
     for i in 1..<n:
       bs[i] = bs[i - 1] * c * T.rfact(i) * T.fact(i - 1)
-    p = (p * bs).pre(n)
+    p = p * bs
+    p = p.pre(n)
+    #p = (p * bs).pre(n)
+    # ここで0になる
     p = p.rev()
     for i in 0..<n: p[i] *= T.rfact(i)
     return p

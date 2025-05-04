@@ -4,63 +4,66 @@ when not declared ATCODER_SPLAY_TREE_HPP:
 
   import atcoder/rangeutils
 
-  type useRev = int
-  type useSum = int
+  const useRev = true
+  const useSum = true
+
 
   template hasLazy(self:typedesc):bool = self.L isnot void
 
-  type SplayTreeNode*[D, L, hasRev, hasSum] = ref object
-    cnt*:int
-    l*, r*, p*: SplayTreeNode[D, L, hasRev, hasSum]
-    key*:D
-    id*:int
-    when hasSum isnot void:
+  type SplayTreeNode*[D, L; hasRev, hasSum: static[bool]] = ref object
+    cnt*, id* :int
+    l*, r*, p* : SplayTreeNode[D, L, hasRev, hasSum]
+    key* :D
+    when hasSum:
       sum*:D
-    when hasRev isnot void:
+    when hasRev:
       rev*:bool
     when L isnot void:
       lazy*:L
 
-  type SplayTreeType*[D, L, Node, hasRev, hasSum; p:static[tuple]] = object of RootObj
+  type SplayTreeType*[D, L, Node; hasRev, hasSum: static[bool] ; p:static[tuple]] = object of RootObj
     root*, leaf*:Node
-    id_max*:int
-    M1:D
+    id_max* :int
+    when hasSum:
+      M1:D
     when L isnot void:
       OM0:L
-  type SplayTree*[D] = SplayTreeType[D, void, SplayTreeNode[D, void, void, void], void, void, ()]
+  type SplayTree*[D] = SplayTreeType[D, void, SplayTreeNode[D, void, false, false], false, false, ()]
   type SomeSplayTree* = SplayTreeType or SplayTree
 
+  # pはp(a, c), c: カウントとカウンターを渡せるらしい
+  type tupleHasP = concept x
+    x.p
+  # sは回転(toggle)させるときに作用できるらしい
+  type tupleHasS = concept x
+    x.s
+
   template calc_op[ST:SomeSplayTree](self:typedesc[ST], a, b:ST.D):auto =
-    block:
-      let op = ST.p.op
-      op(a, b)
+    ST.p.op(a, b)
   template calc_mapping[ST:SomeSplayTree](self:typedesc[ST], a:ST.L, b:ST.D, c:untyped):auto =
-    block:
-      let mapping = ST.p.mapping
-      when ST.p.p == nil:
-        mapping(a, b)
-      else:
-        let p = ST.p.p
-        mapping(p(a, c), b)
+    when ST.p is tupleHasP:
+      ST.p.mapping(ST.p.p(a, c), b)
+    else:
+      ST.p.mapping(a, b)
   template calc_composition[ST:SomeSplayTree](self:typedesc[ST], a, b:ST.L):auto =
-    block:
-      let composition = ST.p.composition
-      composition(a, b)
+    ST.p.composition(a, b)
   template calc_s[ST:SomeSplayTree](self:typedesc[ST], a:ST.D):auto =
-    block:
-      let s = ST.p.s
-      s(a)
+    when ST.p is tupleHasS:
+      ST.p.s(a)
+    else:
+      a
 
   proc initNode*[ST:SomeSplayTree](self:var ST, key:ST.D):auto =
     type 
       D = ST.D
       L = ST.L
+    const
       hasRev = ST.hasRev
       hasSum = ST.hasSum
-    result = SplayTreeNode[D, L, hasRev, hasSum](key:key, l:self.leaf,r:self.leaf,p:nil,cnt:1,id:self.id_max)
+    result = SplayTreeNode[D, L, hasRev, hasSum](key:key, l:self.leaf,r:self.leaf,cnt:1,id:self.id_max)
     self.id_max.inc
-    when hasRev isnot void: result.rev = false
-    when hasSum isnot void: result.sum = key
+    when hasRev: result.rev = false
+    when hasSum: result.sum = key
     when L isnot void: result.lazy = self.OM0
   proc initNode*[ST:SomeSplayTree](self:var ST):auto = ST.initNode(ST.D(0))
 
@@ -70,7 +73,7 @@ when not declared ATCODER_SPLAY_TREE_HPP:
       # leaf
       leaf = ST.Node(cnt:0, p:nil, id: -1)
       leaf.l = leaf;leaf.r = leaf
-      when ST.hasSum isnot void:
+      when ST.hasSum:
         leaf.sum = self.M1
       when ST.hasLazy:
         leaf.lazy = self.OM0
@@ -88,34 +91,37 @@ when not declared ATCODER_SPLAY_TREE_HPP:
     result = ST()
     result.init(root)
 
-  template getSplayTreeType*(D, L, hasRev, hasSum; p:static[tuple]):typedesc =
+  template getSplayTreeType*(D, L; hasRev, hasSum: static[bool]; p:static[tuple]):typedesc =
     type Node = SplayTreeNode[D, L, hasRev, hasSum]
     SplayTreeType[D, L, Node, hasRev, hasSum, p]
 
   proc initSplayTree*[D]():auto =
-    getSplayTreeType(D, void, void, void, ()).init()
+    getSplayTreeType(D, void, false, false, ()).init()
   proc initSplayTree*[D](f:static[proc(a, b:D):D], M1:D):auto =
-    result = getSplayTreeType(D, void, void, useSum, (op:f)).init()
+    result = getSplayTreeType(D, void, false, useSum, (op:f)).init()
     result.M1 = M1
   proc initReversibleSplayTree*[D](f:static[proc(a, b:D):D], s:static[proc(a:D):D], M1:D):auto =
     result = getSplayTreeType(D, void, useRev, useSum, (op:f, s:s)).init()
     result.M1 = M1
   proc initReversibleSplayTree*[D](f:static[proc(a, b:D):D], M1:D):auto =
-    proc s(a:D):D = a
-    return initReversibleSplayTree[D](f, s, M1)
+    result = getSplayTreeType(D, void, useRev, useSum, (op:f)).init()
+    result.M1 = M1
   proc initLazyReversibleSplayTree*[D, L](f:static[proc(a, b:D):D], g:static[proc(b:L, a:D):D], h:static[proc(a, b:L):L], s:static[proc(a:D):D], M1:D, OM0:L):auto =
-    result = getSplayTreeType(D, L, useRev, useSum, (op:f, mapping:g, composition:h, s:s, p:nil)).init()
+    result = getSplayTreeType(D, L, useRev, useSum, (op:f, mapping:g, composition:h, s:s)).init()
     result.M1 = M1
     result.OM0 = OM0
   proc initLazyReversibleSplayTree*[D, L](f:static[proc(a, b:D):D], g:static[proc(b:L, a:D):D], h:static[proc(a, b:L):L], M1:D, OM0:L):auto =
-    proc s(a:D):D = a
-    return initLazyReversibleSplayTree(f, g, h, s, M1, OM0)
+    result = getSplayTreeType(D, L, useRev, useSum, (op:f, mapping:g, composition:h)).init()
+    result.M1 = M1
+    result.OM0 = OM0
   proc initLazySplayTree*[D, L](f:static[proc(a, b:D):D], g:static[proc(b:L, a:D):D], h:static[proc(a, b:L):L], pp:static[proc(a:L, c:int):L], M1:D, OM0:L):auto =
-    result = getSplayTreeType(D, L, void, useSum, (op:f, mapping:g, composition:h, p:pp)).init()
+    result = getSplayTreeType(D, L, false, useSum, (op:f, mapping:g, composition:h, p:pp)).init()
     result.M1 = M1
     result.OM0 = OM0
   proc initLazySplayTree*[D, L](f:static[proc(a, b:D):D], g:static[proc(b:L, a:D):D], h:static[proc(a, b:L):L], M1:D, OM0:L):auto =
-    initLazySplayTree[D, L](f, g, h, nil, M1, OM0)
+    result = getSplayTreeType(D, L, false, useSum, (op:f, mapping:g, composition:h)).init()
+    result.M1 = M1
+    result.OM0 = OM0
 
   proc is_root*[T:SomeSplayTree](self:T, t:T.Node):bool =
     return t.p == nil or (t.p.l != t and t.p.r != t)
@@ -126,26 +132,26 @@ when not declared ATCODER_SPLAY_TREE_HPP:
 
   proc update*[T:SomeSplayTree](self:T, t:T.Node):auto {.discardable.} =
     t.cnt = 1
-    when T.hasSum isnot void:
+    when T.hasSum:
       t.sum = t.key
     if t.l != self.leaf:
       t.cnt += t.l.cnt
-      when T.hasSum isnot void: t.sum = T.calc_op(t.l.sum, t.sum)
+      when T.hasSum: t.sum = T.calc_op(t.l.sum, t.sum)
     if t.r != self.leaf:
       t.cnt += t.r.cnt
-      when T.hasSum isnot void: t.sum = T.calc_op(t.sum, t.r.sum)
+      when T.hasSum: t.sum = T.calc_op(t.sum, t.r.sum)
     return t
 
   proc propagate*[T:SomeSplayTree](self:T, t:T.Node, x:T.L) =
     static: assert T.L isnot void
     t.key = T.calc_mapping(x, t.key, 1)
-    when T.hasSum isnot void: t.sum = T.calc_mapping(x, t.sum, self.count(t))
+    when T.hasSum: t.sum = T.calc_mapping(x, t.sum, self.count(t))
     t.lazy = T.calc_composition(x, t.lazy)
 
   proc toggle*[T:SomeSplayTree](self:T, t:T.Node) =
-    static: assert T.hasRev isnot void
+    static: assert T.hasRev
     swap(t.l, t.r)
-    when T.hasSum isnot void: t.sum = T.calc_s(t.sum)
+    when T.hasSum: t.sum = T.calc_s(t.sum)
     t.rev = not t.rev
 
   proc push*[T:SomeSplayTree](self:T, t:T.Node) =
@@ -154,7 +160,7 @@ when not declared ATCODER_SPLAY_TREE_HPP:
         if t.l != self.leaf: self.propagate(t.l, t.lazy)
         if t.r != self.leaf: self.propagate(t.r, t.lazy)
         t.lazy = self.OM0
-    when T.hasRev isnot void:
+    when T.hasRev:
       if t.rev:
         if t.l != self.leaf: self.toggle(t.l)
         if t.r != self.leaf: self.toggle(t.r)
@@ -338,7 +344,7 @@ when not declared ATCODER_SPLAY_TREE_HPP:
     return (x[0], y[0], y[1])
 
   proc reverse*[T:SomeSplayTree](self:var T, p: Slice[int]) =
-    static: assert T.hasRev isnot void
+    static: assert T.hasRev
     let
       l = p.a
       r = p.b + 1
@@ -395,7 +401,7 @@ when not declared ATCODER_SPLAY_TREE_HPP:
     t = self.merge(x[0], y[1])
 
   proc sum*[T:SomeSplayTree](self:T, t:T.Node):auto =
-    static: assert T.hasSum isnot void
+    static: assert T.hasSum
     return t.sum
 
   proc alloc*[T:SomeSplayTree](self:var T, x:T.D):auto =
@@ -431,13 +437,13 @@ when not declared ATCODER_SPLAY_TREE_HPP:
     self.insert_node_index(t, k, self.initNode(x))
 
   proc apply_all*[T:SomeSplayTree](self:T, t:var T.Node, pp:T.L) =
-    static: assert T.L isnot void
+    static: assert T.hasLazy
     self.splay(t)
     self.propagate(t, pp)
     self.push(t)
 
   proc apply*[T:SomeSplayTree](self:T, t:var T.Node, s:Slice[int], pp:T.L) =
-    static: assert T.L isnot void
+    static: assert T.hasLazy
     let (a, b) = self.halfOpenEndpoints(s)
     self.splay(t)
     var

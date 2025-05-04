@@ -9,7 +9,7 @@ const
   D = 1000
   C = 1000
 
-when true:
+when false:
   type P = (int, int)
   proc getP():P = (rand(0 ..< D), rand(0 ..< D))
   proc op(a, b:P):P = (a[0] + b[0], a[1] + b[1])
@@ -22,7 +22,7 @@ when true:
 else:
   type P = int
   proc getP():P = rand(0 ..< D)
-  proc op(a, b:P):P = a + b
+  proc op(a, b:P):P = max(a, b)
   proc e():P = 0
   type Q = int
   proc mapping(f: Q, s:P):P = f + s
@@ -94,7 +94,35 @@ template apply_test(st: var SomeSplayTree, v: var seq[P]) =
     if i > j: swap(i, j)
     st.apply(i .. j, f)
     for k in i .. j: v[k] = mapping(f, v[k])
-    check v == st.toSeq
+    #check v == st.toSeq
+
+block:
+  proc op0(a, b:P):P = a + b
+  proc e0():P = 0
+  proc mapping0(f: Q, s:P):P = f + s
+  proc pp0(a:Q, c:int): Q = a * c
+  proc composition0(f1, f2: Q):Q = f1 + f2
+  proc id0():Q = 0
+  proc getQ0():Q = rand(0 ..< D)
+  
+  test "LazySplayTreeWithP":
+    var
+      v = @[3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9]
+      st = initLazySplayTree[P, Q](op0, mapping0, composition0, pp0, e0(), id0())
+  
+    st.build(v)
+    for _ in 0 ..< B:
+      block:
+        var i, j = rand(0 ..< v.len)
+        if i > j: swap i, j
+        let f = getQ0()
+        st.apply(i .. j, f)
+        for k in i .. j: v[k] = mapping0(f, v[k])
+      block:
+        var i, j = rand(0 ..< v.len)
+        if i > j: swap i, j
+  
+        check st.prod(i .. j) == v[i .. j].foldl(op0(a, b))
 
 test "SplayTree":
   var

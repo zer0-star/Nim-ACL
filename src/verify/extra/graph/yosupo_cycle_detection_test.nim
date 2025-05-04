@@ -2,10 +2,10 @@
 
 include atcoder/header
 
-import atcoder/extra/forward_compatibility/internal_sugar
 import atcoder/extra/graph/graph_template
 import atcoder/extra/graph/cycle_detection
 import std/options, std/sequtils
+import std/sugar
 
 proc main() =
   let N, M = nextInt()
@@ -16,12 +16,11 @@ proc main() =
       u = nextInt()
       v = nextInt()
     g.addEdge(u, v, i)
-  
   let c = g.cycle_detection()
   if c.isSome:
     let c = c.get
     echo c.len
-    let v = collect(newSeq):
+    let v = collect:
       for e in c:
         e.weight
     echo v.join("\n")

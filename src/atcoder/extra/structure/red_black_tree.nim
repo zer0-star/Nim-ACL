@@ -14,46 +14,62 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
     RedBlackTreeType*[K, Node] = object of RootObj
       root*, leaf*: Node
       next_id*: int32
+      pool*: seq[Node]
     RedBlackTree*[K] = RedBlackTreeType[K, RedBlackTreeNode[K]]
   proc getleaf*[K](self: RedBlackTree[K]):RedBlackTreeNode[K] =
     var leaf_node {.global.} :RedBlackTreeNode[K]
     once:
       leaf_node = nil
-    if leaf_node == nil:
+    if leaf_node.isNil:
       leaf_node = self.Node(color: Color.black, id: -1)
       (leaf_node.l, leaf_node.r) = (leaf_node, leaf_node)
       leaf_node.level = 0
       leaf_node.cnt = 0
     return leaf_node
+  #proc getleaf*[K](self: RedBlackTree[K]):RedBlackTreeNode[K] =
+  #  result = self.Node(color: Color.black, id: -1)
+  #  (result.l, result.r) = (result, result)
+  #  result.level = 0
+  #  result.cnt = 0
 
   proc newNode*[T:RedBlackTree](self: var T, parent: T.Node): T.Node =
     type Node_T = T.Node
     #result = T.Node(p:parent) # なぜかこうしないといけない。。。
     #result = new T.Node
     result = Node_T(p:parent, l:self.leaf, r: self.leaf, color: Color.red, id: self.next_id, cnt: 1)
+    self.pool.add result
 
   proc newNode*[T:RedBlackTree](self: var T, parent: T.Node, key: T.K): T.Node =
     result = self.newNode(parent)
     result.key = key
     self.next_id += 1
-  proc init*[T:RedBlackTree](self:var T, root: var T.Node = nil) =
+  proc init*[T:RedBlackTree](self:var T) =
     self.leaf = self.getLeaf()
-    if root != nil:
+    self.next_id = 100
+
+  template update*[T:RedBlackTree](self:T, node: T.Node) =
+    if node == self.leaf or node.isNil: return
+    node.cnt = node.l.cnt + node.r.cnt
+    if node.id >= 0: node.cnt.inc
+    node.level = node.l.level + (if node.l.color == Color.black: 1 else: 0)
+
+  proc init*[T:RedBlackTree](self:var T, root: var T.Node) =
+    self.init()
+    if not root.isNil:
       self.root = root
       (self.root.l, self.root.r) = (self.leaf, self.leaf)
       root.id = -2
       self.root.p = nil
       self.root.color = Color.black
       self.update(root)
-    #self.next_id = 0
-    self.next_id = 100
+  proc isRoot*[K](nd: RedBlackTreeNode[K]):bool = nd.p.isNil
 
   include atcoder/extra/structure/binary_tree_node_utils
 
   # checker, write
   proc write*[T:RedBlackTree](rbt: T, self: T.Node, h = 0) =
     for i in 0..<h: stderr.write " | "
-    if self == nil:
+    if self.isNil:
       stderr.write "nil node?????\n"
       return
     if self.id == -1:
@@ -62,7 +78,7 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
       stderr.write "id: ",self.id, " key: ", self.key, " color: ", self.color
       stderr.write " cnt: ", self.cnt, " ", " level: ", self.level
   #    if self.key == T.K.inf: stderr.write "inf"
-      if self.p != nil: stderr.write " parent: ", self.p.id
+      if not self.isRoot(): stderr.write " parent: ", self.p.id
       else: stderr.write " parent: nil"
       stderr.write "\n"
       if h >= 20:
@@ -80,7 +96,7 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
   import sets
   proc checkTree*[T:RedBlackTree](self: T, node: T.Node = nil) =
     var node = node
-    if node == nil:
+    if node.isNil:
       node = self.root
     #doAssert self.root.color == Color.black
     var black_ct_s = initHashSet[int]()
@@ -109,24 +125,15 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
     checkTreeSub(node, 0)
     doAssert black_ct_s.len == 1
 
-
-
-
-  template update*[T:RedBlackTree](self:T, node: T.Node) =
-    if node == self.leaf or node == nil: return
-    node.cnt = node.l.cnt + node.r.cnt
-    if node.id >= 0: node.cnt.inc
-    node.level = node.l.level + (if node.l.color == Color.black: 1 else: 0)
-
   proc rotateLeft*[T:RedBlackTree](self: var T, parent: T.Node):T.Node {.discardable.} =
-    if parent == nil: return
+    if parent.isNil: return
     var right = parent.r
     parent.r = right.l
     if right.l != self.leaf: right.l.p = parent
     right.p = parent.p
     if parent == self.root:
       self.root = right
-    if parent.p == nil:
+    if parent.isRoot:
       discard
     elif parent.p.l == parent: parent.p.l = right
     else: parent.p.r = right
@@ -137,14 +144,14 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
     return right
 
   proc rotateRight*[T:RedBlackTree](self: var T, parent: T.Node):T.Node {.discardable.} =
-    if parent == nil: return
+    if parent.isNil: return
     var left = parent.l
     parent.l = left.r
     if left.r != self.leaf: left.r.p = parent
     left.p = parent.p
     if parent == self.root:
       self.root = left
-    if parent.p == nil:
+    if parent.isRoot:
       discard
     elif parent.p.r == parent: parent.p.r = left
     else: parent.p.l = left
@@ -159,8 +166,8 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
     proc fixInsert(self: var T, node: T.Node) =
       var curr = node
       #while curr != self.root and curr.p.color == Color.red:
-      while curr.p != nil and curr.p.color == Color.red:
-        if curr.p.p != nil and curr.p == curr.p.p.l:
+      while not curr.isRoot and curr.p.color == Color.red:
+        if not curr.p.isRoot and curr.p == curr.p.p.l:
           var uncle = curr.p.p.r
           if uncle.color == Color.red:
             curr.p.color = Color.black
@@ -174,10 +181,10 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
               curr = curr.p
               self.rotateLeft(curr)
             curr.p.color = Color.black
-            if curr.p.p != nil:
+            if not curr.p.isRoot:
               curr.p.p.color = Color.red
               self.rotateRight(curr.p.p)
-        elif curr.p.p != nil:
+        elif not curr.p.isRoot:
           var uncle = curr.p.p.l
           if uncle.color == Color.red:
             curr.p.color = Color.black
@@ -191,12 +198,12 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
               curr = curr.p
               self.rotateRight(curr)
             curr.p.color = Color.black
-            if curr.p.p != nil:
+            if not curr.p.isRoot:
               curr.p.p.color = Color.red
               self.rotateLeft(curr.p.p)
-      while curr != nil:
+      while not curr.isNil:
         self.update(curr)
-        if curr.p == nil: curr.color = Color.black
+        if curr.isRoot: curr.color = Color.black
         curr = curr.p
 
     if next.l == self.leaf:
@@ -216,7 +223,7 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
   proc insert*[T:RedBlackTree](self: var T, next:T.Node, x:T.K): T.Node {.discardable.} =
     when false:
       echo "next: ", next.id, " ", next.key
-      if next.p == nil: echo "nil"
+      if next.isRoot: echo "nil"
       else:
         echo next.p.l.id # なぜか0になる
       self.write
@@ -224,14 +231,11 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
     when false:
       echo "insert ", node.id, " ", node.key
       echo "next: ", next.id, " ", next.key
-      if next.p == nil: echo "nil"
+      if next.isRoot: echo "nil"
       else:
         echo next.p.l.id # なぜか0になる
       self.write
     result = self.insert(node, next)
-
-
-
 
 
   #proc getNodeStr(self:RedBlackTreeNode):string =
@@ -240,9 +244,9 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
 
   proc update_parents[T:RedBlackTree](self:var T, node:T.Node):T.Node {.discardable.} =
     var curr = node
-    while curr != nil:
+    while not curr.isNil:
       self.update(curr)
-      if curr.p == nil: return curr
+      if curr.isRoot: return curr
       curr = curr.p
 
   proc erase*[T:RedBlackTree](self: var T, node: T.Node):T.Node =
@@ -251,7 +255,7 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
         child = node
         parent = parent
       while child != self.root and child.color == Color.black:
-        if parent == nil: break # add!!!!!!!!
+        if parent.isNil: break # add!!!!!!!!
         if child == parent.l:
           var sib = parent.r
           if sib.color == Color.red:
@@ -332,19 +336,19 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
         succ.r = node
         succ.p = node.p
         node.p = succ
-        if succ.p != nil:
+        if not succ.isRoot:
           if succ.p.l == node: succ.p.l = succ
           if succ.p.r == node: succ.p.r = succ
       else:
         swap(node.p, succ.p)
         swap(node.l, succ.l)
         swap(node.r, succ.r)
-        if node.p != nil:
+        if not node.isRoot:
           if node.p.l == succ: node.p.l = node
           if node.p.r == succ: node.p.r = node
         if node.l != self.leaf: node.l.p = node
         if node.r != self.leaf: node.r.p = node
-        if succ.p != nil:
+        if not succ.isRoot:
           if succ.p.l == node: succ.p.l = succ
           if succ.p.r == node: succ.p.r = succ
         if succ.l != self.leaf: succ.l.p = succ
@@ -356,7 +360,7 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
     let child = if node.l != self.leaf: node.l else: node.r
     if child != self.leaf:
       child.p = node.p
-      if node.p == nil: self.root = child
+      if node.isRoot: self.root = child
       elif node == node.p.l: node.p.l = child
       else: node.p.r = child
 
@@ -365,7 +369,7 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
       else:
         self.update_parents(node.p)
     else:
-      if node.p == nil:
+      if node.isRoot:
         self.root = self.leaf
       elif node == node.p.l:
         node.p.l = self.leaf
@@ -478,7 +482,7 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
     var path:seq[(self.Node, int)]
     block:
       var N = N
-      while N.p != nil:
+      while not N.isRoot:
         var P = N.p
         if P.l == N:
           path.add (P, 0)
@@ -519,11 +523,11 @@ when not declared ATCODER_RED_BLACK_TREE_HPP:
       parent = curr
       d = 1
     var node = self.join(self.leaf, node, self.leaf)
-    while parent != nil:
+    while not parent.isNil:
       var
         grand_parent = parent.p
         d2:int
-      if grand_parent != nil:
+      if not grand_parent.isNil:
         if grand_parent.l == parent:
           d2 = 0
         else:

@@ -1,0 +1,6 @@
+[[languages.nim.environments]]
+compile_to = "cpp"
+NIMFLAGS = ["--warnings:on", "--opt:speed", "--mm:refc", "-d:release"]
+[[languages.nim.environments]]
+compile_to = "cpp"
+NIMFLAGS = ["--warnings:on", "--opt:speed", "--mm:orc", "-d:release"]
