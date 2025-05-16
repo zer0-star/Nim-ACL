@@ -38,16 +38,16 @@ when not declared ATCODER_SPLAY_TREE_HPP:
   type tupleHasS = concept x
     x.s
 
-  template calc_op[ST:SomeSplayTree](self:typedesc[ST], a, b:ST.D):auto =
+  template calc_op*[ST:SomeSplayTree](self:ST or typedesc[ST], a, b:ST.D):auto =
     ST.p.op(a, b)
-  template calc_mapping[ST:SomeSplayTree](self:typedesc[ST], a:ST.L, b:ST.D, c:untyped):auto =
+  template calc_mapping*[ST:SomeSplayTree](self:ST or typedesc[ST], a:ST.L, b:ST.D, c:untyped):auto =
     when ST.p is tupleHasP:
       ST.p.mapping(ST.p.p(a, c), b)
     else:
       ST.p.mapping(a, b)
-  template calc_composition[ST:SomeSplayTree](self:typedesc[ST], a, b:ST.L):auto =
+  template calc_composition*[ST:SomeSplayTree](self:ST or typedesc[ST], a, b:ST.L):auto =
     ST.p.composition(a, b)
-  template calc_s[ST:SomeSplayTree](self:typedesc[ST], a:ST.D):auto =
+  template calc_s*[ST:SomeSplayTree](self:ST or typedesc[ST], a:ST.D):auto =
     when ST.p is tupleHasS:
       ST.p.s(a)
     else:

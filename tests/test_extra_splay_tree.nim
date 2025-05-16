@@ -146,8 +146,10 @@ test "SplayTree":
 
 test "SplayTreeWithProd":
   var
-    st = initSplayTree[P](op, e())
+    M1 = e()
+    st = initSplayTree[P](op, M1)
     v: seq[P]
+
   for i in 0 ..< B: v.add getP()
   st.build(v)
   for _ in 0 ..< C:

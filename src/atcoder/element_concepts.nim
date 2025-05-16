@@ -17,22 +17,22 @@ when not declared ATCODER_ELEMENT_CONCEPTS_HPP:
     T is HasInitInt or T is HasIntConverter
   type RingElem* = concept x, y, type T
     x + y
+    x += y
     x - y
-    -x
+    x -= y
     x * y
+    x *= y
+    -x
     T is HasInitInt or T is HasIntConverter
   type FieldElem* = concept x, y, type T
-    x + y
-    x - y
-    x * y
+    T is RingElem
+    x.inv()
     x / y
-    -x
-#    x.inv()
-    T is HasInitInt or T is HasIntConverter
+    x /= y
   type FiniteFieldElem* = concept x, type T
     T is FieldElem
-    T.mod
-    T.mod() is int
-    x.pow(1000000)
+    #T.mod
+    #T.mod() is int
+    #x.pow(1000000)
   type hasInf* = concept x, type T
     T(Inf)

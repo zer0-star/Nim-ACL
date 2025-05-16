@@ -1,25 +1,29 @@
-when not declared ATCODER_CONVOLUTION_HPP:
-  const ATCODER_CONVOLUTION_HPP* = 1
+when not declared ATCODER_CONVOLUTION_UNIVERSAL_HPP:
+  const ATCODER_CONVOLUTION_UNIVERSAL_HPP* = 1
 
   import std/math, std/sequtils, std/sugar
   import atcoder/internal_math, atcoder/internal_bit
   import atcoder/element_concepts
 
   type fft_info*[mint:FiniteFieldElem; rank2:static[int]] = object
-    g: int
+    m: int
+    g: mint
     root, iroot: array[rank2 + 1, mint]
     rate2, irate2: array[max(0, rank2 - 2 + 1), mint]
     rate3, irate3: array[max(0, rank2 - 3 + 1), mint]
 
   proc initFFTInfo*[mint:FiniteFieldElem]():auto =
-    const g = primitive_root[mint.mod]()
-    const rank2 = bsf(mint.mod - 1)
+    #const g = primitive_root[mint.mod]()
+    #const rank2 = bsf(mint.mod - 1)
+    mixin get_pow2_root
+    const (g, m, rank2) = get_pow2_root[mint]()
     var root, iroot:array[rank2 + 1, mint]
     var rate2, irate2: array[max(0, rank2 - 2 + 1), mint]
     var rate3, irate3: array[max(0, rank2 - 3 + 1), mint]
-    mixin init, inv, pow
+    mixin init, inv
 
-    root[rank2] = mint.init(g).pow((mint.mod - 1) shr rank2)
+    #root[rank2] = mint.init(g).pow((mint.mod - 1) shr rank2)
+    root[rank2] = g.pow((m - 1) shr rank2)
     iroot[rank2] = root[rank2].inv()
     for i in countdown(rank2 - 1, 0):
       root[i] = root[i + 1] * root[i + 1];
@@ -39,11 +43,11 @@ when not declared ATCODER_CONVOLUTION_HPP:
         prod = mint.init(1)
         iprod = mint.init(1)
       for i in 0..rank2 - 3:
-        rate3[i] = root[i + 3] * prod;
-        irate3[i] = iroot[i + 3] * iprod;
-        prod *= iroot[i + 3];
-        iprod *= root[i + 3];
-    return fft_info[mint, rank2](g: g, root:root, iroot:iroot, rate2:rate2, irate2:irate2, rate3: rate3, irate3:irate3)
+        rate3[i] = root[i + 3] * prod
+        irate3[i] = iroot[i + 3] * iprod
+        prod *= iroot[i + 3]
+        iprod *= root[i + 3]
+    return fft_info[mint, rank2](g: g, m: m, root:root, iroot:iroot, rate2:rate2, irate2:irate2, rate3: rate3, irate3:irate3)
   
   proc butterfly*[mint:FiniteFieldElem](a:var seq[mint]) =
     mixin init
@@ -80,17 +84,15 @@ when not declared ATCODER_CONVOLUTION_HPP:
             offset = s shl (h - len)
           for i in 0..<p:
             let
-              mod2 = (mint.mod() * mint.mod()).uint
-              a0 = (a[i + offset].val()).uint
-              a1 = (a[i + offset + p].val() * rot.val()).uint
-              a2 = (a[i + offset + 2 * p].val() * rot2.val()).uint
-              a3 = (a[i + offset + 3 * p].val() * rot3.val()).uint
-              a1na3imag = (mint.init(a1 + mod2 - a3).val() * imag.val()).uint
-              na2 = mod2 - a2
-            a[i + offset] = mint.init(a0 + a2 + a1 + a3)
-            a[i + offset + 1 * p] = mint.init(a0 + a2 + (2.uint * mod2 - (a1 + a3)))
-            a[i + offset + 2 * p] = mint.init(a0 + na2 + a1na3imag)
-            a[i + offset + 3 * p] = mint.init(a0 + na2 + (mod2 - a1na3imag))
+              a0 = a[i + offset]
+              a1 = a[i + offset + p] * rot
+              a2 = a[i + offset + 2 * p] * rot2
+              a3 = a[i + offset + 3 * p] * rot3
+              a1na3imag = (a1 - a3) * imag
+            a[i + offset] = a0 + a2 + a1 + a3
+            a[i + offset + 1 * p] = a0 + a2 - (a1 + a3)
+            a[i + offset + 2 * p] = a0 - a2 + a1na3imag
+            a[i + offset + 3 * p] = a0 - a2 - a1na3imag
           if s + 1 != (1 shl len):
             rot *= info.rate3[bsf(not s.uint)]
         len += 2
@@ -114,7 +116,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
               l = a[i + offset]
               r = a[i + offset + p]
             a[i + offset] = l + r
-            a[i + offset + p] = mint.init((mint.mod() + l.val() - r.val()) * irot.val())
+            a[i + offset + p] = (mint.init(info.m) + l - r) * irot
           if s + 1 != (1 shl (len - 1)):
             irot *= info.irate2[bsf(not s.uint)]
         len.dec
@@ -130,16 +132,16 @@ when not declared ATCODER_CONVOLUTION_HPP:
             offset = s shl (h - len + 2)
           for i in 0..<p:
             let
-              a0 = a[i + offset + 0 * p].val().uint
-              a1 = a[i + offset + 1 * p].val().uint
-              a2 = a[i + offset + 2 * p].val().uint
-              a3 = a[i + offset + 3 * p].val().uint
-              a2na3iimag = mint.init((mint.mod.uint + a2 - a3) * iimag.val().uint).val().uint
+              a0 = a[i + offset + 0 * p]
+              a1 = a[i + offset + 1 * p]
+              a2 = a[i + offset + 2 * p]
+              a3 = a[i + offset + 3 * p]
+              a2na3iimag = (a2 - a3) * iimag
   
-            a[i + offset] = mint.init(a0 + a1 + a2 + a3)
-            a[i + offset + 1 * p] = mint.init((a0 + (mint.mod().uint - a1) + a2na3iimag) * irot.val().uint)
-            a[i + offset + 2 * p] = mint.init((a0 + a1 + (mint.mod().uint - a2) + (mint.mod().uint - a3)) * irot2.val().uint)
-            a[i + offset + 3 * p] = mint.init((a0 + (mint.mod().uint - a1) + (mint.mod().uint - a2na3iimag)) * irot3.val().uint)
+            a[i + offset] = a0 + a1 + a2 + a3
+            a[i + offset + 1 * p] = (a0 - a1 + a2na3iimag) * irot
+            a[i + offset + 2 * p] = (a0 + a1 - a2 - a3) * irot2
+            a[i + offset + 3 * p] = (a0 - a1 - a2na3iimag) * irot3
           if s + 1 != (1 shl (len - 2)):
             irot *= info.irate3[bsf(not s.uint)]
         len -= 2

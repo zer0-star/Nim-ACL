@@ -186,4 +186,14 @@ when not declared ATCODER_MODINT_HPP:
   # Modint -> intのconverterあるとmint(2) * 3みたいなのがintになっちゃう
   # converter toInt*(m: ModInt):int {.inline.} = m.val
 
+  # g^r = mod
+  import atcoder/internal_bit
+  proc get_pow2_root*[mint: ModInt]():tuple[g: mint, m, r: int] = 
+    const
+      g = primitive_root[mint.mod]()
+      m = mint.mod
+      r = bsf(m - 1)
+    return (mint.init(g), m, r)
+
+
 

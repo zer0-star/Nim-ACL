@@ -2,3 +2,4 @@ src/.bundle
 src/.verify-helper/cache/*
 src/lib
 *.swp
+*.DS_Store

@@ -43,9 +43,8 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
       comp(x, y)
 
   proc lower_bound*[T:SomeSortedTree](self: var T, t:var T.Node, x:T.K):T.Node =
-    if t.isLeaf:
-      return t
-    if t != self.End and self.calc_comp(self.getKey(t), x):
+    if t.isLeaf: return t
+    elif t != self.End and self.calc_comp(self.getKey(t), x):
       return self.lower_bound(t.r, x)
     else:
       var t2 = self.lower_bound(t.l, x)
@@ -61,7 +60,7 @@ when not declared ATCODER_BINARY_TREE_UTILS_HPP:
 
   proc upper_bound*[T:SomeSortedTree](self: var T, t:var T.Node, x:T.K):T.Node =
     if t.isLeaf: return t
-    if t == self.End or self.calc_comp(x, self.getKey(t)):
+    elif t == self.End or self.calc_comp(x, self.getKey(t)):
       var t2 = self.upper_bound(t.l, x)
       if t2.isLeaf: return t
       else: return t2

@@ -13,12 +13,13 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
     for i in f.len:
       s.add $(f[i]) & " x^" & i
     return s.join("+")
+  type hasFFTC* = concept x, var v, type T
+    fft(@[v])
 
 
   template hasFFT*(T:typedesc):bool =
-    mixin fft
     type hasFFTC = concept x
-      @[x].fft()
+      fft(@[x])
     T is hasFFTC
 
   template initFormalPowerSeries*[T:FieldElem](n:int):FormalPowerSeries[T] =
