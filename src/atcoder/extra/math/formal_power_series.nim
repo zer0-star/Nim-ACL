@@ -552,6 +552,3 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
     a.shrink
     b.shrink
     return gcdImpl(a, b)
-
-
-

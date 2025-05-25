@@ -5,7 +5,7 @@ when not declared ATCODER_NTT_QUADRATIC_FIELD_HPP:
   import atcoder/extra/math/quadratic_field
   import atcoder/internal_bit
 
-  proc fft*[T:QF](a:seq[T]):seq[T] =
+  proc inplace_fft*[T: QF](a: var seq[T]) =
     type mint = T.T
     var a0, b0 = newSeqOfCap[mint](a.len)
     for i in 0 ..< a.len:
@@ -13,10 +13,13 @@ when not declared ATCODER_NTT_QUADRATIC_FIELD_HPP:
       b0.add a[i].b
     a0.butterfly()
     b0.butterfly()
-    result = newSeqOfCap[T](a0.len)
+    a = newSeqOfCap[T](a0.len)
     for i in 0 ..< a0.len:
-      result.add T.init(a0[i], b0[i])
-  proc ifft*(a:auto, T:typedesc[FiniteFieldElem]):auto =
+      a.add T.init(a0[i], b0[i])
+  proc fft*[T:QF](a:seq[T]):seq[T] =
+    result = a
+    result.inplace_fft()
+  proc inplace_ifft*[T: QF](a: var seq[T]) =
     type mint = T.T
     var a0, b0 = newSeqOfCap[mint](a.len)
     for i in 0 ..< a.len:
@@ -24,9 +27,12 @@ when not declared ATCODER_NTT_QUADRATIC_FIELD_HPP:
       b0.add a[i].b
     a0.butterflyInv()
     b0.butterflyInv()
-    result = newSeqOfCap[T](a0.len)
+    a = newSeqOfCap[T](a0.len)
     for i in 0 ..< a0.len:
-      result.add T.init(a0[i], b0[i])
+      a.add T.init(a0[i], b0[i])
+  proc ifft*[T: QF](a:seq[T], td:typedesc[T]):auto =
+    result = a
+    result.inplace_ifft(T)
   proc dot*(a, b:auto, T:typedesc[FiniteFieldElem]):auto = # TODO: このdotがorcでばぐる特にaを変数ではなくfft(f)みたいに関数で読んだ場合
     result = newSeqOfCap[T](a.len)
     for i in 0 ..< a.len:
@@ -59,3 +65,21 @@ when not declared ATCODER_NTT_QUADRATIC_FIELD_HPP:
   proc multiply*[T:QF](a, b:seq[T]):seq[T] =
     if min(a.len, b.len) <= 60: return multiply_naive(a, b)
     else: multiply_fft(a, b)
+
+  proc inplace_fft_doubling*[T:QF](a:var seq[T]) =
+    let M = a.len
+    var b = a
+    const fftInfo = initFFTInfo[T.T]()
+    inplace_ifft(b)
+    var
+      r:T = 1
+      zeta:T = T(fftInfo.g).pow((T.getMod() - 1) div (M shl 1))
+    for i in 0 ..< M:
+      b[i] *= r
+      r *= zeta
+    inplace_fft(b)
+    a &= b
+  proc fft_doubling*[T:QF](a:seq[T]):seq[T] =
+    result = a
+    result.fft_doubling()
+

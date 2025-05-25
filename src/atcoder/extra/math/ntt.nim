@@ -22,3 +22,7 @@ when not declared ATCODER_NTT_HPP:
     inplace_partial_dot(get_fft_type(T), a, b, p)
   proc multiply*[T:FiniteFieldElem](a, b:seq[T]):seq[T] =
     convolution(get_fft_type(T), a, b)
+  proc fft_doubling*[T: FiniteFieldElem](a: seq[T]):seq[T] =
+    var a = a
+    ntt_doubling(a)
+    return a

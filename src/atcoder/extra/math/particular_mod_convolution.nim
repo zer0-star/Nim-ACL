@@ -45,4 +45,4 @@ when not declared ATCODER_PARTICULAR_MOD_CONVOLUTION:
       b[i] *= r
       r *= zeta
     t.inplace_fft(b)
-    a = a & b
+    a &= b
