@@ -165,6 +165,29 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
   proc `div`*[T:FieldElem](a: FormalPowerSeries[T], b:SparseFormalPowerSeries[T]):auto = a.divMod(b)[0]
   proc `mod`*[T:FieldElem](a: FormalPowerSeries[T], b:SparseFormalPowerSeries[T]):auto = a.divMod(b)[1]
 
+
+  import atcoder/extra/other/format_expression
+  import std/strutils
+
+  macro initFPSMacro(T:typedesc, s:static[string]):untyped =
+    var
+      varName = "initVar[" & T.getTypeInst.repr & "]()"
+      a: seq[string]
+    for s in formatExpression(s):
+      if s == "x":
+        a.add varName
+      else:
+        a.add s
+    parseStmt(a.join(" "))
+  
+  template initFPS*[T](s: static[string]):FormalPowerSeries[T] =
+    var a: FormalPowerSeries[T] = initFPSMacro(T, s)
+    a
+  
+  proc init*[T](_:typedesc[FormalPowerSeries[T]], s:static[string]): FormalPowerSeries[T] =
+    initFPS[T](s)
+
+
   proc EQUAL*[T](a, b:T):bool =
     when T is hasInf:
       return (abs(a - b) < T(0.0000001))
