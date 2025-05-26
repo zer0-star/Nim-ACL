@@ -43,6 +43,7 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   import atcoder/extra/other/zip
   import atcoder/extra/other/solve_proc
   import atcoder/extra/other/divutils
+  import atcoder/extra/other/curly_init
 
   when declared USE_DEFAULT_TABLE:
     when USE_DEFAULT_TABLE:
