@@ -16,7 +16,7 @@ when not declared ATCODER_ERATOSTHENES_HPP:
     self.pdiv.setLen(n)
     let old_n = self.n
     self.n = n
-    for i in old_n ..< self.n:self.pdiv[i] = i.int32
+    for i in old_n ..< self.n: self.pdiv[i] = i.int32
     for i,p in self.prime:
       if p * p > self.n: break
       self.propagate(i)
