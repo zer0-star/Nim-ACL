@@ -8,7 +8,7 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
   type Poly*[T:FieldElem] = FormalPowerSeries[T]
   type FPS*[T:FieldElem] = FormalPowerSeries[T]
 
-  proc `$`*(f:seq): string {.inline.} =
+  proc toStr*[T](f:FormalPowerSeries[T]): string {.inline.} =
     var s:seq[int]
     for i in f.len:
       s.add $(f[i]) & " x^" & i
@@ -31,6 +31,9 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
       for i, it in data:
         result[i] = T(it)
       FormalPowerSeries[T](result)
+  template initFormalPowerSeries*[T:FieldElem;n:static[int]](data:array[n, int or float]):FormalPowerSeries[T] =
+    initFormalPowerSeries[T](toSeq(data))
+
   template initFormalPowerSeries*[T:FieldElem](data:seq[T]):FormalPowerSeries[T] =
     block:
       data
@@ -63,12 +66,17 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
 #    return toSFPS(f) + toSFPS(g)
 
   # }}}
-
   converter toSFPS*[T](f:Table[int, T]):SparseFormalPowerSeries[T] =
-    for d, c in f:
-      result.add((d, c))
-    result.sort do (x, y:(int, T)) -> int:
+    var a: SparseFormalPowerSeries[T]
+    for (d, c) in f.pairs:
+      var p = (d:d, c:c)
+      a.add p
+    a.sort do (x, y:(int, T)) -> int:
       cmp(x[0], y[0])
+    return a
+
+  #converter tableToSFPS*[T](f:Table[int, T]):SparseFormalPowerSeries[T] =
+  #  f.toSFPS()
 
 #  converter toSFPS*[T](a:T):SparseFormalPowerSeries[T] = @[(0, a)]
   proc deg*[T](a:SparseFormalPowerSeries[T]):int =
@@ -114,13 +122,24 @@ when not declared ATCODER_FORMAL_POWER_SERIES:
   proc `*`*[T](a:FormalPowerSeries[T], b:SparseFormalPowerSeries[T], deg = -1):FormalPowerSeries[T] =
     var deg = deg
     if deg == -1:
-      let bdeg = b[^1][0]
+      let bdeg = b[^1].d
       deg = a.len + bdeg
     result = initFormalPowerSeries[T](deg)
-    for i in 0..<a.len:
-      for (j, c) in b:
+    for (j, c) in b:
+      for i in 0 ..< a.len:
         let k = i + j
         if k < deg: result[k] += a[i] * c
+  proc `*`*[T](a:SparseFormalPowerSeries[T], b:FormalPowerSeries[T], deg = -1):FormalPowerSeries[T] =
+    var deg = deg
+    if deg == -1:
+      let adeg = a[^1].d
+      deg = b.len + adeg
+    result = initFormalPowerSeries[T](deg)
+    for (i, c) in a:
+      for j in 0 ..< b.len:
+        let k = i + j
+        if k < deg: result[k] += c * b[j]
+
   proc `*=`*[T](a:var SparseFormalPowerSeries[T], b:SparseFormalPowerSeries[T], deg = -1) =
     var r = initTable[int,T]()
     for (i, c0) in a:
@@ -169,7 +188,7 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
   import atcoder/extra/other/format_expression
   import std/strutils
 
-  macro initFPSMacro(T:typedesc, s:static[string]):untyped =
+  macro initFPSMacro(T:typed, s:static[string]):untyped =
     var
       varName = "initVar[" & T.getTypeInst.repr & "]()"
       a: seq[string]
@@ -198,12 +217,12 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
     parseStmt(fmt"""let {a.repr} = if {a.repr} == -1: {b.repr} else: {a.repr}""")
   proc shrink*[T](self: var FormalPowerSeries[T]) =
     while self.len > 0 and EQUAL(self[^1], T(0)): discard self.pop()
-  proc resize*[T](self: var FormalPowerSeries[T], n:int) =
+  proc resize*[T](self: var FormalPowerSeries[T], n:int, v = T.init(0)) =
     mixin setLen
     let l = self.len
     self.setLen(n)
     if l < n:
-      self.fill(l, n - 1, T(0))
+      self.fill(l, n - 1, v)
 
   converter toFPS*[T](f:Monomial[T]):FormalPowerSeries[T] =
     result = newSeq[T](f.d + 1)
@@ -214,6 +233,37 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
     result.resize(d + 1)
     result.fill(T(0))
     for p in f: result[p.d] += p.c
+  template `{}`*(a:typedesc, x:typed):typedesc =
+    FormalPowerSeries[a]
+  template useFPSTemplate*(T:typedesc, F, x:untyped) =
+    proc `F`*(a:int, n = -1):FormalPowerSeries[T] =
+      result = initFormalPowerSeries[T](@[a])
+      if n >= 0: result.resize(n)
+    proc `F`*(a:T, n = -1):FormalPowerSeries[T] =
+      result = initFormalPowerSeries[T](@[a])
+      if n >= 0: result.resize(n)
+    proc `F`*(a:seq, n = -1):FormalPowerSeries[T] =
+      result = initFormalPowerSeries[T](a)
+      if n >= 0: result.resize(n)
+    proc `F`*[n:static[int];U](a:array[n, U], n = -1):FormalPowerSeries[T] =
+      result = initFormalPowerSeries[T](a)
+      if n >= 0: result.resize(n)
+    proc `F`*(f:SparseFormalPowerSeries[T], n = -1):FormalPowerSeries[T] =
+      result = f
+      if n >= 0: result.resize(n)
+    proc `F`*(f:FormalPowerSeries[T], n = -1):FormalPowerSeries[T] =
+      result = f
+      if n >= 0: result.resize(n)
+    proc `F`*(f:static[string], n = -1):FormalPowerSeries[T] =
+      result = initFPS[T](f)
+      if n >= 0: result.resize(n)
+    var `x` {.inject.} = initVar[T]()
+  macro useFPS*(a, F:untyped) =
+    let
+      T = a[0]
+      x = a[1]
+    quote do:
+      useFPSTemplate(`T`, `F`, `x`)
 
 #  proc `+`*[T](f, g: Monomial[T]):FormalPowerSeries[T] =
 #    return toFPS(f) + toFPS(g)

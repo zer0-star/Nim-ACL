@@ -6,7 +6,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
   import atcoder/element_concepts
 
   type fft_info*[mint:FiniteFieldElem; rank2:static[int]] = object
-    g: int
+    g*: int
     root, iroot: array[rank2 + 1, mint]
     rate2, irate2: array[max(0, rank2 - 2 + 1), mint]
     rate3, irate3: array[max(0, rank2 - 3 + 1), mint]

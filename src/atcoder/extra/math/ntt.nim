@@ -23,6 +23,7 @@ when not declared ATCODER_NTT_HPP:
   proc multiply*[T:FiniteFieldElem](a, b:seq[T]):seq[T] =
     convolution(get_fft_type(T), a, b)
   proc fft_doubling*[T: FiniteFieldElem](a: seq[T]):seq[T] =
+    type F = get_fft_type(T)
     var a = a
-    ntt_doubling(a)
+    F.ntt_doubling(a)
     return a
