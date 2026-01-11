@@ -164,7 +164,7 @@ when not declared ATCODER_SOLVEPROC_HPP:
 
       var identDefs = newNimNode(nnkIdentDefs).add(ident"error").add(ident"float").add(ident("NaN"))
       test_params.add identDefs
-      test_body.add parseStmt(&"if not compare_answer_string(vsolve, vsolve_naive, error): echo &\"test failed for\\n{vars}\", \"[solve]\\n\", vsolve, \"[solve_naive]\\n\", vsolve_naive;doAssert false")
+      test_body.add parseStmt(&"if not compare_answer_string(vsolve, vsolve_naive, error): echo &\"test failed for\\n{vars}\", \"[solve]\\n\", vsolve, \"[solve_naive]\\n\", vsolve_naive;doAssert false, \"different outputs\"")
       result.add newProc(name = newNimNode(nnkPostFix).add(ident("*")).add(ident"test"), params = test_params, body = test_body, pragmas = discardablePragma)
     elif hasCheck:
       var test_body_sub = newStmtList()

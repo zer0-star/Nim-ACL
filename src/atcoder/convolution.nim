@@ -1,7 +1,7 @@
 when not declared ATCODER_CONVOLUTION_HPP:
   const ATCODER_CONVOLUTION_HPP* = 1
 
-  import std/math, std/sequtils, std/sugar
+  import std/math, std/sugar
   import atcoder/internal_math, atcoder/internal_bit
   import atcoder/element_concepts
 
@@ -145,9 +145,12 @@ when not declared ATCODER_CONVOLUTION_HPP:
         len -= 2
 
   proc convolution_naive*[mint:FiniteFieldElem](a, b:seq[mint]):seq[mint] =
-    mixin `+=`
+    mixin init
     let (n, m) = (a.len, b.len)
-    result = newSeq[mint](n + m - 1)
+    #result = newSeq[mint](n + m - 1)
+    result.setLen(n + m - 1)
+    for i in 0 ..< n + m - 1:
+      result[i] = mint.init(0)
     if n < m:
       for j in 0..<m:
         for i in 0..<n:
@@ -181,6 +184,7 @@ when not declared ATCODER_CONVOLUTION_HPP:
     if min(n, m) <= 60: return convolution_naive(a, b)
     return convolution_fft(a, b)
 
+  {.push.}
   import atcoder/modint
   proc convolution*[T:SomeInteger](a, b:seq[T], M:static[uint] = 998244353):seq[T] =
     let (n, m) = (a.len, b.len)
@@ -190,10 +194,18 @@ when not declared ATCODER_CONVOLUTION_HPP:
     static:
       assert mint is FieldElem
       assert mint is FiniteFieldElem
-    return convolution(
-      a.map((x:T) => initModInt(x, M.int)), 
-      b.map((x:T) => initModInt(x, M.int))
-    ).map((x:mint) => T(x.val()))
+    var a0 = newSeqOfCap[mint](a.len)
+    for i in 0 ..< a.len: a0.add(initModInt(a[i], M.int))
+    var b0 = newSeqOfCap[mint](b.len)
+    for i in 0 ..< b.len: b0.add(initModInt(b[i], M.int))
+    let c0 = convolution(a0, b0)
+    result = newSeqOfCap[T](c0.len)
+    for i in 0 ..< c0.len:
+      result.add(T(c0[i].val()))
+    #return convolution(
+    #  a.map((x:T) => initModInt(x, M.int)), 
+    #  b.map((x:T) => initModInt(x, M.int))
+    #).map((x:mint) => T(x.val()))
 
   proc convolution_ll*(a, b:seq[int]):seq[int] =
     let (n, m) = (a.len, b.len)
@@ -246,3 +258,5 @@ when not declared ATCODER_CONVOLUTION_HPP:
       x -= offset[diff mod 5]
       c[i] = cast[int](x)
     return c
+
+  {.pop.}

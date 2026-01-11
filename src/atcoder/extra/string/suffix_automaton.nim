@@ -1,61 +1,46 @@
-when not declared ATCODER_SUFFIX_AUTOMATION_HPP:
-  const ATCODER_SUFFIX_AUTOMATION_HPP* = 1
-  import tables
-  
-  type SuffixAutomatonNode*[C] = ref object
-    len, suf, org:int
-    to:Table[C, int]
-  
-  proc copy*[C](nd:SuffixAutomatonNode[C]):SuffixAutomatonNode[C] =
-    SuffixAutomatonNode[C](len:nd.len, suf:nd.suf, org:nd.org, to:nd.to)
-  
+when not declared ATCODER_EXTRA_SUFFIX_AUTOMATON_HPP:
+  const ATCODER_EXTRA_SUFFIX_AUTOMATON_HPP* = 1
+  import std/tables
+  type SA_Node* = ref object
+    next*: Table[char, int32]
+    link*, len*: int32
+
   type SuffixAutomaton*[Node] = object
-    x:seq[Node]
-    cur:int
-  
-  proc extend*[Node](self:var SuffixAutomaton[Node], c:Node.C) =
-    var a = self.cur
-    self.cur = self.x.len
-    self.x.add(Node(len: self.x[a].len+1, suf: 0, org: -1,to: initTable[Node.C, int]()))
-    while a != -1 and c notin self.x[a].to:
-      self.x[a].to[c] = self.cur
-      a = self.x[a].suf
-    if a != -1:
-      let b = self.x[a].to[c]
-      if self.x[a].len + 1 == self.x[b].len:
-        self.x[self.cur].suf = b
-      else:
-        let w = self.x.len
-        self.x.add(self.x[b].copy)
-        self.x[w].len = self.x[a].len + 1
-        self.x[w].org = b
-        while a != -1 and self.x[a].to[c] == b:
-          self.x[a].to[c] = w
-          a = self.x[a].suf
-        self.x[self.cur].suf = w
-        self.x[b].suf = w
-  
-  proc initSuffixautomaton*[C]():auto =
-    SuffixAutomaton[SuffixAutomatonNode[C]](x: @[SuffixAutomatonNode[C](len:0,suf: -1,org: -1,to:initTable[C,int]())], cur:0)
-  
-  proc initSuffixautomaton*[C](s:string):auto =
-    result = initSuffixAutomaton[C]()
-    for c in s: result.extend(c)
-  
-  proc toposort*[Node](self: SuffixAutomaton[Node]):seq[int] =
-    let n = self.x.len
-    var c = newSeq[int](n)
-    for i in 0..<n:
-      for k,v in self.x[i].to:
-        c[v].inc
-    result = newSeq[int](n)
-    var (b, e) = (0, 0)
-    for i in 0..<n:
-      if c[i] == 0: result[e]=i;e.inc
-    while e<n:
-      let i = result[b];b.inc
-      for k,v in self.x[i].to:
-        c[v].dec
-        if c[v] == 0:result[e] = v;e.inc
-  
-  proc `[]`*[Node](self: SuffixAutomaton[Node], i:int):auto = self.x[i]
+    nodes*: seq[Node]
+    last*: int32
+
+  proc initSuffixAutomaton*(): SuffixAutomaton[SA_Node] =
+    SuffixAutomaton[SA_Node](nodes: @[SA_Node(next: initTable[char, int32](), link: -1, len: 0)], last: 0)
+
+  proc push*(self: var SuffixAutomaton, c: char) =
+    let
+      new_node = int32(self.nodes.len)
+    self.nodes.add(SA_Node(next: initTable[char, int32](), link: -1, len:self.nodes[self.last].len + 1))
+    var p = self.last
+    while p != -1 and c notin self.nodes[p].next:
+      self.nodes[p].next[c] = new_node
+      p = self.nodes[p].link
+    let q = if p == -1: 0'i32 else: self.nodes[p].next[c]
+    if p == -1 or self.nodes[p].len + 1 == self.nodes[q].len:
+      self.nodes[new_node].link = q
+    else:
+      # clone node (q -> new_q)
+      let new_q = int32(self.nodes.len)
+      self.nodes.add(SA_Node(next: self.nodes[q].next, link:self.nodes[q].link, len:self.nodes[p].len + 1));
+      self.nodes[q].link = new_q
+      self.nodes[new_node].link = new_q
+
+      while p != -1 and self.nodes[p].next[c] == q:
+        self.nodes[p].next[c] = new_q
+        p = self.nodes[p].link
+    self.last = new_node
+
+  proc initSuffixAutomaton*(S: string): SuffixAutomaton[SA_Node] =
+    result = initSuffixAutomaton()
+    for c in S: result.push(c)
+
+  proc `[]`*[Node](self: SuffixAutomaton[Node], i:int):SA_Node = self.nodes[i]
+  iterator pairs*(node: SA_Node):(char, int32) =
+    for k, v in node.next: yield((k, v))
+
+

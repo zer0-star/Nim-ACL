@@ -24,14 +24,19 @@ when not declared ATCODER_BITUTILS_HPP:
   proc `&`*(a:SomeInteger, b:SomeInteger):auto = a and b
   proc `|`*(a:SomeInteger, b:SomeInteger):auto = a or b
 
-  proc `@`*[B:SomeInteger](b:B): seq[int] =
-    result = newSeq[int]()
-    for i in 0..<(8 * sizeof(B)):
-      if b[i] == 1: result.add(i)
+  iterator iterBits*[B:SomeInteger](b:B):int =
+    var b = b
+    while b != B(0):
+      let t = b.firstSetBit() - 1
+      yield t
+      b.flipBit(t)
+  proc bitsToSeq*[B:SomeInteger](b:B):seq[int] =
+    result = newSeqOfCap[int](b.popCount)
+    for t in iterBits(b): result.add(t)
+  proc `@`*[B:SomeInteger](b:B): seq[int] = bitsToSeq(b)
   proc `@^`*(v:openArray[int]): int =
     result = 0
-    for i in v:
-      result[i] = 1
+    for i in v: result[i] = 1
 
   proc toBitStr*[B:SomeInteger](b:B, n = -1):string =
     let n = if n == -1: sizeof(B) * 8 else: n

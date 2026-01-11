@@ -26,6 +26,7 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   import std/streams as streams_lib
   import std/lists as lists_lib
   import std/deques as deques_lib
+  import std/sugar as sugar_lib
 
   #import atcoder/extra/forward_compatibility/internal_sugar
   include atcoder/extra/forward_compatibility/hash_func
