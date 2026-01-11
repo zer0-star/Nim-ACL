@@ -1,7 +1,7 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/number_of_substrings
 
 include atcoder/header
-include atcoder/extra/string/suffix_automaton
+import atcoder/extra/string/suffix_automaton
 
 proc main() =
   let s = nextString()
