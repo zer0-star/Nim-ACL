@@ -6,7 +6,7 @@ include atcoder/extra/string/suffix_automaton
 proc main() =
   let s = nextString()
   var sa = initSuffixautomaton[char](s)
-  var idx=sa.toposort()
+  var idx = sa.toposort()
   let n = sa.x.len
   var cnt = newSeq[int](n)
   var ans = -1
