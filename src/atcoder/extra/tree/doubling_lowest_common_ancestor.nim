@@ -1,13 +1,14 @@
 when not declared ATCODER_LOWEST_COMMON_ANCESTOR_DOUBLING:
   const ATCODER_LOWEST_COMMON_ANCESTOR_DOUBLING* = 1
   import std/sequtils
-  import atcoder/extra/graph/graph_template
+  #import atcoder/extra/graph/graph_template
+  import atcoder/extra/graph/graph_concept
   type DoublingLowestCommonAncestor*[T] = object
     LOG:int
     dep*:seq[int]
     table:seq[seq[int]]
   
-  proc initDoublingLowestCommonAncestor*[G:Graph](g:G, r = 0):DoublingLowestCommonAncestor[G.T] =
+  proc initDoublingLowestCommonAncestor*[G:GraphC](g:G, r = 0):DoublingLowestCommonAncestor[G.T] =
     type T = G.T
     var (LOG, t) = (0, 1)
     while t <= g.len: t *= 2;LOG+=1

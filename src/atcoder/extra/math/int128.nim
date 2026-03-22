@@ -51,11 +51,11 @@ when not declared ATCODER_INT128:
       `&`, `and`, `|`, `or`, `xor`, 
       `<<`, `shl`, `>>`, `shr`)
 
-    proc `>`*[T: Int128 or Uint128](x, y: T): bool {.importcpp: "((#) > (#))", nodecl.}
-    proc `>=`*[T: Int128 or Uint128](x, y: T): bool {.importcpp: "((#) >= (#))", nodecl.}
-    proc `<`*[T: Int128 or Uint128](x, y: T): bool {.importcpp: "((#) < (#))", nodecl.}
-    proc `<=`*[T: Int128 or Uint128](x, y: T): bool {.importcpp: "((#) <= (#))", nodecl.}
-    proc `==`*[T: Int128 or Uint128](x, y: T): bool {.importcpp: "((#) == (#))", nodecl.}
+    proc `>`*(x: Int128 or Uint128, y: Int128 or Uint128): bool {.importcpp: "((#) > (#))", nodecl.}
+    proc `>=`*(x: Int128 or Uint128, y: Int128 or Uint128): bool {.importcpp: "((#) >= (#))", nodecl.}
+    proc `<`*(x: Int128 or Uint128, y: Int128 or Uint128): bool {.importcpp: "((#) < (#))", nodecl.}
+    proc `<=`*(x: Int128 or Uint128, y: Int128 or Uint128): bool {.importcpp: "((#) <= (#))", nodecl.}
+    proc `==`*(x: Int128 or Uint128, y: Int128 or Uint128): bool {.importcpp: "((#) == (#))", nodecl.}
     proc abs*(x: Int128): Int128 = (if x >= 0:x else: -x)
     proc cmp*[T: Int128 or Uint128](x, y: T): int = (if x < y: -1 elif x == y: 0 else: 1)
     proc hash*[T: Int128 or Uint128](x: T): Hash = hash(x div int(100000000000000000)) !& hash(x mod int(100000000000000000))

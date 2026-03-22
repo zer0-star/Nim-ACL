@@ -1,4 +1,3 @@
-# Topological Sort {{{
 when not declared ATCODER_TOPOLOGICAL_SORT_HPP:
   const ATCODER_TOPOLOGICAL_SORT_HPP* = 1
   import atcoder/extra/graph/graph_template
@@ -18,4 +17,3 @@ when not declared ATCODER_TOPOLOGICAL_SORT_HPP:
       for e in g[p]:
         deg[e.dst].dec
         if deg[e.dst] == 0: st.add(e.dst)
-# }}}
