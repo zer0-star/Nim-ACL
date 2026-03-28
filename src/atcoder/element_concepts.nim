@@ -31,7 +31,7 @@ when not declared ATCODER_ELEMENT_CONCEPTS_HPP:
     x /= y
   type FiniteFieldElem* = concept x, type T
     T is FieldElem
-    #T.mod
+    T.mod
     #T.mod() is int
     #x.pow(1000000)
   type hasInf* = concept x, type T

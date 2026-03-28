@@ -3,9 +3,13 @@ when not defined ATCODER_COEF_OF_GENERATING_FUNCTION_HPP:
   import atcoder/extra/math/formal_power_series
   import atcoder/element_concepts
   type RationalFormalPowerSeries*[T] = object
-    num, den: FormalPowerSeries[T]
+    num*, den* : FormalPowerSeries[T]
   proc `//`*[T:FieldElem](P, Q:FormalPowerSeries[T]):RationalFormalPowerSeries[T] =
     RationalFormalPowerSeries[T](num:P, den:Q)
+  proc `+`*[T](f, g:RationalFormalPowerSeries[T]):RationalFormalPowerSeries[T] =
+    RationalFormalPowerSeries[T](num: f.num * g.den + g.num * f.den, den: f.den * g.den)
+  proc `*`*[T](f, g:RationalFormalPowerSeries[T]):RationalFormalPowerSeries[T] =
+    RationalFormalPowerSeries[T](num: f.num * g.num, den: f.den * g.den)
   # P / Qの添字Nの要素を計算
   proc `[]`*[T:FieldElem](r:RationalFormalPowerSeries[T],N:int):T =
     var

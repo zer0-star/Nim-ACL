@@ -361,7 +361,8 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
     if sz >= 1: result.delete(0, sz - 1)
   proc `shl`*[T](self: FormalPowerSeries[T], sz:int):auto =
     result = initFormalPowerSeries[T](sz)
-    result = result & self
+    var tmp = result & self
+    result = tmp
   
   proc diff*[T](self: FormalPowerSeries[T]):auto =
     let n = self.len
@@ -572,8 +573,9 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
         else: p = i * k
         if p > deg:
           return initFormalPowerSeries[T](deg)
-        result = (result shl (i * k)).pre(deg)
-        if result.len < deg: result.setlen(deg)
+        var tmp = (result shl (i * k)).pre(deg)
+        result = tmp
+        if result.len < deg: result.resize(deg)
         return
     return self
 
@@ -607,9 +609,9 @@ proc `{op}`*[T](self: not SparseFormalPowerSeries and not Monomial, r:SparseForm
     result[0] = T(1)
     while n > 0:
       if (n and 1) > 0:
-        result *= x
-        result -= getDiv(result) * M
-        result = result.pre(M.len - 1)
+        var tmp = result * x
+        tmp -= getDiv(tmp) * M
+        result = tmp.pre(M.len - 1)
       x *= x
       x -= getDiv(x) * M
       x = x.pre(M.len - 1)
