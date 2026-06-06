@@ -2,295 +2,372 @@
 
 import re
 import argparse
-from logging import Logger, basicConfig, getLogger
-import os, platform
-from os import getenv, environ, path
+import subprocess
+import tempfile
+import os
+import platform
 from pathlib import Path
-from typing import List
-import subprocess, tempfile
+from logging import Logger, basicConfig, getLogger
 
+logger = getLogger(__name__)
 system_name = platform.system()
 
-
-logger = getLogger(__name__)  # type: Logger
-
-ATCODER_INCLUDE = re.compile(
-        r'\s*(include|import)\s*([a-zA-Z0-9_,./\s"]*)\s*')
-
+ATCODER_INCLUDE = re.compile(r'\s*(include|import)\s*([a-zA-Z0-9_,./\s"\[\]]*)')
 WHEN_STATEMENT = re.compile(r'^\s*when\s+.*:')
-ATCODER_DIR = re.compile('^(?:atcoder|lib)\/')
+
 INDENT_WIDTH = 2
-compress_type = "xz"  # "xz" or "bzip2" or "gzip"
 
-if compress_type == "xz":
-    decompress = "xzcat"
-elif compress_type == "bzip2":
-    decompress = "bzcat"
-elif compress_type == "gzip":
-    decompress = "zcat"
+# ----------------------------
+# utility
+# ----------------------------
 
-
-outputPrefix = """import macros
-macro Please(x): untyped = nnkStmtList.newTree()
-
-Please use Nim-ACL
-Please use Nim-ACL
-Please use Nim-ACL
-
-"""
-
-
-def indent_level(line: str):
-    """
-    インデント用のスペースがいくつあるかを返す
-    """
-    for i, _c in enumerate(line):
-        if _c != ' ':
+def indent_level(line):
+    for i, c in enumerate(line):
+        if c != " ":
             return i
     return len(line)
 
 
-def strip_as(line: str) -> str:
-    """
-    import時のasを取り除く
-    """
-    pos = line.find(' as ')
-    if pos != -1:
-        line = line[:pos]
-    return line
+def split_import_items(s):
+    items = []
+    cur = []
+    depth = 0
 
+    for c in s:
+        if c == "[":
+            depth += 1
+        elif c == "]":
+            depth -= 1
+
+        if c == "," and depth == 0:
+            items.append("".join(cur).strip())
+            cur = []
+            continue
+
+        cur.append(c)
+
+    if cur:
+        items.append("".join(cur).strip())
+
+    return items
+
+
+def expand_bracket_import(item):
+
+    m = re.match(r"^(.*?)/\[(.*)\]$", item)
+
+    if not m:
+        return [item]
+
+    prefix = m.group(1)
+    inner = m.group(2)
+
+    parts = [x.strip() for x in inner.split(",")]
+
+    return [f"{prefix}/{p}" for p in parts]
+
+
+def strip_relative_prefix(name):
+
+    name = name.strip().strip('"')
+
+    # Nim's `./foo/bar` and `foo/bar` refer to the same module here.
+    # Do not use lstrip("./"): it would also mangle paths like `../foo`.
+    while name.startswith("./"):
+        name = name[2:]
+
+    return name
+
+
+def is_internal_module(name):
+
+    name = strip_relative_prefix(name)
+
+    return (
+        name.startswith("atcoder/")
+        or name.startswith("lib/")
+        or name.startswith("mylib/")
+    )
+
+
+def normalize_internal_path(name):
+
+    name = strip_relative_prefix(name)
+
+    if name.startswith("lib/"):
+        name = name.replace("lib/", "atcoder/extra/", 1)
+
+    if not name.endswith(".nim"):
+        name += ".nim"
+
+    return name
+
+
+def module_import_path(relpath):
+
+    relpath = strip_relative_prefix(relpath)
+
+    if relpath.endswith(".nim"):
+        relpath = relpath[:-4]
+
+    return relpath
+
+
+# ----------------------------
+# file read
+# ----------------------------
+
+def read_module_text(path, lib_root, local_root):
+    p = Path(path)
+
+    if p.is_absolute():
+        return p.read_text()
+
+    if path.startswith("mylib/"):
+        return (local_root / path).read_text()
+
+    return (lib_root / path).read_text()
+
+
+def copy_for_bundle(relpath, lib_root, local_root, bundle_tmp):
+    p = Path(relpath)
+
+    if p.is_absolute():
+        src = p
+        rel = p.name
+    elif relpath.startswith("mylib/"):
+        src = local_root / relpath
+        rel = relpath
+    else:
+        src = lib_root / relpath
+        rel = relpath
+
+    dst = bundle_tmp / rel
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    dst.write_text(src.read_text())
+
+
+def write_bundle_module(relpath, lines, bundle_tmp):
+    p = Path(relpath)
+
+    # Internal modules are bundled under their module path.  Absolute paths are
+    # not expected for internal modules, but keep the old behavior just in case.
+    rel = p.name if p.is_absolute() else relpath
+
+    dst = bundle_tmp / rel
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    dst.write_text("\n".join(lines) + "\n")
+
+
+# ----------------------------
+# recursive resolver
+# ----------------------------
+
+def read_source(path, prefix, defined, lib_root, local_root,
+                bundle_tmp, mode, depth):
+
+    if path in defined:
+        logger.info(f"already included {path}, skip")
+        return []
+
+    defined.add(path)
+
+    source = read_module_text(path, lib_root, local_root).splitlines()
+
+    result = []
+
+    i = 0
+    while i < len(source):
+
+        line = source[i]
+        spaces = indent_level(line)
+
+        if WHEN_STATEMENT.match(line):
+            result.append(line)
+            i += 1
+            continue
+
+        matched = ATCODER_INCLUDE.match(line)
+
+        if not matched:
+            result.append(line)
+            i += 1
+            continue
+
+        keyword = matched.group(1)
+        tail = matched.group(2)
+
+        items = []
+
+        for it in split_import_items(tail):
+            items.extend(expand_bracket_import(it))
+
+        for item in items:
+
+            item = item.strip('"')
+
+            if is_internal_module(item):
+
+                fname = normalize_internal_path(item)
+
+                if mode == "bundle":
+
+                    read_source(
+                        fname, "", defined,
+                        lib_root, local_root, bundle_tmp,
+                        mode, depth + 1
+                    )
+
+                    result.append(" " * spaces + f"{keyword} {module_import_path(fname)}")
+
+                else:
+
+
+                    
+                    expanded = read_source(
+                        fname, " " * spaces, defined,
+                        lib_root, local_root, bundle_tmp,
+                        mode, depth + 1
+                    )
+
+                    if mode == "embed" and depth == 0:
+
+                        import base64
+                        import lzma
+                        
+                        text = "\n".join(expanded) + "\n"
+                        
+                        compressed = lzma.compress(text.encode(), preset=9)
+                        
+                        b64 = base64.b64encode(compressed).decode()
+
+                        result.append(
+                            prefix + f'ImportExpand "{fname}" <=== "{b64}"'
+                        )
+
+                    else:
+                        result.extend((" " * spaces) + ln for ln in expanded)
+
+            else:
+                result.append(" " * spaces + f"{keyword} {item}")
+
+        i += 1
+
+    if depth > 0:
+        result.append(prefix + "discard")
+
+    if mode == "bundle" and depth > 0:
+        write_bundle_module(path, result, bundle_tmp)
+
+    return result
+
+
+# ----------------------------
+# bundle bootstrap
+# ----------------------------
+
+def bundle_bootstrap(bundle_tmp, keep_tmp):
+
+    if (bundle_tmp / "mylib").exists():
+        tar_cmd = "tar -Jcvf atcoder.tar.xz atcoder mylib"
+    else:
+        tar_cmd = "tar -Jcvf atcoder.tar.xz atcoder"
+
+    subprocess.run(tar_cmd, cwd=bundle_tmp, shell=True)
+
+    if system_name == "Darwin":
+        s = subprocess.run(
+            "cat atcoder.tar.xz | base64 -b 0",
+            cwd=bundle_tmp, shell=True, stdout=subprocess.PIPE
+        ).stdout.decode()
+    else:
+        s = subprocess.run(
+            "cat atcoder.tar.xz | base64 -w 0",
+            cwd=bundle_tmp, shell=True, stdout=subprocess.PIPE
+        ).stdout.decode()
+
+    s = s.strip()
+
+    cleanup = "" if keep_tmp else 'discard staticExec("rm -rf __bundle_tmp__")'
+
+    return f"""
+static:
+  when not defined SecondCompile:
+    template getFileName():string = instantiationInfo().filename
+    let fn = getFileName()
+
+    const bundleData = \"\"\"{s}\"\"\"
+
+    discard staticExec("mkdir -p __bundle_tmp__")
+    discard staticExec("echo " & bundleData & " | base64 -d > __bundle_tmp__/atcoder.tar.xz")
+    discard staticExec("tar -Jxvf __bundle_tmp__/atcoder.tar.xz -C __bundle_tmp__")
+
+    let (output, ex) = gorgeEx("nim cpp --path:./__bundle_tmp__ -d:SecondCompile -d:release -d:danger --path:./ --opt:speed --multimethods:on --warning[SmallLshouldNotBeUsed]:off --checks:off -o:a.out " & fn)
+
+    {cleanup}
+    doAssert ex == 0, output
+    quit(0)
+"""
+
+# ----------------------------
+# main
+# ----------------------------
 
 def main():
-    """
-    メイン関数
-    """
-    td = tempfile.TemporaryDirectory()
-    lib_tmp = Path(td.name)
-    lib_path = Path(__file__).parent.resolve()
-    basicConfig(
-        format="%(asctime)s [%(levelname)s] %(message)s",
-        datefmt="%H:%M:%S",
-        level=getenv('LOG_LEVEL', 'INFO'),
-    )
-    parser = argparse.ArgumentParser(description='Expander')
-    parser.add_argument('source', help='Source File')
-    parser.add_argument('-c', '--console',
-                        action='store_true', help='Print to Console')
-    parser.add_argument('-s', '--single-line',
-                        action='store_true', help='Single line import')
-    parser.add_argument('-cmp', '--compress',
-                        action='store_true', help='Compress import')
-    parser.add_argument('--lib', help='Path to Atcoder Library')
-    parser.add_argument('-d', '--directory',
-                        action='store_true', help='Submit by directory')
-    parser.add_argument('-b', '--raw',
-                        action='store_true', help='submit raw data')
+
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("source")
+    parser.add_argument("--mode", choices=["plain", "embed", "bundle"], default="bundle")
+    parser.add_argument("--lib")
+    parser.add_argument("--mylib")
+    parser.add_argument("--keep-bundle-tmp", action="store_true")
 
     opts = parser.parse_args()
 
+    basicConfig(level="INFO")
+
+    src = Path(opts.source)
+    if src.suffix == "":
+        src = src.with_suffix(".nim")
+
+    main_file = src.resolve()
+    
+    if not main_file.exists():
+        raise FileNotFoundError(f"source file not found: {main_file}")
+    if not main_file.is_file():
+        raise ValueError(f"source is not a file: {main_file}")
+    if main_file.suffix != ".nim":
+        raise ValueError(f"source must be a .nim file: {main_file}")
+
+    local_root = Path(opts.mylib).resolve() if opts.mylib else main_file.parent
+
     if opts.lib:
-        lib_path = Path(opts.lib) / "src"
-    elif 'NIM_INCLUDE_PATH' in environ:
-        lib_path = Path(environ['NIM_INCLUDE_PATH']) / "src"
-#    source = open(opts.source, encoding="utf8", errors='ignore').read()
-
-    def read_source(f: str, prefix: str, defined: set, lib_path, is_main=True,
-                    load_type=None) -> List[str]:
-        """
-        stringで渡されたsourceを読み。import, includeが出てきたら深堀りする
-        深さ優先でimport/includeを調べる
-        """
-        if f in defined:
-            logger.info('already included {:s}, skip'.format(f))
-            return []
-
-        defined.add(f)
-
-        if is_main:
-            source = open(f, encoding="utf8", errors='ignore').read()
-        else:
-            source = open(str(lib_path / f), encoding="utf8",
-                          errors='ignore').read()
-            logger.info('{:s} {:s}'.format(load_type, f))
-
-        if not is_main and opts.directory:
-            copy_source_path = lib_tmp / f
-            os.makedirs(copy_source_path.parents[0], exist_ok=True)
-            r = open(Path(lib_path / f)).read()
-            open(copy_source_path, "w").write(r)
-
-        result = []
-        i = 0
-        source = source.splitlines()
-        while i < len(source):
-            line = source[i]
-            if WHEN_STATEMENT.match(line):
-                result.append(line)
-            else:
-                matched = ATCODER_INCLUDE.match(line)
-                spaces = indent_level(line)
-                if matched:
-                    keyword = line.strip().split()[0]
-                    import_start = True
-                    fnames = []
-                    load_type_local = matched.group(1)
-                    while True:
-                        if import_start:
-                            import_line = matched.group(2).split(",")
-                            import_start = False
-                        else:
-                            import_line = source[i].split(",")
-                        for fname in import_line:
-                            fname = fname.strip()
-                            if fname == '':
-                                continue
-                            fnames.append(fname)
-                        i_next = i + 1
-                        if i_next >= len(source) or \
-                                indent_level(source[i_next]) != spaces + INDENT_WIDTH:
-                            break
-                        i = i_next
-
-                    for fname in fnames:
-                        line_local = "{} {}".format(load_type_local, fname)
-                        if fname == '':
-                            continue
-                        if fname[0] == '\"':
-                            assert fname[-1] == '\"'
-                            fname = fname[1:-1]
-                        fname = fname.replace("lib/", "atcoder/extra/")
-                        if ATCODER_DIR.match(fname):
-                            fname = strip_as(fname)
-                            original_fname = fname
-                            if not fname.endswith(".nim"):
-                                fname += ".nim"
-                            s = read_source(fname, " " * spaces, defined,
-                                            lib_path, False, load_type_local)
-                            if opts.single_line and is_main:
-                                s0 = ""
-
-                                if opts.compress:
-                                    for l in s:
-                                        s0 += l
-                                        s0 += '\n'
-
-                                    with open('/tmp/expander_tmp.txt', 'w') as f:
-                                        #f.write(s0 + "\n")
-                                        f.write(s0)
-                                    if system_name == 'Darwin':
-                                        s0 = subprocess.run("cat /tmp/expander_tmp.txt | {:s} -9 | base64 -b 0".format(compress_type), shell=True, stdout=subprocess.PIPE).stdout.decode()
-                                    elif system_name == 'Linux':
-                                        s0 = subprocess.run("cat /tmp/expander_tmp.txt | {:s} -9 | base64 -w 0".format(compress_type), shell=True, stdout=subprocess.PIPE).stdout.decode()
-                                    else:
-                                        print("unknown system")
-                                    #s0 = base64.b64encode(s0.encode()).decode()
-                                else:
-                                    for l in s:
-                                        l = l.replace("\\", "\\\\")
-                                        l = l.replace("\"", "\\\"")
-                                        s0 += l
-                                        s0 += '\\n'
-
-                                url = "https://github.com/zer0-star/Nim-ACL/tree/master/src/{}".format(fname)
-                                result.append("# see {}".format(url))
-                                if opts.directory:
-                                    result.append("{} {}".format(keyword, original_fname))
-                                    result.append("")
-                                else:
-                                    result.append("ImportExpand \"{}\" <=== \"{}\"".format(fname, s0))
-                                    result.append("")
-                            else:
-                                import_message = " " * spaces + "#[ " + line_local + " ]#"
-                                result.append(import_message)
-                                result.extend(s)
-                        else:
-                            result.extend([" " * spaces + line_local])
-                else:
-                    result.append(line)
-            i += 1
-        if not is_main:
-            result.append("  discard")
-        result2 = []
-        for line in result:
-            result2.append(prefix + line)
-        result = result2
-        return result
-    result = []
-    if opts.single_line and not opts.directory:
-        if opts.compress:
-            result.append("import macros;macro ImportExpand(s:untyped):untyped = parseStmt(staticExec(\"echo \" & $s[2] & \" | base64 -d | {:s}\"))".format(decompress))
-        else:
-            result.append("import macros;macro ImportExpand(s:untyped):untyped = parseStmt($s[2])")
-
-    result.extend(read_source(opts.source, "", set(), lib_path))
-    outputSuffix = b""
-    if opts.directory:
-        global outputPrefix
-        subprocess.run("export XZ_OPT=-9 && tar -Jcvf atcoder.tar.xz atcoder", cwd=lib_tmp, shell=True, stdout=subprocess.PIPE)
-        md5sum = subprocess.run("md5sum atcoder.tar.xz", cwd=lib_tmp, shell=True, stdout=subprocess.PIPE).stdout.decode()
-        second_compile_command = "nim cpp -d:release -d:SecondCompile -d:danger --path:./ --opt:speed --multimethods:on --warning[SmallLshouldNotBeUsed]:off --checks:off -o:a.out"
-        if opts.raw:
-            d = open(lib_tmp / "atcoder.tar.xz", 'rb').read()
-      #let (output, ex) = gorgeEx("tail -c " & $zs & " " & fn & " > atcoder.tar.xz && tar -Jxvf atcoder.tar.xz && rm atcoder.tar.xz")
-            outputPrefix += """
-static:
-  when not defined SecondCompile:
-    template getFileName():string = instantiationInfo().filename
-    let
-      fn = getFileName()
-      zs = {:d}
-    block:
-      let (output, ex) = gorgeEx("if [ -e ./atcoder ]; then exit 1; else exit 0; fi")
-      # doAssert ex == 0, "atcoder directory already exisits"
-    block:
-      let (output, ex) = gorgeEx("tail -c " & $zs & " " & fn & " > atcoder.tar.xz")
-      doAssert ex == 0, "tail failed"
-      # md5sum: {:s}
-      let md5sum = staticExec("md5sum " & fn)
-      let tarResult = staticExec("tar -Jxvf atcoder.tar.xz")
-      doAssert false, tarResult
-    let ss = staticExec("MS=`wc --bytes " & fn & " | cut -d' ' -f1`; echo $((MS-{:d}))")
-    discard staticExec("head -c " & ss & " " & fn & " > Main2.nim")
-    let s = staticExec("du -a")
-    doAssert false, s
-    let (output, ex) = gorgeEx("{:s} Main2.nim")
-    discard staticExec("rm -rf ./atcoder && rm Main2.nim");doAssert ex == 0, output;quit(0)
-""".format(len(d), md5sum, len(d), second_compile_command)
-            outputSuffix += d
-        else:
-            if system_name == 'Darwin':
-                s = subprocess.run("cat atcoder.tar.xz | base64 -b 0", cwd=lib_tmp, shell=True, stdout=subprocess.PIPE).stdout.decode()
-            elif system_name == 'Linux':
-                s = subprocess.run("cat atcoder.tar.xz | base64 -w 0", cwd=lib_tmp, shell=True, stdout=subprocess.PIPE).stdout.decode()
-            else:
-                print('unknown system')
-            if s[-1] == '\n':
-                print("WARNING!!! newline")
-                s = s.strip()
-            outputPrefix += """
-static:
-  when not defined SecondCompile:
-    # md5sum: {:s}
-    template getFileName():string = instantiationInfo().filename
-    let fn = getFileName()
-    block:
-      let (output, ex) = gorgeEx("if [ -e ./atcoder ]; then exit 1; else exit 0; fi")
-      # doAssert ex == 0, "atcoder directory already exisits"
-    discard staticExec("echo \\"{:s}\\" | base64 -d > atcoder.tar.xz && tar -Jxvf atcoder.tar.xz")
-    let (output, ex) = gorgeEx("{:s} " & fn)
-    discard staticExec("rm -rf ./atcoder");doAssert ex == 0, output;quit(0)
-""".format(md5sum, s, second_compile_command)
-
-    output = (outputPrefix + '\n\n' + '\n'.join(result) + '\n').encode() + outputSuffix
-    if opts.console:
-        print(output.decode())
+        lib_root = Path(opts.lib).resolve() / "src"
     else:
-        #with open('combined.nim', 'w', encoding="utf8", errors='ignore') as f:
-        with open('combined.nim', 'wb') as f:
-            f.write(output)
-        md5sum_combined = subprocess.run("md5sum combined.nim", shell=True, stdout=subprocess.PIPE).stdout.decode()
-        with open('/tmp/md5sum_combined.txt', 'w') as f:
-            f.write(md5sum_combined)
+        lib_root = Path("~/git/Nim-ACL/src").expanduser()
+
+    bundle_tmp = Path(tempfile.mkdtemp())
+
+    expanded = read_source(
+        str(main_file), "", set(),
+        lib_root, local_root, bundle_tmp,
+        opts.mode, 0
+    )
+
+    outputPrefix = ""
+    if opts.mode == "embed":
+        outputPrefix += """import macros
+macro ImportExpand(s: untyped): untyped =
+  parseStmt(staticExec("printf %s " & $s[2] & " | base64 -d | xzcat"))
+"""
+
+    output = outputPrefix + "\n".join(expanded)
+
+    if opts.mode == "bundle":
+        output = bundle_bootstrap(bundle_tmp, opts.keep_bundle_tmp) + output
+
+    Path("combined.nim").write_text(output)
 
 
 if __name__ == "__main__":

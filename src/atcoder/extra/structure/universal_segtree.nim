@@ -1,5 +1,5 @@
-when not declared ATCODER_LAZYSEGTREE_HPP:
-  const ATCODER_LAZYSEGTREE_HPP* = 1
+when not declared ATCODER_UNIVERSAL_SEGTREE_HPP:
+  const ATCODER_UNIVERSAL_SEGTREE_HPP* = 1
   
   import std/sugar, std/sequtils, std/bitops, std/options
   import atcoder/internal_bit, atcoder/rangeutils
@@ -15,8 +15,6 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       d:seq[S]
     when F isnot void:
       lz:seq[F]
-      when useP is USEP_TRUE:
-        p:(F,Slice[int])->F
   proc hasData(ST:typedesc[UniversalSegTree]):bool {.compileTime.} = ST.S isnot void
   proc hasLazy(ST:typedesc[UniversalSegTree]):bool {.compileTime.} = ST.F isnot void
 #  proc hasP(ST:typedesc[UniversalSegTree]):bool {.compileTime.} = ST.useP
@@ -92,36 +90,36 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
     UniversalSegTree[S, F, useP, isBeats, 
       (op:op0, e:e0, mapping:mapping0,composition:composition0,id:id0,p:p0)]
 
-  template SegtreeType*[S](op, e:untyped):typedesc =
+  template SegTreeType*[S](op, e:untyped):typedesc =
     proc op0(a, b:S):S {.gensym inline.} = op(a, b)
     proc e0():S {.gensym inline.} = e()
     universalSegTreeType[S, void, USEP_FALSE, IS_BEATS_FALSE](op0, e0, nil, nil, nil, nil)
-  template initSegtree*[S](v:int or seq[S], op, e:untyped):auto =
+  template initSegTree*[S](v:int or seq[S], op, e:untyped):auto =
     var a: SegTreeType[S](op, e)
     a.init(v)
     a
-  template DualSegtreeType*[F](composition, id:untyped):auto =
+  template DualSegTreeType*[F](composition, id:untyped):auto =
     proc composition0(f1, f2: F):F {.gensym inline.} = composition(f1, f2)
     proc id0():F {.gensym inline.} = id()
     universalSegTreeType[void,F,USEP_FALSE, IS_BEATS_FALSE](nil, nil, nil, composition0, id0, nil)
-  template initDualSegtree*[F](v:int or seq[F], composition, id:untyped):auto =
+  template initDualSegTree*[F](v:int or seq[F], composition, id:untyped):auto =
     type ST = DualSegtreeType[F](composition, id)
     var a: ST
     a.init(v)
     a
-  template LazySegtreeType*[S,F](op,e,mapping,composition,id:untyped):auto =
+  template LazySegTreeType*[S,F](op,e,mapping,composition,id:untyped):auto =
     proc op0(a, b:S):S {.gensym inline.} = op(a, b)
     proc e0():S {.gensym inline.} = e()
     proc mapping0(f:F, s:S):S {.gensym inline.} = mapping(f, s)
     proc composition0(f1, f2:F):F {.gensym inline.} = composition(f1, f2)
     proc id0():F {.gensym inline.} = id()
     universalSegTreeType[S, F, USEP_FALSE, IS_BEATS_FALSE](op0, e0, mapping0, composition0, id0, nil)
-  template initLazySegtree*[S,F](v:int or seq[S], op,e,mapping,composition,id:untyped):auto =
+  template initLazySegTree*[S,F](v:int or seq[S], op,e,mapping,composition,id:untyped):auto =
     type ST = LazySegtreeType[S, F](op, e, mapping, composition, id)
     var a: ST
     a.init(v)
     a
-  template LazySegtreeWithPType*[S,F](op,e,mapping,composition,id,p:untyped):auto =
+  template LazySegTreeWithPType*[S,F](op,e,mapping,composition,id,p:untyped):auto =
     proc op0(a, b:S):S {.gensym inline.} = op(a, b)
     proc e0():S {.gensym inline.} = e()
     proc mapping0(f:F, s:S):S {.gensym inline.} = mapping(f, s)
@@ -129,7 +127,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
     proc id0():F {.gensym inline.} = id()
     proc p0(f:F, s:Slice[int]):F {.gensym inline.} = p(f, s)
     universalSegTreeType[S, F, USEP_TRUE, IS_BEATS_FALSE](op0, e0, mapping0, composition0, id0, p0)
-  template initLazySegtree_with_p*[S,F](v:int or seq[S], op,e,mapping,composition,id,p:untyped):auto =
+  template initLazySegTree_with_p*[S,F](v:int or seq[S], op,e,mapping,composition,id,p:untyped):auto =
     type ST = LazySegtreeWithPType[S, F](op, e, mapping, composition, id, p)
     var a:ST
     a.init(v)
@@ -158,7 +156,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       for i in 1..self.log: self.update(p shr i)
     else:
       self.lz[p] = x
-  proc `[]=`*[ST:UniversalSegTree](self: var ST, p:int, x:auto) = self.set(p, x)
+  proc `[]=`*[ST:UniversalSegTree](self: var ST, p:IndexType, x:auto) = self.set(p, x)
 
   proc get*[ST:UniversalSegTree](self: var ST, p:IndexType):auto =
     var p = self^^p
@@ -201,6 +199,7 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
     return base_n..<base_n + l
 
   proc apply*[ST:UniversalSegTree](self: var ST, p:IndexType, f:ST.F) =
+    static: assert ST.hasLazy
     var p = self^^p
     assert p in 0..<self.len
     p += self.size
@@ -210,7 +209,10 @@ when not declared ATCODER_LAZYSEGTREE_HPP:
       self.d[p] = ST.calc_mapping(when ST.useP is USEP_TRUE: ST.calc_p(f, self.getPos(p, p - self.size)) else: f, self.d[p])
       for i in 1..self.log: self.update(p shr i)
     else:
-      self.lz[p] = when ST.useP is USEP_TRUE: ST.calc_p(f, self.getPos(p, p - self.size)) else: f
+      let g = when ST.useP is USEP_TRUE: ST.calc_p(f, self.getPos(p, p - self.size)) else: f
+      self.lz[p] = ST.calc_composition(g, self.lz[p])
+
+
   proc apply*[ST:UniversalSegTree](self: var ST, p:RangeType, f:ST.F) =
     var (l, r) = self.halfOpenEndpoints(p)
     assert 0 <= l and l <= r and r <= self.len

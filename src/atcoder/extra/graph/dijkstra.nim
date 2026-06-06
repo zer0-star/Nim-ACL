@@ -4,7 +4,7 @@ when not declared ATCODER_EXTRA_DIJKSTRA_HPP:
   import std/deques, std/options, std/sets, std/tables
   import atcoder/extra/graph/graph_template
   import atcoder/extra/other/inf
-
+  import atcoder/extra/graph/graph_concept
 
   type DijkstraObj*[T, U] = object
     src*, dst*: U

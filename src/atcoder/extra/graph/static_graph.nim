@@ -14,7 +14,7 @@ when not declared ATCODER_STATIC_GRAPH_HPP:
 
   proc initStaticGraph*[T](n: int):StaticGraph[T] = StaticGraph[T](n:n)
 
-  proc addBiEdge*[T](self: var StaticGraph[T], src, dst:int, w = T(1)):int {.discardable.} =
+  proc addBiEdge*[T](self: var StaticGraph[T], src, dst:int, w:T = 1):int {.discardable.} =
     assert src in 0..<self.n
     assert dst in 0..<self.n
     var m = self.g.elist.len
