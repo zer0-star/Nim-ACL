@@ -1,0 +1,478 @@
+:root {
+  --text: #222;
+  --muted: #666;
+  --border: #ddd;
+  --code-bg: #f6f8fa;
+  --table-head-bg: #f2f2f2;
+  --link: #0366d6;
+  --header-bg: #171717;
+  --header-border: #2a2a2a;
+  --header-text: #f5f5f5;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--text);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Helvetica Neue",
+    Arial,
+    "Noto Sans",
+    "Noto Sans JP",
+    sans-serif;
+  line-height: 1.65;
+  background: #fff;
+}
+
+.site-header {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 28px;
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--header-border);
+}
+
+.site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--header-text);
+  text-decoration: none;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.site-brand:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.site-logo {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  display: inline-block;
+}
+
+.site-title {
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+main {
+  margin: 0;
+  padding: 48px 56px 72px;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 0 0 24px;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--border);
+  font-size: 2.45rem;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+h2 {
+  margin-top: 2rem;
+  padding-bottom: 0.2em;
+  border-bottom: 1px solid var(--border);
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+h3 {
+  margin-top: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+h4,
+h5,
+h6 {
+  margin-top: 1.25rem;
+  line-height: 1.35;
+}
+
+.doc-keyword {
+  margin-top: 1.2rem;
+  margin-bottom: 0.4rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-bottom: none;
+}
+
+p {
+  margin: 0.8em 0;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul,
+ol {
+  padding-left: 1.6em;
+}
+
+li {
+  margin: 0.25em 0;
+}
+
+pre {
+  overflow-x: auto;
+  padding: 12px 14px;
+  border-radius: 4px;
+  background: var(--code-bg);
+  line-height: 1.45;
+}
+
+code {
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+  background: var(--code-bg);
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
+  font-size: 0.92em;
+}
+
+pre code {
+  padding: 0;
+  background: transparent;
+  font-size: 0.95em;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+th,
+td {
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  vertical-align: top;
+}
+
+th {
+  background: var(--table-head-bg);
+  font-weight: 600;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+
+mjx-container {
+  line-height: 1.2;
+}
+
+blockquote {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  color: var(--muted);
+  border-left: 4px solid var(--border);
+  background: #fafafa;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2em 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+.nav {
+  margin: 1em 0 2em;
+  color: var(--muted);
+}
+
+.nav a {
+  margin-right: 0.8em;
+}
+
+.warning {
+  border-left: 4px solid #f0ad4e;
+  background: #fff8e5;
+  padding: 0.75em 1em;
+}
+
+.experimental {
+  border-left: 4px solid #6f42c1;
+  background: #f7f2ff;
+  padding: 0.75em 1em;
+}
+
+@media (max-width: 640px) {
+  .site-header {
+    padding: 12px 16px;
+  }
+
+  .site-brand {
+    font-size: 20px;
+    gap: 10px;
+  }
+
+  .site-logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  main {
+    padding: 32px 18px 52px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+}
+
+/* Syntax highlighting */
+
+pre code.hljs,
+pre code.language-nim {
+  display: block;
+  overflow-x: auto;
+  padding: 0;
+  background: transparent;
+}
+
+pre {
+  background: #f6f8fa;
+}
+
+.hljs {
+  background: transparent;
+}
+
+/* highlight.js integration */
+
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0;
+  background: transparent;
+}
+
+pre {
+  background: #f6f8fa;
+}
+
+.hljs {
+  background: transparent;
+}
+
+/* Ace code samples, similar to official AC Library docs */
+
+.sample-code {
+  width: 100%;
+  margin: 1em 0;
+  border: 1px solid #e5e5e5;
+  background: #f8f8f8;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.sample-code .ace_gutter {
+  background: #eeeeee;
+  color: #777;
+}
+
+.sample-code .ace_content {
+  background: #ffffff;
+}
+
+.sample-code .ace_marker-layer .ace_active-line,
+.sample-code .ace_gutter-active-line {
+  background: transparent;
+}
+
+.sample-code .ace_print-margin {
+  display: none;
+}
+
+/* Ace code blocks, aligned with AC Library docs */
+
+.sample-code {
+  width: 100%;
+  margin: 1em 0;
+  border: 1px solid #e5e5e5;
+  background: #ffffff;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.sample-code .ace_gutter {
+  background: #f2f2f2;
+  color: #777;
+  border-right: 1px solid #e5e5e5;
+}
+
+.sample-code .ace_content {
+  background: #ffffff;
+}
+
+.sample-code .ace_marker-layer .ace_active-line,
+.sample-code .ace_gutter-active-line {
+  background: transparent;
+}
+
+.sample-code .ace_print-margin {
+  display: none;
+}
+
+.sample-code .ace_cursor {
+  display: none !important;
+}
+
+/* Final Ace code sample tuning */
+
+.example-caption {
+  margin: 1.2em 0 0.4em;
+  font-size: 1.05rem;
+}
+
+.example-caption a {
+  font-weight: 500;
+}
+
+.sample-code {
+  width: 100%;
+  margin: 0.75em 0 1.25em;
+  border: 1px solid #e5e5e5;
+  background: #ffffff;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.sample-code .ace_gutter {
+  background: #f2f2f2;
+  color: #777;
+  border-right: 1px solid #e5e5e5;
+}
+
+.sample-code .ace_content {
+  background: #ffffff;
+}
+
+.sample-code .ace_marker-layer .ace_active-line,
+.sample-code .ace_gutter-active-line {
+  background: transparent;
+}
+
+.sample-code .ace_print-margin {
+  display: none;
+}
+
+.sample-code .ace_cursor {
+  display: none !important;
+}
+
+/* Official AC Library-like code styling overrides */
+
+/* Inline code only: pink/red, like official docs. */
+p code,
+li code,
+td code,
+dd code,
+blockquote code {
+  color: #e83e8c;
+  background: #f8f8f8;
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+}
+
+/* Normal markdown code blocks: no line numbers, plain boxed block. */
+pre {
+  margin: 1em 0;
+  padding: 0.65em 0.85em;
+  border: 1px solid #e5e5e5;
+  border-radius: 2px;
+  background: #fff;
+  overflow-x: auto;
+}
+
+pre code,
+pre code.language-nim,
+pre code.hljs {
+  display: block;
+  padding: 0;
+  color: #333;
+  background: transparent;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+/* Example caption, matching official 'AC code of ...'. */
+.example-caption {
+  margin: 1.2em 0 0.4em;
+  font-size: 1.05rem;
+}
+
+.example-caption a {
+  font-weight: 500;
+}
+
+/* Only @{example...} blocks use Ace and line numbers. */
+.sample-code {
+  width: 100%;
+  margin: 0.75em 0 1.25em;
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.sample-code .ace_gutter {
+  background: #f2f2f2;
+  color: #777;
+  border-right: 1px solid #e5e5e5;
+}
+
+.sample-code .ace_content {
+  background: #fff;
+}
+
+.sample-code .ace_marker-layer .ace_active-line,
+.sample-code .ace_gutter-active-line {
+  background: transparent;
+}
+
+.sample-code .ace_print-margin {
+  display: none;
+}
+
+.sample-code .ace_cursor {
+  display: none !important;
+}

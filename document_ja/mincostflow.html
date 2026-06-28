@@ -1,88 +1,104 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-    <meta charset="UTF-8">
-    <!-- Uikit -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MinCostFlow</title>
+  <link rel="stylesheet" href="lib/main.css">
 
-    <!-- UIkit CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/css/uikit.min.css" />    
-    <!-- UIkit JS -->
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit-icons.min.js"></script>
-    <!-- Katex -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
-        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
-        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
-        crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
-        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
-    <!-- Ace editor-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
 
-    <style>
-        h2 {
-            border-bottom:1px solid #CCC;
-        }
-    </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            renderMathInElement(
-                document.body, {
-                delimiters: [
-                    { left: "$$", right: "$$", display: true },
-                    { left: "$", right: "$", display: false }],
-                ignoredTags: [],
-            })
-            for (e of document.getElementsByClassName("sample-code")) {
-                var editor = ace.edit(e);
-                editor.setOption("maxLines", "Infinity");
-                editor.setReadOnly(true);
-                editor.getSession().setMode("ace/mode/nim");                
-            }
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
         });
-    </script>
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
-    <div class="uk-navbar-container" uk-navbar>
-        <div class="uk-navbar-left">
-            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
-        </div>
-    </div>
-    <section class="uk-section">
-        <div class="uk-container">
-            <h1>MinCostFlow</h1>
+  <header class="site-header">
+    <a class="site-brand" href="index.html">
+      <img class="site-logo" src="lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="mincostflow">MinCostFlow</h1>
 <p><a href="https://en.wikipedia.org/wiki/Minimum-cost_flow_problem">Minimum-cost flow problem</a>を扱うライブラリです。</p>
-<h2>コンストラクタ</h2>
+<h2 id="_1">コンストラクタ</h2>
 <pre><code class="language-nim">var graph = init_mcf_graph[Cap, Cost](int n)
 </code></pre>
 <p>$n$ 頂点 $0$ 辺のグラフを作る。<code>Cap</code>は容量の型、<code>Cost</code>はコストの型</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li>$0 \leq n \leq 10^8$</li>
 <li><code>Cap, Cost</code> は <code>int, ll</code></li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(n)$</li>
 </ul>
-<h2>add_edge</h2>
+<h2 id="add_edge">add_edge</h2>
 <pre><code class="language-nim">graph.add_edge(src:int, dst:int, cap:Cap, cost:Cost):int
 </code></pre>
 <p><code>from</code>から<code>to</code>へ最大容量<code>cap</code>, コスト<code>cost</code>の辺を追加する。何番目に追加された辺かを返す。</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li>$0 \leq \mathrm{from}, \mathrm{to} \lt n$</li>
 <li>$0 \leq \mathrm{cap}, \mathrm{cost}$</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>ならし $O(1)$</li>
 </ul>
-<h2>min_cost_max_flow</h2>
+<h2 id="min_cost_max_flow">min_cost_max_flow</h2>
 <pre><code class="language-nim">(1) graph.flow(s:int, t:int):(Cap, Cost)
 (2) graph.flow(s:int, t:int, flow_limit:Cap):(Cap, Cost)
 </code></pre>
@@ -91,15 +107,15 @@
 <li>(1) sからtへ流せるだけ流す</li>
 <li>(2) sからtへ流量<code>flow_limit</code>まで流せるだけ流す</li>
 </ul>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li><code>min_cost_slope</code>と同じ</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li><code>min_cost_slope</code>と同じ</li>
 </ul>
-<h2>min_cost_slope</h2>
+<h2 id="min_cost_slope">min_cost_slope</h2>
 <pre><code class="language-nim">graph.slope(s:int, t:int):seq[(Cap, Cost)]
 graph.slope(s:int, t:int, flow_limit:Cap):seq[(Cap, Cost)]
 </code></pre>
@@ -111,7 +127,7 @@ graph.slope(s:int, t:int, flow_limit:Cap):seq[(Cap, Cost)]
 <li>(1) 帰り値の最後の要素は最大流量 $x$ として $(x, g(x))$</li>
 <li>(2) 帰り値の最後の要素は $y = \min(x, \mathrm{flow\_limit})$ として $(y, g(y))$</li>
 </ul>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <p>辺のコストの最大を $x$ として</p>
 <ul>
 <li>$s \neq t$</li>
@@ -121,12 +137,12 @@ graph.slope(s:int, t:int, flow_limit:Cap):seq[(Cap, Cost)]
 <li>(Cost : <code>int</code>): $0 \leq nx \leq 2 \times 10^9 + 1000$</li>
 <li>(Cost : <code>ll</code>): $0 \leq nx \leq 8 \times 10^{18} + 1000$</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <p>$F$を流量、$m$を追加した辺の本数として</p>
 <ul>
 <li>$O(F (n + m) \log n)$</li>
 </ul>
-<h2>edges</h2>
+<h2 id="edges">edges</h2>
 <pre><code class="language-nim">type edge_info[Cap, Cost] =
   src, dst:int
   cap, flow: Cap
@@ -140,17 +156,17 @@ graph.slope(s:int, t:int, flow_limit:Cap):seq[(Cap, Cost)]
 <li>辺の順番はadd_edgeで追加された順番と同一</li>
 </ul>
 <p>$m$ を追加された辺数として</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li>(1): $0 \leq i \lt m$</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>(1): $O(1)$</li>
 <li>(2): $O(m)$</li>
 </ul>
-<h2>使用例</h2>
-<h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_e">https://atcoder.jp/contests/practice2/tasks/practice2_e</a></h3>
+<h2 id="_2">使用例</h2>
+<p class="example-caption">AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_e">https://atcoder.jp/contests/practice2/tasks/practice2_e</a></p>
 <div class="sample-code">include atcoder/header
 import atcoder/mincostflow
 
@@ -173,17 +189,14 @@ for i in 0..&lt;n:
 var result = g.flow(s, t, n * k)
 echo n * k * BIG - result[1]
 
-var grid = newSeqWith(n, &#39;.&#39;.repeat(n))
+var grid = newSeqWith(n, &#x27;.&#x27;.repeat(n))
 let es = g.edges()
 for e in es:
   if e.src == s or e.dst == t or e.flow == 0: continue
-  grid[e.src][e.dst - n] = &#39;X&#39;
+  grid[e.src][e.dst - n] = &#x27;X&#x27;
 
 for i in 0..&lt;n:
-  echo grid[i]
-</div>
-        </div>
-    </section>
+  echo grid[i]</div>
+  </main>
 </body>
-
 </html>

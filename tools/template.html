@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="@{lang}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>強連結な向き付け</title>
-  <link rel="stylesheet" href="../../lib/main.css">
+  <title>@{title}</title>
+  <link rel="stylesheet" href="@{css_path}">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
@@ -64,27 +64,13 @@
 </head>
 <body>
   <header class="site-header">
-    <a class="site-brand" href="../../index.html">
-      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+    <a class="site-brand" href="@{index_path}">
+      <img class="site-logo" src="@{logo_path}" alt="" aria-hidden="true">
       <span class="site-title">Nim-ACL</span>
     </a>
   </header>
   <main>
-<h1 id="_1">強連結な向き付け</h1>
-<p>橋のない無向グラフ$G$とその辺のリスト$es$が与えられたときに、$G$を強連結有向グラフとなるような$es$の向きを返す。</p>
-<pre><code class="language-nim">var d = strong_orientation(g:Graph, es:Edges[T, U]):seq[int]
-</code></pre>
-<p>$G$の各辺の重みは対応する$es$のインデックス(0-based)の値を入れておく。
-$i$番目の戻り値は$d[i]$が1ならば$es[i]$と同じ向き、$-1$ならば$es[i]$と逆向きを表す。</p>
-<p>本アルゴリズムを利用する問題としてはARC111Dを参照。</p>
-<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
-<ul>
-<li>$0 \leq n \leq 10^8$</li>
-</ul>
-<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
-<ul>
-<li>$O(n)$</li>
-</ul>
+@{body}
   </main>
 </body>
 </html>

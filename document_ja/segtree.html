@@ -1,60 +1,76 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-    <meta charset="UTF-8">
-    <!-- Uikit -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Segtree</title>
+  <link rel="stylesheet" href="lib/main.css">
 
-    <!-- UIkit CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/css/uikit.min.css" />    
-    <!-- UIkit JS -->
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit-icons.min.js"></script>
-    <!-- Katex -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
-        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
-        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
-        crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
-        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
-    <!-- Ace editor-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
 
-    <style>
-        h2 {
-            border-bottom:1px solid #CCC;
-        }
-    </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            renderMathInElement(
-                document.body, {
-                delimiters: [
-                    { left: "$$", right: "$$", display: true },
-                    { left: "$", right: "$", display: false }],
-                ignoredTags: [],
-            })
-            for (e of document.getElementsByClassName("sample-code")) {
-                var editor = ace.edit(e);
-                editor.setOption("maxLines", "Infinity");
-                editor.setReadOnly(true);
-                editor.getSession().setMode("ace/mode/nim");                
-            }
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
         });
-    </script>
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
-    <div class="uk-navbar-container" uk-navbar>
-        <div class="uk-navbar-left">
-            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
-        </div>
-    </div>
-    <section class="uk-section">
-        <div class="uk-container">
-            <h1>Segtree</h1>
+  <header class="site-header">
+    <a class="site-brand" href="index.html">
+      <img class="site-logo" src="lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="segtree">Segtree</h1>
 <p><a href="https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%8E%E3%82%A4%E3%83%89">モノイド</a> $(S, \cdot: S \times S \to S, e \in S)$、つまり</p>
 <ul>
 <li>結合律: $(a \cdot b) \cdot c$ = $a \cdot (b \cdot c)$ for all $a, b, c \in S$</li>
@@ -68,7 +84,7 @@
 </ul>
 <p>を $O(\log N)$ で行うことが出来ます。詳細な要件は <a href="./appendix.html">Appendix</a> を参照してください。</p>
 <p>また、このライブラリはオラクルとして<code>op, e</code>の2種類を使用しますが、これらが定数時間で動くものと仮定したときの計算量を記述します。オラクル内部の計算量が $O(f(n))$ である場合はすべての計算量が $O(f(n))$ 倍となります。</p>
-<h2>コンストラクタ</h2>
+<h2 id="_1">コンストラクタ</h2>
 <pre><code class="language-nim">(1) var seg = initSegTree[S](n:int, op:(S,S)-&gt;S, e:()-&gt;S):segtree[S]
     var seg = SegTreeType(S, op:(S,S)-&gt;S, e:()-&gt;S).init(n)
     var seg = SegTree.getType(S, op:(S,S)-&gt;S, e:()-&gt;S).init(n)
@@ -96,67 +112,67 @@ var seg = initSegTree[int](10, seg, e)
 <li>(2): 長さ <code>n = v.len</code> の数列 <code>a</code> を作ります。<code>v</code> の内容が初期値となります。</li>
 </ul>
 <p>詳しくは、使用例や <a href="https://atcoder.jp/contests/practice2/editorial">こちら</a> も参照してください。</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li>$0 \leq n \leq 10^8$</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(n)$</li>
 </ul>
-<h2>タイプだけ設定</h2>
+<h2 id="_2">タイプだけ設定</h2>
 <pre><code class="language-nim">  type st_type = SegTreeType[S](op:(S,S)-&gt;S, e:()-&gt;S)
 </code></pre>
 <p>コンストラクタは呼ばずにタイプだけ設定できます。<code>st_type.init(v:seq[int])</code>といった具合にタイプからコンストラクタを呼び出したり、<code>var v:seq[st_type]</code>といった具合にsegtreeの配列を宣言するのにお使いください。</p>
 <p>(背景)Nimはいろいろと癖のある言語でsegtreeのobject構造体はマニアック(笑)な構造をしているので直にタイプを呼ぶのは推奨されません。上記のSegTreeTypeのテンプレートをお使いください。</p>
-<h2>set</h2>
+<h2 id="set">set</h2>
 <pre><code class="language-nim">seg.set(p:int, x:S):void
 seg[p:int] = x:S
 </code></pre>
 <p><code>a[p]</code> に <code>x</code> を代入します。</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li>$0 \leq p &lt; n$</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(\log n)$</li>
 </ul>
-<h2>get</h2>
+<h2 id="get">get</h2>
 <pre><code class="language-nim">seg.get(p:int):S
 seg[p:int]:S
 </code></pre>
 <p><code>a[p]</code> を返します。</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li>$0 \leq p &lt; n$</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(1)$</li>
 </ul>
-<h2>prod</h2>
+<h2 id="prod">prod</h2>
 <pre><code class="language-nim">seg.prod(l..&lt;r):S
 seg[l..&lt;r]:S
 </code></pre>
 <p><code>op(a[l], ..., a[r - 1])</code> を、モノイドの性質を満たしていると仮定して計算します。$l = r$ のときは <code>e()</code> を返します。</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li>$0 \leq l \leq r \leq n$</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(\log n)$</li>
 </ul>
-<h2>all_prod</h2>
+<h2 id="all_prod">all_prod</h2>
 <pre><code class="language-nim">seg.all_prod():S
 </code></pre>
 <p><code>op(a[0], ..., a[n - 1])</code> を計算します。$n = 0$ のときは <code>e()</code> を返します。</p>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(1)$</li>
 </ul>
-<h2>max_right</h2>
+<h2 id="max_right">max_right</h2>
 <pre><code class="language-nim">(1) seg.max_right&lt;f&gt;(l:int):int
 (2💻) seg.max_right[F](l:int, f:F):int
 </code></pre>
@@ -170,17 +186,17 @@ seg[l..&lt;r]:S
 <li><code>r = n</code> もしくは <code>f(op(a[l], a[l + 1], ..., a[r])) = false</code></li>
 </ul>
 <p><code>f</code>が単調だとすれば、<code>f(op(a[l], a[l + 1], ..., a[r - 1])) = true</code> となる最大の <code>r</code>、と解釈することが可能です。</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li><code>f</code>を同じ引数で呼んだ時、返り値は等しい(=副作用はない)</li>
 <li><code>f(e()) = true</code></li>
 <li>$0 \leq l \leq n$</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(\log n)$</li>
 </ul>
-<h2>min_left</h2>
+<h2 id="min_left">min_left</h2>
 <pre><code class="language-nim">(1) seg.min_left[f](r:int):int
 (2💻) seg.min_left[F](r:int, f:F):int
 </code></pre>
@@ -194,18 +210,18 @@ seg[l..&lt;r]:S
 <li><code>l = 0</code> もしくは <code>f(op(a[l - 1], a[l], ..., a[r - 1])) = false</code></li>
 </ul>
 <p><code>f</code>が単調だとすれば、<code>f(op(a[l], a[l + 1], ..., a[r - 1])) = true</code> となる最小の <code>l</code>、と解釈することが可能です。</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li><code>f</code>を同じ引数で呼んだ時、返り値は等しい(=副作用はない)</li>
 <li><code>f(e()) = true</code></li>
 <li>$0 \leq r \leq n$</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(\log n)$</li>
 </ul>
-<h2>使用例</h2>
-<h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_j">https://atcoder.jp/contests/practice2/tasks/practice2_j</a></h3>
+<h2 id="_3">使用例</h2>
+<p class="example-caption">AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_j">https://atcoder.jp/contests/practice2/tasks/practice2_j</a></p>
 <div class="sample-code">import atcoder/header
 import atcoder/segtree
 import sequtils, sugar
@@ -229,10 +245,7 @@ for i in 0..&lt;q:
   elif t == 3:
     let p = nextInt() - 1
     target = nextInt()
-    echo seg.max_right(p, f) + 1
-</div>
-        </div>
-    </section>
+    echo seg.max_right(p, f) + 1</div>
+  </main>
 </body>
-
 </html>

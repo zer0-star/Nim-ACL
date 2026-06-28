@@ -1,96 +1,112 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-    <meta charset="UTF-8">
-    <!-- Uikit -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Convolution</title>
+  <link rel="stylesheet" href="lib/main.css">
 
-    <!-- UIkit CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/css/uikit.min.css" />    
-    <!-- UIkit JS -->
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit-icons.min.js"></script>
-    <!-- Katex -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
-        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
-        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
-        crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
-        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
-    <!-- Ace editor-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
 
-    <style>
-        h2 {
-            border-bottom:1px solid #CCC;
-        }
-    </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            renderMathInElement(
-                document.body, {
-                delimiters: [
-                    { left: "$$", right: "$$", display: true },
-                    { left: "$", right: "$", display: false }],
-                ignoredTags: [],
-            })
-            for (e of document.getElementsByClassName("sample-code")) {
-                var editor = ace.edit(e);
-                editor.setOption("maxLines", "Infinity");
-                editor.setReadOnly(true);
-                editor.getSession().setMode("ace/mode/nim");                
-            }
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
         });
-    </script>
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
-    <div class="uk-navbar-container" uk-navbar>
-        <div class="uk-navbar-left">
-            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
-        </div>
-    </div>
-    <section class="uk-section">
-        <div class="uk-container">
-            <h1>Convolution</h1>
+  <header class="site-header">
+    <a class="site-brand" href="index.html">
+      <img class="site-logo" src="lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="convolution">Convolution</h1>
 <p>畳み込みを行います。数列 $a_0, a_1, \cdots, a_{N - 1}$ と数列 $b_0, b_1, \cdots, b_{M - 1}$ から、長さ $N + M - 1$ の数列</p>
 <p>$$c_i = \sum_{j = 0}^i a_j b_{i - j}$$</p>
 <p>を計算します。</p>
-<h2>convolution</h2>
+<h2 id="convolution_1">convolution</h2>
 <pre><code class="language-nim">(1) convolution[T:SomeInteger](a:seq[T], b:seq[T], m:static[int]):seq[T]
 💻(2) convolution[T:StaticModInt](a:seq[StaticModInt], b:seq[StaticModInt]):seq[StaticModInt]
 </code></pre>
 <p>畳み込みを $\bmod m$ で計算します。$a, b$ の少なくとも一方が空配列の場合は空配列を返します。</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li>$2 \leq m \leq 2 \times 10^9$</li>
 <li>$\mathrm{m}$ は素数</li>
 <li>$2^c | (\mathrm{m} - 1)$ かつ $|a| + |b| - 1 \leq 2^c$ なる $c$ が存在する</li>
 <li>(1) <code>T</code>は<code>int, uint, ll, ull</code></li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <p>$n = |a| + |b|$ として</p>
 <ul>
 <li>$O(n\log{n} + \log{\mathrm{mod}})$</li>
 </ul>
-<h2>convolution_ll</h2>
+<h2 id="convolution_ll">convolution_ll</h2>
 <pre><code class="language-nim">convolution_ll(a:seq[int], b:seq[int]):seq[int]
 </code></pre>
 <p>畳み込みを計算します。$a, b$ の少なくとも一方が空配列の場合は空配列を返します。</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li>$|a| + |b| - 1 \leq 2^{24}$</li>
 <li>畳み込んだ後の配列の要素が全て<code>ll</code>に収まる</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <p>$n = |a| + |b|$ として</p>
 <ul>
 <li>$O(n\log{n})$</li>
 </ul>
-<h2>使用例</h2>
-<h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_f">https://atcoder.jp/contests/practice2/tasks/practice2_f</a></h3>
+<h2 id="_1">使用例</h2>
+<p class="example-caption">AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_f">https://atcoder.jp/contests/practice2/tasks/practice2_f</a></p>
 <div class="sample-code">include atcoder/header
 import atcoder/convolution
 import atcoder/modint
@@ -103,10 +119,9 @@ let
 let c = convolution[998244353, int](a, b)
 # or: c = convolution&lt;998244353&gt;(a, b)
 
-echo c.join(&#34; &#34;)
-</div>
+echo c.join(&quot; &quot;)</div>
 
-<h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_f">https://atcoder.jp/contests/practice2/tasks/practice2_f</a></h3>
+<p class="example-caption">AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_f">https://atcoder.jp/contests/practice2/tasks/practice2_f</a></p>
 <div class="sample-code">include atcoder/header
 import atcoder/modint
 import atcoder/convolution
@@ -119,10 +134,7 @@ let
   b = newSeqWith(m, mint(nextInt()))
   c = convolution(a, b)
 
-echo c.join(&#34; &#34;)
-</div>
-        </div>
-    </section>
+echo c.join(&quot; &quot;)</div>
+  </main>
 </body>
-
 </html>

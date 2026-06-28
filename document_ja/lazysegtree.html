@@ -1,60 +1,76 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-    <meta charset="UTF-8">
-    <!-- Uikit -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Lazy Segtree</title>
+  <link rel="stylesheet" href="lib/main.css">
 
-    <!-- UIkit CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/css/uikit.min.css" />    
-    <!-- UIkit JS -->
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit-icons.min.js"></script>
-    <!-- Katex -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
-        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
-        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
-        crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
-        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
-    <!-- Ace editor-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
 
-    <style>
-        h2 {
-            border-bottom:1px solid #CCC;
-        }
-    </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            renderMathInElement(
-                document.body, {
-                delimiters: [
-                    { left: "$$", right: "$$", display: true },
-                    { left: "$", right: "$", display: false }],
-                ignoredTags: [],
-            })
-            for (e of document.getElementsByClassName("sample-code")) {
-                var editor = ace.edit(e);
-                editor.setOption("maxLines", "Infinity");
-                editor.setReadOnly(true);
-                editor.getSession().setMode("ace/mode/nim");                
-            }
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
         });
-    </script>
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
-    <div class="uk-navbar-container" uk-navbar>
-        <div class="uk-navbar-left">
-            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
-        </div>
-    </div>
-    <section class="uk-section">
-        <div class="uk-container">
-            <h1>Lazy Segtree</h1>
+  <header class="site-header">
+    <a class="site-brand" href="index.html">
+      <img class="site-logo" src="lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="lazy-segtree">Lazy Segtree</h1>
 <p><a href="https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%8E%E3%82%A4%E3%83%89">モノイド</a> $(S, \cdot: S \times S \to S, e \in S)$と、$S$ から $S$ への写像の集合 $F$ であって、以下の条件を満たすようなものについて使用できるデータ構造です。</p>
 <ul>
 <li>$F$ は恒等写像 $\mathrm{id}$ を含む。つまり、任意の $x \in S$ に対し $\mathrm{id}(x) = x$ をみたす。</li>
@@ -68,7 +84,7 @@
 </ul>
 <p>を $O(\log N)$ で行うことが出来ます。詳細な要件は <a href="./appendix.html">Appendix</a> を参照してください。</p>
 <p>また、このライブラリはオラクルとして<code>op, e, mapping, composition, id</code>を使用しますが、これらが定数時間で動くものと仮定したときの計算量を記述します。オラクル内部の計算量が $O(f(n))$ である場合はすべての計算量が $O(f(n))$ 倍となります。</p>
-<h2>コンストラクタ</h2>
+<h2 id="_1">コンストラクタ</h2>
 <pre><code class="language-nim">(1) var seg = initLazySegTree(n:int, op, e, mapping, composition, id)
     var seg = LazySegTreeType(S, F, op, e, mapping, composition, id).init(n)
     var seg = LazySegTree.getType(S, F, op, e, mapping, composition, id).init(n)
@@ -91,62 +107,62 @@
 <li>(1): 長さ <code>n</code> の数列 <code>a</code> を作ります。初期値は全部<code>e()</code>です。</li>
 <li>(2): 長さ <code>n = v.len</code> の数列 <code>a</code> を作ります。<code>v</code> の内容が初期値となります。</li>
 </ul>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li>$0 \leq n \leq 10^8$</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(n)$</li>
 </ul>
-<h2>set</h2>
+<h2 id="set">set</h2>
 <pre><code class="language-nim">seg.set(p:int, x:S):void
 seg[p:int] = x:S
 </code></pre>
 <p><code>a[p] = x</code></p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li>$0 \leq p &lt; n$</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(\log n)$</li>
 </ul>
-<h2>get</h2>
+<h2 id="get">get</h2>
 <pre><code class="language-nim">seg.get(p:int):S
 seg[p:int]:S
 </code></pre>
 <p><code>a[p]</code> を返します。</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li>$0 \leq p &lt; n$</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(\log n)$</li>
 </ul>
-<h2>prod</h2>
+<h2 id="prod">prod</h2>
 <pre><code class="language-nim">seg.prod(l..&lt;r):S
 seg[l..&lt;r]:S
 </code></pre>
 <p><code>op(a[l], ..., a[r - 1])</code> を、モノイドの性質を満たしていると仮定して計算します。$l = r$ のときは <code>e()</code> を返します。</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li>$0 \leq l \leq r \leq n$</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(\log n)$</li>
 </ul>
-<h2>all_prod</h2>
+<h2 id="all_prod">all_prod</h2>
 <pre><code class="language-nim">seg.all_prod():S
 </code></pre>
 <p><code>op(a[0], ..., a[n-1])</code> を計算します。$n = 0$ のときは <code>e()</code> を返します。</p>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(1)$</li>
 </ul>
-<h2>apply</h2>
+<h2 id="apply">apply</h2>
 <pre><code class="language-nim">(1) seg.apply(p:int, f:F):void
 (2) seg.apply(l..&lt;r, f:F):void
 </code></pre>
@@ -154,16 +170,16 @@ seg[l..&lt;r]:S
 <li>(1) <code>a[p] = f(a[p])</code></li>
 <li>(2) <code>i = l..r-1</code>について<code>a[i] = f(a[i])</code></li>
 </ul>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li>(1) $0 \leq p &lt; n$</li>
 <li>(2) $0 \leq l \leq r \leq n$</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(\log n)$</li>
 </ul>
-<h2>max_right</h2>
+<h2 id="max_right">max_right</h2>
 <pre><code class="language-nim">(1) seg.max_right(l:int, g:(S)-&gt;bool):int
 (2💻) seg.max_right(l:int, g:(S)-&gt;bool):int
 </code></pre>
@@ -177,17 +193,17 @@ seg[l..&lt;r]:S
 <li><code>r = n</code> もしくは <code>g(op(a[l], a[l + 1], ..., a[r])) = false</code></li>
 </ul>
 <p><code>g</code>が単調だとすれば、<code>g(op(a[l], a[l + 1], ..., a[r - 1])) = true</code> となる最大の <code>r</code>、と解釈することが可能です。</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li><code>g</code>を同じ引数で呼んだ時、返り値は等しい(=副作用はない)</li>
 <li><code>g(e()) = true</code></li>
 <li>$0 \leq l \leq n$</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(\log n)$</li>
 </ul>
-<h2>min_left</h2>
+<h2 id="min_left">min_left</h2>
 <pre><code class="language-nim">(1) seg.min_left(r:int, g:(S)-&gt;bool):int
 (2💻) int seg.min_left(r:int, g:(S)-&gt;bool):int
 </code></pre>
@@ -201,18 +217,18 @@ seg[l..&lt;r]:S
 <li><code>l = 0</code> もしくは <code>g(op(a[l - 1], a[l], ..., a[r - 1])) = false</code></li>
 </ul>
 <p><code>g</code>が単調だとすれば、<code>g(op(a[l], a[l + 1], ..., a[r - 1])) = true</code> となる最小の <code>l</code>、と解釈することが可能です。</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li><code>g</code>を同じ引数で呼んだ時、返り値は等しい(=副作用はない)</li>
 <li><code>g(e()) = true</code></li>
 <li>$0 \leq r \leq n$</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(\log n)$</li>
 </ul>
-<h2>使用例</h2>
-<h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_k">https://atcoder.jp/contests/practice2/tasks/practice2_k</a></h3>
+<h2 id="_2">使用例</h2>
+<p class="example-caption">AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_k">https://atcoder.jp/contests/practice2/tasks/practice2_k</a></p>
 <div class="sample-code">import atcoder/header
 import atcoder/lazysegtree
 import atcoder/modint
@@ -245,10 +261,9 @@ for i in 0..&lt;q:
     seg.apply(l..&lt;r, (c.mint, d.mint));
   else:
     let l, r = nextInt()
-    echo seg.prod(l..&lt;r).a.val()
-</div>
+    echo seg.prod(l..&lt;r).a.val()</div>
 
-<h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_l">https://atcoder.jp/contests/practice2/tasks/practice2_l</a></h3>
+<p class="example-caption">AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_l">https://atcoder.jp/contests/practice2/tasks/practice2_l</a></p>
 <div class="sample-code">include atcoder/header
 import atcoder/lazysegtree
 
@@ -284,10 +299,7 @@ block:
     if t == 1:
       seg.apply(l..&lt;r, true)
     else:
-      echo seg.prod(l..&lt;r).inversion
-</div>
-        </div>
-    </section>
+      echo seg.prod(l..&lt;r).inversion</div>
+  </main>
 </body>
-
 </html>

@@ -1,60 +1,76 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-    <meta charset="UTF-8">
-    <!-- Uikit -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Modint</title>
+  <link rel="stylesheet" href="lib/main.css">
 
-    <!-- UIkit CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/css/uikit.min.css" />    
-    <!-- UIkit JS -->
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.10/dist/js/uikit-icons.min.js"></script>
-    <!-- Katex -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
-        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
-        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
-        crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
-        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
-    <!-- Ace editor-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
 
-    <style>
-        h2 {
-            border-bottom:1px solid #CCC;
-        }
-    </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            renderMathInElement(
-                document.body, {
-                delimiters: [
-                    { left: "$$", right: "$$", display: true },
-                    { left: "$", right: "$", display: false }],
-                ignoredTags: [],
-            })
-            for (e of document.getElementsByClassName("sample-code")) {
-                var editor = ace.edit(e);
-                editor.setOption("maxLines", "Infinity");
-                editor.setReadOnly(true);
-                editor.getSession().setMode("ace/mode/nim");                
-            }
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
         });
-    </script>
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
-    <div class="uk-navbar-container" uk-navbar>
-        <div class="uk-navbar-left">
-            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
-        </div>
-    </div>
-    <section class="uk-section">
-        <div class="uk-container">
-            <h1>Modint</h1>
+  <header class="site-header">
+    <a class="site-brand" href="index.html">
+      <img class="site-logo" src="lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="modint">Modint</h1>
 <p>自動でmodを取る構造体です。AC Libraryはmodintを使わなくとも全アルゴリズムが使えるように整備しているので、必ずしもこのファイルの内容を把握する必要はありません。</p>
 <p>多くの問題では <code>modint998244353</code>, <code>modint1000000007</code>, <code>modint</code> のどれかを使えば十分で、以下のように使えます。</p>
 <pre><code class="language-nim">import atcoder/header
@@ -85,7 +101,7 @@ echo sum.val()
 
 </code></pre>
 <p>以下の関数らは、<code>set_mod</code> を除き $3$ つともに対して動きます。</p>
-<h2>コンストラクタ</h2>
+<h2 id="_1">コンストラクタ</h2>
 <pre><code class="language-nim">(1) x = modint()
 (2) x = modint[T](y:T)
 </code></pre>
@@ -93,27 +109,27 @@ echo sum.val()
 <li>(1) modintのデフォルトコンストラクタです。$0$ が格納されます。</li>
 <li>(2) 整数型 <code>T</code>(<code>int, char, ull, bool, ...</code>) に対するコンストラクタです。<code>y</code> のmodを取ってmodintに格納します。</li>
 </ul>
-<h2>set_mod</h2>
+<h2 id="set_mod">set_mod</h2>
 <pre><code class="language-nim">set_mod(m:int):void
 </code></pre>
 <p>modを設定します。最初に呼んでください。</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li>$1 \leq m \leq 2 \times 10^9 + 1000$</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(1)$</li>
 </ul>
-<h2>mod</h2>
+<h2 id="mod">mod</h2>
 <pre><code class="language-nim">modint.mod():int
 </code></pre>
 <p>modを返します。</p>
-<h2>val</h2>
+<h2 id="val">val</h2>
 <pre><code class="language-nim">x.val():int
 </code></pre>
 <p><code>x</code>に格納されている値を返します。</p>
-<h2>各種演算</h2>
+<h2 id="_2">各種演算</h2>
 <pre><code class="language-nim">-modint
 
 modint.inc
@@ -143,40 +159,40 @@ var z = 1234
 y * z
 </code></pre>
 <p>も<code>y * modint(z)</code>と解釈され、動きます。</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li><code>a / b</code>(or <code>a /= b</code>)を行なう時、<code>gcd(b.val(), mod) == 1</code></li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(1)$ (割り算以外)</li>
 <li>$O(\log \mathrm{mod})$ (割り算)</li>
 </ul>
-<h2>pow</h2>
+<h2 id="pow">pow</h2>
 <pre><code class="language-nim">x.pow(ll n):modint
 </code></pre>
 <p>$x^n$ を返します。</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li>$0 \le n$</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(\log n)$</li>
 </ul>
-<h2>inv</h2>
+<h2 id="inv">inv</h2>
 <pre><code class="language-nim">x.inv():modint
 </code></pre>
 <p>$xy \equiv 1$ なる $y$ を返します。</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li><code>gcd(x.val(), mod) = 1</code></li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(\log \mathrm{mod})$</li>
 </ul>
-<h2>raw</h2>
+<h2 id="raw">raw</h2>
 <pre><code class="language-nim">modint.raw(int x):modint
 </code></pre>
 <p><code>x</code>に対してmodを取らずに、<code>modint(x)</code>を返す。</p>
@@ -201,11 +217,11 @@ for i in 1..&lt; 100000:
 </code></pre>
 <p>と書くと、modの回数を減らすことが出来ます。</p>
 <p>当然ながら<code>modint::raw(x)</code>にmod以上の値を入れたときの挙動は未定義です。</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li>$0 \leq x \lt \mathrm{mod}$</li>
 </ul>
-<h2>Tips(other mod)</h2>
+<h2 id="tipsother-mod">Tips(other mod)</h2>
 <p>問題文で他のmod (例: <code>1000000009</code>) が与えられる場合、以下のように書けます</p>
 <pre><code class="language-nim">type mint = StaticModInt[1000000009]
 </code></pre>
@@ -213,7 +229,7 @@ for i in 1..&lt; 100000:
 <pre><code class="language-nim">type modint998244353 = StaticModInt[998244353]
 type modint1000000007 = StaticModInt[1000000007]
 </code></pre>
-<h2>Tips(複数mod)</h2>
+<h2 id="tipsmod">Tips(複数mod)</h2>
 <p>複数種類modを使用したい場合以下のようにできます</p>
 <pre><code class="language-nim">type mint0 = DynamicModInt[0]
 type mint1 = DynamicModInt[1]
@@ -221,8 +237,7 @@ type mint1 = DynamicModInt[1]
 <p><code>modint</code>は、<code>DynamicModInt[-1]</code>のエイリアスになっています。</p>
 <pre><code class="language-cpp">type modint = DynamicModInt[-1]
 </code></pre>
-<h2>使用例</h2>
-<h3>How to Use</h3>
+<h2 id="_3">使用例</h2>
 <div class="sample-code">import atcoder/modint
 
 type mint = StaticModInt[11]
@@ -277,10 +292,7 @@ assert mint.mod == 11 and a.mod == 11
 
 # mint(x) と書くとmodを取る操作が発生します((x % mod + mod) % modをmodintに代入します)
 # mint::raw(x) はxをmodを取らずに代入するので高速です(もちろんxが[0, mod)であることを利用者が保証しないといけません)
-assert mint.raw(3) == 3
-</div>
-        </div>
-    </section>
+assert mint.raw(3) == 3</div>
+  </main>
 </body>
-
 </html>
