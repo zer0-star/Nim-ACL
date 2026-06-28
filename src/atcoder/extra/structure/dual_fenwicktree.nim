@@ -1,5 +1,5 @@
-when not declared ATCODER_FENWICKTREE_HPP:
-  const ATCODER_FENWICKTREE_HPP* = 1
+when not declared ATCODER_EXTRA_DUAL_FENWICKTREE_HPP:
+  const ATCODER_EXTRA_DUAL_FENWICKTREE_HPP* = 1
   import std/sequtils
   import atcoder/internal_type_traits
   import atcoder/rangeutils
@@ -23,14 +23,18 @@ when not declared ATCODER_FENWICKTREE_HPP:
     DualFenwickTreeType(T)
   proc initDualFenwickTree*[T](n:int):auto = DualFenwickTreeType(T).init(n)
 
-  proc `[]`*[FT:DualFenwickTree](self: FT, p:IndexType):auto =
+  proc `[]`*[FT:DualFenwickTree](self: FT, p:IndexType):FT.T =
     var p = self^^p
     assert p in 0..<self.len
+  
     p.inc
-    result = FT.U(0)
+    var s = FT.U(0)
+  
     while p <= self.len:
-      result += self.data[p - 1]
+      s += self.data[p - 1]
       p += p and -p
+
+    return cast[FT.T](s)
   proc add*[FT:DualFenwickTree](self: var FT, r:int, x:FT.T) =
     var r = r
     while r > 0:
