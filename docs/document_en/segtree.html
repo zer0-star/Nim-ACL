@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Segtree</title>
+  <link rel="stylesheet" href="lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="index.html">
+      <img class="site-logo" src="lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="segtree">Segtree</h1>
+<p>It is the data structure for <a href="https://en.wikipedia.org/wiki/Monoid">monoids</a> $(S, \cdot: S \times S \to S, e \in S)$, i.e., the algebraic structure that satisfies the following properties.</p>
+<ul>
+<li>associativity: $(a \cdot b) \cdot c$ = $a \cdot (b \cdot c)$ for all $a, b, c \in S$</li>
+<li>existence of the identity element: $a \cdot e$ = $e \cdot a$ = $a$ for all $a \in S$</li>
+</ul>
+<p>Given an array $S$ of length $N$, it processes the following queries in $O(\log N)$ time (see <a href="./appendix.html">Appendix</a> for further details).</p>
+<ul>
+<li>Updating an element</li>
+<li>Calculating the product of the elements of an interval</li>
+</ul>
+<p>For simplicity, in this document, we assume that the oracles <code>op</code> and <code>e</code> work in constant time. If these oracles work in $O(T)$ time, each time complexity appear in this document is multipled by $O(T)$.</p>
+<h2 id="constructor">Constructor</h2>
+<pre><code class="language-cpp">(1) segtree&lt;S, op, e&gt; seg(int n)
+(2) segtree&lt;S, op, e&gt; seg(vector&lt;S&gt; v)
+</code></pre>
+<p>The following should be defined.</p>
+<ul>
+<li>The type <code>S</code></li>
+<li>The binary operation <code>S op(S a, S b)</code></li>
+<li>The identity element <code>S e()</code></li>
+</ul>
+<p>For example, for Range Minimum Query, the definitions are as follows.</p>
+<pre><code class="language-cpp">int op(int a, int b) {
+    return min(a, b);
+}
+
+int e() {
+    return (int)(1e9);
+}
+
+segtree&lt;int, op, e&gt; seg(10);
+</code></pre>
+<ul>
+<li>(1): It creates an array <code>a</code> of length <code>n</code>. All the elements are initialized to <code>e()</code>.</li>
+<li>(2): It creates an array <code>a</code> of length <code>n = v.size()</code>, initialized to <code>v</code>.</li>
+</ul>
+<p>See examples and <a href="https://atcoder.jp/contests/practice2/editorial">here</a> for further details.</p>
+<p><strong><h4 class="doc-keyword">Constraints</h4></strong></p>
+<ul>
+<li>$0 \leq n \leq 10^8$</li>
+</ul>
+<p><strong><h4 class="doc-keyword">Complexity</h4></strong></p>
+<ul>
+<li>$O(n)$</li>
+</ul>
+<h2 id="set">set</h2>
+<pre><code class="language-cpp">void seg.set(int p, S x)
+</code></pre>
+<p>It assigns $x$ to <code>a[p]</code>.</p>
+<p><strong><h4 class="doc-keyword">Constraints</h4></strong></p>
+<ul>
+<li>$0 \leq p &lt; n$</li>
+</ul>
+<p><strong><h4 class="doc-keyword">Complexity</h4></strong></p>
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2 id="get">get</h2>
+<pre><code class="language-cpp">S seg.get(int p)
+</code></pre>
+<p>It returns <code>a[p]</code>.</p>
+<p><strong><h4 class="doc-keyword">Constraints</h4></strong></p>
+<ul>
+<li>$0 \leq p &lt; n$</li>
+</ul>
+<p><strong><h4 class="doc-keyword">Complexity</h4></strong></p>
+<ul>
+<li>$O(1)$</li>
+</ul>
+<h2 id="prod">prod</h2>
+<pre><code class="language-cpp">S seg.prod(int l, int r)
+</code></pre>
+<p>It returns <code>op(a[l], ..., a[r - 1])</code>, assuming the properties of the monoid. It returns <code>e()</code> if $l = r$.</p>
+<p><strong><h4 class="doc-keyword">Constraints</h4></strong></p>
+<ul>
+<li>$0 \leq l \leq r \leq n$</li>
+</ul>
+<p><strong><h4 class="doc-keyword">Complexity</h4></strong></p>
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2 id="all_prod">all_prod</h2>
+<pre><code class="language-cpp">S seg.all_prod()
+</code></pre>
+<p>It returns <code>op(a[0], ..., a[n - 1])</code>, assuming the properties of the monoid. It returns <code>e()</code> if $n = 0$.</p>
+<p><strong><h4 class="doc-keyword">Complexity</h4></strong></p>
+<ul>
+<li>$O(1)$</li>
+</ul>
+<h2 id="max_right">max_right</h2>
+<pre><code class="language-cpp">(1) int seg.max_right&lt;f&gt;(int l)
+(2) int seg.max_right&lt;F&gt;(int l, F f)
+</code></pre>
+<ul>
+<li>(1): It applies binary search on the segment tree. The function <code>bool f(S x)</code> should be defined.  </li>
+<li>(2): The function object that takes <code>S</code> as the argument and returns <code>bool</code> should be defined.  </li>
+</ul>
+<p>It returns an index <code>r</code> that satisfies both of the following.</p>
+<ul>
+<li><code>r = l</code> or <code>f(op(a[l], a[l + 1], ..., a[r - 1])) = true</code></li>
+<li><code>r = n</code> or <code>f(op(a[l], a[l + 1], ..., a[r])) = false</code></li>
+</ul>
+<p>If <code>f</code> is monotone, this is the maximum <code>r</code> that satisfies <code>f(op(a[l], a[l + 1], ..., a[r - 1])) = true</code>.</p>
+<p><strong><h4 class="doc-keyword">Constraints</h4></strong></p>
+<ul>
+<li>if <code>f</code> is called with the same argument, it returns the same value, i.e., <code>f</code> has no side effect.</li>
+<li><code>f(e()) = true</code></li>
+<li>$0 \leq l \leq n$</li>
+</ul>
+<p><strong><h4 class="doc-keyword">Complexity</h4></strong></p>
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2 id="min_left">min_left</h2>
+<pre><code class="language-cpp">(1) int seg.min_left&lt;f&gt;(int r)
+(2) int seg.min_left&lt;F&gt;(int r, F f)
+</code></pre>
+<ul>
+<li>(1): It applies binary search on the segment tree. The function <code>bool f(S x)</code> should be defined.  </li>
+<li>(2): The function object that takes <code>S</code> as the argument and returns <code>bool</code> should be defined.  </li>
+</ul>
+<p>It returns an index <code>l</code> that satisfies both of the following.</p>
+<ul>
+<li><code>l = r</code> or <code>f(op(a[l], a[l + 1], ..., a[r - 1])) = true</code></li>
+<li><code>l = 0</code> or <code>f(op(a[l - 1], a[l], ..., a[r - 1])) = false</code></li>
+</ul>
+<p>If <code>f</code> is monotone, this is the minimum <code>l</code> that satisfies <code>f(op(a[l], a[l + 1], ..., a[r - 1])) = true</code>.</p>
+<p><strong><h4 class="doc-keyword">Constraints</h4></strong></p>
+<ul>
+<li>if <code>f</code> is called with the same argument, it returns the same value, i.e., <code>f</code> has no side effect.</li>
+<li><code>f(e()) = true</code></li>
+<li>$0 \leq r \leq n$</li>
+</ul>
+<p><strong><h4 class="doc-keyword">Complexity</h4></strong></p>
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<p class="example-caption">AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_j">https://atcoder.jp/contests/practice2/tasks/practice2_j</a></p>
+<div class="sample-code">import atcoder/header
+import atcoder/segtree
+import sequtils, sugar
+
+let n, q = nextInt()
+let a = newSeqWith(n, nextInt())
+var target:int
+proc f(v:int):bool = v &lt; target
+var seg = initSegTree[int](a, (a:int,b:int)=&gt;max(a, b), () =&gt; -1)
+
+for i in 0..&lt;q:
+  let t = nextInt()
+  if t == 1:
+    var x, v = nextInt()
+    x.dec
+    seg.set(x, v);
+  elif t == 2:
+    var l, r = nextInt()
+    l.dec
+    echo seg.prod(l..&lt;r)
+  elif t == 3:
+    let p = nextInt() - 1
+    target = nextInt()
+    echo seg.max_right(p, f) + 1</div>
+  </main>
+</body>
+</html>

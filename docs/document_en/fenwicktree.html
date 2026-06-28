@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Fenwick Tree</title>
+  <link rel="stylesheet" href="lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="index.html">
+      <img class="site-logo" src="lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="fenwick-tree">Fenwick Tree</h1>
+<p>Given an array of length $N$, it processes the following queries in $O(\log N)$ time.</p>
+<ul>
+<li>Updating an element</li>
+<li>Calculating the sum of the elements of an interval</li>
+</ul>
+<h2 id="constructor">Constructor</h2>
+<pre><code class="language-cpp">fenwick_tree&lt;T&gt; fw(int n)
+</code></pre>
+<ul>
+<li>It creates an array $a_0, a_1, \cdots, a_{n-1}$ of length $n$. All the elements are initialized to $0$.</li>
+</ul>
+<p><strong><h4 class="doc-keyword">Constraints</h4></strong></p>
+<ul>
+<li><code>T</code> is <code>int</code>, <code>uint</code>, <code>ll</code>, <code>ull</code>, or <code>modint</code></li>
+<li>$0 \leq n \leq 10^8$</li>
+</ul>
+<p><strong><h4 class="doc-keyword">Complexity</h4></strong></p>
+<ul>
+<li>$O(n)$</li>
+</ul>
+<h2 id="add">add</h2>
+<pre><code class="language-cpp">void fw.add(int p, T x)
+</code></pre>
+<p>It processes <code>a[p] += x</code>.</p>
+<p><strong><h4 class="doc-keyword">Constraints</h4></strong></p>
+<ul>
+<li>$0 \leq p &lt; n$</li>
+</ul>
+<p><strong><h4 class="doc-keyword">Complexity</h4></strong></p>
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2 id="sum">sum</h2>
+<pre><code class="language-cpp">T fw.sum(int l, int r)
+</code></pre>
+<p>It returns <code>a[l] + a[l + 1] + ... + a[r - 1]</code>.
+If <code>T</code> is integer type(<code>int</code>, <code>uint</code>, <code>ll</code>, or <code>ull</code>), it returns the answer in $\bmod 2^{\mathrm{bit}}$, if overflowed.</p>
+<p><strong><h4 class="doc-keyword">Constraints</h4></strong></p>
+<ul>
+<li>$0 \leq l \leq r \leq n$</li>
+</ul>
+<p><strong><h4 class="doc-keyword">Complexity</h4></strong></p>
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<p class="example-caption">AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_b">https://atcoder.jp/contests/practice2/tasks/practice2_b</a></p>
+<div class="sample-code">import atcoder/header
+import atcoder/fenwicktree
+
+let n, q = nextInt()
+var fw = init_fenwick_tree[int](n)
+
+for i in 0..&lt;n:
+  let a = nextInt()
+  fw.add(i, a)
+
+for i in 0..&lt;q:
+  let t = nextInt()
+  if t == 0:
+    let p, x = nextInt()
+    fw.add(p, x)
+  else:
+    let l, r = nextInt()
+    echo fw.sum(l..&lt;r)</div>
+  </main>
+</body>
+</html>

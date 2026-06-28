@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AC(AtCoder) Library Document</title>
+  <link rel="stylesheet" href="lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="index.html">
+      <img class="site-logo" src="lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="acatcoder-library-document">AC(AtCoder) Library Document</h1>
+<h2 id="how-to-install">How to Install</h2>
+<ul>
+<li>There is <code>atcoder</code> folder in the <code>ac-library</code> folder, after extracting the zip file.</li>
+<li>With g++, you can compile by <code>g++ main.cpp -std=c++14 -I .</code> with putting <code>atcoder</code> folder on the same place as <code>main.cpp</code>.</li>
+<li>You should compile with <code>-std=c++14</code> or <code>-std=c++17</code>.</li>
+<li>See <a href="./appendix.html">Appendix</a> for further details.</li>
+</ul>
+<h2 id="note">Note</h2>
+<ul>
+<li>The behavior is undefined if the input does not match the constraints.</li>
+<li>For simplicity, we abbreviate the types as follows.</li>
+<li><code>unsigned int</code> → <code>uint</code></li>
+<li><code>long long</code> → <code>ll</code></li>
+<li><code>unsigned long long</code> → <code>ull</code></li>
+<li>$0^0=1$.</li>
+<li>Multiple edges and self-loops are allowed unless specified.</li>
+</ul>
+<h2 id="list">List</h2>
+<p><code>#include &lt;atcoder/all&gt;</code> : include everything</p>
+<h3 id="data-structures">Data Structures</h3>
+<ul>
+<li><a href="./fenwicktree.html"><code>#include &lt;atcoder/fenwicktree&gt;</code></a></li>
+<li><a href="./segtree.html"><code>#include &lt;atcoder/segtree&gt;</code></a></li>
+<li><a href="./lazysegtree.html"><code>#include &lt;atcoder/lazysegtree&gt;</code></a></li>
+<li><a href="./string.html"><code>#include &lt;atcoder/string&gt;</code></a></li>
+</ul>
+<h3 id="math">Math</h3>
+<ul>
+<li><a href="./math.html"><code>#include &lt;atcoder/math&gt;</code></a></li>
+<li><a href="./convolution.html"><code>#include &lt;atcoder/convolution&gt;</code></a></li>
+<li>💻<a href="./modint.html"><code>#include &lt;atcoder/modint&gt;</code></a></li>
+</ul>
+<h3 id="graphs">Graphs</h3>
+<ul>
+<li><a href="./dsu.html"><code>#include &lt;atcoder/dsu&gt;</code></a></li>
+<li><a href="./maxflow.html"><code>#include &lt;atcoder/maxflow&gt;</code></a></li>
+<li><a href="./mincostflow.html"><code>#include &lt;atcoder/mincostflow&gt;</code></a></li>
+<li><a href="./scc.html"><code>#include &lt;atcoder/scc&gt;</code></a></li>
+<li><a href="./twosat.html"><code>#include &lt;atcoder/twosat&gt;</code></a></li>
+</ul>
+<h2 id="appendix">Appendix</h2>
+<ul>
+<li><a href="./appendix.html">Appendix / FAQ</a></li>
+</ul>
+<h2 id="test">Test</h2>
+<ul>
+<li>You can test this Library <a href="https://atcoder.jp/contests/practice2?lang=en">here</a>.</li>
+</ul>
+<h2 id="license">License</h2>
+<p>The header files in <code>atcoder</code> folder are licensed under a CC0 license. See <code>atcoder/LICENSE</code> for further details.</p>
+  </main>
+</body>
+</html>

@@ -1,74 +1,90 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-    <meta charset="UTF-8">
-    <!-- Uikit -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
-    <!-- Katex -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
-        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
-        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
-        crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
-        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
-    <!-- Ace editor-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>強連結な向き付け</title>
+  <link rel="stylesheet" href="../../lib/main.css">
 
-    <style>
-        h2 {
-            border-bottom:1px solid #CCC;
-        }
-    </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            renderMathInElement(
-                document.body, {
-                delimiters: [
-                    { left: "$$", right: "$$", display: true },
-                    { left: "$", right: "$", display: false }],
-                ignoredTags: [],
-            })
-            for (e of document.getElementsByClassName("sample-code")) {
-                var editor = ace.edit(e);
-                editor.setOption("maxLines", "Infinity");
-                editor.setReadOnly(true);
-                editor.getSession().setMode("ace/mode/nim");                
-            }
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
         });
-    </script>
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
-    <div class="uk-navbar-container" uk-navbar>
-        <div class="uk-navbar-left">
-            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
-        </div>
-    </div>
-    <section class="uk-section">
-        <div class="uk-container">
-            <h1>強連結な向き付け</h1>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="_1">強連結な向き付け</h1>
 <p>橋のない無向グラフ$G$とその辺のリスト$es$が与えられたときに、$G$を強連結有向グラフとなるような$es$の向きを返す。</p>
-<pre><code class="nim">var d = strong_orientation(g:Graph, es:Edges[T, U]):seq[int]
+<pre><code class="language-nim">var d = strong_orientation(g:Graph, es:Edges[T, U]):seq[int]
 </code></pre>
-
 <p>$G$の各辺の重みは対応する$es$のインデックス(0-based)の値を入れておく。
 $i$番目の戻り値は$d[i]$が1ならば$es[i]$と同じ向き、$-1$ならば$es[i]$と逆向きを表す。</p>
 <p>本アルゴリズムを利用する問題としてはARC111Dを参照。</p>
-<p><strong>制約</strong></p>
+<p><strong><h4 class="doc-keyword">制約</h4></strong></p>
 <ul>
 <li>$0 \leq n \leq 10^8$</li>
 </ul>
-<p><strong>計算量</strong></p>
+<p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
 <ul>
 <li>$O(n)$</li>
 </ul>
-        </div>
-    </section>
+  </main>
 </body>
-
 </html>

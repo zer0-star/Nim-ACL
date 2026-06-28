@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>形式的べき級数ライブラリ</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="_1">形式的べき級数ライブラリ</h1>
+<p>形式的べき級数を扱うライブラリです。加減乗除や逆元、exp, logなどが計算できます。
+形式的べき級数については<a href="https://trap.jp/post/1657/">https://trap.jp/post/1657/</a>を参照してください。</p>
+<h2 id="import">importのしかた</h2>
+<p>形式的べき級数ライブラリを使うためには畳み込みを指定する必要があります。</p>
+<pre><code class="language-nim">import atcoder/extra/math/ntt
+import atcoder/extra/math/formal_power_series
+</code></pre>
+<p>modint等の有限modを用いる場合は畳み込み用にnttを用います。</p>
+<pre><code class="language-nim">import atcoder/extra/math/fft
+import atcoder/extra/math/formal_power_series
+</code></pre>
+<p>float, Decimal等の浮動小数を用いる場合はFFTをimportします。(この使い方はatcoderで出現することが少なくあまり検証されていないかも)</p>
+<h2 id="_2">形式的べき級数の宣言</h2>
+<pre><code class="language-nim">var f = initFormalPowerSeries[T](n:int)
+</code></pre>
+<p>$T$型で$n$項の形式的べき級数を作成します。すべての項は$T(0)$で初期化されます。</p>
+<pre><code class="language-nim">var f = initFormalPowerSeries[T](a:seq[S] or array[S])
+</code></pre>
+<p>$T$型で配列(可変のseqまたは固定のarray)$a$に対応する形式的べき級数を作成します。つまり、$a=(a_1,a_2, \ldots ,a_n)$のときは
+$f = \sum_i=0^n a_ix^i$となります。</p>
+<h2 id="_3">加減乗除</h2>
+<pre><code class="language-nim">f, g:FormalPowerSeries[T]
+f += g
+f + g: FormalPowerSeries[T]
+f -= g
+f - g: FormalPowerSeries[T]
+f *= g
+f * g: FormalPowerSeries[T]
+f / g
+f /= g: FormalPowerSeries[T]
+</code></pre>
+<p>加減乗除が可能である。</p>
+  </main>
+</body>
+</html>

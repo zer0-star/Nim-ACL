@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>String</title>
+  <link rel="stylesheet" href="lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="index.html">
+      <img class="site-logo" src="lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="string">String</h1>
+<p>It contains string algorithms.</p>
+<p>Let <code>s</code> be a string.
+We denote the substring of <code>s</code> between $a$-th and $b - 1$-th character by <code>s[a..b)</code>.</p>
+<h2 id="suffix_array">suffix_array</h2>
+<pre><code class="language-cpp">(1) vector&lt;int&gt; suffix_array(string s)
+(2) vector&lt;int&gt; suffix_array&lt;T&gt;(vector&lt;T&gt; s)
+(3) vector&lt;int&gt; suffix_array(vector&lt;int&gt; s, int upper)
+</code></pre>
+<p>Given a string <code>s</code> of length $n$, it returns the suffix array of <code>s</code>.
+Here, the suffix array <code>sa</code> of <code>s</code> is a permutation of $0, \cdots, n-1$ such that <code>s[sa[i]..n) &lt; s[sa[i+1]..n)</code> holds for all $i = 0,1, \cdots ,n-2$.</p>
+<p><strong><h4 class="doc-keyword">Constraints</h4></strong></p>
+<ul>
+<li>$0 \leq n \leq 10^8$</li>
+<li>(2) <code>T</code> is <code>int</code>, <code>uint</code>, <code>ll</code>, or <code>ull</code>.</li>
+<li>(3) $0 \leq \mathrm{upper} \leq 10^8$</li>
+<li>(3) $0 \leq x \leq \mathrm{upper}$ for all elements $x$ of $s$.</li>
+</ul>
+<p>Complexity</p>
+<ul>
+<li>(1) $O(n)$-time</li>
+<li>(2) $O(n \log n)$-time, $O(n)$-space</li>
+<li>(3) $O(n + \mathrm{upper})$-time</li>
+</ul>
+<h2 id="lcp_array">lcp_array</h2>
+<pre><code class="language-cpp">(1) vector&lt;int&gt; lcp_array(string s, vector&lt;int&gt; sa)
+(2) vector&lt;int&gt; lcp_array&lt;T&gt;(vector&lt;T&gt; s, vector&lt;int&gt; sa)
+</code></pre>
+<p>Given a string <code>s</code> of length $n$, it returns the LCP array of <code>s</code>.
+Here, the LCP array of <code>s</code> is the array of length $n-1$, such that the $i$-th element is the length of the LCP (Longest Common Prefix) of <code>s[sa[i]..n)</code> and <code>s[sa[i+1]..n)</code>.</p>
+<p><strong><h4 class="doc-keyword">Constraints</h4></strong></p>
+<ul>
+<li><code>sa</code> is the suffix array of <code>s</code>.</li>
+<li>$1 \leq n \leq 10^8$</li>
+<li>(2): <code>T</code> is <code>int</code>, <code>uint</code>, <code>ll</code>, or <code>ull</code>.</li>
+</ul>
+<p><strong><h4 class="doc-keyword">Complexity</h4></strong></p>
+<ul>
+<li>$O(n)$</li>
+</ul>
+<h2 id="z_algorithm">z_algorithm</h2>
+<pre><code class="language-cpp">(1) vector&lt;int&gt; z_algorithm(string s)
+(2) vector&lt;int&gt; z_algorithm&lt;T&gt;(vector&lt;T&gt; s)
+</code></pre>
+<p>Given a string of length $n$, it returns the array of length $n$, such that the $i$-th element is the length of the LCP (Longest Common Prefix) of <code>s[0..n)</code> and <code>s[i..n)</code>.</p>
+<p><strong><h4 class="doc-keyword">Constraints</h4></strong></p>
+<ul>
+<li>$0 \leq n \leq 10^8$</li>
+<li>(2): <code>T</code> is <code>int</code>, <code>uint</code>, <code>ll</code>, or <code>ull</code></li>
+</ul>
+<p><strong><h4 class="doc-keyword">Complexity</h4></strong></p>
+<ul>
+<li>$O(n)$</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<div class="sample-code">import atcoder/string
+
+let s = &quot;missisippi&quot;
+let sa = suffix_array(s)
+
+let answer = [
+  &quot;i&quot;,
+  &quot;ippi&quot;,
+  &quot;isippi&quot;,
+  &quot;issisippi&quot;,
+  &quot;missisippi&quot;,
+  &quot;pi&quot;,
+  &quot;ppi&quot;,
+  &quot;sippi&quot;,
+  &quot;sisippi&quot;,
+  &quot;ssisippi&quot;,
+]
+
+assert sa.len == answer.len
+for i in 0..&lt;sa.len:
+  assert s[sa[i]..^1] == answer[i]</div>
+
+<p class="example-caption">AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_i">https://atcoder.jp/contests/practice2/tasks/practice2_i</a></p>
+<div class="sample-code">include atcoder/header
+import atcoder/string
+
+let
+  s = nextString()
+  sa = suffix_array(s)
+var answer = s.len * (s.len + 1) div 2
+for x in lcp_array(s, sa):
+  answer -= x
+echo answer</div>
+  </main>
+</body>
+</html>
