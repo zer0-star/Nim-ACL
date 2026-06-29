@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>WeightedUnionFind</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="weightedunionfind">WeightedUnionFind</h1>
+<p>重み付き Union-Find です。</p>
+<p>通常の Union-Find と同じように集合を併合しながら、各頂点にポテンシャル（重み）を持たせ、同じ連結成分内の2頂点 <code>x</code>, <code>y</code> について</p>
+<p>$$
+\mathrm{weight}(y) - \mathrm{weight}(x)
+$$</p>
+<p>を求められます。</p>
+<p>差分制約、座標差、距離差、累積値の整合性判定などに使えます。</p>
+<h2 id="_1">コンストラクタ</h2>
+<pre><code>var uf = initWeightedUnionFind[T](n:int)
+</code></pre>
+<p>長さ <code>n</code> の重み付き Union-Find を作ります。</p>
+<p>型 <code>T</code> は重みの型です。<code>int</code>, <code>float</code>, <code>modint</code> など、加算・減算・符号反転ができる型を想定しています。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= n</code></li>
+<li><code>T</code> は <code>+</code>, <code>-</code>, <code>+=</code>, <code>-=</code>, <code>* -1</code> が使える型</li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(n)$</li>
+</ul>
+<h2 id="unionset">unionSet</h2>
+<pre><code>uf.unionSet(x:int, y:int, w:T):bool
+</code></pre>
+<p>制約</p>
+<p>$$
+\mathrm{weight}(y) - \mathrm{weight}(x) = w
+$$</p>
+<p>を追加し、<code>x</code> と <code>y</code> が属する集合を併合します。</p>
+<p>すでに <code>x</code> と <code>y</code> が同じ集合に属している場合は併合せず、<code>false</code> を返します。異なる集合だった場合は併合し、<code>true</code> を返します。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= x &lt; n</code></li>
+<li><code>0 &lt;= y &lt; n</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>ならし $O(\alpha(n))$</li>
+</ul>
+<h2 id="same">same</h2>
+<pre><code>uf.same(x:int, y:int):bool
+</code></pre>
+<p><code>x</code> と <code>y</code> が同じ集合に属しているかを返します。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= x &lt; n</code></li>
+<li><code>0 &lt;= y &lt; n</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>ならし $O(\alpha(n))$</li>
+</ul>
+<h2 id="diff">diff</h2>
+<pre><code>uf.diff(x:int, y:int):T
+</code></pre>
+<p><code>x</code> と <code>y</code> が同じ集合に属しているとき、</p>
+<p>$$
+\mathrm{weight}(y) - \mathrm{weight}(x)
+$$</p>
+<p>を返します。</p>
+<p><code>x</code> と <code>y</code> が異なる集合に属している場合の値は意味を持ちません。必要なら先に <code>same(x, y)</code> を確認してください。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= x &lt; n</code></li>
+<li><code>0 &lt;= y &lt; n</code></li>
+<li><code>x</code> と <code>y</code> は同じ集合に属している</li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>ならし $O(\alpha(n))$</li>
+</ul>
+<h2 id="weight">weight</h2>
+<pre><code>uf.weight(x:int):T
+</code></pre>
+<p>頂点 <code>x</code> の現在のポテンシャルを返します。</p>
+<p>ポテンシャルの絶対値そのものには任意性があります。通常は <code>diff(x, y)</code> による差分を使います。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= x &lt; n</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>ならし $O(\alpha(n))$</li>
+</ul>
+<h2 id="root">root</h2>
+<pre><code>uf.root(x:int):int
+</code></pre>
+<p><code>x</code> が属する集合の代表元を返します。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= x &lt; n</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>ならし $O(\alpha(n))$</li>
+</ul>
+<h2 id="size">size</h2>
+<pre><code>uf.size(x:int):int
+</code></pre>
+<p><code>x</code> が属する集合の大きさを返します。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= x &lt; n</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>ならし $O(\alpha(n))$</li>
+</ul>
+<h2 id="groups">groups</h2>
+<pre><code>uf.groups():seq[seq[int]]
+</code></pre>
+<p>現在の連結成分を列挙します。</p>
+<p>返り値は、各連結成分に属する頂点番号の列です。</p>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(n \alpha(n))$</li>
+</ul>
+<h2 id="_2">使用例</h2>
+<pre><code>import atcoder/extra/structure/weighted_union_find
+
+var uf = initWeightedUnionFind[int](5)
+
+discard uf.unionSet(0, 1, 2)
+discard uf.unionSet(1, 2, 3)
+
+doAssert uf.same(0, 2)
+doAssert uf.diff(0, 1) == 2
+doAssert uf.diff(0, 2) == 5
+doAssert uf.diff(2, 0) == -5
+
+discard uf.unionSet(3, 4, -10)
+
+doAssert uf.diff(3, 4) == -10
+doAssert uf.size(0) == 3
+doAssert uf.size(3) == 2
+</code></pre>
+<h2 id="_3">注意</h2>
+<p><code>unionSet(x, y, w)</code> の <code>w</code> は</p>
+<p>$$
+\mathrm{weight}(y) - \mathrm{weight}(x)
+$$</p>
+<p>を意味します。</p>
+<p>逆向きの制約を追加したい場合は、<code>unionSet(y, x, -w)</code> とします。</p>
+<p>同じ集合内にすでに存在する制約と矛盾するかどうかを判定したい場合は、先に <code>same(x, y)</code> を確認してから <code>diff(x, y)</code> と比較します。</p>
+<pre><code>if uf.same(x, y):
+  if uf.diff(x, y) != w:
+    echo "inconsistent"
+else:
+  discard uf.unionSet(x, y, w)
+</code></pre>
+  </main>
+</body>
+</html>
