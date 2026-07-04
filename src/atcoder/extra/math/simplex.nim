@@ -1,5 +1,5 @@
-when not declared ATCODER_SIMPLEX_HPP:
-  const ATCODER_SIMPLEX_HPP* = 1
+when not declared ATCODER_EXTRA_MATH_SIMPLEX_HPP:
+  const ATCODER_EXTRA_MATH_SIMPLEX_HPP* = 1
   type TwoStageSimplexResult* = enum
     OPTIMAL, UNBOUNDED, NOSOLUTION, UNKNOWN
   import std/sequtils, std/math

@@ -1,3 +1,7 @@
+discard """
+  cmd: "nim cpp -r $file"
+"""
+
 import std/unittest, std/sugar
 
 import atcoder/modint

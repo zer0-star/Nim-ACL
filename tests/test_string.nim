@@ -1,3 +1,7 @@
+discard """
+  cmd: "nim cpp -r $file"
+"""
+
 import std/unittest
 import atcoder/string as string_lib
 import std/sequtils, std/algorithm

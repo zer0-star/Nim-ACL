@@ -1,5 +1,5 @@
-when not declared ATCODER_ROLLING_HASH_HPP:
-  const ATCODER_ROLLING_HASH_HPP* = 1
+when not declared ATCODER_EXTRA_STRING_ROLLING_HASH_OLD_HPP:
+  const ATCODER_EXTRA_STRING_ROLLING_HASH_OLD_HPP* = 1
   import std/sequtils
   import atcoder/rangeutils
   

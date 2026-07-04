@@ -1,6 +1,6 @@
 #when false:
-when not declared ATCODER_SIMPLEX_HPP:
-  const ATCODER_SIMPLEX_HPP* = 1
+when not declared ATCODER_EXTRA_MATH_SIMPLEX_OLD_HPP:
+  const ATCODER_EXTRA_MATH_SIMPLEX_OLD_HPP* = 1
   import atcoder/extra/math/matrix
 
   const EPS = 1e-8

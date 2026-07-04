@@ -1,5 +1,5 @@
-when not declared ATCODER_STATIC_VAR_HPP:
-  const ATCODER_STATIC_VAR_HPP* = 1
+when not declared ATCODER_EXTRA_OTHER_STATIC_VAR_HPP:
+  const ATCODER_EXTRA_OTHER_STATIC_VAR_HPP* = 1
   import std/macros, std/strformat
   macro staticVar*(T:typedesc, body: untyped) =
     var s = ""

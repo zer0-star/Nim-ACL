@@ -1,3 +1,7 @@
+discard """
+  cmd: "nim cpp -r $file"
+"""
+
 import atcoder/lazysegtree
 import atcoder/extra/structure/universal_segtree
 

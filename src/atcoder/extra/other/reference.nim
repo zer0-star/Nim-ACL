@@ -1,5 +1,5 @@
-when not declared ATCODER_REFERENCE_HPP:
-  const ATCODER_REFERENCE_HPP* = 1
+when not declared ATCODER_EXTRA_OTHER_REFERENCE_HPP:
+  const ATCODER_EXTRA_OTHER_REFERENCE_HPP* = 1
   import std/macros, std/strformat
 
   template byaddr*(lhs, typ, ex) =

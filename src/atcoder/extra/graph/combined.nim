@@ -6,15 +6,15 @@ Please use Nim-ACL
 Please use Nim-ACL
 
 
-when not declared ATCODER_MAXFLOW_LOWERBOUND_HPP:
-  const ATCODER_MAXFLOW_LOWERBOUND_HPP* = 1
+when not declared ATCODER_EXTRA_GRAPH_COMBINED_HPP:
+  const ATCODER_EXTRA_GRAPH_COMBINED_HPP* = 1
   #[ import atcoder/maxflow ]#
-  when not declared ATCODER_MAXFLOW_HPP:
-    const ATCODER_MAXFLOW_HPP* = 1
+  when not declared ATCODER_EXTRA_GRAPH_COMBINED_HPP:
+    const ATCODER_EXTRA_GRAPH_COMBINED_HPP* = 1
     
     #[ import atcoder/internal_queue ]#
-    when not declared ATCODER_INTERNAL_QUEUE_HPP:
-      const ATCODER_INTERNAL_QUEUE_HPP* = 1
+    when not declared ATCODER_EXTRA_GRAPH_COMBINED_HPP:
+      const ATCODER_EXTRA_GRAPH_COMBINED_HPP* = 1
     
       type simple_queue[T] = object
         payload:seq[T]

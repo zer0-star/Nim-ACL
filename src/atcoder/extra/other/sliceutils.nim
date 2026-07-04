@@ -1,5 +1,5 @@
-when not declared ATCODER_SLICEUTILS_HPP:
-  const ATCODER_SLICEUTILS_HPP* = 1
+when not declared ATCODER_EXTRA_OTHER_SLICEUTILS_HPP:
+  const ATCODER_EXTRA_OTHER_SLICEUTILS_HPP* = 1
   proc index*[T](a:openArray[T]):Slice[int] =
     a.low..a.high
   type ReversedSlice[T] = distinct Slice[T]

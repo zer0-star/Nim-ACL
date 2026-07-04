@@ -1,5 +1,5 @@
-when not declared ATCODER_DEBUG_HPP:
-  const ATCODER_DEBUG_HPP* = 1
+when not declared ATCODER_EXTRA_OTHER_DEBUG_HPP:
+  const ATCODER_EXTRA_OTHER_DEBUG_HPP* = 1
   import macros, strformat, terminal, strutils
   import atcoder/extra/other/inf
 

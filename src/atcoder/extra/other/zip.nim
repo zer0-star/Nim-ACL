@@ -1,5 +1,5 @@
-when not declared ATCODER_ZIP_HPP:
-  const ATCODER_ZIP_HPP* = 1
+when not declared ATCODER_EXTRA_OTHER_ZIP_HPP:
+  const ATCODER_EXTRA_OTHER_ZIP_HPP* = 1
   import macros
 
   macro zip*(v:varargs[untyped]):untyped =

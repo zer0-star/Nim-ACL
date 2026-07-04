@@ -1,3 +1,7 @@
+discard """
+  cmd: "nim cpp -r $file"
+"""
+
 import atcoder/modint as modint_lib
 import std/math
 import std/sequtils

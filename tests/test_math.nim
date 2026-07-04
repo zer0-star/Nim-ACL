@@ -1,3 +1,7 @@
+discard """
+  cmd: "nim cpp -r $file"
+"""
+
 import unittest
 import atcoder/math
 import std/math as math_lib

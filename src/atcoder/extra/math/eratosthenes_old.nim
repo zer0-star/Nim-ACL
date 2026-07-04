@@ -1,5 +1,5 @@
-when not declared ATCODER_ERATOSTHENES_HPP:
-  const ATCODER_ERATOSTHENES_HPP* = 1
+when not declared ATCODER_EXTRA_MATH_ERATOSTHENES_OLD_HPP:
+  const ATCODER_EXTRA_MATH_ERATOSTHENES_OLD_HPP* = 1
   type Eratosthenes* = object
     pdiv:seq[int]
   

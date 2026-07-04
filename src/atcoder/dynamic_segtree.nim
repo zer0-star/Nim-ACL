@@ -1,5 +1,5 @@
-when not declared ATCODER_SEGTREE_HPP:
-  const ATCODER_SEGTREE_HPP* = 1
+when not declared ATCODER_DYNAMIC_SEGTREE_HPP:
+  const ATCODER_DYNAMIC_SEGTREE_HPP* = 1
   import atcoder/internal_bit
   import std/sugar, std/sequtils
 

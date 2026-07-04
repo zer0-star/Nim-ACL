@@ -1,5 +1,5 @@
-when not declared ATCODER_MULTIPOINT_EVALUATION_FAST_HPP:
-  const ATCODER_MULTIPOINT_EVALUATION_FAST_HPP* = 1
+when not declared ATCODER_EXTRA_MATH_MULTIPOINT_EVALUATION_HPP:
+  const ATCODER_EXTRA_MATH_MULTIPOINT_EVALUATION_HPP* = 1
   import atcoder/extra/math/formal_power_series
   import atcoder/extra/math/subproduct_tree
   proc multipointEvaluation*[T](f: FormalPowerSeries[T], xs: seq[T]): seq[T] =

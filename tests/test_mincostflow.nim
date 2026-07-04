@@ -1,3 +1,7 @@
+discard """
+  cmd: "nim cpp -r $file"
+"""
+
 import std/unittest
 import atcoder/mincostflow, atcoder/maxflow
 import "../test/utils/random.nim"

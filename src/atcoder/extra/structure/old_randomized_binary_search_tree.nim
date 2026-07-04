@@ -1,5 +1,5 @@
-when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
-  const ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP* = 1
+when not declared ATCODER_EXTRA_STRUCTURE_OLD_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
+  const ATCODER_EXTRA_STRUCTURE_OLD_RANDOMIZED_BINARY_SEARCH_TREE_HPP* = 1
   {.push inline.}
   import std/sugar, std/random, atcoder/rangeutils
   type RBSTNode*[D, L, useSum] = ref object

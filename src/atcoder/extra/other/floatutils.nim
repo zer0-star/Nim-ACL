@@ -1,5 +1,5 @@
-when not declared ATCODER_FLOAT_UTILS_HPP:
-  const ATCODER_FLOAT_UTILS_HPP* = 1
+when not declared ATCODER_EXTRA_OTHER_FLOATUTILS_HPP:
+  const ATCODER_EXTRA_OTHER_FLOATUTILS_HPP* = 1
   import std/math as math_lib_floatutils, std/strutils
   import atcoder/element_concepts
   import atcoder/extra/other/static_var

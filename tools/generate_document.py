@@ -81,13 +81,10 @@ def load_problem_metadata() -> dict[str, dict[str, str]]:
 
     def walk(obj: Any, path: list[str]) -> None:
         if isinstance(obj, dict):
-            # If this table has a URL, treat the current path as a candidate key.
             url = obj.get("url") or obj.get("problem") or obj.get("link")
             if isinstance(url, str) and path:
                 key = normalize_key(path[-1])
                 result.setdefault(key, {})["url"] = url
-
-                # Also support example_xxx and full dotted paths.
                 result.setdefault(normalize_key(".".join(path)), {})["url"] = url
                 result.setdefault(normalize_key(f"example_{path[-1]}"), {})["url"] = url
 
@@ -96,7 +93,6 @@ def load_problem_metadata() -> dict[str, dict[str, str]]:
 
     walk(data, [])
 
-    # Also support flat values such as segtree_practice = "https://..."
     flat = flatten_toml(data)
     for k, v in flat.items():
         if v.startswith("http://") or v.startswith("https://"):
@@ -169,21 +165,22 @@ def render_example(name: str, lang: str) -> str:
 
     code = path.read_text(encoding="utf-8")
     code = strip_example_metadata(code)
-
     escaped_code = html.escape(code)
 
-    url = example_url_for(file_key, path) if "example_url_for" in globals() else None
+    url = example_url_for(file_key, path)
     if url:
         escaped_url = html.escape(url)
         caption = (
             f'<p class="example-caption">'
             f'AC code of <a href="{escaped_url}">{escaped_url}</a>'
-            f'</p>'
+            f'</p>\n'
         )
     else:
         caption = ""
 
     return f'{caption}<div class="sample-code">{escaped_code}</div>'
+
+
 def replace_placeholders(text: str, keywords: dict[str, str], lang: str) -> str:
     fixed = default_keyword_replacements(lang)
 

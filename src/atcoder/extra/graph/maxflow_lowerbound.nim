@@ -1,5 +1,5 @@
-when not declared ATCODER_MAXFLOW_LOWERBOUND_HPP:
-  const ATCODER_MAXFLOW_LOWERBOUND_HPP* = 1
+when not declared ATCODER_EXTRA_GRAPH_MAXFLOW_LOWERBOUND_HPP:
+  const ATCODER_EXTRA_GRAPH_MAXFLOW_LOWERBOUND_HPP* = 1
   import atcoder/maxflow
   import std/options
   

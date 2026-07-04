@@ -1,5 +1,5 @@
-when not declared ATCODER_LAZYSEGTREE_HPP:
-  const ATCODER_LAZYSEGTREE_HPP* = 1
+when not declared ATCODER_EXTRA_STRUCTURE_UNIVERSAL_SEGTREE_BACKUP_HPP:
+  const ATCODER_EXTRA_STRUCTURE_UNIVERSAL_SEGTREE_BACKUP_HPP* = 1
   
   import std/sugar, std/sequtils, std/bitops
   import atcoder/internal_bit

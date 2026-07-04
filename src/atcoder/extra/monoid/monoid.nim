@@ -1,5 +1,5 @@
-when not declared ATCODER_MONOID_HPP:
-  const ATCODER_MONOID_HPP* = 1
+when not declared ATCODER_EXTRA_MONOID_MONOID_HPP:
+  const ATCODER_EXTRA_MONOID_MONOID_HPP* = 1
 
   type Monoid* = concept C, type T
     type E = T.value_type()

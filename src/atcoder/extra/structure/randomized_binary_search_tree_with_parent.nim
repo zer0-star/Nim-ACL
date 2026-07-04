@@ -1,6 +1,6 @@
-when not declared ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
+when not declared ATCODER_EXTRA_STRUCTURE_RANDOMIZED_BINARY_SEARCH_TREE_WITH_PARENT_HPP:
   {.experimental: "codeReordering".}
-  const ATCODER_EXTRA_RANDOMIZED_BINARY_SEARCH_TREE_HPP* = 1
+  const ATCODER_EXTRA_STRUCTURE_RANDOMIZED_BINARY_SEARCH_TREE_WITH_PARENT_HPP* = 1
   {.push inline.}
   import std/sugar, std/random, atcoder/rangeutils, std/strutils
   include atcoder/extra/structure/binary_tree_utils

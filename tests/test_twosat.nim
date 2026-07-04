@@ -1,3 +1,7 @@
+discard """
+  cmd: "nim cpp -r $file"
+"""
+
 import atcoder/twosat
 import std/unittest
 import std/random

@@ -1,5 +1,5 @@
-when not declared ATCODER_TRIE_HPP:
-  const ATCODER_TRIE_HPP* = 1
+when not declared ATCODER_EXTRA_STRUCTURE_TRIE_HPP:
+  const ATCODER_EXTRA_STRUCTURE_TRIE_HPP* = 1
   import std/algorithm
   type TrieNode*[char_size:static[int]] = object
     nxt*: array[char_size, int]

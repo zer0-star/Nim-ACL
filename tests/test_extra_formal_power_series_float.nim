@@ -1,3 +1,7 @@
+discard """
+  cmd: "nim cpp -r $file"
+"""
+
 import std/unittest
 import atcoder/extra/math/fft
 import atcoder/element_concepts

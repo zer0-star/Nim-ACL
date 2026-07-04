@@ -1,5 +1,5 @@
-when not declared ATCODER_SEGTREE_2D_HPP:
-  const ATCODER_SEGTREE_2D_HPP* = 1
+when not declared ATCODER_EXTRA_STRUCTURE_SEGTREE_2D_HPP:
+  const ATCODER_EXTRA_STRUCTURE_SEGTREE_2D_HPP* = 1
   import atcoder/segtree
   type SegTree2D*[S; SegTree] = object
     N2: int

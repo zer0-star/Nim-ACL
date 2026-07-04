@@ -6,8 +6,8 @@ Please use Nim-ACL
 Please use Nim-ACL
 
 
-when not declared ATCODER_TRIE_HPP:
-  const ATCODER_TRIE_HPP* = 1
+when not declared ATCODER_EXTRA_STRUCTURE_COMBINED_HPP:
+  const ATCODER_EXTRA_STRUCTURE_COMBINED_HPP* = 1
   import std/algorithm
   type TrieNode*[char_size:static[int]] = object
     nxt: array[char_size, int]
@@ -67,8 +67,8 @@ when not declared ATCODER_TRIE_HPP:
     return self.nodes[0].exist
 
 #[ include lib/header/chaemon_header ]#
-when not declared ATCODER_CHAEMON_HEADER_HPP:
-  const ATCODER_CHAEMON_HEADER_HPP* = 1
+when not declared ATCODER_EXTRA_STRUCTURE_COMBINED_HPP:
+  const ATCODER_EXTRA_STRUCTURE_COMBINED_HPP* = 1
 
   {.hints:off warnings:off assertions:on optimization:speed.}
   when declared(DO_CHECK):
@@ -95,8 +95,8 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   import std/streams as streams_lib
 
   #[ import atcoder/extra/other/internal_sugar ]#
-  when not declared ATCODER_INTERNAL_SUGAR_HPP:
-    const ATCODER_INTERNAL_SUGAR_HPP* = 1
+  when not declared ATCODER_EXTRA_STRUCTURE_COMBINED_HPP:
+    const ATCODER_EXTRA_STRUCTURE_COMBINED_HPP* = 1
     import std/macros
     import std/typetraits
     
@@ -256,8 +256,8 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
       for arg in locals: result.add(arg)
     
     #[ import atcoder/extra/other/internal_underscored_calls ]#
-    when not declared ATCODER_INTERNAL_UNDERSCORED_CALLS_HPP:
-      const ATCODER_INTERNAL_UNDERSCORED_CALLS_HPP* = 1
+    when not declared ATCODER_EXTRA_STRUCTURE_COMBINED_HPP:
+      const ATCODER_EXTRA_STRUCTURE_COMBINED_HPP* = 1
       import macros
     
       proc underscoredCall(n, arg0: NimNode): NimNode =
@@ -362,8 +362,8 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
     discard
 #  import std/sugar
   #[ import atcoder/extra/other/reader ]#
-  when not declared ATCODER_READER_HPP:
-    const ATCODER_READER_HPP* = 1
+  when not declared ATCODER_EXTRA_STRUCTURE_COMBINED_HPP:
+    const ATCODER_EXTRA_STRUCTURE_COMBINED_HPP* = 1
     import streams
     import strutils
     import sequtils
@@ -403,8 +403,8 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
       discard print0(@x, sep = " ")
     discard
   #[ import atcoder/extra/other/sliceutils ]#
-  when not declared ATCODER_SLICEUTILS_HPP:
-    const ATCODER_SLICEUTILS_HPP* = 1
+  when not declared ATCODER_EXTRA_STRUCTURE_COMBINED_HPP:
+    const ATCODER_EXTRA_STRUCTURE_COMBINED_HPP* = 1
     proc index*[T](a:openArray[T]):Slice[int] =
       a.low..a.high
     type ReversedSlice[T] = distinct Slice[T]
@@ -458,10 +458,10 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
         j.inc
     discard
   #[ import atcoder/extra/other/assignment_operator ]#
-  when not declared ATCODER_ASSIGNMENT_OPERATOR_HPP:
+  when not declared ATCODER_EXTRA_STRUCTURE_COMBINED_HPP:
     import std/macros
     import std/strformat
-    const ATCODER_ASSIGNMENT_OPERATOR_HPP* = 1
+    const ATCODER_EXTRA_STRUCTURE_COMBINED_HPP* = 1
     template `>?=`*(x,y:typed):void = x.max= y
     template `<?=`*(x,y:typed):void = x.min= y
     proc `//`*[T](x,y:T):T = x div y
@@ -478,8 +478,8 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
     generateAssignmentOperator(`mod`, `div`, `and`, `or`, `xor`, `shr`, `shl`, `<<`, `>>`, max, min, `%`, `//`, `&`, `|`, `^`)
     discard
   #[ import atcoder/extra/other/inf ]#
-  when not declared ATCODER_INF_HPP:
-    const ATCODER_INF_HPP* = 1
+  when not declared ATCODER_EXTRA_STRUCTURE_COMBINED_HPP:
+    const ATCODER_EXTRA_STRUCTURE_COMBINED_HPP* = 1
     template inf*(T:typedesc): untyped = 
       when T is SomeFloat: T(Inf)
       elif T is SomeInteger: T.high div 2
@@ -506,8 +506,8 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
       result = max(-T.inf, result)
     discard
   #[ import atcoder/extra/other/warlus_operator ]#
-  when not declared ATCODER_CHAEMON_WARLUS_OPERATOR_HPP:
-    const ATCODER_CHAEMON_WARLUS_OPERATOR_HPP* = 1
+  when not declared ATCODER_EXTRA_STRUCTURE_COMBINED_HPP:
+    const ATCODER_EXTRA_STRUCTURE_COMBINED_HPP* = 1
     import macros
     proc discardableId*[T](x: T): T {.discardable.} = x
   
@@ -530,8 +530,8 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
           discardableId(`x`)
     discard
   #[ import atcoder/extra/other/seq_array_utils ]#
-  when not declared ATCODER_SEQ_ARRAY_UTILS:
-    const ATCODER_SEQ_ARRAY_UTILS* = 1
+  when not declared ATCODER_EXTRA_STRUCTURE_COMBINED_HPP:
+    const ATCODER_EXTRA_STRUCTURE_COMBINED_HPP* = 1
     import std/strformat
     import std/macros
     type SeqType = object
@@ -579,8 +579,8 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
       parseStmt(a)
     discard
   #[ include atcoder/extra/other/debug ]#
-  when not declared ATCODER_DEBUG_HPP:
-    const ATCODER_DEBUG_HPP* = 1
+  when not declared ATCODER_EXTRA_STRUCTURE_COMBINED_HPP:
+    const ATCODER_EXTRA_STRUCTURE_COMBINED_HPP* = 1
     import macros
     import strformat
     import terminal
@@ -610,8 +610,8 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
         debugImpl(n)
     discard
   #[ import atcoder/extra/other/reference ]#
-  when not declared ATCODER_REFERENCE_HPP:
-    const ATCODER_REFERENCE_HPP* = 1
+  when not declared ATCODER_EXTRA_STRUCTURE_COMBINED_HPP:
+    const ATCODER_EXTRA_STRUCTURE_COMBINED_HPP* = 1
     import std/macros
     import std/strformat
   
@@ -626,13 +626,13 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
       parseStmt(fmt"""byaddr({lhs.repr}, {rhs.repr}.type, {rhs.repr})""")
     discard
   #[ import atcoder/extra/other/floatutils ]#
-  when not declared ATCODER_FLOAT_UTILS_HPP:
-    const ATCODER_FLOAT_UTILS_HPP* = 1
+  when not declared ATCODER_EXTRA_STRUCTURE_COMBINED_HPP:
+    const ATCODER_EXTRA_STRUCTURE_COMBINED_HPP* = 1
     import std/math as math_lib_floatutils
     import std/strutils
     #[ import atcoder/element_concepts ]#
-    when not declared ATCODER_ELEMENT_CONCEPTS_HPP:
-      const ATCODER_ELEMENT_CONCEPTS_HPP* = 1
+    when not declared ATCODER_EXTRA_STRUCTURE_COMBINED_HPP:
+      const ATCODER_EXTRA_STRUCTURE_COMBINED_HPP* = 1
       proc inv*[T:SomeFloat](a:T):auto = T(1) / a
       proc init*(self:typedesc[SomeFloat], a:SomeNumber):auto = self(a)
       type AdditiveGroupElem* = concept x, y, type T
@@ -670,8 +670,8 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
         T(Inf)
       discard
     #[ import atcoder/extra/other/static_var ]#
-    when not declared ATCODER_STATIC_VAR_HPP:
-      const ATCODER_STATIC_VAR_HPP* = 1
+    when not declared ATCODER_EXTRA_STRUCTURE_COMBINED_HPP:
+      const ATCODER_EXTRA_STRUCTURE_COMBINED_HPP* = 1
       import std/macros
       import std/strformat
       macro staticVar*(T:typedesc, body: untyped) =
@@ -753,8 +753,8 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
     float32.initPrec()
     discard
   #[ import atcoder/extra/other/zip ]#
-  when not declared ATCODER_ZIP_HPP:
-    const ATCODER_ZIP_HPP* = 1
+  when not declared ATCODER_EXTRA_STRUCTURE_COMBINED_HPP:
+    const ATCODER_EXTRA_STRUCTURE_COMBINED_HPP* = 1
     import macros
   
     macro zip*(v:varargs[untyped]):untyped =
@@ -841,8 +841,8 @@ when not declared ATCODER_CHAEMON_HEADER_HPP:
   
     discard
   #[ import atcoder/extra/other/solve_proc ]#
-  when not declared ATCODER_SOLVEPROC_HPP:
-    const ATCODER_SOLVEPROC_HPP* = 1
+  when not declared ATCODER_EXTRA_STRUCTURE_COMBINED_HPP:
+    const ATCODER_EXTRA_STRUCTURE_COMBINED_HPP* = 1
     import std/macros
     import std/strformat
     import std/algorithm

@@ -1,5 +1,5 @@
-when not declared ATCODER_MODINT_HPP:
-  const ATCODER_MODINT_HPP* = 1
+when not declared ATCODER_MODINT_BACKUP_HPP:
+  const ATCODER_MODINT_BACKUP_HPP* = 1
 
   type
     StaticModInt*[M: static[int]] = distinct uint32

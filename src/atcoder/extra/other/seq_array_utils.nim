@@ -1,5 +1,5 @@
-when not declared ATCODER_SEQ_ARRAY_UTILS:
-  const ATCODER_SEQ_ARRAY_UTILS* = 1
+when not declared ATCODER_EXTRA_OTHER_SEQ_ARRAY_UTILS_HPP:
+  const ATCODER_EXTRA_OTHER_SEQ_ARRAY_UTILS_HPP* = 1
   import std/strformat, std/macros, std/strutils, std/sequtils
   type SeqType = object
   type ArrayType = object

@@ -1,5 +1,5 @@
-when not declared ATCODER_INF_HPP:
-  const ATCODER_INF_HPP* = 1
+when not declared ATCODER_EXTRA_OTHER_INF_HPP:
+  const ATCODER_EXTRA_OTHER_INF_HPP* = 1
   import sequtils
   template inf*(T: typedesc): untyped =
     when T is SomeFloat: T(Inf)

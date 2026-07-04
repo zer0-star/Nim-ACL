@@ -1,3 +1,7 @@
+discard """
+  cmd: "nim cpp -r $file"
+"""
+
 import atcoder/segtree
 import std/sugar, std/sequtils
 import unittest

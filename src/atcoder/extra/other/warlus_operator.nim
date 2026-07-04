@@ -1,5 +1,5 @@
-when not declared ATCODER_CHAEMON_WARLUS_OPERATOR_HPP:
-  const ATCODER_CHAEMON_WARLUS_OPERATOR_HPP* = 1
+when not declared ATCODER_EXTRA_OTHER_WARLUS_OPERATOR_HPP:
+  const ATCODER_EXTRA_OTHER_WARLUS_OPERATOR_HPP* = 1
   import macros
   proc discardableId*[T](x: T): T {.discardable.} = x
 

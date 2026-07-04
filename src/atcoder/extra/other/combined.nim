@@ -8,8 +8,8 @@ Please use Nim-ACL
 
 
 import macros;macro ImportExpand(s:untyped):untyped = parseStmt($s[2])
-when not declared ATCODER_SHADOWING_HPP:
-  const ATCODER_SHADOWING_HPP* = 1
+when not declared ATCODER_EXTRA_OTHER_COMBINED_HPP:
+  const ATCODER_EXTRA_OTHER_COMBINED_HPP* = 1
   import macros
   proc discardableId*[T](x: T): T {.discardable.} = x
 

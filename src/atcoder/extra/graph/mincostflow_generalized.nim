@@ -1,5 +1,5 @@
-when not declared ATCODER_MINCOSTFLOW_HPP:
-  const ATCODER_MINCOSTFLOW_HPP* = 1
+when not declared ATCODER_EXTRA_GRAPH_MINCOSTFLOW_GENERALIZED_HPP:
+  const ATCODER_EXTRA_GRAPH_MINCOSTFLOW_GENERALIZED_HPP* = 1
 
   import std/heapqueue, std/algorithm
   import atcoder/internal_csr, atcoder/internal_queue, atcoder/internal_heap

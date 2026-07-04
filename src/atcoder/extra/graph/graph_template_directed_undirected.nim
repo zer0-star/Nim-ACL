@@ -1,6 +1,6 @@
 # グラフ作るするときに最初から有向、無向グラフ指定するようにしたけど、割と不便なので採用するか考え中
-when not declared ATCODER_GRAPH_TEMPLATE_HPP:
-  const ATCODER_GRAPH_TEMPLATE_HPP* = 1
+when not declared ATCODER_EXTRA_GRAPH_GRAPH_TEMPLATE_DIRECTED_UNDIRECTED_HPP:
+  const ATCODER_EXTRA_GRAPH_GRAPH_TEMPLATE_DIRECTED_UNDIRECTED_HPP* = 1
   import std/sequtils
 
   type

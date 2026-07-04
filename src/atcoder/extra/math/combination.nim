@@ -1,5 +1,5 @@
-when not defined ATCODER_COMBINATION_HPP:
-  const ATCODER_COMBINATION_HPP* = 1
+when not declared ATCODER_EXTRA_MATH_COMBINATION_HPP:
+  const ATCODER_EXTRA_MATH_COMBINATION_HPP* = 1
   import atcoder/element_concepts
 
   type Combination*[T] = object

@@ -1,5 +1,5 @@
-when not declared ATCODER_SOLVEPROC_HPP:
-  const ATCODER_SOLVEPROC_HPP* = 1
+when not declared ATCODER_EXTRA_OTHER_SOLVE_PROC_HPP:
+  const ATCODER_EXTRA_OTHER_SOLVE_PROC_HPP* = 1
   import std/macros, std/strformat, std/algorithm, std/sequtils, std/streams
   import std/strutils
   import math

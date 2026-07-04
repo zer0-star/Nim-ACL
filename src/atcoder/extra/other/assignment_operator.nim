@@ -1,6 +1,6 @@
-when not declared ATCODER_ASSIGNMENT_OPERATOR_HPP:
+when not declared ATCODER_EXTRA_OTHER_ASSIGNMENT_OPERATOR_HPP:
   import std/macros, std/strformat
-  const ATCODER_ASSIGNMENT_OPERATOR_HPP* = 1
+  const ATCODER_EXTRA_OTHER_ASSIGNMENT_OPERATOR_HPP* = 1
   proc `max=`*[S, T](a: var S, b: T):bool {.discardable.} =
     return if a < b: a = b; true else: false
   proc `min=`*[S, T](a: var S, b: T):bool {.discardable.} =

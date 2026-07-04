@@ -1,5 +1,5 @@
-when not declared ATCODER_SET_MAP_HPP:
-  const ATCODER_SET_MAP_HPP* = 1
+when not declared ATCODER_EXTRA_STRUCTURE_SET_MAP_BY_RANDOMIZED_BINARY_SEARCH_TREE_HPP:
+  const ATCODER_EXTRA_STRUCTURE_SET_MAP_BY_RANDOMIZED_BINARY_SEARCH_TREE_HPP* = 1
   {.push discardable inline.}
 #  import atcoder/extra/structure/randomized_binary_search_tree
   import atcoder/extra/structure/randomized_binary_search_tree_with_parent

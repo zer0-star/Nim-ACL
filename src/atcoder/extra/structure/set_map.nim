@@ -1,5 +1,5 @@
-when not declared ATCODER_SET_MAP_HPP:
-  const ATCODER_SET_MAP_HPP* = 1
+when not declared ATCODER_EXTRA_STRUCTURE_SET_MAP_HPP:
+  const ATCODER_EXTRA_STRUCTURE_SET_MAP_HPP* = 1
   #type BinaryTreeType = enum
   #  RedBlack, 
   #  Splay, 

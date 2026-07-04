@@ -1,5 +1,5 @@
-when not declared ATCODER_READER_HPP:
-  const ATCODER_READER_HPP* = 1
+when not declared ATCODER_EXTRA_OTHER_READER_HPP:
+  const ATCODER_EXTRA_OTHER_READER_HPP* = 1
   import streams, strutils, sequtils
 #  proc scanf*(formatstr: cstring){.header: "<stdio.h>", varargs.}
   #proc getchar(): char {.header: "<stdio.h>", varargs.}

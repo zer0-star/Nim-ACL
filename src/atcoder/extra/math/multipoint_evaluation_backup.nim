@@ -1,5 +1,5 @@
-when not declared ATCODER_MULTIPOINT_EVALUATION_FAST_HPP:
-  const ATCODER_MULTIPOINT_EVALUATION_FAST_HPP* = 1
+when not declared ATCODER_EXTRA_MATH_MULTIPOINT_EVALUATION_BACKUP_HPP:
+  const ATCODER_EXTRA_MATH_MULTIPOINT_EVALUATION_BACKUP_HPP* = 1
   import atcoder/extra/math/ntt
   import atcoder/extra/math/formal_power_series
   import std/bitops, std/sequtils, std/algorithm

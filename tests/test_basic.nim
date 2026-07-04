@@ -1,3 +1,7 @@
+discard """
+  cmd: "nim cpp -r $file"
+"""
+
 #include <gtest/gtest.h>
 
 #include <atcoder/all>

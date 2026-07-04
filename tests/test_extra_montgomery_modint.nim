@@ -1,3 +1,7 @@
+discard """
+  cmd: "nim cpp -r $file"
+"""
+
 import atcoder/extra/math/modint_montgomery
 import std/unittest
 

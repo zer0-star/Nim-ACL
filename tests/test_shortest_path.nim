@@ -1,3 +1,7 @@
+discard """
+  cmd: "nim cpp --deepcopy:on -r $file"
+"""
+
 import std/unittest
 import std/random
 import std/sequtils

@@ -135,18 +135,16 @@ li {
   margin: 0.25em 0;
 }
 
-pre {
-  overflow-x: auto;
-  padding: 12px 14px;
-  border-radius: 4px;
-  background: var(--code-bg);
-  line-height: 1.45;
-}
-
-code {
+/* Inline code only: pink/red, like official AC Library docs. */
+p code,
+li code,
+td code,
+dd code,
+blockquote code {
+  color: #e83e8c;
+  background: #f8f8f8;
   padding: 0.15em 0.35em;
   border-radius: 3px;
-  background: var(--code-bg);
   font-family:
     ui-monospace,
     SFMono-Regular,
@@ -157,10 +155,32 @@ code {
   font-size: 0.92em;
 }
 
-pre code {
+/* Normal Markdown code blocks: no line numbers. */
+pre {
+  margin: 1em 0;
+  padding: 0.65em 0.85em;
+  border: 1px solid #e5e5e5;
+  border-radius: 2px;
+  background: #fff;
+  overflow-x: auto;
+}
+
+pre code,
+pre code.language-nim,
+pre code.hljs {
+  display: block;
   padding: 0;
+  color: #333;
   background: transparent;
-  font-size: 0.95em;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
+  font-size: 13px;
+  line-height: 1.45;
 }
 
 table {
@@ -181,6 +201,7 @@ th {
   font-weight: 600;
 }
 
+/* MathJax */
 mjx-container[jax="SVG"][display="true"] {
   overflow-x: auto;
   overflow-y: hidden;
@@ -230,6 +251,48 @@ img {
   padding: 0.75em 1em;
 }
 
+/* @{example...} code samples, aligned with official AC Library docs. */
+.example-caption {
+  margin: 1.2em 0 0.4em;
+  font-size: 1.05rem;
+}
+
+.example-caption a {
+  font-weight: 500;
+}
+
+.sample-code {
+  width: 100%;
+  margin: 0.75em 0 1.25em;
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.sample-code .ace_gutter {
+  background: #f2f2f2;
+  color: #777;
+  border-right: 1px solid #e5e5e5;
+}
+
+.sample-code .ace_content {
+  background: #fff;
+}
+
+.sample-code .ace_marker-layer .ace_active-line,
+.sample-code .ace_gutter-active-line {
+  background: transparent;
+}
+
+.sample-code .ace_print-margin {
+  display: none;
+}
+
+.sample-code .ace_cursor {
+  display: none !important;
+}
+
 @media (max-width: 640px) {
   .site-header {
     padding: 12px 16px;
@@ -256,223 +319,4 @@ img {
   h2 {
     font-size: 1.4rem;
   }
-}
-
-/* Syntax highlighting */
-
-pre code.hljs,
-pre code.language-nim {
-  display: block;
-  overflow-x: auto;
-  padding: 0;
-  background: transparent;
-}
-
-pre {
-  background: #f6f8fa;
-}
-
-.hljs {
-  background: transparent;
-}
-
-/* highlight.js integration */
-
-pre code.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0;
-  background: transparent;
-}
-
-pre {
-  background: #f6f8fa;
-}
-
-.hljs {
-  background: transparent;
-}
-
-/* Ace code samples, similar to official AC Library docs */
-
-.sample-code {
-  width: 100%;
-  margin: 1em 0;
-  border: 1px solid #e5e5e5;
-  background: #f8f8f8;
-  font-size: 14px;
-  line-height: 1.45;
-}
-
-.sample-code .ace_gutter {
-  background: #eeeeee;
-  color: #777;
-}
-
-.sample-code .ace_content {
-  background: #ffffff;
-}
-
-.sample-code .ace_marker-layer .ace_active-line,
-.sample-code .ace_gutter-active-line {
-  background: transparent;
-}
-
-.sample-code .ace_print-margin {
-  display: none;
-}
-
-/* Ace code blocks, aligned with AC Library docs */
-
-.sample-code {
-  width: 100%;
-  margin: 1em 0;
-  border: 1px solid #e5e5e5;
-  background: #ffffff;
-  font-size: 14px;
-  line-height: 1.45;
-}
-
-.sample-code .ace_gutter {
-  background: #f2f2f2;
-  color: #777;
-  border-right: 1px solid #e5e5e5;
-}
-
-.sample-code .ace_content {
-  background: #ffffff;
-}
-
-.sample-code .ace_marker-layer .ace_active-line,
-.sample-code .ace_gutter-active-line {
-  background: transparent;
-}
-
-.sample-code .ace_print-margin {
-  display: none;
-}
-
-.sample-code .ace_cursor {
-  display: none !important;
-}
-
-/* Final Ace code sample tuning */
-
-.example-caption {
-  margin: 1.2em 0 0.4em;
-  font-size: 1.05rem;
-}
-
-.example-caption a {
-  font-weight: 500;
-}
-
-.sample-code {
-  width: 100%;
-  margin: 0.75em 0 1.25em;
-  border: 1px solid #e5e5e5;
-  background: #ffffff;
-  font-size: 13px;
-  line-height: 1.45;
-}
-
-.sample-code .ace_gutter {
-  background: #f2f2f2;
-  color: #777;
-  border-right: 1px solid #e5e5e5;
-}
-
-.sample-code .ace_content {
-  background: #ffffff;
-}
-
-.sample-code .ace_marker-layer .ace_active-line,
-.sample-code .ace_gutter-active-line {
-  background: transparent;
-}
-
-.sample-code .ace_print-margin {
-  display: none;
-}
-
-.sample-code .ace_cursor {
-  display: none !important;
-}
-
-/* Official AC Library-like code styling overrides */
-
-/* Inline code only: pink/red, like official docs. */
-p code,
-li code,
-td code,
-dd code,
-blockquote code {
-  color: #e83e8c;
-  background: #f8f8f8;
-  padding: 0.15em 0.35em;
-  border-radius: 3px;
-}
-
-/* Normal markdown code blocks: no line numbers, plain boxed block. */
-pre {
-  margin: 1em 0;
-  padding: 0.65em 0.85em;
-  border: 1px solid #e5e5e5;
-  border-radius: 2px;
-  background: #fff;
-  overflow-x: auto;
-}
-
-pre code,
-pre code.language-nim,
-pre code.hljs {
-  display: block;
-  padding: 0;
-  color: #333;
-  background: transparent;
-  font-size: 13px;
-  line-height: 1.45;
-}
-
-/* Example caption, matching official 'AC code of ...'. */
-.example-caption {
-  margin: 1.2em 0 0.4em;
-  font-size: 1.05rem;
-}
-
-.example-caption a {
-  font-weight: 500;
-}
-
-/* Only @{example...} blocks use Ace and line numbers. */
-.sample-code {
-  width: 100%;
-  margin: 0.75em 0 1.25em;
-  border: 1px solid #e5e5e5;
-  background: #fff;
-  font-size: 13px;
-  line-height: 1.45;
-}
-
-.sample-code .ace_gutter {
-  background: #f2f2f2;
-  color: #777;
-  border-right: 1px solid #e5e5e5;
-}
-
-.sample-code .ace_content {
-  background: #fff;
-}
-
-.sample-code .ace_marker-layer .ace_active-line,
-.sample-code .ace_gutter-active-line {
-  background: transparent;
-}
-
-.sample-code .ace_print-margin {
-  display: none;
-}
-
-.sample-code .ace_cursor {
-  display: none !important;
 }

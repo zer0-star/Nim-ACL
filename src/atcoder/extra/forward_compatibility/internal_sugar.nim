@@ -1,5 +1,5 @@
-when not declared ATCODER_INTERNAL_SUGAR_HPP:
-  const ATCODER_INTERNAL_SUGAR_HPP* = 1
+when not declared ATCODER_EXTRA_FORWARD_COMPATIBILITY_INTERNAL_SUGAR_HPP:
+  const ATCODER_EXTRA_FORWARD_COMPATIBILITY_INTERNAL_SUGAR_HPP* = 1
   import atcoder/extra/forward_compatibility/internal_since
   until (1, 0, 6):
     import std/macros, std/typetraits

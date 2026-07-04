@@ -1,3 +1,7 @@
+discard """
+  cmd: "nim cpp -r $file"
+"""
+
 import std/unittest
 import atcoder/extra/structure/splay_tree
 import std/random, std/algorithm, std/sequtils
