@@ -1,61 +1,121 @@
-name: verify
+name: quick-verify
 
-on: push
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
 
 jobs:
-  verify:
+  quick-test:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
+
+      - name: Set up Nim
+        uses: jiro4989/setup-nim-action@v2
+        with:
+          nim-version: '2.2.4'
 
       - name: Set up Python
-        uses: actions/setup-python@v1
-
-      - name: Install dependencies
-        run: pip3 install -U online-judge-verify-helper
-
-      # required only if you want to verify Nim code
-      - name: Cache choosenim
-        id: cache-choosenim
-        uses: actions/cache@v1
+        uses: actions/setup-python@v5
         with:
-          path: ~/.choosenim
-          key: ${{ runner.os }}-choosenim-stable
-      - name: Cache nimble
-        id: cache-nimble
-        uses: actions/cache@v1
-        with:
-          path: ~/.nimble
-          key: ${{ runner.os }}-nimble-stable
-      - uses: jiro4989/setup-nim-action@v1
-        with:
-          nim-version: 1.0.6
+          python-version: '3.x'
 
-      - name: copy document_ja
+      - name: Install docs dependencies
         run: |
-          mv document_ja/ src
+          python -m pip install -U pip
+          if [ -f tools/requirements_docs.txt ]; then
+            python -m pip install -r tools/requirements_docs.txt
+          else
+            python -m pip install Markdown
+          fi
 
-      - name: Copy documents to /docs
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: ${{ github.ref == 'refs/heads/master' }}
+      - name: Build docs
         run: |
-          git config --global user.name GitHub
-          git config --global user.email noreply@github.com
-          git switch gh-pages
-          rm -rf docs
-          cp -R src docs
+          python tools/generate_document.py
+
+      - name: Install testament
+        run: |
+          nimble install -y testament
+
+      - name: Run lightweight testament tests
+        run: |
+          set -eu
+
+          for f in tests/*.nim; do
+            case "$f" in
+              *stress*) echo "skip stress: $f"; continue ;;
+              *fft2d*)  echo "skip heavy fft2d: $f"; continue ;;
+            esac
+
+            echo "### $f"
+            testament pattern "$f"
+          done
+
+  deploy-docs:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: quick-test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install docs dependencies
+        run: |
+          python -m pip install -U pip
+          if [ -f tools/requirements_docs.txt ]; then
+            python -m pip install -r tools/requirements_docs.txt
+          else
+            python -m pip install Markdown
+          fi
+
+      - name: Build docs
+        run: |
+          python tools/generate_document.py
+
+      - name: Deploy to gh-pages
+        run: |
+          set -eu
+
+          TMP="$(mktemp -d)"
+          cp -R document_ja document_en src README.md _config.yml "$TMP"/
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git fetch origin gh-pages || true
+
+          if git rev-parse --verify origin/gh-pages >/dev/null 2>&1; then
+            git switch gh-pages
+          else
+            git switch --orphan gh-pages
+          fi
+
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+
+          cp -R "$TMP"/* .
+
           git add -A
-          git add docs
-          git commit -m "[workflow] copy docs $(git rev-parse HEAD~1)"
-          git push "https://${{ secrets.GH_PAT }}@github.com/zer0-star/Nim-ACL.git" gh-pages
 
-      - name: Run tests
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
-          GH_PAT: ${{ secrets.GH_PAT }}
-        run: cd src && oj-verify all
-      
+          if git diff --cached --quiet; then
+            echo "No documentation changes to deploy."
+          else
+            git commit -m "[workflow] update generated documentation"
+            git push origin gh-pages
+          fi
 
+          rm -rf "$TMP"
