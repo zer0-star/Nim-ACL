@@ -60,7 +60,7 @@ when not declared ATCODER_DYNAMIC_LAZYSEGTREE_HPP:
 
     for i in countdown(self.log, 1):
       if ((l shr i) shl i) != l: self.push(l shr i)
-      if ((r shr i) shl i) != r: self.push(r shr i)
+      if ((r shr i) shl i) != r: self.push((r - 1) shr i)
 
     var sml, smr = self.e()
     while l < r:
@@ -105,7 +105,7 @@ when not declared ATCODER_DYNAMIC_LAZYSEGTREE_HPP:
 #  template <bool (*g)(S)> int max_right(int l) {
 #    return max_right(l, [](S x) { return g(x); });
 #  }
-  proc max_right*[ST:lazysegtree](self:var ST, l:int, g:(ST.S)->bool):int =
+  proc max_right*[ST:lazy_segtree](self:var ST, l:int, g:(ST.S)->bool):int =
     assert l in 0..self.n
     assert g(self.e())
     if l == self.n: return self.n
