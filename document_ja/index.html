@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AC(AtCoder) Library Document</title>
+  <link rel="stylesheet" href="lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="index.html">
+      <img class="site-logo" src="lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="acatcoder-library-document">AC(AtCoder) Library Document</h1>
+<h2 id="_1">インストール方法</h2>
+<ul>
+<li>zipファイルを解凍すると、<code>ac-library</code>フォルダ, そしてその中に<code>atcoder</code>フォルダが入っているはずです。</li>
+<li>g++を使っている場合, <code>atcoder</code>フォルダを<code>main.nim</code>と同じ場所に置いて、<code>nim cpp main.nim --include:.</code>でコンパイルできます。  </li>
+<li>詳しくは <a href="./appendix.html">Appendix</a> を参照してください。</li>
+</ul>
+<h2 id="_2">お約束</h2>
+<ul>
+<li>制約外の入力を入れたときの挙動はすべて未定義です。</li>
+<li>このドキュメントでは長い型を便宜上短く書きます</li>
+<li><code>unsigned int</code> → <code>uint</code></li>
+<li><code>long long</code> → <code>ll</code></li>
+<li><code>unsigned long long</code> → <code>ull</code></li>
+<li>$0^0$ は $1$ です</li>
+<li>明記されていない場合、多重辺や自己ループも入力可能です。</li>
+</ul>
+<h2 id="_3">リスト</h2>
+<p><code>import atcoder/all</code> : 一括include</p>
+<h3 id="_4">データ構造</h3>
+<ul>
+<li><a href="./fenwicktree.html"><code>import atcoder/fenwicktree</code></a></li>
+<li><a href="./segtree.html"><code>import atcoder/segtree</code></a></li>
+<li><a href="./lazysegtree.html"><code>import atcoder/lazysegtree</code></a></li>
+<li><a href="./string.html"><code>import atcoder/string</code></a></li>
+</ul>
+<h3 id="_5">数学</h3>
+<ul>
+<li><a href="./math.html"><code>import atcoder/math</code></a></li>
+<li><a href="./convolution.html"><code>import atcoder/convolution</code></a></li>
+<li>💻<a href="./modint.html"><code>import atcoder/modint</code></a></li>
+</ul>
+<h3 id="_6">グラフ</h3>
+<ul>
+<li><a href="./dsu.html"><code>import atcoder/dsu</code></a></li>
+<li><a href="./maxflow.html"><code>import atcoder/maxflow</code></a></li>
+<li><a href="./mincostflow.html"><code>import atcoder/mincostflow</code></a></li>
+<li><a href="./scc.html"><code>import atcoder/scc</code></a></li>
+<li><a href="./twosat.html"><code>import atcoder/twosat</code></a></li>
+</ul>
+<h2 id="_7">エキストラライブラリ</h2>
+<p>ACLには収録されていないが、使用頻度が高そうなライブラリを追加しました。</p>
+<h3 id="_8">データ構造</h3>
+<ul>
+<li>ソート済みのset, table(map)(C++のset, mapと同機能)  <a href="./extra/structure/sorted_set_map.html"><code>import atcoder/extra/structure/set_map</code></a></li>
+<li>Skew Heap</li>
+<li>dual fenwick tree</li>
+<li>Splay Tree</li>
+<li>Universal SegTree</li>
+<li>Wavelet Matrix</li>
+<li>weighted Union Find</li>
+<li>Sliding Window Aggregation</li>
+<li>Radix Heap</li>
+<li>二分木関係</li>
+<li>Link Cut Tree</li>
+<li>Randomized Binary Search Tree</li>
+<li>Sparse Table</li>
+<li>永続関係</li>
+<li>永続配列 <a href="./extra/structure/persistent_array.html"><code>import atcoder/extra/structure/persistent_array</code></a></li>
+<li>永続DSU <a href="./extra/structure/persistent_dsu.html"><code>import atcoder/extra/structure/persistent_dsu</code></a></li>
+<li>Partially Persistent DSU</li>
+</ul>
+<h3 id="_9">数学</h3>
+<ul>
+<li>約数系</li>
+<li>約数列挙 <a href="./extra/math/divisor.html"><code>import atcoder/extra/math/divisor</code></a></li>
+<li>エラトステネス <a href="./extra/math/eratosthenes.html"><code>import atcoder/extra/math/eratosthenes</code></a></li>
+<li>素因数分解(pollard-rho法)<a href="./extra/math/factorization.html"><code>import atcoder/extra/math/factorization</code></a></li>
+<li>畳み込み関係</li>
+<li>任意modの畳み込み</li>
+<li>高速フーリエ変換</li>
+<li>NTT</li>
+<li>bitwise畳み込み</li>
+<li>形式的べき級数関係</li>
+<li>形式的べき級数 <a href="./extra/math/formal_power_series.html"><code>import atcoder/extra/math/formal_power_series</code></a></li>
+<li>形式的べき級数(sparse)</li>
+<li>行列</li>
+<li>順列・組み合わせ関係</li>
+<li>コンビネーション(階乗・逆元)<a href="./extra/math/combination.html"><code>import atcoder/extra/math/combination</code></a></li>
+<li>コンビネーションテーブル</li>
+<li>進数変換</li>
+<li>大きな数の階乗</li>
+<li>modint関係</li>
+<li>モンゴメリ演算によるmodint</li>
+<li>modintによる平方根</li>
+<li>modintの分数推測</li>
+</ul>
+<h3 id="_10">グラフ</h3>
+<ul>
+<li><a href="./extra/graph/graph_template.html"><code>import atcoder/extra/graph/graph_template</code></a></li>
+<li>最短経路問題</li>
+<li>dijkstra法<ul>
+<li><a href="./extra/graph/dijkstra.html"><code>import atcoder/extra/graph/dijkstra</code></a></li>
+</ul>
+</li>
+<li>bellman-ford法<ul>
+<li><a href="./extra/graph/bellman_ford.html"><code>import atcoder/extra/graph/bellman_ford</code></a></li>
+</ul>
+</li>
+<li>warshall-floyd法<ul>
+<li><a href="./extra/graph/warshall_floyd.html"><code>import atcoder/extra/graph/warshall_floyd</code></a></li>
+</ul>
+</li>
+<li>最小木問題</li>
+<li>prim法</li>
+<li>kruskal法</li>
+<li>volvka法</li>
+<li>有向グラフの最小木問題</li>
+<li>Chu-Liu-Edmonds</li>
+<li>二部グラフの最大マッチング・最小頂点被覆(hopcroft-karp法)</li>
+<li><a href="./extra/graph/hopcroft_karp.html"><code>import atcoder/extra/graph/hopcroft_karp</code></a></li>
+<li>一般グラフのマッチング(gabow-edmonds法)</li>
+<li>割当問題(ハンガリアン法)</li>
+<li><a href="./extra/graph/hungarian.html"><code>import atcoder/extra/graph/hungarian</code></a></li>
+<li>橋と結節点(lowlink)</li>
+<li>最大独立集合</li>
+<li>サイクルの検出</li>
+<li>オイラー周回</li>
+<li>彩色数</li>
+<li>トポロジカルソート</li>
+<li>強連結の向き付け</li>
+<li><a href="./extra/graph/strong_orientation.html"><code>import atcoder/extra/graph/strong_orientation</code></a></li>
+</ul>
+<h3 id="_11">木</h3>
+<ul>
+<li>木の直径</li>
+<li>重心分解</li>
+<li>lowest common ancestor</li>
+<li>Heavy-Light Decomposition</li>
+<li>全方位DP(rerooting): <a href="./extra/tree/rerooting.html"><code>import atcoder/extra/tree/rerooting</code></a></li>
+</ul>
+<h3 id="_12">その他</h3>
+<ul>
+<li>Assignment Operator</li>
+<li>二分探索</li>
+<li>整数版</li>
+<li>不動小数版</li>
+<li>bitset</li>
+<li>bitutils</li>
+<li>座標圧縮</li>
+<li>debug.nim</li>
+<li>decimal.nim</li>
+<li>サイコロ</li>
+<li>方向(direction.nim)</li>
+<li>floatutils.nim</li>
+<li>無限(inf.nim)</li>
+<li>インタラクティブ用マクロ</li>
+<li>internal関係</li>
+<li>internal_complex.nim</li>
+<li>internal_sugar.nim</li>
+<li>listutils</li>
+<li>読み込み用(reader.nim)</li>
+<li>参照渡し</li>
+<li>seq_array_utils</li>
+<li>sliceutils</li>
+<li>solve関数用マクロ</li>
+<li>special_judge.nim</li>
+<li>static_var.nim</li>
+<li>セイウチ演算子</li>
+<li>zip.nim</li>
+</ul>
+<h2 id="_13">付録</h2>
+<ul>
+<li><a href="./appendix.html">Appendix / FAQ</a></li>
+</ul>
+<h2 id="_14">テスト</h2>
+<ul>
+<li><a href="https://atcoder.jp/contests/practice2">こちら</a> で実際にこの Library を使う問題を解いてみることができます。</li>
+</ul>
+<h2 id="_15">ライセンス</h2>
+<p>ヘッダファイル群(同梱の <code>atcoder</code> フォルダ以下)はCC0ライセンスで公開しています。詳しくは<code>atcoder/LICENSE</code>を参照してください。</p>
+<!-- AUTO-GENERATED-DOC-LINKS:BEGIN -->
+
+<h2 id="_16">自動生成ドキュメント一覧</h2>
+<p>この節は <code>tools/create_missing_docs_and_update_index.py</code> により自動更新されます。</p>
+<h3 id="_17">標準ライブラリ</h3>
+<ul>
+<li><a href="convolution.html">convolution</a></li>
+<li><a href="dsu.html">dsu</a></li>
+<li><a href="dynamic_lazysegtree.html">dynamic_lazysegtree</a></li>
+<li><a href="dynamic_segtree.html">dynamic_segtree</a></li>
+<li><a href="element_concepts.html">element_concepts</a></li>
+<li><a href="fenwicktree.html">fenwicktree</a></li>
+<li><a href="header.html">header</a></li>
+<li><a href="lazysegtree.html">lazysegtree</a></li>
+<li><a href="math.html">math</a></li>
+<li><a href="maxflow.html">maxflow</a></li>
+<li><a href="mincostflow.html">mincostflow</a></li>
+<li><a href="modint.html">modint</a></li>
+<li><a href="monoid.html">monoid</a></li>
+<li><a href="rangeutils.html">rangeutils</a></li>
+<li><a href="scc.html">scc</a></li>
+<li><a href="segtree.html">segtree</a></li>
+<li><a href="string.html">string</a></li>
+<li><a href="twosat.html">twosat</a></li>
+</ul>
+<h3 id="extra">Extra / データ構造</h3>
+<ul>
+<li><a href="extra/structure/binary_tree_node_utils.html">binary_tree_node_utils</a></li>
+<li><a href="extra/structure/binary_tree_utils.html">binary_tree_utils</a></li>
+<li><a href="extra/structure/convex_hull_trick_add_monotone.html">convex_hull_trick_add_monotone</a></li>
+<li><a href="extra/structure/generalized_slope_trick.html">generalized_slope_trick</a></li>
+<li><a href="extra/structure/li_chao_tree.html">li_chao_tree</a></li>
+<li><a href="extra/structure/link_cut_tree.html">link_cut_tree</a></li>
+<li><a href="extra/structure/mo.html">mo</a></li>
+<li><a href="extra/structure/persistent_array.html">persistent_array</a></li>
+<li><a href="extra/structure/persistent_dsu.html">persistent_dsu</a></li>
+<li><a href="extra/structure/randomized_binary_search_tree_with_parent.html">randomized_binary_search_tree_with_parent</a></li>
+<li><a href="extra/structure/range_chmin_chmax_add_range_sum.html">range_chmin_chmax_add_range_sum</a></li>
+<li><a href="extra/structure/red_black_tree.html">red_black_tree</a></li>
+<li><a href="extra/structure/segtree_2d.html">segtree_2d</a></li>
+<li><a href="extra/structure/set_map.html">set_map</a></li>
+<li><a href="extra/structure/set_map_by_randomized_binary_search_tree.html">set_map_by_randomized_binary_search_tree</a></li>
+<li><a href="extra/structure/skew_heap.html">skew_heap</a></li>
+<li><a href="extra/structure/sliding_window_aggregation.html">sliding_window_aggregation</a></li>
+<li><a href="extra/structure/slope_trick.html">slope_trick</a></li>
+<li><a href="extra/structure/sorted_set_map.html">sorted_set_map</a></li>
+<li><a href="extra/structure/splay_tree.html">splay_tree</a></li>
+<li><a href="extra/structure/succinct_indexable_dictionary.html">succinct_indexable_dictionary</a></li>
+<li><a href="extra/structure/trie.html">trie</a></li>
+<li><a href="extra/structure/universal_segtree.html">universal_segtree</a></li>
+<li><a href="extra/structure/wavelet_matrix.html">wavelet_matrix</a></li>
+<li><a href="extra/structure/weighted_union_find.html">weighted_union_find</a></li>
+</ul>
+<h3 id="extra_1">Extra / グラフ</h3>
+<ul>
+<li><a href="extra/graph/bellman_ford.html">bellman_ford</a></li>
+<li><a href="extra/graph/bflow.html">bflow</a></li>
+<li><a href="extra/graph/boruvka.html">boruvka</a></li>
+<li><a href="extra/graph/chromatic_number.html">chromatic_number</a></li>
+<li><a href="extra/graph/chu_liu_edmonds.html">chu_liu_edmonds</a></li>
+<li><a href="extra/graph/cycle_detection.html">cycle_detection</a></li>
+<li><a href="extra/graph/dijkstra.html">dijkstra</a></li>
+<li><a href="extra/graph/dijkstra_multi_dimensional.html">dijkstra_multi_dimensional</a></li>
+<li><a href="extra/graph/dijkstra_radix_heap.html">dijkstra_radix_heap</a></li>
+<li><a href="extra/graph/dijkstra_result.html">dijkstra_result</a></li>
+<li><a href="extra/graph/ear_decomposition.html">ear_decomposition</a></li>
+<li><a href="extra/graph/eulerian_trail.html">eulerian_trail</a></li>
+<li><a href="extra/graph/gabow_edmonds.html">gabow_edmonds</a></li>
+<li><a href="extra/graph/graph_concept.html">graph_concept</a></li>
+<li><a href="extra/graph/graph_template.html">graph_template</a></li>
+<li><a href="extra/graph/graph_template_directed_undirected.html">graph_template_directed_undirected</a></li>
+<li><a href="extra/graph/graphviz.html">graphviz</a></li>
+<li><a href="extra/graph/hopcroft_karp.html">hopcroft_karp</a></li>
+<li><a href="extra/graph/hungarian.html">hungarian</a></li>
+<li><a href="extra/graph/kruskal.html">kruskal</a></li>
+<li><a href="extra/graph/lowlink.html">lowlink</a></li>
+<li><a href="extra/graph/maxflow_lowerbound.html">maxflow_lowerbound</a></li>
+<li><a href="extra/graph/maximum_independent_set.html">maximum_independent_set</a></li>
+<li><a href="extra/graph/mcf_costscaling.html">mcf_costscaling</a></li>
+<li><a href="extra/graph/mincostflow_generalized.html">mincostflow_generalized</a></li>
+<li><a href="extra/graph/mincostflow_lowerbound.html">mincostflow_lowerbound</a></li>
+<li><a href="extra/graph/prim.html">prim</a></li>
+<li><a href="extra/graph/static_graph.html">static_graph</a></li>
+<li><a href="extra/graph/strong_orientation.html">strong_orientation</a></li>
+<li><a href="extra/graph/topological_sort.html">topological_sort</a></li>
+<li><a href="extra/graph/visualizer.html">visualizer</a></li>
+<li><a href="extra/graph/warshall_floyd.html">warshall_floyd</a></li>
+</ul>
+<h3 id="extra_2">Extra / 木</h3>
+<ul>
+<li><a href="extra/tree/centroid_decomposition.html">centroid_decomposition</a></li>
+<li><a href="extra/tree/doubling_lowest_common_ancestor.html">doubling_lowest_common_ancestor</a></li>
+<li><a href="extra/tree/heavy_light_decomposition.html">heavy_light_decomposition</a></li>
+<li><a href="extra/tree/rerooting.html">rerooting</a></li>
+<li><a href="extra/tree/tree_diameter.html">tree_diameter</a></li>
+</ul>
+<h3 id="extra_3">Extra / 数学</h3>
+<ul>
+<li><a href="extra/math/arbitrary_mod_combination.html">arbitrary_mod_combination</a></li>
+<li><a href="extra/math/arbitrary_mod_convolution.html">arbitrary_mod_convolution</a></li>
+<li><a href="extra/math/bigint.html">bigint</a></li>
+<li><a href="extra/math/bitwise_convolution.html">bitwise_convolution</a></li>
+<li><a href="extra/math/characteristic_polynomial.html">characteristic_polynomial</a></li>
+<li><a href="extra/math/chirp_z.html">chirp_z</a></li>
+<li><a href="extra/math/coef_of_generating_function.html">coef_of_generating_function</a></li>
+<li><a href="extra/math/combination.html">combination</a></li>
+<li><a href="extra/math/combination_table.html">combination_table</a></li>
+<li><a href="extra/math/composition.html">composition</a></li>
+<li><a href="extra/math/composition_kinoshita_li.html">composition_kinoshita_li</a></li>
+<li><a href="extra/math/convert_base.html">convert_base</a></li>
+<li><a href="extra/math/convolution_int128.html">convolution_int128</a></li>
+<li><a href="extra/math/convolution_universal.html">convolution_universal</a></li>
+<li><a href="extra/math/divisor.html">divisor</a></li>
+<li><a href="extra/math/eratosthenes.html">eratosthenes</a></li>
+<li><a href="extra/math/estimate_modint_frac.html">estimate_modint_frac</a></li>
+<li><a href="extra/math/factorial.html">factorial</a></li>
+<li><a href="extra/math/factorization.html">factorization</a></li>
+<li><a href="extra/math/fft.html">fft</a></li>
+<li><a href="extra/math/fft2d.html">fft2d</a></li>
+<li><a href="extra/math/floor_sum_general.html">floor_sum_general</a></li>
+<li><a href="extra/math/floor_sum_square.html">floor_sum_square</a></li>
+<li><a href="extra/math/formal_power_series.html">formal_power_series</a></li>
+<li><a href="extra/math/formal_power_series_differential_equation.html">formal_power_series_differential_equation</a></li>
+<li><a href="extra/math/formal_power_series_sqrt.html">formal_power_series_sqrt</a></li>
+<li><a href="extra/math/formal_pwoer_series.html">formal_pwoer_series</a></li>
+<li><a href="extra/math/gaussian_elimination_bit.html">gaussian_elimination_bit</a></li>
+<li><a href="extra/math/int128.html">int128</a></li>
+<li><a href="extra/math/kitamasa.html">kitamasa</a></li>
+<li><a href="extra/math/lagrange_polynomial.html">lagrange_polynomial</a></li>
+<li><a href="extra/math/matrix.html">matrix</a></li>
+<li><a href="extra/math/mod_sqrt.html">mod_sqrt</a></li>
+<li><a href="extra/math/modint61.html">modint61</a></li>
+<li><a href="extra/math/modint_asm.html">modint_asm</a></li>
+<li><a href="extra/math/modint_montgomery.html">modint_montgomery</a></li>
+<li><a href="extra/math/multipoint_evaluation.html">multipoint_evaluation</a></li>
+<li><a href="extra/math/multipoint_evaluation_slow.html">multipoint_evaluation_slow</a></li>
+<li><a href="extra/math/newton_method.html">newton_method</a></li>
+<li><a href="extra/math/ntt.html">ntt</a></li>
+<li><a href="extra/math/ntt_quadratic_field.html">ntt_quadratic_field</a></li>
+<li><a href="extra/math/particular_mod_convolution.html">particular_mod_convolution</a></li>
+<li><a href="extra/math/polynomial.html">polynomial</a></li>
+<li><a href="extra/math/polynomial_taylor_shift.html">polynomial_taylor_shift</a></li>
+<li><a href="extra/math/power_projection.html">power_projection</a></li>
+<li><a href="extra/math/quadratic_field.html">quadratic_field</a></li>
+<li><a href="extra/math/rational_approximation.html">rational_approximation</a></li>
+<li><a href="extra/math/simplex.html">simplex</a></li>
+<li><a href="extra/math/sqrt_int.html">sqrt_int</a></li>
+<li><a href="extra/math/static_eratosthenes.html">static_eratosthenes</a></li>
+<li><a href="extra/math/subproduct_tree.html">subproduct_tree</a></li>
+<li><a href="extra/math/zeta_transform.html">zeta_transform</a></li>
+</ul>
+<h3 id="extra-dp">Extra / DP</h3>
+<ul>
+<li><a href="extra/dp/cumulative_sum.html">cumulative_sum</a></li>
+<li><a href="extra/dp/cumulative_sum_2d.html">cumulative_sum_2d</a></li>
+<li><a href="extra/dp/dual_cumulative_sum.html">dual_cumulative_sum</a></li>
+<li><a href="extra/dp/dual_cumulative_sum_2d.html">dual_cumulative_sum_2d</a></li>
+<li><a href="extra/dp/edit_distance.html">edit_distance</a></li>
+<li><a href="extra/dp/largest_rectangle.html">largest_rectangle</a></li>
+<li><a href="extra/dp/longest_increasing_subsequence.html">longest_increasing_subsequence</a></li>
+<li><a href="extra/dp/slide_min.html">slide_min</a></li>
+</ul>
+<h3 id="extra_4">Extra / 文字列</h3>
+<ul>
+<li><a href="extra/string/aho_corasick.html">aho_corasick</a></li>
+<li><a href="extra/string/knuth_morris_pratt.html">knuth_morris_pratt</a></li>
+<li><a href="extra/string/rolling_hash.html">rolling_hash</a></li>
+<li><a href="extra/string/run_enumerate.html">run_enumerate</a></li>
+<li><a href="extra/string/run_length_compress.html">run_length_compress</a></li>
+<li><a href="extra/string/suffix_array_utils.html">suffix_array_utils</a></li>
+<li><a href="extra/string/suffix_automaton.html">suffix_automaton</a></li>
+</ul>
+<h3 id="extra_5">Extra / 幾何</h3>
+<ul>
+<li><a href="extra/geometry/closest_pair.html">closest_pair</a></li>
+<li><a href="extra/geometry/geometry_template.html">geometry_template</a></li>
+<li><a href="extra/geometry/polygon.html">polygon</a></li>
+<li><a href="extra/geometry/segment_graph.html">segment_graph</a></li>
+<li><a href="extra/geometry/tangent.html">tangent</a></li>
+<li><a href="extra/geometry/triangle.html">triangle</a></li>
+<li><a href="extra/geometry/visualizer.html">visualizer</a></li>
+</ul>
+<h3 id="extra-monoid">Extra / Monoid</h3>
+<ul>
+<li><a href="extra/monoid/monoid.html">monoid</a></li>
+</ul>
+<h3 id="extra_6">Extra / その他</h3>
+<ul>
+<li><a href="extra/other/algorithmutils.html">algorithmutils</a></li>
+<li><a href="extra/other/assignment_operator.html">assignment_operator</a></li>
+<li><a href="extra/other/binary_search.html">binary_search</a></li>
+<li><a href="extra/other/binary_search_float.html">binary_search_float</a></li>
+<li><a href="extra/other/bitset.html">bitset</a></li>
+<li><a href="extra/other/bitutils.html">bitutils</a></li>
+<li><a href="extra/other/cfor.html">cfor</a></li>
+<li><a href="extra/other/compress.html">compress</a></li>
+<li><a href="extra/other/copy_proc.html">copy_proc</a></li>
+<li><a href="extra/other/curly_init.html">curly_init</a></li>
+<li><a href="extra/other/debug.html">debug</a></li>
+<li><a href="extra/other/decimal.html">decimal</a></li>
+<li><a href="extra/other/decimal_gmp.html">decimal_gmp</a></li>
+<li><a href="extra/other/decimal_mp.html">decimal_mp</a></li>
+<li><a href="extra/other/decimal_mpfr.html">decimal_mpfr</a></li>
+<li><a href="extra/other/dice.html">dice</a></li>
+<li><a href="extra/other/direction.html">direction</a></li>
+<li><a href="extra/other/divutils.html">divutils</a></li>
+<li><a href="extra/other/floatutils.html">floatutils</a></li>
+<li><a href="extra/other/fold.html">fold</a></li>
+<li><a href="extra/other/format_expression.html">format_expression</a></li>
+<li><a href="extra/other/inf.html">inf</a></li>
+<li><a href="extra/other/interactive.html">interactive</a></li>
+<li><a href="extra/other/listutils.html">listutils</a></li>
+<li><a href="extra/other/operator.html">operator</a></li>
+<li><a href="extra/other/random_tree.html">random_tree</a></li>
+<li><a href="extra/other/reader.html">reader</a></li>
+<li><a href="extra/other/reference.html">reference</a></li>
+<li><a href="extra/other/return_type.html">return_type</a></li>
+<li><a href="extra/other/seq_array_utils.html">seq_array_utils</a></li>
+<li><a href="extra/other/shadowing.html">shadowing</a></li>
+<li><a href="extra/other/sliceutils.html">sliceutils</a></li>
+<li><a href="extra/other/solve_proc.html">solve_proc</a></li>
+<li><a href="extra/other/special_judge.html">special_judge</a></li>
+<li><a href="extra/other/static_var.html">static_var</a></li>
+<li><a href="extra/other/tuple_index.html">tuple_index</a></li>
+<li><a href="extra/other/tuple_indexing.html">tuple_indexing</a></li>
+<li><a href="extra/other/uncompress.html">uncompress</a></li>
+<li><a href="extra/other/warlus_operator.html">warlus_operator</a></li>
+<li><a href="extra/other/zip.html">zip</a></li>
+</ul>
+<!-- AUTO-GENERATED-DOC-LINKS:END -->
+  </main>
+</body>
+</html>

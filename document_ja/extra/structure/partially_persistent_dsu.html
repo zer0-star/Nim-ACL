@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PartiallyPersistentDSU</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="partiallypersistentdsu">PartiallyPersistentDSU</h1>
+<p>部分永続 Union-Find です。</p>
+<p>時刻 <code>t</code> を指定して、その時点での連結成分の代表元、連結判定、連結成分サイズを取得できます。</p>
+<p><code>merge(t, x, y)</code> により時刻 <code>t</code> で辺を追加し、過去の時刻に対する <code>leader(t, x)</code>, <code>same(t, x, y)</code>, <code>size(t, x)</code> を問い合わせられます。</p>
+<h2 id="import">import</h2>
+<pre><code>import atcoder/extra/structure/partially_persistent_dsu
+</code></pre>
+<h2 id="_1">コンストラクタ</h2>
+<pre><code>var uf = initPartiallyPersistentDSU(n:int)
+</code></pre>
+<p>長さ <code>n</code> の部分永続 Union-Find を作ります。</p>
+<p>初期状態では、各頂点はそれぞれ単独の連結成分です。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= n</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(n)$</li>
+</ul>
+<h2 id="merge">merge</h2>
+<pre><code>uf.merge(t:int, x:int, y:int):bool
+</code></pre>
+<p>時刻 <code>t</code> で <code>x</code> と <code>y</code> の属する集合を併合します。</p>
+<p>すでに同じ集合に属している場合は <code>false</code> を返します。異なる集合だった場合は併合して <code>true</code> を返します。</p>
+<p>時刻 <code>t</code> は merge 回数である必要はなく、任意の整数時刻を使えます。ただし、部分永続 Union-Find として履歴を一方向に追加するため、<code>merge</code> に渡す時刻は単調非減少である必要があります。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= x &lt; n</code></li>
+<li><code>0 &lt;= y &lt; n</code></li>
+<li><code>merge</code> に渡す <code>t</code> は単調非減少</li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(\log n)$ 程度</li>
+</ul>
+<h2 id="leader">leader</h2>
+<pre><code>uf.leader(t:int, x:int):int
+</code></pre>
+<p>時刻 <code>t</code> における <code>x</code> の代表元を返します。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= x &lt; n</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(\log n)$ 程度</li>
+</ul>
+<h2 id="same">same</h2>
+<pre><code>uf.same(t:int, x:int, y:int):bool
+</code></pre>
+<p>時刻 <code>t</code> において <code>x</code> と <code>y</code> が同じ連結成分に属するかを返します。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= x &lt; n</code></li>
+<li><code>0 &lt;= y &lt; n</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(\log n)$ 程度</li>
+</ul>
+<h2 id="size">size</h2>
+<pre><code>uf.size(t:int, x:int):int
+</code></pre>
+<p>時刻 <code>t</code> における、<code>x</code> が属する連結成分の大きさを返します。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= x &lt; n</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2 id="_2">使用例</h2>
+<pre><code>import atcoder/extra/structure/partially_persistent_dsu
+
+var uf = initPartiallyPersistentDSU(5)
+
+doAssert uf.size(-100, 0) == 1
+
+discard uf.merge(10, 0, 1)
+discard uf.merge(20, 1, 2)
+discard uf.merge(20, 3, 4)
+
+doAssert uf.same(10, 0, 1)
+doAssert uf.size(10, 0) == 2
+
+doAssert uf.same(20, 0, 2)
+doAssert uf.size(20, 2) == 3
+
+doAssert not uf.same(20, 0, 4)
+
+discard uf.merge(100, 2, 4)
+
+doAssert not uf.same(99, 0, 4)
+doAssert uf.same(100, 0, 4)
+doAssert uf.size(100, 0) == 5
+</code></pre>
+<h2 id="_3">注意</h2>
+<p>これは完全永続ではなく部分永続 Union-Find です。</p>
+<p>過去の状態に対して新しい分岐を作る用途には向きません。履歴を追加する <code>merge</code> は、時刻の単調非減少順に呼んでください。</p>
+  </main>
+</body>
+</html>

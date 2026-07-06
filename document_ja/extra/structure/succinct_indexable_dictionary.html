@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SuccinctIndexableDictionary</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="succinctindexabledictionary">SuccinctIndexableDictionary</h1>
+<p>Succinct Indexable Dictionary です。</p>
+<p>長さ <code>n</code> の bit 列に対して、各位置の bit を取得したり、先頭から <code>k</code> 個の範囲に含まれる <code>1</code> の個数を高速に数えたりできます。</p>
+<p>Wavelet Matrix などの内部部品としてよく使われます。</p>
+<h2 id="import">import</h2>
+<pre><code>import atcoder/extra/structure/succinct_indexable_dictionary
+</code></pre>
+<h2 id="_1">コンストラクタ</h2>
+<pre><code>var sid = initSuccinctIndexableDictionary(n:int)
+</code></pre>
+<p>長さ <code>n</code> の bit 列を作ります。初期値はすべて <code>0</code> です。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= n</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(n / 32)$</li>
+</ul>
+<h2 id="set">set</h2>
+<pre><code>sid.set(k:int):void
+</code></pre>
+<p>位置 <code>k</code> の bit を <code>1</code> にします。</p>
+<p><code>build()</code> の前に呼び出してください。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= k &lt; n</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(1)$</li>
+</ul>
+<h2 id="build">build</h2>
+<pre><code>sid.build():void
+</code></pre>
+<p>rank クエリに必要な累積個数を構築します。</p>
+<p><code>set</code> をすべて終えたあとに一度呼び出してください。</p>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(n / 32)$</li>
+</ul>
+<h2 id="get">get</h2>
+<pre><code>sid[k]:bool
+</code></pre>
+<p>位置 <code>k</code> の bit を返します。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= k &lt; n</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(1)$</li>
+</ul>
+<h2 id="rank">rank</h2>
+<pre><code>sid.rank(k:int):int
+sid.rank(val:bool, k:int):int
+</code></pre>
+<p><code>sid.rank(k)</code> は、半開区間 <code>0..&lt;k</code> に含まれる <code>1</code> の個数を返します。</p>
+<p><code>sid.rank(true, k)</code> は <code>1</code> の個数、<code>sid.rank(false, k)</code> は <code>0</code> の個数を返します。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= k &lt;= n</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(1)$</li>
+</ul>
+<h2 id="_2">使用例</h2>
+<pre><code>import atcoder/extra/structure/succinct_indexable_dictionary
+
+var sid = initSuccinctIndexableDictionary(70)
+
+for k in [0, 1, 31, 32, 69]:
+  sid.set(k)
+
+sid.build()
+
+doAssert sid[0]
+doAssert sid[31]
+doAssert not sid[33]
+
+doAssert sid.rank(70) == 5
+doAssert sid.rank(true, 70) == 5
+doAssert sid.rank(false, 70) == 65
+</code></pre>
+<h2 id="_3">注意</h2>
+<p><code>set</code> のあとに <code>build()</code> を呼ばないと、<code>rank</code> の結果は正しくなりません。</p>
+<p><code>rank(k)</code> は <code>0..&lt;k</code> の個数を返す半開区間形式です。</p>
+  </main>
+</body>
+</html>

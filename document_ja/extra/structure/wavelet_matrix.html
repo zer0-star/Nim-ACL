@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>WaveletMatrix</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="waveletmatrix">WaveletMatrix</h1>
+<p>Wavelet Matrix です。</p>
+<p>静的な列に対して、区間内の <code>k</code> 番目の値、値の出現回数、値域に入る個数などを高速に求められます。</p>
+<p>この実装には、整数列を直接扱う <code>WaveletMatrix</code> と、座標圧縮して任意の順序付き値を扱う <code>CompressedWaveletMatrix</code> があります。</p>
+<h2 id="import">import</h2>
+<pre><code>import atcoder/extra/structure/wavelet_matrix
+</code></pre>
+<h2 id="_1">コンストラクタ</h2>
+<pre><code>let wm = initWaveletMatrix[T](v:seq[T], MAXLOG:static[int])
+</code></pre>
+<p>列 <code>v</code> から Wavelet Matrix を構築します。</p>
+<p><code>MAXLOG</code> は値の bit 長です。たとえば値が <code>0 &lt;= x &lt; 2^20</code> に収まるなら <code>MAXLOG = 20</code> とします。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>T</code> は <code>shr</code>, <code>shl</code>, <code>and</code>, <code>or</code> などの bit 演算ができる整数型</li>
+<li><code>0 &lt;= v[i] &lt; 2^MAXLOG</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>構築 $O(n \log A)$</li>
+<li><code>A = 2^MAXLOG</code></li>
+</ul>
+<h2 id="access">access</h2>
+<pre><code>wm[k]:T
+wm.access(k:int):T
+</code></pre>
+<p>元の列の <code>k</code> 番目の値を返します。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= k &lt; n</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(\log A)$</li>
+</ul>
+<h2 id="rank">rank</h2>
+<pre><code>wm.rank(x:T, r:int):int
+</code></pre>
+<p>半開区間 <code>0..&lt;r</code> に含まれる <code>x</code> の個数を返します。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= r &lt;= n</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(\log A)$</li>
+</ul>
+<h2 id="kth_smallest-kth_largest">kth_smallest / kth_largest</h2>
+<pre><code>wm.kth_smallest(p:Slice[int], k:int):T
+wm.kth_largest(p:Slice[int], k:int):T
+</code></pre>
+<p>区間 <code>p</code> に含まれる値のうち、<code>k</code> 番目に小さい値、または <code>k</code> 番目に大きい値を返します。</p>
+<p><code>k</code> は 0-indexed です。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= k &lt; p.len</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(\log A)$</li>
+</ul>
+<h2 id="range_freq">range_freq</h2>
+<pre><code>wm.range_freq(p:Slice[int], upper:T):int
+wm.range_freq(p:Slice[int], lower:T, upper:T):int
+</code></pre>
+<p>区間 <code>p</code> に含まれる値のうち、<code>upper</code> 未満の個数、または <code>lower &lt;= x &lt; upper</code> を満たす個数を返します。</p>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(\log A)$</li>
+</ul>
+<h2 id="prev_value-next_value">prev_value / next_value</h2>
+<pre><code>wm.prev_value(p:Slice[int], upper:T):T
+wm.next_value(p:Slice[int], lower:T):T
+</code></pre>
+<p><code>prev_value</code> は区間 <code>p</code> に含まれる <code>upper</code> 未満の最大値を返します。</p>
+<p><code>next_value</code> は区間 <code>p</code> に含まれる <code>lower</code> 以上の最小値を返します。</p>
+<p>該当する値がない場合は <code>-1</code> を返します。</p>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(\log A)$</li>
+</ul>
+<h2 id="compressedwaveletmatrix">CompressedWaveletMatrix</h2>
+<pre><code>let wm = initCompressedWaveletMatrix[T](v:seq[T], MAXLOG:static[int])
+</code></pre>
+<p>値を座標圧縮してから Wavelet Matrix を構築します。</p>
+<p><code>T</code> は整数以外でも、比較可能であれば使えます。<code>MAXLOG</code> は圧縮後の値域に対する bit 長です。</p>
+<h2 id="_2">使用例</h2>
+<pre><code>import atcoder/extra/structure/wavelet_matrix
+
+let v = @[3, 1, 4, 1, 5, 9, 2, 6]
+let wm = initWaveletMatrix[int](v, 4)
+
+doAssert wm[0] == 3
+doAssert wm.rank(1, 4) == 2
+
+doAssert wm.kth_smallest(0..&lt;8, 0) == 1
+doAssert wm.kth_largest(0..&lt;8, 0) == 9
+
+doAssert wm.range_freq(0..&lt;8, 2, 6) == 4
+doAssert wm.prev_value(0..&lt;8, 5) == 4
+doAssert wm.next_value(0..&lt;8, 5) == 5
+</code></pre>
+<h2 id="_3">注意</h2>
+<p>通常の <code>WaveletMatrix</code> は非負整数を想定します。負の値や大きな値を含む場合は <code>CompressedWaveletMatrix</code> を使ってください。</p>
+<p><code>prev_value</code> / <code>next_value</code> は該当値がない場合に <code>-1</code> を返します。そのため、値として <code>-1</code> があり得る場合は注意してください。</p>
+  </main>
+</body>
+</html>

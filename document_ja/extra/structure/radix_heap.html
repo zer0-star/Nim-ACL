@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>RadixHeap</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="radixheap">RadixHeap</h1>
+<p>整数キー用の Radix Heap です。</p>
+<p><code>key</code> が単調非減少に取り出される状況で使える優先度付きキューです。Dijkstra 法などで、辺重みが非負整数である場合に利用できます。</p>
+<p>通常のヒープと同様に <code>(key, value)</code> を追加し、最小の <code>key</code> を持つ要素を取り出します。</p>
+<h2 id="import">import</h2>
+<pre><code>import atcoder/extra/structure/radix_heap
+</code></pre>
+<h2 id="_1">コンストラクタ</h2>
+<pre><code>var heap = initRadixHeap[key_t, val_t]()
+</code></pre>
+<p>空の Radix Heap を作ります。</p>
+<p><code>key_t</code> は整数型、<code>val_t</code> は格納する値の型です。<code>key_t</code> は signed / unsigned の両方を想定しています。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>key_t</code> は整数型</li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(1)$</li>
+</ul>
+<h2 id="push">push</h2>
+<pre><code>heap.push(key:key_t, val:val_t):void
+</code></pre>
+<p><code>(key, val)</code> を追加します。</p>
+<p>Radix Heap の性質上、追加する <code>key</code> は、これまでに <code>pop</code> されたキーの最大値以上である必要があります。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>key &gt;= last</code></li>
+<li><code>last</code> はこれまでに取り出されたキーの最大値</li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>ならし $O(1)$</li>
+</ul>
+<h2 id="pop">pop</h2>
+<pre><code>heap.pop():(key_t, val_t)
+</code></pre>
+<p>最小の <code>key</code> を持つ要素を取り出します。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>heap</code> は空でない</li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>ならし $O(\log C)$</li>
+<li><code>C</code> はキーの値域</li>
+</ul>
+<h2 id="empty">empty</h2>
+<pre><code>heap.empty():bool
+</code></pre>
+<p>空かどうかを返します。</p>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(1)$</li>
+</ul>
+<h2 id="len">len</h2>
+<pre><code>heap.len():int
+</code></pre>
+<p>要素数を返します。</p>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(1)$</li>
+</ul>
+<h2 id="_2">使用例</h2>
+<pre><code>import atcoder/extra/structure/radix_heap
+
+var heap = initRadixHeap[int, string]()
+
+heap.push(-5, "a")
+heap.push(-2, "b")
+heap.push(0, "c")
+
+doAssert heap.pop() == (-5, "a")
+
+heap.push(-4, "d")
+
+doAssert heap.pop() == (-4, "d")
+doAssert heap.pop() == (-2, "b")
+doAssert heap.pop() == (0, "c")
+doAssert heap.empty()
+</code></pre>
+<h2 id="_3">注意</h2>
+<p><code>push</code> するキーは、最後に <code>pop</code> されたキー以上である必要があります。</p>
+<p>この条件を満たさない場合は Radix Heap の前提が壊れます。一般の優先度付きキューとして使いたい場合は通常の heap を使ってください。</p>
+  </main>
+</body>
+</html>

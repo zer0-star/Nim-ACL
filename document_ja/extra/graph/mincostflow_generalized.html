@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>mincostflow_generalized</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="mincostflow_generalized">mincostflow_generalized</h1>
+<p>このページは自動生成された下書きです。</p>
+<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
+<h2 id="import">import</h2>
+<pre><code>import atcoder/extra/graph/mincostflow_generalized
+</code></pre>
+<h2 id="api">公開 API</h2>
+<pre><code>const ATCODER_EXTRA_GRAPH_MINCOSTFLOW_GENERALIZED_HPP* = 1
+type MCFEdge*[Cap, Cost] = object
+type MCFGraph*[Cap, Cost, graphType] = object
+proc initMCFGraph*[Cap, Cost, graphType](n:int):MCFGraph[Cap, Cost, graphType] = result.n = n
+proc initMinCostFLow*[Cap, Cost, graphType](n:int):MCFGraph[Cap, Cost, graphType] = result.n = n
+proc add_edge*[Cap, Cost, graphType](self: var MCFGraph[Cap, Cost, graphType], src, dst:int, cap:Cap, cost:Cost):int {.discardable.} =
+proc get_edge*[Cap, Cost, graphType](self:MCFGraph[Cap, Cost, graphType], i:int): MCFEdge[Cap, Cost] =
+proc edges*[Cap, Cost, graphType](self:var MCFGraph[Cap, Cost, graphType]):seq[MCFEdge[Cap, Cost]] = self.edges
+proc `&lt;`*[Cost](l, r:MCFQ[Cost]):bool = l.key &gt; r.key
+proc slope*[Cap, Cost, graphType](self: MCFGraph[Cap, Cost, graphType], g:var csr[MCFInternalEdge[Cap, Cost]], s, t:int, flow_limit:Cap):seq[tuple[cap:Cap, cost:Cost]] =
+proc slope*[Cap, Cost, graphType](self:var MCFGraph[Cap, Cost, graphType], s, t:int, flow_limit:Cap):seq[tuple[cap:Cap, cost:Cost]] =
+var elist = newSeqOfCap[(int, MCFInternalEdge[Cap, Cost])](2 * m)
+proc flow*[Cap, Cost, graphType](self:var MCFGraph[Cap, Cost, graphType], s, t:int, flow_limit:Cap):tuple[cap:Cap, cost:Cost] = self.slope(s, t, flow_limit)[^1]
+proc flow*[Cap, Cost, graphType](self:var MCFGraph[Cap, Cost, graphType], s, t:int):tuple[cap:Cap, cost:Cost] = self.flow(s, t, Cap.high)
+proc slope*[Cap, Cost, graphType](self:var MCFGraph[Cap, Cost, graphType], s, t:int):seq[tuple[cap:Cap, cost:Cost]] = self.slope(s, t, Cap.high)
+proc reset*[Cap, Cost, graphType](self: var MCFGraph[Cap, Cost, graphType]) =
+proc set_edge*[Cap, Cost, graphType](self: var MCFGraph[Cap, Cost, graphType], i:int, cap:Cap, cost:Cost) =
+</code></pre>
+<h2 id="_1">概要</h2>
+<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
+<h2 id="_2">使用例</h2>
+<p>TODO: 使用例を追加してください。</p>
+<h2 id="_3">注意</h2>
+<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+  </main>
+</body>
+</html>

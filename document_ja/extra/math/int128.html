@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>int128</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="int128">int128</h1>
+<p>このページは自動生成された下書きです。</p>
+<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
+<h2 id="import">import</h2>
+<pre><code>import atcoder/extra/math/int128
+</code></pre>
+<h2 id="api">公開 API</h2>
+<pre><code>const ATCODER_INT128* = 1
+type Int128* {.importcpp: "__int128_t", nodecl.} = object
+type Uint128* {.importcpp: "__uint128_t", nodecl.} = object
+converter to_Int128*(x: SomeInteger or Uint128): Int128 {.importcpp: "(__int128_t)((#))", nodecl.}
+converter to_Uint128*(x: SomeInteger or Int128): Uint128 {.importcpp: "(__uint128_t)((#))", nodecl.}
+proc to_int*(x: Int128 or Uint128): int {.importcpp: "(long long)(#)", nodecl.}
+proc to_int32*(x: Int128): int32 {.importcpp: "(int)(#)", nodecl.}
+proc to_Uint*(x: Int128): uint {.importcpp: "(unsigned long long)(#)", nodecl.}
+proc `-`*(x: Int128): Int128 {.importcpp: "(-(#))", nodecl.}
+proc `not`*[T: Int128 or Uint128](x: T): T {.importcpp: "(~(#))", nodecl.}
+proc `inc`*(x: var Int128):void {.importcpp: "(++(#))", nodecl.}
+proc `dec`*(x: var Int128):void {.importcpp: "(--(#))", nodecl.}
+proc `nimop`*[T: Int128 or Uint128](x: var T, y: T) {.inline importcpp: "((#) " &amp; cop &amp; "(#))", nodecl.}
+macro generateUpdateOperator*(ops: varargs[tuple]) =
+macro generateBinaryOperator*(ops:varargs[untyped]) =
+proc `&gt;`*(x: Int128 or Uint128, y: Int128 or Uint128): bool {.importcpp: "((#) &gt; (#))", nodecl.}
+proc `&gt;=`*(x: Int128 or Uint128, y: Int128 or Uint128): bool {.importcpp: "((#) &gt;= (#))", nodecl.}
+proc `&lt;`*(x: Int128 or Uint128, y: Int128 or Uint128): bool {.importcpp: "((#) &lt; (#))", nodecl.}
+proc `&lt;=`*(x: Int128 or Uint128, y: Int128 or Uint128): bool {.importcpp: "((#) &lt;= (#))", nodecl.}
+proc `==`*(x: Int128 or Uint128, y: Int128 or Uint128): bool {.importcpp: "((#) == (#))", nodecl.}
+proc abs*(x: Int128): Int128 = (if x &gt;= 0:x else: -x)
+proc cmp*[T: Int128 or Uint128](x, y: T): int = (if x &lt; y: -1 elif x == y: 0 else: 1)
+proc hash*[T: Int128 or Uint128](x: T): Hash = hash(x div int(100000000000000000)) !&amp; hash(x mod int(100000000000000000))
+proc parseUint128*(s: string): Uint128 =
+proc parseInt128*(s: string): Int128 =
+proc pow*(x, n, m: Int128): Int128 =
+proc `^`*(x, n: Int128): Int128 =
+proc `$`*(x: Int128): string = $(to_string(x))
+proc `$`*(x: Uint128): string = $(to_string(x))
+proc floorDiv*(x, y: Int128): Int128 =
+proc floorMod*(x, y: Int128): Int128 =
+</code></pre>
+<h2 id="_1">概要</h2>
+<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
+<h2 id="_2">使用例</h2>
+<p>TODO: 使用例を追加してください。</p>
+<h2 id="_3">注意</h2>
+<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+  </main>
+</body>
+</html>

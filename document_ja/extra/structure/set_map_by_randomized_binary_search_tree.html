@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>set_map_by_randomized_binary_search_tree</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="set_map_by_randomized_binary_search_tree">set_map_by_randomized_binary_search_tree</h1>
+<p>このページは自動生成された下書きです。</p>
+<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
+<h2 id="import">import</h2>
+<pre><code>import atcoder/extra/structure/set_map_by_randomized_binary_search_tree
+</code></pre>
+<h2 id="api">公開 API</h2>
+<pre><code>const ATCODER_EXTRA_STRUCTURE_SET_MAP_BY_RANDOMIZED_BINARY_SEARCH_TREE_HPP* = 1
+type SortedMultiSet*[K, T] = object
+type SortedSet*[K, T] = object
+type SortedMultiMap*[K, T] = object
+type SortedMap*[K, T] = object
+template getType*(T:typedesc[anySet], K):typedesc =
+template getType*(T:typedesc[anyMap], K, V):typedesc =
+proc init*(T:typedesc[SetOrMap]):T =
+proc Begin*[T:SetOrMap](self: T):auto =
+proc initSortedMultiSet*[K]():auto = SortedMultiSet.getType(K).init()
+proc initSortedSet*[K]():auto = SortedSet.getType(K).init()
+proc initSortedMultiMap*[K, V]():auto = SortedMultiMap.getType(K, V).init()
+proc initSortedMap*[K, V]():auto = SortedMap.getType(K, V).init()
+proc getKey*[T:SetOrMap; Node:RBSTNode](self: T, t:Node):auto =
+proc `*`*[Node:RBSTNode](it:Node):auto = it.key
+proc lower_bound_index*[T:SetOrMap; Node:RBSTNode](self: var T, t:var Node, x:T.K):int {.inline.}=
+proc lower_bound_index*[T:SetOrMap](self:var T, x:T.K):int =
+proc upper_bound_index*[T:SetOrMap; Node:RBSTNode](self: var T, t:var Node, x:T.K):int =
+proc upper_bound_index*[T:SetOrMap](self: var T, x:T.K):int =
+proc lower_bound*[T:SetOrMap; Node:RBSTNode](self: var T, t:var Node, x:T.K):Node {.inline.}=
+proc lower_bound*[T:SetOrMap](self:var T, x:T.K):auto =
+proc upper_bound*[T:SetOrMap; Node:RBSTNode](self: var T, t:var Node, x:T.K):Node =
+proc upper_bound*[T:SetOrMap](self: var T, x:T.K):auto =
+proc findNode*[T:SetOrMap, Node:RBSTNode](self: var T, t:var Node, x:T.K):auto {.inline.}=
+proc findNode*[T:SetOrMap](self:var T, x:T.K):auto =
+proc contains*[T:SetOrMap](self: var T, x:T.K):bool =
+proc kth_element*[T:SetOrMap; Node:RBSTNode](self: var T, t:Node, k:int):T.T =
+proc kth_element*[T:SetOrMap](self: var T, k:int):T.T =
+proc `{}`*[T:SetOrMap](self: var T, k:int):T.T =
+proc insert*[T:SortedMultiSet](self: var T, x:T.K) =
+proc insert*[T:SortedMultiMap](self: var T, x:T.T) =
+proc count*[T:SetOrMap](self: var T, x:T.K):int =
+proc erase*[T:SetOrMap](self: var T, x:T.K) =
+proc erase*[T:SetOrMap](self: var T, t:RBSTNode) =
+proc find*[T:SetOrMap](self:var T, x:T.K):int =
+proc insert*[T:SortedSet](self: var T, x:T.K) =
+proc insert*[T:SortedMap](self: var T, x:T.T) =
+proc `[]`*[K, V](self: var SortedMap[K, tuple[K:K, V:V]], x:K):auto =
+proc `[]=`*[K, V](self: var SortedMap[K, tuple[K:K, V:V]], x:K, v:V) =
+proc len*(self:SetOrMap):int = self.rbst.len()
+proc empty*(self:var SetOrMap):bool = self.rbst.empty()
+proc check_tree*(self:SetOrMap) =
+proc `$`*(self: SetOrMap):string = self.rbst.to_string(self.rbst.root)
+</code></pre>
+<h2 id="_1">概要</h2>
+<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
+<h2 id="_2">使用例</h2>
+<p>TODO: 使用例を追加してください。</p>
+<h2 id="_3">注意</h2>
+<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+  </main>
+</body>
+</html>

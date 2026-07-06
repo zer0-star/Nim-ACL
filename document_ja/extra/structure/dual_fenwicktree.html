@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DualFenwickTree</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="dualfenwicktree">DualFenwickTree</h1>
+<p>Dual Fenwick Tree です。</p>
+<p>通常の Fenwick Tree が「点加算・区間和取得」を扱うのに対し、Dual Fenwick Tree は「区間加算・点取得」を扱います。</p>
+<p>長さ <code>n</code> の列 <code>a</code> に対して、区間に値 <code>x</code> を加算し、各点 <code>p</code> の現在値を取得できます。</p>
+<h2 id="import">import</h2>
+<pre><code>import atcoder/extra/structure/dual_fenwicktree
+</code></pre>
+<h2 id="_1">コンストラクタ</h2>
+<pre><code>var fw = initDualFenwickTree[T](n:int)
+</code></pre>
+<p>長さ <code>n</code> の Dual Fenwick Tree を作ります。</p>
+<p>型 <code>T</code> は加算・減算ができる整数型を想定しています。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= n</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(n)$</li>
+</ul>
+<h2 id="add">add</h2>
+<pre><code>fw.add(p:RangeType, x:T):void
+</code></pre>
+<p>区間 <code>p</code> に <code>x</code> を加算します。</p>
+<p><code>p</code> には <code>l..&lt;r</code> と <code>l..r</code> のどちらも渡せます。内部では <code>halfOpenEndpoints</code> により半開区間 <code>l..&lt;r</code> に変換して扱います。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= l &lt;= r &lt;= n</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2 id="_2">点取得</h2>
+<pre><code>fw[p]:T
+</code></pre>
+<p>点 <code>p</code> の現在値を返します。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= p &lt; n</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2 id="_3">使用例</h2>
+<pre><code>import atcoder/extra/structure/dual_fenwicktree
+
+var fw = initDualFenwickTree[int](6)
+
+fw.add(1..&lt;4, 10)
+fw.add(2..5, -3)
+fw.add(0..0, 7)
+fw.add(3..&lt;6, 2)
+
+doAssert fw[0] == 7
+doAssert fw[1] == 10
+doAssert fw[2] == 7
+doAssert fw[3] == 9
+doAssert fw[4] == -1
+doAssert fw[5] == -1
+</code></pre>
+<h2 id="_4">注意</h2>
+<p>このライブラリは「区間更新・点取得」専用です。</p>
+<p>区間和を取得したい場合は通常の <code>FenwickTree</code> や <code>LazySegTree</code> を使ってください。</p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>geometry_template</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="geometry_template">geometry_template</h1>
+<p>このページは自動生成された下書きです。</p>
+<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
+<h2 id="import">import</h2>
+<pre><code>import atcoder/extra/geometry/geometry_template
+</code></pre>
+<h2 id="api">公開 API</h2>
+<pre><code>const ATCODER_GEOMETRY_TEMPLATE_HPP* = 1
+type Point*[Real] = Complex[Real]
+proc initPoint*[Real](re, im:Real):Point[Real] = Point[Real](re:Real(re), im:Real(im))
+proc initPoint*[Real; S: not Real, T](re:S, im:T):Point[Real] = Point[Real](re:Real(re), im:Real(im))
+proc initPoint*[Real; T: not Real](re:Real, im:T):Point[Real] = Point[Real](re:Real(re), im:Real(im))
+proc `*`*[Real](p:Point[Real], d:Real):Point[Real] =
+proc toString*[Real](p:Point[Real]):string = $(p.re) &amp; " " &amp; $(p.im)
+proc rotate*[Real](theta:Real, p:Point):Point =
+proc radianToDegree*[Real](r:Real):Real = r * 180.Real / Real$.pi
+proc degreeToRadian*[Real](d:Real):Real = d * Real$.pi / 180.Real
+proc getAngle*[Real](a,b,c:Point[Real]):Real =
+proc `=~`*[Real](a,b:Point[Real]):bool =
+proc `&lt;~`*[Real](a,b:Point[Real]):bool =
+proc `&gt;~`*[Real](a,b:Point[Real]):bool = b &lt;~ a
+proc `&lt;=~`*[Real](a,b:Point[Real]):bool =
+proc `&gt;=~`*[Real](a,b:Point[Real]):bool = b &lt;=~ a
+type Line*[Real] = object
+type Segment*[Real] = distinct Line[Real]
+proc a*[Real](self:Segment[Real]):Point[Real] = Line[Real](self).a
+proc b*[Real](self:Segment[Real]):Point[Real] = Line[Real](self).b
+proc initLine*[Real](a,b:Point[Real]):Line[Real] = Line[Real](a:a, b:b)
+proc initLine*[Real](A, B, C:Real):Line[Real] = # Ax + By = C
+proc `--`*[Real](a, b:Point[Real]):Line[Real] = initLine(a, b)
+proc `$`*[Real](p:Line[Real]):string =
+proc initSegment*[Real](a, b:Point[Real]):Segment[Real] = Segment[Real](Line[Real](a:a, b:b))
+proc `!!`*[Real](a, b:Point[Real]):Segment[Real] =
+type Circle*[Real] = object
+proc initCircle*[Real](p:Point[Real], r:Real):Circle[Real] = Circle[Real](p:p, r:r)
+proc initCircle*[Real](a, b, c: Point[Real]):Circle[Real] =
+proc name*[Real](a:type_a, b:type_b):auto =
+proc name*[Real](b:type_b, a:type_a):auto =
+proc cross*[Real](a,b:Point[Real]):Real = a.re * b.im - a.im * b.re
+proc dot*[Real](a,b:Point[Real]):Real = a.re * b.re + a.im * b.im
+proc norm*[Real](a:Point[Real]):Real = dot(a,a)
+type CCWState* = enum
+proc ccw*[Real](a, b, c: Point[Real]):CCWState =
+proc parallel*[Real](a,b:Line[Real]):bool = cross(a.b - a.a, b.b - b.a) =~ 0.Real
+proc orthogonal*[Real](a,b:Line[Real]):bool = dot(a.a - a.b, b.a - b.b) =~ 0.Real
+proc intersect*[Real](l, m: Line[Real]):bool =
+proc intersect*[Real](s, t: Segment[Real]):bool =
+proc intersect*[Real](c1, c2: Circle[Real]):int =
+proc distance*[Real](a, b:Point[Real]):Real = abs(a - b)
+proc distance*[Real](l, m: Line[Real]):Real =
+proc distance*[Real](a, b:Segment[Real]):Real =
+proc crosspoint*[Real](l, m:Line[Real]):Point[Real] =
+proc crosspoint*[Real](l, m:Segment[Real]):Point[Real] =
+let base = sqrt(c.r * c.r - norm(pr - c.p))
+proc crosspoint*[Real](c1, c2: Circle[Real]):(Point[Real],Point[Real]) =
+</code></pre>
+<h2 id="_1">概要</h2>
+<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
+<h2 id="_2">使用例</h2>
+<p>TODO: 使用例を追加してください。</p>
+<h2 id="_3">注意</h2>
+<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+  </main>
+</body>
+</html>

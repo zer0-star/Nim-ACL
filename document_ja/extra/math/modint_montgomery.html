@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>modint_montgomery</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="modint_montgomery">modint_montgomery</h1>
+<p>このページは自動生成された下書きです。</p>
+<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
+<h2 id="import">import</h2>
+<pre><code>import atcoder/extra/math/modint_montgomery
+</code></pre>
+<h2 id="api">公開 API</h2>
+<pre><code>const ATCODER_MONTGOMERY_MODINT_HPP* = 1
+type StaticLazyMontgomeryModInt*[M:static[uint32]] = object
+type DynamicLazyMontgomeryModInt*[T:static[int]] = object
+proc isStaticModInt*(T:typedesc[LazyMontgomeryModInt]):bool = T is StaticLazyMontgomeryModInt
+proc isDynamicModInt*(T:typedesc[LazyMontgomeryModInt]):bool = T is DynamicLazyMontgomeryModInt
+proc isStatic*(T:typedesc[LazyMontgomeryModInt]):bool = T is StaticLazyMontgomeryModInt
+proc get_r*(M:uint32):auto =
+proc get_n2*(M:uint32):auto = (((not M.uint) + 1.uint) mod M.uint).uint32
+proc getParameters*[T:static[int]](t:typedesc[DynamicLazyMontgomeryModInt[T]]):ptr[tuple[M, r, n2:uint32]] =
+proc setMod*[T:static[int]](self:typedesc[DynamicLazyMontgomeryModInt[T]], M:SomeInteger) =
+template getMod*[T:StaticLazyMontgomeryModInt](self:T or typedesc[T]):uint32 = T.M.uint32
+template getMod*[T:static[int]](self:typedesc[DynamicLazyMontgomeryModInt[T]] or DynamicLazyMontgomeryModInt[T]):uint32 =
+template `mod`*[T:LazyMontgomeryModInt](self:T or typedesc[T]):int = T.get_mod.int
+proc init*[T:LazyMontgomeryModInt](t:typedesc[T], b:T or SomeInteger):auto {.inline.} =
+proc unit*[T:LazyMontgomeryModInt](t:typedesc[T] or T):T = T.init(1)
+proc val*[T:LazyMontgomeryModInt](self: T):int =
+proc `+=`*[T:LazyMontgomeryModInt](self: var T, b:T):T {.discardable, inline.} =
+proc `-=`*[T:LazyMontgomeryModInt](self: var T, b:T):T {.discardable, inline.} =
+proc inc*[T:LazyMontgomeryModInt](self: var T):T {.discardable, inline.} =
+proc dec*[T:LazyMontgomeryModInt](self: var T):T {.discardable, inline.} =
+proc `*=`*[T:LazyMontgomeryModInt](self: var T, b:T):T {.discardable, inline.} =
+proc inv*[T:LazyMontgomeryModInt](self: T):T = self.pow(T.mod - 2)
+proc `/=`*[T:LazyMontgomeryModInt](self: var T, b:T):T {.discardable, inline.} =
+proc `$`*(m: LazyMontgomeryModInt): string {.inline.} = $(m.val())
+proc `-`*[T:LazyMontgomeryModInt](self:T):T = T.init(0) - self
+template useStaticMontgomery*(name, M) =
+template useDynamicMontgomery*(name, M) =
+</code></pre>
+<h2 id="_1">概要</h2>
+<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
+<h2 id="_2">使用例</h2>
+<p>TODO: 使用例を追加してください。</p>
+<h2 id="_3">注意</h2>
+<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+  </main>
+</body>
+</html>
