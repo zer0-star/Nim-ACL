@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>convex_hull_trick_add_monotone</title>
+  <title>ConvexHullTrickAddMonotone</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -70,27 +70,61 @@
     </a>
   </header>
   <main>
-<h1 id="convex_hull_trick_add_monotone">convex_hull_trick_add_monotone</h1>
-<p>このページは自動生成された下書きです。</p>
-<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
+<h1 id="convexhulltrickaddmonotone">ConvexHullTrickAddMonotone</h1>
+<p>傾き単調追加 Convex Hull Trick です。</p>
+<p>一次関数 <code>f(x) = ax + b</code> を追加し、指定した <code>x</code> における最小値または最大値を求めます。</p>
+<p>追加する直線の傾き <code>a</code> が単調である場合に使えます。</p>
 <h2 id="import">import</h2>
 <pre><code>import atcoder/extra/structure/convex_hull_trick_add_monotone
 </code></pre>
-<h2 id="api">公開 API</h2>
-<pre><code>const ATCODER_CONVEX_HULL_TRICK_ADD_MONOTONE* = 1
-type ConvexHullTrickAddMonotone*[T] = object
-proc initConvexHullTrickAddMonotone*[T](isMin:bool):ConvexHullTrickAddMonotone[T] =
-proc add*[T](self: var ConvexHullTrickAddMonotone[T], a, b:T) =
-proc query*[T](self: ConvexHullTrickAddMonotone[T], x:T):T =
-proc query_monotone_inc*[T](self: var ConvexHullTrickAddMonotone[T], x:T):T =
-proc query_monotone_dec*[T](self: var ConvexHullTrickAddMonotone[T], x:T):T =
+<h2 id="_1">コンストラクタ</h2>
+<pre><code>var cht = initConvexHullTrickAddMonotone[T](isMin:bool)
 </code></pre>
-<h2 id="_1">概要</h2>
-<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
+<p><code>isMin = true</code> の場合は最小値、<code>isMin = false</code> の場合は最大値を求める CHT を作ります。</p>
+<h2 id="add">add</h2>
+<pre><code>cht.add(a:T, b:T):void
+</code></pre>
+<p>直線 <code>f(x) = ax + b</code> を追加します。</p>
+<p>追加する直線の傾き <code>a</code> は、単調非減少または単調非増加である必要があります。</p>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>ならし $O(1)$</li>
+</ul>
+<h2 id="query">query</h2>
+<pre><code>cht.query(x:T):T
+</code></pre>
+<p><code>x</code> における最小値または最大値を返します。</p>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2 id="query_monotone_inc-query_monotone_dec">query_monotone_inc / query_monotone_dec</h2>
+<pre><code>cht.query_monotone_inc(x:T):T
+cht.query_monotone_dec(x:T):T
+</code></pre>
+<p>クエリの <code>x</code> が単調に増加する場合は <code>query_monotone_inc</code>、単調に減少する場合は <code>query_monotone_dec</code> を使えます。</p>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>ならし $O(1)$</li>
+</ul>
 <h2 id="_2">使用例</h2>
-<p>TODO: 使用例を追加してください。</p>
+<pre><code>import atcoder/extra/structure/convex_hull_trick_add_monotone
+
+var cht = initConvexHullTrickAddMonotone[int](true)
+
+cht.add(0, 5)
+cht.add(1, 1)
+cht.add(2, 0)
+
+doAssert cht.query(0) == 0
+doAssert cht.query(3) == 5
+</code></pre>
 <h2 id="_3">注意</h2>
-<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+<p>直線追加時の傾きが単調でない場合、このデータ構造は使えません。</p>
+<p><code>query_monotone_inc</code> / <code>query_monotone_dec</code> は内部の候補直線を削除しながら進むため、同じ CHT に対して通常の <code>query</code> と混ぜて使う場合は注意してください。</p>
   </main>
 </body>
 </html>

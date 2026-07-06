@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>segtree_2d</title>
+  <title>SegTree2D</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -70,28 +70,95 @@
     </a>
   </header>
   <main>
-<h1 id="segtree_2d">segtree_2d</h1>
-<p>このページは自動生成された下書きです。</p>
-<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
+<h1 id="segtree2d">SegTree2D</h1>
+<p>二次元セグメント木です。</p>
+<p>あらかじめ現れる点 <code>(x, y)</code> をすべて与えておき、その点に対する加算と、矩形範囲の集約値取得を行います。</p>
+<p>座標は圧縮されるため、座標値そのものは大きくても構いません。</p>
 <h2 id="import">import</h2>
 <pre><code>import atcoder/extra/structure/segtree_2d
 </code></pre>
-<h2 id="api">公開 API</h2>
-<pre><code>const ATCODER_EXTRA_STRUCTURE_SEGTREE_2D_HPP* = 1
-type SegTree2D*[S; SegTree] = object
-proc initSegTree2D*[S](v: seq[tuple[x, y:int]], op: static[proc(a, b:S):S], e: static[proc():S]):auto =
-proc add*[ST:SegTree2D](self: var ST, x, y:int, v:ST.S) =
-proc get*[ST:SegTree2D](self: var ST, x, y:int):ST.S =
-proc `[]`*[ST:SegTree2D](self: var ST, x, y:int):ST.S = self.get(x, y)
-proc prod*[ST:SegTree2D](self: var ST, xp, yp: Slice[int] or int):ST.S =
-proc `[]`*[ST:SegTree2D](self: var ST, xp, yp: Slice[int] or int):ST.S = self.prod(xp, yp)
+<h2 id="_1">コンストラクタ</h2>
+<pre><code>var st = initSegTree2D[S](points, op, e)
 </code></pre>
-<h2 id="_1">概要</h2>
-<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
+<p><code>points</code> に現れる点だけを対象にした二次元セグメント木を構築します。</p>
+<p><code>op</code> は値を合成する演算、<code>e</code> は単位元です。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>points</code> は更新または取得する可能性のある点をすべて含む</li>
+<li><code>op</code> は結合的</li>
+<li><code>e()</code> は <code>op</code> の単位元</li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>構築 $O(n \log n)$</li>
+</ul>
+<h2 id="add">add</h2>
+<pre><code>st.add(x:int, y:int, v:S):void
+</code></pre>
+<p>点 <code>(x, y)</code> に値 <code>v</code> を加算、より正確には現在値に <code>op(current, v)</code> を適用します。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>(x, y)</code> はコンストラクタに渡した <code>points</code> に含まれる</li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(\log^2 n)$</li>
+</ul>
+<h2 id="get">get</h2>
+<pre><code>st.get(x:int, y:int):S
+st[x, y]:S
+</code></pre>
+<p>点 <code>(x, y)</code> の現在値を返します。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>(x, y)</code> はコンストラクタに渡した <code>points</code> に含まれる</li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2 id="prod">prod</h2>
+<pre><code>st.prod(xp, yp):S
+st[xp, yp]:S
+</code></pre>
+<p>矩形範囲 <code>xp × yp</code> に含まれる点の値を集約して返します。</p>
+<p><code>xp</code>, <code>yp</code> には <code>Slice[int]</code> または <code>int</code> を渡せます。<code>int</code> を渡した場合は一点だけを表します。</p>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(\log^2 n)$</li>
+</ul>
 <h2 id="_2">使用例</h2>
-<p>TODO: 使用例を追加してください。</p>
+<pre><code>import atcoder/extra/structure/segtree_2d
+
+proc op(a, b:int):int = a + b
+proc e():int = 0
+
+var st = initSegTree2D[int](@[
+  (x: 0, y: 0),
+  (x: 0, y: 1),
+  (x: 1, y: 0),
+  (x: 2, y: 2),
+], op, e)
+
+st.add(0, 0, 5)
+st.add(0, 0, 7)
+st.add(0, 1, 3)
+st.add(1, 0, 11)
+st.add(2, 2, 13)
+
+doAssert st.get(0, 0) == 12
+doAssert st.prod(0..2, 0..2) == 39
+</code></pre>
 <h2 id="_3">注意</h2>
-<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+<p>コンストラクタに渡していない点には更新できません。</p>
+<p>矩形クエリは、座標値の範囲で指定します。内部の圧縮 index ではなく、元の <code>x</code>, <code>y</code> の値を使います。</p>
   </main>
 </body>
 </html>

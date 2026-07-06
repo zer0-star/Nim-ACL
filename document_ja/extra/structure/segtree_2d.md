@@ -1,32 +1,101 @@
-# segtree_2d
 
-このページは自動生成された下書きです。
+# SegTree2D
 
-公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。
+二次元セグメント木です。
+
+あらかじめ現れる点 `(x, y)` をすべて与えておき、その点に対する加算と、矩形範囲の集約値取得を行います。
+
+座標は圧縮されるため、座標値そのものは大きくても構いません。
 
 ## import
 
     import atcoder/extra/structure/segtree_2d
 
-## 公開 API
+## コンストラクタ
 
-    const ATCODER_EXTRA_STRUCTURE_SEGTREE_2D_HPP* = 1
-    type SegTree2D*[S; SegTree] = object
-    proc initSegTree2D*[S](v: seq[tuple[x, y:int]], op: static[proc(a, b:S):S], e: static[proc():S]):auto =
-    proc add*[ST:SegTree2D](self: var ST, x, y:int, v:ST.S) =
-    proc get*[ST:SegTree2D](self: var ST, x, y:int):ST.S =
-    proc `[]`*[ST:SegTree2D](self: var ST, x, y:int):ST.S = self.get(x, y)
-    proc prod*[ST:SegTree2D](self: var ST, xp, yp: Slice[int] or int):ST.S =
-    proc `[]`*[ST:SegTree2D](self: var ST, xp, yp: Slice[int] or int):ST.S = self.prod(xp, yp)
+    var st = initSegTree2D[S](points, op, e)
 
-## 概要
+`points` に現れる点だけを対象にした二次元セグメント木を構築します。
 
-TODO: このライブラリの用途と使いどころを記述してください。
+`op` は値を合成する演算、`e` は単位元です。
+
+@{keyword.constraints}
+
+- `points` は更新または取得する可能性のある点をすべて含む
+- `op` は結合的
+- `e()` は `op` の単位元
+
+@{keyword.complexity}
+
+- 構築 $O(n \log n)$
+
+## add
+
+    st.add(x:int, y:int, v:S):void
+
+点 `(x, y)` に値 `v` を加算、より正確には現在値に `op(current, v)` を適用します。
+
+@{keyword.constraints}
+
+- `(x, y)` はコンストラクタに渡した `points` に含まれる
+
+@{keyword.complexity}
+
+- $O(\log^2 n)$
+
+## get
+
+    st.get(x:int, y:int):S
+    st[x, y]:S
+
+点 `(x, y)` の現在値を返します。
+
+@{keyword.constraints}
+
+- `(x, y)` はコンストラクタに渡した `points` に含まれる
+
+@{keyword.complexity}
+
+- $O(\log n)$
+
+## prod
+
+    st.prod(xp, yp):S
+    st[xp, yp]:S
+
+矩形範囲 `xp × yp` に含まれる点の値を集約して返します。
+
+`xp`, `yp` には `Slice[int]` または `int` を渡せます。`int` を渡した場合は一点だけを表します。
+
+@{keyword.complexity}
+
+- $O(\log^2 n)$
 
 ## 使用例
 
-TODO: 使用例を追加してください。
+    import atcoder/extra/structure/segtree_2d
+
+    proc op(a, b:int):int = a + b
+    proc e():int = 0
+
+    var st = initSegTree2D[int](@[
+      (x: 0, y: 0),
+      (x: 0, y: 1),
+      (x: 1, y: 0),
+      (x: 2, y: 2),
+    ], op, e)
+
+    st.add(0, 0, 5)
+    st.add(0, 0, 7)
+    st.add(0, 1, 3)
+    st.add(1, 0, 11)
+    st.add(2, 2, 13)
+
+    doAssert st.get(0, 0) == 12
+    doAssert st.prod(0..2, 0..2) == 39
 
 ## 注意
 
-TODO: 制約、前提条件、落とし穴を記述してください。
+コンストラクタに渡していない点には更新できません。
+
+矩形クエリは、座標値の範囲で指定します。内部の圧縮 index ではなく、元の `x`, `y` の値を使います。

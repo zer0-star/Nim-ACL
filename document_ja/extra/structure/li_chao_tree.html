@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>li_chao_tree</title>
+  <title>LiChaoTree</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -70,31 +70,73 @@
     </a>
   </header>
   <main>
-<h1 id="li_chao_tree">li_chao_tree</h1>
-<p>このページは自動生成された下書きです。</p>
-<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
+<h1 id="lichaotree">LiChaoTree</h1>
+<p>Li Chao Tree です。</p>
+<p>一次関数 <code>f(x) = ax + b</code> を追加し、あらかじめ与えた座標 <code>x_i</code> 上での最小値を高速に問い合わせます。</p>
+<p>この実装は座標圧縮型です。クエリで使う <code>x</code> 座標列を最初に渡しておき、<code>query(k)</code> ではその <code>k</code> 番目の座標における最小値を返します。</p>
 <h2 id="import">import</h2>
 <pre><code>import atcoder/extra/structure/li_chao_tree
 </code></pre>
-<h2 id="api">公開 API</h2>
-<pre><code>const ATCODER_LI_CHAO_TREE_HPP* = 1
-proc initLine*[T](a, b:T):Line[T] = Line[T](a:a, b:b)
-proc get*[T](self: Line[T], x:T):T =
-proc over*[T](self, b: Line[T], x: T):bool = self.get(x) &lt; b.get(x)
-proc initLiChaoTree*[T](x: seq[T], inf_val:T):LiChaoTree[T] =
-proc disjoint*(x, y:Slice[int]):bool = x.b &lt; y.a or y.b &lt; x.a
-proc subset*(x, y:Slice[int]):bool = y.a &lt;= x.a and x.b &lt;= y.b
-proc update*[T](self: var LiChaoTree[T], x:ptr[Line], k:int, ks:Slice[int]) =
-proc update*[T](self: var LiChaoTree[T], a, b:T, s:Slice[int]) =
-proc update*[T](self: var LiChaoTree[T], a, b:T) =
-proc query*[T](self: var LiChaoTree[T], k:int):T =
+<h2 id="_1">コンストラクタ</h2>
+<pre><code>var cht = initLiChaoTree[T](xs:seq[T], inf_val:T)
 </code></pre>
-<h2 id="_1">概要</h2>
-<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
+<p>座標列 <code>xs</code> 上でクエリを行う Li Chao Tree を構築します。</p>
+<p><code>inf_val</code> は十分大きい値です。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>xs.len &gt; 0</code></li>
+<li><code>inf_val</code> は答えとして現れない十分大きい値</li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(n)$</li>
+</ul>
+<h2 id="update">update</h2>
+<pre><code>cht.update(a:T, b:T):void
+cht.update(a:T, b:T, s:Slice[int]):void
+</code></pre>
+<p>直線 <code>f(x) = ax + b</code> を追加します。</p>
+<p><code>Slice[int]</code> を指定した場合は、座標 index の範囲 <code>s</code> にだけ線分として追加します。</p>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>全体追加 $O(\log n)$</li>
+<li>区間追加 $O(\log^2 n)$</li>
+</ul>
+<h2 id="query">query</h2>
+<pre><code>cht.query(k:int):T
+</code></pre>
+<p><code>xs[k]</code> における最小値を返します。</p>
+<h4 class="doc-keyword">制約</h4>
+
+<ul>
+<li><code>0 &lt;= k &lt; xs.len</code></li>
+</ul>
+<h4 class="doc-keyword">計算量</h4>
+
+<ul>
+<li>$O(\log n)$</li>
+</ul>
 <h2 id="_2">使用例</h2>
-<p>TODO: 使用例を追加してください。</p>
+<pre><code>import atcoder/extra/structure/li_chao_tree
+
+const INF = int.high div 4
+var cht = initLiChaoTree[int](@[0, 1, 2, 3, 4, 5], INF)
+
+cht.update(2, 3)    # 2x + 3
+cht.update(-1, 10)  # -x + 10
+cht.update(0, 7)    # 7
+
+for i in 0..5:
+  let x = i
+  let expected = min(min(2 * x + 3, -x + 10), 7)
+  doAssert cht.query(i) == expected
+</code></pre>
 <h2 id="_3">注意</h2>
-<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+<p>この実装は最小値クエリ用です。最大値を求めたい場合は、直線と答えの符号を反転して使います。</p>
+<p><code>query</code> の引数は座標値そのものではなく、コンストラクタに渡した <code>xs</code> の index です。</p>
   </main>
 </body>
 </html>
