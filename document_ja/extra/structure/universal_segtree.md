@@ -1,58 +1,302 @@
-# universal_segtree
+# UniversalSegTree
 
-このページは自動生成された下書きです。
+Universal SegTree は、通常のセグメント木、遅延セグメント木、双対セグメント木、区間長依存の遅延セグメント木、SegTree Beats 風の構造を、共通の実装で扱うための汎用セグメント木です。
 
-公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。
+標準の `atcoder/segtree` や `atcoder/lazysegtree` と同じ考え方で使えますが、`op`, `e`, `mapping`, `composition`, `id` などを template に渡して型を生成する設計になっています。
+
+通常は、次の wrapper を使います。
+
+    initSegTree
+    initDualSegTree
+    initLazySegTree
+    initLazySegTree_with_p
+    initSegTreeBeats
 
 ## import
 
     import atcoder/extra/structure/universal_segtree
 
-## 公開 API
+## 通常の SegTree
 
-    const ATCODER_UNIVERSAL_SEGTREE_HPP* = 1
-    template calc_op*[ST:UniversalSegTree](self:ST or typedesc[ST], a, b:ST.S):auto =
-    template calc_e*[ST:UniversalSegTree](self:ST or typedesc[ST]):auto =
-    template calc_mapping*[ST:UniversalSegTree](self:ST or typedesc[ST], a:ST.F, b:ST.S):auto =
-    template calc_composition*[ST:UniversalSegTree](self:ST or typedesc[ST], a, b:ST.F):auto =
-    template calc_id*[ST:UniversalSegTree](self:ST or typedesc[ST]):auto =
-    template calc_p*[ST:UniversalSegTree](self:ST or typedesc[ST], a:ST.F, s:Slice[int]):auto =
-    proc update*[ST:UniversalSegTree](self:var ST, k:int) =
-    proc push*[ST:UniversalSegTree](self: var ST, k:int)
-    proc all_apply*[ST:UniversalSegTree](self:var ST, k:int, f:ST.F) =
-    proc push*[ST:UniversalSegTree](self: var ST, k:int) =
-    proc init*[ST:UniversalSegTree](self: var ST, v:seq[ST.S] or seq[ST.F]) =
-    proc init*[ST:UniversalSegTree](self: var ST, v:int) =
-    template SegTreeType*[S](op, e:untyped):typedesc =
-    template initSegTree*[S](v:int or seq[S], op, e:untyped):auto =
-    template DualSegTreeType*[F](composition, id:untyped):auto =
-    template initDualSegTree*[F](v:int or seq[F], composition, id:untyped):auto =
-    template LazySegTreeType*[S,F](op,e,mapping,composition,id:untyped):auto =
-    template initLazySegTree*[S,F](v:int or seq[S], op,e,mapping,composition,id:untyped):auto =
-    template LazySegTreeWithPType*[S,F](op,e,mapping,composition,id,p:untyped):auto =
-    template initLazySegTree_with_p*[S,F](v:int or seq[S], op,e,mapping,composition,id,p:untyped):auto =
-    template SegTreeBeatsType*[S,F](op,e,mapping,composition,id:untyped):typedesc =
-    template initSegTreeBeats*[S,F](v:int or seq[S], op,e,mapping,composition,id:untyped):auto =
-    proc set*[ST:UniversalSegTree](self: var ST, p:IndexType, x:auto) =
-    proc `[]=`*[ST:UniversalSegTree](self: var ST, p:IndexType, x:auto) = self.set(p, x)
-    proc get*[ST:UniversalSegTree](self: var ST, p:IndexType):auto =
-    proc `[]`*[ST:UniversalSegTree](self: var ST, p:IndexType):auto = self.get(p)
-    proc prod*[ST:UniversalSegTree](self:var ST, p:RangeType):ST.S =
-    proc `[]`*[ST:UniversalSegTree](self:var ST, p:RangeType):ST.S = self.prod(p)
-    proc all_prod*[ST:UniversalSegTree](self:ST):auto = self.d[1]
-    proc apply*[ST:UniversalSegTree](self: var ST, p:IndexType, f:ST.F) =
-    proc apply*[ST:UniversalSegTree](self: var ST, p:RangeType, f:ST.F) =
-    proc max_right*[ST:UniversalSegTree](self:var ST, l:IndexType, g:(ST.S)->bool):int =
-    proc min_left*[ST:UniversalSegTree](self: var ST, r:IndexType, g:(ST.S)->bool):int =
+    var st = initSegTree[S](v:int or seq[S], op, e)
 
-## 概要
+通常のセグメント木を作ります。
 
-TODO: このライブラリの用途と使いどころを記述してください。
+`op` は二項演算、`e` は単位元です。
 
-## 使用例
+@{keyword.constraints}
 
-TODO: 使用例を追加してください。
+- `op` は結合的
+- `e()` は `op` の単位元
+
+@{keyword.complexity}
+
+- 構築 $O(n)$
+- 点更新 $O(\log n)$
+- 区間取得 $O(\log n)$
+
+### 使用例
+
+    import atcoder/extra/structure/universal_segtree
+
+    proc op(a, b:int):int = a + b
+    proc e():int = 0
+
+    var st = initSegTree[int](@[1, 2, 3, 4, 5], op, e)
+
+    doAssert st[0..<5] == 15
+    doAssert st[1..3] == 9
+
+    st[2] = 10
+
+    doAssert st[0..<5] == 22
+    doAssert st[2] == 10
+
+## LazySegTree
+
+    var st = initLazySegTree[S, F](
+      v:int or seq[S],
+      op,
+      e,
+      mapping,
+      composition,
+      id
+    )
+
+遅延セグメント木を作ります。
+
+`S` は区間値の型、`F` は作用素の型です。
+
+`mapping(f, x)` は、作用 `f` を区間値 `x` に適用した値を返します。
+
+`composition(f, g)` は、先に `g`、次に `f` を適用する合成を返します。
+
+@{keyword.constraints}
+
+- `op` は結合的
+- `e()` は `op` の単位元
+- `mapping(id(), x) = x`
+- `mapping(f, op(x, y)) = op(mapping(f, x), mapping(f, y))`
+- `composition(f, g)` は作用の合成
+
+@{keyword.complexity}
+
+- 構築 $O(n)$
+- 区間更新 $O(\log n)$
+- 区間取得 $O(\log n)$
+
+### 使用例：区間加算・区間和
+
+    import atcoder/extra/structure/universal_segtree
+
+    type S = tuple[sum:int, len:int]
+
+    proc op(a, b:S):S =
+      (sum: a.sum + b.sum, len: a.len + b.len)
+
+    proc e():S =
+      (sum: 0, len: 0)
+
+    proc mapping(f:int, x:S):S =
+      (sum: x.sum + f * x.len, len: x.len)
+
+    proc composition(f, g:int):int =
+      f + g
+
+    proc id():int =
+      0
+
+    var st = initLazySegTree[S, int](
+      @[
+        (sum: 1, len: 1),
+        (sum: 2, len: 1),
+        (sum: 3, len: 1),
+        (sum: 4, len: 1),
+        (sum: 5, len: 1),
+      ],
+      op,
+      e,
+      mapping,
+      composition,
+      id
+    )
+
+    doAssert st[0..<5].sum == 15
+
+    st.apply(1..3, 10)
+
+    doAssert st[0..<5].sum == 45
+    doAssert st[2].sum == 13
+
+## DualSegTree
+
+    var st = initDualSegTree[F](v:int or seq[F], composition, id)
+
+双対セグメント木を作ります。
+
+双対セグメント木は「区間作用・点取得」に使います。区間に作用を追加して、各点で合成済みの作用を取得します。
+
+@{keyword.constraints}
+
+- `composition` は結合的
+- `id()` は恒等作用
+
+@{keyword.complexity}
+
+- 区間更新 $O(\log n)$
+- 点取得 $O(\log n)$
+
+### 使用例：区間加算・点取得
+
+    import atcoder/extra/structure/universal_segtree
+
+    proc composition(f, g:int):int =
+      f + g
+
+    proc id():int =
+      0
+
+    var st = initDualSegTree[int](5, composition, id)
+
+    st.apply(1..<4, 10)
+    st.apply(2..4, -3)
+
+    doAssert st[0] == 0
+    doAssert st[1] == 10
+    doAssert st[2] == 7
+    doAssert st[3] == 7
+    doAssert st[4] == -3
+
+## LazySegTree_with_p
+
+    var st = initLazySegTree_with_p[S, F](
+      v:int or seq[S],
+      op,
+      e,
+      mapping,
+      composition,
+      id,
+      p
+    )
+
+区間の長さや相対位置に依存して作用を変えたい場合に使う遅延セグメント木です。
+
+`p(f, s)` は、もとの作用 `f` を、ノードが表す区間 `s` に合わせて変換します。
+
+たとえば、等差数列加算や、区間の位置に応じて変化する作用を扱う場合に使います。
+
+@{keyword.complexity}
+
+- 区間更新 $O(\log n)$
+- 区間取得 $O(\log n)$
+
+## SegTreeBeats
+
+    var st = initSegTreeBeats[S, F](
+      v:int or seq[S],
+      op,
+      e,
+      mapping,
+      composition,
+      id
+    )
+
+SegTree Beats 風の処理を扱うための wrapper です。
+
+通常の LazySegTree と異なり、`mapping(f, s)` は `Option[S]` を返します。
+
+- `some(x)` を返した場合、そのノード全体に作用を適用できます。
+- `none(S)` を返した場合、そのノードでは作用をまとめて適用できないため、子に降りて処理します。
+
+@{keyword.constraints}
+
+- `mapping` は `Option[S]` を返す
+- `none` の場合は子に push できる必要がある
+
+## 点更新・点取得
+
+    st[p] = x
+    st[p]
+
+`st[p] = x` で点 `p` を更新します。
+
+`st[p]` で点 `p` の値を取得します。
+
+`p` には通常の index のほか、`^1` のような `BackwardsIndex` も使えます。
+
+@{keyword.constraints}
+
+- `0 <= p < n`
+
+@{keyword.complexity}
+
+- $O(\log n)$
+
+## 区間取得
+
+    st.prod(p:RangeType)
+    st[p:RangeType]
+
+区間 `p` の値を返します。
+
+`RangeType` を使っているため、`l..<r` と `l..r` のどちらも渡せます。内部では `halfOpenEndpoints` により半開区間として扱われます。
+
+@{keyword.constraints}
+
+- `0 <= l <= r <= n`
+
+@{keyword.complexity}
+
+- $O(\log n)$
+
+## 区間作用
+
+    st.apply(p:RangeType, f:F)
+    st.apply(p:IndexType, f:F)
+
+遅延セグメント木または双対セグメント木で、区間または一点に作用 `f` を適用します。
+
+@{keyword.complexity}
+
+- $O(\log n)$
+
+## all_prod
+
+    st.all_prod()
+
+全体の値を返します。
+
+@{keyword.complexity}
+
+- $O(1)$
+
+## max_right / min_left
+
+    st.max_right(l, g)
+    st.min_left(r, g)
+
+ACL の `segtree` / `lazy_segtree` と同様に、条件 `g` を満たす最大右端・最小左端を二分探索します。
+
+@{keyword.constraints}
+
+- `g(e()) == true`
+- `g` は単調性を持つ
+
+@{keyword.complexity}
+
+- $O(\log n)$
 
 ## 注意
 
-TODO: 制約、前提条件、落とし穴を記述してください。
+UniversalSegTree は内部実装を共通化するための高度な wrapper です。
+
+単純な用途では、標準の `atcoder/segtree` や `atcoder/lazysegtree` の方が読みやすい場合があります。
+
+一方で、次のような用途では UniversalSegTree が便利です。
+
+- 通常 SegTree / LazySegTree / DualSegTree を同じ API で扱いたい
+- `l..<r` と `l..r` の両方に対応したい
+- 区間長や位置に依存する作用を扱いたい
+- SegTree Beats 風の「まとめて適用できない場合は子に降りる」処理を書きたい
+
+`composition(f, g)` の順序は重要です。この実装では、先に `g`、次に `f` を適用する合成として書きます。
