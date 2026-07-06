@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>randomized_binary_search_tree_with_parent</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="randomized_binary_search_tree_with_parent">randomized_binary_search_tree_with_parent</h1>
+<p>このページは自動生成された下書きです。</p>
+<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
+<h2 id="import">import</h2>
+<pre><code>import atcoder/extra/structure/randomized_binary_search_tree_with_parent
+</code></pre>
+<h2 id="api">公開 API</h2>
+<pre><code>const ATCODER_EXTRA_STRUCTURE_RANDOMIZED_BINARY_SEARCH_TREE_WITH_PARENT_HPP* = 1
+type RBSTNode*[D, L, useSum] = ref object
+type RBSTType*[D,L,Node,useP, useSum;p:static[tuple]] = object of RootObj
+type RandomizedBinarySearchTree*[D] = RBSTType[D,void,RBSTNode[D,void,RBST_FALSE],RBST_FALSE,RBST_FALSE,()]
+type LazyRandomizedBinarySearchTree*[D,L,useP,useSum] = RBSTType[D,L,RBSTNode[D,L,useSum],useP,useSum,()]
+type SomeRBST* = RBSTType or RandomizedBinarySearchTree or LazyRandomizedBinarySearchTree
+proc hasSum*[RBST:SomeRBST](t:typedesc[RBST]):bool {.compileTime.} =
+proc hasLazy*[RBST:SomeRBST](t:typedesc[RBST]):bool {.compileTime.} =
+proc initNode*[RBST:SomeRBST](self:RBST, k:RBST.D, p:RBST.L, id:int, cnt:int):auto =
+proc initNode*[RBST:SomeRBST](self:RBST, k:RBST.D, id:int, cnt:int):auto =
+proc alloc*[RBST:SomeRBST](self: var RBST, key:RBST.D, cnt = 1):RBST.Node =
+proc init*[RBST:SomeRBST](self: var RBST, root: RBST.Node = nil, seed = 2019) =
+proc initRandomizedBinarySearchTree*[D](seed = 2019):auto =
+proc initRandomizedBinarySearchTree*[D](f:static[(D,D)-&gt;D], D0:D, seed = 2019):auto =
+proc initRandomizedBinarySearchTree*[D, L](f:static[(D,D)-&gt;D], g:static[(L,D)-&gt;D], h:static[(L,L)-&gt;L], D0:D, L0:L, seed = 2019):auto =
+proc initRandomizedBinarySearchTree*[D, L](f:static[(D,D)-&gt;D], g:static[(L,D)-&gt;D], h:static[(L,L)-&gt;L], p:static[(L,Slice[int])-&gt;L],D0:D,L0:L,seed = 2019):auto =
+template clone*[D,L,useSum](t:RBSTNode[D, L, useSum]):auto = t
+proc test*[RBST:SomeRBST](self: var RBST, n, s:int):bool =
+proc sum*[RBST:SomeRBST](self: RBST, t:RBST.Node):auto = t.sum
+proc len*[RBST:SomeRBST](self: RBST, t:RBST.Node):int = t.cnt
+proc len*[RBST:SomeRBST](self: RBST):int = self.len(self.root)
+proc update*[RBST:SomeRBST](self: RBST, t:RBST.Node):RBST.Node {.inline.} =
+proc propagate*[RBST:SomeRBST](self: var RBST, t:RBST.Node):auto =
+proc merge*[RBST:SomeRBST](self: var RBST, l, r:RBST.Node):auto =
+proc split*[RBST:SomeRBST](self:var RBST, t:RBST.Node, k:int):(RBST.Node, RBST.Node) =
+proc split*[RBST:SomeRBST](self:var RBST, t:RBST.Node, p:RBST.Node):(RBST.Node, RBST.Node) =
+proc build*[RBST:SomeRBST](self: var RBST, s:Slice[int], v:seq[RBST.D]):auto =
+proc build*[RBST:SomeRBST](self: var RBST, v:seq[RBST.D]) =
+proc to_vec*[RBST:SomeRBST](self: RBST, r:RBST.Node, v:var seq[RBST.D]) =
+proc to_vec*[RBST:SomeRBST](self: RBST, r:RBST.Node):auto =
+proc to_string*[RBST:SomeRBST](self: RBST, r:RBST.Node):string =
+proc write_tree*[RBST:SomeRBST](self: var RBST, r:RBST.Node, h = 0) =
+proc write_tree*[RBST:SomeRBST](self: var RBST) =
+proc insert_index*[RBST:SomeRBST](self: var RBST, t:var RBST.Node, k:int, v:RBST.D) =
+proc insert*[RBST:SomeRBST](self: var RBST, t:var RBST.Node, p:RBST.Node, v:RBST.D):RBST.Node {.discardable.} =
+proc erase_index*[RBST:SomeRBST](self: var RBST, t:var RBST.Node, k:int) =
+proc erase*[RBST:SomeRBST](self: var RBST, t:var RBST.Node, p:RBST.Node):RBST.Node {.discardable.} =
+proc prod*[RBST:SomeRBST](self: var RBST, t:var RBST.Node, p:Slice[int]):auto =
+proc apply*[RBST:SomeRBST](self:var RBST, t:var RBST.Node, s:Slice[int], p:RBST.L) =
+proc set*[RBST:SomeRBST](self: var RBST, t:var RBST.Node, k:int, x:RBST.D) =
+proc empty*[RBST:SomeRBST](self: var RBST, t:RBST.Node):bool = self.len == 0
+proc insert_index*[RBST:SomeRBST](self: var RBST, k:int, v:RBST.D):RBST.Node {.discardable.} =
+proc insert*[RBST:SomeRBST](self: var RBST, p:RBST.Node, v:RBST.D):RBST.Node {.discardable.} =
+proc erase_index*[RBST:SomeRBST](self: var RBST, k:int):RBST.Node {.discardable.} =
+proc erase*[RBST:SomeRBST](self: var RBST, p:RBST.Node):RBST.Node {.discardable.} =
+proc prod*[RBST:SomeRBST](self: var RBST, p:Slice[int]):auto = self.prod(self.root, p)
+proc `[]`*[RBST:SomeRBST](self: var RBST, p:Slice[int]):auto = self.prod(self.root, p)
+proc apply*[RBST:SomeRBST](self:var RBST, s:Slice[int], p:RBST.L) = self.apply(self.root, s, p)
+proc set*[RBST:SomeRBST](self: var RBST, k:int, x:RBST.D) = self.set(self.root, k, x)
+proc `[]=`*[RBST:RBSTType](self: var RBST, k:int, x:RBST.D) = self.set(self.root, k, x)
+proc empty*[RBST:SomeRBST](self: var RBST):bool = self.empty(self.root)
+proc check_tree*[RBST:SomeRBST](self: RBST, t:RBST.Node):int =
+proc check_tree*[RBST:SomeRBST](self: RBST):int {.discardable.} =
+</code></pre>
+<h2 id="_1">概要</h2>
+<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
+<h2 id="_2">使用例</h2>
+<p>TODO: 使用例を追加してください。</p>
+<h2 id="_3">注意</h2>
+<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+  </main>
+</body>
+</html>

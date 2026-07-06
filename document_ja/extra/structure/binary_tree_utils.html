@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>binary_tree_utils</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="binary_tree_utils">binary_tree_utils</h1>
+<p>このページは自動生成された下書きです。</p>
+<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
+<h2 id="import">import</h2>
+<pre><code>import atcoder/extra/structure/binary_tree_utils
+</code></pre>
+<h2 id="api">公開 API</h2>
+<pre><code>const ATCODER_BINARY_TREE_UTILS_HPP* = 1
+type SomeSortedTree* = concept x, type T
+type SomeSortedSet* = concept x, type T
+type SomeSortedMap* = concept x, type T
+type SomeSortedMultiSet* = concept x, type T
+type SomeSortedMultiMap* = concept x, type T
+type hasSplay* = concept x, type T
+proc begin*[T:SomeSortedTree](self: T):T.Node = self.tree.begin()
+proc getKey*[T:SomeSortedTree](self: T, t:T.Node):auto =
+template calc_comp*[T:SomeSortedTree](self:T, x, y:T.K):bool =
+proc lower_bound*[T:SomeSortedTree](self: var T, t:var T.Node, x:T.K):T.Node =
+proc lower_bound*[T:SomeSortedTree](self:var T, x:T.K):T.Node =
+proc upper_bound*[T:SomeSortedTree](self: var T, t:var T.Node, x:T.K):T.Node =
+proc upper_bound*[T:SomeSortedTree](self: var T, x:T.K):T.Node =
+proc find*[T:SomeSortedTree](self:var T, x:T.K):T.Node =
+proc contains*[T:SomeSortedTree](self: var T, x:T.K):bool =
+proc insert*[T:SomeSortedMultiSet](self: var T, x:T.K):T.Node =
+proc insert*[T:SomeSortedMultiMap](self: var T, x:(T.K, T.V)):T.Node =
+proc insert*[T:SomeSortedSet](self: var T, x:T.K):T.Node =
+proc insert*[T:SomeSortedMap](self: var T, x:(T.K, T.V)):T.Node =
+proc incl*[T:SomeSortedSet | SomeSortedMultiSet](self:var T, x:T.K):T.Node =
+proc incl*[T:SomeSortedMap | SomeSortedMultiMap](self:var T, x:(T.K, T.V)):T.Node =
+template getAddr*[T:SomeSortedMap](self:var T, x:T.K):auto =
+template `[]`*[T:SomeSortedMap](self: var T, x:T.K):auto =
+proc `[]=`*[T:SomeSortedMap](self: var T, x:T.K, v:T.V) =
+proc erase*[T:SomeSortedSet or SomeSortedMap](self: var T, x:T.K):T.Node =
+proc erase*[T:SomeSortedMultiSet or SomeSortedMultiMap](self: var T, lb, ub:T.Node):T.Node =
+proc erase*[T:SomeSortedMultiSet or SomeSortedMultiMap](self: var T, x:T.K):T.Node =
+proc erase*[T:SomeSortedTree](self: var T, t:T.Node):T.Node = self.tree.erase(t)
+proc excl*[T:SomeSortedTree](self: var T, x:T.K):T.Node = self.erase(x)
+proc excl*[T:SomeSortedTree](self: var T, t:T.Node):T.Node = self.erase(t)
+proc kth_element*[T:SomeSortedTree](self: var T, t:T.Node, k:int):T.Node =
+proc kth_element*[T:SomeSortedTree](self: var T, k:int):T.Node =
+proc `{}`*[T:SomeSortedTree](self: var T, k:int):T.Node =
+proc index*[T:SomeSortedTree](self:T, t:T.Node):int =
+proc distance*[T:SomeSortedTree](self:T, t1, t2:T.Node):int =
+iterator items*[T:SomeSortedSet or SomeSortedMultiSet](self:T):T.K =
+iterator pairs*[T:SomeSortedMap or SomeSortedMultiMap](self:T):(T.K, T.V) =
+proc `end`*[Tree:SomeSortedTree](self:Tree):Tree.Node = self.End
+</code></pre>
+<h2 id="_1">概要</h2>
+<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
+<h2 id="_2">使用例</h2>
+<p>TODO: 使用例を追加してください。</p>
+<h2 id="_3">注意</h2>
+<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+  </main>
+</body>
+</html>
