@@ -1,10 +1,15 @@
+
 # PartiallyPersistentDSU
 
 部分永続 Union-Find です。
 
-時刻 `t` を指定して、その時点での連結成分の代表元やサイズを取得できます。
+時刻 `t` を指定して、その時点での連結成分の代表元、連結判定、連結成分サイズを取得できます。
 
-`merge(t, x, y)` により時刻 `t` で辺を追加し、過去の時刻に対する `leader(t, x)` や `size(t, x)` を問い合わせられます。
+`merge(t, x, y)` により時刻 `t` で辺を追加し、過去の時刻に対する `leader(t, x)`, `same(t, x, y)`, `size(t, x)` を問い合わせられます。
+
+## import
+
+    import atcoder/extra/structure/partially_persistent_dsu
 
 ## コンストラクタ
 
@@ -12,7 +17,7 @@
 
 長さ `n` の部分永続 Union-Find を作ります。
 
-初期時刻では、各頂点はそれぞれ単独の連結成分です。
+初期状態では、各頂点はそれぞれ単独の連結成分です。
 
 @{keyword.constraints}
 
@@ -30,12 +35,13 @@
 
 すでに同じ集合に属している場合は `false` を返します。異なる集合だった場合は併合して `true` を返します。
 
+時刻 `t` は merge 回数である必要はなく、任意の整数時刻を使えます。ただし、部分永続 Union-Find として履歴を一方向に追加するため、`merge` に渡す時刻は単調非減少である必要があります。
+
 @{keyword.constraints}
 
 - `0 <= x < n`
 - `0 <= y < n`
-- `t` は時刻
-- 通常は `merge` を呼ぶ時刻は単調増加にします
+- `merge` に渡す `t` は単調非減少
 
 @{keyword.complexity}
 
@@ -50,6 +56,21 @@
 @{keyword.constraints}
 
 - `0 <= x < n`
+
+@{keyword.complexity}
+
+- $O(\log n)$ 程度
+
+## same
+
+    uf.same(t:int, x:int, y:int):bool
+
+時刻 `t` において `x` と `y` が同じ連結成分に属するかを返します。
+
+@{keyword.constraints}
+
+- `0 <= x < n`
+- `0 <= y < n`
 
 @{keyword.complexity}
 
@@ -73,21 +94,30 @@
 
     import atcoder/extra/structure/partially_persistent_dsu
 
-    var uf = initPartiallyPersistentDSU(4)
+    var uf = initPartiallyPersistentDSU(5)
 
-    doAssert uf.size(-1, 0) == 1
+    doAssert uf.size(-100, 0) == 1
 
-    discard uf.merge(0, 0, 1)
-    discard uf.merge(1, 1, 2)
+    discard uf.merge(10, 0, 1)
+    discard uf.merge(20, 1, 2)
+    discard uf.merge(20, 3, 4)
 
-    doAssert uf.leader(0, 0) == uf.leader(0, 1)
-    doAssert uf.size(0, 0) == 2
+    doAssert uf.same(10, 0, 1)
+    doAssert uf.size(10, 0) == 2
 
-    doAssert uf.size(0, 2) == 1
-    doAssert uf.size(1, 2) == 3
+    doAssert uf.same(20, 0, 2)
+    doAssert uf.size(20, 2) == 3
+
+    doAssert not uf.same(20, 0, 4)
+
+    discard uf.merge(100, 2, 4)
+
+    doAssert not uf.same(99, 0, 4)
+    doAssert uf.same(100, 0, 4)
+    doAssert uf.size(100, 0) == 5
 
 ## 注意
 
-`merge` に渡す時刻は、基本的に単調増加で使います。
+これは完全永続ではなく部分永続 Union-Find です。
 
-完全永続ではなく部分永続なので、過去の状態に対して新たな分岐を作る用途には向きません。
+過去の状態に対して新しい分岐を作る用途には向きません。履歴を追加する `merge` は、時刻の単調非減少順に呼んでください。

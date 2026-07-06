@@ -73,18 +73,21 @@
 <h1 id="sparsetable">SparseTable</h1>
 <p>Sparse Table です。</p>
 <p>静的な列に対して、区間の最小値・最大値・GCD などを高速に取得できます。</p>
-<p>この実装は、重なり合う2区間の値を合成して答える一般的な Sparse Table です。そのため、演算 <code>op</code> は結合的であるだけでなく、<code>min</code>, <code>max</code>, <code>gcd</code> のような冪等演算である必要があります。</p>
+<p>この実装は、長さ <code>2^k</code> の2つの重なり合う区間を合成して答えを返します。そのため、演算 <code>op</code> は結合的であるだけでなく、<code>min</code>, <code>max</code>, <code>gcd</code> のような冪等演算である必要があります。</p>
+<h2 id="import">import</h2>
+<pre><code>import atcoder/extra/structure/sparse_table
+</code></pre>
 <h2 id="_1">コンストラクタ</h2>
 <pre><code>var st = initSparseTable[T](v:seq[T], op:proc(a, b:T):T, e:proc():T)
 </code></pre>
 <p>列 <code>v</code> から Sparse Table を構築します。</p>
-<p><code>op</code> は区間値を合成する二項演算、<code>e</code> は空区間に対する値です。</p>
+<p><code>op</code> は区間値を合成する二項演算、<code>e</code> は空区間に対して返す値です。</p>
 <h4 class="doc-keyword">制約</h4>
 
 <ul>
 <li><code>op</code> は結合的</li>
 <li><code>op(x, x) = x</code> を満たす冪等演算</li>
-<li><code>e()</code> は空区間に対して返したい値</li>
+<li><code>e()</code> は空区間に対する値</li>
 </ul>
 <h4 class="doc-keyword">計算量</h4>
 
@@ -95,7 +98,7 @@
 <pre><code>st.prod(p:RangeType):T
 </code></pre>
 <p>区間 <code>p</code> の値を返します。</p>
-<p><code>p</code> には <code>l..&lt;r</code>, <code>l..r</code> などの range を渡せます。内部では <code>halfOpenEndpoints</code> により半開区間として扱われます。</p>
+<p><code>p</code> には <code>l..&lt;r</code> と <code>l..r</code> のどちらも渡せます。内部では <code>halfOpenEndpoints</code> により半開区間 <code>l..&lt;r</code> に変換して扱います。</p>
 <p>空区間の場合は <code>e()</code> を返します。</p>
 <h4 class="doc-keyword">制約</h4>
 
@@ -107,7 +110,7 @@
 <ul>
 <li>$O(1)$</li>
 </ul>
-<h2 id="get">get</h2>
+<h2 id="_2">添字アクセス</h2>
 <pre><code>st[p]:T
 </code></pre>
 <p><code>st.prod(p)</code> と同じです。</p>
@@ -116,7 +119,7 @@
 <ul>
 <li>$O(1)$</li>
 </ul>
-<h2 id="_2">使用例</h2>
+<h2 id="_3">使用例</h2>
 <pre><code>import atcoder/extra/structure/sparse_table
 
 proc mn(a, b:int):int = min(a, b)
@@ -127,9 +130,10 @@ let st = initSparseTable[int](@[5, 2, 7, 1, 3], mn, inf)
 doAssert st[0..&lt;5] == 1
 doAssert st[0..&lt;3] == 2
 doAssert st[2..&lt;3] == 7
+doAssert st[3..4] == 1
 doAssert st[2..&lt;2] == int.high
 </code></pre>
-<h2 id="_3">注意</h2>
+<h2 id="_4">注意</h2>
 <p>この Sparse Table は任意のモノイド用ではありません。</p>
 <p>たとえば区間和や文字列結合のように、重なった区間を二重に数えると値が変わる演算には使えません。任意のモノイドで静的区間クエリをしたい場合は Disjoint Sparse Table などが必要です。</p>
   </main>

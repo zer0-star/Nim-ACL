@@ -73,12 +73,15 @@
 <h1 id="dualfenwicktree">DualFenwickTree</h1>
 <p>Dual Fenwick Tree です。</p>
 <p>通常の Fenwick Tree が「点加算・区間和取得」を扱うのに対し、Dual Fenwick Tree は「区間加算・点取得」を扱います。</p>
-<p>長さ <code>n</code> の列 <code>a</code> に対して、区間 <code>l..&lt;r</code> に値 <code>x</code> を加算し、各点 <code>p</code> の値を取得できます。</p>
+<p>長さ <code>n</code> の列 <code>a</code> に対して、区間に値 <code>x</code> を加算し、各点 <code>p</code> の現在値を取得できます。</p>
+<h2 id="import">import</h2>
+<pre><code>import atcoder/extra/structure/dual_fenwicktree
+</code></pre>
 <h2 id="_1">コンストラクタ</h2>
 <pre><code>var fw = initDualFenwickTree[T](n:int)
 </code></pre>
 <p>長さ <code>n</code> の Dual Fenwick Tree を作ります。</p>
-<p>型 <code>T</code> は加算・減算ができる数値型を想定しています。</p>
+<p>型 <code>T</code> は加算・減算ができる整数型を想定しています。</p>
 <h4 class="doc-keyword">制約</h4>
 
 <ul>
@@ -93,7 +96,7 @@
 <pre><code>fw.add(p:RangeType, x:T):void
 </code></pre>
 <p>区間 <code>p</code> に <code>x</code> を加算します。</p>
-<p><code>p</code> には <code>l..&lt;r</code>, <code>l..r</code> などの range を渡せます。内部では <code>halfOpenEndpoints</code> により半開区間として扱われます。</p>
+<p><code>p</code> には <code>l..&lt;r</code> と <code>l..r</code> のどちらも渡せます。内部では <code>halfOpenEndpoints</code> により半開区間 <code>l..&lt;r</code> に変換して扱います。</p>
 <h4 class="doc-keyword">制約</h4>
 
 <ul>
@@ -104,11 +107,10 @@
 <ul>
 <li>$O(\log n)$</li>
 </ul>
-<h2 id="get">get</h2>
+<h2 id="_2">点取得</h2>
 <pre><code>fw[p]:T
 </code></pre>
 <p>点 <code>p</code> の現在値を返します。</p>
-<p><code>p</code> には <code>int</code> または <code>^1</code> などの <code>BackwardsIndex</code> を使えます。</p>
 <h4 class="doc-keyword">制約</h4>
 
 <ul>
@@ -119,21 +121,24 @@
 <ul>
 <li>$O(\log n)$</li>
 </ul>
-<h2 id="_2">使用例</h2>
+<h2 id="_3">使用例</h2>
 <pre><code>import atcoder/extra/structure/dual_fenwicktree
 
-var fw = initDualFenwickTree[int](5)
+var fw = initDualFenwickTree[int](6)
 
 fw.add(1..&lt;4, 10)
-fw.add(2..&lt;5, -3)
+fw.add(2..5, -3)
+fw.add(0..0, 7)
+fw.add(3..&lt;6, 2)
 
-doAssert fw[0] == 0
+doAssert fw[0] == 7
 doAssert fw[1] == 10
 doAssert fw[2] == 7
-doAssert fw[3] == 7
-doAssert fw[4] == -3
+doAssert fw[3] == 9
+doAssert fw[4] == -1
+doAssert fw[5] == -1
 </code></pre>
-<h2 id="_3">注意</h2>
+<h2 id="_4">注意</h2>
 <p>このライブラリは「区間更新・点取得」専用です。</p>
 <p>区間和を取得したい場合は通常の <code>FenwickTree</code> や <code>LazySegTree</code> を使ってください。</p>
   </main>

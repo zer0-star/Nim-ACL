@@ -1,10 +1,15 @@
+
 # SparseTable
 
 Sparse Table です。
 
 静的な列に対して、区間の最小値・最大値・GCD などを高速に取得できます。
 
-この実装は、重なり合う2区間の値を合成して答える一般的な Sparse Table です。そのため、演算 `op` は結合的であるだけでなく、`min`, `max`, `gcd` のような冪等演算である必要があります。
+この実装は、長さ `2^k` の2つの重なり合う区間を合成して答えを返します。そのため、演算 `op` は結合的であるだけでなく、`min`, `max`, `gcd` のような冪等演算である必要があります。
+
+## import
+
+    import atcoder/extra/structure/sparse_table
 
 ## コンストラクタ
 
@@ -12,13 +17,13 @@ Sparse Table です。
 
 列 `v` から Sparse Table を構築します。
 
-`op` は区間値を合成する二項演算、`e` は空区間に対する値です。
+`op` は区間値を合成する二項演算、`e` は空区間に対して返す値です。
 
 @{keyword.constraints}
 
 - `op` は結合的
 - `op(x, x) = x` を満たす冪等演算
-- `e()` は空区間に対して返したい値
+- `e()` は空区間に対する値
 
 @{keyword.complexity}
 
@@ -30,7 +35,7 @@ Sparse Table です。
 
 区間 `p` の値を返します。
 
-`p` には `l..<r`, `l..r` などの range を渡せます。内部では `halfOpenEndpoints` により半開区間として扱われます。
+`p` には `l..<r` と `l..r` のどちらも渡せます。内部では `halfOpenEndpoints` により半開区間 `l..<r` に変換して扱います。
 
 空区間の場合は `e()` を返します。
 
@@ -42,7 +47,7 @@ Sparse Table です。
 
 - $O(1)$
 
-## get
+## 添字アクセス
 
     st[p]:T
 
@@ -64,6 +69,7 @@ Sparse Table です。
     doAssert st[0..<5] == 1
     doAssert st[0..<3] == 2
     doAssert st[2..<3] == 7
+    doAssert st[3..4] == 1
     doAssert st[2..<2] == int.high
 
 ## 注意

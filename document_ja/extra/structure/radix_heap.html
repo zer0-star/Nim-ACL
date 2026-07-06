@@ -74,11 +74,14 @@
 <p>整数キー用の Radix Heap です。</p>
 <p><code>key</code> が単調非減少に取り出される状況で使える優先度付きキューです。Dijkstra 法などで、辺重みが非負整数である場合に利用できます。</p>
 <p>通常のヒープと同様に <code>(key, value)</code> を追加し、最小の <code>key</code> を持つ要素を取り出します。</p>
+<h2 id="import">import</h2>
+<pre><code>import atcoder/extra/structure/radix_heap
+</code></pre>
 <h2 id="_1">コンストラクタ</h2>
 <pre><code>var heap = initRadixHeap[key_t, val_t]()
 </code></pre>
 <p>空の Radix Heap を作ります。</p>
-<p><code>key_t</code> は整数型、<code>val_t</code> は格納する値の型です。</p>
+<p><code>key_t</code> は整数型、<code>val_t</code> は格納する値の型です。<code>key_t</code> は signed / unsigned の両方を想定しています。</p>
 <h4 class="doc-keyword">制約</h4>
 
 <ul>
@@ -143,13 +146,17 @@
 
 var heap = initRadixHeap[int, string]()
 
-heap.push(0, "s")
-heap.push(3, "a")
-heap.push(5, "b")
+heap.push(-5, "a")
+heap.push(-2, "b")
+heap.push(0, "c")
 
-doAssert heap.pop() == (0, "s")
-doAssert heap.pop() == (3, "a")
-doAssert heap.pop() == (5, "b")
+doAssert heap.pop() == (-5, "a")
+
+heap.push(-4, "d")
+
+doAssert heap.pop() == (-4, "d")
+doAssert heap.pop() == (-2, "b")
+doAssert heap.pop() == (0, "c")
 doAssert heap.empty()
 </code></pre>
 <h2 id="_3">注意</h2>
