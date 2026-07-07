@@ -1,5 +1,7 @@
 # red_black_tree
 
+> 使い方の概要と RedBlackTree / RBST / SplayTree の比較は [Tree backends](./tree_backends.html) も参照してください。
+
 このページは自動生成された下書きです。
 
 公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。

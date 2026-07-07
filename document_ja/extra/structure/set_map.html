@@ -71,44 +71,24 @@
   </header>
   <main>
 <h1 id="set_map">set_map</h1>
-<p>このページは自動生成された下書きです。</p>
-<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
-<h2 id="import">import</h2>
-<pre><code>import atcoder/extra/structure/set_map
+<blockquote>
+<p>このページは互換用 alias です。新規コードでは <a href="./sorted_set_map.html">sorted_set_map</a> を推奨します。</p>
+</blockquote>
+<p>この module は互換用の alias です。</p>
+<p>順序付き集合・順序付き写像の実装本体は <code>sorted_set_map</code> にあります。</p>
+<pre><code class="language-text">import atcoder/extra/structure/sorted_set_map
 </code></pre>
-<h2 id="api">公開 API</h2>
-<pre><code>const ATCODER_EXTRA_STRUCTURE_SET_MAP_HPP* = 1
-type SortedTree*[Tree, Node, multi, K, V; p:static[tuple]] = object
-proc init*[Tree:SetOrMap](self: var Tree) =
-proc empty*[Tree:SetOrMap](self:Tree):bool = self.tree.empty()
-proc len*[Tree:SetOrMap](self:Tree):int = self.tree.len()
-proc len*[Tree:SetOrMap](self:Tree):int = self.tree.root.cnt - 1
-proc empty*[Tree:SetOrMap](self:Tree):bool = self.len == 0
-proc len*[Tree:SetOrMap](self:Tree):int = self.tree.len() - 1
-proc empty*[Tree:SetOrMap](self:Tree):bool = self.len() == 0
-proc check_tree*(self:SetOrMap) = self.tree.check_tree()
-proc write*(self:SetOrMap) = self.tree.write()
-template SortedSet*(K:typedesc, countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):typedesc =
-template SortedMultiSet*(K:typedesc, countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):typedesc =
-template SortedMap*(K:typedesc; V:typedesc[not void], countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):typedesc =
-template SortedMultiMap*(K:typedesc; V:typedesc[not void], countable: static[bool] = false, comp:static[proc(a, b:K):bool] = nil):typedesc =
-proc default*[T:SetOrMap](self:typedesc[T]):T =
-template initSortedSet*[K](countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
-template initSortedSet*[K](a:openArray[K], countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
-template initSortedMultiSet*[K](countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
-template initSortedMultiSet*[K](a:openArray[K], countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
-template initSortedMap*[K; V:not void](countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
-template initSortedMap*[K; V:not void](a:openArray[(K, V)], countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
-template initSortedMultiMap*[K; V:not void](countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
-template initSortedMultiMap*[K; V:not void](a:openArray[(K, V)], countable:static[bool] = false, comp:static[proc(a, b:K):bool] = nil):auto =
-proc `$`*(self: SetOrMap): string =
+<p>既存コードとの互換性のため、次の import でも同じ API を使えます。</p>
+<pre><code class="language-text">import atcoder/extra/structure/set_map
 </code></pre>
-<h2 id="_1">概要</h2>
-<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
-<h2 id="_2">使用例</h2>
-<p>TODO: 使用例を追加してください。</p>
-<h2 id="_3">注意</h2>
-<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+<p>新しく書くコードでは <code>sorted_set_map</code> の利用を推奨します。</p>
+<p>提供される主な型は次の通りです。</p>
+<pre><code class="language-text">SortedSet
+SortedMultiSet
+SortedMap
+SortedMultiMap
+</code></pre>
+<p>詳しい使い方は <a href="sorted_set_map.html">sorted_set_map</a> を参照してください。</p>
   </main>
 </body>
 </html>

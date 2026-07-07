@@ -74,10 +74,10 @@
 <p><code>dynamic_lazysegtree</code> は、実行時に <code>op</code>, <code>e</code>, <code>mapping</code>, <code>composition</code>, <code>id</code> を渡して使う遅延セグメント木です。</p>
 <p>区間更新・区間取得を扱えます。長さ <code>n</code> は初期化時に固定されます。</p>
 <h2 id="import">import</h2>
-<pre><code>import atcoder/dynamic_lazysegtree
+<pre><code class="language-text">import atcoder/dynamic_lazysegtree
 </code></pre>
 <h2 id="_1">コンストラクタ</h2>
-<pre><code>var st = init_lazy_segtree[S, F](
+<pre><code class="language-nim">var st = init_lazy_segtree[S, F](
   v:seq[S],
   op:proc(a, b:S):S,
   e:proc():S,
@@ -112,7 +112,7 @@ var st = init_lazy_segtree[S, F](
 <li>$O(n)$</li>
 </ul>
 <h2 id="set-get">set / get</h2>
-<pre><code>st.set(p:int, x:S):void
+<pre><code class="language-nim">st.set(p:int, x:S):void
 st.get(p:int):S
 </code></pre>
 <p>一点を更新・取得します。</p>
@@ -127,7 +127,7 @@ st.get(p:int):S
 <li>$O(\log n)$</li>
 </ul>
 <h2 id="prod">prod</h2>
-<pre><code>st.prod(l..r):S
+<pre><code class="language-text">st.prod(l..r):S
 </code></pre>
 <p>区間 <code>l..r</code> の値を取得します。</p>
 <p>この実装の <code>prod</code> は <code>Slice[int]</code> を受け取り、<code>l..r</code> を閉区間として扱います。</p>
@@ -137,7 +137,7 @@ st.get(p:int):S
 <li>$O(\log n)$</li>
 </ul>
 <h2 id="apply">apply</h2>
-<pre><code>st.apply(p:int, f:F):void
+<pre><code class="language-nim">st.apply(p:int, f:F):void
 st.apply(l..r, f:F):void
 </code></pre>
 <p>一点または区間に作用 <code>f</code> を適用します。</p>
@@ -147,7 +147,7 @@ st.apply(l..r, f:F):void
 <li>$O(\log n)$</li>
 </ul>
 <h2 id="all_prod">all_prod</h2>
-<pre><code>st.all_prod():S
+<pre><code class="language-text">st.all_prod():S
 </code></pre>
 <p>全体の値を返します。</p>
 <h4 class="doc-keyword">計算量</h4>
@@ -156,7 +156,7 @@ st.apply(l..r, f:F):void
 <li>$O(1)$</li>
 </ul>
 <h2 id="max_right-min_left">max_right / min_left</h2>
-<pre><code>st.max_right(l:int, g:proc(s:S):bool):int
+<pre><code class="language-nim">st.max_right(l:int, g:proc(s:S):bool):int
 st.min_left(r:int, g:proc(s:S):bool):int
 </code></pre>
 <p>ACL の <code>lazy_segtree</code> と同様に、条件 <code>g</code> を満たす最大右端・最小左端を二分探索します。</p>
@@ -171,7 +171,7 @@ st.min_left(r:int, g:proc(s:S):bool):int
 <li>$O(\log n)$</li>
 </ul>
 <h2 id="_2">使用例</h2>
-<pre><code>import atcoder/dynamic_lazysegtree
+<pre><code class="language-nim">import atcoder/dynamic_lazysegtree
 
 type Node = tuple[sum:int, len:int]
 

@@ -71,8 +71,44 @@
   </header>
   <main>
 <h1 id="randomized_binary_search_tree_with_parent">randomized_binary_search_tree_with_parent</h1>
+<blockquote>
+<p>使い方の概要と RedBlackTree / RBST / SplayTree の比較は <a href="./tree_backends.html">Tree backends</a> も参照してください。</p>
+</blockquote>
 <p>このページは自動生成された下書きです。</p>
 <p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
+<h2 id="backend">列操作 backend としての使い方</h2>
+<p><code>randomized_binary_search_tree_with_parent</code> は、順序付き set/map の標準実装としてではなく、列を <code>split</code> / <code>merge</code> で編集する backend として使うのが自然です。</p>
+<p>通常の順序付き set/map が欲しい場合は、RedBlackTree backend の <a href="./sorted_set_map.html">sorted_set_map</a> を使ってください。</p>
+<pre><code class="language-nim">import atcoder/extra/structure/randomized_binary_search_tree_with_parent
+
+var t = initRandomizedBinarySearchTree[int](seed = 1)
+
+t.build(@[1, 2, 3, 4, 5])
+doAssert t.toSeq == @[1, 2, 3, 4, 5]
+
+# 1-indexed ではなく 0-indexed の位置に挿入します。
+t.insert_index(2, 10)
+doAssert t.toSeq == @[1, 2, 10, 3, 4, 5]
+
+# 0-indexed の位置を削除します。
+t.erase_index(3)
+doAssert t.toSeq == @[1, 2, 10, 4, 5]
+
+# split_index(k) は先頭 k 個と残りに分けます。
+let (l, r) = t.split_index(3)
+doAssert t.to_vec(l) == @[1, 2, 10]
+doAssert t.to_vec(r) == @[4, 5]
+
+# merge で結合できます。
+t.root = t.merge(l, r)
+doAssert t.toSeq == @[1, 2, 10, 4, 5]
+</code></pre>
+<h3 id="_1">注意</h3>
+<ul>
+<li><code>insert_index</code> / <code>erase_index</code> は値を返さない wrapper として使うため、<code>discard t.insert_index(...)</code> ではなく <code>t.insert_index(...)</code> と書きます。</li>
+<li><code>split_index</code> は木を分割するため、必要なら <code>merge</code> で <code>root</code> に戻してください。</li>
+<li><code>seed</code> を指定すると、テストやデバッグで挙動を再現しやすくなります。</li>
+</ul>
 <h2 id="import">import</h2>
 <pre><code>import atcoder/extra/structure/randomized_binary_search_tree_with_parent
 </code></pre>
@@ -131,11 +167,11 @@ proc empty*[RBST:SomeRBST](self: var RBST):bool = self.empty(self.root)
 proc check_tree*[RBST:SomeRBST](self: RBST, t:RBST.Node):int =
 proc check_tree*[RBST:SomeRBST](self: RBST):int {.discardable.} =
 </code></pre>
-<h2 id="_1">概要</h2>
+<h2 id="_2">概要</h2>
 <p>TODO: このライブラリの用途と使いどころを記述してください。</p>
-<h2 id="_2">使用例</h2>
+<h2 id="_3">使用例</h2>
 <p>TODO: 使用例を追加してください。</p>
-<h2 id="_3">注意</h2>
+<h2 id="_4">注意</h2>
 <p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
   </main>
 </body>

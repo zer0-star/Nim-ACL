@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Tree backends</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<hr>
+<p>title: Tree backends
+documentation_of: //src/atcoder/extra/structure/tree_backends.nim</p>
+<hr>
+<h1 id="tree-backends">Tree backends</h1>
+<p>Nim-ACL には、順序集合・列操作・遅延伝播などのための低レベル木 backend がいくつかあります。</p>
+<p>通常の順序集合・順序写像を使いたい場合は、まず次を使うのが推奨です。</p>
+<pre><code class="language-nim">import atcoder/extra/structure/sorted_set_map
+</code></pre>
+<p>このページでは、より低レベルの backend を直接使う場合の最小限の使い方をまとめます。</p>
+<h2 id="redblacktree">RedBlackTree</h2>
+<p><code>red_black_tree</code> は順序木 backend です。</p>
+<pre><code class="language-nim">import atcoder/extra/structure/red_black_tree
+
+var rb = initRedBlackTree[int]()
+
+let n3 = rb.insert(rb.End, 3)
+discard rb.insert(n3, 1)
+discard rb.insert(rb.End, 5)
+
+var xs: seq[int] = @[]
+var it = rb.begin()
+while it != rb.End:
+  xs.add(*it)
+  it.inc
+
+doAssert xs == @[1, 3, 5]
+</code></pre>
+<p><code>iterOrder</code> は低レベル sentinel の値を含むことがあるため、直接 backend を使う場合は <code>begin()</code> から <code>End</code> まで node を進める走査が安全です。</p>
+<h2 id="randomizedbinarysearchtree-with-parent">RandomizedBinarySearchTree with parent</h2>
+<p><code>randomized_binary_search_tree_with_parent</code> は、列を split / merge で扱う RBST backend です。</p>
+<pre><code class="language-nim">import atcoder/extra/structure/randomized_binary_search_tree_with_parent
+
+var t = initRandomizedBinarySearchTree[int](seed = 1)
+
+t.build(@[1, 2, 3])
+doAssert t.toSeq == @[1, 2, 3]
+
+t.insert_index(1, 10)
+doAssert t.toSeq == @[1, 10, 2, 3]
+
+t.erase_index(2)
+doAssert t.toSeq == @[1, 10, 3]
+
+t[1] = 20
+doAssert t.toSeq == @[1, 20, 3]
+
+let (l, r) = t.split_index(1)
+t.root = t.merge(l, r)
+
+doAssert t.toSeq == @[1, 20, 3]
+</code></pre>
+<h2 id="splaytree">SplayTree</h2>
+<p><code>splay_tree</code> も列を扱う backend です。<code>insert_index</code>, <code>erase_index</code>, <code>split_index</code>, <code>merge</code>, <code>toSeq</code> などを使えます。</p>
+<pre><code class="language-nim">import atcoder/extra/structure/splay_tree
+
+var t = initSplayTree[int]()
+
+t.build(@[1, 2, 3])
+doAssert t.toSeq == @[1, 2, 3]
+
+t.insert_index(1, 10)
+doAssert t.toSeq == @[1, 10, 2, 3]
+
+t.erase_index(2)
+doAssert t.toSeq == @[1, 10, 3]
+
+t[1] = 20
+doAssert t.toSeq == @[1, 20, 3]
+
+let (l, r) = t.split_index(t.root, 1)
+t.root = t.merge(l, r)
+
+doAssert t.toSeq == @[1, 20, 3]
+</code></pre>
+<h2 id="common-sequence-backend-interface">Common sequence backend interface</h2>
+<p>RBST と SplayTree は、列 backend としておおむね次の interface に寄せています。</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>RBST</th>
+<th>SplayTree</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>長さ</td>
+<td><code>len</code></td>
+<td><code>len</code></td>
+</tr>
+<tr>
+<td>sequence 化</td>
+<td><code>toSeq</code></td>
+<td><code>toSeq</code></td>
+</tr>
+<tr>
+<td>k 番目取得</td>
+<td><code>[]</code></td>
+<td><code>[]</code></td>
+</tr>
+<tr>
+<td>k 番目代入</td>
+<td><code>[]=</code></td>
+<td><code>[]=</code></td>
+</tr>
+<tr>
+<td>k 番目に挿入</td>
+<td><code>insert_index</code></td>
+<td><code>insert_index</code></td>
+</tr>
+<tr>
+<td>k 番目を削除</td>
+<td><code>erase_index</code></td>
+<td><code>erase_index</code></td>
+</tr>
+<tr>
+<td>split</td>
+<td><code>split_index</code></td>
+<td><code>split_index</code></td>
+</tr>
+<tr>
+<td>merge</td>
+<td><code>merge</code></td>
+<td><code>merge</code></td>
+</tr>
+<tr>
+<td>検査</td>
+<td><code>check_tree</code></td>
+<td><code>check_tree</code></td>
+</tr>
+</tbody>
+</table>
+<p>Nim は識別子が style-insensitive なので、<code>insertIndex</code> のような camelCase alias は追加していません。<code>insertIndex</code> は <code>insert_index</code> と同一視され、再定義エラーになるためです。</p>
+<p>また、<code>insert_index</code> / <code>erase_index</code> は値を返さない wrapper として使うため、<code>discard t.insert_index(...)</code> ではなく、単に <code>t.insert_index(...)</code> と書きます。</p>
+  </main>
+</body>
+</html>

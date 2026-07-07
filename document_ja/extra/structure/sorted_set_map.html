@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>ソート済みSetとMap</title>
+  <title>sorted_set_map</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -70,120 +70,142 @@
     </a>
   </header>
   <main>
-<h1 id="setmap">ソート済みSetとMap</h1>
-<p>二分木によりキーをソートした状態で管理するset, tableのデータ構造です。C++のset, map, multiset, multimapと同等の機能をNimで使うために作りました。(Nimでの名称はset/tableだからSortedSet/SortedTableの方がいいか？)
-イテレータはNodeという名称で管理されていて、木のノードの参照がそのまま渡されます。</p>
+<h1 id="sorted_set_map">sorted_set_map</h1>
+<blockquote>
+<p>通常の順序付き set / map はこちらを推奨します。RedBlackTree backend による実装です。RBST / SplayTree など低レベル木 backend との関係は <a href="./tree_backends.html">Tree backends</a> も参照してください。</p>
+</blockquote>
+<p>順序付き集合・順序付き写像です。</p>
+<p>Nim 標準の <code>sets</code> / <code>tables</code> は hash-based なコンテナなので、C++ の <code>std::set</code> / <code>std::map</code> に近い「順序付き」の集合・写像が欲しい場合に使います。</p>
+<p>この module は次の4種類のコンテナを提供します。</p>
+<pre><code class="language-text">SortedSet
+SortedMultiSet
+SortedMap
+SortedMultiMap
+</code></pre>
+<h2 id="import">import</h2>
+<pre><code class="language-text">import atcoder/extra/structure/sorted_set_map
+</code></pre>
+<p>互換のため、次の import でも同じ API を使えます。</p>
+<pre><code class="language-text">import atcoder/extra/structure/set_map
+</code></pre>
+<p>新しく書くコードでは <code>sorted_set_map</code> の利用を推奨します。</p>
 <h2 id="sortedset">SortedSet</h2>
-<h3 id="_1">コンストラクタ</h3>
-<pre><code class="language-nim">var a = initSortedSet(T, countable:static[bool]=false, comp:proc(a, b:T):bool=nil)
-var a:SortedSet(T,countable=false,comp:proc(a,b:T):bool=nil); a.init()
+<pre><code class="language-nim">var s = initSortedSet[K]()
+var s = initSortedSet[K](countable = true)
+var s = initSortedSet[K](countable = true, comp)
 </code></pre>
-<ul>
-<li>SortedSetの構造を作ります。Tはキーの型、countableはインデックスによるランダムアクセス(後述)を可能にするかどうか, compは比較関数です。countable, compは省略可能で省略した場合はそれぞれfalse, 通常の比較関数(&lt;)が渡されます。省略する場合は型Tに比較関数&lt;が定義されている必要があることに注意してください。
-後者のコロンによる呼び出しの場合、init()関数を呼ぶまで初期化されておらず下記の挿入・削除等の処理を呼ぶと未定義動作(RE)になりますのでご注意ください。</li>
-</ul>
-<h3 id="_2">先頭と末尾</h3>
-<pre><code class="language-nim">a.begin()
-</code></pre>
-<p>先頭の要素のNode(iterator)を取得します。</p>
-<ul>
-<li>計算量: $O(\log N)$</li>
-</ul>
-<pre><code class="language-nim">a.end()
-</code></pre>
-<p>末尾の要素のNode(iterator)を取得します。C++同様、このend()ノードには値は入っていないのでご注意ください。endが予約後になってて実装にちょっと苦労しました。</p>
-<ul>
-<li>計算量: $O(1)$</li>
-</ul>
-<h3 id="_3">挿入</h3>
-<pre><code class="language-nim">var it = a.insert(x)
-var it = a.incl(x)
-</code></pre>
-<ul>
-<li>先に指定したT型のキーを挿入します。C++風のinsertとNim風のinclの両方で呼び出し可能です。戻り値は挿入した部分のNode(iterator)が返されます。この戻り値はdiscardableです。</li>
-</ul>
-<h3 id="_4">削除</h3>
-<pre><code class="language-nim">var it = a.erase(x:T)
-var it = a.excl(x:T)
-var it = a.erase(it0)
-var it = a.erase(it0)
-</code></pre>
-<ul>
-<li>先に指定したT型のキーを削除します。C++風のeraseとNim風のexclの両方で呼び出し可能です。戻り値は削除したノードの次の要素のNode(iterator)が返されます。そのようなキーがない場合はa.end()が返されます。この戻り値はdiscardableです。</li>
-</ul>
-<h3 id="_5">検索</h3>
-<pre><code class="language-nim">var it = a.find(x:T)
-</code></pre>
-<p>要素xを検索してイテレータを返します。存在しない場合はa.end()が返ります。</p>
-<h3 id="lower_bound">lower_bound</h3>
-<pre><code class="language-nim">var it = a.lower_bound(x:T)
-</code></pre>
-<p>x以上の最初のイテレータを返します。</p>
-<h3 id="upper_bound">upper_bound</h3>
-<pre><code class="language-nim">var it = a.upper_bound(x:T)
-</code></pre>
-<p>xより大きい最初のイテレータを返します。</p>
+<p>重複なしの順序付き集合です。</p>
+<p><code>countable = true</code> にすると、<code>s{k}</code> による k 番目要素アクセスや <code>index</code> が使えます。</p>
 <h2 id="sortedmultiset">SortedMultiSet</h2>
-<h3 id="_6">コンストラクタ</h3>
-<pre><code class="language-nim">var a = initSortedMultiSet(T, countable:static[bool]=false, comp:proc(a, b:T):bool=nil)
-var a:SortedMultiSet(T,countable=false,comp:proc(a,b:T):bool=nil); a.init()
+<pre><code class="language-nim">var s = initSortedMultiSet[K]()
+var s = initSortedMultiSet[K](countable = true)
 </code></pre>
-<p>ほかは大体同じ</p>
+<p>重複ありの順序付き集合です。</p>
+<p>現在の <code>erase(x)</code> は、<code>x</code> と等しい要素をまとめて削除します。</p>
 <h2 id="sortedmap">SortedMap</h2>
-<h3 id="_7">コンストラクタ</h3>
-<pre><code class="language-nim">var a = initSortedMap(K, V, countable:static[bool]=false, comp:proc(a, b:T):bool=nil)
-var a:SortedMap(K, V,countable=false,comp:proc(a,b:T):bool=nil); a.init()
+<pre><code class="language-nim">var mp = initSortedMap[K, V]()
+var mp = initSortedMap[K, V](countable = true)
 </code></pre>
-<p>Kにキー、Vにバリューを指定します。他の引数は同上です。</p>
-<h3 id="_8">挿入</h3>
-<pre><code class="language-nim">var it = a.insert((key:K, value:V))
-var it = a.incl((key:K, value:V))
+<p>順序付き写像です。</p>
+<pre><code class="language-text">mp[key] = value
+mp[key]
 </code></pre>
-<ul>
-<li>(key, value)のペアを指定することで挿入可能です。すでにkeyが存在している場合はその部分のvalueだけ書き換えます。</li>
-</ul>
-<h3 id="_9">[]演算子による挿入</h3>
-<pre><code class="language-nim">a[key:T] = value:V
-</code></pre>
-<p>挿入時には[]演算子も使えます。存在しない場合は新たにキーが追加されるのでご注意ください。</p>
-<p>ほかは同じです。</p>
+<p><code>mp[key] = value</code> で値を設定します。</p>
+<p><code>mp[key]</code> は値を返します。存在しない key に対して <code>mp[key]</code> を呼ぶと、default 値を持つ要素が挿入されます。</p>
 <h2 id="sortedmultimap">SortedMultiMap</h2>
-<pre><code class="language-nim">var a = initSortedMultiMap(K, V, countable:static[bool]=false, comp:proc(a, b:T):bool=nil)
-var a:SortedMultiMap(K, V,countable=false,comp:proc(a,b:T):bool=nil); a.init()
+<pre><code class="language-nim">var mp = initSortedMultiMap[K, V]()
+var mp = initSortedMultiMap[K, V](countable = true)
 </code></pre>
-<h2 id="_10">イテレーターの操作</h2>
-<h3 id="_11">値の取得</h3>
-<pre><code class="language-nim">var p = *it
+<p>同じ key を複数持てる順序付き multimap です。</p>
+<p><code>insert((key, value))</code> で値を追加します。</p>
+<p>現在の <code>erase(key)</code> は、その key を持つ要素をまとめて削除します。</p>
+<h2 id="_1">主な操作</h2>
+<h3 id="insert">insert</h3>
+<pre><code class="language-nim">s.insert(x)
+mp.insert((key, value))
 </code></pre>
-<p>C++と同様、イテレータのアスタリスクで要素の取得が可能です。setの場合は要素自身、mapの場合はキーとバリューのペアになります。</p>
-<h3 id="_12">インクリメント・デクリメント</h3>
-<pre><code class="language-nim">it.inc
-it.dec
-var it2 = it.succ
-var it2 = it.pred
-it += n
-it -= n
+<p>要素を追加します。</p>
+<p><code>SortedSet</code> / <code>SortedMap</code> では同じ key は1つだけ保持されます。</p>
+<h3 id="erase">erase</h3>
+<pre><code class="language-nim">s.erase(x)
+mp.erase(key)
 </code></pre>
-<p>ノード(iterator)はinc, dec関数でインクリメント可能です。end()ノードのインクリメント、begin()ノードのデクリメントは未定義動作です。succ, predでそれぞれ次の要素、前の要素を取得できます。</p>
-<ul>
-<li>計算量: $O(\log N)$</li>
-</ul>
-<h2 id="_13">インデックス関連</h2>
-<p>下記の処理はコンストラクト時にcountableをtrueにしている必要があります。falseになっているとこの機能は使えませんが余計な処理がない分少し早いかもしれません。</p>
-<h3 id="_14">インデックスによるアクセス</h3>
-<pre><code class="language-nim">var it = a.kth_element(k:int)
-var it = a{k:int}
+<p>要素を削除します。</p>
+<h3 id="contains">contains</h3>
+<pre><code class="language-text">x in s
+key in mp
 </code></pre>
-<p>上記の操作でk番目の要素のイテレータを取り出すことが可能です。</p>
-<pre><code class="language-nim">var k = it.index
+<p>存在判定をします。</p>
+<h3 id="find">find</h3>
+<pre><code class="language-nim">s.find(x)
+mp.find(key)
 </code></pre>
-<p>イテレータの現在のインデックスを取得できます。</p>
-<pre><code class="language-nim">var d = distance(it, it2)
+<p>node を返します。見つからない場合は <code>end()</code> を返します。</p>
+<p>node の値は <code>*it</code> で取得できます。</p>
+<h3 id="iteration">iteration</h3>
+<pre><code class="language-nim">for x in s:
+  ...
+
+for k, v in mp:
+  ...
 </code></pre>
-<p>C++同様, 2つのイテレータの距離を取得できます。</p>
-<ul>
-<li>計算量: $O(\log N)$</li>
-</ul>
+<p>昇順に走査します。</p>
+<h3 id="kth-access">kth access</h3>
+<pre><code class="language-text">s{k}
+mp{k}
+</code></pre>
+<p><code>countable = true</code> のとき、0-indexed で k 番目の node を返します。</p>
+<h2 id="_2">使用例</h2>
+<pre><code class="language-nim">import atcoder/extra/structure/sorted_set_map
+
+var s = initSortedSet[int](countable = true)
+
+s.insert(3)
+s.insert(1)
+s.insert(4)
+s.insert(1)
+
+doAssert 1 in s
+doAssert 2 notin s
+
+doAssert *s{0} == 1
+doAssert *s{1} == 3
+doAssert *s{2} == 4
+
+s.erase(3)
+
+doAssert 3 notin s
+
+var mp = initSortedMap[string, int]()
+
+mp[&quot;three&quot;] = 3
+mp[&quot;one&quot;] = 1
+
+doAssert &quot;one&quot; in mp
+doAssert mp[&quot;one&quot;] == 1
+
+for k, v in mp:
+  discard
+</code></pre>
+<h2 id="_3">降順集合の例</h2>
+<pre><code class="language-nim">import atcoder/extra/structure/sorted_set_map
+
+proc desc(a, b:int):bool = a &gt; b
+
+var s = initSortedSet[int](countable = true, desc)
+
+s.insert(3)
+s.insert(1)
+s.insert(4)
+
+doAssert *s{0} == 4
+doAssert *s{1} == 3
+doAssert *s{2} == 1
+</code></pre>
+<h2 id="_4">注意</h2>
+<p>この実装は Red-Black Tree を backend にした順序付きコンテナです。</p>
+<p><code>SortedMultiSet</code> / <code>SortedMultiMap</code> の <code>erase(key)</code> は、現状では該当 key を持つ範囲をまとめて削除します。</p>
+<p>既存コードとの互換性のため <code>set_map</code> module からも同じ API を import できますが、新規コードでは <code>sorted_set_map</code> の利用を推奨します。</p>
   </main>
 </body>
 </html>

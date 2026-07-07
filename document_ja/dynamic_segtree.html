@@ -74,10 +74,10 @@
 <p><code>dynamic_segtree</code> は、実行時に <code>op</code> と <code>e</code> を渡して使うセグメント木です。</p>
 <p>名前は <code>dynamic</code> ですが、ここでの意味は「演算を実行時に持つ」ことであり、座標を動的に増やす疎なセグメント木ではありません。長さ <code>n</code> は初期化時に固定されます。</p>
 <h2 id="import">import</h2>
-<pre><code>import atcoder/dynamic_segtree
+<pre><code class="language-text">import atcoder/dynamic_segtree
 </code></pre>
 <h2 id="_1">コンストラクタ</h2>
-<pre><code>var st = initSegTree[S](v:seq[S], op:proc(a, b:S):S, e:proc():S)
+<pre><code class="language-nim">var st = initSegTree[S](v:seq[S], op:proc(a, b:S):S, e:proc():S)
 var st = initSegTree[S](n:int, op:proc(a, b:S):S, e:proc():S)
 </code></pre>
 <p>列 <code>v</code> から、または長さ <code>n</code> の単位元列からセグメント木を構築します。</p>
@@ -93,7 +93,7 @@ var st = initSegTree[S](n:int, op:proc(a, b:S):S, e:proc():S)
 <li>$O(n)$</li>
 </ul>
 <h2 id="set">set</h2>
-<pre><code>st.set(p:int, x:S):void
+<pre><code class="language-text">st.set(p:int, x:S):void
 </code></pre>
 <p>位置 <code>p</code> の値を <code>x</code> に変更します。</p>
 <h4 class="doc-keyword">制約</h4>
@@ -107,7 +107,7 @@ var st = initSegTree[S](n:int, op:proc(a, b:S):S, e:proc():S)
 <li>$O(\log n)$</li>
 </ul>
 <h2 id="get">get</h2>
-<pre><code>st.get(p:int):S
+<pre><code class="language-text">st.get(p:int):S
 </code></pre>
 <p>位置 <code>p</code> の値を返します。</p>
 <h4 class="doc-keyword">制約</h4>
@@ -121,7 +121,7 @@ var st = initSegTree[S](n:int, op:proc(a, b:S):S, e:proc():S)
 <li>$O(1)$</li>
 </ul>
 <h2 id="prod">prod</h2>
-<pre><code>st.prod(l..r):S
+<pre><code class="language-text">st.prod(l..r):S
 </code></pre>
 <p>区間 <code>l..r</code> の値を返します。</p>
 <p>この実装の <code>prod</code> は <code>Slice[int]</code> を受け取り、<code>l..r</code> を閉区間として扱います。</p>
@@ -136,7 +136,7 @@ var st = initSegTree[S](n:int, op:proc(a, b:S):S, e:proc():S)
 <li>$O(\log n)$</li>
 </ul>
 <h2 id="all_prod">all_prod</h2>
-<pre><code>st.all_prod():S
+<pre><code class="language-text">st.all_prod():S
 </code></pre>
 <p>全体の値を返します。</p>
 <h4 class="doc-keyword">計算量</h4>
@@ -145,7 +145,7 @@ var st = initSegTree[S](n:int, op:proc(a, b:S):S, e:proc():S)
 <li>$O(1)$</li>
 </ul>
 <h2 id="max_right-min_left">max_right / min_left</h2>
-<pre><code>st.max_right(l:int, f:proc(s:S):bool):int
+<pre><code class="language-nim">st.max_right(l:int, f:proc(s:S):bool):int
 st.min_left(r:int, f:proc(s:S):bool):int
 </code></pre>
 <p>ACL の <code>segtree</code> と同様に、条件 <code>f</code> を満たす最大右端・最小左端を二分探索します。</p>
@@ -160,7 +160,7 @@ st.min_left(r:int, f:proc(s:S):bool):int
 <li>$O(\log n)$</li>
 </ul>
 <h2 id="_2">使用例</h2>
-<pre><code>import atcoder/dynamic_segtree
+<pre><code class="language-nim">import atcoder/dynamic_segtree
 
 proc op(a, b:int):int = a + b
 proc e():int = 0

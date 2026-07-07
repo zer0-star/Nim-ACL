@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FPS facade</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="fps-facade">FPS facade</h1>
+<p><code>atcoder/extra/math/fps</code> は、modint 係数の形式的べき級数を短く書くための convenience facade です。</p>
+<p>従来の <code>atcoder/extra/math/formal_power_series</code> はそのまま残します。より明示的に畳み込み backend を選びたい場合や、汎用的な係数型で使いたい場合は、従来の module を直接 import してください。</p>
+<h2 id="import">import</h2>
+<pre><code class="language-nim">import atcoder/extra/math/fps
+</code></pre>
+<p><code>fps</code> は競技プログラミングでよく使う modint + NTT 用の入口です。<code>ntt</code>, <code>formal_power_series</code>, <code>formal_power_series_sqrt</code> などをまとめて利用できます。</p>
+<h2 id="_1">基本的な使い方</h2>
+<pre><code class="language-nim">import atcoder/extra/math/fps
+
+type mint = modint998244353
+
+useFPS(mint{x}, F, prec = 100)
+
+let f = F(@[0, 1]) # 長さ 100 に resize
+let g = f.exp()    # 長さ 100
+let h = f.exp(50)  # 明示した長さ 50 が優先
+</code></pre>
+<p><code>useFPS(mint{x}, F, prec = 100)</code> は、係数型 <code>mint</code>、変数名 <code>x</code>、constructor 名 <code>F</code>、既定精度 <code>100</code> を宣言します。</p>
+<h2 id="_2">変数名を変える</h2>
+<pre><code class="language-nim">useFPS(mint{y}, G, prec = 50)
+
+let f = G(y)
+</code></pre>
+<p><code>mint{y}</code> のように書くことで、注入される変数名を <code>y</code> にできます。</p>
+<h2 id="_3">既定精度</h2>
+<p><code>F(@[...])</code> や <code>F(x)</code> のように長さを省略した場合、<code>prec</code> で指定した長さに resize されます。</p>
+<pre><code class="language-nim">useFPS(mint{x}, F, prec = 8)
+
+let f = F(@[0, 1])
+doAssert f.len == 8
+</code></pre>
+<p>明示的に長さを渡した場合は、その値が優先されます。</p>
+<pre><code class="language-nim">let f = F(@[0, 1], 3)
+doAssert f.len == 3
+</code></pre>
+<p><code>f.exp()</code> など既存の FPS method は、基本的に入力 series の長さを使います。そのため、constructor 側で既定精度まで resize しておくと、<code>f.exp()</code> もその長さで計算できます。</p>
+<h2 id="module">従来 module との違い</h2>
+<ul>
+<li><code>formal_power_series</code> は互換性重視の低レイヤ module です。</li>
+<li><code>fps</code> は modint + NTT を簡単に使うための facade です。</li>
+<li>既存コードを壊さないため、従来の <code>formal_power_series</code> の挙動は変更しません。</li>
+</ul>
+  </main>
+</body>
+</html>
