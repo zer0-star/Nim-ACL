@@ -314,7 +314,8 @@ when not declared ATCODER_EXTRA_STRUCTURE_RANDOMIZED_BINARY_SEARCH_TREE_WITH_PAR
     if k < t.l.cnt: self.set(t.l, k, x)
     elif k == t.l.cnt:
       t.key = x
-      t.sum = x
+      when RBST.hasSum:
+        t.sum = x
     else: self.set(t.r, k - t.l.cnt - 1, x)
     t = self.update(t)
   
