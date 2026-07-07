@@ -1,0 +1,45 @@
+discard """
+  cmd: "nim cpp -r $file"
+"""
+
+import std/unittest
+import atcoder/extra/math/fps
+
+type mint = modint998244353
+
+useFPS(mint{x}, F, prec = 8)
+useFPS(mint{y}, G, prec = 5)
+
+suite "fps facade":
+  test "constructor uses default precision":
+    let f = F(@[0, 1])
+    check f.len == 8
+    check f[0] == mint(0)
+    check f[1] == mint(1)
+    check f[7] == mint(0)
+
+  test "explicit constructor precision overrides default precision":
+    let f = F(@[0, 1], 3)
+    check f.len == 3
+    check f[0] == mint(0)
+    check f[1] == mint(1)
+
+  test "omitted precision in fps methods follows series length":
+    let f = F(@[0, 1])
+    let g = f.exp()
+    check g.len == 8
+    check g[0] == mint(1)
+    check g[1] == mint(1)
+
+  test "explicit precision in fps methods still overrides":
+    let f = F(@[0, 1])
+    let g = f.exp(4)
+    check g.len == 4
+    check g[0] == mint(1)
+    check g[1] == mint(1)
+
+  test "custom variable name via mint{y}":
+    let h = G(y)
+    check h.len == 5
+    check h[0] == mint(0)
+    check h[1] == mint(1)

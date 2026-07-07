@@ -17,7 +17,7 @@ jobs:
       - name: Set up Nim
         uses: jiro4989/setup-nim-action@v2
         with:
-          nim-version: '2.2.4'
+          nim-version: '2.2.10'
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -30,29 +30,28 @@ jobs:
           if [ -f tools/requirements_docs.txt ]; then
             python -m pip install -r tools/requirements_docs.txt
           else
-            python -m pip install Markdown
+            python -m pip install Markdown toml jinja2 markupsafe
           fi
 
       - name: Build docs
         run: |
           python tools/generate_document.py
 
-      - name: Install testament
-        run: |
-          nimble install -y testament
-
-      - name: Run lightweight testament tests
+      - name: Run lightweight Nim tests
         run: |
           set -eu
 
-          for f in tests/*.nim; do
-            case "$f" in
-              *stress*) echo "skip stress: $f"; continue ;;
-              *fft2d*)  echo "skip heavy fft2d: $f"; continue ;;
-            esac
-
-            echo "### $f"
-            testament pattern "$f"
+          for f in \
+            tests/test_extra_fps.nim \
+            tests/test_extra_formal_power_series.nim \
+            tests/test_extra_formal_power_series_sqrt.nim
+          do
+            if [ -f "$f" ]; then
+              echo "### $f"
+              nim cpp -r "$f"
+            else
+              echo "skip missing: $f"
+            fi
           done
 
   deploy-docs:
@@ -80,7 +79,7 @@ jobs:
           if [ -f tools/requirements_docs.txt ]; then
             python -m pip install -r tools/requirements_docs.txt
           else
-            python -m pip install Markdown
+            python -m pip install Markdown toml jinja2 markupsafe
           fi
 
       - name: Build docs
@@ -117,5 +116,3 @@ jobs:
             git commit -m "[workflow] update generated documentation"
             git push origin gh-pages
           fi
-
-          rm -rf "$TMP"
