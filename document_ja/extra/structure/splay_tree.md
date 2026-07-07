@@ -6,6 +6,41 @@
 
 公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。
 
+
+## 列操作 backend としての使い方
+
+`splay_tree` は、列を編集する backend として使えます。`insert_index`, `erase_index`, `split_index`, `merge`, `toSeq` などを使って、rope 的な列編集を行えます。
+
+通常の順序付き set/map が欲しい場合は、[sorted_set_map](./sorted_set_map.html) を使ってください。
+
+```nim
+import atcoder/extra/structure/splay_tree
+
+var t = initSplayTree[int]()
+
+t.build(@[1, 2, 3, 4, 5])
+doAssert t.toSeq == @[1, 2, 3, 4, 5]
+
+# 0-indexed の位置に挿入します。
+t.insert_index(2, 10)
+doAssert t.toSeq == @[1, 2, 10, 3, 4, 5]
+
+# 0-indexed の位置を削除します。
+t.erase_index(3)
+doAssert t.toSeq == @[1, 2, 10, 4, 5]
+
+# split_index(root, k) は先頭 k 個と残りに分けます。
+let (l, r) = t.split_index(t.root, 3)
+t.root = t.merge(l, r)
+
+doAssert t.toSeq == @[1, 2, 10, 4, 5]
+```
+
+### 注意
+
+- `split_index` は raw node を返すため、分割後に高レベル操作を続ける場合は `root` を `merge` で戻してください。
+- `splay_tree` は列操作や区間操作の backend として使うのが主用途です。
+
 ## import
 
     import atcoder/extra/structure/splay_tree

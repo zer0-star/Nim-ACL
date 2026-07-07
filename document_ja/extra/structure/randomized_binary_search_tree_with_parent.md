@@ -6,6 +6,45 @@
 
 公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。
 
+
+## 列操作 backend としての使い方
+
+`randomized_binary_search_tree_with_parent` は、順序付き set/map の標準実装としてではなく、列を `split` / `merge` で編集する backend として使うのが自然です。
+
+通常の順序付き set/map が欲しい場合は、RedBlackTree backend の [sorted_set_map](./sorted_set_map.html) を使ってください。
+
+```nim
+import atcoder/extra/structure/randomized_binary_search_tree_with_parent
+
+var t = initRandomizedBinarySearchTree[int](seed = 1)
+
+t.build(@[1, 2, 3, 4, 5])
+doAssert t.toSeq == @[1, 2, 3, 4, 5]
+
+# 1-indexed ではなく 0-indexed の位置に挿入します。
+t.insert_index(2, 10)
+doAssert t.toSeq == @[1, 2, 10, 3, 4, 5]
+
+# 0-indexed の位置を削除します。
+t.erase_index(3)
+doAssert t.toSeq == @[1, 2, 10, 4, 5]
+
+# split_index(k) は先頭 k 個と残りに分けます。
+let (l, r) = t.split_index(3)
+doAssert t.to_vec(l) == @[1, 2, 10]
+doAssert t.to_vec(r) == @[4, 5]
+
+# merge で結合できます。
+t.root = t.merge(l, r)
+doAssert t.toSeq == @[1, 2, 10, 4, 5]
+```
+
+### 注意
+
+- `insert_index` / `erase_index` は値を返さない wrapper として使うため、`discard t.insert_index(...)` ではなく `t.insert_index(...)` と書きます。
+- `split_index` は木を分割するため、必要なら `merge` で `root` に戻してください。
+- `seed` を指定すると、テストやデバッグで挙動を再現しやすくなります。
+
 ## import
 
     import atcoder/extra/structure/randomized_binary_search_tree_with_parent
