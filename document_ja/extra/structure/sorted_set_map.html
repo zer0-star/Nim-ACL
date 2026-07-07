@@ -74,43 +74,43 @@
 <p>順序付き集合・順序付き写像です。</p>
 <p>Nim 標準の <code>sets</code> / <code>tables</code> は hash-based なコンテナなので、C++ の <code>std::set</code> / <code>std::map</code> に近い「順序付き」の集合・写像が欲しい場合に使います。</p>
 <p>この module は次の4種類のコンテナを提供します。</p>
-<pre><code>SortedSet
+<pre><code class="language-text">SortedSet
 SortedMultiSet
 SortedMap
 SortedMultiMap
 </code></pre>
 <h2 id="import">import</h2>
-<pre><code>import atcoder/extra/structure/sorted_set_map
+<pre><code class="language-text">import atcoder/extra/structure/sorted_set_map
 </code></pre>
 <p>互換のため、次の import でも同じ API を使えます。</p>
-<pre><code>import atcoder/extra/structure/set_map
+<pre><code class="language-text">import atcoder/extra/structure/set_map
 </code></pre>
 <p>新しく書くコードでは <code>sorted_set_map</code> の利用を推奨します。</p>
 <h2 id="sortedset">SortedSet</h2>
-<pre><code>var s = initSortedSet[K]()
+<pre><code class="language-nim">var s = initSortedSet[K]()
 var s = initSortedSet[K](countable = true)
 var s = initSortedSet[K](countable = true, comp)
 </code></pre>
 <p>重複なしの順序付き集合です。</p>
 <p><code>countable = true</code> にすると、<code>s{k}</code> による k 番目要素アクセスや <code>index</code> が使えます。</p>
 <h2 id="sortedmultiset">SortedMultiSet</h2>
-<pre><code>var s = initSortedMultiSet[K]()
+<pre><code class="language-nim">var s = initSortedMultiSet[K]()
 var s = initSortedMultiSet[K](countable = true)
 </code></pre>
 <p>重複ありの順序付き集合です。</p>
 <p>現在の <code>erase(x)</code> は、<code>x</code> と等しい要素をまとめて削除します。</p>
 <h2 id="sortedmap">SortedMap</h2>
-<pre><code>var mp = initSortedMap[K, V]()
+<pre><code class="language-nim">var mp = initSortedMap[K, V]()
 var mp = initSortedMap[K, V](countable = true)
 </code></pre>
 <p>順序付き写像です。</p>
-<pre><code>mp[key] = value
+<pre><code class="language-text">mp[key] = value
 mp[key]
 </code></pre>
 <p><code>mp[key] = value</code> で値を設定します。</p>
 <p><code>mp[key]</code> は値を返します。存在しない key に対して <code>mp[key]</code> を呼ぶと、default 値を持つ要素が挿入されます。</p>
 <h2 id="sortedmultimap">SortedMultiMap</h2>
-<pre><code>var mp = initSortedMultiMap[K, V]()
+<pre><code class="language-nim">var mp = initSortedMultiMap[K, V]()
 var mp = initSortedMultiMap[K, V](countable = true)
 </code></pre>
 <p>同じ key を複数持てる順序付き multimap です。</p>
@@ -118,29 +118,29 @@ var mp = initSortedMultiMap[K, V](countable = true)
 <p>現在の <code>erase(key)</code> は、その key を持つ要素をまとめて削除します。</p>
 <h2 id="_1">主な操作</h2>
 <h3 id="insert">insert</h3>
-<pre><code>s.insert(x)
+<pre><code class="language-nim">s.insert(x)
 mp.insert((key, value))
 </code></pre>
 <p>要素を追加します。</p>
 <p><code>SortedSet</code> / <code>SortedMap</code> では同じ key は1つだけ保持されます。</p>
 <h3 id="erase">erase</h3>
-<pre><code>s.erase(x)
+<pre><code class="language-nim">s.erase(x)
 mp.erase(key)
 </code></pre>
 <p>要素を削除します。</p>
 <h3 id="contains">contains</h3>
-<pre><code>x in s
+<pre><code class="language-text">x in s
 key in mp
 </code></pre>
 <p>存在判定をします。</p>
 <h3 id="find">find</h3>
-<pre><code>s.find(x)
+<pre><code class="language-nim">s.find(x)
 mp.find(key)
 </code></pre>
 <p>node を返します。見つからない場合は <code>end()</code> を返します。</p>
 <p>node の値は <code>*it</code> で取得できます。</p>
 <h3 id="iteration">iteration</h3>
-<pre><code>for x in s:
+<pre><code class="language-nim">for x in s:
   ...
 
 for k, v in mp:
@@ -148,12 +148,12 @@ for k, v in mp:
 </code></pre>
 <p>昇順に走査します。</p>
 <h3 id="kth-access">kth access</h3>
-<pre><code>s{k}
+<pre><code class="language-text">s{k}
 mp{k}
 </code></pre>
 <p><code>countable = true</code> のとき、0-indexed で k 番目の node を返します。</p>
 <h2 id="_2">使用例</h2>
-<pre><code>import atcoder/extra/structure/sorted_set_map
+<pre><code class="language-nim">import atcoder/extra/structure/sorted_set_map
 
 var s = initSortedSet[int](countable = true)
 
@@ -175,17 +175,17 @@ doAssert 3 notin s
 
 var mp = initSortedMap[string, int]()
 
-mp["three"] = 3
-mp["one"] = 1
+mp[&quot;three&quot;] = 3
+mp[&quot;one&quot;] = 1
 
-doAssert "one" in mp
-doAssert mp["one"] == 1
+doAssert &quot;one&quot; in mp
+doAssert mp[&quot;one&quot;] == 1
 
 for k, v in mp:
   discard
 </code></pre>
 <h2 id="_3">降順集合の例</h2>
-<pre><code>import atcoder/extra/structure/sorted_set_map
+<pre><code class="language-nim">import atcoder/extra/structure/sorted_set_map
 
 proc desc(a, b:int):bool = a &gt; b
 

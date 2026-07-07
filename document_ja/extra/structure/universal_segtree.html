@@ -74,17 +74,17 @@
 <p>Universal SegTree は、通常のセグメント木、遅延セグメント木、双対セグメント木、区間長依存の遅延セグメント木、SegTree Beats 風の構造を、共通の実装で扱うための汎用セグメント木です。</p>
 <p>標準の <code>atcoder/segtree</code> や <code>atcoder/lazysegtree</code> と同じ考え方で使えますが、<code>op</code>, <code>e</code>, <code>mapping</code>, <code>composition</code>, <code>id</code> などを template に渡して型を生成する設計になっています。</p>
 <p>通常は、次の wrapper を使います。</p>
-<pre><code>initSegTree
+<pre><code class="language-text">initSegTree
 initDualSegTree
 initLazySegTree
 initLazySegTree_with_p
 initSegTreeBeats
 </code></pre>
 <h2 id="import">import</h2>
-<pre><code>import atcoder/extra/structure/universal_segtree
+<pre><code class="language-text">import atcoder/extra/structure/universal_segtree
 </code></pre>
 <h2 id="segtree">通常の SegTree</h2>
-<pre><code>var st = initSegTree[S](v:int or seq[S], op, e)
+<pre><code class="language-nim">var st = initSegTree[S](v:int or seq[S], op, e)
 </code></pre>
 <p>通常のセグメント木を作ります。</p>
 <p><code>op</code> は二項演算、<code>e</code> は単位元です。</p>
@@ -102,7 +102,7 @@ initSegTreeBeats
 <li>区間取得 $O(\log n)$</li>
 </ul>
 <h3 id="_1">使用例</h3>
-<pre><code>import atcoder/extra/structure/universal_segtree
+<pre><code class="language-nim">import atcoder/extra/structure/universal_segtree
 
 proc op(a, b:int):int = a + b
 proc e():int = 0
@@ -118,7 +118,7 @@ doAssert st[0..&lt;5] == 22
 doAssert st[2] == 10
 </code></pre>
 <h2 id="lazysegtree">LazySegTree</h2>
-<pre><code>var st = initLazySegTree[S, F](
+<pre><code class="language-nim">var st = initLazySegTree[S, F](
   v:int or seq[S],
   op,
   e,
@@ -148,7 +148,7 @@ doAssert st[2] == 10
 <li>区間取得 $O(\log n)$</li>
 </ul>
 <h3 id="_2">使用例：区間加算・区間和</h3>
-<pre><code>import atcoder/extra/structure/universal_segtree
+<pre><code class="language-nim">import atcoder/extra/structure/universal_segtree
 
 type S = tuple[sum:int, len:int]
 
@@ -190,7 +190,7 @@ doAssert st[0..&lt;5].sum == 45
 doAssert st[2].sum == 13
 </code></pre>
 <h2 id="dualsegtree">DualSegTree</h2>
-<pre><code>var st = initDualSegTree[F](v:int or seq[F], composition, id)
+<pre><code class="language-nim">var st = initDualSegTree[F](v:int or seq[F], composition, id)
 </code></pre>
 <p>双対セグメント木を作ります。</p>
 <p>双対セグメント木は「区間作用・点取得」に使います。区間に作用を追加して、各点で合成済みの作用を取得します。</p>
@@ -207,7 +207,7 @@ doAssert st[2].sum == 13
 <li>点取得 $O(\log n)$</li>
 </ul>
 <h3 id="_3">使用例：区間加算・点取得</h3>
-<pre><code>import atcoder/extra/structure/universal_segtree
+<pre><code class="language-nim">import atcoder/extra/structure/universal_segtree
 
 proc composition(f, g:int):int =
   f + g
@@ -227,7 +227,7 @@ doAssert st[3] == 7
 doAssert st[4] == -3
 </code></pre>
 <h2 id="lazysegtree_with_p">LazySegTree_with_p</h2>
-<pre><code>var st = initLazySegTree_with_p[S, F](
+<pre><code class="language-nim">var st = initLazySegTree_with_p[S, F](
   v:int or seq[S],
   op,
   e,
@@ -247,7 +247,7 @@ doAssert st[4] == -3
 <li>区間取得 $O(\log n)$</li>
 </ul>
 <h2 id="segtreebeats">SegTreeBeats</h2>
-<pre><code>var st = initSegTreeBeats[S, F](
+<pre><code class="language-nim">var st = initSegTreeBeats[S, F](
   v:int or seq[S],
   op,
   e,
@@ -269,7 +269,7 @@ doAssert st[4] == -3
 <li><code>none</code> の場合は子に push できる必要がある</li>
 </ul>
 <h2 id="_4">点更新・点取得</h2>
-<pre><code>st[p] = x
+<pre><code class="language-text">st[p] = x
 st[p]
 </code></pre>
 <p><code>st[p] = x</code> で点 <code>p</code> を更新します。</p>
@@ -286,7 +286,7 @@ st[p]
 <li>$O(\log n)$</li>
 </ul>
 <h2 id="_5">区間取得</h2>
-<pre><code>st.prod(p:RangeType)
+<pre><code class="language-text">st.prod(p:RangeType)
 st[p:RangeType]
 </code></pre>
 <p>区間 <code>p</code> の値を返します。</p>
@@ -302,7 +302,7 @@ st[p:RangeType]
 <li>$O(\log n)$</li>
 </ul>
 <h2 id="_6">区間作用</h2>
-<pre><code>st.apply(p:RangeType, f:F)
+<pre><code class="language-nim">st.apply(p:RangeType, f:F)
 st.apply(p:IndexType, f:F)
 </code></pre>
 <p>遅延セグメント木または双対セグメント木で、区間または一点に作用 <code>f</code> を適用します。</p>
@@ -312,7 +312,7 @@ st.apply(p:IndexType, f:F)
 <li>$O(\log n)$</li>
 </ul>
 <h2 id="all_prod">all_prod</h2>
-<pre><code>st.all_prod()
+<pre><code class="language-text">st.all_prod()
 </code></pre>
 <p>全体の値を返します。</p>
 <h4 class="doc-keyword">計算量</h4>
@@ -321,7 +321,7 @@ st.apply(p:IndexType, f:F)
 <li>$O(1)$</li>
 </ul>
 <h2 id="max_right-min_left">max_right / min_left</h2>
-<pre><code>st.max_right(l, g)
+<pre><code class="language-nim">st.max_right(l, g)
 st.min_left(r, g)
 </code></pre>
 <p>ACL の <code>segtree</code> / <code>lazy_segtree</code> と同様に、条件 <code>g</code> を満たす最大右端・最小左端を二分探索します。</p>

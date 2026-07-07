@@ -7,13 +7,15 @@
 
 ## import
 
-    import atcoder/dynamic_segtree
-
+```text
+import atcoder/dynamic_segtree
+```
 ## コンストラクタ
 
-    var st = initSegTree[S](v:seq[S], op:proc(a, b:S):S, e:proc():S)
-    var st = initSegTree[S](n:int, op:proc(a, b:S):S, e:proc():S)
-
+```nim
+var st = initSegTree[S](v:seq[S], op:proc(a, b:S):S, e:proc():S)
+var st = initSegTree[S](n:int, op:proc(a, b:S):S, e:proc():S)
+```
 列 `v` から、または長さ `n` の単位元列からセグメント木を構築します。
 
 @{keyword.constraints}
@@ -27,8 +29,9 @@
 
 ## set
 
-    st.set(p:int, x:S):void
-
+```text
+st.set(p:int, x:S):void
+```
 位置 `p` の値を `x` に変更します。
 
 @{keyword.constraints}
@@ -41,8 +44,9 @@
 
 ## get
 
-    st.get(p:int):S
-
+```text
+st.get(p:int):S
+```
 位置 `p` の値を返します。
 
 @{keyword.constraints}
@@ -55,8 +59,9 @@
 
 ## prod
 
-    st.prod(l..r):S
-
+```text
+st.prod(l..r):S
+```
 区間 `l..r` の値を返します。
 
 この実装の `prod` は `Slice[int]` を受け取り、`l..r` を閉区間として扱います。
@@ -71,8 +76,9 @@
 
 ## all_prod
 
-    st.all_prod():S
-
+```text
+st.all_prod():S
+```
 全体の値を返します。
 
 @{keyword.complexity}
@@ -81,9 +87,10 @@
 
 ## max_right / min_left
 
-    st.max_right(l:int, f:proc(s:S):bool):int
-    st.min_left(r:int, f:proc(s:S):bool):int
-
+```nim
+st.max_right(l:int, f:proc(s:S):bool):int
+st.min_left(r:int, f:proc(s:S):bool):int
+```
 ACL の `segtree` と同様に、条件 `f` を満たす最大右端・最小左端を二分探索します。
 
 @{keyword.constraints}
@@ -96,21 +103,22 @@ ACL の `segtree` と同様に、条件 `f` を満たす最大右端・最小左
 
 ## 使用例
 
-    import atcoder/dynamic_segtree
+```nim
+import atcoder/dynamic_segtree
 
-    proc op(a, b:int):int = a + b
-    proc e():int = 0
+proc op(a, b:int):int = a + b
+proc e():int = 0
 
-    var st = initSegTree[int](@[1, 2, 3, 4, 5], op, e)
+var st = initSegTree[int](@[1, 2, 3, 4, 5], op, e)
 
-    doAssert st.prod(0..4) == 15
-    doAssert st.prod(1..3) == 9
+doAssert st.prod(0..4) == 15
+doAssert st.prod(1..3) == 9
 
-    st.set(2, 10)
+st.set(2, 10)
 
-    doAssert st.get(2) == 10
-    doAssert st.prod(0..4) == 22
-
+doAssert st.get(2) == 10
+doAssert st.prod(0..4) == 22
+```
 ## 注意
 
 `prod` の引数は `Slice[int]` で、`0..4` のような閉区間です。`0..<4` 形式ではなく、右端を含む範囲として扱います。
