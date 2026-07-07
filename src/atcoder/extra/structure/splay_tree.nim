@@ -517,4 +517,9 @@ when not declared ATCODER_SPLAY_TREE_HPP:
         let u = a1.key
         self.root = self.merge(self.merge(a0, a1), a2)
       result[i] = u
+
+  # Common sequence-backend helpers.
+  proc len*[T:SomeSplayTree](self:T):int =
+    self.count()
+
   {.pop.}

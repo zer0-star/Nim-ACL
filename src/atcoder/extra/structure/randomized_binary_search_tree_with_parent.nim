@@ -321,15 +321,13 @@ when not declared ATCODER_EXTRA_STRUCTURE_RANDOMIZED_BINARY_SEARCH_TREE_WITH_PAR
   
   proc empty*[RBST:SomeRBST](self: var RBST, t:RBST.Node):bool = self.len == 0
 
-  proc insert_index*[RBST:SomeRBST](self: var RBST, k:int, v:RBST.D):RBST.Node {.discardable.} =
-    result = self.insert_index(self.root, k, v)
-    self.root.p = nil
+  proc insert_index*[RBST:SomeRBST](self: var RBST, k:int, v:RBST.D) {.discardable.} =
+    self.insert_index(self.root, k, v)
   proc insert*[RBST:SomeRBST](self: var RBST, p:RBST.Node, v:RBST.D):RBST.Node {.discardable.} =
     result = self.insert(self.root, p, v)
     self.root.p = nil
-  proc erase_index*[RBST:SomeRBST](self: var RBST, k:int):RBST.Node {.discardable.} =
-    result = self.erase_index(self.root, k)
-    self.root.p = nil
+  proc erase_index*[RBST:SomeRBST](self: var RBST, k:int) {.discardable.} =
+    self.erase_index(self.root, k)
   proc erase*[RBST:SomeRBST](self: var RBST, p:RBST.Node):RBST.Node {.discardable.} =
     result = self.erase(self.root, p)
     self.root.p = nil
@@ -351,4 +349,12 @@ when not declared ATCODER_EXTRA_STRUCTURE_RANDOMIZED_BINARY_SEARCH_TREE_WITH_PAR
   proc check_tree*[RBST:SomeRBST](self: RBST):int {.discardable.} =
     doAssert self.root.p == nil
     self.check_tree(self.root)
+
+  # Common sequence-backend helpers.
+  proc toSeq*[RBST:SomeRBST](self: RBST):seq[RBST.D] =
+    self.to_vec(self.root)
+
+  proc split_index*[RBST:SomeRBST](self: var RBST, k:int):(RBST.Node, RBST.Node) =
+    self.split(self.root, k)
+
   {.pop.}
