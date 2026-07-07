@@ -69,7 +69,7 @@ Existing FPS methods such as `f.exp()` usually use the current length of the inp
 `useFPSDecl` provides a SageMath-like string declaration helper.
 
 ~~~nim
-useFPSDecl("H = mint{z}", prec = 6)
+useFPSDecl(H = mint{z}, prec = 6)
 
 let f = H(z)
 let g = f.exp()
@@ -84,3 +84,10 @@ useFPS(mint{z}, H, prec = 6)
 ~~~
 
 `useFPSDecl` is a convenience helper for readability. If you prefer type resolution and editor support, use `useFPS(mint{z}, H, prec = 6)`.
+
+You can also write the declaration as a string.
+
+~~~nim
+useFPSDecl("H = mint{z}", prec = 6)
+~~~
+

@@ -115,7 +115,7 @@ doAssert f.len == 3
 </ul>
 <h2 id="sagemath-like-string-declaration">SageMath-like string declaration</h2>
 <p><code>useFPSDecl</code> provides a SageMath-like string declaration helper.</p>
-<pre><code class="language-nim">useFPSDecl(&quot;H = mint{z}&quot;, prec = 6)
+<pre><code class="language-nim">useFPSDecl(H = mint{z}, prec = 6)
 
 let f = H(z)
 let g = f.exp()
@@ -125,6 +125,9 @@ let g = f.exp()
 <pre><code class="language-nim">useFPS(mint{z}, H, prec = 6)
 </code></pre>
 <p><code>useFPSDecl</code> is a convenience helper for readability. If you prefer type resolution and editor support, use <code>useFPS(mint{z}, H, prec = 6)</code>.</p>
+<p>You can also write the declaration as a string.</p>
+<pre><code class="language-nim">useFPSDecl(&quot;H = mint{z}&quot;, prec = 6)
+</code></pre>
   </main>
 </body>
 </html>

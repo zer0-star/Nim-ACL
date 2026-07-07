@@ -69,7 +69,7 @@ doAssert f.len == 3
 `useFPSDecl` を使うと、SageMath 風に近い文字列宣言もできます。
 
 ~~~nim
-useFPSDecl("H = mint{z}", prec = 6)
+useFPSDecl(H = mint{z}, prec = 6)
 
 let f = H(z)
 let g = f.exp()
@@ -84,3 +84,10 @@ useFPS(mint{z}, H, prec = 6)
 ~~~
 
 `useFPSDecl` は読みやすさを優先した convenience helper です。型解決や補完を重視する場合は、通常の `useFPS(mint{z}, H, prec = 6)` を使ってください。
+
+文字列で書くこともできます。
+
+~~~nim
+useFPSDecl("H = mint{z}", prec = 6)
+~~~
+

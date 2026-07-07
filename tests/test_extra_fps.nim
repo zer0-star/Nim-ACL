@@ -10,6 +10,7 @@ type mint = modint998244353
 useFPS(mint{x}, F, prec = 8)
 useFPS(mint{y}, G, prec = 5)
 useFPSDecl("H = mint{z}", prec = 6)
+useFPSDecl(K = mint{w}, prec = 7)
 
 suite "fps facade":
   test "constructor uses default precision":
@@ -55,6 +56,19 @@ suite "fps facade":
     let h = H(z)
     let e = h.exp()
     check e.len == 6
+    check e[0] == mint(1)
+    check e[1] == mint(1)
+
+  test "SageMath-like unquoted declaration helper":
+    let k = K(w)
+    check k.len == 7
+    check k[0] == mint(0)
+    check k[1] == mint(1)
+
+  test "SageMath-like unquoted declaration helper with exp":
+    let k = K(w)
+    let e = k.exp()
+    check e.len == 7
     check e[0] == mint(1)
     check e[1] == mint(1)
 

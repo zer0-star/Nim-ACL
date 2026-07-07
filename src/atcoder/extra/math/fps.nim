@@ -63,23 +63,47 @@ when not declared ATCODER_EXTRA_MATH_FPS:
     result = quote do:
       useFPSPrecTemplate(`T`, `F`, `x`, `prec`)
 
-  macro useFPSDecl*(decl: static[string], prec: untyped): untyped =
-    let st = parseStmt(decl)
-    if st.len != 1:
-      error("useFPSDecl expects one assignment, e.g. useFPSDecl(\"H = mint{z}\", prec = 100)")
 
-    let e = st[0]
+  macro useFPSDecl*(args: varargs[untyped]): untyped =
+    var decl: NimNode = nil
+    var prec: NimNode = nil
+
+    for arg in args:
+      if arg.kind == nnkExprEqExpr and arg[0].eqIdent("prec"):
+        if not prec.isNil:
+          error("useFPSDecl got duplicate prec argument", arg)
+        prec = arg[1]
+      else:
+        if not decl.isNil:
+          error("useFPSDecl expects exactly one declaration and one prec argument", arg)
+        decl = arg
+
+    if decl.isNil:
+      error("useFPSDecl expects a declaration, e.g. useFPSDecl(H = mint{z}, prec = 100)")
+    if prec.isNil:
+      error("useFPSDecl expects prec = N, e.g. useFPSDecl(H = mint{z}, prec = 100)")
+
+    var e: NimNode
+
+    if decl.kind in {nnkStrLit, nnkRStrLit, nnkTripleStrLit}:
+      let st = parseStmt(decl.strVal)
+      if st.len != 1:
+        error("useFPSDecl string declaration expects one assignment, e.g. useFPSDecl(\"H = mint{z}\", prec = 100)", decl)
+      e = st[0]
+    else:
+      e = decl
+
     if e.kind notin {nnkAsgn, nnkExprEqExpr}:
-      error("useFPSDecl expects F = mint{x}")
+      error("useFPSDecl expects F = mint{x}", e)
 
     let F = e[0]
-    let a = e[1]
+    let rhs = e[1]
 
-    if a.len != 2:
-      error("useFPSDecl expects the right hand side like mint{x}")
+    if rhs.len != 2:
+      error("useFPSDecl expects the right hand side like mint{x}", rhs)
 
-    let T = a[0]
-    let x = a[1]
+    let T = rhs[0]
+    let x = rhs[1]
 
     result = quote do:
       useFPSPrecTemplate(`T`, `F`, `x`, `prec`)
