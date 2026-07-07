@@ -1,5 +1,7 @@
 # sorted_set_map
 
+> 通常の順序付き set / map はこちらを推奨します。RedBlackTree backend による実装です。RBST / SplayTree など低レベル木 backend との関係は [Tree backends](./tree_backends.html) も参照してください。
+
 順序付き集合・順序付き写像です。
 
 Nim 標準の `sets` / `tables` は hash-based なコンテナなので、C++ の `std::set` / `std::map` に近い「順序付き」の集合・写像が欲しい場合に使います。

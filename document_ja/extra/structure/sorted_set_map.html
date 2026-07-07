@@ -71,6 +71,9 @@
   </header>
   <main>
 <h1 id="sorted_set_map">sorted_set_map</h1>
+<blockquote>
+<p>通常の順序付き set / map はこちらを推奨します。RedBlackTree backend による実装です。RBST / SplayTree など低レベル木 backend との関係は <a href="./tree_backends.html">Tree backends</a> も参照してください。</p>
+</blockquote>
 <p>順序付き集合・順序付き写像です。</p>
 <p>Nim 標準の <code>sets</code> / <code>tables</code> は hash-based なコンテナなので、C++ の <code>std::set</code> / <code>std::map</code> に近い「順序付き」の集合・写像が欲しい場合に使います。</p>
 <p>この module は次の4種類のコンテナを提供します。</p>

@@ -1,5 +1,7 @@
 # set_map_by_randomized_binary_search_tree
 
+> これは RBST backend による古い順序付き set / map 実装です。新規コードでは通常 [sorted_set_map](./sorted_set_map.html) を推奨します。RBST 自体を直接使う場合は [Tree backends](./tree_backends.html) を参照してください。
+
 このページは自動生成された下書きです。
 
 公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。

@@ -1,5 +1,7 @@
 # set_map
 
+> このページは互換用 alias です。新規コードでは [sorted_set_map](./sorted_set_map.html) を推奨します。
+
 この module は互換用の alias です。
 
 順序付き集合・順序付き写像の実装本体は `sorted_set_map` にあります。
