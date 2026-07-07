@@ -113,6 +113,18 @@ doAssert f.len == 3
 <li><code>fps</code> は modint + NTT を簡単に使うための facade です。</li>
 <li>既存コードを壊さないため、従来の <code>formal_power_series</code> の挙動は変更しません。</li>
 </ul>
+<h2 id="sagemath">SageMath 風の文字列宣言</h2>
+<p><code>useFPSDecl</code> を使うと、SageMath 風に近い文字列宣言もできます。</p>
+<pre><code class="language-nim">useFPSDecl(&quot;H = mint{z}&quot;, prec = 6)
+
+let f = H(z)
+let g = f.exp()
+</code></pre>
+<p>これは <code>H</code> を constructor 名、<code>mint</code> を係数型、<code>z</code> を形式変数名、<code>6</code> を既定精度として宣言します。</p>
+<p>より基本的な Nim 構文は次の形です。</p>
+<pre><code class="language-nim">useFPS(mint{z}, H, prec = 6)
+</code></pre>
+<p><code>useFPSDecl</code> は読みやすさを優先した convenience helper です。型解決や補完を重視する場合は、通常の <code>useFPS(mint{z}, H, prec = 6)</code> を使ってください。</p>
   </main>
 </body>
 </html>

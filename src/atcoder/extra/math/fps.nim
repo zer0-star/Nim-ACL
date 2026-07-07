@@ -62,3 +62,25 @@ when not declared ATCODER_EXTRA_MATH_FPS:
 
     result = quote do:
       useFPSPrecTemplate(`T`, `F`, `x`, `prec`)
+
+  macro useFPSDecl*(decl: static[string], prec: untyped): untyped =
+    let st = parseStmt(decl)
+    if st.len != 1:
+      error("useFPSDecl expects one assignment, e.g. useFPSDecl(\"H = mint{z}\", prec = 100)")
+
+    let e = st[0]
+    if e.kind notin {nnkAsgn, nnkExprEqExpr}:
+      error("useFPSDecl expects F = mint{x}")
+
+    let F = e[0]
+    let a = e[1]
+
+    if a.len != 2:
+      error("useFPSDecl expects the right hand side like mint{x}")
+
+    let T = a[0]
+    let x = a[1]
+
+    result = quote do:
+      useFPSPrecTemplate(`T`, `F`, `x`, `prec`)
+

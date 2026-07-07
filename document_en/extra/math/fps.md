@@ -63,3 +63,24 @@ Existing FPS methods such as `f.exp()` usually use the current length of the inp
 - `formal_power_series` is the compatibility-oriented low-level module.
 - `fps` is a convenience facade for modint + NTT usage.
 - The existing behavior of `formal_power_series` is not changed.
+
+## SageMath-like string declaration
+
+`useFPSDecl` provides a SageMath-like string declaration helper.
+
+~~~nim
+useFPSDecl("H = mint{z}", prec = 6)
+
+let f = H(z)
+let g = f.exp()
+~~~
+
+This declares `H` as the constructor name, `mint` as the coefficient type, `z` as the formal variable name, and `6` as the default precision.
+
+The more basic Nim-style syntax is:
+
+~~~nim
+useFPS(mint{z}, H, prec = 6)
+~~~
+
+`useFPSDecl` is a convenience helper for readability. If you prefer type resolution and editor support, use `useFPS(mint{z}, H, prec = 6)`.

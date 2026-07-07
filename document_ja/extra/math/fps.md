@@ -63,3 +63,24 @@ doAssert f.len == 3
 - `formal_power_series` は互換性重視の低レイヤ module です。
 - `fps` は modint + NTT を簡単に使うための facade です。
 - 既存コードを壊さないため、従来の `formal_power_series` の挙動は変更しません。
+
+## SageMath 風の文字列宣言
+
+`useFPSDecl` を使うと、SageMath 風に近い文字列宣言もできます。
+
+~~~nim
+useFPSDecl("H = mint{z}", prec = 6)
+
+let f = H(z)
+let g = f.exp()
+~~~
+
+これは `H` を constructor 名、`mint` を係数型、`z` を形式変数名、`6` を既定精度として宣言します。
+
+より基本的な Nim 構文は次の形です。
+
+~~~nim
+useFPS(mint{z}, H, prec = 6)
+~~~
+
+`useFPSDecl` は読みやすさを優先した convenience helper です。型解決や補完を重視する場合は、通常の `useFPS(mint{z}, H, prec = 6)` を使ってください。
