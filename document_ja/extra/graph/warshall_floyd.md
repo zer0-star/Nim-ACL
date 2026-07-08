@@ -36,3 +36,22 @@ $s$から$t$までの最短経路パスを返します
 
 - $O(n^3)$
 
+## 基本例
+
+`warshallFloyd(dist)` は、距離行列 `dist` から全点対最短路を計算します。
+
+```nim
+import atcoder/extra/graph/warshall_floyd
+
+let inf = int.high div 4
+let dist = @[
+  @[0,   3,   10],
+  @[inf, 0,   4],
+  @[inf, inf, 0],
+]
+
+let wf = warshallFloyd(dist)
+
+doAssert wf[0, 2] == 7
+doAssert wf.path(0, 2) == @[0, 1, 2]
+```

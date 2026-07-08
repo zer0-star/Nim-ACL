@@ -38,3 +38,23 @@ d.path(t:int):seq[int]
 追加した辺の本数を $m$ として
 - $O(n * m)$だと思う(たぶん)
 
+## 基本例
+
+`bellman_ford(g, s)` は負辺を含む graph に対して、始点 `s` からの最短距離を計算します。
+
+```nim
+import atcoder/extra/graph/graph_template
+import atcoder/extra/graph/bellman_ford
+
+var g = initGraph(4)
+g.addEdge(0, 1, 1)
+g.addEdge(1, 2, -2)
+g.addEdge(0, 2, 5)
+g.addEdge(2, 3, 3)
+
+let d = bellman_ford(g, 0)
+
+doAssert d[2] == -1
+doAssert d[3] == 2
+doAssert d.path(3) == @[0, 1, 2, 3]
+```
