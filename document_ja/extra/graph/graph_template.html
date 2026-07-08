@@ -120,6 +120,27 @@ $w$は省略可能。省略した場合は1と解釈される。</p>
 <ul>
 <li>$O(n + m)$</li>
 </ul>
+<h2 id="_5">基本例</h2>
+<p><code>initGraph(n)</code> で隣接リスト形式の graph を作れます。<code>addEdge</code> は有向辺、<code>addBiEdge</code> は両方向の辺を追加します。</p>
+<pre><code class="language-nim">import atcoder/extra/graph/graph_template
+
+var g = initGraph(3)
+g.addEdge(0, 1)
+g.addEdge(1, 2, 5)
+
+doAssert g[0][0].dst == 1
+doAssert g[1][0].weight == 5
+</code></pre>
+<p>辺の列から graph を作る場合は <code>initDirectedGraph</code> / <code>initUndirectedGraph</code> を使えます。</p>
+<pre><code class="language-nim">let a = @[0, 1]
+let b = @[1, 2]
+let c = @[3, 4]
+
+let g = initDirectedGraph(3, a, b, c)
+
+doAssert g[0][0].dst == 1
+doAssert g[0][0].weight == 3
+</code></pre>
   </main>
 </body>
 </html>

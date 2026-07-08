@@ -74,3 +74,30 @@ aの長さを$m$としたとき、各$i = 0, 1, \ldots, m - 1$について、a[i
 
 - $O(n + m)$
 
+## 基本例
+
+`initGraph(n)` で隣接リスト形式の graph を作れます。`addEdge` は有向辺、`addBiEdge` は両方向の辺を追加します。
+
+```nim
+import atcoder/extra/graph/graph_template
+
+var g = initGraph(3)
+g.addEdge(0, 1)
+g.addEdge(1, 2, 5)
+
+doAssert g[0][0].dst == 1
+doAssert g[1][0].weight == 5
+```
+
+辺の列から graph を作る場合は `initDirectedGraph` / `initUndirectedGraph` を使えます。
+
+```nim
+let a = @[0, 1]
+let b = @[1, 2]
+let c = @[3, 4]
+
+let g = initDirectedGraph(3, a, b, c)
+
+doAssert g[0][0].dst == 1
+doAssert g[0][0].weight == 3
+```
