@@ -67,6 +67,16 @@ when not declared ATCODER_EXTRA_MONOID_MONOID_HPP:
   template ActedMonoidOf*(MS, MF: typedesc, mapping0: untyped): untyped =
     ActedMonoidType(MS, MF, mapping0)
 
+
+  template useMonoid*(Name, E, op0, e0: untyped): untyped =
+    type Name = MonoidType(E, op0, e0)
+
+  template useGroup*(Name, E, op0, e0, inv0: untyped): untyped =
+    type Name = MonoidType(E, op0, e0, inv0)
+
+  template useActedMonoid*(Name, MS, MF, mapping0: untyped): untyped =
+    type Name = ActedMonoidType(MS, MF, mapping0)
+
   template S*[T: ActedMonoidBase](_: typedesc[T]): typedesc =
     T.MS.value_type
 

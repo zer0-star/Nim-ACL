@@ -23,6 +23,11 @@ when not declared ATCODER_TEST_EXTRA_MONOID:
   type
     AddAction = ActedMonoidType(SumMonoid, SumMonoid, addMap)
 
+
+  useMonoid(UseSumMonoid, int, addInt, zeroInt)
+  useGroup(UseAddGroup, int, addInt, zeroInt, negInt)
+  useActedMonoid(UseAddAction, UseSumMonoid, UseSumMonoid, addMap)
+
   suite "extra monoid":
     test "MonoidType exposes value_type op and e":
       check SumMonoid.value_type is int
@@ -66,4 +71,19 @@ when not declared ATCODER_TEST_EXTRA_MONOID:
       check AliasAction.composition(4, 5) == 9
       check AliasAction.id() == 0
       check AliasAction.mapping(7, 10) == 17
+
+    test "useMonoid helper defines monoid type":
+      check UseSumMonoid.value_type is int
+      check UseSumMonoid.op(8, 9) == 17
+      check UseSumMonoid.e() == 0
+
+    test "useGroup helper defines inversible monoid type":
+      check UseAddGroup.op(20, UseAddGroup.inv(7)) == 13
+      check UseAddGroup.op(11, UseAddGroup.inv(11)) == UseAddGroup.e()
+
+    test "useActedMonoid helper defines acted monoid type":
+      check UseAddAction.op(3, 4) == 7
+      check UseAddAction.composition(5, 6) == 11
+      check UseAddAction.id() == 0
+      check UseAddAction.mapping(9, 10) == 19
 
