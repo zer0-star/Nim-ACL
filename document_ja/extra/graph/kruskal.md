@@ -24,3 +24,23 @@ TODO: 使用例を追加してください。
 ## 注意
 
 TODO: 制約、前提条件、落とし穴を記述してください。
+
+## 基本例
+
+`kruskal(g)` は最小全域木の重み合計と、選ばれた辺の列を返します。
+
+```nim
+import atcoder/extra/graph/graph_template
+import atcoder/extra/graph/kruskal
+
+var g = initGraph(4)
+g.addBiEdge(0, 1, 1)
+g.addBiEdge(1, 2, 2)
+g.addBiEdge(0, 2, 5)
+g.addBiEdge(2, 3, 1)
+
+let (cost, es) = kruskal(g)
+
+doAssert cost == 4
+doAssert es.len == 3
+```

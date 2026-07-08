@@ -24,3 +24,22 @@ TODO: 使用例を追加してください。
 ## 注意
 
 TODO: 制約、前提条件、落とし穴を記述してください。
+
+## 基本例
+
+`topologicalSort(g)` は DAG のトポロジカル順序を返します。
+
+```nim
+import atcoder/extra/graph/graph_template
+import atcoder/extra/graph/topological_sort
+
+var g = initGraph(4)
+g.addEdge(0, 1)
+g.addEdge(0, 2)
+g.addEdge(1, 3)
+g.addEdge(2, 3)
+
+let order = topologicalSort(g)
+
+doAssert order.len == 4
+```
