@@ -127,6 +127,31 @@ $d$は内部的にはDijkstraResultというobjectで渡されていて、下記
 <ul>
 <li>$O(n)$</li>
 </ul>
+<h2 id="_6">基本例</h2>
+<p><code>dijkstra(g, s)</code> は、始点 <code>s</code> からの最短距離を返します。結果は <code>d[v]</code> で距離、<code>d.path(v)</code> で復元パスを取得できます。</p>
+<pre><code class="language-nim">import atcoder/extra/graph/graph_template
+import atcoder/extra/graph/dijkstra
+
+var g = initGraph(4)
+g.addEdge(0, 1, 2)
+g.addEdge(0, 2, 5)
+g.addEdge(1, 2, 1)
+g.addEdge(2, 3, 1)
+
+var d = dijkstra(g, 0)
+
+doAssert d[3] == 4
+doAssert d.path(3) == @[0, 1, 2, 3]
+</code></pre>
+<p>辺重みが <code>0</code> または <code>1</code> の場合は <code>dijkstra01(g, s)</code> も使えます。</p>
+<pre><code class="language-nim">var h = initGraph(3)
+h.addEdge(0, 1, 0)
+h.addEdge(1, 2, 1)
+
+var e = dijkstra01(h, 0)
+
+doAssert e[2] == 1
+</code></pre>
   </main>
 </body>
 </html>
