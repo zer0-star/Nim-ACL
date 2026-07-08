@@ -135,6 +135,19 @@ let g = f.exp()
 let f = L(t)
 </code></pre>
 <p><code>mint&lt;t&gt;</code> は文字列内だけの convenience syntax です。通常の Nim 構文では <code>useFPSDecl(L = mint{t}, prec = 9)</code> または <code>useFPS(mint{t}, L, prec = 9)</code> を使ってください。</p>
+<h2 id="_4">既定精度と既存演算</h2>
+<p><code>fps</code> facade の constructor は、長さを省略すると <code>prec</code> で指定した長さまで resize します。</p>
+<p>そのため、既存の FPS method が入力 series の長さを使う場合、constructor で指定した既定精度がそのまま効きます。</p>
+<pre><code class="language-nim">useFPS(mint{x}, F, prec = 8)
+
+let f = F(1 + x)   # 長さ 8
+let g = f.inv()    # 長さ 8
+let h = f.exp()    # 長さ 8
+</code></pre>
+<p>明示的に長さを渡した場合は、constructor の既定精度よりも明示指定が優先されます。</p>
+<pre><code class="language-nim">let f = F(1 + x, 4)
+doAssert f.len == 4
+</code></pre>
   </main>
 </body>
 </html>

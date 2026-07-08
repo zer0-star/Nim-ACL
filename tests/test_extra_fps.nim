@@ -48,6 +48,41 @@ suite "fps facade":
     check h[0] == mint(0)
     check h[1] == mint(1)
 
+  test "constant constructor uses default precision":
+    let f = F(3)
+    check f.len == 8
+    check f[0] == mint(3)
+    check f[1] == mint(0)
+    check f[7] == mint(0)
+
+  test "sparse expression constructor uses default precision":
+    let f = F(1 + x)
+    check f.len == 8
+    check f[0] == mint(1)
+    check f[1] == mint(1)
+    check f[7] == mint(0)
+
+  test "inverse follows default precision through constructor length":
+    let f = F(@[1, 1])
+    let g = f.inv()
+    check g.len == 8
+    check g[0] == mint(1)
+    check g[1] == -mint(1)
+
+    let h = f * g
+    check h[0] == mint(1)
+    check h[1] == mint(0)
+    check h[2] == mint(0)
+
+  test "arithmetic between default precision series keeps usable length":
+    let f = F(@[1, 2])
+    let g = F(@[3, 4])
+    let h = f + g
+    check h.len == 8
+    check h[0] == mint(4)
+    check h[1] == mint(6)
+    check h[7] == mint(0)
+
   test "SageMath-like declaration helper":
     let h = H(z)
     check h.len == 6

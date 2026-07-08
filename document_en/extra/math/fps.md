@@ -102,3 +102,24 @@ let f = L(t)
 ~~~
 
 `mint<t>` is convenience syntax only inside a string declaration. In normal Nim syntax, use `useFPSDecl(L = mint{t}, prec = 9)` or `useFPS(mint{t}, L, prec = 9)`.
+
+## Default precision and existing operations
+
+Constructors provided by the `fps` facade resize the series to `prec` when the length is omitted.
+
+Therefore, existing FPS methods that use the input length naturally follow the default precision chosen at construction time.
+
+~~~nim
+useFPS(mint{x}, F, prec = 8)
+
+let f = F(1 + x)   # length 8
+let g = f.inv()    # length 8
+let h = f.exp()    # length 8
+~~~
+
+An explicit length always overrides the default precision.
+
+~~~nim
+let f = F(1 + x, 4)
+doAssert f.len == 4
+~~~

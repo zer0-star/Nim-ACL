@@ -102,3 +102,24 @@ let f = L(t)
 ~~~
 
 `mint<t>` は文字列内だけの convenience syntax です。通常の Nim 構文では `useFPSDecl(L = mint{t}, prec = 9)` または `useFPS(mint{t}, L, prec = 9)` を使ってください。
+
+## 既定精度と既存演算
+
+`fps` facade の constructor は、長さを省略すると `prec` で指定した長さまで resize します。
+
+そのため、既存の FPS method が入力 series の長さを使う場合、constructor で指定した既定精度がそのまま効きます。
+
+~~~nim
+useFPS(mint{x}, F, prec = 8)
+
+let f = F(1 + x)   # 長さ 8
+let g = f.inv()    # 長さ 8
+let h = f.exp()    # 長さ 8
+~~~
+
+明示的に長さを渡した場合は、constructor の既定精度よりも明示指定が優先されます。
+
+~~~nim
+let f = F(1 + x, 4)
+doAssert f.len == 4
+~~~
