@@ -55,3 +55,12 @@ when not declared ATCODER_EXTRA_MONOID_MONOID_HPP:
   proc composition*[T:ActedMonoidBase](_:typedesc[T], a, b:T.F):T.F = T.MF.op(a, b)
   proc id*[T:ActedMonoidBase](_:typedesc[T]):T.F = T.MF.e()
   proc mapping*[T:ActedMonoidBase](_:typedesc[T], f:T.F, s:T.S):T.S = T.p[0](f, s)
+
+template MonoidOf*(E, op, e: untyped): untyped =
+  MonoidType(E, op, e)
+
+template GroupOf*(E, op, e, inv: untyped): untyped =
+  MonoidType(E, op, e, inv)
+
+template ActedMonoidOf*(MS, MF, mapping: untyped): untyped =
+  ActedMonoidType(MS, MF, mapping)

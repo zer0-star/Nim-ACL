@@ -48,3 +48,22 @@ when not declared ATCODER_TEST_EXTRA_MONOID:
       check AddAction.composition(4, 5) == 9
       check AddAction.id() == 0
       check AddAction.mapping(7, 10) == 17
+
+    test "MonoidOf alias matches MonoidType":
+      type AliasSum = MonoidOf(int, addInt, zeroInt)
+      check AliasSum.value_type is int
+      check AliasSum.op(20, 22) == 42
+      check AliasSum.e() == 0
+
+    test "GroupOf alias supports inverse":
+      type AliasGroup = GroupOf(int, addInt, zeroInt, negInt)
+      check AliasGroup.op(10, AliasGroup.inv(4)) == 6
+      check AliasGroup.op(5, AliasGroup.inv(5)) == AliasGroup.e()
+
+    test "ActedMonoidOf alias matches ActedMonoidType":
+      type AliasAction = ActedMonoidOf(SumMonoid, SumMonoid, addMap)
+      check AliasAction.op(1, 2) == 3
+      check AliasAction.composition(4, 5) == 9
+      check AliasAction.id() == 0
+      check AliasAction.mapping(7, 10) == 17
+

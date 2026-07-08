@@ -61,3 +61,15 @@ import atcoder/extra/monoid/monoid
 ## 注意
 
 `MonoidType` / `ActedMonoidType` は、既存の低レベル API と互換性を保ったまま使うための型生成 helper です。より短い競技プログラミング向け facade は、今後 `fps` と同じ方針で追加できます。
+
+## facade aliases
+
+`MonoidOf`, `GroupOf`, `ActedMonoidOf` は、既存の `MonoidType` / `ActedMonoidType` の読みやすい別名です。
+
+```nim
+type Sum = MonoidOf(int, addInt, zeroInt)
+type AddGroup = GroupOf(int, addInt, zeroInt, negInt)
+type AddAction = ActedMonoidOf(Sum, Sum, addMap)
+```
+
+既存 API と同じ型を作るだけなので、従来の `MonoidType` / `ActedMonoidType` と併用できます。
