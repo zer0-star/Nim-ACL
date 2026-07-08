@@ -66,3 +66,7 @@ bash tools/publish_docs.sh
 ```
 
 The script writes the full log to `/tmp/nacl_publish_docs.log` and prints a short `NACL RESULT` block at the end.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the local verification, CI, and documentation publishing policy.
