@@ -126,6 +126,18 @@ type AddGroup = GroupOf(int, addInt, zeroInt, negInt)
 type AddAction = ActedMonoidOf(Sum, Sum, addMap)
 </code></pre>
 <p>既存 API と同じ型を作るだけなので、従来の <code>MonoidType</code> / <code>ActedMonoidType</code> と併用できます。</p>
+<h2 id="usemonoid-helpers">useMonoid helpers</h2>
+<p><code>useMonoid</code>, <code>useGroup</code>, <code>useActedMonoid</code> を使うと、型名を先に書く形で monoid 型を宣言できます。</p>
+<pre><code class="language-nim">useMonoid(Sum, int, addInt, zeroInt)
+useGroup(AddGroup, int, addInt, zeroInt, negInt)
+useActedMonoid(AddAction, Sum, Sum, addMap)
+</code></pre>
+<p>これは次と同じ意味です。</p>
+<pre><code class="language-nim">type Sum = MonoidType(int, addInt, zeroInt)
+type AddGroup = MonoidType(int, addInt, zeroInt, negInt)
+type AddAction = ActedMonoidType(Sum, Sum, addMap)
+</code></pre>
+<p><code>useMonoid</code> 系は、競技プログラミング中に型宣言を短く書くための convenience helper です。</p>
   </main>
 </body>
 </html>
