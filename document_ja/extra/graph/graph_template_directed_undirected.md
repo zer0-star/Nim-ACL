@@ -33,3 +33,30 @@ TODO: 使用例を追加してください。
 ## 注意
 
 TODO: 制約、前提条件、落とし穴を記述してください。
+
+## 基本例
+
+`initDirectedGraph[T](n)` は有向 graph、`initUndirectedGraph[T](n)` は無向 graph を作ります。
+
+```nim
+import atcoder/extra/graph/graph_template_directed_undirected
+
+var g = initDirectedGraph[int](3)
+g.addEdge(0, 1, 5)
+
+doAssert g[0][0].src == 0
+doAssert g[0][0].dst == 1
+doAssert g[0][0].weight == 5
+```
+
+無向 graph では `addEdge` が両方向の辺を追加します。
+
+```nim
+var h = initUndirectedGraph[int](3)
+h.addEdge(0, 1, 7)
+
+doAssert h[0][0].dst == 1
+doAssert h[1][0].dst == 0
+doAssert h[0][0].weight == 7
+doAssert h[1][0].weight == 7
+```
