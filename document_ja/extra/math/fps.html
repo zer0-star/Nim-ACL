@@ -128,6 +128,13 @@ let g = f.exp()
 <p>文字列で書くこともできます。</p>
 <pre><code class="language-nim">useFPSDecl(&quot;H = mint{z}&quot;, prec = 6)
 </code></pre>
+<h2 id="angle-bracket">angle bracket 形式の文字列宣言</h2>
+<p>文字列宣言では、<code>mint{z}</code> だけでなく <code>mint&lt;z&gt;</code> も使えます。</p>
+<pre><code class="language-nim">useFPSDecl(&quot;L = mint&lt;t&gt;&quot;, prec = 9)
+
+let f = L(t)
+</code></pre>
+<p><code>mint&lt;t&gt;</code> は文字列内だけの convenience syntax です。通常の Nim 構文では <code>useFPSDecl(L = mint{t}, prec = 9)</code> または <code>useFPS(mint{t}, L, prec = 9)</code> を使ってください。</p>
   </main>
 </body>
 </html>

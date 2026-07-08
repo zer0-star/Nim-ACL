@@ -91,3 +91,14 @@ You can also write the declaration as a string.
 useFPSDecl("H = mint{z}", prec = 6)
 ~~~
 
+## Angle-bracket string declaration
+
+In string declarations, both `mint{z}` and `mint<z>` are supported.
+
+~~~nim
+useFPSDecl("L = mint<t>", prec = 9)
+
+let f = L(t)
+~~~
+
+`mint<t>` is convenience syntax only inside a string declaration. In normal Nim syntax, use `useFPSDecl(L = mint{t}, prec = 9)` or `useFPS(mint{t}, L, prec = 9)`.

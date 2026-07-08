@@ -91,3 +91,14 @@ useFPS(mint{z}, H, prec = 6)
 useFPSDecl("H = mint{z}", prec = 6)
 ~~~
 
+## angle bracket 形式の文字列宣言
+
+文字列宣言では、`mint{z}` だけでなく `mint<z>` も使えます。
+
+~~~nim
+useFPSDecl("L = mint<t>", prec = 9)
+
+let f = L(t)
+~~~
+
+`mint<t>` は文字列内だけの convenience syntax です。通常の Nim 構文では `useFPSDecl(L = mint{t}, prec = 9)` または `useFPS(mint{t}, L, prec = 9)` を使ってください。

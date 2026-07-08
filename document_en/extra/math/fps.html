@@ -128,6 +128,13 @@ let g = f.exp()
 <p>You can also write the declaration as a string.</p>
 <pre><code class="language-nim">useFPSDecl(&quot;H = mint{z}&quot;, prec = 6)
 </code></pre>
+<h2 id="angle-bracket-string-declaration">Angle-bracket string declaration</h2>
+<p>In string declarations, both <code>mint{z}</code> and <code>mint&lt;z&gt;</code> are supported.</p>
+<pre><code class="language-nim">useFPSDecl(&quot;L = mint&lt;t&gt;&quot;, prec = 9)
+
+let f = L(t)
+</code></pre>
+<p><code>mint&lt;t&gt;</code> is convenience syntax only inside a string declaration. In normal Nim syntax, use <code>useFPSDecl(L = mint{t}, prec = 9)</code> or <code>useFPS(mint{t}, L, prec = 9)</code>.</p>
   </main>
 </body>
 </html>

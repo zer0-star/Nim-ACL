@@ -2,6 +2,7 @@ when not declared ATCODER_EXTRA_MATH_FPS:
   const ATCODER_EXTRA_MATH_FPS* = 1
 
   import std/macros
+  import std/strutils
   import atcoder/modint
   import atcoder/extra/math/ntt
   import atcoder/extra/math/formal_power_series
@@ -64,6 +65,39 @@ when not declared ATCODER_EXTRA_MATH_FPS:
       useFPSPrecTemplate(`T`, `F`, `x`, `prec`)
 
 
+  proc parseFPSDeclString(decl: string, origin: NimNode): tuple[F, T, x: NimNode] =
+    let eq = decl.find('=')
+    if eq <= 0 or eq >= decl.high:
+      error("useFPSDecl string declaration expects F = mint{x} or F = mint<x>", origin)
+
+    let lhs = decl[0 ..< eq].strip()
+    let rhs = decl[eq + 1 .. ^1].strip()
+
+    if lhs.len == 0 or rhs.len == 0:
+      error("useFPSDecl string declaration expects F = mint{x} or F = mint<x>", origin)
+
+    var l, r: int
+
+    if rhs.endsWith("}"):
+      l = rhs.find('{')
+      r = rhs.rfind('}')
+    elif rhs.endsWith(">"):
+      l = rhs.find('<')
+      r = rhs.rfind('>')
+    else:
+      error("useFPSDecl string declaration expects the right hand side like mint{x} or mint<x>", origin)
+
+    if l <= 0 or r != rhs.high or l + 1 >= r:
+      error("useFPSDecl string declaration expects the right hand side like mint{x} or mint<x>", origin)
+
+    let typeName = rhs[0 ..< l].strip()
+    let varName = rhs[l + 1 ..< r].strip()
+
+    if typeName.len == 0 or varName.len == 0:
+      error("useFPSDecl string declaration expects the right hand side like mint{x} or mint<x>", origin)
+
+    result = (parseExpr(lhs), parseExpr(typeName), parseExpr(varName))
+
   macro useFPSDecl*(args: varargs[untyped]): untyped =
     var decl: NimNode = nil
     var prec: NimNode = nil
@@ -83,27 +117,27 @@ when not declared ATCODER_EXTRA_MATH_FPS:
     if prec.isNil:
       error("useFPSDecl expects prec = N, e.g. useFPSDecl(H = mint{z}, prec = 100)")
 
-    var e: NimNode
+    var F, T, x: NimNode
 
     if decl.kind in {nnkStrLit, nnkRStrLit, nnkTripleStrLit}:
-      let st = parseStmt(decl.strVal)
-      if st.len != 1:
-        error("useFPSDecl string declaration expects one assignment, e.g. useFPSDecl(\"H = mint{z}\", prec = 100)", decl)
-      e = st[0]
+      let parsed = parseFPSDeclString(decl.strVal, decl)
+      F = parsed.F
+      T = parsed.T
+      x = parsed.x
     else:
-      e = decl
+      let e = decl
 
-    if e.kind notin {nnkAsgn, nnkExprEqExpr}:
-      error("useFPSDecl expects F = mint{x}", e)
+      if e.kind notin {nnkAsgn, nnkExprEqExpr}:
+        error("useFPSDecl expects F = mint{x}", e)
 
-    let F = e[0]
-    let rhs = e[1]
+      F = e[0]
+      let rhs = e[1]
 
-    if rhs.len != 2:
-      error("useFPSDecl expects the right hand side like mint{x}", rhs)
+      if rhs.len != 2:
+        error("useFPSDecl expects the right hand side like mint{x}", rhs)
 
-    let T = rhs[0]
-    let x = rhs[1]
+      T = rhs[0]
+      x = rhs[1]
 
     result = quote do:
       useFPSPrecTemplate(`T`, `F`, `x`, `prec`)

@@ -11,6 +11,8 @@ useFPS(mint{x}, F, prec = 8)
 useFPS(mint{y}, G, prec = 5)
 useFPSDecl("H = mint{z}", prec = 6)
 useFPSDecl(K = mint{w}, prec = 7)
+useFPSDecl("L = mint<t>", prec = 9)
+useFPSDecl("M=mint<u>", prec = 10)
 
 suite "fps facade":
   test "constructor uses default precision":
@@ -71,4 +73,16 @@ suite "fps facade":
     check e.len == 7
     check e[0] == mint(1)
     check e[1] == mint(1)
+
+  test "SageMath-like angle string declaration helper":
+    let l = L(t)
+    check l.len == 9
+    check l[0] == mint(0)
+    check l[1] == mint(1)
+
+  test "SageMath-like angle string declaration helper without spaces":
+    let m = M(u)
+    check m.len == 10
+    check m[0] == mint(0)
+    check m[1] == mint(1)
 
