@@ -118,13 +118,14 @@ doAssert AddAction.mapping(7, 10) == 17
 <li><code>mapping</code></li>
 </ul>
 <h2 id="_1">注意</h2>
-<p><code>MonoidType</code> / <code>ActedMonoidType</code> は、既存の低レベル API と互換性を保ったまま使うための型生成 helper です。より短い競技プログラミング向け facade は、今後 <code>fps</code> と同じ方針で追加できます。\n\n## facade aliases</p>
+<p><code>MonoidType</code> / <code>ActedMonoidType</code> は、既存の低レベル API と互換性を保ったまま使うための型生成 helper です。より短い競技プログラミング向け facade は、今後 <code>fps</code> と同じ方針で追加できます。</p>
+<h2 id="facade-aliases">facade aliases</h2>
 <p><code>MonoidOf</code>, <code>GroupOf</code>, <code>ActedMonoidOf</code> は、既存の <code>MonoidType</code> / <code>ActedMonoidType</code> の読みやすい別名です。</p>
 <pre><code class="language-nim">type Sum = MonoidOf(int, addInt, zeroInt)
 type AddGroup = GroupOf(int, addInt, zeroInt, negInt)
 type AddAction = ActedMonoidOf(Sum, Sum, addMap)
 </code></pre>
-<p>既存 API と同じ型を作るだけなので、従来の <code>MonoidType</code> / <code>ActedMonoidType</code> と併用できます。\n</p>
+<p>既存 API と同じ型を作るだけなので、従来の <code>MonoidType</code> / <code>ActedMonoidType</code> と併用できます。</p>
   </main>
 </body>
 </html>
