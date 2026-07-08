@@ -123,3 +123,34 @@ An explicit length always overrides the default precision.
 let f = F(1 + x, 4)
 doAssert f.len == 4
 ~~~
+
+## Default precision with additional operations
+
+The `fps` facade also imports/exports `formal_power_series_sqrt`, so `sqrt` is available from the same entry point.
+
+~~~nim
+import std/options
+import atcoder/extra/math/fps
+
+type mint = modint998244353
+useFPS(mint{x}, F, prec = 8)
+
+let f = F(1 + 2 * x + x^2)
+let g = f.sqrt()
+
+doAssert g.isSome
+doAssert g.get.len == 8
+~~~
+
+Existing `formal_power_series` operations such as `powMod` and `eval` can also be used as usual.
+
+~~~nim
+let base = F(@[0, 1])
+let m = F(@[-1, 0, 0, 1], 4) # x^3 - 1
+let r = base.powMod(5, m)    # x^5 mod (x^3 - 1) = x^2
+
+doAssert r[2] == mint(1)
+
+let h = F(@[1, 2, 3])
+doAssert h.eval(mint(2)) == mint(17)
+~~~

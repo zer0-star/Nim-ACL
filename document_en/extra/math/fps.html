@@ -148,6 +148,30 @@ let h = f.exp()    # length 8
 <pre><code class="language-nim">let f = F(1 + x, 4)
 doAssert f.len == 4
 </code></pre>
+<h2 id="default-precision-with-additional-operations">Default precision with additional operations</h2>
+<p>The <code>fps</code> facade also imports/exports <code>formal_power_series_sqrt</code>, so <code>sqrt</code> is available from the same entry point.</p>
+<pre><code class="language-nim">import std/options
+import atcoder/extra/math/fps
+
+type mint = modint998244353
+useFPS(mint{x}, F, prec = 8)
+
+let f = F(1 + 2 * x + x^2)
+let g = f.sqrt()
+
+doAssert g.isSome
+doAssert g.get.len == 8
+</code></pre>
+<p>Existing <code>formal_power_series</code> operations such as <code>powMod</code> and <code>eval</code> can also be used as usual.</p>
+<pre><code class="language-nim">let base = F(@[0, 1])
+let m = F(@[-1, 0, 0, 1], 4) # x^3 - 1
+let r = base.powMod(5, m)    # x^5 mod (x^3 - 1) = x^2
+
+doAssert r[2] == mint(1)
+
+let h = F(@[1, 2, 3])
+doAssert h.eval(mint(2)) == mint(17)
+</code></pre>
   </main>
 </body>
 </html>

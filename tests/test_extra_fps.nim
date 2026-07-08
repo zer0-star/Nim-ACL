@@ -3,6 +3,7 @@ discard """
 """
 
 import std/unittest
+import std/options
 import atcoder/extra/math/fps
 
 type mint = modint998244353
@@ -82,6 +83,34 @@ suite "fps facade":
     check h[0] == mint(4)
     check h[1] == mint(6)
     check h[7] == mint(0)
+
+
+  test "sqrt follows default precision through constructor length":
+    let f = F(1 + 2 * x + x^2)
+    let opt = f.sqrt()
+    check opt.isSome
+
+    let g = opt.get
+    check g.len == 8
+    check g[0] == mint(1)
+    check g[1] == mint(1)
+    check g[2] == mint(0)
+    check g[7] == mint(0)
+
+  test "powMod works with fps facade constructors":
+    let base = F(@[0, 1])
+    let m = F(@[-1, 0, 0, 1], 4) # x^3 - 1
+    let r = base.powMod(5, m)    # x^5 mod (x^3 - 1) = x^2
+
+    check r.len == 3
+    check r[0] == mint(0)
+    check r[1] == mint(0)
+    check r[2] == mint(1)
+
+  test "eval works on default precision series":
+    let f = F(@[1, 2, 3])
+    check f.len == 8
+    check f.eval(mint(2)) == mint(17)
 
   test "SageMath-like declaration helper":
     let h = H(z)

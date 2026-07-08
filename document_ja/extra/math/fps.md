@@ -123,3 +123,34 @@ let h = f.exp()    # 長さ 8
 let f = F(1 + x, 4)
 doAssert f.len == 4
 ~~~
+
+## 既定精度と追加演算の例
+
+`fps` facade は `formal_power_series_sqrt` もまとめて import/export しているため、`sqrt` も同じ入口から使えます。
+
+~~~nim
+import std/options
+import atcoder/extra/math/fps
+
+type mint = modint998244353
+useFPS(mint{x}, F, prec = 8)
+
+let f = F(1 + 2 * x + x^2)
+let g = f.sqrt()
+
+doAssert g.isSome
+doAssert g.get.len == 8
+~~~
+
+`powMod` や `eval` など既存の `formal_power_series` の演算も、そのまま利用できます。
+
+~~~nim
+let base = F(@[0, 1])
+let m = F(@[-1, 0, 0, 1], 4) # x^3 - 1
+let r = base.powMod(5, m)    # x^5 mod (x^3 - 1) = x^2
+
+doAssert r[2] == mint(1)
+
+let h = F(@[1, 2, 3])
+doAssert h.eval(mint(2)) == mint(17)
+~~~
