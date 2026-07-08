@@ -95,6 +95,26 @@ proc `&lt;`*[T; isDirected](l,r:Edge[T, isDirected]):bool = l.weight &lt; r.weig
 <p>TODO: 使用例を追加してください。</p>
 <h2 id="_3">注意</h2>
 <p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+<h2 id="_4">基本例</h2>
+<p><code>initDirectedGraph[T](n)</code> は有向 graph、<code>initUndirectedGraph[T](n)</code> は無向 graph を作ります。</p>
+<pre><code class="language-nim">import atcoder/extra/graph/graph_template_directed_undirected
+
+var g = initDirectedGraph[int](3)
+g.addEdge(0, 1, 5)
+
+doAssert g[0][0].src == 0
+doAssert g[0][0].dst == 1
+doAssert g[0][0].weight == 5
+</code></pre>
+<p>無向 graph では <code>addEdge</code> が両方向の辺を追加します。</p>
+<pre><code class="language-nim">var h = initUndirectedGraph[int](3)
+h.addEdge(0, 1, 7)
+
+doAssert h[0][0].dst == 1
+doAssert h[1][0].dst == 0
+doAssert h[0][0].weight == 7
+doAssert h[1][0].weight == 7
+</code></pre>
   </main>
 </body>
 </html>
