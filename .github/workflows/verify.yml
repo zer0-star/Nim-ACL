@@ -2,14 +2,14 @@ name: quick-verify
 
 on:
   push:
-    branches: [master]
+    branches:
+      - master
   pull_request:
   workflow_dispatch:
 
 jobs:
-  quick-test:
+  quick-verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
 
     steps:
       - uses: actions/checkout@v4
@@ -24,32 +24,16 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install docs dependencies
+      - name: Install documentation dependencies
         run: |
           python -m pip install -U pip
           if [ -f tools/requirements_docs.txt ]; then
             python -m pip install -r tools/requirements_docs.txt
-          else
-            python -m pip install Markdown toml jinja2 markupsafe
+          elif [ -f tools/requirements.txt ]; then
+            python -m pip install -r tools/requirements.txt
           fi
+          python -m pip install Markdown toml jinja2 markupsafe
 
-      - name: Build docs
+      - name: Run quick verify
         run: |
-          python tools/generate_document.py
-
-      - name: Run lightweight Nim tests
-        run: |
-          set -eu
-          for f in \
-            tests/test_extra_fps.nim \
-            tests/test_extra_formal_power_series.nim \
-            tests/test_extra_formal_power_series_sqrt.nim
-          do
-            if [ -f "$f" ]; then
-              echo "### $f"
-              nim cpp -r "$f"
-              rm -f "${f%.nim}"
-            else
-              echo "skip missing: $f"
-            fi
-          done
+          bash tools/quick_verify.sh
