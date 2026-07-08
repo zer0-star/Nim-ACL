@@ -112,6 +112,37 @@ suite "fps facade":
     check f.len == 8
     check f.eval(mint(2)) == mint(17)
 
+
+  test "string constructor uses default precision":
+    let f = F("x")
+    check f.len == 8
+    check f[0] == mint(0)
+    check f[1] == mint(1)
+    check f[7] == mint(0)
+
+  test "log exp roundtrip follows default precision":
+    let f = F(1 + x)
+    let g = f.log()
+    let h = g.exp()
+
+    check g.len == 8
+    check h.len == 8
+    check h[0] == mint(1)
+    check h[1] == mint(1)
+    check h[2] == mint(0)
+    check h[7] == mint(0)
+
+  test "log exp roundtrip with explicit precision override":
+    let f = F(1 + x)
+    let g = f.log(5)
+    let h = g.exp(5)
+
+    check g.len == 5
+    check h.len == 5
+    check h[0] == mint(1)
+    check h[1] == mint(1)
+    check h[2] == mint(0)
+
   test "SageMath-like declaration helper":
     let h = H(z)
     check h.len == 6

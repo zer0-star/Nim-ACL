@@ -172,6 +172,30 @@ doAssert r[2] == mint(1)
 let h = F(@[1, 2, 3])
 doAssert h.eval(mint(2)) == mint(17)
 </code></pre>
+<h2 id="string-constructor-and-log-exp">String constructor and log / exp</h2>
+<p>Constructors from strings such as <code>F("x")</code> also follow the default precision.</p>
+<pre><code class="language-nim">useFPS(mint{x}, F, prec = 8)
+
+let f = F(&quot;x&quot;)
+doAssert f.len == 8
+</code></pre>
+<p><code>log</code> and <code>exp</code> can be used through the usual input-length behavior.</p>
+<pre><code class="language-nim">let f = F(1 + x)
+let g = f.log()
+let h = g.exp()
+
+doAssert g.len == 8
+doAssert h.len == 8
+doAssert h[0] == mint(1)
+doAssert h[1] == mint(1)
+</code></pre>
+<p>Explicit lengths still override the default.</p>
+<pre><code class="language-nim">let g = f.log(5)
+let h = g.exp(5)
+
+doAssert g.len == 5
+doAssert h.len == 5
+</code></pre>
   </main>
 </body>
 </html>

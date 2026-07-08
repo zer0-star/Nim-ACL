@@ -154,3 +154,37 @@ doAssert r[2] == mint(1)
 let h = F(@[1, 2, 3])
 doAssert h.eval(mint(2)) == mint(17)
 ~~~
+
+## 文字列 constructor と log / exp
+
+`F("x")` のように、文字列から FPS を作る constructor も既定精度に従います。
+
+~~~nim
+useFPS(mint{x}, F, prec = 8)
+
+let f = F("x")
+doAssert f.len == 8
+~~~
+
+`log` / `exp` も、入力 series の長さに従って使えます。
+
+~~~nim
+let f = F(1 + x)
+let g = f.log()
+let h = g.exp()
+
+doAssert g.len == 8
+doAssert h.len == 8
+doAssert h[0] == mint(1)
+doAssert h[1] == mint(1)
+~~~
+
+明示的な長さ指定も従来通り優先されます。
+
+~~~nim
+let g = f.log(5)
+let h = g.exp(5)
+
+doAssert g.len == 5
+doAssert h.len == 5
+~~~
