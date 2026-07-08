@@ -71,36 +71,54 @@
   </header>
   <main>
 <h1 id="monoid">monoid</h1>
-<p>このページは自動生成された下書きです。</p>
-<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
+<p><code>MonoidType</code> は、型 <code>E</code>、二項演算 <code>op</code>、単位元 <code>e</code> から monoid 型を作るための helper です。</p>
+<pre><code class="language-nim">import atcoder/extra/monoid/monoid
+
+proc addInt(a, b: int): int = a + b
+proc zeroInt(): int = 0
+
+type SumMonoid = MonoidType(int, addInt, zeroInt)
+
+doAssert SumMonoid.op(2, 3) == 5
+doAssert SumMonoid.e() == 0
+</code></pre>
+<p>逆元を持つ場合は、4 番目の引数に <code>inv</code> を渡せます。</p>
+<pre><code class="language-nim">proc negInt(a: int): int = -a
+
+type AddGroup = MonoidType(int, addInt, zeroInt, negInt)
+
+doAssert AddGroup.inv(3) == -3
+</code></pre>
+<p><code>ActedMonoidType</code> は、値側 monoid <code>MS</code>、作用側 monoid <code>MF</code>、作用 <code>mapping</code> から acted monoid を作ります。lazy segment tree などで使う <code>mapping / composition / id</code> の組をまとめて扱えます。</p>
+<pre><code class="language-nim">proc addMap(f, x: int): int = x + f
+
+type AddAction = ActedMonoidType(SumMonoid, SumMonoid, addMap)
+
+doAssert AddAction.op(2, 3) == 5
+doAssert AddAction.composition(4, 5) == 9
+doAssert AddAction.mapping(7, 10) == 17
+</code></pre>
 <h2 id="import">import</h2>
-<pre><code>import atcoder/extra/monoid/monoid
+<pre><code class="language-nim">import atcoder/extra/monoid/monoid
 </code></pre>
 <h2 id="api">公開 API</h2>
-<pre><code>const ATCODER_EXTRA_MONOID_MONOID_HPP* = 1
-type Monoid* = concept C, type T
-type InversibleMonoid* = concept C, type T
-type ActedMonoid* = concept C, type T
-type MonoidBase*[E; op:static[proc], e:static[proc], inv:static[proc or bool]] = object
-template MonoidType*(E:typedesc, op0, e0: untyped, inv0: untyped):typedesc[MonoidBase] =
-template MonoidType*(E:typedesc, op0, e0: untyped):typedesc[MonoidBase] =
-template value_type*[T:MonoidBase](_: typedesc[T]):typedesc = T.E
-type ActedMonoidBase*[MS, MF; p:static[tuple]] = object
-template ActedMonoidType*(MS, MF: typedesc, mapping0: untyped):typedesc[ActedMonoidBase] =
-template S*[T:ActedMonoidBase](_: typedesc[T]):typedesc = T.MS.value_type
-template F*[T:ActedMonoidBase](_: typedesc[T]):typedesc = T.MF.value_type
-proc op*[T:ActedMonoidBase](_:typedesc[T], a, b:T.S):T.S = T.MS.op(a, b)
-proc e*[T:ActedMonoidBase](_:typedesc[T]):T.S = T.MS.e()
-proc composition*[T:ActedMonoidBase](_:typedesc[T], a, b:T.F):T.F = T.MF.op(a, b)
-proc id*[T:ActedMonoidBase](_:typedesc[T]):T.F = T.MF.e()
-proc mapping*[T:ActedMonoidBase](_:typedesc[T], f:T.F, s:T.S):T.S = T.p[0](f, s)
-</code></pre>
-<h2 id="_1">概要</h2>
-<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
-<h2 id="_2">使用例</h2>
-<p>TODO: 使用例を追加してください。</p>
-<h2 id="_3">注意</h2>
-<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+<ul>
+<li><code>Monoid</code></li>
+<li><code>InversibleMonoid</code></li>
+<li><code>ActedMonoid</code></li>
+<li><code>MonoidType</code></li>
+<li><code>ActedMonoidType</code></li>
+<li><code>value_type</code></li>
+<li><code>S</code></li>
+<li><code>F</code></li>
+<li><code>op</code></li>
+<li><code>e</code></li>
+<li><code>composition</code></li>
+<li><code>id</code></li>
+<li><code>mapping</code></li>
+</ul>
+<h2 id="_1">注意</h2>
+<p><code>MonoidType</code> / <code>ActedMonoidType</code> は、既存の低レベル API と互換性を保ったまま使うための型生成 helper です。より短い競技プログラミング向け facade は、今後 <code>fps</code> と同じ方針で追加できます。</p>
   </main>
 </body>
 </html>
