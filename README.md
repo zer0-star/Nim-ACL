@@ -56,3 +56,13 @@ bash tools/quick_verify.sh
 ```
 
 The script writes the full log to `/tmp/nacl_quick_verify.log` and prints a short `NACL RESULT` block at the end.
+
+## Documentation publishing
+
+To regenerate documentation, publish it to `gh-pages`, and run a short live-page sanity check:
+
+```bash
+bash tools/publish_docs.sh
+```
+
+The script writes the full log to `/tmp/nacl_publish_docs.log` and prints a short `NACL RESULT` block at the end.
