@@ -196,6 +196,26 @@ let h = g.exp(5)
 doAssert g.len == 5
 doAssert h.len == 5
 </code></pre>
+<h2 id="constructor-overload-examples">Constructor overload examples</h2>
+<p>The <code>fps</code> facade constructors accept arrays, <code>seq[int]</code>, <code>seq[mint]</code>, existing FPS values, and formal variables.</p>
+<pre><code class="language-nim">useFPS(mint{x}, F, prec = 8)
+
+let a = F([1, 2, 3])
+let b = F(@[mint(1), mint(2), mint(3)])
+let c = F(x, 4)
+
+doAssert a.len == 8
+doAssert b.len == 8
+doAssert c.len == 4
+</code></pre>
+<p>You can also pass an existing FPS and only change its length.</p>
+<pre><code class="language-nim">let f = F(@[1, 2, 3])
+let g = F(f, 5)
+let h = F(f, 2)
+
+doAssert g.len == 5
+doAssert h.len == 2
+</code></pre>
   </main>
 </body>
 </html>

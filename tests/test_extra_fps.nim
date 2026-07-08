@@ -113,6 +113,45 @@ suite "fps facade":
     check f.eval(mint(2)) == mint(17)
 
 
+
+  test "array constructor uses default precision":
+    let f = F([1, 2, 3])
+    check f.len == 8
+    check f[0] == mint(1)
+    check f[1] == mint(2)
+    check f[2] == mint(3)
+    check f[7] == mint(0)
+
+  test "seq of mint constructor uses default precision":
+    let f = F(@[mint(1), mint(2), mint(3)])
+    check f.len == 8
+    check f[0] == mint(1)
+    check f[1] == mint(2)
+    check f[2] == mint(3)
+    check f[7] == mint(0)
+
+  test "copy constructor can override precision":
+    let f = F(@[1, 2, 3])
+    let g = F(f, 5)
+    check g.len == 5
+    check g[0] == mint(1)
+    check g[1] == mint(2)
+    check g[2] == mint(3)
+    check g[4] == mint(0)
+
+    let h = F(f, 2)
+    check h.len == 2
+    check h[0] == mint(1)
+    check h[1] == mint(2)
+
+  test "formal variable constructor can override precision":
+    let f = F(x, 4)
+    check f.len == 4
+    check f[0] == mint(0)
+    check f[1] == mint(1)
+    check f[2] == mint(0)
+    check f[3] == mint(0)
+
   test "string constructor uses default precision":
     let f = F("x")
     check f.len == 8

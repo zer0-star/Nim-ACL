@@ -188,3 +188,30 @@ let h = g.exp(5)
 doAssert g.len == 5
 doAssert h.len == 5
 ~~~
+
+## constructor overload の例
+
+`fps` facade の constructor は、配列、`seq[int]`、`seq[mint]`、既存の FPS、形式変数などを受け取れます。
+
+~~~nim
+useFPS(mint{x}, F, prec = 8)
+
+let a = F([1, 2, 3])
+let b = F(@[mint(1), mint(2), mint(3)])
+let c = F(x, 4)
+
+doAssert a.len == 8
+doAssert b.len == 8
+doAssert c.len == 4
+~~~
+
+既存の FPS を渡して、長さだけ変えることもできます。
+
+~~~nim
+let f = F(@[1, 2, 3])
+let g = F(f, 5)
+let h = F(f, 2)
+
+doAssert g.len == 5
+doAssert h.len == 2
+~~~
