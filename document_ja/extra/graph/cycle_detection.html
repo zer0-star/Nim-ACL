@@ -87,6 +87,22 @@ proc cycleDetectionUndirected*[G:Graph](g:G):Option[seq[Edge[G.T, G.U]]] =
 <p>TODO: 使用例を追加してください。</p>
 <h2 id="_3">注意</h2>
 <p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+<h2 id="_4">基本例</h2>
+<p><code>cycleDetection(g)</code> は有向 graph の閉路を探します。閉路が見つかると <code>Option[seq[Edge]]</code> の <code>some</code> を返します。</p>
+<pre><code class="language-nim">import std/options
+import atcoder/extra/graph/graph_template
+import atcoder/extra/graph/cycle_detection
+
+var g = initGraph(3)
+g.addEdge(0, 1)
+g.addEdge(1, 2)
+g.addEdge(2, 0)
+
+let c = cycleDetection(g)
+
+doAssert c.isSome
+</code></pre>
+<p>無向 graph では <code>cycleDetectionUndirected(g)</code> を使えます。</p>
   </main>
 </body>
 </html>

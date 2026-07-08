@@ -25,3 +25,24 @@ TODO: 使用例を追加してください。
 ## 注意
 
 TODO: 制約、前提条件、落とし穴を記述してください。
+
+## 基本例
+
+`cycleDetection(g)` は有向 graph の閉路を探します。閉路が見つかると `Option[seq[Edge]]` の `some` を返します。
+
+```nim
+import std/options
+import atcoder/extra/graph/graph_template
+import atcoder/extra/graph/cycle_detection
+
+var g = initGraph(3)
+g.addEdge(0, 1)
+g.addEdge(1, 2)
+g.addEdge(2, 0)
+
+let c = cycleDetection(g)
+
+doAssert c.isSome
+```
+
+無向 graph では `cycleDetectionUndirected(g)` を使えます。

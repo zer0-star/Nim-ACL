@@ -86,6 +86,21 @@ proc topologicalSort*(g:Graph):seq[int] =
 <p>TODO: 使用例を追加してください。</p>
 <h2 id="_3">注意</h2>
 <p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+<h2 id="_4">基本例</h2>
+<p><code>topologicalSort(g)</code> は DAG のトポロジカル順序を返します。</p>
+<pre><code class="language-nim">import atcoder/extra/graph/graph_template
+import atcoder/extra/graph/topological_sort
+
+var g = initGraph(4)
+g.addEdge(0, 1)
+g.addEdge(0, 2)
+g.addEdge(1, 3)
+g.addEdge(2, 3)
+
+let order = topologicalSort(g)
+
+doAssert order.len == 4
+</code></pre>
   </main>
 </body>
 </html>
