@@ -46,3 +46,13 @@ apple silicon上でverifyに失敗した場合
 
 # References
 - https://atcoder.jp/posts/517?lang=ja
+
+## Local verification
+
+For a compact local smoke test of the main library, extra FPS facade, monoid helpers, graph helpers, and generated documentation, run:
+
+```bash
+bash tools/quick_verify.sh
+```
+
+The script writes the full log to `/tmp/nacl_quick_verify.log` and prints a short `NACL RESULT` block at the end.
