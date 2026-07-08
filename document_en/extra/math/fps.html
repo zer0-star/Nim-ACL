@@ -113,6 +113,28 @@ doAssert f.len == 3
 <li><code>fps</code> is a convenience facade for modint + NTT usage.</li>
 <li>The existing behavior of <code>formal_power_series</code> is not changed.</li>
 </ul>
+<h2 id="sagemath-like-string-declaration">SageMath-like string declaration</h2>
+<p><code>useFPSDecl</code> provides a SageMath-like string declaration helper.</p>
+<pre><code class="language-nim">useFPSDecl(H = mint{z}, prec = 6)
+
+let f = H(z)
+let g = f.exp()
+</code></pre>
+<p>This declares <code>H</code> as the constructor name, <code>mint</code> as the coefficient type, <code>z</code> as the formal variable name, and <code>6</code> as the default precision.</p>
+<p>The more basic Nim-style syntax is:</p>
+<pre><code class="language-nim">useFPS(mint{z}, H, prec = 6)
+</code></pre>
+<p><code>useFPSDecl</code> is a convenience helper for readability. If you prefer type resolution and editor support, use <code>useFPS(mint{z}, H, prec = 6)</code>.</p>
+<p>You can also write the declaration as a string.</p>
+<pre><code class="language-nim">useFPSDecl(&quot;H = mint{z}&quot;, prec = 6)
+</code></pre>
+<h2 id="angle-bracket-string-declaration">Angle-bracket string declaration</h2>
+<p>In string declarations, both <code>mint{z}</code> and <code>mint&lt;z&gt;</code> are supported.</p>
+<pre><code class="language-nim">useFPSDecl(&quot;L = mint&lt;t&gt;&quot;, prec = 9)
+
+let f = L(t)
+</code></pre>
+<p><code>mint&lt;t&gt;</code> is convenience syntax only inside a string declaration. In normal Nim syntax, use <code>useFPSDecl(L = mint{t}, prec = 9)</code> or <code>useFPS(mint{t}, L, prec = 9)</code>.</p>
   </main>
 </body>
 </html>
