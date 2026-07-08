@@ -135,6 +135,87 @@ let g = f.exp()
 let f = L(t)
 </code></pre>
 <p><code>mint&lt;t&gt;</code> is convenience syntax only inside a string declaration. In normal Nim syntax, use <code>useFPSDecl(L = mint{t}, prec = 9)</code> or <code>useFPS(mint{t}, L, prec = 9)</code>.</p>
+<h2 id="default-precision-and-existing-operations">Default precision and existing operations</h2>
+<p>Constructors provided by the <code>fps</code> facade resize the series to <code>prec</code> when the length is omitted.</p>
+<p>Therefore, existing FPS methods that use the input length naturally follow the default precision chosen at construction time.</p>
+<pre><code class="language-nim">useFPS(mint{x}, F, prec = 8)
+
+let f = F(1 + x)   # length 8
+let g = f.inv()    # length 8
+let h = f.exp()    # length 8
+</code></pre>
+<p>An explicit length always overrides the default precision.</p>
+<pre><code class="language-nim">let f = F(1 + x, 4)
+doAssert f.len == 4
+</code></pre>
+<h2 id="default-precision-with-additional-operations">Default precision with additional operations</h2>
+<p>The <code>fps</code> facade also imports/exports <code>formal_power_series_sqrt</code>, so <code>sqrt</code> is available from the same entry point.</p>
+<pre><code class="language-nim">import std/options
+import atcoder/extra/math/fps
+
+type mint = modint998244353
+useFPS(mint{x}, F, prec = 8)
+
+let f = F(1 + 2 * x + x^2)
+let g = f.sqrt()
+
+doAssert g.isSome
+doAssert g.get.len == 8
+</code></pre>
+<p>Existing <code>formal_power_series</code> operations such as <code>powMod</code> and <code>eval</code> can also be used as usual.</p>
+<pre><code class="language-nim">let base = F(@[0, 1])
+let m = F(@[-1, 0, 0, 1], 4) # x^3 - 1
+let r = base.powMod(5, m)    # x^5 mod (x^3 - 1) = x^2
+
+doAssert r[2] == mint(1)
+
+let h = F(@[1, 2, 3])
+doAssert h.eval(mint(2)) == mint(17)
+</code></pre>
+<h2 id="string-constructor-and-log-exp">String constructor and log / exp</h2>
+<p>Constructors from strings such as <code>F("x")</code> also follow the default precision.</p>
+<pre><code class="language-nim">useFPS(mint{x}, F, prec = 8)
+
+let f = F(&quot;x&quot;)
+doAssert f.len == 8
+</code></pre>
+<p><code>log</code> and <code>exp</code> can be used through the usual input-length behavior.</p>
+<pre><code class="language-nim">let f = F(1 + x)
+let g = f.log()
+let h = g.exp()
+
+doAssert g.len == 8
+doAssert h.len == 8
+doAssert h[0] == mint(1)
+doAssert h[1] == mint(1)
+</code></pre>
+<p>Explicit lengths still override the default.</p>
+<pre><code class="language-nim">let g = f.log(5)
+let h = g.exp(5)
+
+doAssert g.len == 5
+doAssert h.len == 5
+</code></pre>
+<h2 id="constructor-overload-examples">Constructor overload examples</h2>
+<p>The <code>fps</code> facade constructors accept arrays, <code>seq[int]</code>, <code>seq[mint]</code>, existing FPS values, and formal variables.</p>
+<pre><code class="language-nim">useFPS(mint{x}, F, prec = 8)
+
+let a = F([1, 2, 3])
+let b = F(@[mint(1), mint(2), mint(3)])
+let c = F(x, 4)
+
+doAssert a.len == 8
+doAssert b.len == 8
+doAssert c.len == 4
+</code></pre>
+<p>You can also pass an existing FPS and only change its length.</p>
+<pre><code class="language-nim">let f = F(@[1, 2, 3])
+let g = F(f, 5)
+let h = F(f, 2)
+
+doAssert g.len == 5
+doAssert h.len == 2
+</code></pre>
   </main>
 </body>
 </html>

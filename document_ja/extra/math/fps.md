@@ -102,3 +102,116 @@ let f = L(t)
 ~~~
 
 `mint<t>` は文字列内だけの convenience syntax です。通常の Nim 構文では `useFPSDecl(L = mint{t}, prec = 9)` または `useFPS(mint{t}, L, prec = 9)` を使ってください。
+
+## 既定精度と既存演算
+
+`fps` facade の constructor は、長さを省略すると `prec` で指定した長さまで resize します。
+
+そのため、既存の FPS method が入力 series の長さを使う場合、constructor で指定した既定精度がそのまま効きます。
+
+~~~nim
+useFPS(mint{x}, F, prec = 8)
+
+let f = F(1 + x)   # 長さ 8
+let g = f.inv()    # 長さ 8
+let h = f.exp()    # 長さ 8
+~~~
+
+明示的に長さを渡した場合は、constructor の既定精度よりも明示指定が優先されます。
+
+~~~nim
+let f = F(1 + x, 4)
+doAssert f.len == 4
+~~~
+
+## 既定精度と追加演算の例
+
+`fps` facade は `formal_power_series_sqrt` もまとめて import/export しているため、`sqrt` も同じ入口から使えます。
+
+~~~nim
+import std/options
+import atcoder/extra/math/fps
+
+type mint = modint998244353
+useFPS(mint{x}, F, prec = 8)
+
+let f = F(1 + 2 * x + x^2)
+let g = f.sqrt()
+
+doAssert g.isSome
+doAssert g.get.len == 8
+~~~
+
+`powMod` や `eval` など既存の `formal_power_series` の演算も、そのまま利用できます。
+
+~~~nim
+let base = F(@[0, 1])
+let m = F(@[-1, 0, 0, 1], 4) # x^3 - 1
+let r = base.powMod(5, m)    # x^5 mod (x^3 - 1) = x^2
+
+doAssert r[2] == mint(1)
+
+let h = F(@[1, 2, 3])
+doAssert h.eval(mint(2)) == mint(17)
+~~~
+
+## 文字列 constructor と log / exp
+
+`F("x")` のように、文字列から FPS を作る constructor も既定精度に従います。
+
+~~~nim
+useFPS(mint{x}, F, prec = 8)
+
+let f = F("x")
+doAssert f.len == 8
+~~~
+
+`log` / `exp` も、入力 series の長さに従って使えます。
+
+~~~nim
+let f = F(1 + x)
+let g = f.log()
+let h = g.exp()
+
+doAssert g.len == 8
+doAssert h.len == 8
+doAssert h[0] == mint(1)
+doAssert h[1] == mint(1)
+~~~
+
+明示的な長さ指定も従来通り優先されます。
+
+~~~nim
+let g = f.log(5)
+let h = g.exp(5)
+
+doAssert g.len == 5
+doAssert h.len == 5
+~~~
+
+## constructor overload の例
+
+`fps` facade の constructor は、配列、`seq[int]`、`seq[mint]`、既存の FPS、形式変数などを受け取れます。
+
+~~~nim
+useFPS(mint{x}, F, prec = 8)
+
+let a = F([1, 2, 3])
+let b = F(@[mint(1), mint(2), mint(3)])
+let c = F(x, 4)
+
+doAssert a.len == 8
+doAssert b.len == 8
+doAssert c.len == 4
+~~~
+
+既存の FPS を渡して、長さだけ変えることもできます。
+
+~~~nim
+let f = F(@[1, 2, 3])
+let g = F(f, 5)
+let h = F(f, 2)
+
+doAssert g.len == 5
+doAssert h.len == 2
+~~~

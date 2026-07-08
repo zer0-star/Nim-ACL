@@ -102,3 +102,116 @@ let f = L(t)
 ~~~
 
 `mint<t>` is convenience syntax only inside a string declaration. In normal Nim syntax, use `useFPSDecl(L = mint{t}, prec = 9)` or `useFPS(mint{t}, L, prec = 9)`.
+
+## Default precision and existing operations
+
+Constructors provided by the `fps` facade resize the series to `prec` when the length is omitted.
+
+Therefore, existing FPS methods that use the input length naturally follow the default precision chosen at construction time.
+
+~~~nim
+useFPS(mint{x}, F, prec = 8)
+
+let f = F(1 + x)   # length 8
+let g = f.inv()    # length 8
+let h = f.exp()    # length 8
+~~~
+
+An explicit length always overrides the default precision.
+
+~~~nim
+let f = F(1 + x, 4)
+doAssert f.len == 4
+~~~
+
+## Default precision with additional operations
+
+The `fps` facade also imports/exports `formal_power_series_sqrt`, so `sqrt` is available from the same entry point.
+
+~~~nim
+import std/options
+import atcoder/extra/math/fps
+
+type mint = modint998244353
+useFPS(mint{x}, F, prec = 8)
+
+let f = F(1 + 2 * x + x^2)
+let g = f.sqrt()
+
+doAssert g.isSome
+doAssert g.get.len == 8
+~~~
+
+Existing `formal_power_series` operations such as `powMod` and `eval` can also be used as usual.
+
+~~~nim
+let base = F(@[0, 1])
+let m = F(@[-1, 0, 0, 1], 4) # x^3 - 1
+let r = base.powMod(5, m)    # x^5 mod (x^3 - 1) = x^2
+
+doAssert r[2] == mint(1)
+
+let h = F(@[1, 2, 3])
+doAssert h.eval(mint(2)) == mint(17)
+~~~
+
+## String constructor and log / exp
+
+Constructors from strings such as `F("x")` also follow the default precision.
+
+~~~nim
+useFPS(mint{x}, F, prec = 8)
+
+let f = F("x")
+doAssert f.len == 8
+~~~
+
+`log` and `exp` can be used through the usual input-length behavior.
+
+~~~nim
+let f = F(1 + x)
+let g = f.log()
+let h = g.exp()
+
+doAssert g.len == 8
+doAssert h.len == 8
+doAssert h[0] == mint(1)
+doAssert h[1] == mint(1)
+~~~
+
+Explicit lengths still override the default.
+
+~~~nim
+let g = f.log(5)
+let h = g.exp(5)
+
+doAssert g.len == 5
+doAssert h.len == 5
+~~~
+
+## Constructor overload examples
+
+The `fps` facade constructors accept arrays, `seq[int]`, `seq[mint]`, existing FPS values, and formal variables.
+
+~~~nim
+useFPS(mint{x}, F, prec = 8)
+
+let a = F([1, 2, 3])
+let b = F(@[mint(1), mint(2), mint(3)])
+let c = F(x, 4)
+
+doAssert a.len == 8
+doAssert b.len == 8
+doAssert c.len == 4
+~~~
+
+You can also pass an existing FPS and only change its length.
+
+~~~nim
+let f = F(@[1, 2, 3])
+let g = F(f, 5)
+let h = F(f, 2)
+
+doAssert g.len == 5
+doAssert h.len == 2
+~~~
