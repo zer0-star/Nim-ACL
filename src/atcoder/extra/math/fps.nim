@@ -32,11 +32,13 @@ when not declared ATCODER_EXTRA_MATH_FPS:
       if n >= 0:
         result.resize(n)
 
-    proc `F`*[N: static[int], U](a: array[N, U], n = p): FormalPowerSeries[T] =
-      result = initFormalPowerSeries[T](a)
+    proc `F`*[N: static[int], U](a: array[N, U], n: int = p): FormalPowerSeries[T] =
+      var v = newSeq[U](N)
+      for i in 0 ..< N:
+        v[i] = a[i]
+      result = initFormalPowerSeries[T](v)
       if n >= 0:
         result.resize(n)
-
     proc `F`*(f: SparseFormalPowerSeries[T], n = p): FormalPowerSeries[T] =
       result = f
       if n >= 0:
