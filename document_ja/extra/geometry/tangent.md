@@ -1,29 +1,50 @@
-# tangent
+# Tangent
 
-このページは自動生成された下書きです。
+`tangent` は、円に対する接線を求める module です。
 
-公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。
+外部点から円への接点と、2つの円の共通接線を扱えます。
 
 ## import
 
-    import atcoder/extra/geometry/tangent
+~~~nim
+import atcoder/extra/geometry/geometry_template
+import atcoder/extra/geometry/tangent
+~~~
 
-## 公開 API
+## 点から円への接線
 
-    const ATCODER_TANGENT_HPP* = 1
-    proc tangent*[Real](c1: Circle[Real], p2:Point[Real]):(Point[Real], Point[Real]) =
-    proc tangent*[Real](c1, c2: Circle[Real]):seq[Line[Real]] =
-    let h = (c1.r + s.Real * c2.r) / sqrt(g)
-    let d = 1.Real - h * h
+~~~nim
+import atcoder/extra/geometry/geometry_template
+import atcoder/extra/geometry/tangent
 
-## 概要
+let
+  c = initCircle(initPoint[float](0.0, 0.0), 1.0)
+  p = initPoint[float](2.0, 0.0)
 
-TODO: このライブラリの用途と使いどころを記述してください。
+let (u, v) = tangent(c, p)
 
-## 使用例
+doAssert distance(c.p, u) == c.r
+doAssert distance(c.p, v) == c.r
+~~~
 
-TODO: 使用例を追加してください。
+`tangent(c, p)` は、点 `p` から円 `c` に引いた2本の接線の接点を返します。
+
+## 2つの円の共通接線
+
+~~~nim
+let
+  c1 = initCircle(initPoint[float](0.0, 0.0), 1.0)
+  c2 = initCircle(initPoint[float](4.0, 0.0), 1.0)
+
+let lines = tangent(c1, c2)
+
+doAssert lines.len == 4
+~~~
+
+`tangent(c1, c2)` は、2つの円の共通接線を `seq[Line[Real]]` として返します。
 
 ## 注意
 
-TODO: 制約、前提条件、落とし穴を記述してください。
+- 接線が存在しない場合、返る本数は少なくなります。
+- 円が重なっている場合や同心円の場合は、状況に応じて空列になります。
+- 浮動小数点型では誤差が発生します。

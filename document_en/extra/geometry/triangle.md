@@ -1,17 +1,17 @@
 # Triangle
 
-`triangle` は三角形の代表的な中心や円を求める module です。
+`triangle` provides helpers for common triangle centers and circles.
 
-重心、内心、傍心、外心、垂心、内接円、傍接円、外接円を扱えます。
+It supports centroid, incenter, excenters, circumcenter, orthocenter, incircle, excircles, and circumcircle.
 
-## import
+## Import
 
 ~~~nim
 import atcoder/extra/geometry/geometry_template
 import atcoder/extra/geometry/triangle
 ~~~
 
-## 使用例
+## Example
 
 ~~~nim
 import atcoder/extra/geometry/geometry_template
@@ -46,7 +46,7 @@ doAssert cc.r == 2.5
 centroid(a, b, c)
 ~~~
 
-三角形の重心を返します。
+Returns the centroid.
 
 ### incircle / incenter
 
@@ -55,7 +55,7 @@ incircle(a, b, c)
 incenter(a, b, c)
 ~~~
 
-内接円、または内心を返します。
+Returns the incircle or the incenter.
 
 ### excircle / excenter
 
@@ -64,7 +64,7 @@ excircle(a, b, c)
 excenter(a, b, c)
 ~~~
 
-3つの傍接円、または3つの傍心を返します。
+Returns the three excircles or the three excenters.
 
 ### circumcircle / circumcenter
 
@@ -73,7 +73,7 @@ circumcircle(a, b, c)
 circumcenter(a, b, c)
 ~~~
 
-外接円、または外心を返します。
+Returns the circumcircle or the circumcenter.
 
 ### orthocenter
 
@@ -81,9 +81,9 @@ circumcenter(a, b, c)
 orthocenter(a, b, c)
 ~~~
 
-垂心を返します。
+Returns the orthocenter.
 
-## 注意
+## Notes
 
-- 入力の3点は非退化な三角形を仮定します。
-- 浮動小数点型では誤差が発生します。
+- The three input points are assumed to form a nondegenerate triangle.
+- Floating-point errors may occur.

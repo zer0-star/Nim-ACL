@@ -33,4 +33,4 @@ when not declared ATCODER_TRIANGLE_HPP:
   proc orthocenter*[Real](a,b,c:Point[Real]):Point[Real] =
     return crossPoint(
              initLine(a, a.projection(initLine(b, c))), 
-             initLine(b, b.projection(initLine(a, b))))
+             initLine(b, b.projection(initLine(a, c))))

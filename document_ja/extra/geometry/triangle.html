@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>triangle</title>
+  <title>Triangle</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -70,29 +70,66 @@
     </a>
   </header>
   <main>
-<h1 id="triangle">triangle</h1>
-<p>このページは自動生成された下書きです。</p>
-<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
+<h1 id="triangle">Triangle</h1>
+<p><code>triangle</code> は三角形の代表的な中心や円を求める module です。</p>
+<p>重心、内心、傍心、外心、垂心、内接円、傍接円、外接円を扱えます。</p>
 <h2 id="import">import</h2>
-<pre><code>import atcoder/extra/geometry/triangle
+<pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
+import atcoder/extra/geometry/triangle
 </code></pre>
-<h2 id="api">公開 API</h2>
-<pre><code>const ATCODER_TRIANGLE_HPP* = 1
-proc centroid*[Real](a,b,c:Point[Real]):Point[Real] =
-proc incircle*[Real](a,b,c:Point[Real]):Circle[Real] =
-proc incenter*[Real](a, b, c:Point[Real]):Point[Real] =
-proc excircle*[Real](a,b,c:Point[Real]):array[3, Circle[Real]] =
-proc excenter*[Real](a, b, c:Point[Real]):array[3, Point[Real]] =
-proc circumcircle*[Real](a,b,c:Point[Real]):Circle[Real] =
-proc circumcenter*[Real](a,b,c:Point[Real]):Point[Real] =
-proc orthocenter*[Real](a,b,c:Point[Real]):Point[Real] =
+<h2 id="_1">使用例</h2>
+<pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
+import atcoder/extra/geometry/triangle
+
+let
+  a = initPoint[float](0.0, 0.0)
+  b = initPoint[float](4.0, 0.0)
+  c = initPoint[float](0.0, 3.0)
+
+let g = centroid(a, b, c)
+let ic = incircle(a, b, c)
+let cc = circumcircle(a, b, c)
+
+doAssert g.re == 4.0 / 3.0
+doAssert g.im == 1.0
+
+doAssert ic.p.re == 1.0
+doAssert ic.p.im == 1.0
+doAssert ic.r == 1.0
+
+doAssert cc.p.re == 2.0
+doAssert cc.p.im == 1.5
+doAssert cc.r == 2.5
 </code></pre>
-<h2 id="_1">概要</h2>
-<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
-<h2 id="_2">使用例</h2>
-<p>TODO: 使用例を追加してください。</p>
-<h2 id="_3">注意</h2>
-<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+<h2 id="api">API</h2>
+<h3 id="centroid">centroid</h3>
+<pre><code class="language-nim">centroid(a, b, c)
+</code></pre>
+<p>三角形の重心を返します。</p>
+<h3 id="incircle-incenter">incircle / incenter</h3>
+<pre><code class="language-nim">incircle(a, b, c)
+incenter(a, b, c)
+</code></pre>
+<p>内接円、または内心を返します。</p>
+<h3 id="excircle-excenter">excircle / excenter</h3>
+<pre><code class="language-nim">excircle(a, b, c)
+excenter(a, b, c)
+</code></pre>
+<p>3つの傍接円、または3つの傍心を返します。</p>
+<h3 id="circumcircle-circumcenter">circumcircle / circumcenter</h3>
+<pre><code class="language-nim">circumcircle(a, b, c)
+circumcenter(a, b, c)
+</code></pre>
+<p>外接円、または外心を返します。</p>
+<h3 id="orthocenter">orthocenter</h3>
+<pre><code class="language-nim">orthocenter(a, b, c)
+</code></pre>
+<p>垂心を返します。</p>
+<h2 id="_2">注意</h2>
+<ul>
+<li>入力の3点は非退化な三角形を仮定します。</li>
+<li>浮動小数点型では誤差が発生します。</li>
+</ul>
   </main>
 </body>
 </html>

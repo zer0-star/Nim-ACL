@@ -85,3 +85,5 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 - [`import atcoder/extra/geometry/geometry_template`](./extra/geometry/geometry_template.html)
 - [`import atcoder/extra/geometry/closest_pair`](./extra/geometry/closest_pair.html)
 - [`import atcoder/extra/geometry/polygon`](./extra/geometry/polygon.html)
+- [`import atcoder/extra/geometry/triangle`](./extra/geometry/triangle.html)
+- [`import atcoder/extra/geometry/tangent`](./extra/geometry/tangent.html)
