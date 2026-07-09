@@ -58,3 +58,4 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 ## Extra / Math
 
 - FPS facade [`import atcoder/extra/math/fps`](./extra/math/fps.html)
+- [`import atcoder/extra/graph/boruvka`](./extra/graph/boruvka.html)

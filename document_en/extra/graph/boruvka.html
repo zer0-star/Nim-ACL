@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -71,12 +71,12 @@
   </header>
   <main>
 <h1 id="boruvka">Boruvka</h1>
-<p><code>Boruvka</code> は、各連結成分から出る最小辺を反復的に選んで最小全域木の重みを求めるための補助構造です。</p>
-<p>辺集合をライブラリ側に直接渡すのではなく、現在の DSU の状態を見ながら「各成分の最良辺」を <code>update</code> callback で設定します。そのため、通常の無向 graph だけでなく、問題固有の方法で候補辺を生成したい場合にも使えます。</p>
-<h2 id="import">import</h2>
+<p><code>Boruvka</code> is a helper structure for computing the minimum spanning tree cost by repeatedly selecting the cheapest outgoing edge from each connected component.</p>
+<p>Instead of passing all edges directly to the library, you provide an <code>update</code> callback that fills the best outgoing edge for each current DSU component. This is useful not only for ordinary undirected graphs but also for problems where candidate edges are generated dynamically.</p>
+<h2 id="import">Import</h2>
 <pre><code class="language-nim">import atcoder/extra/graph/boruvka
 </code></pre>
-<h2 id="_1">使用例</h2>
+<h2 id="example">Example</h2>
 <pre><code class="language-nim">import atcoder/extra/graph/boruvka
 
 let edges = @[
@@ -106,22 +106,22 @@ let cost = b.build(proc(best: var seq[(int, int)]) =
 
 doAssert cost == 4
 </code></pre>
-<h2 id="callback">callback</h2>
+<h2 id="callback">Callback</h2>
 <pre><code class="language-nim">proc(best: var seq[(T, int)])
 </code></pre>
-<p><code>best[leader]</code> に、その連結成分から出る最小辺を <code>(cost, otherLeader)</code> として設定します。</p>
-<p><code>otherLeader</code> が <code>-1</code> のままの成分は、その反復で merge されません。</p>
-<h2 id="disconnected-graph">disconnected graph</h2>
-<p>すべての頂点を連結できない場合、<code>initBoruvka</code> に渡した <code>inf</code> が返ります。</p>
+<p>Set <code>best[leader]</code> to <code>(cost, otherLeader)</code> for the cheapest outgoing edge of the component.</p>
+<p>A component with <code>otherLeader == -1</code> is not merged in that iteration.</p>
+<h2 id="disconnected-graph">Disconnected graph</h2>
+<p>If all vertices cannot be connected, <code>build</code> returns the <code>inf</code> value passed to <code>initBoruvka</code>.</p>
 <pre><code class="language-nim">let inf = 1_000_000_000
 var b = initBoruvka[int](n, inf)
 </code></pre>
-<h2 id="_2">計算量</h2>
-<p>各反復で <code>update</code> が全候補辺を一度見る場合、頂点数を <code>n</code>、辺数を <code>m</code> としておおよそ</p>
+<h2 id="complexity">Complexity</h2>
+<p>If each <code>update</code> iteration scans all candidate edges once, the running time is roughly:</p>
 <ul>
 <li><code>O(m log n)</code></li>
 </ul>
-<p>です。</p>
+<p>where <code>n</code> is the number of vertices and <code>m</code> is the number of candidate edges.</p>
   </main>
 </body>
 </html>
