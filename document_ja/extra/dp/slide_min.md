@@ -1,27 +1,41 @@
-# slide_min
+# Slide Min / Slide Max
 
-このページは自動生成された下書きです。
-
-公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。
+`slideMin` は、長さ `k` の sliding window minimum を求めます。  
+`slideMax` は sliding window maximum を求めます。
 
 ## import
 
-    import atcoder/extra/dp/slide_min
-
-## 公開 API
-
-    const ATCODER_SLIDEMIN_HPP* = 1
-    proc slideMin*[T](v:seq[T], k:int, cut_first: static[bool] = true):seq[T] =
-    proc slideMax*[T](v:seq[T], k:int, cut_first: static[bool] = true):seq[T] =
-
-## 概要
-
-TODO: このライブラリの用途と使いどころを記述してください。
+~~~nim
+import atcoder/extra/dp/slide_min
+~~~
 
 ## 使用例
 
-TODO: 使用例を追加してください。
+~~~nim
+import atcoder/extra/dp/slide_min
 
-## 注意
+let a = @[4, 2, 5, 1, 3]
 
-TODO: 制約、前提条件、落とし穴を記述してください。
+let mn = slideMin(a, 3)
+let mx = slideMax(a, 3)
+
+doAssert mn[^3 .. ^1] == @[2, 1, 1]
+doAssert mx[^3 .. ^1] == @[5, 5, 5]
+~~~
+
+## 戻り値について
+
+`slideMin(a, k)` は実装上、先頭側の prefix 情報を含む形で返ります。  
+長さ `k` の完全な window に対応する値だけを使いたい場合は、末尾 `a.len - k + 1` 個を見てください。
+
+~~~nim
+let onlyFullWindows = slideMin(a, k)[^(a.len - k + 1) .. ^1]
+~~~
+
+## 計算量
+
+列の長さを `n` とすると、
+
+- `O(n)`
+
+です。

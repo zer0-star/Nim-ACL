@@ -1,14 +1,14 @@
 # Dual Cumulative Sum
 
-`DualCumulativeSum` は、区間加算・一点取得を行うための一次元 imos 構造です。
+`DualCumulativeSum` is a one-dimensional imos helper supporting range additions and point queries.
 
-## import
+## Import
 
 ~~~nim
 import atcoder/extra/dp/dual_cumulative_sum
 ~~~
 
-## 使用例
+## Example
 
 ~~~nim
 import atcoder/extra/dp/dual_cumulative_sum
@@ -40,7 +40,7 @@ ds.add(l .. r, x)
 ds.add(i, x)
 ~~~
 
-閉区間 `[l, r]` に `x` を加算します。`ds.add(i, x)` は一点加算です。
+Adds `x` to the closed interval `[l, r]`. `ds.add(i, x)` is a point addition.
 
 ### []
 
@@ -48,9 +48,9 @@ ds.add(i, x)
 ds[i]
 ~~~
 
-位置 `i` の値を返します。
+Returns the value at position `i`.
 
-## 計算量
+## Complexity
 
 - `add`: `O(1)`
-- `ds[i]`: 必要な位置まで累積し、全体で償却 `O(n)`
+- `ds[i]`: propagated lazily; total amortized `O(n)`

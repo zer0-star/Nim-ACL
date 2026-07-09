@@ -1,16 +1,16 @@
 # Cumulative Sum
 
-`CumulativeSum` は、点加算と区間和取得を行うための一次元累積和です。
+`CumulativeSum` is a one-dimensional cumulative-sum helper supporting point additions and range-sum queries.
 
-通常の `seq` から初期化することも、長さだけを指定して空の状態から値を追加することもできます。
+It can be initialized either from an existing sequence or from a length.
 
-## import
+## Import
 
 ~~~nim
 import atcoder/extra/dp/cumulative_sum
 ~~~
 
-## 使用例
+## Example
 
 ~~~nim
 import atcoder/extra/dp/cumulative_sum
@@ -22,7 +22,7 @@ doAssert cs[1 .. 3] == 9     # a[1] + a[2] + a[3]
 doAssert cs[0 .. 4] == 15
 ~~~
 
-## 空の状態から使う
+## Starting from an empty array
 
 ~~~nim
 var cs = initCumulativeSum[int](5)
@@ -50,7 +50,7 @@ var cs2 = initCumulativeSum[int](n)
 cs.add(i, x)
 ~~~
 
-位置 `i` に `x` を加算します。
+Adds `x` to position `i`.
 
 ### sum
 
@@ -58,7 +58,7 @@ cs.add(i, x)
 cs.sum(k)
 ~~~
 
-先頭 `k` 個の和を返します。
+Returns the sum of the first `k` elements.
 
 ### []
 
@@ -66,12 +66,12 @@ cs.sum(k)
 cs[l .. r]
 ~~~
 
-閉区間 `[l, r]` の和を返します。
+Returns the sum over the closed interval `[l, r]`.
 
-## 計算量
+## Complexity
 
-必要な分だけ遅延して累積和を伝播します。
+The cumulative values are propagated lazily.
 
 - `add`: `O(1)`
-- `sum(k)`: 償却 `O(k)`、全体では伝播した分だけ
-- `cs[l .. r]`: `sum` 2 回分
+- `sum(k)`: amortized over propagated positions
+- `cs[l .. r]`: two prefix-sum queries
