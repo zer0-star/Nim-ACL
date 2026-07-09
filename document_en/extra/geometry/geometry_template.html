@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -71,13 +71,13 @@
   </header>
   <main>
 <h1 id="geometry-template">Geometry Template</h1>
-<p><code>geometry_template</code> は、二次元幾何でよく使う基本型と基本操作をまとめた module です。</p>
-<p>点、直線、線分、円、外積・内積、ccw、交差判定、距離、交点などを提供します。</p>
-<h2 id="import">import</h2>
+<p><code>geometry_template</code> provides basic types and operations for two-dimensional computational geometry.</p>
+<p>It includes points, lines, segments, circles, cross products, dot products, ccw classification, intersections, distances, and cross points.</p>
+<h2 id="import">Import</h2>
 <pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
 </code></pre>
 <h2 id="point">Point</h2>
-<p>点は <code>Point[Real]</code> で表します。<code>initPoint[Real](x, y)</code> で作れます。</p>
+<p>A point is represented as <code>Point[Real]</code>. Use <code>initPoint[Real](x, y)</code> to create one.</p>
 <pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
 
 let
@@ -87,15 +87,15 @@ let
 doAssert distance(a, b) == 5.0
 doAssert dot(b, b) == 25.0
 </code></pre>
-<p>主な操作です。</p>
-<pre><code class="language-nim">cross(a, b)      # 外積
-dot(a, b)        # 内積
+<p>Main operations:</p>
+<pre><code class="language-nim">cross(a, b)      # cross product
+dot(a, b)        # dot product
 norm(a)          # dot(a, a)
-distance(a, b)   # 点と点の距離
-rotate(theta, p) # p を theta rad だけ反時計回りに回転
+distance(a, b)   # distance between two points
+rotate(theta, p) # rotate p counterclockwise by theta radians
 </code></pre>
 <h2 id="line-segment">Line / Segment</h2>
-<p>直線は <code>Line[Real]</code>、線分は <code>Segment[Real]</code> です。</p>
+<p>A line is <code>Line[Real]</code>, and a segment is <code>Segment[Real]</code>.</p>
 <pre><code class="language-nim">let
   a = initPoint[float](0.0, 0.0)
   b = initPoint[float](2.0, 2.0)
@@ -117,7 +117,7 @@ doAssert p.re == 1.0
 doAssert p.im == 1.0
 </code></pre>
 <h2 id="ccw">ccw</h2>
-<p><code>ccw(a, b, c)</code> は、点 <code>a -&gt; b -&gt; c</code> の位置関係を返します。</p>
+<p><code>ccw(a, b, c)</code> classifies the relation of the three points <code>a -&gt; b -&gt; c</code>.</p>
 <pre><code class="language-nim">let
   a = initPoint[float](0.0, 0.0)
   b = initPoint[float](2.0, 0.0)
@@ -125,7 +125,7 @@ doAssert p.im == 1.0
 
 doAssert ccw(a, b, c) == CCWState.COUNTER_CLOCKWISE
 </code></pre>
-<p>返り値は次の enum です。</p>
+<p>The result is one of:</p>
 <ul>
 <li><code>COUNTER_CLOCKWISE</code></li>
 <li><code>CLOCKWISE</code></li>
@@ -133,7 +133,7 @@ doAssert ccw(a, b, c) == CCWState.COUNTER_CLOCKWISE
 <li><code>ONLINE_FRONT</code></li>
 <li><code>ONLINE_BACK</code></li>
 </ul>
-<h2 id="_1">平行・直交・距離</h2>
+<h2 id="parallel-orthogonal-and-distance">Parallel, orthogonal, and distance</h2>
 <pre><code class="language-nim">parallel(l1, l2)
 orthogonal(l1, l2)
 distance(line, point)
@@ -141,16 +141,16 @@ distance(segment, point)
 distance(segment1, segment2)
 </code></pre>
 <h2 id="circle">Circle</h2>
-<p>円は <code>Circle[Real]</code> で表します。</p>
+<p>A circle is represented as <code>Circle[Real]</code>.</p>
 <pre><code class="language-nim">let
   p = initPoint[float](0.0, 0.0)
   c = initCircle(p, 2.0)
 </code></pre>
-<h2 id="_2">注意</h2>
+<h2 id="notes">Notes</h2>
 <ul>
-<li>浮動小数点比較には <code>floatutils</code> の許容誤差付き比較が使われています。</li>
-<li>競技プログラミング向けの geometry template なので、厳密計算ではありません。</li>
-<li><code>Point[Real]</code> は内部的には complex-like な型です。通常は <code>initPoint</code> と geometry API 経由で使うのが安全です。</li>
+<li>Floating-point comparisons use tolerant comparisons from <code>floatutils</code>.</li>
+<li>This is a competitive-programming geometry template, not an exact arithmetic geometry package.</li>
+<li><code>Point[Real]</code> is internally a complex-like type. In user code, prefer creating points with <code>initPoint</code> and using geometry APIs.</li>
 </ul>
   </main>
 </body>

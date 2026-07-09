@@ -79,3 +79,7 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 - [`import atcoder/extra/math/arbitrary_mod_combination`](./extra/math/arbitrary_mod_combination.html)
 - [`import atcoder/extra/math/floor_sum_square`](./extra/math/floor_sum_square.html)
 - [`import atcoder/extra/math/factorial`](./extra/math/factorial.html)
+
+## extra/geometry
+
+- [`import atcoder/extra/geometry/geometry_template`](./extra/geometry/geometry_template.html)
