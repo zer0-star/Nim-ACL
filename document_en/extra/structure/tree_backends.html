@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>set_map</title>
+  <title>Tree backends</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -70,34 +70,49 @@
     </a>
   </header>
   <main>
-<h1 id="set_map">set_map</h1>
-<p><code>set_map</code> は互換用 alias module です。</p>
-<p>新規コードでは通常 <a href="./sorted_set_map.html"><code>sorted_set_map</code></a> を推奨します。</p>
-<h2 id="import">import</h2>
-<pre><code class="language-nim">import atcoder/extra/structure/set_map
-</code></pre>
-<h2 id="_1">定義</h2>
-<pre><code class="language-nim">import atcoder/extra/structure/sorted_set_map
-export sorted_set_map
-</code></pre>
-<p>この module は <code>sorted_set_map</code> を import/export します。<br>
-そのため、<code>set_map</code> を import しても <code>SortedSet</code>, <code>SortedMap</code>, <code>initSortedSet</code>, <code>initSortedMap</code> などを利用できます。</p>
-<h2 id="_2">使用例</h2>
-<pre><code class="language-nim">import atcoder/extra/structure/set_map
-
-var s = initSortedSet[int]()
-
-s.insert(3)
-s.insert(1)
-
-doAssert 1 in s
-doAssert 2 notin s
-</code></pre>
-<h2 id="_3">注意</h2>
-<p>古いコードとの互換性のために残されています。<br>
-新しく書く場合は次を推奨します。</p>
+<hr>
+<p>title: Tree backends
+documentation_of: //src/atcoder/extra/structure/tree_backends.nim</p>
+<hr>
+<h1 id="tree-backends">Tree backends</h1>
+<p>Nim-ACL has several low-level tree backends for ordered sets, sequence operations, and lazy propagation.</p>
+<p>If you need a normal ordered set or map, start with <a href="./sorted_set_map.html"><code>sorted_set_map</code></a>.</p>
 <pre><code class="language-nim">import atcoder/extra/structure/sorted_set_map
 </code></pre>
+<h2 id="recommended-user-facing-module">Recommended user-facing module</h2>
+<h3 id="sorted_set_map">sorted_set_map</h3>
+<pre><code class="language-nim">import atcoder/extra/structure/sorted_set_map
+</code></pre>
+<p>This is the recommended ordered set/map interface.</p>
+<p>Main container types:</p>
+<pre><code class="language-nim">SortedSet(K)
+SortedMultiSet(K)
+SortedMap(K, V)
+SortedMultiMap(K, V)
+</code></pre>
+<h2 id="compatibility-alias">Compatibility alias</h2>
+<h3 id="set_map">set_map</h3>
+<pre><code class="language-nim">import atcoder/extra/structure/set_map
+</code></pre>
+<p><code>set_map</code> is a compatibility alias for <code>sorted_set_map</code>.<br>
+For new code, prefer <code>sorted_set_map</code>.</p>
+<h2 id="low-level-backends">Low-level backends</h2>
+<p>The following modules are low-level or advanced tree backends:</p>
+<pre><code class="language-nim">import atcoder/extra/structure/red_black_tree
+import atcoder/extra/structure/randomized_binary_search_tree_with_parent
+import atcoder/extra/structure/splay_tree
+</code></pre>
+<h3 id="redblacktree">RedBlackTree</h3>
+<p>The default backend of <code>sorted_set_map</code>.<br>
+It exposes low-level node operations, so most users do not need to import it directly.</p>
+<h3 id="randomizedbinarysearchtree">RandomizedBinarySearchTree</h3>
+<p>A backend useful when you want to work directly with sequence operations and split/merge.</p>
+<h3 id="splaytree">SplayTree</h3>
+<p>A backend for sequence operations, reversal, and lazy propagation.</p>
+<h2 id="notes">Notes</h2>
+<p>Importing multiple low-level backend modules together can cause ambiguous names.<br>
+Import only the backend you actually need.</p>
+<p>This <code>tree_backends</code> module is documentation-only and intentionally does not re-export low-level backends.</p>
   </main>
 </body>
 </html>

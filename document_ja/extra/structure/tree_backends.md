@@ -7,108 +7,68 @@ documentation_of: //src/atcoder/extra/structure/tree_backends.nim
 
 Nim-ACL には、順序集合・列操作・遅延伝播などのための低レベル木 backend がいくつかあります。
 
-通常の順序集合・順序写像を使いたい場合は、まず次を使うのが推奨です。
+通常の順序付き set / map が欲しい場合は、まず [`sorted_set_map`](./sorted_set_map.html) を使ってください。
 
-```nim
+~~~nim
 import atcoder/extra/structure/sorted_set_map
-```
+~~~
 
-このページでは、より低レベルの backend を直接使う場合の最小限の使い方をまとめます。
+## 通常利用向け
 
-## RedBlackTree
+### sorted_set_map
 
-`red_black_tree` は順序木 backend です。
+~~~nim
+import atcoder/extra/structure/sorted_set_map
+~~~
 
-```nim
+推奨される順序付き set / map interface です。
+
+提供される主な型です。
+
+~~~nim
+SortedSet(K)
+SortedMultiSet(K)
+SortedMap(K, V)
+SortedMultiMap(K, V)
+~~~
+
+## 互換 alias
+
+### set_map
+
+~~~nim
+import atcoder/extra/structure/set_map
+~~~
+
+`set_map` は `sorted_set_map` の互換 alias です。  
+新規コードでは `sorted_set_map` を推奨します。
+
+## 低レベル backend
+
+次の module は内部または高度な用途向けの木 backend です。
+
+~~~nim
 import atcoder/extra/structure/red_black_tree
-
-var rb = initRedBlackTree[int]()
-
-let n3 = rb.insert(rb.End, 3)
-discard rb.insert(n3, 1)
-discard rb.insert(rb.End, 5)
-
-var xs: seq[int] = @[]
-var it = rb.begin()
-while it != rb.End:
-  xs.add(*it)
-  it.inc
-
-doAssert xs == @[1, 3, 5]
-```
-
-`iterOrder` は低レベル sentinel の値を含むことがあるため、直接 backend を使う場合は `begin()` から `End` まで node を進める走査が安全です。
-
-## RandomizedBinarySearchTree with parent
-
-`randomized_binary_search_tree_with_parent` は、列を split / merge で扱う RBST backend です。
-
-```nim
 import atcoder/extra/structure/randomized_binary_search_tree_with_parent
-
-var t = initRandomizedBinarySearchTree[int](seed = 1)
-
-t.build(@[1, 2, 3])
-doAssert t.toSeq == @[1, 2, 3]
-
-t.insert_index(1, 10)
-doAssert t.toSeq == @[1, 10, 2, 3]
-
-t.erase_index(2)
-doAssert t.toSeq == @[1, 10, 3]
-
-t[1] = 20
-doAssert t.toSeq == @[1, 20, 3]
-
-let (l, r) = t.split_index(1)
-t.root = t.merge(l, r)
-
-doAssert t.toSeq == @[1, 20, 3]
-```
-
-## SplayTree
-
-`splay_tree` も列を扱う backend です。`insert_index`, `erase_index`, `split_index`, `merge`, `toSeq` などを使えます。
-
-```nim
 import atcoder/extra/structure/splay_tree
+~~~
 
-var t = initSplayTree[int]()
+### RedBlackTree
 
-t.build(@[1, 2, 3])
-doAssert t.toSeq == @[1, 2, 3]
+`sorted_set_map` の標準 backend です。  
+低レベル node 操作が露出しているため、通常は直接使う必要はありません。
 
-t.insert_index(1, 10)
-doAssert t.toSeq == @[1, 10, 2, 3]
+### RandomizedBinarySearchTree
 
-t.erase_index(2)
-doAssert t.toSeq == @[1, 10, 3]
+列操作・split/merge を直接扱いたい場合の backend です。
 
-t[1] = 20
-doAssert t.toSeq == @[1, 20, 3]
+### SplayTree
 
-let (l, r) = t.split_index(t.root, 1)
-t.root = t.merge(l, r)
+列操作・反転・遅延伝播などを扱える backend です。
 
-doAssert t.toSeq == @[1, 20, 3]
-```
+## 注意
 
-## Common sequence backend interface
+複数の低レベル backend module を同時に import すると、同じ名前の関数が衝突することがあります。  
+必要な backend だけを import してください。
 
-RBST と SplayTree は、列 backend としておおむね次の interface に寄せています。
-
-| 操作 | RBST | SplayTree |
-| --- | --- | --- |
-| 長さ | `len` | `len` |
-| sequence 化 | `toSeq` | `toSeq` |
-| k 番目取得 | `[]` | `[]` |
-| k 番目代入 | `[]=` | `[]=` |
-| k 番目に挿入 | `insert_index` | `insert_index` |
-| k 番目を削除 | `erase_index` | `erase_index` |
-| split | `split_index` | `split_index` |
-| merge | `merge` | `merge` |
-| 検査 | `check_tree` | `check_tree` |
-
-Nim は識別子が style-insensitive なので、`insertIndex` のような camelCase alias は追加していません。`insertIndex` は `insert_index` と同一視され、再定義エラーになるためです。
-
-また、`insert_index` / `erase_index` は値を返さない wrapper として使うため、`discard t.insert_index(...)` ではなく、単に `t.insert_index(...)` と書きます。
+この `tree_backends` module 自体は documentation-only module で、低レベル backend を re-export しません。

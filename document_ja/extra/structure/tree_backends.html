@@ -76,135 +76,43 @@ documentation_of: //src/atcoder/extra/structure/tree_backends.nim</p>
 <hr>
 <h1 id="tree-backends">Tree backends</h1>
 <p>Nim-ACL には、順序集合・列操作・遅延伝播などのための低レベル木 backend がいくつかあります。</p>
-<p>通常の順序集合・順序写像を使いたい場合は、まず次を使うのが推奨です。</p>
+<p>通常の順序付き set / map が欲しい場合は、まず <a href="./sorted_set_map.html"><code>sorted_set_map</code></a> を使ってください。</p>
 <pre><code class="language-nim">import atcoder/extra/structure/sorted_set_map
 </code></pre>
-<p>このページでは、より低レベルの backend を直接使う場合の最小限の使い方をまとめます。</p>
-<h2 id="redblacktree">RedBlackTree</h2>
-<p><code>red_black_tree</code> は順序木 backend です。</p>
+<h2 id="_1">通常利用向け</h2>
+<h3 id="sorted_set_map">sorted_set_map</h3>
+<pre><code class="language-nim">import atcoder/extra/structure/sorted_set_map
+</code></pre>
+<p>推奨される順序付き set / map interface です。</p>
+<p>提供される主な型です。</p>
+<pre><code class="language-nim">SortedSet(K)
+SortedMultiSet(K)
+SortedMap(K, V)
+SortedMultiMap(K, V)
+</code></pre>
+<h2 id="alias">互換 alias</h2>
+<h3 id="set_map">set_map</h3>
+<pre><code class="language-nim">import atcoder/extra/structure/set_map
+</code></pre>
+<p><code>set_map</code> は <code>sorted_set_map</code> の互換 alias です。<br>
+新規コードでは <code>sorted_set_map</code> を推奨します。</p>
+<h2 id="backend">低レベル backend</h2>
+<p>次の module は内部または高度な用途向けの木 backend です。</p>
 <pre><code class="language-nim">import atcoder/extra/structure/red_black_tree
-
-var rb = initRedBlackTree[int]()
-
-let n3 = rb.insert(rb.End, 3)
-discard rb.insert(n3, 1)
-discard rb.insert(rb.End, 5)
-
-var xs: seq[int] = @[]
-var it = rb.begin()
-while it != rb.End:
-  xs.add(*it)
-  it.inc
-
-doAssert xs == @[1, 3, 5]
+import atcoder/extra/structure/randomized_binary_search_tree_with_parent
+import atcoder/extra/structure/splay_tree
 </code></pre>
-<p><code>iterOrder</code> は低レベル sentinel の値を含むことがあるため、直接 backend を使う場合は <code>begin()</code> から <code>End</code> まで node を進める走査が安全です。</p>
-<h2 id="randomizedbinarysearchtree-with-parent">RandomizedBinarySearchTree with parent</h2>
-<p><code>randomized_binary_search_tree_with_parent</code> は、列を split / merge で扱う RBST backend です。</p>
-<pre><code class="language-nim">import atcoder/extra/structure/randomized_binary_search_tree_with_parent
-
-var t = initRandomizedBinarySearchTree[int](seed = 1)
-
-t.build(@[1, 2, 3])
-doAssert t.toSeq == @[1, 2, 3]
-
-t.insert_index(1, 10)
-doAssert t.toSeq == @[1, 10, 2, 3]
-
-t.erase_index(2)
-doAssert t.toSeq == @[1, 10, 3]
-
-t[1] = 20
-doAssert t.toSeq == @[1, 20, 3]
-
-let (l, r) = t.split_index(1)
-t.root = t.merge(l, r)
-
-doAssert t.toSeq == @[1, 20, 3]
-</code></pre>
-<h2 id="splaytree">SplayTree</h2>
-<p><code>splay_tree</code> も列を扱う backend です。<code>insert_index</code>, <code>erase_index</code>, <code>split_index</code>, <code>merge</code>, <code>toSeq</code> などを使えます。</p>
-<pre><code class="language-nim">import atcoder/extra/structure/splay_tree
-
-var t = initSplayTree[int]()
-
-t.build(@[1, 2, 3])
-doAssert t.toSeq == @[1, 2, 3]
-
-t.insert_index(1, 10)
-doAssert t.toSeq == @[1, 10, 2, 3]
-
-t.erase_index(2)
-doAssert t.toSeq == @[1, 10, 3]
-
-t[1] = 20
-doAssert t.toSeq == @[1, 20, 3]
-
-let (l, r) = t.split_index(t.root, 1)
-t.root = t.merge(l, r)
-
-doAssert t.toSeq == @[1, 20, 3]
-</code></pre>
-<h2 id="common-sequence-backend-interface">Common sequence backend interface</h2>
-<p>RBST と SplayTree は、列 backend としておおむね次の interface に寄せています。</p>
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>RBST</th>
-<th>SplayTree</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>長さ</td>
-<td><code>len</code></td>
-<td><code>len</code></td>
-</tr>
-<tr>
-<td>sequence 化</td>
-<td><code>toSeq</code></td>
-<td><code>toSeq</code></td>
-</tr>
-<tr>
-<td>k 番目取得</td>
-<td><code>[]</code></td>
-<td><code>[]</code></td>
-</tr>
-<tr>
-<td>k 番目代入</td>
-<td><code>[]=</code></td>
-<td><code>[]=</code></td>
-</tr>
-<tr>
-<td>k 番目に挿入</td>
-<td><code>insert_index</code></td>
-<td><code>insert_index</code></td>
-</tr>
-<tr>
-<td>k 番目を削除</td>
-<td><code>erase_index</code></td>
-<td><code>erase_index</code></td>
-</tr>
-<tr>
-<td>split</td>
-<td><code>split_index</code></td>
-<td><code>split_index</code></td>
-</tr>
-<tr>
-<td>merge</td>
-<td><code>merge</code></td>
-<td><code>merge</code></td>
-</tr>
-<tr>
-<td>検査</td>
-<td><code>check_tree</code></td>
-<td><code>check_tree</code></td>
-</tr>
-</tbody>
-</table>
-<p>Nim は識別子が style-insensitive なので、<code>insertIndex</code> のような camelCase alias は追加していません。<code>insertIndex</code> は <code>insert_index</code> と同一視され、再定義エラーになるためです。</p>
-<p>また、<code>insert_index</code> / <code>erase_index</code> は値を返さない wrapper として使うため、<code>discard t.insert_index(...)</code> ではなく、単に <code>t.insert_index(...)</code> と書きます。</p>
+<h3 id="redblacktree">RedBlackTree</h3>
+<p><code>sorted_set_map</code> の標準 backend です。<br>
+低レベル node 操作が露出しているため、通常は直接使う必要はありません。</p>
+<h3 id="randomizedbinarysearchtree">RandomizedBinarySearchTree</h3>
+<p>列操作・split/merge を直接扱いたい場合の backend です。</p>
+<h3 id="splaytree">SplayTree</h3>
+<p>列操作・反転・遅延伝播などを扱える backend です。</p>
+<h2 id="_2">注意</h2>
+<p>複数の低レベル backend module を同時に import すると、同じ名前の関数が衝突することがあります。<br>
+必要な backend だけを import してください。</p>
+<p>この <code>tree_backends</code> module 自体は documentation-only module で、低レベル backend を re-export しません。</p>
   </main>
 </body>
 </html>

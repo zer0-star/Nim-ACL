@@ -93,6 +93,9 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 
 ## extra/structure
 
+- [`import atcoder/extra/structure/sorted_set_map`](./extra/structure/sorted_set_map.html)
+- [`import atcoder/extra/structure/set_map`](./extra/structure/set_map.html)
+- [`import atcoder/extra/structure/tree_backends`](./extra/structure/tree_backends.html)
 - [`import atcoder/extra/structure/partially_persistent_dsu`](./extra/structure/partially_persistent_dsu.html)
 - [`import atcoder/extra/structure/succinct_indexable_dictionary`](./extra/structure/succinct_indexable_dictionary.html)
 - [`import atcoder/extra/structure/convex_hull_trick_add_monotone`](./extra/structure/convex_hull_trick_add_monotone.html)
