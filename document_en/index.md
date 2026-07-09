@@ -70,3 +70,11 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 - [`import atcoder/extra/dp/dual_cumulative_sum`](./extra/dp/dual_cumulative_sum.html)
 - [`import atcoder/extra/dp/longest_increasing_subsequence`](./extra/dp/longest_increasing_subsequence.html)
 - [`import atcoder/extra/dp/slide_min`](./extra/dp/slide_min.html)
+
+## extra/math
+
+- [`import atcoder/extra/math/convert_base`](./extra/math/convert_base.html)
+- [`import atcoder/extra/math/mod_sqrt`](./extra/math/mod_sqrt.html)
+- [`import atcoder/extra/math/combination_table`](./extra/math/combination_table.html)
+- [`import atcoder/extra/math/floor_sum_square`](./extra/math/floor_sum_square.html)
+- [`import atcoder/extra/math/factorial`](./extra/math/factorial.html)

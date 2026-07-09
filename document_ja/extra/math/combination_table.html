@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>combination_table</title>
+  <title>Combination Table</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -70,31 +70,47 @@
     </a>
   </header>
   <main>
-<h1 id="combination_table">combination_table</h1>
-<p>このページは自動生成された下書きです。</p>
-<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
+<h1 id="combination-table">Combination Table</h1>
+<p><code>combination_table</code> は、二項係数や階乗を必要に応じて遅延構築する小さな補助 module です。</p>
+<p><code>int.C(n, r)</code> のように、型に対して method 風に呼び出せます。</p>
 <h2 id="import">import</h2>
-<pre><code>import atcoder/extra/math/combination_table
+<pre><code class="language-nim">import atcoder/extra/math/combination_table
 </code></pre>
-<h2 id="api">公開 API</h2>
-<pre><code>const ATCODER_EXTRA_MATH_COMBINATION_TABLE_HPP* = 1
-type Combination*[T:RingElem] = object
-type CombinationC* = concept x
-template zero*(T:typedesc[RingElem]):T = T(0)
-template zero*[T:RingElem](cmb:Combination[T]):T = T(0)
-template fact*(T:CombinationC, k:int):auto =
-template resetCombination*(T:typedesc[RingElem] or var Combination) =
-template C_impl*(C:CombinationC, n, r:int):auto =
-template C*(T:CombinationC, n,r:int):auto =
-template H*(T:CombinationC, n,r:int):auto =
-template P*(T:CombinationC, n,r:int):auto =
+<h2 id="_1">使用例</h2>
+<pre><code class="language-nim">import atcoder/extra/math/combination_table
+
+doAssert int.C(5, 2) == 10
+doAssert int.H(3, 2) == 6
+doAssert int.P(5, 2) == 20
+doAssert int.fact(5) == 120
 </code></pre>
-<h2 id="_1">概要</h2>
-<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
-<h2 id="_2">使用例</h2>
-<p>TODO: 使用例を追加してください。</p>
-<h2 id="_3">注意</h2>
-<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+<h2 id="api">API</h2>
+<h3 id="c">C</h3>
+<pre><code class="language-nim">T.C(n, r)
+</code></pre>
+<p>二項係数 <code>n choose r</code> を返します。範囲外では <code>0</code> を返します。</p>
+<h3 id="h">H</h3>
+<pre><code class="language-nim">T.H(n, r)
+</code></pre>
+<p>重複組合せを返します。</p>
+<h3 id="p">P</h3>
+<pre><code class="language-nim">T.P(n, r)
+</code></pre>
+<p>順列数を返します。</p>
+<h3 id="fact">fact</h3>
+<pre><code class="language-nim">T.fact(k)
+</code></pre>
+<p><code>k!</code> を返します。</p>
+<h3 id="resetcombination">resetCombination</h3>
+<pre><code class="language-nim">T.resetCombination()
+</code></pre>
+<p>内部 table を初期化します。</p>
+<h2 id="_2">計算量</h2>
+<p>必要な値まで table を拡張します。</p>
+<ul>
+<li>新しい <code>n</code> までの初回構築: <code>O(n^2)</code></li>
+<li>構築済み範囲の取得: <code>O(1)</code></li>
+</ul>
   </main>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>convert_base</title>
+  <title>Convert Base</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -70,23 +70,32 @@
     </a>
   </header>
   <main>
-<h1 id="convert_base">convert_base</h1>
-<p>このページは自動生成された下書きです。</p>
-<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
+<h1 id="convert-base">Convert Base</h1>
+<p><code>toSeq</code> と <code>toInt</code> は、整数と基数 <code>b</code> 表現の digit 列を相互変換します。</p>
+<p>digit 列は <strong>下位桁から順に並ぶ little-endian</strong> です。</p>
 <h2 id="import">import</h2>
-<pre><code>import atcoder/extra/math/convert_base
+<pre><code class="language-nim">import atcoder/extra/math/convert_base
 </code></pre>
-<h2 id="api">公開 API</h2>
-<pre><code>const ATCODER_CONVERT_BASE_HPP* = 1
-proc toInt*(d: seq[int], b = 10):int =
-proc toSeq*(n: int, b = 10, min_digit = -1):seq[int] =
+<h2 id="_1">使用例</h2>
+<pre><code class="language-nim">import atcoder/extra/math/convert_base
+
+doAssert toSeq(12345, 10) == @[5, 4, 3, 2, 1]
+doAssert toInt(@[5, 4, 3, 2, 1], 10) == 12345
+
+doAssert toSeq(13, 2) == @[1, 0, 1, 1]
+doAssert toInt(@[1, 0, 1, 1], 2) == 13
 </code></pre>
-<h2 id="_1">概要</h2>
-<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
-<h2 id="_2">使用例</h2>
-<p>TODO: 使用例を追加してください。</p>
-<h2 id="_3">注意</h2>
-<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+<h2 id="min_digit">min_digit</h2>
+<p><code>toSeq(n, b, min_digit)</code> とすると、少なくとも <code>min_digit</code> 桁になるように <code>0</code> で埋めます。</p>
+<pre><code class="language-nim">doAssert toSeq(0, 10, 4) == @[0, 0, 0, 0]
+</code></pre>
+<h2 id="_2">計算量</h2>
+<p>桁数を <code>d</code> とすると、</p>
+<ul>
+<li><code>toSeq</code>: <code>O(d)</code></li>
+<li><code>toInt</code>: <code>O(d)</code></li>
+</ul>
+<p>です。</p>
   </main>
 </body>
 </html>

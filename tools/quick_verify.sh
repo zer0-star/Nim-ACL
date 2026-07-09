@@ -26,6 +26,7 @@ STEP=init
     tests/test_extra_chu_liu_edmonds.nim
     tests/test_extra_dp_basic.nim
     tests/test_extra_dp_2d_edit_rectangle.nim
+    tests/test_extra_math_basic.nim
     tests/test_extra_graph_shortest_paths.nim
     tests/test_extra_graph_structural.nim
     tests/test_extra_universal_segtree.nim

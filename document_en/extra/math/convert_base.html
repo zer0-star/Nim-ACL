@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Floor Sum Square</title>
+  <title>Convert Base</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -70,43 +70,31 @@
     </a>
   </header>
   <main>
-<h1 id="floor-sum-square">Floor Sum Square</h1>
-<p><code>floor_sum_square(n, m, a, b)</code> は、次の 3 つの和を同時に求めます。</p>
-<pre><code class="language-text">S1 = Σ i floor((a i + b) / m)
-S2 = Σ floor((a i + b) / m)^2
-S3 = Σ floor((a i + b) / m)
+<h1 id="convert-base">Convert Base</h1>
+<p><code>toSeq</code> and <code>toInt</code> convert between an integer and a digit sequence in base <code>b</code>.</p>
+<p>The digit sequence is <strong>little-endian</strong>: the least significant digit comes first.</p>
+<h2 id="import">Import</h2>
+<pre><code class="language-nim">import atcoder/extra/math/convert_base
 </code></pre>
-<p>ただし、和は <code>i = 0 ..&lt; n</code> について取ります。</p>
-<h2 id="import">import</h2>
-<pre><code class="language-nim">import atcoder/extra/math/floor_sum_square
-</code></pre>
-<h2 id="_1">使用例</h2>
-<pre><code class="language-nim">import atcoder/extra/math/floor_sum_square
+<h2 id="example">Example</h2>
+<pre><code class="language-nim">import atcoder/extra/math/convert_base
 
-let ans = floor_sum_square(5, 7, 3, 2)
+doAssert toSeq(12345, 10) == @[5, 4, 3, 2, 1]
+doAssert toInt(@[5, 4, 3, 2, 1], 10) == 12345
 
-doAssert ans.S1 == 13
-doAssert ans.S2 == 6
-doAssert ans.S3 == 4
+doAssert toSeq(13, 2) == @[1, 0, 1, 1]
+doAssert toInt(@[1, 0, 1, 1], 2) == 13
 </code></pre>
-<p>この例では、</p>
-<pre><code class="language-text">floor((3i + 2) / 7) = 0, 0, 1, 1, 2
+<h2 id="min_digit">min_digit</h2>
+<p><code>toSeq(n, b, min_digit)</code> pads with zeros until the result has at least <code>min_digit</code> digits.</p>
+<pre><code class="language-nim">doAssert toSeq(0, 10, 4) == @[0, 0, 0, 0]
 </code></pre>
-<p>です。</p>
-<h2 id="_2">戻り値</h2>
-<pre><code class="language-nim">tuple[S1, S2, S3: T]
-</code></pre>
+<h2 id="complexity">Complexity</h2>
+<p>Let <code>d</code> be the number of digits.</p>
 <ul>
-<li><code>S1</code>: <code>Σ i floor((a i + b) / m)</code></li>
-<li><code>S2</code>: <code>Σ floor((a i + b) / m)^2</code></li>
-<li><code>S3</code>: <code>Σ floor((a i + b) / m)</code></li>
+<li><code>toSeq</code>: <code>O(d)</code></li>
+<li><code>toInt</code>: <code>O(d)</code></li>
 </ul>
-<h2 id="_3">計算量</h2>
-<p>おおよそ</p>
-<ul>
-<li><code>O(log(n + m + a + b))</code></li>
-</ul>
-<p>です。</p>
   </main>
 </body>
 </html>

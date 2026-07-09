@@ -1,6 +1,6 @@
 # Floor Sum Square
 
-`floor_sum_square(n, m, a, b)` は、次の 3 つの和を同時に求めます。
+`floor_sum_square(n, m, a, b)` computes the following three sums at once:
 
 ~~~text
 S1 = Σ i floor((a i + b) / m)
@@ -8,15 +8,15 @@ S2 = Σ floor((a i + b) / m)^2
 S3 = Σ floor((a i + b) / m)
 ~~~
 
-ただし、和は `i = 0 ..< n` について取ります。
+The summation range is `i = 0 ..< n`.
 
-## import
+## Import
 
 ~~~nim
 import atcoder/extra/math/floor_sum_square
 ~~~
 
-## 使用例
+## Example
 
 ~~~nim
 import atcoder/extra/math/floor_sum_square
@@ -28,15 +28,13 @@ doAssert ans.S2 == 6
 doAssert ans.S3 == 4
 ~~~
 
-この例では、
+In this example:
 
 ~~~text
 floor((3i + 2) / 7) = 0, 0, 1, 1, 2
 ~~~
 
-です。
-
-## 戻り値
+## Return value
 
 ~~~nim
 tuple[S1, S2, S3: T]
@@ -46,10 +44,8 @@ tuple[S1, S2, S3: T]
 - `S2`: `Σ floor((a i + b) / m)^2`
 - `S3`: `Σ floor((a i + b) / m)`
 
-## 計算量
+## Complexity
 
-おおよそ
+The running time is roughly:
 
 - `O(log(n + m + a + b))`
-
-です。

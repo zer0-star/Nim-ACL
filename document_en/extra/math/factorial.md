@@ -1,15 +1,15 @@
 # Factorial
 
-`factorial[ModInt](n)` は、modint 上で `n!` を求めます。
+`factorial[ModInt](n)` computes `n!` over a modint type.
 
-## import
+## Import
 
 ~~~nim
 import atcoder/modint
 import atcoder/extra/math/factorial
 ~~~
 
-## 使用例
+## Example
 
 ~~~nim
 import atcoder/modint
@@ -22,10 +22,10 @@ doAssert factorial[mint](5) == mint(120)
 doAssert factorial[mint](10) == mint(3628800)
 ~~~
 
-## 注意
+## Notes
 
-`n >= ModInt.mod()` の場合は `0` を返します。
+If `n >= ModInt.mod()`, the result is `0`.
 
-## 計算量
+## Complexity
 
-内部で formal power series を使って高速に計算します。小さい `n` に対しても通常の `n!` と同じ値を返します。
+The implementation uses formal power series internally for fast factorial computation. It returns the usual `n!` value for small `n` as well.
