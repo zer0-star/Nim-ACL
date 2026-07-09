@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -71,16 +71,16 @@
   </header>
   <main>
 <h1 id="segtree2d">SegTree2D</h1>
-<p><code>SegTree2D</code> は、二次元座標上の点に値を持たせ、矩形範囲の集約値を取得する data structure です。</p>
-<p>あらかじめ現れる点 <code>(x, y)</code> をすべて渡しておき、座標圧縮した二次元 segment tree を構築します。</p>
-<h2 id="import">import</h2>
+<p><code>SegTree2D</code> stores values on two-dimensional points and answers rectangle aggregate queries.</p>
+<p>All points that may appear must be provided beforehand. Coordinates are compressed internally.</p>
+<h2 id="import">Import</h2>
 <pre><code class="language-nim">import atcoder/extra/structure/segtree_2d
 </code></pre>
-<h2 id="_1">型</h2>
+<h2 id="type">Type</h2>
 <pre><code class="language-nim">type SegTree2D[S, SegTree]
 </code></pre>
-<p>通常は <code>initSegTree2D</code> から生成します。</p>
-<h2 id="_2">コンストラクタ</h2>
+<p>Usually, construct it with <code>initSegTree2D</code>.</p>
+<h2 id="constructor">Constructor</h2>
 <pre><code class="language-nim">proc initSegTree2D[S](
   points: seq[tuple[x, y: int]],
   op: static[proc(a, b: S): S],
@@ -88,11 +88,11 @@
 ): auto
 </code></pre>
 <ul>
-<li><code>points</code>: あらかじめ使う点集合</li>
-<li><code>op</code>: 集約演算</li>
-<li><code>e</code>: 単位元</li>
+<li><code>points</code>: all points that may be used</li>
+<li><code>op</code>: aggregate operation</li>
+<li><code>e</code>: identity element</li>
 </ul>
-<h2 id="_3">操作</h2>
+<h2 id="operations">Operations</h2>
 <pre><code class="language-nim">proc add[ST: SegTree2D](st: var ST, x, y: int, v: ST.S)
 proc get[ST: SegTree2D](st: var ST, x, y: int): ST.S
 proc prod[ST: SegTree2D](st: var ST, xp, yp: Slice[int] or int): ST.S
@@ -100,11 +100,11 @@ proc `[]`[ST: SegTree2D](st: var ST, x, y: int): ST.S
 proc `[]`[ST: SegTree2D](st: var ST, xp, yp: Slice[int] or int): ST.S
 </code></pre>
 <ul>
-<li><code>add(x, y, v)</code> は点 <code>(x, y)</code> に <code>v</code> を加算します。</li>
-<li><code>get(x, y)</code> は点 <code>(x, y)</code> の値を返します。</li>
-<li><code>prod(xp, yp)</code> は矩形 <code>xp × yp</code> の集約値を返します。</li>
+<li><code>add(x, y, v)</code> adds <code>v</code> to point <code>(x, y)</code>.</li>
+<li><code>get(x, y)</code> returns the value at point <code>(x, y)</code>.</li>
+<li><code>prod(xp, yp)</code> returns the aggregate over rectangle <code>xp × yp</code>.</li>
 </ul>
-<h2 id="_4">使用例</h2>
+<h2 id="example">Example</h2>
 <pre><code class="language-nim">proc op(a, b: int): int = a + b
 proc e(): int = 0
 
@@ -125,17 +125,16 @@ doAssert st.get(0, 0) == 12
 doAssert st.prod(0 .. 1, 0 .. 1) == 26
 doAssert st.prod(0 .. 2, 0 .. 2) == 39
 </code></pre>
-<h2 id="_5">制約</h2>
-<p><code>add</code>, <code>get</code>, <code>prod</code> で使う点は、コンストラクタに渡した点集合に含まれている必要があります。</p>
-<h2 id="_6">計算量</h2>
-<p>点数を <code>n</code> とすると、おおよそ</p>
+<h2 id="constraints">Constraints</h2>
+<p>Points used in <code>add</code>, <code>get</code>, and <code>prod</code> must be included in the initial point set.</p>
+<h2 id="complexity">Complexity</h2>
+<p>For <code>n</code> points:</p>
 <ul>
-<li>構築: <code>O(n log n)</code></li>
-<li>点加算: <code>O(log^2 n)</code></li>
-<li>点取得: <code>O(log^2 n)</code></li>
-<li>矩形集約: <code>O(log^2 n)</code></li>
+<li>build: <code>O(n log n)</code></li>
+<li>point add: <code>O(log^2 n)</code></li>
+<li>point get: <code>O(log^2 n)</code></li>
+<li>rectangle query: <code>O(log^2 n)</code></li>
 </ul>
-<p>です。</p>
   </main>
 </body>
 </html>

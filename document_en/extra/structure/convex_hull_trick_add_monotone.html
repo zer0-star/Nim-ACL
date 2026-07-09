@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -71,35 +71,35 @@
   </header>
   <main>
 <h1 id="convexhulltrickaddmonotone">ConvexHullTrickAddMonotone</h1>
-<p><code>ConvexHullTrickAddMonotone</code> は、傾きが単調に追加される一次関数集合に対して、指定した <code>x</code> における最小値または最大値を求める data structure です。</p>
-<p>一次関数 <code>f(x) = ax + b</code> を追加し、<code>query(x)</code> で最適値を取得します。</p>
-<h2 id="import">import</h2>
+<p><code>ConvexHullTrickAddMonotone</code> maintains a set of linear functions whose slopes are added monotonically and answers minimum or maximum value queries at a given <code>x</code>.</p>
+<p>Each line has the form <code>f(x) = ax + b</code>.</p>
+<h2 id="import">Import</h2>
 <pre><code class="language-nim">import atcoder/extra/structure/convex_hull_trick_add_monotone
 </code></pre>
-<h2 id="_1">型</h2>
+<h2 id="type">Type</h2>
 <pre><code class="language-nim">type ConvexHullTrickAddMonotone[T]
 </code></pre>
-<p><code>T</code> は係数や評価値の型です。通常は <code>int</code>, <code>int64</code> などを使います。</p>
-<h2 id="_2">コンストラクタ</h2>
+<p><code>T</code> is the coefficient and value type, usually <code>int</code> or <code>int64</code>.</p>
+<h2 id="constructor">Constructor</h2>
 <pre><code class="language-nim">proc initConvexHullTrickAddMonotone[T](isMin: bool): ConvexHullTrickAddMonotone[T]
 </code></pre>
 <ul>
-<li><code>isMin = true</code>: 最小値 query</li>
-<li><code>isMin = false</code>: 最大値 query</li>
+<li><code>isMin = true</code>: minimum queries</li>
+<li><code>isMin = false</code>: maximum queries</li>
 </ul>
-<h2 id="_3">操作</h2>
+<h2 id="operations">Operations</h2>
 <pre><code class="language-nim">proc add[T](cht: var ConvexHullTrickAddMonotone[T], a, b: T)
 proc query[T](cht: ConvexHullTrickAddMonotone[T], x: T): T
 proc query_monotone_inc[T](cht: var ConvexHullTrickAddMonotone[T], x: T): T
 proc query_monotone_dec[T](cht: var ConvexHullTrickAddMonotone[T], x: T): T
 </code></pre>
 <ul>
-<li><code>add(a, b)</code> は直線 <code>f(x) = ax + b</code> を追加します。</li>
-<li><code>query(x)</code> は現在の直線集合に対する最小値または最大値を返します。</li>
-<li><code>query_monotone_inc(x)</code> は <code>x</code> が単調増加に与えられる場合に使います。</li>
-<li><code>query_monotone_dec(x)</code> は <code>x</code> が単調減少に与えられる場合に使います。</li>
+<li><code>add(a, b)</code> inserts <code>f(x) = ax + b</code>.</li>
+<li><code>query(x)</code> returns the current minimum or maximum value.</li>
+<li><code>query_monotone_inc(x)</code> is for monotonically increasing query <code>x</code>.</li>
+<li><code>query_monotone_dec(x)</code> is for monotonically decreasing query <code>x</code>.</li>
 </ul>
-<h2 id="_4">使用例</h2>
+<h2 id="example">Example</h2>
 <pre><code class="language-nim">var cht = initConvexHullTrickAddMonotone[int](true)
 
 cht.add(0, 5)
@@ -109,16 +109,15 @@ cht.add(2, 0)
 doAssert cht.query(0) == 0
 doAssert cht.query(2) == 4
 </code></pre>
-<h2 id="_5">制約</h2>
-<p>追加する直線の傾き <code>a</code> は単調である必要があります。<br>
-単調でない順に追加する場合は、通常の Li Chao Tree などを検討してください。</p>
-<h2 id="_6">計算量</h2>
+<h2 id="constraints">Constraints</h2>
+<p>The slopes <code>a</code> of added lines must be monotonic.<br>
+If slopes are not monotonic, consider using Li Chao Tree.</p>
+<h2 id="complexity">Complexity</h2>
 <ul>
-<li><code>add</code>: 償却 <code>O(1)</code></li>
+<li><code>add</code>: amortized <code>O(1)</code></li>
 <li><code>query</code>: <code>O(log n)</code></li>
-<li><code>query_monotone_inc</code>, <code>query_monotone_dec</code>: 償却 <code>O(1)</code></li>
+<li><code>query_monotone_inc</code>, <code>query_monotone_dec</code>: amortized <code>O(1)</code></li>
 </ul>
-<p>です。</p>
   </main>
 </body>
 </html>

@@ -93,6 +93,10 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 
 ## extra/structure
 
+- [`import atcoder/extra/structure/convex_hull_trick_add_monotone`](./extra/structure/convex_hull_trick_add_monotone.html)
+- [`import atcoder/extra/structure/li_chao_tree`](./extra/structure/li_chao_tree.html)
+- [`import atcoder/extra/structure/segtree_2d`](./extra/structure/segtree_2d.html)
+- [`import atcoder/extra/structure/wavelet_matrix`](./extra/structure/wavelet_matrix.html)
 - [`import atcoder/extra/structure/radix_heap`](./extra/structure/radix_heap.html)
 - [`import atcoder/extra/structure/sparse_table`](./extra/structure/sparse_table.html)
 - [`import atcoder/extra/structure/dual_fenwicktree`](./extra/structure/dual_fenwicktree.html)
