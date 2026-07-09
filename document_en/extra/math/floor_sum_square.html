@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -71,16 +71,16 @@
   </header>
   <main>
 <h1 id="floor-sum-square">Floor Sum Square</h1>
-<p><code>floor_sum_square(n, m, a, b)</code> は、次の 3 つの和を同時に求めます。</p>
+<p><code>floor_sum_square(n, m, a, b)</code> computes the following three sums at once:</p>
 <pre><code class="language-text">S1 = Σ i floor((a i + b) / m)
 S2 = Σ floor((a i + b) / m)^2
 S3 = Σ floor((a i + b) / m)
 </code></pre>
-<p>ただし、和は <code>i = 0 ..&lt; n</code> について取ります。</p>
-<h2 id="import">import</h2>
+<p>The summation range is <code>i = 0 ..&lt; n</code>.</p>
+<h2 id="import">Import</h2>
 <pre><code class="language-nim">import atcoder/extra/math/floor_sum_square
 </code></pre>
-<h2 id="_1">使用例</h2>
+<h2 id="example">Example</h2>
 <pre><code class="language-nim">import atcoder/extra/math/floor_sum_square
 
 let ans = floor_sum_square(5, 7, 3, 2)
@@ -89,11 +89,10 @@ doAssert ans.S1 == 13
 doAssert ans.S2 == 6
 doAssert ans.S3 == 4
 </code></pre>
-<p>この例では、</p>
+<p>In this example:</p>
 <pre><code class="language-text">floor((3i + 2) / 7) = 0, 0, 1, 1, 2
 </code></pre>
-<p>です。</p>
-<h2 id="_2">戻り値</h2>
+<h2 id="return-value">Return value</h2>
 <pre><code class="language-nim">tuple[S1, S2, S3: T]
 </code></pre>
 <ul>
@@ -101,12 +100,11 @@ doAssert ans.S3 == 4
 <li><code>S2</code>: <code>Σ floor((a i + b) / m)^2</code></li>
 <li><code>S3</code>: <code>Σ floor((a i + b) / m)</code></li>
 </ul>
-<h2 id="_3">計算量</h2>
-<p>おおよそ</p>
+<h2 id="complexity">Complexity</h2>
+<p>The running time is roughly:</p>
 <ul>
 <li><code>O(log(n + m + a + b))</code></li>
 </ul>
-<p>です。</p>
   </main>
 </body>
 </html>

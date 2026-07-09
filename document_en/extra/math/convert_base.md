@@ -1,16 +1,16 @@
 # Convert Base
 
-`toSeq` と `toInt` は、整数と基数 `b` 表現の digit 列を相互変換します。
+`toSeq` and `toInt` convert between an integer and a digit sequence in base `b`.
 
-digit 列は **下位桁から順に並ぶ little-endian** です。
+The digit sequence is **little-endian**: the least significant digit comes first.
 
-## import
+## Import
 
 ~~~nim
 import atcoder/extra/math/convert_base
 ~~~
 
-## 使用例
+## Example
 
 ~~~nim
 import atcoder/extra/math/convert_base
@@ -24,17 +24,15 @@ doAssert toInt(@[1, 0, 1, 1], 2) == 13
 
 ## min_digit
 
-`toSeq(n, b, min_digit)` とすると、少なくとも `min_digit` 桁になるように `0` で埋めます。
+`toSeq(n, b, min_digit)` pads with zeros until the result has at least `min_digit` digits.
 
 ~~~nim
 doAssert toSeq(0, 10, 4) == @[0, 0, 0, 0]
 ~~~
 
-## 計算量
+## Complexity
 
-桁数を `d` とすると、
+Let `d` be the number of digits.
 
 - `toSeq`: `O(d)`
 - `toInt`: `O(d)`
-
-です。

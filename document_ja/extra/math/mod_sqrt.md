@@ -1,26 +1,53 @@
-# mod_sqrt
+# Mod Sqrt
 
-このページは自動生成された下書きです。
+`modSqrt(a)` は、modint 上で `x^2 = a` を満たす `x` をひとつ求めます。
 
-公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。
+平方根が存在する場合は `some(x)`、存在しない場合は `none` を返します。
 
 ## import
 
-    import atcoder/extra/math/mod_sqrt
-
-## 公開 API
-
-    const ATCODER_MODSQRT_HPP* = 1
-    proc modSqrt*[T:ModInt](a:T):Option[T] =
-
-## 概要
-
-TODO: このライブラリの用途と使いどころを記述してください。
+~~~nim
+import std/options
+import atcoder/modint
+import atcoder/extra/math/mod_sqrt
+~~~
 
 ## 使用例
 
-TODO: 使用例を追加してください。
+~~~nim
+import std/options
+import atcoder/modint
+import atcoder/extra/math/mod_sqrt
+
+type mint = modint998244353
+
+let r = modSqrt(mint(4))
+
+doAssert r.isSome
+
+let x = r.get
+
+doAssert x * x == mint(4)
+~~~
+
+## 戻り値
+
+~~~nim
+Option[T]
+~~~
+
+`std/options` の `isSome`, `isNone`, `get` などを使って値を取り出します。
 
 ## 注意
 
-TODO: 制約、前提条件、落とし穴を記述してください。
+- 法は素数であることを仮定します。
+- 戻り値の平方根は、存在する平方根のうちどちらか一方です。
+- 平方根が存在しない場合は `none` です。
+
+## 計算量
+
+法を `p` とすると、おおよそ
+
+- `O(log^2 p)`
+
+です。

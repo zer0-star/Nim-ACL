@@ -1,35 +1,71 @@
-# combination_table
+# Combination Table
 
-このページは自動生成された下書きです。
+`combination_table` は、二項係数や階乗を必要に応じて遅延構築する小さな補助 module です。
 
-公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。
+`int.C(n, r)` のように、型に対して method 風に呼び出せます。
 
 ## import
 
-    import atcoder/extra/math/combination_table
-
-## 公開 API
-
-    const ATCODER_EXTRA_MATH_COMBINATION_TABLE_HPP* = 1
-    type Combination*[T:RingElem] = object
-    type CombinationC* = concept x
-    template zero*(T:typedesc[RingElem]):T = T(0)
-    template zero*[T:RingElem](cmb:Combination[T]):T = T(0)
-    template fact*(T:CombinationC, k:int):auto =
-    template resetCombination*(T:typedesc[RingElem] or var Combination) =
-    template C_impl*(C:CombinationC, n, r:int):auto =
-    template C*(T:CombinationC, n,r:int):auto =
-    template H*(T:CombinationC, n,r:int):auto =
-    template P*(T:CombinationC, n,r:int):auto =
-
-## 概要
-
-TODO: このライブラリの用途と使いどころを記述してください。
+~~~nim
+import atcoder/extra/math/combination_table
+~~~
 
 ## 使用例
 
-TODO: 使用例を追加してください。
+~~~nim
+import atcoder/extra/math/combination_table
 
-## 注意
+doAssert int.C(5, 2) == 10
+doAssert int.H(3, 2) == 6
+doAssert int.P(5, 2) == 20
+doAssert int.fact(5) == 120
+~~~
 
-TODO: 制約、前提条件、落とし穴を記述してください。
+## API
+
+### C
+
+~~~nim
+T.C(n, r)
+~~~
+
+二項係数 `n choose r` を返します。範囲外では `0` を返します。
+
+### H
+
+~~~nim
+T.H(n, r)
+~~~
+
+重複組合せを返します。
+
+### P
+
+~~~nim
+T.P(n, r)
+~~~
+
+順列数を返します。
+
+### fact
+
+~~~nim
+T.fact(k)
+~~~
+
+`k!` を返します。
+
+### resetCombination
+
+~~~nim
+T.resetCombination()
+~~~
+
+内部 table を初期化します。
+
+## 計算量
+
+必要な値まで table を拡張します。
+
+- 新しい `n` までの初回構築: `O(n^2)`
+- 構築済み範囲の取得: `O(1)`

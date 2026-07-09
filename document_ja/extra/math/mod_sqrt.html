@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>mod_sqrt</title>
+  <title>Mod Sqrt</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -70,22 +70,45 @@
     </a>
   </header>
   <main>
-<h1 id="mod_sqrt">mod_sqrt</h1>
-<p>このページは自動生成された下書きです。</p>
-<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
+<h1 id="mod-sqrt">Mod Sqrt</h1>
+<p><code>modSqrt(a)</code> は、modint 上で <code>x^2 = a</code> を満たす <code>x</code> をひとつ求めます。</p>
+<p>平方根が存在する場合は <code>some(x)</code>、存在しない場合は <code>none</code> を返します。</p>
 <h2 id="import">import</h2>
-<pre><code>import atcoder/extra/math/mod_sqrt
+<pre><code class="language-nim">import std/options
+import atcoder/modint
+import atcoder/extra/math/mod_sqrt
 </code></pre>
-<h2 id="api">公開 API</h2>
-<pre><code>const ATCODER_MODSQRT_HPP* = 1
-proc modSqrt*[T:ModInt](a:T):Option[T] =
+<h2 id="_1">使用例</h2>
+<pre><code class="language-nim">import std/options
+import atcoder/modint
+import atcoder/extra/math/mod_sqrt
+
+type mint = modint998244353
+
+let r = modSqrt(mint(4))
+
+doAssert r.isSome
+
+let x = r.get
+
+doAssert x * x == mint(4)
 </code></pre>
-<h2 id="_1">概要</h2>
-<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
-<h2 id="_2">使用例</h2>
-<p>TODO: 使用例を追加してください。</p>
+<h2 id="_2">戻り値</h2>
+<pre><code class="language-nim">Option[T]
+</code></pre>
+<p><code>std/options</code> の <code>isSome</code>, <code>isNone</code>, <code>get</code> などを使って値を取り出します。</p>
 <h2 id="_3">注意</h2>
-<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+<ul>
+<li>法は素数であることを仮定します。</li>
+<li>戻り値の平方根は、存在する平方根のうちどちらか一方です。</li>
+<li>平方根が存在しない場合は <code>none</code> です。</li>
+</ul>
+<h2 id="_4">計算量</h2>
+<p>法を <code>p</code> とすると、おおよそ</p>
+<ul>
+<li><code>O(log^2 p)</code></li>
+</ul>
+<p>です。</p>
   </main>
 </body>
 </html>
