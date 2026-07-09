@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Geometry Guide</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="geometry-guide">Geometry Guide</h1>
+<p>Nim-ACL's geometry library keeps existing competitive-programming shorthand APIs while also providing a readable facade module.</p>
+<p>For new code, start with:</p>
+<pre><code class="language-nim">import atcoder/extra/geometry/geometry
+</code></pre>
+<p>This module re-exports basic geometry, polygon, triangle, tangent, and closest-pair utilities, and adds readable constructors and aliases.</p>
+<h2 id="recommended-style">Recommended style</h2>
+<h3 id="points">Points</h3>
+<pre><code class="language-nim">let
+  a = point(0.0, 0.0)
+  b = point(3.0, 4.0)
+
+doAssert dist(a, b) == 5.0
+</code></pre>
+<p>The traditional style is still available:</p>
+<pre><code class="language-nim">let a = initPoint[float](0.0, 0.0)
+</code></pre>
+<h3 id="lines-and-segments">Lines and segments</h3>
+<pre><code class="language-nim">let
+  a = point(0.0, 0.0)
+  b = point(2.0, 2.0)
+  c = point(0.0, 2.0)
+  d = point(2.0, 0.0)
+
+let
+  l1 = line(a, b)
+  l2 = line(c, d)
+  s1 = segment(a, b)
+  s2 = segment(c, d)
+
+doAssert intersects(l1, l2)
+doAssert intersects(s1, s2)
+
+let p = intersection(l1, l2)
+</code></pre>
+<p>The older shorthand remains available:</p>
+<pre><code class="language-nim">let l = a -- b
+let s = a !! b
+</code></pre>
+<h3 id="circles">Circles</h3>
+<pre><code class="language-nim">let c = circle(point(0.0, 0.0), 2.0)
+</code></pre>
+<p>You can also construct the circle through three points:</p>
+<pre><code class="language-nim">let c = circle(a, b, c)
+</code></pre>
+<h2 id="name-mapping">Name mapping</h2>
+<table>
+<thead>
+<tr>
+<th>facade</th>
+<th>original name</th>
+<th>meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>point(x, y)</code></td>
+<td><code>initPoint[Real](x, y)</code></td>
+<td>point</td>
+</tr>
+<tr>
+<td><code>line(a, b)</code></td>
+<td><code>initLine(a, b)</code></td>
+<td>line</td>
+</tr>
+<tr>
+<td><code>segment(a, b)</code></td>
+<td><code>initSegment(a, b)</code></td>
+<td>segment</td>
+</tr>
+<tr>
+<td><code>circle(p, r)</code></td>
+<td><code>initCircle(p, r)</code></td>
+<td>circle</td>
+</tr>
+<tr>
+<td><code>dist(a, b)</code></td>
+<td><code>distance(a, b)</code></td>
+<td>distance</td>
+</tr>
+<tr>
+<td><code>intersects(a, b)</code></td>
+<td><code>intersect(a, b)</code></td>
+<td>intersection predicate</td>
+</tr>
+<tr>
+<td><code>intersection(a, b)</code></td>
+<td><code>crosspoint(a, b)</code></td>
+<td>intersection point</td>
+</tr>
+</tbody>
+</table>
+<h2 id="common-operations">Common operations</h2>
+<h3 id="cross-product-and-dot-product">Cross product and dot product</h3>
+<pre><code class="language-nim">cross(a, b)
+dot(a, b)
+norm(a)
+</code></pre>
+<h3 id="ccw">ccw</h3>
+<pre><code class="language-nim">ccw(a, b, c)
+</code></pre>
+<p>The result is one of:</p>
+<ul>
+<li><code>COUNTER_CLOCKWISE</code></li>
+<li><code>CLOCKWISE</code></li>
+<li><code>ON_SEGMENT</code></li>
+<li><code>ONLINE_FRONT</code></li>
+<li><code>ONLINE_BACK</code></li>
+</ul>
+<h3 id="polygon">polygon</h3>
+<pre><code class="language-nim">let h = convexHull(points)
+let s = area(poly)
+let state = contains(poly, p)
+let ok = isConvex(poly)
+</code></pre>
+<h3 id="triangle">triangle</h3>
+<pre><code class="language-nim">let g = centroid(a, b, c)
+let ic = incenter(a, b, c)
+let cc = circumcenter(a, b, c)
+let oc = orthocenter(a, b, c)
+</code></pre>
+<h3 id="tangent">tangent</h3>
+<pre><code class="language-nim">let (u, v) = tangent(circle, point)
+let lines = tangent(circle1, circle2)
+</code></pre>
+<h2 id="choosing-imports">Choosing imports</h2>
+<p>Usually this is enough:</p>
+<pre><code class="language-nim">import atcoder/extra/geometry/geometry
+</code></pre>
+<p>If you want to import only a specific module, the traditional imports are still available:</p>
+<pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
+import atcoder/extra/geometry/polygon
+import atcoder/extra/geometry/triangle
+import atcoder/extra/geometry/tangent
+import atcoder/extra/geometry/closest_pair
+</code></pre>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Geometry code is affected by floating-point error.</li>
+<li>This is a practical competitive-programming geometry library, not an exact geometry package.</li>
+<li>Existing shorthand APIs remain for compatibility; the facade adds readability.</li>
+</ul>
+  </main>
+</body>
+</html>

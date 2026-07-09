@@ -1,5 +1,7 @@
 # Geometry
 
+詳しい使い方の流れは [Geometry Guide](./geometry_guide.html) も参照してください。
+
 `atcoder/extra/geometry/geometry` は、二次元幾何 library を使いやすくするための facade module です。
 
 既存の `geometry_template`, `polygon`, `closest_pair`, `triangle`, `tangent` を re-export しつつ、読みやすい constructor / alias を追加します。

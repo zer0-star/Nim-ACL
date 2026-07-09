@@ -1,5 +1,7 @@
 # Geometry Template
 
+新しく書くコードでは、読みやすい facade の [`atcoder/extra/geometry/geometry`](./geometry.html) も利用できます。
+
 `geometry_template` は、二次元幾何でよく使う基本型と基本操作をまとめた module です。
 
 点、直線、線分、円、外積・内積、ccw、交差判定、距離、交点などを提供します。

@@ -1,5 +1,7 @@
 # Geometry
 
+See also [Geometry Guide](./geometry_guide.html) for a guided overview.
+
 `atcoder/extra/geometry/geometry` is a friendly facade module for two-dimensional geometry utilities.
 
 It re-exports `geometry_template`, `polygon`, `closest_pair`, `triangle`, and `tangent`, and adds readable constructors and aliases.
