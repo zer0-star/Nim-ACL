@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -71,12 +71,12 @@
   </header>
   <main>
 <h1 id="arbitrary-mod-combination">Arbitrary Mod Combination</h1>
-<p><code>ArbitraryModBinomial</code> は、任意 mod で二項係数 <code>n choose k</code> を計算するための構造です。</p>
-<p>素数 mod だけでなく、合成数 mod も扱えます。</p>
-<h2 id="import">import</h2>
+<p><code>ArbitraryModBinomial</code> computes binomial coefficients <code>n choose k</code> modulo an arbitrary modulus.</p>
+<p>It supports composite moduli as well as prime moduli.</p>
+<h2 id="import">Import</h2>
 <pre><code class="language-nim">import atcoder/extra/math/arbitrary_mod_combination
 </code></pre>
-<h2 id="_1">使用例</h2>
+<h2 id="example">Example</h2>
 <pre><code class="language-nim">import atcoder/extra/math/arbitrary_mod_combination
 
 let binom = initArbitraryModBinomial(1000, 100)
@@ -88,29 +88,29 @@ doAssert binom.C(5, 6) == 0
 <h2 id="initarbitrarymodbinomial">initArbitraryModBinomial</h2>
 <pre><code class="language-nim">let binom = initArbitraryModBinomial(md, N_MAX)
 </code></pre>
-<p><code>md</code> を法とする二項係数計算用の構造を初期化します。</p>
+<p>Initializes a helper for binomial coefficients modulo <code>md</code>.</p>
 <ul>
-<li><code>md</code>: 法</li>
-<li><code>N_MAX</code>: 事前計算で想定する最大値</li>
+<li><code>md</code>: modulus</li>
+<li><code>N_MAX</code>: maximum value assumed for precomputation</li>
 </ul>
-<p><code>md = 1</code> の場合、すべての値は <code>0</code> になります。</p>
+<p>If <code>md = 1</code>, all results are <code>0</code>.</p>
 <h2 id="c">C</h2>
 <pre><code class="language-nim">binom.C(n, k)
 </code></pre>
-<p><code>n choose k</code> を <code>md</code> で割った余りを返します。</p>
-<p>範囲外の場合は <code>0</code> を返します。</p>
+<p>Returns <code>n choose k</code> modulo <code>md</code>.</p>
+<p>Out-of-range arguments return <code>0</code>.</p>
 <pre><code class="language-nim">doAssert binom.C(5, -1) == 0
 doAssert binom.C(5, 6) == 0
 </code></pre>
-<h2 id="_2">注意</h2>
+<h2 id="notes">Notes</h2>
 <ul>
-<li><code>md</code> は <code>1 &lt;= md &lt; 2^30</code> 程度を想定しています。</li>
-<li>内部では <code>md</code> を素数冪に分解し、中国剰余定理で合成します。</li>
-<li>大きい <code>N_MAX</code> を指定すると事前計算量が増えます。</li>
+<li>The intended modulus range is roughly <code>1 &lt;= md &lt; 2^30</code>.</li>
+<li>Internally, the modulus is decomposed into prime powers and combined with CRT.</li>
+<li>A larger <code>N_MAX</code> increases precomputation cost.</li>
 </ul>
-<h2 id="_3">計算量</h2>
-<p><code>md</code> の素因数分解と、各素数冪ごとの前計算を行います。<br>
-各 <code>C(n, k)</code> は、素数冪ごとの計算結果を CRT で合成します。</p>
+<h2 id="complexity">Complexity</h2>
+<p>The initialization factors <code>md</code> and precomputes data for each prime-power component.<br>
+Each <code>C(n, k)</code> evaluates the components and combines them with CRT.</p>
   </main>
 </body>
 </html>
