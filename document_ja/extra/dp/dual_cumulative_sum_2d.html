@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>dual_cumulative_sum_2d</title>
+  <title>Dual Cumulative Sum 2D</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -70,27 +70,51 @@
     </a>
   </header>
   <main>
-<h1 id="dual_cumulative_sum_2d">dual_cumulative_sum_2d</h1>
-<p>このページは自動生成された下書きです。</p>
-<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
+<h1 id="dual-cumulative-sum-2d">Dual Cumulative Sum 2D</h1>
+<p><code>DualCumulativeSum2D</code> は、二次元の矩形加算・一点取得を行う imos 構造です。</p>
 <h2 id="import">import</h2>
-<pre><code>import atcoder/extra/dp/dual_cumulative_sum_2d
+<pre><code class="language-nim">import atcoder/extra/dp/dual_cumulative_sum_2d
 </code></pre>
-<h2 id="api">公開 API</h2>
-<pre><code>type DualCumulativeSum2D*[T] = object
-proc init*[T](self:var DualCumulativeSum2D[T], X, Y:int) =
-proc initDualCumulativeSum2D*[T](X, Y:int):DualCumulativeSum2D[T] =
-proc add*[T](self:var DualCumulativeSum2D[T]; rx, ry: Slice[int], z:T) =
-proc build*[T](self:var DualCumulativeSum2D[T]) =
-proc `[]`*[T](self: DualCumulativeSum2D[T], x:int, y:int):T =
-proc write*[T](self: DualCumulativeSum2D[T]) =
+<h2 id="_1">使用例</h2>
+<pre><code class="language-nim">import atcoder/extra/dp/dual_cumulative_sum_2d
+
+var ds = initDualCumulativeSum2D[int](4, 4)
+
+ds.add(1 .. 2, 0 .. 1, 10)
+ds.add(0 .. 3, 3 .. 3, 5)
+ds.add(2, 2, -4)
+
+ds.build()
+
+doAssert ds[1, 0] == 10
+doAssert ds[2, 1] == 10
+doAssert ds[2, 2] == -4
+doAssert ds[3, 3] == 5
 </code></pre>
-<h2 id="_1">概要</h2>
-<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
-<h2 id="_2">使用例</h2>
-<p>TODO: 使用例を追加してください。</p>
-<h2 id="_3">注意</h2>
-<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+<h2 id="api">API</h2>
+<h3 id="initdualcumulativesum2d">initDualCumulativeSum2D</h3>
+<pre><code class="language-nim">var ds = initDualCumulativeSum2D[int](W, H)
+</code></pre>
+<h3 id="add">add</h3>
+<pre><code class="language-nim">ds.add(x1 .. x2, y1 .. y2, z)
+ds.add(x, y, z)
+</code></pre>
+<p>閉矩形 <code>[x1, x2] × [y1, y2]</code> に <code>z</code> を加算します。<br>
+<code>ds.add(x, y, z)</code> は一点加算です。</p>
+<h3 id="build">build</h3>
+<pre><code class="language-nim">ds.build()
+</code></pre>
+<p>imos の累積を反映します。</p>
+<h3 id="_2">[]</h3>
+<pre><code class="language-nim">ds[x, y]
+</code></pre>
+<p>座標 <code>(x, y)</code> の値を返します。</p>
+<h2 id="_3">計算量</h2>
+<ul>
+<li><code>add</code>: <code>O(1)</code></li>
+<li><code>build</code>: <code>O(W H)</code></li>
+<li>一点取得: <code>O(1)</code></li>
+</ul>
   </main>
 </body>
 </html>

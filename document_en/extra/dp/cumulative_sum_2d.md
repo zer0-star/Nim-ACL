@@ -1,14 +1,14 @@
 # Cumulative Sum 2D
 
-`CumulativeSum2D` は、二次元配列の矩形和を求めるための二次元累積和です。
+`CumulativeSum2D` is a two-dimensional cumulative-sum helper for rectangle-sum queries.
 
-## import
+## Import
 
 ~~~nim
 import atcoder/extra/dp/cumulative_sum_2d
 ~~~
 
-## 使用例
+## Example
 
 ~~~nim
 import atcoder/extra/dp/cumulative_sum_2d
@@ -26,7 +26,7 @@ doAssert cs[1 .. 2, 1 .. 2] == 28
 doAssert cs[0 .. 2, 0 .. 2] == 45
 ~~~
 
-## 空の状態から使う
+## Starting from an empty grid
 
 ~~~nim
 var cs = initCumulativeSum2D[int](3, 3)
@@ -54,7 +54,7 @@ var cs2 = initCumulativeSum2D[int](W, H)
 cs.add(x, y, z)
 ~~~
 
-座標 `(x, y)` に `z` を加算します。`build()` の前に呼んでください。
+Adds `z` to cell `(x, y)`. Call it before `build()`.
 
 ### build
 
@@ -62,7 +62,7 @@ cs.add(x, y, z)
 cs.build()
 ~~~
 
-累積和を構築します。
+Builds the cumulative sum table.
 
 ### []
 
@@ -70,10 +70,10 @@ cs.build()
 cs[x1 .. x2, y1 .. y2]
 ~~~
 
-閉矩形 `[x1, x2] × [y1, y2]` の和を返します。
+Returns the sum of the closed rectangle `[x1, x2] × [y1, y2]`.
 
-## 計算量
+## Complexity
 
 - `add`: `O(1)`
 - `build`: `O(W H)`
-- 矩形和取得: `O(1)`
+- rectangle query: `O(1)`

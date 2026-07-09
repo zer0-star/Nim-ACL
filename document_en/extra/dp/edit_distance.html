@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -71,25 +71,24 @@
   </header>
   <main>
 <h1 id="edit-distance">Edit Distance</h1>
-<p><code>editDistance(S, T)</code> は、文字列 <code>S</code> を <code>T</code> に変換するための編集距離を求めます。</p>
-<p>許される操作は、1 文字の挿入・削除・置換です。</p>
-<h2 id="import">import</h2>
+<p><code>editDistance(S, T)</code> computes the edit distance between two strings.</p>
+<p>The allowed operations are insertion, deletion, and substitution of one character.</p>
+<h2 id="import">Import</h2>
 <pre><code class="language-nim">import atcoder/extra/dp/edit_distance
 </code></pre>
-<h2 id="_1">使用例</h2>
+<h2 id="example">Example</h2>
 <pre><code class="language-nim">import atcoder/extra/dp/edit_distance
 
 doAssert editDistance(&quot;kitten&quot;, &quot;sitting&quot;) == 3
 doAssert editDistance(&quot;abc&quot;, &quot;abc&quot;) == 0
 doAssert editDistance(&quot;abc&quot;, &quot;&quot;) == 3
 </code></pre>
-<h2 id="_2">計算量</h2>
-<p><code>S.len = n</code>, <code>T.len = m</code> とすると、</p>
+<h2 id="complexity">Complexity</h2>
+<p>Let <code>S.len = n</code> and <code>T.len = m</code>.</p>
 <ul>
-<li>時間計算量: <code>O(nm)</code></li>
-<li>メモリ: <code>O(m)</code></li>
+<li>Time: <code>O(nm)</code></li>
+<li>Memory: <code>O(m)</code></li>
 </ul>
-<p>です。</p>
   </main>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>largest_rectangle</title>
+  <title>Largest Rectangle</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -70,20 +70,24 @@
     </a>
   </header>
   <main>
-<h1 id="largest_rectangle">largest_rectangle</h1>
-<p>このページは自動生成された下書きです。</p>
-<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
+<h1 id="largest-rectangle">Largest Rectangle</h1>
+<p><code>largestRectangle(height)</code> は、histogram に含まれる最大長方形の面積を求めます。</p>
 <h2 id="import">import</h2>
-<pre><code>import atcoder/extra/dp/largest_rectangle
+<pre><code class="language-nim">import atcoder/extra/dp/largest_rectangle
 </code></pre>
-<h2 id="api">公開 API</h2>
-<p>このファイルから公開 API を自動抽出できませんでした。ソースを確認して追記してください。</p>
-<h2 id="_1">概要</h2>
-<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
-<h2 id="_2">使用例</h2>
-<p>TODO: 使用例を追加してください。</p>
-<h2 id="_3">注意</h2>
-<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+<h2 id="_1">使用例</h2>
+<pre><code class="language-nim">import atcoder/extra/dp/largest_rectangle
+
+let h = @[2, 1, 5, 6, 2, 3]
+
+doAssert largestRectangle(h) == 10
+</code></pre>
+<h2 id="_2">計算量</h2>
+<p><code>height.len = n</code> とすると、</p>
+<ul>
+<li><code>O(n)</code></li>
+</ul>
+<p>です。</p>
   </main>
 </body>
 </html>
