@@ -71,116 +71,55 @@
   </header>
   <main>
 <h1 id="partiallypersistentdsu">PartiallyPersistentDSU</h1>
-<p>部分永続 Union-Find です。</p>
-<p>時刻 <code>t</code> を指定して、その時点での連結成分の代表元、連結判定、連結成分サイズを取得できます。</p>
-<p><code>merge(t, x, y)</code> により時刻 <code>t</code> で辺を追加し、過去の時刻に対する <code>leader(t, x)</code>, <code>same(t, x, y)</code>, <code>size(t, x)</code> を問い合わせられます。</p>
+<p><code>PartiallyPersistentDSU</code> は、過去の時刻に対して連結判定・連結成分サイズ取得ができる Union-Find です。</p>
+<p>辺を追加する時刻 <code>t</code> を指定して <code>merge</code> し、任意の時刻 <code>t</code> における状態を query できます。</p>
 <h2 id="import">import</h2>
-<pre><code>import atcoder/extra/structure/partially_persistent_dsu
+<pre><code class="language-nim">import atcoder/extra/structure/partially_persistent_dsu
 </code></pre>
-<h2 id="_1">コンストラクタ</h2>
-<pre><code>var uf = initPartiallyPersistentDSU(n:int)
+<h2 id="_1">型</h2>
+<pre><code class="language-nim">type PartiallyPersistentDSU
 </code></pre>
-<p>長さ <code>n</code> の部分永続 Union-Find を作ります。</p>
-<p>初期状態では、各頂点はそれぞれ単独の連結成分です。</p>
-<h4 class="doc-keyword">制約</h4>
-
-<ul>
-<li><code>0 &lt;= n</code></li>
-</ul>
-<h4 class="doc-keyword">計算量</h4>
-
-<ul>
-<li>$O(n)$</li>
-</ul>
-<h2 id="merge">merge</h2>
-<pre><code>uf.merge(t:int, x:int, y:int):bool
+<h2 id="_2">コンストラクタ</h2>
+<pre><code class="language-nim">proc initPartiallyPersistentDSU(n: int): PartiallyPersistentDSU
 </code></pre>
-<p>時刻 <code>t</code> で <code>x</code> と <code>y</code> の属する集合を併合します。</p>
-<p>すでに同じ集合に属している場合は <code>false</code> を返します。異なる集合だった場合は併合して <code>true</code> を返します。</p>
-<p>時刻 <code>t</code> は merge 回数である必要はなく、任意の整数時刻を使えます。ただし、部分永続 Union-Find として履歴を一方向に追加するため、<code>merge</code> に渡す時刻は単調非減少である必要があります。</p>
-<h4 class="doc-keyword">制約</h4>
+<p><code>n</code> 頂点の部分永続 DSU を作ります。</p>
+<h2 id="_3">操作</h2>
+<pre><code class="language-nim">proc merge(uf: var PartiallyPersistentDSU, t, x, y: int): bool
 
-<ul>
-<li><code>0 &lt;= x &lt; n</code></li>
-<li><code>0 &lt;= y &lt; n</code></li>
-<li><code>merge</code> に渡す <code>t</code> は単調非減少</li>
-</ul>
-<h4 class="doc-keyword">計算量</h4>
-
-<ul>
-<li>$O(\log n)$ 程度</li>
-</ul>
-<h2 id="leader">leader</h2>
-<pre><code>uf.leader(t:int, x:int):int
+proc leader(uf: var PartiallyPersistentDSU, t, x: int): int
+proc same(uf: var PartiallyPersistentDSU, t, x, y: int): bool
+proc size(uf: var PartiallyPersistentDSU, t, x: int): int
 </code></pre>
-<p>時刻 <code>t</code> における <code>x</code> の代表元を返します。</p>
-<h4 class="doc-keyword">制約</h4>
-
 <ul>
-<li><code>0 &lt;= x &lt; n</code></li>
+<li><code>merge(t, x, y)</code> は時刻 <code>t</code> に <code>x</code> と <code>y</code> を併合します。</li>
+<li><code>leader(t, x)</code> は時刻 <code>t</code> における <code>x</code> の代表元を返します。</li>
+<li><code>same(t, x, y)</code> は時刻 <code>t</code> において <code>x</code>, <code>y</code> が同じ成分かを返します。</li>
+<li><code>size(t, x)</code> は時刻 <code>t</code> における <code>x</code> の連結成分サイズを返します。</li>
 </ul>
-<h4 class="doc-keyword">計算量</h4>
+<h2 id="_4">使用例</h2>
+<pre><code class="language-nim">var uf = initPartiallyPersistentDSU(4)
 
-<ul>
-<li>$O(\log n)$ 程度</li>
-</ul>
-<h2 id="same">same</h2>
-<pre><code>uf.same(t:int, x:int, y:int):bool
+discard uf.merge(1, 0, 1)
+discard uf.merge(3, 1, 2)
+
+doAssert uf.same(0, 0, 1) == false
+doAssert uf.same(1, 0, 1) == true
+doAssert uf.same(2, 0, 2) == false
+doAssert uf.same(3, 0, 2) == true
+
+doAssert uf.size(0, 0) == 1
+doAssert uf.size(1, 0) == 2
+doAssert uf.size(3, 0) == 3
 </code></pre>
-<p>時刻 <code>t</code> において <code>x</code> と <code>y</code> が同じ連結成分に属するかを返します。</p>
-<h4 class="doc-keyword">制約</h4>
-
+<h2 id="_5">制約</h2>
+<p><code>merge</code> に渡す時刻は、通常は単調増加にしてください。</p>
+<h2 id="_6">計算量</h2>
 <ul>
-<li><code>0 &lt;= x &lt; n</code></li>
-<li><code>0 &lt;= y &lt; n</code></li>
+<li><code>merge</code>: ほぼ <code>O(α(n))</code></li>
+<li><code>leader</code>, <code>same</code>: ほぼ <code>O(α(n))</code></li>
+<li><code>size</code>: <code>O(log n)</code></li>
 </ul>
-<h4 class="doc-keyword">計算量</h4>
-
-<ul>
-<li>$O(\log n)$ 程度</li>
-</ul>
-<h2 id="size">size</h2>
-<pre><code>uf.size(t:int, x:int):int
-</code></pre>
-<p>時刻 <code>t</code> における、<code>x</code> が属する連結成分の大きさを返します。</p>
-<h4 class="doc-keyword">制約</h4>
-
-<ul>
-<li><code>0 &lt;= x &lt; n</code></li>
-</ul>
-<h4 class="doc-keyword">計算量</h4>
-
-<ul>
-<li>$O(\log n)$</li>
-</ul>
-<h2 id="_2">使用例</h2>
-<pre><code>import atcoder/extra/structure/partially_persistent_dsu
-
-var uf = initPartiallyPersistentDSU(5)
-
-doAssert uf.size(-100, 0) == 1
-
-discard uf.merge(10, 0, 1)
-discard uf.merge(20, 1, 2)
-discard uf.merge(20, 3, 4)
-
-doAssert uf.same(10, 0, 1)
-doAssert uf.size(10, 0) == 2
-
-doAssert uf.same(20, 0, 2)
-doAssert uf.size(20, 2) == 3
-
-doAssert not uf.same(20, 0, 4)
-
-discard uf.merge(100, 2, 4)
-
-doAssert not uf.same(99, 0, 4)
-doAssert uf.same(100, 0, 4)
-doAssert uf.size(100, 0) == 5
-</code></pre>
-<h2 id="_3">注意</h2>
-<p>これは完全永続ではなく部分永続 Union-Find です。</p>
-<p>過去の状態に対して新しい分岐を作る用途には向きません。履歴を追加する <code>merge</code> は、時刻の単調非減少順に呼んでください。</p>
+<p>です。</p>
   </main>
 </body>
 </html>

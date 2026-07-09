@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -71,19 +71,19 @@
   </header>
   <main>
 <h1 id="succinctindexabledictionary">SuccinctIndexableDictionary</h1>
-<p><code>SuccinctIndexableDictionary</code> は、bit 列に対して rank query を高速に処理するための data structure です。</p>
-<p>Wavelet Matrix などの内部部品としてよく使われます。</p>
-<h2 id="import">import</h2>
+<p><code>SuccinctIndexableDictionary</code> is a data structure for fast rank queries on a bit vector.</p>
+<p>It is commonly used as an internal component of Wavelet Matrix.</p>
+<h2 id="import">Import</h2>
 <pre><code class="language-nim">import atcoder/extra/structure/succinct_indexable_dictionary
 </code></pre>
-<h2 id="_1">型</h2>
+<h2 id="type">Type</h2>
 <pre><code class="language-nim">type SuccinctIndexableDictionary
 </code></pre>
-<h2 id="_2">コンストラクタ</h2>
+<h2 id="constructor">Constructor</h2>
 <pre><code class="language-nim">proc initSuccinctIndexableDictionary(n: int): SuccinctIndexableDictionary
 </code></pre>
-<p>長さ <code>n</code> の bit 列を作ります。初期値はすべて <code>0</code> です。</p>
-<h2 id="_3">操作</h2>
+<p>Creates a length-<code>n</code> bit vector initialized with zeros.</p>
+<h2 id="operations">Operations</h2>
 <pre><code class="language-nim">proc set(sid: var SuccinctIndexableDictionary, k: int)
 proc build(sid: var SuccinctIndexableDictionary)
 
@@ -91,12 +91,12 @@ proc rank(sid: SuccinctIndexableDictionary, k: int): int
 proc rank(sid: SuccinctIndexableDictionary, bit: bool, k: int): int
 </code></pre>
 <ul>
-<li><code>set(k)</code> は位置 <code>k</code> の bit を <code>1</code> にします。</li>
-<li><code>build()</code> は rank 用の前処理をします。<code>set</code> をすべて呼んだあとに実行してください。</li>
-<li><code>rank(k)</code> は区間 <code>[0, k)</code> に含まれる <code>1</code> の個数を返します。</li>
-<li><code>rank(bit, k)</code> は区間 <code>[0, k)</code> に含まれる <code>bit</code> の個数を返します。</li>
+<li><code>set(k)</code> sets the bit at position <code>k</code> to <code>1</code>.</li>
+<li><code>build()</code> builds rank metadata. Call it after all <code>set</code> calls.</li>
+<li><code>rank(k)</code> returns the number of <code>1</code> bits in <code>[0, k)</code>.</li>
+<li><code>rank(bit, k)</code> returns the number of <code>bit</code> values in <code>[0, k)</code>.</li>
 </ul>
-<h2 id="_4">使用例</h2>
+<h2 id="example">Example</h2>
 <pre><code class="language-nim">var sid = initSuccinctIndexableDictionary(8)
 
 sid.set(1)
@@ -111,16 +111,15 @@ doAssert sid.rank(8) == 3
 doAssert sid.rank(true, 8) == 3
 doAssert sid.rank(false, 8) == 5
 </code></pre>
-<h2 id="_5">制約</h2>
-<p><code>build()</code> の後に <code>set()</code> を追加で呼ぶ用途は想定していません。<br>
-bit をすべて設定してから <code>build()</code> してください。</p>
-<h2 id="_6">計算量</h2>
+<h2 id="constraints">Constraints</h2>
+<p>Calling <code>set</code> after <code>build</code> is not intended.<br>
+Set all bits first, then call <code>build</code>.</p>
+<h2 id="complexity">Complexity</h2>
 <ul>
 <li><code>set</code>: <code>O(1)</code></li>
 <li><code>build</code>: <code>O(n / word_size)</code></li>
 <li><code>rank</code>: <code>O(1)</code></li>
 </ul>
-<p>です。</p>
   </main>
 </body>
 </html>

@@ -1,110 +1,71 @@
-
 # SuccinctIndexableDictionary
 
-Succinct Indexable Dictionary です。
-
-長さ `n` の bit 列に対して、各位置の bit を取得したり、先頭から `k` 個の範囲に含まれる `1` の個数を高速に数えたりできます。
+`SuccinctIndexableDictionary` は、bit 列に対して rank query を高速に処理するための data structure です。
 
 Wavelet Matrix などの内部部品としてよく使われます。
 
 ## import
 
-    import atcoder/extra/structure/succinct_indexable_dictionary
+~~~nim
+import atcoder/extra/structure/succinct_indexable_dictionary
+~~~
+
+## 型
+
+~~~nim
+type SuccinctIndexableDictionary
+~~~
 
 ## コンストラクタ
 
-    var sid = initSuccinctIndexableDictionary(n:int)
+~~~nim
+proc initSuccinctIndexableDictionary(n: int): SuccinctIndexableDictionary
+~~~
 
 長さ `n` の bit 列を作ります。初期値はすべて `0` です。
 
-@{keyword.constraints}
+## 操作
 
-- `0 <= n`
+~~~nim
+proc set(sid: var SuccinctIndexableDictionary, k: int)
+proc build(sid: var SuccinctIndexableDictionary)
 
-@{keyword.complexity}
+proc rank(sid: SuccinctIndexableDictionary, k: int): int
+proc rank(sid: SuccinctIndexableDictionary, bit: bool, k: int): int
+~~~
 
-- $O(n / 32)$
-
-## set
-
-    sid.set(k:int):void
-
-位置 `k` の bit を `1` にします。
-
-`build()` の前に呼び出してください。
-
-@{keyword.constraints}
-
-- `0 <= k < n`
-
-@{keyword.complexity}
-
-- $O(1)$
-
-## build
-
-    sid.build():void
-
-rank クエリに必要な累積個数を構築します。
-
-`set` をすべて終えたあとに一度呼び出してください。
-
-@{keyword.complexity}
-
-- $O(n / 32)$
-
-## get
-
-    sid[k]:bool
-
-位置 `k` の bit を返します。
-
-@{keyword.constraints}
-
-- `0 <= k < n`
-
-@{keyword.complexity}
-
-- $O(1)$
-
-## rank
-
-    sid.rank(k:int):int
-    sid.rank(val:bool, k:int):int
-
-`sid.rank(k)` は、半開区間 `0..<k` に含まれる `1` の個数を返します。
-
-`sid.rank(true, k)` は `1` の個数、`sid.rank(false, k)` は `0` の個数を返します。
-
-@{keyword.constraints}
-
-- `0 <= k <= n`
-
-@{keyword.complexity}
-
-- $O(1)$
+- `set(k)` は位置 `k` の bit を `1` にします。
+- `build()` は rank 用の前処理をします。`set` をすべて呼んだあとに実行してください。
+- `rank(k)` は区間 `[0, k)` に含まれる `1` の個数を返します。
+- `rank(bit, k)` は区間 `[0, k)` に含まれる `bit` の個数を返します。
 
 ## 使用例
 
-    import atcoder/extra/structure/succinct_indexable_dictionary
+~~~nim
+var sid = initSuccinctIndexableDictionary(8)
 
-    var sid = initSuccinctIndexableDictionary(70)
+sid.set(1)
+sid.set(3)
+sid.set(4)
+sid.build()
 
-    for k in [0, 1, 31, 32, 69]:
-      sid.set(k)
+doAssert sid.rank(0) == 0
+doAssert sid.rank(4) == 2
+doAssert sid.rank(8) == 3
 
-    sid.build()
+doAssert sid.rank(true, 8) == 3
+doAssert sid.rank(false, 8) == 5
+~~~
 
-    doAssert sid[0]
-    doAssert sid[31]
-    doAssert not sid[33]
+## 制約
 
-    doAssert sid.rank(70) == 5
-    doAssert sid.rank(true, 70) == 5
-    doAssert sid.rank(false, 70) == 65
+`build()` の後に `set()` を追加で呼ぶ用途は想定していません。  
+bit をすべて設定してから `build()` してください。
 
-## 注意
+## 計算量
 
-`set` のあとに `build()` を呼ばないと、`rank` の結果は正しくなりません。
+- `set`: `O(1)`
+- `build`: `O(n / word_size)`
+- `rank`: `O(1)`
 
-`rank(k)` は `0..<k` の個数を返す半開区間形式です。
+です。
