@@ -71,97 +71,54 @@
   </header>
   <main>
 <h1 id="radixheap">RadixHeap</h1>
-<p>整数キー用の Radix Heap です。</p>
-<p><code>key</code> が単調非減少に取り出される状況で使える優先度付きキューです。Dijkstra 法などで、辺重みが非負整数である場合に利用できます。</p>
-<p>通常のヒープと同様に <code>(key, value)</code> を追加し、最小の <code>key</code> を持つ要素を取り出します。</p>
+<p><code>RadixHeap</code> は、整数 key 用の優先度付き queue です。</p>
+<p><code>pop</code> で取り出される key が単調非減少になる状況で使えます。非負整数重み Dijkstra などに向いています。</p>
 <h2 id="import">import</h2>
-<pre><code>import atcoder/extra/structure/radix_heap
+<pre><code class="language-nim">import atcoder/extra/structure/radix_heap
 </code></pre>
-<h2 id="_1">コンストラクタ</h2>
-<pre><code>var heap = initRadixHeap[key_t, val_t]()
+<h2 id="_1">型</h2>
+<pre><code class="language-nim">type RadixHeap[key_t, val_t]
 </code></pre>
-<p>空の Radix Heap を作ります。</p>
-<p><code>key_t</code> は整数型、<code>val_t</code> は格納する値の型です。<code>key_t</code> は signed / unsigned の両方を想定しています。</p>
-<h4 class="doc-keyword">制約</h4>
-
-<ul>
-<li><code>key_t</code> は整数型</li>
-</ul>
-<h4 class="doc-keyword">計算量</h4>
-
-<ul>
-<li>$O(1)$</li>
-</ul>
-<h2 id="push">push</h2>
-<pre><code>heap.push(key:key_t, val:val_t):void
+<p><code>key_t</code> は整数型です。</p>
+<h2 id="_2">コンストラクタ</h2>
+<pre><code class="language-nim">proc initRadixHeap[key_t, val_t](): RadixHeap[key_t, val_t]
 </code></pre>
-<p><code>(key, val)</code> を追加します。</p>
-<p>Radix Heap の性質上、追加する <code>key</code> は、これまでに <code>pop</code> されたキーの最大値以上である必要があります。</p>
-<h4 class="doc-keyword">制約</h4>
+<p>空の Radix Heap を返します。</p>
+<h2 id="_3">操作</h2>
+<pre><code class="language-nim">proc empty[key_t, val_t](h: RadixHeap[key_t, val_t]): bool
+proc len[key_t, val_t](h: RadixHeap[key_t, val_t]): int
 
-<ul>
-<li><code>key &gt;= last</code></li>
-<li><code>last</code> はこれまでに取り出されたキーの最大値</li>
-</ul>
-<h4 class="doc-keyword">計算量</h4>
-
-<ul>
-<li>ならし $O(1)$</li>
-</ul>
-<h2 id="pop">pop</h2>
-<pre><code>heap.pop():(key_t, val_t)
+proc push[key_t, val_t](h: var RadixHeap[key_t, val_t], key: key_t, val: val_t)
+proc pop[key_t, val_t](h: var RadixHeap[key_t, val_t]): (key_t, val_t)
 </code></pre>
-<p>最小の <code>key</code> を持つ要素を取り出します。</p>
-<h4 class="doc-keyword">制約</h4>
-
 <ul>
-<li><code>heap</code> は空でない</li>
+<li><code>push(h, key, val)</code> は <code>(key, val)</code> を追加します。</li>
+<li><code>pop(h)</code> は最小 key の要素を返して削除します。</li>
 </ul>
-<h4 class="doc-keyword">計算量</h4>
+<h2 id="_4">使用例</h2>
+<pre><code class="language-nim">var h = initRadixHeap[int, string]()
 
-<ul>
-<li>ならし $O(\log C)$</li>
-<li><code>C</code> はキーの値域</li>
-</ul>
-<h2 id="empty">empty</h2>
-<pre><code>heap.empty():bool
+h.push(0, &quot;zero&quot;)
+h.push(3, &quot;three&quot;)
+h.push(5, &quot;five&quot;)
+
+doAssert h.len == 3
+
+let (k, v) = h.pop()
+
+doAssert k == 0
+doAssert v == &quot;zero&quot;
 </code></pre>
-<p>空かどうかを返します。</p>
-<h4 class="doc-keyword">計算量</h4>
-
+<h2 id="_5">制約</h2>
+<p><code>push</code> する key は、最後に <code>pop</code> した key 以上である必要があります。<br>
+この条件を満たさない一般の priority queue としては使えません。</p>
+<h2 id="_6">計算量</h2>
+<p>key の bit 幅を <code>B</code> とすると、おおよそ</p>
 <ul>
-<li>$O(1)$</li>
+<li><code>push</code>: 償却 <code>O(1)</code></li>
+<li><code>pop</code>: 償却 <code>O(B)</code></li>
 </ul>
-<h2 id="len">len</h2>
-<pre><code>heap.len():int
-</code></pre>
-<p>要素数を返します。</p>
-<h4 class="doc-keyword">計算量</h4>
-
-<ul>
-<li>$O(1)$</li>
-</ul>
-<h2 id="_2">使用例</h2>
-<pre><code>import atcoder/extra/structure/radix_heap
-
-var heap = initRadixHeap[int, string]()
-
-heap.push(-5, "a")
-heap.push(-2, "b")
-heap.push(0, "c")
-
-doAssert heap.pop() == (-5, "a")
-
-heap.push(-4, "d")
-
-doAssert heap.pop() == (-4, "d")
-doAssert heap.pop() == (-2, "b")
-doAssert heap.pop() == (0, "c")
-doAssert heap.empty()
-</code></pre>
-<h2 id="_3">注意</h2>
-<p><code>push</code> するキーは、最後に <code>pop</code> されたキー以上である必要があります。</p>
-<p>この条件を満たさない場合は Radix Heap の前提が壊れます。一般の優先度付きキューとして使いたい場合は通常の heap を使ってください。</p>
+<p>です。</p>
   </main>
 </body>
 </html>

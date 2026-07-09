@@ -1,32 +1,32 @@
 # WeightedUnionFind
 
-`WeightedUnionFind` は、各頂点に potential を持たせる Union-Find です。
+`WeightedUnionFind` is a Union-Find data structure with potentials.
 
-同じ連結成分内の 2 頂点 `x`, `y` について、`weight(y) - weight(x)` を高速に取得できます。
+For two vertices `x` and `y` in the same connected component, it can compute `weight(y) - weight(x)`.
 
-## import
+## Import
 
 ~~~nim
 import atcoder/extra/structure/weighted_union_find
 ~~~
 
-## 型
+## Type
 
 ~~~nim
 type WeightedUnionFind[T]
 ~~~
 
-`T` は potential の差を表す型です。通常は `int` などを使います。
+`T` is the type of potential differences, usually `int`.
 
-## コンストラクタ
+## Constructor
 
 ~~~nim
 proc initWeightedUnionFind[T](n: int): WeightedUnionFind[T]
 ~~~
 
-`n` 頂点の Weighted Union-Find を作ります。初期状態ではすべての頂点が別々の成分で、potential は `0` です。
+Creates a Weighted Union-Find with `n` vertices. Initially, every vertex is isolated and has potential `0`.
 
-## 操作
+## Operations
 
 ~~~nim
 proc root[T](uf: var WeightedUnionFind[T], x: int): int
@@ -40,15 +40,15 @@ proc diff[T](uf: var WeightedUnionFind[T], x, y: int): T
 proc groups[T](uf: var WeightedUnionFind[T]): seq[seq[int]]
 ~~~
 
-`unionSet(uf, x, y, w)` は次の制約を追加しながら成分を併合します。
+`unionSet(uf, x, y, w)` merges components while adding the following constraint:
 
 ~~~text
 weight(y) - weight(x) = w
 ~~~
 
-`diff(uf, x, y)` は `weight(y) - weight(x)` を返します。
+`diff(uf, x, y)` returns `weight(y) - weight(x)`.
 
-## 使用例
+## Example
 
 ~~~nim
 var uf = initWeightedUnionFind[int](4)
@@ -62,6 +62,6 @@ doAssert uf.diff(2, 0) == -5
 doAssert uf.size(0) == 3
 ~~~
 
-## 計算量
+## Complexity
 
-ほぼ Union-Find と同じで、各操作は償却 `O(α(n))` です。
+The amortized time complexity is `O(α(n))`, like ordinary Union-Find.
