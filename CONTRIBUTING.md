@@ -77,7 +77,7 @@ When adding a new facade or user-facing helper, prefer the following sequence:
 
 ## Generated binaries
 
-Local Nim test runs may generate executable files next to test files. Verification scripts remove the known generated test binaries automatically. Do not commit generated binaries.
+Local Nim test runs may generate executable files next to test files and may also create `.nim_runtime/` or `nimcache/`. Verification scripts remove the known generated test artifacts automatically. Do not commit generated binaries or generated runtime directories.
 
 ## Warning policy
 

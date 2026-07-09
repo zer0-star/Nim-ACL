@@ -3,3 +3,7 @@ src/.verify-helper/cache/*
 src/lib
 *.swp
 *.DS_Store
+
+# Nim generated runtime artifacts
+.nim_runtime/
+nimcache/

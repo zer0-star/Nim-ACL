@@ -41,10 +41,11 @@ STEP=init
     nim cpp -r "$t"
   done
 
-  STEP="cleanup test binaries"
+  STEP="cleanup generated test artifacts"
   for t in "${tests[@]}"; do
     rm -f "${t%.nim}"
   done
+  rm -rf .nim_runtime nimcache
 
   STEP="generate docs"
   if [ -x .venv-docs/bin/python ]; then
@@ -76,6 +77,9 @@ STEP=init
       false
     fi
   fi
+
+  STEP="cleanup generated files after docs"
+  rm -rf .nim_runtime nimcache
 
   STEP="final clean"
   if [ -n "$(git status --porcelain)" ]; then
