@@ -21,6 +21,7 @@ STEP=init
     tests/test_extra_monoid.nim
     tests/test_extra_graph_template.nim
     tests/test_extra_graph_template_directed_undirected.nim
+    tests/test_extra_static_graph.nim
     tests/test_extra_graph_shortest_paths.nim
     tests/test_extra_graph_structural.nim
     tests/test_extra_universal_segtree.nim
