@@ -1,10 +1,10 @@
 # Geometry Template
 
+`geometry_template` provides basic types and functions for two-dimensional geometry.
+
+It supports points, lines, segments, circles, cross products, dot products, ccw classification, intersection tests, distances, and intersection points.
+
 For new code, you can also use the readable facade [`atcoder/extra/geometry/geometry`](./geometry.html).
-
-`geometry_template` provides basic types and operations for two-dimensional computational geometry.
-
-It includes points, lines, segments, circles, cross products, dot products, ccw classification, intersections, distances, and cross points.
 
 ## Import
 
@@ -12,34 +12,105 @@ It includes points, lines, segments, circles, cross products, dot products, ccw 
 import atcoder/extra/geometry/geometry_template
 ~~~
 
+## Types
+
+~~~nim
+type Point[Real]
+type Line[Real]
+type Segment[Real]
+type Circle[Real]
+~~~
+
+`Real` is usually a floating-point type such as `float`.
+
 ## Point
 
-A point is represented as `Point[Real]`. Use `initPoint[Real](x, y)` to create one.
+### Definition
 
 ~~~nim
-import atcoder/extra/geometry/geometry_template
-
-let
-  a = initPoint[float](0.0, 0.0)
-  b = initPoint[float](3.0, 4.0)
-
-doAssert distance(a, b) == 5.0
-doAssert dot(b, b) == 25.0
+proc initPoint[Real](x, y: Real): Point[Real]
 ~~~
 
-Main operations:
-
-~~~nim
-cross(a, b)      # cross product
-dot(a, b)        # dot product
-norm(a)          # dot(a, a)
-distance(a, b)   # distance between two points
-rotate(theta, p) # rotate p counterclockwise by theta radians
-~~~
+Returns the point `(x, y)`.
 
 ## Line / Segment
 
-A line is `Line[Real]`, and a segment is `Segment[Real]`.
+### Definition
+
+~~~nim
+proc initLine[Real](a, b: Point[Real]): Line[Real]
+proc initLine[Real](A, B, C: Real): Line[Real]
+proc initSegment[Real](a, b: Point[Real]): Segment[Real]
+~~~
+
+The shorthand operators are also available:
+
+~~~nim
+proc `--`[Real](a, b: Point[Real]): Line[Real]
+proc `!!`[Real](a, b: Point[Real]): Segment[Real]
+~~~
+
+## Circle
+
+### Definition
+
+~~~nim
+proc initCircle[Real](p: Point[Real], r: Real): Circle[Real]
+proc initCircle[Real](a, b, c: Point[Real]): Circle[Real]
+~~~
+
+## Basic operations
+
+### Definition
+
+~~~nim
+proc cross[Real](a, b: Point[Real]): Real
+proc dot[Real](a, b: Point[Real]): Real
+proc norm[Real](a: Point[Real]): Real
+proc distance[Real](a, b: Point[Real]): Real
+proc rotate[Real](theta: Real, p: Point[Real]): Point[Real]
+proc radianToDegree[Real](r: Real): Real
+proc degreeToRadian[Real](d: Real): Real
+~~~
+
+## ccw
+
+### Definition
+
+~~~nim
+type CCWState = enum
+  ONLINE_FRONT
+  CLOCKWISE
+  ON_SEGMENT
+  COUNTER_CLOCKWISE
+  ONLINE_BACK
+
+proc ccw[Real](a, b, c: Point[Real]): CCWState
+~~~
+
+## Intersections, distances, and cross points
+
+### Definition
+
+~~~nim
+proc parallel[Real](a, b: Line[Real]): bool
+proc orthogonal[Real](a, b: Line[Real]): bool
+
+proc intersect[Real](a, b: Line[Real]): bool
+proc intersect[Real](a, b: Segment[Real]): bool
+proc intersect[Real](a, b: Circle[Real]): int
+
+proc distance[Real](l: Line[Real], p: Point[Real]): Real
+proc distance[Real](s: Segment[Real], p: Point[Real]): Real
+proc distance[Real](a, b: Segment[Real]): Real
+
+proc crosspoint[Real](a, b: Line[Real]): Point[Real]
+proc crosspoint[Real](a, b: Segment[Real]): Point[Real]
+proc crosspoint[Real](c: Circle[Real], l: Line[Real]): tuple
+proc crosspoint[Real](c1, c2: Circle[Real]): (Point[Real], Point[Real])
+~~~
+
+## Example
 
 ~~~nim
 let
@@ -51,11 +122,8 @@ let
 let
   l1 = initLine(a, b)
   l2 = initLine(c, d)
-  s1 = initSegment(a, b)
-  s2 = initSegment(c, d)
 
 doAssert intersect(l1, l2)
-doAssert intersect(s1, s2)
 
 let p = crosspoint(l1, l2)
 
@@ -63,49 +131,11 @@ doAssert p.re == 1.0
 doAssert p.im == 1.0
 ~~~
 
-## ccw
+## Complexity
 
-`ccw(a, b, c)` classifies the relation of the three points `a -> b -> c`.
-
-~~~nim
-let
-  a = initPoint[float](0.0, 0.0)
-  b = initPoint[float](2.0, 0.0)
-  c = initPoint[float](1.0, 1.0)
-
-doAssert ccw(a, b, c) == CCWState.COUNTER_CLOCKWISE
-~~~
-
-The result is one of:
-
-- `COUNTER_CLOCKWISE`
-- `CLOCKWISE`
-- `ON_SEGMENT`
-- `ONLINE_FRONT`
-- `ONLINE_BACK`
-
-## Parallel, orthogonal, and distance
-
-~~~nim
-parallel(l1, l2)
-orthogonal(l1, l2)
-distance(line, point)
-distance(segment, point)
-distance(segment1, segment2)
-~~~
-
-## Circle
-
-A circle is represented as `Circle[Real]`.
-
-~~~nim
-let
-  p = initPoint[float](0.0, 0.0)
-  c = initCircle(p, 2.0)
-~~~
+Basic operations are constant time.
 
 ## Notes
 
-- Floating-point comparisons use tolerant comparisons from `floatutils`.
-- This is a competitive-programming geometry template, not an exact arithmetic geometry package.
-- `Point[Real]` is internally a complex-like type. In user code, prefer creating points with `initPoint` and using geometry APIs.
+- Floating-point comparisons use tolerant comparisons.
+- This is a practical competitive-programming geometry template, not an exact geometry package.

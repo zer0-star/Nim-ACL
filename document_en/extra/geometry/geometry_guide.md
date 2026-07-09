@@ -8,64 +8,48 @@ For new code, start with:
 import atcoder/extra/geometry/geometry
 ~~~
 
-This module re-exports basic geometry, polygon, triangle, tangent, and closest-pair utilities, and adds readable constructors and aliases.
+## Basic types
 
-## Recommended style
-
-### Points
+### Definition
 
 ~~~nim
-let
-  a = point(0.0, 0.0)
-  b = point(3.0, 4.0)
-
-doAssert dist(a, b) == 5.0
+type Point[Real]
+type Line[Real]
+type Segment[Real]
+type Circle[Real]
+type Polygon[Real] = seq[Point[Real]]
 ~~~
 
-The traditional style is still available:
+The facade module also provides aliases:
 
 ~~~nim
-let a = initPoint[float](0.0, 0.0)
+type Point2[Real] = Point[Real]
+type Line2[Real] = Line[Real]
+type Segment2[Real] = Segment[Real]
+type Circle2[Real] = Circle[Real]
+type Polygon2[Real] = Polygon[Real]
 ~~~
 
-### Lines and segments
+## Recommended constructors
+
+### Definition
 
 ~~~nim
-let
-  a = point(0.0, 0.0)
-  b = point(2.0, 2.0)
-  c = point(0.0, 2.0)
-  d = point(2.0, 0.0)
-
-let
-  l1 = line(a, b)
-  l2 = line(c, d)
-  s1 = segment(a, b)
-  s2 = segment(c, d)
-
-doAssert intersects(l1, l2)
-doAssert intersects(s1, s2)
-
-let p = intersection(l1, l2)
+proc point[Real](x, y: Real): Point[Real]
+proc line[Real](a, b: Point[Real]): Line[Real]
+proc segment[Real](a, b: Point[Real]): Segment[Real]
+proc circle[Real](center: Point[Real], radius: Real): Circle[Real]
 ~~~
 
-The older shorthand remains available:
+## Original constructors
+
+### Definition
 
 ~~~nim
-let l = a -- b
-let s = a !! b
-~~~
-
-### Circles
-
-~~~nim
-let c = circle(point(0.0, 0.0), 2.0)
-~~~
-
-You can also construct the circle through three points:
-
-~~~nim
-let c = circle(a, b, c)
+proc initPoint[Real](x, y: Real): Point[Real]
+proc initLine[Real](a, b: Point[Real]): Line[Real]
+proc initSegment[Real](a, b: Point[Real]): Segment[Real]
+proc initCircle[Real](center: Point[Real], radius: Real): Circle[Real]
 ~~~
 
 ## Name mapping
@@ -80,75 +64,47 @@ let c = circle(a, b, c)
 | `intersects(a, b)` | `intersect(a, b)` | intersection predicate |
 | `intersection(a, b)` | `crosspoint(a, b)` | intersection point |
 
-## Common operations
+## Basic operations
 
-### Cross product and dot product
-
-~~~nim
-cross(a, b)
-dot(a, b)
-norm(a)
-~~~
-
-### ccw
+### Definition
 
 ~~~nim
-ccw(a, b, c)
+proc cross[Real](a, b: Point[Real]): Real
+proc dot[Real](a, b: Point[Real]): Real
+proc norm[Real](a: Point[Real]): Real
+proc ccw[Real](a, b, c: Point[Real]): CCWState
 ~~~
 
-The result is one of:
+## polygon
 
-- `COUNTER_CLOCKWISE`
-- `CLOCKWISE`
-- `ON_SEGMENT`
-- `ONLINE_FRONT`
-- `ONLINE_BACK`
-
-### polygon
+### Definition
 
 ~~~nim
-let h = convexHull(points)
-let s = area(poly)
-let state = contains(poly, p)
-let ok = isConvex(poly)
+proc convexHull[Real](p: Polygon[Real], strict = false): Polygon[Real]
+proc area[Real](p: Polygon[Real]): Real
+proc contains[Real](p: Polygon[Real], q: Point[Real]): State
+proc isConvex[Real](p: Polygon[Real]): bool
+proc convex_diameter[Real](p: Polygon[Real]): Real
 ~~~
 
-### triangle
+## triangle
+
+### Definition
 
 ~~~nim
-let g = centroid(a, b, c)
-let ic = incenter(a, b, c)
-let cc = circumcenter(a, b, c)
-let oc = orthocenter(a, b, c)
+proc centroid[Real](a, b, c: Point[Real]): Point[Real]
+proc incenter[Real](a, b, c: Point[Real]): Point[Real]
+proc circumcenter[Real](a, b, c: Point[Real]): Point[Real]
+proc orthocenter[Real](a, b, c: Point[Real]): Point[Real]
+proc incircle[Real](a, b, c: Point[Real]): Circle[Real]
+proc circumcircle[Real](a, b, c: Point[Real]): Circle[Real]
 ~~~
 
-### tangent
+## tangent
+
+### Definition
 
 ~~~nim
-let (u, v) = tangent(circle, point)
-let lines = tangent(circle1, circle2)
+proc tangent[Real](c: Circle[Real], p: Point[Real]): (Point[Real], Point[Real])
+proc tangent[Real](c1, c2: Circle[Real]): seq[Line[Real]]
 ~~~
-
-## Choosing imports
-
-Usually this is enough:
-
-~~~nim
-import atcoder/extra/geometry/geometry
-~~~
-
-If you want to import only a specific module, the traditional imports are still available:
-
-~~~nim
-import atcoder/extra/geometry/geometry_template
-import atcoder/extra/geometry/polygon
-import atcoder/extra/geometry/triangle
-import atcoder/extra/geometry/tangent
-import atcoder/extra/geometry/closest_pair
-~~~
-
-## Notes
-
-- Geometry code is affected by floating-point error.
-- This is a practical competitive-programming geometry library, not an exact geometry package.
-- Existing shorthand APIs remain for compatibility; the facade adds readability.

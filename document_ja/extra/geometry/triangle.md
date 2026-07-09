@@ -11,12 +11,26 @@ import atcoder/extra/geometry/geometry_template
 import atcoder/extra/geometry/triangle
 ~~~
 
+## 定義
+
+~~~nim
+proc centroid[Real](a, b, c: Point[Real]): Point[Real]
+
+proc incircle[Real](a, b, c: Point[Real]): Circle[Real]
+proc incenter[Real](a, b, c: Point[Real]): Point[Real]
+
+proc excircle[Real](a, b, c: Point[Real]): array[3, Circle[Real]]
+proc excenter[Real](a, b, c: Point[Real]): array[3, Point[Real]]
+
+proc circumcircle[Real](a, b, c: Point[Real]): Circle[Real]
+proc circumcenter[Real](a, b, c: Point[Real]): Point[Real]
+
+proc orthocenter[Real](a, b, c: Point[Real]): Point[Real]
+~~~
+
 ## 使用例
 
 ~~~nim
-import atcoder/extra/geometry/geometry_template
-import atcoder/extra/geometry/triangle
-
 let
   a = initPoint[float](0.0, 0.0)
   b = initPoint[float](4.0, 0.0)
@@ -38,52 +52,11 @@ doAssert cc.p.im == 1.5
 doAssert cc.r == 2.5
 ~~~
 
-## API
+## 制約
 
-### centroid
-
-~~~nim
-centroid(a, b, c)
-~~~
-
-三角形の重心を返します。
-
-### incircle / incenter
-
-~~~nim
-incircle(a, b, c)
-incenter(a, b, c)
-~~~
-
-内接円、または内心を返します。
-
-### excircle / excenter
-
-~~~nim
-excircle(a, b, c)
-excenter(a, b, c)
-~~~
-
-3つの傍接円、または3つの傍心を返します。
-
-### circumcircle / circumcenter
-
-~~~nim
-circumcircle(a, b, c)
-circumcenter(a, b, c)
-~~~
-
-外接円、または外心を返します。
-
-### orthocenter
-
-~~~nim
-orthocenter(a, b, c)
-~~~
-
-垂心を返します。
-
-## 注意
-
-- 入力の3点は非退化な三角形を仮定します。
+- 入力の 3 点は非退化な三角形を仮定します。
 - 浮動小数点型では誤差が発生します。
+
+## 計算量
+
+各関数は定数時間です。

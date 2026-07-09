@@ -71,16 +71,62 @@
   </header>
   <main>
 <h1 id="geometry">Geometry</h1>
-<p>詳しい使い方の流れは <a href="./geometry_guide.html">Geometry Guide</a> も参照してください。</p>
 <p><code>atcoder/extra/geometry/geometry</code> は、二次元幾何 library を使いやすくするための facade module です。</p>
+<p>詳しい使い方の流れは <a href="./geometry_guide.html">Geometry Guide</a> も参照してください。</p>
 <p>既存の <code>geometry_template</code>, <code>polygon</code>, <code>closest_pair</code>, <code>triangle</code>, <code>tangent</code> を re-export しつつ、読みやすい constructor / alias を追加します。</p>
 <h2 id="import">import</h2>
 <pre><code class="language-nim">import atcoder/extra/geometry/geometry
 </code></pre>
-<h2 id="_1">基本例</h2>
-<pre><code class="language-nim">import atcoder/extra/geometry/geometry
+<h2 id="re-export">Re-export</h2>
+<p>この module は次を re-export します。</p>
+<pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
+import atcoder/extra/geometry/closest_pair
+import atcoder/extra/geometry/polygon
+import atcoder/extra/geometry/triangle
+import atcoder/extra/geometry/tangent
+</code></pre>
+<h2 id="alias">型 alias</h2>
+<h3 id="_1">定義</h3>
+<pre><code class="language-nim">type Point2[Real] = Point[Real]
+type Line2[Real] = Line[Real]
+type Segment2[Real] = Segment[Real]
+type Circle2[Real] = Circle[Real]
+type Polygon2[Real] = Polygon[Real]
+</code></pre>
+<p>既存型の読みやすい別名です。</p>
+<h2 id="friendly-constructors">Friendly constructors</h2>
+<h3 id="_2">定義</h3>
+<pre><code class="language-nim">proc point[Real](x, y: Real): Point[Real]
 
-let
+proc line[Real](a, b: Point[Real]): Line[Real]
+proc line[Real](A, B, C: Real): Line[Real]
+
+proc segment[Real](a, b: Point[Real]): Segment[Real]
+
+proc circle[Real](center: Point[Real], radius: Real): Circle[Real]
+proc circle[Real](a, b, c: Point[Real]): Circle[Real]
+</code></pre>
+<p>既存の <code>initPoint</code>, <code>initLine</code>, <code>initSegment</code>, <code>initCircle</code> の読みやすい別名です。</p>
+<h2 id="friendly-operations">Friendly operations</h2>
+<h3 id="_3">定義</h3>
+<pre><code class="language-nim">proc dist[Real](a, b: Point[Real]): Real
+proc dist[Real](l: Line[Real], p: Point[Real]): Real
+proc dist[Real](s: Segment[Real], p: Point[Real]): Real
+proc dist[Real](a, b: Segment[Real]): Real
+
+proc intersects[Real](a, b: Line[Real]): bool
+proc intersects[Real](a, b: Segment[Real]): bool
+
+proc intersection[Real](a, b: Line[Real]): Point[Real]
+proc intersection[Real](a, b: Segment[Real]): Point[Real]
+</code></pre>
+<ul>
+<li><code>dist</code> は <code>distance</code> の別名です。</li>
+<li><code>intersects</code> は <code>intersect</code> の別名です。</li>
+<li><code>intersection</code> は <code>crosspoint</code> の別名です。</li>
+</ul>
+<h2 id="_4">使用例</h2>
+<pre><code class="language-nim">let
   a = point(0.0, 0.0)
   b = point(2.0, 2.0)
   c = point(0.0, 2.0)
@@ -100,53 +146,9 @@ let p = intersection(l1, l2)
 doAssert p.re == 1.0
 doAssert p.im == 1.0
 </code></pre>
-<h2 id="friendly-constructors">Friendly constructors</h2>
-<p>既存の <code>initPoint</code>, <code>initLine</code>, <code>initSegment</code>, <code>initCircle</code> に加えて、短く読みやすい名前を使えます。</p>
-<pre><code class="language-nim">let p = point(1.0, 2.0)
-let l = line(point(0.0, 0.0), point(1.0, 1.0))
-let s = segment(point(0.0, 0.0), point(1.0, 1.0))
-let c = circle(point(0.0, 0.0), 2.0)
-</code></pre>
-<h2 id="friendly-aliases">Friendly aliases</h2>
-<p>型 alias も用意しています。</p>
-<pre><code class="language-nim">Point2[float]
-Line2[float]
-Segment2[float]
-Circle2[float]
-Polygon2[float]
-</code></pre>
-<p>これらは既存型の別名です。</p>
-<h2 id="friendly-operations">Friendly operations</h2>
-<pre><code class="language-nim">dist(a, b)
-intersects(a, b)
-intersection(a, b)
-</code></pre>
-<ul>
-<li><code>dist</code>: 距離</li>
-<li><code>intersects</code>: 交差判定</li>
-<li><code>intersection</code>: 交点</li>
-</ul>
-<p>既存の <code>distance</code>, <code>intersect</code>, <code>crosspoint</code> もそのまま使えます。</p>
-<h2 id="re-export">Re-export</h2>
-<p>この module は次を re-export します。</p>
-<pre><code class="language-nim">atcoder/extra/geometry/geometry_template
-atcoder/extra/geometry/closest_pair
-atcoder/extra/geometry/polygon
-atcoder/extra/geometry/triangle
-atcoder/extra/geometry/tangent
-</code></pre>
-<p>そのため、次のような関数もこの import だけで使えます。</p>
-<pre><code class="language-nim">closest_pair(points)
-convexHull(points)
-area(poly)
-contains(poly, p)
-centroid(a, b, c)
-incenter(a, b, c)
-tangent(circle, point)
-</code></pre>
-<h2 id="_2">方針</h2>
-<p>既存 API は壊さず、読みやすい別名を足しています。<br>
-既存の <code>a -- b</code> や <code>a !! b</code> などの競プロ向け短縮表記も引き続き利用できます。</p>
+<h2 id="_5">方針</h2>
+<p>既存 API は壊さず、読みやすい別名を追加しています。<br>
+既存の <code>a -- b</code> や <code>a !! b</code> などの競技プログラミング向け短縮表記も引き続き利用できます。</p>
   </main>
 </body>
 </html>

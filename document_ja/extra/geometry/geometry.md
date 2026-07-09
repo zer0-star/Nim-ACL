@@ -1,8 +1,8 @@
 # Geometry
 
-詳しい使い方の流れは [Geometry Guide](./geometry_guide.html) も参照してください。
-
 `atcoder/extra/geometry/geometry` は、二次元幾何 library を使いやすくするための facade module です。
+
+詳しい使い方の流れは [Geometry Guide](./geometry_guide.html) も参照してください。
 
 既存の `geometry_template`, `polygon`, `closest_pair`, `triangle`, `tangent` を re-export しつつ、読みやすい constructor / alias を追加します。
 
@@ -12,11 +12,74 @@
 import atcoder/extra/geometry/geometry
 ~~~
 
-## 基本例
+## Re-export
+
+この module は次を re-export します。
 
 ~~~nim
-import atcoder/extra/geometry/geometry
+import atcoder/extra/geometry/geometry_template
+import atcoder/extra/geometry/closest_pair
+import atcoder/extra/geometry/polygon
+import atcoder/extra/geometry/triangle
+import atcoder/extra/geometry/tangent
+~~~
 
+## 型 alias
+
+### 定義
+
+~~~nim
+type Point2[Real] = Point[Real]
+type Line2[Real] = Line[Real]
+type Segment2[Real] = Segment[Real]
+type Circle2[Real] = Circle[Real]
+type Polygon2[Real] = Polygon[Real]
+~~~
+
+既存型の読みやすい別名です。
+
+## Friendly constructors
+
+### 定義
+
+~~~nim
+proc point[Real](x, y: Real): Point[Real]
+
+proc line[Real](a, b: Point[Real]): Line[Real]
+proc line[Real](A, B, C: Real): Line[Real]
+
+proc segment[Real](a, b: Point[Real]): Segment[Real]
+
+proc circle[Real](center: Point[Real], radius: Real): Circle[Real]
+proc circle[Real](a, b, c: Point[Real]): Circle[Real]
+~~~
+
+既存の `initPoint`, `initLine`, `initSegment`, `initCircle` の読みやすい別名です。
+
+## Friendly operations
+
+### 定義
+
+~~~nim
+proc dist[Real](a, b: Point[Real]): Real
+proc dist[Real](l: Line[Real], p: Point[Real]): Real
+proc dist[Real](s: Segment[Real], p: Point[Real]): Real
+proc dist[Real](a, b: Segment[Real]): Real
+
+proc intersects[Real](a, b: Line[Real]): bool
+proc intersects[Real](a, b: Segment[Real]): bool
+
+proc intersection[Real](a, b: Line[Real]): Point[Real]
+proc intersection[Real](a, b: Segment[Real]): Point[Real]
+~~~
+
+- `dist` は `distance` の別名です。
+- `intersects` は `intersect` の別名です。
+- `intersection` は `crosspoint` の別名です。
+
+## 使用例
+
+~~~nim
 let
   a = point(0.0, 0.0)
   b = point(2.0, 2.0)
@@ -38,70 +101,7 @@ doAssert p.re == 1.0
 doAssert p.im == 1.0
 ~~~
 
-## Friendly constructors
-
-既存の `initPoint`, `initLine`, `initSegment`, `initCircle` に加えて、短く読みやすい名前を使えます。
-
-~~~nim
-let p = point(1.0, 2.0)
-let l = line(point(0.0, 0.0), point(1.0, 1.0))
-let s = segment(point(0.0, 0.0), point(1.0, 1.0))
-let c = circle(point(0.0, 0.0), 2.0)
-~~~
-
-## Friendly aliases
-
-型 alias も用意しています。
-
-~~~nim
-Point2[float]
-Line2[float]
-Segment2[float]
-Circle2[float]
-Polygon2[float]
-~~~
-
-これらは既存型の別名です。
-
-## Friendly operations
-
-~~~nim
-dist(a, b)
-intersects(a, b)
-intersection(a, b)
-~~~
-
-- `dist`: 距離
-- `intersects`: 交差判定
-- `intersection`: 交点
-
-既存の `distance`, `intersect`, `crosspoint` もそのまま使えます。
-
-## Re-export
-
-この module は次を re-export します。
-
-~~~nim
-atcoder/extra/geometry/geometry_template
-atcoder/extra/geometry/closest_pair
-atcoder/extra/geometry/polygon
-atcoder/extra/geometry/triangle
-atcoder/extra/geometry/tangent
-~~~
-
-そのため、次のような関数もこの import だけで使えます。
-
-~~~nim
-closest_pair(points)
-convexHull(points)
-area(poly)
-contains(poly, p)
-centroid(a, b, c)
-incenter(a, b, c)
-tangent(circle, point)
-~~~
-
 ## 方針
 
-既存 API は壊さず、読みやすい別名を足しています。  
-既存の `a -- b` や `a !! b` などの競プロ向け短縮表記も引き続き利用できます。
+既存 API は壊さず、読みやすい別名を追加しています。  
+既存の `a -- b` や `a !! b` などの競技プログラミング向け短縮表記も引き続き利用できます。

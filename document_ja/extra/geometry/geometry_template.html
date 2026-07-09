@@ -71,32 +71,99 @@
   </header>
   <main>
 <h1 id="geometry-template">Geometry Template</h1>
+<p><code>geometry_template</code> は、二次元幾何で使う基本型と基本関数を提供します。</p>
+<p>点、直線、線分、円、外積・内積、ccw、交差判定、距離、交点などを扱えます。</p>
 <p>新しく書くコードでは、読みやすい facade の <a href="./geometry.html"><code>atcoder/extra/geometry/geometry</code></a> も利用できます。</p>
-<p><code>geometry_template</code> は、二次元幾何でよく使う基本型と基本操作をまとめた module です。</p>
-<p>点、直線、線分、円、外積・内積、ccw、交差判定、距離、交点などを提供します。</p>
 <h2 id="import">import</h2>
 <pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
 </code></pre>
-<h2 id="point">Point</h2>
-<p>点は <code>Point[Real]</code> で表します。<code>initPoint[Real](x, y)</code> で作れます。</p>
-<pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
-
-let
-  a = initPoint[float](0.0, 0.0)
-  b = initPoint[float](3.0, 4.0)
-
-doAssert distance(a, b) == 5.0
-doAssert dot(b, b) == 25.0
+<h2 id="_1">型</h2>
+<pre><code class="language-nim">type Point[Real]
+type Line[Real]
+type Segment[Real]
+type Circle[Real]
 </code></pre>
-<p>主な操作です。</p>
-<pre><code class="language-nim">cross(a, b)      # 外積
-dot(a, b)        # 内積
-norm(a)          # dot(a, a)
-distance(a, b)   # 点と点の距離
-rotate(theta, p) # p を theta rad だけ反時計回りに回転
+<p><code>Real</code> には通常 <code>float</code> などの実数型を指定します。</p>
+<h2 id="point">Point</h2>
+<h3 id="_2">定義</h3>
+<pre><code class="language-nim">proc initPoint[Real](x, y: Real): Point[Real]
+</code></pre>
+<p>座標 <code>(x, y)</code> の点を返します。</p>
+<h3 id="_3">使用例</h3>
+<pre><code class="language-nim">let p = initPoint[float](1.0, 2.0)
 </code></pre>
 <h2 id="line-segment">Line / Segment</h2>
-<p>直線は <code>Line[Real]</code>、線分は <code>Segment[Real]</code> です。</p>
+<h3 id="_4">定義</h3>
+<pre><code class="language-nim">proc initLine[Real](a, b: Point[Real]): Line[Real]
+proc initLine[Real](A, B, C: Real): Line[Real]
+proc initSegment[Real](a, b: Point[Real]): Segment[Real]
+</code></pre>
+<ul>
+<li><code>initLine(a, b)</code> は 2 点 <code>a</code>, <code>b</code> を通る直線を返します。</li>
+<li><code>initLine(A, B, C)</code> は直線 <code>Ax + By = C</code> を返します。</li>
+<li><code>initSegment(a, b)</code> は端点 <code>a</code>, <code>b</code> の線分を返します。</li>
+</ul>
+<p>既存の短縮表記として、次も使えます。</p>
+<pre><code class="language-nim">proc `--`[Real](a, b: Point[Real]): Line[Real]
+proc `!!`[Real](a, b: Point[Real]): Segment[Real]
+</code></pre>
+<h2 id="circle">Circle</h2>
+<h3 id="_5">定義</h3>
+<pre><code class="language-nim">proc initCircle[Real](p: Point[Real], r: Real): Circle[Real]
+proc initCircle[Real](a, b, c: Point[Real]): Circle[Real]
+</code></pre>
+<ul>
+<li><code>initCircle(p, r)</code> は中心 <code>p</code>、半径 <code>r</code> の円を返します。</li>
+<li><code>initCircle(a, b, c)</code> は 3 点 <code>a</code>, <code>b</code>, <code>c</code> を通る円を返します。</li>
+</ul>
+<h2 id="_6">基本演算</h2>
+<h3 id="_7">定義</h3>
+<pre><code class="language-nim">proc cross[Real](a, b: Point[Real]): Real
+proc dot[Real](a, b: Point[Real]): Real
+proc norm[Real](a: Point[Real]): Real
+proc distance[Real](a, b: Point[Real]): Real
+proc rotate[Real](theta: Real, p: Point[Real]): Point[Real]
+proc radianToDegree[Real](r: Real): Real
+proc degreeToRadian[Real](d: Real): Real
+</code></pre>
+<ul>
+<li><code>cross(a, b)</code> は外積を返します。</li>
+<li><code>dot(a, b)</code> は内積を返します。</li>
+<li><code>norm(a)</code> は <code>dot(a, a)</code> を返します。</li>
+<li><code>distance(a, b)</code> は 2 点間距離を返します。</li>
+<li><code>rotate(theta, p)</code> は点 <code>p</code> を <code>theta</code> rad だけ反時計回りに回転します。</li>
+</ul>
+<h2 id="ccw">ccw</h2>
+<h3 id="_8">定義</h3>
+<pre><code class="language-nim">type CCWState = enum
+  ONLINE_FRONT
+  CLOCKWISE
+  ON_SEGMENT
+  COUNTER_CLOCKWISE
+  ONLINE_BACK
+
+proc ccw[Real](a, b, c: Point[Real]): CCWState
+</code></pre>
+<p>点 <code>a</code>, <code>b</code>, <code>c</code> の位置関係を返します。</p>
+<h2 id="_9">交差判定・距離・交点</h2>
+<h3 id="_10">定義</h3>
+<pre><code class="language-nim">proc parallel[Real](a, b: Line[Real]): bool
+proc orthogonal[Real](a, b: Line[Real]): bool
+
+proc intersect[Real](a, b: Line[Real]): bool
+proc intersect[Real](a, b: Segment[Real]): bool
+proc intersect[Real](a, b: Circle[Real]): int
+
+proc distance[Real](l: Line[Real], p: Point[Real]): Real
+proc distance[Real](s: Segment[Real], p: Point[Real]): Real
+proc distance[Real](a, b: Segment[Real]): Real
+
+proc crosspoint[Real](a, b: Line[Real]): Point[Real]
+proc crosspoint[Real](a, b: Segment[Real]): Point[Real]
+proc crosspoint[Real](c: Circle[Real], l: Line[Real]): tuple
+proc crosspoint[Real](c1, c2: Circle[Real]): (Point[Real], Point[Real])
+</code></pre>
+<h2 id="_11">使用例</h2>
 <pre><code class="language-nim">let
   a = initPoint[float](0.0, 0.0)
   b = initPoint[float](2.0, 2.0)
@@ -106,52 +173,20 @@ rotate(theta, p) # p を theta rad だけ反時計回りに回転
 let
   l1 = initLine(a, b)
   l2 = initLine(c, d)
-  s1 = initSegment(a, b)
-  s2 = initSegment(c, d)
 
 doAssert intersect(l1, l2)
-doAssert intersect(s1, s2)
 
 let p = crosspoint(l1, l2)
 
 doAssert p.re == 1.0
 doAssert p.im == 1.0
 </code></pre>
-<h2 id="ccw">ccw</h2>
-<p><code>ccw(a, b, c)</code> は、点 <code>a -&gt; b -&gt; c</code> の位置関係を返します。</p>
-<pre><code class="language-nim">let
-  a = initPoint[float](0.0, 0.0)
-  b = initPoint[float](2.0, 0.0)
-  c = initPoint[float](1.0, 1.0)
-
-doAssert ccw(a, b, c) == CCWState.COUNTER_CLOCKWISE
-</code></pre>
-<p>返り値は次の enum です。</p>
+<h2 id="_12">計算量</h2>
+<p>各基本操作は定数時間です。</p>
+<h2 id="_13">注意</h2>
 <ul>
-<li><code>COUNTER_CLOCKWISE</code></li>
-<li><code>CLOCKWISE</code></li>
-<li><code>ON_SEGMENT</code></li>
-<li><code>ONLINE_FRONT</code></li>
-<li><code>ONLINE_BACK</code></li>
-</ul>
-<h2 id="_1">平行・直交・距離</h2>
-<pre><code class="language-nim">parallel(l1, l2)
-orthogonal(l1, l2)
-distance(line, point)
-distance(segment, point)
-distance(segment1, segment2)
-</code></pre>
-<h2 id="circle">Circle</h2>
-<p>円は <code>Circle[Real]</code> で表します。</p>
-<pre><code class="language-nim">let
-  p = initPoint[float](0.0, 0.0)
-  c = initCircle(p, 2.0)
-</code></pre>
-<h2 id="_2">注意</h2>
-<ul>
-<li>浮動小数点比較には <code>floatutils</code> の許容誤差付き比較が使われています。</li>
-<li>競技プログラミング向けの geometry template なので、厳密計算ではありません。</li>
-<li><code>Point[Real]</code> は内部的には complex-like な型です。通常は <code>initPoint</code> と geometry API 経由で使うのが安全です。</li>
+<li>浮動小数点比較には許容誤差付き比較が使われます。</li>
+<li>厳密幾何ではなく、競技プログラミング向けの実用的な geometry template です。</li>
 </ul>
   </main>
 </body>

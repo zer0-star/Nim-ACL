@@ -77,11 +77,22 @@
 <pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
 import atcoder/extra/geometry/triangle
 </code></pre>
-<h2 id="_1">使用例</h2>
-<pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
-import atcoder/extra/geometry/triangle
+<h2 id="_1">定義</h2>
+<pre><code class="language-nim">proc centroid[Real](a, b, c: Point[Real]): Point[Real]
 
-let
+proc incircle[Real](a, b, c: Point[Real]): Circle[Real]
+proc incenter[Real](a, b, c: Point[Real]): Point[Real]
+
+proc excircle[Real](a, b, c: Point[Real]): array[3, Circle[Real]]
+proc excenter[Real](a, b, c: Point[Real]): array[3, Point[Real]]
+
+proc circumcircle[Real](a, b, c: Point[Real]): Circle[Real]
+proc circumcenter[Real](a, b, c: Point[Real]): Point[Real]
+
+proc orthocenter[Real](a, b, c: Point[Real]): Point[Real]
+</code></pre>
+<h2 id="_2">使用例</h2>
+<pre><code class="language-nim">let
   a = initPoint[float](0.0, 0.0)
   b = initPoint[float](4.0, 0.0)
   c = initPoint[float](0.0, 3.0)
@@ -101,35 +112,13 @@ doAssert cc.p.re == 2.0
 doAssert cc.p.im == 1.5
 doAssert cc.r == 2.5
 </code></pre>
-<h2 id="api">API</h2>
-<h3 id="centroid">centroid</h3>
-<pre><code class="language-nim">centroid(a, b, c)
-</code></pre>
-<p>三角形の重心を返します。</p>
-<h3 id="incircle-incenter">incircle / incenter</h3>
-<pre><code class="language-nim">incircle(a, b, c)
-incenter(a, b, c)
-</code></pre>
-<p>内接円、または内心を返します。</p>
-<h3 id="excircle-excenter">excircle / excenter</h3>
-<pre><code class="language-nim">excircle(a, b, c)
-excenter(a, b, c)
-</code></pre>
-<p>3つの傍接円、または3つの傍心を返します。</p>
-<h3 id="circumcircle-circumcenter">circumcircle / circumcenter</h3>
-<pre><code class="language-nim">circumcircle(a, b, c)
-circumcenter(a, b, c)
-</code></pre>
-<p>外接円、または外心を返します。</p>
-<h3 id="orthocenter">orthocenter</h3>
-<pre><code class="language-nim">orthocenter(a, b, c)
-</code></pre>
-<p>垂心を返します。</p>
-<h2 id="_2">注意</h2>
+<h2 id="_3">制約</h2>
 <ul>
-<li>入力の3点は非退化な三角形を仮定します。</li>
+<li>入力の 3 点は非退化な三角形を仮定します。</li>
 <li>浮動小数点型では誤差が発生します。</li>
 </ul>
+<h2 id="_4">計算量</h2>
+<p>各関数は定数時間です。</p>
   </main>
 </body>
 </html>

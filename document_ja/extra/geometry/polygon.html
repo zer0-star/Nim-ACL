@@ -77,15 +77,27 @@
 <pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
 import atcoder/extra/geometry/polygon
 </code></pre>
-<h2 id="polygon_1">Polygon</h2>
+<h2 id="_1">型</h2>
 <pre><code class="language-nim">type Polygon[Real] = seq[Point[Real]]
 </code></pre>
 <p>polygon は点列として表されます。</p>
-<h2 id="area">area</h2>
-<pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
-import atcoder/extra/geometry/polygon
+<h2 id="_2">定義</h2>
+<pre><code class="language-nim">proc isConvex[Real](p: Polygon[Real]): bool
+proc convexHull[Real](p: Polygon[Real], strict = false): Polygon[Real]
+proc convex_cut[Real](p: Polygon[Real], l: Line[Real]): Polygon[Real]
+proc convex_diameter[Real](p: Polygon[Real]): Real
 
-let square: Polygon[float] = @[
+type State = enum
+  OUT
+  ON
+  IN
+
+proc contains[Real](p: Polygon[Real], q: Point[Real]): State
+proc area[Real](p: Polygon[Real]): Real
+proc area[Real](p: Polygon[Real], c: Circle[Real]): Real
+</code></pre>
+<h2 id="_3">使用例</h2>
+<pre><code class="language-nim">let square: Polygon[float] = @[
   initPoint[float](0.0, 0.0),
   initPoint[float](2.0, 0.0),
   initPoint[float](2.0, 2.0),
@@ -93,47 +105,11 @@ let square: Polygon[float] = @[
 ]
 
 doAssert area(square) == 4.0
-</code></pre>
-<p><code>area(p)</code> は符号付き面積を返します。点列が反時計回りなら正、時計回りなら負になります。</p>
-<h2 id="contains">contains</h2>
-<pre><code class="language-nim">contains(poly, point)
-</code></pre>
-<p>点が polygon の内部・辺上・外部のどこにあるかを返します。</p>
-<p>戻り値は <code>State</code> です。</p>
-<ul>
-<li><code>State.IN</code></li>
-<li><code>State.ON</code></li>
-<li><code>State.OUT</code></li>
-</ul>
-<pre><code class="language-nim">doAssert contains(square, initPoint[float](1.0, 1.0)) == State.IN
+doAssert contains(square, initPoint[float](1.0, 1.0)) == State.IN
 doAssert contains(square, initPoint[float](2.0, 1.0)) == State.ON
 doAssert contains(square, initPoint[float](3.0, 1.0)) == State.OUT
 </code></pre>
-<h2 id="convexhull">convexHull</h2>
-<pre><code class="language-nim">let h = convexHull(points)
-</code></pre>
-<p>点集合の凸包を返します。</p>
-<pre><code class="language-nim">let points: Polygon[float] = @[
-  initPoint[float](0.0, 0.0),
-  initPoint[float](2.0, 0.0),
-  initPoint[float](2.0, 2.0),
-  initPoint[float](0.0, 2.0),
-  initPoint[float](1.0, 1.0),
-]
-
-let h = convexHull(points)
-
-doAssert h.len == 4
-</code></pre>
-<h2 id="isconvex">isConvex</h2>
-<pre><code class="language-nim">isConvex(poly)
-</code></pre>
-<p>polygon が凸なら <code>true</code> を返します。</p>
-<h2 id="convex_diameter">convex_diameter</h2>
-<pre><code class="language-nim">convex_diameter(poly)
-</code></pre>
-<p>凸 polygon の直径、つまり最も遠い 2 点の距離を返します。</p>
-<h2 id="_1">計算量</h2>
+<h2 id="_4">計算量</h2>
 <ul>
 <li><code>area</code>: <code>O(n)</code></li>
 <li><code>contains</code>: <code>O(n)</code></li>

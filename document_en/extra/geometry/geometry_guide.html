@@ -75,45 +75,34 @@
 <p>For new code, start with:</p>
 <pre><code class="language-nim">import atcoder/extra/geometry/geometry
 </code></pre>
-<p>This module re-exports basic geometry, polygon, triangle, tangent, and closest-pair utilities, and adds readable constructors and aliases.</p>
-<h2 id="recommended-style">Recommended style</h2>
-<h3 id="points">Points</h3>
-<pre><code class="language-nim">let
-  a = point(0.0, 0.0)
-  b = point(3.0, 4.0)
-
-doAssert dist(a, b) == 5.0
+<h2 id="basic-types">Basic types</h2>
+<h3 id="definition">Definition</h3>
+<pre><code class="language-nim">type Point[Real]
+type Line[Real]
+type Segment[Real]
+type Circle[Real]
+type Polygon[Real] = seq[Point[Real]]
 </code></pre>
-<p>The traditional style is still available:</p>
-<pre><code class="language-nim">let a = initPoint[float](0.0, 0.0)
+<p>The facade module also provides aliases:</p>
+<pre><code class="language-nim">type Point2[Real] = Point[Real]
+type Line2[Real] = Line[Real]
+type Segment2[Real] = Segment[Real]
+type Circle2[Real] = Circle[Real]
+type Polygon2[Real] = Polygon[Real]
 </code></pre>
-<h3 id="lines-and-segments">Lines and segments</h3>
-<pre><code class="language-nim">let
-  a = point(0.0, 0.0)
-  b = point(2.0, 2.0)
-  c = point(0.0, 2.0)
-  d = point(2.0, 0.0)
-
-let
-  l1 = line(a, b)
-  l2 = line(c, d)
-  s1 = segment(a, b)
-  s2 = segment(c, d)
-
-doAssert intersects(l1, l2)
-doAssert intersects(s1, s2)
-
-let p = intersection(l1, l2)
+<h2 id="recommended-constructors">Recommended constructors</h2>
+<h3 id="definition_1">Definition</h3>
+<pre><code class="language-nim">proc point[Real](x, y: Real): Point[Real]
+proc line[Real](a, b: Point[Real]): Line[Real]
+proc segment[Real](a, b: Point[Real]): Segment[Real]
+proc circle[Real](center: Point[Real], radius: Real): Circle[Real]
 </code></pre>
-<p>The older shorthand remains available:</p>
-<pre><code class="language-nim">let l = a -- b
-let s = a !! b
-</code></pre>
-<h3 id="circles">Circles</h3>
-<pre><code class="language-nim">let c = circle(point(0.0, 0.0), 2.0)
-</code></pre>
-<p>You can also construct the circle through three points:</p>
-<pre><code class="language-nim">let c = circle(a, b, c)
+<h2 id="original-constructors">Original constructors</h2>
+<h3 id="definition_2">Definition</h3>
+<pre><code class="language-nim">proc initPoint[Real](x, y: Real): Point[Real]
+proc initLine[Real](a, b: Point[Real]): Line[Real]
+proc initSegment[Real](a, b: Point[Real]): Segment[Real]
+proc initCircle[Real](center: Point[Real], radius: Real): Circle[Real]
 </code></pre>
 <h2 id="name-mapping">Name mapping</h2>
 <table>
@@ -162,56 +151,35 @@ let s = a !! b
 </tr>
 </tbody>
 </table>
-<h2 id="common-operations">Common operations</h2>
-<h3 id="cross-product-and-dot-product">Cross product and dot product</h3>
-<pre><code class="language-nim">cross(a, b)
-dot(a, b)
-norm(a)
+<h2 id="basic-operations">Basic operations</h2>
+<h3 id="definition_3">Definition</h3>
+<pre><code class="language-nim">proc cross[Real](a, b: Point[Real]): Real
+proc dot[Real](a, b: Point[Real]): Real
+proc norm[Real](a: Point[Real]): Real
+proc ccw[Real](a, b, c: Point[Real]): CCWState
 </code></pre>
-<h3 id="ccw">ccw</h3>
-<pre><code class="language-nim">ccw(a, b, c)
+<h2 id="polygon">polygon</h2>
+<h3 id="definition_4">Definition</h3>
+<pre><code class="language-nim">proc convexHull[Real](p: Polygon[Real], strict = false): Polygon[Real]
+proc area[Real](p: Polygon[Real]): Real
+proc contains[Real](p: Polygon[Real], q: Point[Real]): State
+proc isConvex[Real](p: Polygon[Real]): bool
+proc convex_diameter[Real](p: Polygon[Real]): Real
 </code></pre>
-<p>The result is one of:</p>
-<ul>
-<li><code>COUNTER_CLOCKWISE</code></li>
-<li><code>CLOCKWISE</code></li>
-<li><code>ON_SEGMENT</code></li>
-<li><code>ONLINE_FRONT</code></li>
-<li><code>ONLINE_BACK</code></li>
-</ul>
-<h3 id="polygon">polygon</h3>
-<pre><code class="language-nim">let h = convexHull(points)
-let s = area(poly)
-let state = contains(poly, p)
-let ok = isConvex(poly)
+<h2 id="triangle">triangle</h2>
+<h3 id="definition_5">Definition</h3>
+<pre><code class="language-nim">proc centroid[Real](a, b, c: Point[Real]): Point[Real]
+proc incenter[Real](a, b, c: Point[Real]): Point[Real]
+proc circumcenter[Real](a, b, c: Point[Real]): Point[Real]
+proc orthocenter[Real](a, b, c: Point[Real]): Point[Real]
+proc incircle[Real](a, b, c: Point[Real]): Circle[Real]
+proc circumcircle[Real](a, b, c: Point[Real]): Circle[Real]
 </code></pre>
-<h3 id="triangle">triangle</h3>
-<pre><code class="language-nim">let g = centroid(a, b, c)
-let ic = incenter(a, b, c)
-let cc = circumcenter(a, b, c)
-let oc = orthocenter(a, b, c)
+<h2 id="tangent">tangent</h2>
+<h3 id="definition_6">Definition</h3>
+<pre><code class="language-nim">proc tangent[Real](c: Circle[Real], p: Point[Real]): (Point[Real], Point[Real])
+proc tangent[Real](c1, c2: Circle[Real]): seq[Line[Real]]
 </code></pre>
-<h3 id="tangent">tangent</h3>
-<pre><code class="language-nim">let (u, v) = tangent(circle, point)
-let lines = tangent(circle1, circle2)
-</code></pre>
-<h2 id="choosing-imports">Choosing imports</h2>
-<p>Usually this is enough:</p>
-<pre><code class="language-nim">import atcoder/extra/geometry/geometry
-</code></pre>
-<p>If you want to import only a specific module, the traditional imports are still available:</p>
-<pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
-import atcoder/extra/geometry/polygon
-import atcoder/extra/geometry/triangle
-import atcoder/extra/geometry/tangent
-import atcoder/extra/geometry/closest_pair
-</code></pre>
-<h2 id="notes">Notes</h2>
-<ul>
-<li>Geometry code is affected by floating-point error.</li>
-<li>This is a practical competitive-programming geometry library, not an exact geometry package.</li>
-<li>Existing shorthand APIs remain for compatibility; the facade adds readability.</li>
-</ul>
   </main>
 </body>
 </html>
