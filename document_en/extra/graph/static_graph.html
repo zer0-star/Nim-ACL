@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -71,12 +71,12 @@
   </header>
   <main>
 <h1 id="static-graph">Static Graph</h1>
-<p><code>StaticGraph</code> は、辺を追加してから <code>build()</code> することで隣接リストを構築する graph です。</p>
-<p>辺の追加が終わったあとに graph を固定して使う用途に向いています。</p>
-<h2 id="import">import</h2>
+<p><code>StaticGraph</code> is a graph representation that collects edges first and builds adjacency lists with <code>build()</code>.</p>
+<p>It is useful when all edges are known before graph traversal or graph algorithms.</p>
+<h2 id="import">Import</h2>
 <pre><code class="language-nim">import atcoder/extra/graph/static_graph
 </code></pre>
-<h2 id="_1">使用例</h2>
+<h2 id="example">Example</h2>
 <pre><code class="language-nim">import atcoder/extra/graph/static_graph
 
 var g = initStaticGraph[int](4)
@@ -99,29 +99,28 @@ doAssert 2 in to
 doAssert 3 in to
 </code></pre>
 <h2 id="edge">Edge</h2>
-<p>隣接辺 <code>e</code> は主に次の field を持ちます。</p>
+<p>Each adjacency edge <code>e</code> mainly has the following fields:</p>
 <ul>
-<li><code>e.src</code>: 辺の始点</li>
-<li><code>e.dst</code>: 辺の終点</li>
-<li><code>e.weight</code>: 辺重み</li>
-<li><code>e.rev</code>: 逆辺の位置</li>
+<li><code>e.src</code>: source vertex</li>
+<li><code>e.dst</code>: destination vertex</li>
+<li><code>e.weight</code>: edge weight</li>
+<li><code>e.rev</code>: position of the reverse edge</li>
 </ul>
 <h2 id="addbiedge">addBiEdge</h2>
 <pre><code class="language-nim">discard g.addBiEdge(u, v, w)
 </code></pre>
-<p><code>u -&gt; v</code> と <code>v -&gt; u</code> の両方の辺を追加します。</p>
+<p>This adds both <code>u -&gt; v</code> and <code>v -&gt; u</code>.</p>
 <h2 id="build">build</h2>
 <pre><code class="language-nim">g.build()
 </code></pre>
-<p>辺の追加後に <code>build()</code> を呼ぶと、各頂点の隣接辺を <code>g[v]</code> で列挙できるようになります。</p>
-<h2 id="_2">計算量</h2>
-<p>頂点数を <code>n</code>、追加した有向辺数を <code>m</code> とすると、</p>
+<p>After adding edges, call <code>build()</code> to make adjacency lists available through <code>g[v]</code>.</p>
+<h2 id="complexity">Complexity</h2>
+<p>Let <code>n</code> be the number of vertices and <code>m</code> the number of directed edges.</p>
 <ul>
 <li><code>build()</code>: <code>O(n + m)</code></li>
 <li><code>degree(v)</code>: <code>O(1)</code></li>
-<li><code>g[v]</code> の走査: <code>O(degree(v))</code></li>
+<li>iterating over <code>g[v]</code>: <code>O(degree(v))</code></li>
 </ul>
-<p>です。</p>
   </main>
 </body>
 </html>

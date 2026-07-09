@@ -1,58 +1,71 @@
-# static_graph
+# Static Graph
 
-このページは自動生成された下書きです。
+`StaticGraph` は、辺を追加してから `build()` することで隣接リストを構築する graph です。
 
-公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。
+辺の追加が終わったあとに graph を固定して使う用途に向いています。
 
 ## import
 
-    import atcoder/extra/graph/static_graph
-
-## 公開 API
-
-    const ATCODER_STATIC_GRAPH_HPP* = 1
-    type Edge0*[T] = object
-    type Edges0*[T] = object
-    type StaticGraph*[T] = object
-    proc len*[T](self:StaticGraph[T]):int = self.n
-    proc initStaticGraph*[T](n: int):StaticGraph[T] = StaticGraph[T](n:n)
-    proc addBiEdge*[T](self: var StaticGraph[T], src, dst:int, w:T = 1):int {.discardable.} =
-    proc build*[T](self:var StaticGraph[T]) =
-    iterator `[]`*[T](self: StaticGraph[T], u:int):Edge0[T] =
-    proc degree*[T](self: StaticGraph[T], u:int):int = self.start[u + 1] - self.start[u]
-    proc initStaticBiGraph*[T](n: int, u, v: seq[int]):StaticGraph[T] =
-
-## 概要
-
-TODO: このライブラリの用途と使いどころを記述してください。
+~~~nim
+import atcoder/extra/graph/static_graph
+~~~
 
 ## 使用例
 
-TODO: 使用例を追加してください。
-
-## 注意
-
-TODO: 制約、前提条件、落とし穴を記述してください。
-
-## 基本例
-
-`StaticGraph` は辺を追加してから `build()` する静的 graph です。構築後は `degree(u)` や `g[u]` の iterator で隣接辺を見られます。
-
-```nim
+~~~nim
 import atcoder/extra/graph/static_graph
 
-var g = initStaticGraph[int](3)
-discard g.addBiEdge(0, 1, 10)
-discard g.addBiEdge(1, 2, 20)
+var g = initStaticGraph[int](4)
+
+discard g.addBiEdge(0, 1, 5)
+discard g.addBiEdge(1, 2, 7)
+discard g.addBiEdge(1, 3, 11)
+
 g.build()
 
-doAssert g.degree(0) == 1
-doAssert g.degree(1) == 2
+doAssert g.len == 4
+doAssert g.degree(1) == 3
 
-var count = 0
+var to: seq[int] = @[]
 for e in g[1]:
-  discard e
-  inc count
+  to.add(e.dst)
 
-doAssert count == 2
-```
+doAssert 0 in to
+doAssert 2 in to
+doAssert 3 in to
+~~~
+
+## Edge
+
+隣接辺 `e` は主に次の field を持ちます。
+
+- `e.src`: 辺の始点
+- `e.dst`: 辺の終点
+- `e.weight`: 辺重み
+- `e.rev`: 逆辺の位置
+
+## addBiEdge
+
+~~~nim
+discard g.addBiEdge(u, v, w)
+~~~
+
+`u -> v` と `v -> u` の両方の辺を追加します。
+
+## build
+
+~~~nim
+g.build()
+~~~
+
+辺の追加後に `build()` を呼ぶと、各頂点の隣接辺を `g[v]` で列挙できるようになります。
+
+## 計算量
+
+頂点数を `n`、追加した有向辺数を `m` とすると、
+
+- `build()`: `O(n + m)`
+- `degree(v)`: `O(1)`
+- `g[v]` の走査: `O(degree(v))`
+
+です。
