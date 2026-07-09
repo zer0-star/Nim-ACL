@@ -59,3 +59,10 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 
 - FPS facade [`import atcoder/extra/math/fps`](./extra/math/fps.html)
 - [`import atcoder/extra/graph/boruvka`](./extra/graph/boruvka.html)
+
+## extra/dp
+
+- [`import atcoder/extra/dp/cumulative_sum`](./extra/dp/cumulative_sum.html)
+- [`import atcoder/extra/dp/dual_cumulative_sum`](./extra/dp/dual_cumulative_sum.html)
+- [`import atcoder/extra/dp/longest_increasing_subsequence`](./extra/dp/longest_increasing_subsequence.html)
+- [`import atcoder/extra/dp/slide_min`](./extra/dp/slide_min.html)

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -71,11 +71,11 @@
   </header>
   <main>
 <h1 id="dual-cumulative-sum">Dual Cumulative Sum</h1>
-<p><code>DualCumulativeSum</code> は、区間加算・一点取得を行うための一次元 imos 構造です。</p>
-<h2 id="import">import</h2>
+<p><code>DualCumulativeSum</code> is a one-dimensional imos helper supporting range additions and point queries.</p>
+<h2 id="import">Import</h2>
 <pre><code class="language-nim">import atcoder/extra/dp/dual_cumulative_sum
 </code></pre>
-<h2 id="_1">使用例</h2>
+<h2 id="example">Example</h2>
 <pre><code class="language-nim">import atcoder/extra/dp/dual_cumulative_sum
 
 var ds = initDualCumulativeSum[int](5)
@@ -97,15 +97,15 @@ doAssert ds[4] == 0
 <pre><code class="language-nim">ds.add(l .. r, x)
 ds.add(i, x)
 </code></pre>
-<p>閉区間 <code>[l, r]</code> に <code>x</code> を加算します。<code>ds.add(i, x)</code> は一点加算です。</p>
-<h3 id="_2">[]</h3>
+<p>Adds <code>x</code> to the closed interval <code>[l, r]</code>. <code>ds.add(i, x)</code> is a point addition.</p>
+<h3 id="_1">[]</h3>
 <pre><code class="language-nim">ds[i]
 </code></pre>
-<p>位置 <code>i</code> の値を返します。</p>
-<h2 id="_3">計算量</h2>
+<p>Returns the value at position <code>i</code>.</p>
+<h2 id="complexity">Complexity</h2>
 <ul>
 <li><code>add</code>: <code>O(1)</code></li>
-<li><code>ds[i]</code>: 必要な位置まで累積し、全体で償却 <code>O(n)</code></li>
+<li><code>ds[i]</code>: propagated lazily; total amortized <code>O(n)</code></li>
 </ul>
   </main>
 </body>

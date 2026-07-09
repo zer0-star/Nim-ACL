@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>longest_increasing_subsequence</title>
+  <title>Longest Increasing Subsequence</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -70,22 +70,47 @@
     </a>
   </header>
   <main>
-<h1 id="longest_increasing_subsequence">longest_increasing_subsequence</h1>
-<p>このページは自動生成された下書きです。</p>
-<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
+<h1 id="longest-increasing-subsequence">Longest Increasing Subsequence</h1>
+<p><code>longestIncreasingSubsequence</code> は、最長増加部分列、LIS を求めます。</p>
+<p>デフォルトでは長さを返します。<code>return_type</code> を指定すると、添字列や値列も返せます。</p>
 <h2 id="import">import</h2>
-<pre><code>import atcoder/extra/dp/longest_increasing_subsequence
+<pre><code class="language-nim">import atcoder/extra/dp/longest_increasing_subsequence
+import atcoder/extra/other/return_type
 </code></pre>
-<h2 id="api">公開 API</h2>
-<pre><code>const ATCODER_LONGEST_INCREASING_SUBSEQUENCE_HPP* = 1
-proc longestIncreasingSubsequence*[T](a:openArray[T], strict:static[bool] = true, return_type:static[ReturnType] = Length):auto =
+<h2 id="_1">使用例</h2>
+<pre><code class="language-nim">import atcoder/extra/dp/longest_increasing_subsequence
+import atcoder/extra/other/return_type
+
+let a = @[3, 1, 2, 1, 8, 5, 6]
+
+doAssert longestIncreasingSubsequence(a) == 4
+
+let lis = longestIncreasingSubsequence(a, return_type = Value)
+
+doAssert lis.len == 4
 </code></pre>
-<h2 id="_1">概要</h2>
-<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
-<h2 id="_2">使用例</h2>
-<p>TODO: 使用例を追加してください。</p>
-<h2 id="_3">注意</h2>
-<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+<h2 id="strict">strict</h2>
+<pre><code class="language-nim">longestIncreasingSubsequence(a, strict = true)
+longestIncreasingSubsequence(a, strict = false)
+</code></pre>
+<p><code>strict = true</code> では狭義増加、<code>strict = false</code> では広義増加として扱います。</p>
+<pre><code class="language-nim">doAssert longestIncreasingSubsequence(@[2, 2, 2], strict = true) == 1
+doAssert longestIncreasingSubsequence(@[2, 2, 2], strict = false) == 3
+</code></pre>
+<h2 id="return_type">return_type</h2>
+<p><code>return_type</code> には <code>ReturnType</code> を指定できます。</p>
+<ul>
+<li><code>Length</code>: 長さ</li>
+<li><code>Index</code>: LIS の添字列</li>
+<li><code>Value</code>: LIS の値列</li>
+<li><code>IndexAndValue</code>: 添字と値の組</li>
+</ul>
+<h2 id="_2">計算量</h2>
+<p>列の長さを <code>n</code> とすると、</p>
+<ul>
+<li><code>O(n log n)</code></li>
+</ul>
+<p>です。</p>
   </main>
 </body>
 </html>

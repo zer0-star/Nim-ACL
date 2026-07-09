@@ -1,17 +1,17 @@
 # Longest Increasing Subsequence
 
-`longestIncreasingSubsequence` は、最長増加部分列、LIS を求めます。
+`longestIncreasingSubsequence` computes a longest increasing subsequence, LIS.
 
-デフォルトでは長さを返します。`return_type` を指定すると、添字列や値列も返せます。
+By default it returns the length. By setting `return_type`, it can also return indices or values.
 
-## import
+## Import
 
 ~~~nim
 import atcoder/extra/dp/longest_increasing_subsequence
 import atcoder/extra/other/return_type
 ~~~
 
-## 使用例
+## Example
 
 ~~~nim
 import atcoder/extra/dp/longest_increasing_subsequence
@@ -33,7 +33,7 @@ longestIncreasingSubsequence(a, strict = true)
 longestIncreasingSubsequence(a, strict = false)
 ~~~
 
-`strict = true` では狭義増加、`strict = false` では広義増加として扱います。
+With `strict = true`, the subsequence must be strictly increasing. With `strict = false`, non-decreasing subsequences are allowed.
 
 ~~~nim
 doAssert longestIncreasingSubsequence(@[2, 2, 2], strict = true) == 1
@@ -42,17 +42,15 @@ doAssert longestIncreasingSubsequence(@[2, 2, 2], strict = false) == 3
 
 ## return_type
 
-`return_type` には `ReturnType` を指定できます。
+`return_type` can be a `ReturnType` value:
 
-- `Length`: 長さ
-- `Index`: LIS の添字列
-- `Value`: LIS の値列
-- `IndexAndValue`: 添字と値の組
+- `Length`: length
+- `Index`: indices
+- `Value`: values
+- `IndexAndValue`: pairs of index and value
 
-## 計算量
+## Complexity
 
-列の長さを `n` とすると、
+For a sequence of length `n`:
 
 - `O(n log n)`
-
-です。
