@@ -90,3 +90,10 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 - [`import atcoder/extra/geometry/polygon`](./extra/geometry/polygon.html)
 - [`import atcoder/extra/geometry/triangle`](./extra/geometry/triangle.html)
 - [`import atcoder/extra/geometry/tangent`](./extra/geometry/tangent.html)
+
+## extra/structure
+
+- [`import atcoder/extra/structure/radix_heap`](./extra/structure/radix_heap.html)
+- [`import atcoder/extra/structure/sparse_table`](./extra/structure/sparse_table.html)
+- [`import atcoder/extra/structure/dual_fenwicktree`](./extra/structure/dual_fenwicktree.html)
+- [`import atcoder/extra/structure/weighted_union_find`](./extra/structure/weighted_union_find.html)

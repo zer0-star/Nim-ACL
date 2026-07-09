@@ -32,6 +32,10 @@ STEP=init
     tests/test_extra_geometry_polygon.nim
     tests/test_extra_geometry_triangle_tangent.nim
     tests/test_extra_geometry_facade.nim
+    tests/test_extra_radix_heap.nim
+    tests/test_extra_sparse_table.nim
+    tests/test_extra_dual_fenwicktree.nim
+    tests/test_extra_weighted_union_find.nim
     tests/test_extra_graph_shortest_paths.nim
     tests/test_extra_graph_structural.nim
     tests/test_extra_universal_segtree.nim
