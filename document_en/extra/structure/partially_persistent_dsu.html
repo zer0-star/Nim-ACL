@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>SuccinctIndexableDictionary</title>
+  <title>PartiallyPersistentDSU</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -70,57 +70,55 @@
     </a>
   </header>
   <main>
-<h1 id="succinctindexabledictionary">SuccinctIndexableDictionary</h1>
-<p><code>SuccinctIndexableDictionary</code> は、bit 列に対して rank query を高速に処理するための data structure です。</p>
-<p>Wavelet Matrix などの内部部品としてよく使われます。</p>
-<h2 id="import">import</h2>
-<pre><code class="language-nim">import atcoder/extra/structure/succinct_indexable_dictionary
+<h1 id="partiallypersistentdsu">PartiallyPersistentDSU</h1>
+<p><code>PartiallyPersistentDSU</code> is a Union-Find data structure that can answer connectivity and component-size queries for past times.</p>
+<p>You merge vertices with a timestamp <code>t</code>, and query the state at any timestamp.</p>
+<h2 id="import">Import</h2>
+<pre><code class="language-nim">import atcoder/extra/structure/partially_persistent_dsu
 </code></pre>
-<h2 id="_1">型</h2>
-<pre><code class="language-nim">type SuccinctIndexableDictionary
+<h2 id="type">Type</h2>
+<pre><code class="language-nim">type PartiallyPersistentDSU
 </code></pre>
-<h2 id="_2">コンストラクタ</h2>
-<pre><code class="language-nim">proc initSuccinctIndexableDictionary(n: int): SuccinctIndexableDictionary
+<h2 id="constructor">Constructor</h2>
+<pre><code class="language-nim">proc initPartiallyPersistentDSU(n: int): PartiallyPersistentDSU
 </code></pre>
-<p>長さ <code>n</code> の bit 列を作ります。初期値はすべて <code>0</code> です。</p>
-<h2 id="_3">操作</h2>
-<pre><code class="language-nim">proc set(sid: var SuccinctIndexableDictionary, k: int)
-proc build(sid: var SuccinctIndexableDictionary)
+<p>Creates a partially persistent DSU with <code>n</code> vertices.</p>
+<h2 id="operations">Operations</h2>
+<pre><code class="language-nim">proc merge(uf: var PartiallyPersistentDSU, t, x, y: int): bool
 
-proc rank(sid: SuccinctIndexableDictionary, k: int): int
-proc rank(sid: SuccinctIndexableDictionary, bit: bool, k: int): int
+proc leader(uf: var PartiallyPersistentDSU, t, x: int): int
+proc same(uf: var PartiallyPersistentDSU, t, x, y: int): bool
+proc size(uf: var PartiallyPersistentDSU, t, x: int): int
 </code></pre>
 <ul>
-<li><code>set(k)</code> は位置 <code>k</code> の bit を <code>1</code> にします。</li>
-<li><code>build()</code> は rank 用の前処理をします。<code>set</code> をすべて呼んだあとに実行してください。</li>
-<li><code>rank(k)</code> は区間 <code>[0, k)</code> に含まれる <code>1</code> の個数を返します。</li>
-<li><code>rank(bit, k)</code> は区間 <code>[0, k)</code> に含まれる <code>bit</code> の個数を返します。</li>
+<li><code>merge(t, x, y)</code> merges <code>x</code> and <code>y</code> at time <code>t</code>.</li>
+<li><code>leader(t, x)</code> returns the leader of <code>x</code> at time <code>t</code>.</li>
+<li><code>same(t, x, y)</code> checks if <code>x</code> and <code>y</code> are in the same component at time <code>t</code>.</li>
+<li><code>size(t, x)</code> returns the component size of <code>x</code> at time <code>t</code>.</li>
 </ul>
-<h2 id="_4">使用例</h2>
-<pre><code class="language-nim">var sid = initSuccinctIndexableDictionary(8)
+<h2 id="example">Example</h2>
+<pre><code class="language-nim">var uf = initPartiallyPersistentDSU(4)
 
-sid.set(1)
-sid.set(3)
-sid.set(4)
-sid.build()
+discard uf.merge(1, 0, 1)
+discard uf.merge(3, 1, 2)
 
-doAssert sid.rank(0) == 0
-doAssert sid.rank(4) == 2
-doAssert sid.rank(8) == 3
+doAssert uf.same(0, 0, 1) == false
+doAssert uf.same(1, 0, 1) == true
+doAssert uf.same(2, 0, 2) == false
+doAssert uf.same(3, 0, 2) == true
 
-doAssert sid.rank(true, 8) == 3
-doAssert sid.rank(false, 8) == 5
+doAssert uf.size(0, 0) == 1
+doAssert uf.size(1, 0) == 2
+doAssert uf.size(3, 0) == 3
 </code></pre>
-<h2 id="_5">制約</h2>
-<p><code>build()</code> の後に <code>set()</code> を追加で呼ぶ用途は想定していません。<br>
-bit をすべて設定してから <code>build()</code> してください。</p>
-<h2 id="_6">計算量</h2>
+<h2 id="constraints">Constraints</h2>
+<p>Timestamps passed to <code>merge</code> are normally expected to be monotonically increasing.</p>
+<h2 id="complexity">Complexity</h2>
 <ul>
-<li><code>set</code>: <code>O(1)</code></li>
-<li><code>build</code>: <code>O(n / word_size)</code></li>
-<li><code>rank</code>: <code>O(1)</code></li>
+<li><code>merge</code>: almost <code>O(α(n))</code></li>
+<li><code>leader</code>, <code>same</code>: almost <code>O(α(n))</code></li>
+<li><code>size</code>: <code>O(log n)</code></li>
 </ul>
-<p>です。</p>
   </main>
 </body>
 </html>

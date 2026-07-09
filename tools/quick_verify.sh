@@ -40,6 +40,8 @@ STEP=init
     tests/test_extra_li_chao_tree.nim
     tests/test_extra_segtree_2d.nim
     tests/test_extra_wavelet_matrix.nim
+    tests/test_extra_partially_persistent_dsu.nim
+    tests/test_extra_succinct_indexable_dictionary.nim
     tests/test_extra_graph_shortest_paths.nim
     tests/test_extra_graph_structural.nim
     tests/test_extra_universal_segtree.nim

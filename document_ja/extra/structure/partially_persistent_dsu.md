@@ -1,123 +1,70 @@
-
 # PartiallyPersistentDSU
 
-部分永続 Union-Find です。
+`PartiallyPersistentDSU` は、過去の時刻に対して連結判定・連結成分サイズ取得ができる Union-Find です。
 
-時刻 `t` を指定して、その時点での連結成分の代表元、連結判定、連結成分サイズを取得できます。
-
-`merge(t, x, y)` により時刻 `t` で辺を追加し、過去の時刻に対する `leader(t, x)`, `same(t, x, y)`, `size(t, x)` を問い合わせられます。
+辺を追加する時刻 `t` を指定して `merge` し、任意の時刻 `t` における状態を query できます。
 
 ## import
 
-    import atcoder/extra/structure/partially_persistent_dsu
+~~~nim
+import atcoder/extra/structure/partially_persistent_dsu
+~~~
+
+## 型
+
+~~~nim
+type PartiallyPersistentDSU
+~~~
 
 ## コンストラクタ
 
-    var uf = initPartiallyPersistentDSU(n:int)
+~~~nim
+proc initPartiallyPersistentDSU(n: int): PartiallyPersistentDSU
+~~~
 
-長さ `n` の部分永続 Union-Find を作ります。
+`n` 頂点の部分永続 DSU を作ります。
 
-初期状態では、各頂点はそれぞれ単独の連結成分です。
+## 操作
 
-@{keyword.constraints}
+~~~nim
+proc merge(uf: var PartiallyPersistentDSU, t, x, y: int): bool
 
-- `0 <= n`
+proc leader(uf: var PartiallyPersistentDSU, t, x: int): int
+proc same(uf: var PartiallyPersistentDSU, t, x, y: int): bool
+proc size(uf: var PartiallyPersistentDSU, t, x: int): int
+~~~
 
-@{keyword.complexity}
-
-- $O(n)$
-
-## merge
-
-    uf.merge(t:int, x:int, y:int):bool
-
-時刻 `t` で `x` と `y` の属する集合を併合します。
-
-すでに同じ集合に属している場合は `false` を返します。異なる集合だった場合は併合して `true` を返します。
-
-時刻 `t` は merge 回数である必要はなく、任意の整数時刻を使えます。ただし、部分永続 Union-Find として履歴を一方向に追加するため、`merge` に渡す時刻は単調非減少である必要があります。
-
-@{keyword.constraints}
-
-- `0 <= x < n`
-- `0 <= y < n`
-- `merge` に渡す `t` は単調非減少
-
-@{keyword.complexity}
-
-- $O(\log n)$ 程度
-
-## leader
-
-    uf.leader(t:int, x:int):int
-
-時刻 `t` における `x` の代表元を返します。
-
-@{keyword.constraints}
-
-- `0 <= x < n`
-
-@{keyword.complexity}
-
-- $O(\log n)$ 程度
-
-## same
-
-    uf.same(t:int, x:int, y:int):bool
-
-時刻 `t` において `x` と `y` が同じ連結成分に属するかを返します。
-
-@{keyword.constraints}
-
-- `0 <= x < n`
-- `0 <= y < n`
-
-@{keyword.complexity}
-
-- $O(\log n)$ 程度
-
-## size
-
-    uf.size(t:int, x:int):int
-
-時刻 `t` における、`x` が属する連結成分の大きさを返します。
-
-@{keyword.constraints}
-
-- `0 <= x < n`
-
-@{keyword.complexity}
-
-- $O(\log n)$
+- `merge(t, x, y)` は時刻 `t` に `x` と `y` を併合します。
+- `leader(t, x)` は時刻 `t` における `x` の代表元を返します。
+- `same(t, x, y)` は時刻 `t` において `x`, `y` が同じ成分かを返します。
+- `size(t, x)` は時刻 `t` における `x` の連結成分サイズを返します。
 
 ## 使用例
 
-    import atcoder/extra/structure/partially_persistent_dsu
+~~~nim
+var uf = initPartiallyPersistentDSU(4)
 
-    var uf = initPartiallyPersistentDSU(5)
+discard uf.merge(1, 0, 1)
+discard uf.merge(3, 1, 2)
 
-    doAssert uf.size(-100, 0) == 1
+doAssert uf.same(0, 0, 1) == false
+doAssert uf.same(1, 0, 1) == true
+doAssert uf.same(2, 0, 2) == false
+doAssert uf.same(3, 0, 2) == true
 
-    discard uf.merge(10, 0, 1)
-    discard uf.merge(20, 1, 2)
-    discard uf.merge(20, 3, 4)
+doAssert uf.size(0, 0) == 1
+doAssert uf.size(1, 0) == 2
+doAssert uf.size(3, 0) == 3
+~~~
 
-    doAssert uf.same(10, 0, 1)
-    doAssert uf.size(10, 0) == 2
+## 制約
 
-    doAssert uf.same(20, 0, 2)
-    doAssert uf.size(20, 2) == 3
+`merge` に渡す時刻は、通常は単調増加にしてください。
 
-    doAssert not uf.same(20, 0, 4)
+## 計算量
 
-    discard uf.merge(100, 2, 4)
+- `merge`: ほぼ `O(α(n))`
+- `leader`, `same`: ほぼ `O(α(n))`
+- `size`: `O(log n)`
 
-    doAssert not uf.same(99, 0, 4)
-    doAssert uf.same(100, 0, 4)
-    doAssert uf.size(100, 0) == 5
-
-## 注意
-
-これは完全永続ではなく部分永続 Union-Find です。
-
-過去の状態に対して新しい分岐を作る用途には向きません。履歴を追加する `merge` は、時刻の単調非減少順に呼んでください。
+です。
