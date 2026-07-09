@@ -1,79 +1,84 @@
-
 # LiChaoTree
 
-Li Chao Tree です。
+`LiChaoTree` は、一次関数を追加し、指定した座標での最小値を求める data structure です。
 
-一次関数 `f(x) = ax + b` を追加し、あらかじめ与えた座標 `x_i` 上での最小値を高速に問い合わせます。
-
-この実装は座標圧縮型です。クエリで使う `x` 座標列を最初に渡しておき、`query(k)` ではその `k` 番目の座標における最小値を返します。
+この実装は座標圧縮型です。query で使う `x` 座標列を最初に渡します。
 
 ## import
 
-    import atcoder/extra/structure/li_chao_tree
+~~~nim
+import atcoder/extra/structure/li_chao_tree
+~~~
+
+## 型
+
+~~~nim
+type Line[T]
+type LiChaoTree[T]
+~~~
 
 ## コンストラクタ
 
-    var cht = initLiChaoTree[T](xs:seq[T], inf_val:T)
+~~~nim
+proc initLine[T](a, b: T): Line[T]
+proc initLiChaoTree[T](xs: seq[T], inf_val: T): LiChaoTree[T]
+~~~
 
-座標列 `xs` 上でクエリを行う Li Chao Tree を構築します。
+- `initLine(a, b)` は直線 `f(x) = ax + b` を返します。
+- `initLiChaoTree(xs, inf_val)` は query で使う座標列 `xs` を持つ Li Chao Tree を作ります。
 
-`inf_val` は十分大きい値です。
+## 操作
 
-@{keyword.constraints}
+~~~nim
+proc update[T](cht: var LiChaoTree[T], a, b: T)
+proc update[T](cht: var LiChaoTree[T], a, b: T, r: Slice[int])
+proc query[T](cht: LiChaoTree[T], k: int): T
+~~~
 
-- `xs.len > 0`
-- `inf_val` は答えとして現れない十分大きい値
-
-@{keyword.complexity}
-
-- $O(n)$
-
-## update
-
-    cht.update(a:T, b:T):void
-    cht.update(a:T, b:T, s:Slice[int]):void
-
-直線 `f(x) = ax + b` を追加します。
-
-`Slice[int]` を指定した場合は、座標 index の範囲 `s` にだけ線分として追加します。
-
-@{keyword.complexity}
-
-- 全体追加 $O(\log n)$
-- 区間追加 $O(\log^2 n)$
-
-## query
-
-    cht.query(k:int):T
-
-`xs[k]` における最小値を返します。
-
-@{keyword.constraints}
-
-- `0 <= k < xs.len`
-
-@{keyword.complexity}
-
-- $O(\log n)$
+- `update(a, b)` は直線 `f(x) = ax + b` を全体に追加します。
+- `update(a, b, r)` は直線を index 区間 `r` にだけ追加します。
+- `query(k)` は `xs[k]` における最小値を返します。
 
 ## 使用例
 
-    import atcoder/extra/structure/li_chao_tree
+~~~nim
+const INF = int.high div 4
 
-    const INF = int.high div 4
-    var cht = initLiChaoTree[int](@[0, 1, 2, 3, 4, 5], INF)
+var cht = initLiChaoTree[int](@[0, 1, 2, 3, 4, 5], INF)
 
-    cht.update(2, 3)    # 2x + 3
-    cht.update(-1, 10)  # -x + 10
-    cht.update(0, 7)    # 7
+cht.update(2, 3)    # 2x + 3
+cht.update(-1, 10)  # -x + 10
+cht.update(0, 7)    # 7
 
-    for i in 0..5:
-      let x = i
-      let expected = min(min(2 * x + 3, -x + 10), 7)
-      doAssert cht.query(i) == expected
+doAssert cht.query(0) == 3
+doAssert cht.query(5) == 5
+~~~
 
-## 注意
+区間追加もできます。
 
-この実装は最小値クエリ用です。最大値を求めたい場合は、直線と答えの符号を反転して使います。
+~~~nim
+var cht = initLiChaoTree[int](@[0, 1, 2, 3, 4, 5], INF)
 
-`query` の引数は座標値そのものではなく、コンストラクタに渡した `xs` の index です。
+cht.update(0, 100)
+cht.update(0, 1, 2 .. 4)
+
+doAssert cht.query(1) == 100
+doAssert cht.query(2) == 1
+doAssert cht.query(4) == 1
+~~~
+
+## 制約
+
+- この実装は最小値用です。
+- `query(k)` は最初に与えた座標列 `xs` の `k` 番目に対する query です。
+- 任意の座標値を直接渡すのではなく、あらかじめ座標を与えておく必要があります。
+
+## 計算量
+
+座標数を `n` とすると、
+
+- 直線追加: `O(log n)`
+- 区間直線追加: `O(log^2 n)`
+- query: `O(log n)`
+
+です。

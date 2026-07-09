@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -71,21 +71,21 @@
   </header>
   <main>
 <h1 id="waveletmatrix">WaveletMatrix</h1>
-<p><code>WaveletMatrix</code> は、静的な整数列に対して、区間内の順位統計や出現回数を高速に求める data structure です。</p>
-<p>座標圧縮版の <code>CompressedWaveletMatrix</code> も提供されています。</p>
-<h2 id="import">import</h2>
+<p><code>WaveletMatrix</code> is a static data structure for rank/select-like queries and order statistics on integer sequences.</p>
+<p><code>CompressedWaveletMatrix</code> is also provided for coordinate-compressed values.</p>
+<h2 id="import">Import</h2>
 <pre><code class="language-nim">import atcoder/extra/structure/wavelet_matrix
 </code></pre>
-<h2 id="_1">型</h2>
+<h2 id="types">Types</h2>
 <pre><code class="language-nim">type WaveletMatrix[T, MAXLOG]
 type CompressedWaveletMatrix[T, MAXLOG]
 </code></pre>
-<p><code>MAXLOG</code> は扱う値の bit 幅です。</p>
-<h2 id="_2">コンストラクタ</h2>
+<p><code>MAXLOG</code> is the bit width of values.</p>
+<h2 id="constructor">Constructor</h2>
 <pre><code class="language-nim">proc initWaveletMatrix[T](v: seq[T], MAXLOG: static[int]): WaveletMatrix[T, MAXLOG]
 proc initCompressedWaveletMatrix[T](v: seq[T], MAXLOG: static[int]): CompressedWaveletMatrix[T, MAXLOG]
 </code></pre>
-<h2 id="_3">操作</h2>
+<h2 id="operations">Operations</h2>
 <pre><code class="language-nim">proc access(wm, k): T
 proc rank(wm, r, x): int
 
@@ -98,16 +98,16 @@ proc range_freq(wm, l, r, lower, upper): int
 proc prev_value(wm, l, r, upper): T
 proc next_value(wm, l, r, lower): T
 </code></pre>
-<p>主な意味は次の通りです。</p>
+<p>Main meanings:</p>
 <ul>
-<li><code>access(k)</code>: <code>v[k]</code></li>
-<li><code>rank(r, x)</code>: <code>v[0 ..&lt; r]</code> に含まれる <code>x</code> の個数</li>
-<li><code>kth_smallest(l, r, k)</code>: <code>v[l ..&lt; r]</code> の <code>k</code> 番目に小さい値</li>
-<li><code>kth_largest(l, r, k)</code>: <code>v[l ..&lt; r]</code> の <code>k</code> 番目に大きい値</li>
-<li><code>range_freq(l, r, upper)</code>: <code>v[l ..&lt; r]</code> に含まれる <code>upper</code> 未満の個数</li>
-<li><code>range_freq(l, r, lower, upper)</code>: <code>lower &lt;= x &lt; upper</code> を満たす個数</li>
+<li><code>access(k)</code>: returns <code>v[k]</code></li>
+<li><code>rank(r, x)</code>: counts <code>x</code> in <code>v[0 ..&lt; r]</code></li>
+<li><code>kth_smallest(l, r, k)</code>: the <code>k</code>-th smallest value in <code>v[l ..&lt; r]</code></li>
+<li><code>kth_largest(l, r, k)</code>: the <code>k</code>-th largest value in <code>v[l ..&lt; r]</code></li>
+<li><code>range_freq(l, r, upper)</code>: counts values <code>&lt; upper</code> in <code>v[l ..&lt; r]</code></li>
+<li><code>range_freq(l, r, lower, upper)</code>: counts values <code>lower &lt;= x &lt; upper</code></li>
 </ul>
-<h2 id="_4">使用例</h2>
+<h2 id="example">Example</h2>
 <pre><code class="language-nim">let v = @[3, 1, 4, 1, 5, 9, 2, 6]
 let wm = initWaveletMatrix[int](v, 4)
 
@@ -118,20 +118,19 @@ doAssert wm.kth_largest(0, 8, 0) == 9
 doAssert wm.range_freq(0, 8, 5) == 5
 </code></pre>
 <h2 id="compressedwaveletmatrix">CompressedWaveletMatrix</h2>
-<p>値が大きい場合や、整数以外の順序付き値を扱いたい場合は <code>CompressedWaveletMatrix</code> を使います。</p>
+<p>Use <code>CompressedWaveletMatrix</code> when values are large or when you want to handle arbitrary ordered values through coordinate compression.</p>
 <pre><code class="language-nim">let v = @[100, 10, 100, 50]
 let wm = initCompressedWaveletMatrix[int](v, 2)
 
 doAssert wm.access(0) == 100
 doAssert wm.rank(4, 100) == 2
 </code></pre>
-<h2 id="_5">計算量</h2>
-<p>列長を <code>n</code>、bit 幅を <code>MAXLOG</code> とすると、</p>
+<h2 id="complexity">Complexity</h2>
+<p>For sequence length <code>n</code> and bit width <code>MAXLOG</code>:</p>
 <ul>
-<li>構築: <code>O(n MAXLOG)</code></li>
-<li>各 query: <code>O(MAXLOG)</code></li>
+<li>build: <code>O(n MAXLOG)</code></li>
+<li>each query: <code>O(MAXLOG)</code></li>
 </ul>
-<p>です。</p>
   </main>
 </body>
 </html>

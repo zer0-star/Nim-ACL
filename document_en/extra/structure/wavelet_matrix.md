@@ -1,32 +1,32 @@
 # WaveletMatrix
 
-`WaveletMatrix` は、静的な整数列に対して、区間内の順位統計や出現回数を高速に求める data structure です。
+`WaveletMatrix` is a static data structure for rank/select-like queries and order statistics on integer sequences.
 
-座標圧縮版の `CompressedWaveletMatrix` も提供されています。
+`CompressedWaveletMatrix` is also provided for coordinate-compressed values.
 
-## import
+## Import
 
 ~~~nim
 import atcoder/extra/structure/wavelet_matrix
 ~~~
 
-## 型
+## Types
 
 ~~~nim
 type WaveletMatrix[T, MAXLOG]
 type CompressedWaveletMatrix[T, MAXLOG]
 ~~~
 
-`MAXLOG` は扱う値の bit 幅です。
+`MAXLOG` is the bit width of values.
 
-## コンストラクタ
+## Constructor
 
 ~~~nim
 proc initWaveletMatrix[T](v: seq[T], MAXLOG: static[int]): WaveletMatrix[T, MAXLOG]
 proc initCompressedWaveletMatrix[T](v: seq[T], MAXLOG: static[int]): CompressedWaveletMatrix[T, MAXLOG]
 ~~~
 
-## 操作
+## Operations
 
 ~~~nim
 proc access(wm, k): T
@@ -42,16 +42,16 @@ proc prev_value(wm, l, r, upper): T
 proc next_value(wm, l, r, lower): T
 ~~~
 
-主な意味は次の通りです。
+Main meanings:
 
-- `access(k)`: `v[k]`
-- `rank(r, x)`: `v[0 ..< r]` に含まれる `x` の個数
-- `kth_smallest(l, r, k)`: `v[l ..< r]` の `k` 番目に小さい値
-- `kth_largest(l, r, k)`: `v[l ..< r]` の `k` 番目に大きい値
-- `range_freq(l, r, upper)`: `v[l ..< r]` に含まれる `upper` 未満の個数
-- `range_freq(l, r, lower, upper)`: `lower <= x < upper` を満たす個数
+- `access(k)`: returns `v[k]`
+- `rank(r, x)`: counts `x` in `v[0 ..< r]`
+- `kth_smallest(l, r, k)`: the `k`-th smallest value in `v[l ..< r]`
+- `kth_largest(l, r, k)`: the `k`-th largest value in `v[l ..< r]`
+- `range_freq(l, r, upper)`: counts values `< upper` in `v[l ..< r]`
+- `range_freq(l, r, lower, upper)`: counts values `lower <= x < upper`
 
-## 使用例
+## Example
 
 ~~~nim
 let v = @[3, 1, 4, 1, 5, 9, 2, 6]
@@ -66,7 +66,7 @@ doAssert wm.range_freq(0, 8, 5) == 5
 
 ## CompressedWaveletMatrix
 
-値が大きい場合や、整数以外の順序付き値を扱いたい場合は `CompressedWaveletMatrix` を使います。
+Use `CompressedWaveletMatrix` when values are large or when you want to handle arbitrary ordered values through coordinate compression.
 
 ~~~nim
 let v = @[100, 10, 100, 50]
@@ -76,11 +76,9 @@ doAssert wm.access(0) == 100
 doAssert wm.rank(4, 100) == 2
 ~~~
 
-## 計算量
+## Complexity
 
-列長を `n`、bit 幅を `MAXLOG` とすると、
+For sequence length `n` and bit width `MAXLOG`:
 
-- 構築: `O(n MAXLOG)`
-- 各 query: `O(MAXLOG)`
-
-です。
+- build: `O(n MAXLOG)`
+- each query: `O(MAXLOG)`

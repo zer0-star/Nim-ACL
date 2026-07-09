@@ -36,6 +36,10 @@ STEP=init
     tests/test_extra_sparse_table.nim
     tests/test_extra_dual_fenwicktree.nim
     tests/test_extra_weighted_union_find.nim
+    tests/test_extra_convex_hull_trick_add_monotone.nim
+    tests/test_extra_li_chao_tree.nim
+    tests/test_extra_segtree_2d.nim
+    tests/test_extra_wavelet_matrix.nim
     tests/test_extra_graph_shortest_paths.nim
     tests/test_extra_graph_structural.nim
     tests/test_extra_universal_segtree.nim

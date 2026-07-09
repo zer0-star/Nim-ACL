@@ -1,101 +1,86 @@
-
 # SegTree2D
 
-二次元セグメント木です。
+`SegTree2D` は、二次元座標上の点に値を持たせ、矩形範囲の集約値を取得する data structure です。
 
-あらかじめ現れる点 `(x, y)` をすべて与えておき、その点に対する加算と、矩形範囲の集約値取得を行います。
-
-座標は圧縮されるため、座標値そのものは大きくても構いません。
+あらかじめ現れる点 `(x, y)` をすべて渡しておき、座標圧縮した二次元 segment tree を構築します。
 
 ## import
 
-    import atcoder/extra/structure/segtree_2d
+~~~nim
+import atcoder/extra/structure/segtree_2d
+~~~
+
+## 型
+
+~~~nim
+type SegTree2D[S, SegTree]
+~~~
+
+通常は `initSegTree2D` から生成します。
 
 ## コンストラクタ
 
-    var st = initSegTree2D[S](points, op, e)
+~~~nim
+proc initSegTree2D[S](
+  points: seq[tuple[x, y: int]],
+  op: static[proc(a, b: S): S],
+  e: static[proc(): S]
+): auto
+~~~
 
-`points` に現れる点だけを対象にした二次元セグメント木を構築します。
+- `points`: あらかじめ使う点集合
+- `op`: 集約演算
+- `e`: 単位元
 
-`op` は値を合成する演算、`e` は単位元です。
+## 操作
 
-@{keyword.constraints}
+~~~nim
+proc add[ST: SegTree2D](st: var ST, x, y: int, v: ST.S)
+proc get[ST: SegTree2D](st: var ST, x, y: int): ST.S
+proc prod[ST: SegTree2D](st: var ST, xp, yp: Slice[int] or int): ST.S
+proc `[]`[ST: SegTree2D](st: var ST, x, y: int): ST.S
+proc `[]`[ST: SegTree2D](st: var ST, xp, yp: Slice[int] or int): ST.S
+~~~
 
-- `points` は更新または取得する可能性のある点をすべて含む
-- `op` は結合的
-- `e()` は `op` の単位元
-
-@{keyword.complexity}
-
-- 構築 $O(n \log n)$
-
-## add
-
-    st.add(x:int, y:int, v:S):void
-
-点 `(x, y)` に値 `v` を加算、より正確には現在値に `op(current, v)` を適用します。
-
-@{keyword.constraints}
-
-- `(x, y)` はコンストラクタに渡した `points` に含まれる
-
-@{keyword.complexity}
-
-- $O(\log^2 n)$
-
-## get
-
-    st.get(x:int, y:int):S
-    st[x, y]:S
-
-点 `(x, y)` の現在値を返します。
-
-@{keyword.constraints}
-
-- `(x, y)` はコンストラクタに渡した `points` に含まれる
-
-@{keyword.complexity}
-
-- $O(\log n)$
-
-## prod
-
-    st.prod(xp, yp):S
-    st[xp, yp]:S
-
-矩形範囲 `xp × yp` に含まれる点の値を集約して返します。
-
-`xp`, `yp` には `Slice[int]` または `int` を渡せます。`int` を渡した場合は一点だけを表します。
-
-@{keyword.complexity}
-
-- $O(\log^2 n)$
+- `add(x, y, v)` は点 `(x, y)` に `v` を加算します。
+- `get(x, y)` は点 `(x, y)` の値を返します。
+- `prod(xp, yp)` は矩形 `xp × yp` の集約値を返します。
 
 ## 使用例
 
-    import atcoder/extra/structure/segtree_2d
+~~~nim
+proc op(a, b: int): int = a + b
+proc e(): int = 0
 
-    proc op(a, b:int):int = a + b
-    proc e():int = 0
+var st = initSegTree2D[int](@[
+  (x: 0, y: 0),
+  (x: 0, y: 1),
+  (x: 1, y: 0),
+  (x: 2, y: 2),
+], op, e)
 
-    var st = initSegTree2D[int](@[
-      (x: 0, y: 0),
-      (x: 0, y: 1),
-      (x: 1, y: 0),
-      (x: 2, y: 2),
-    ], op, e)
+st.add(0, 0, 5)
+st.add(0, 0, 7)
+st.add(0, 1, 3)
+st.add(1, 0, 11)
+st.add(2, 2, 13)
 
-    st.add(0, 0, 5)
-    st.add(0, 0, 7)
-    st.add(0, 1, 3)
-    st.add(1, 0, 11)
-    st.add(2, 2, 13)
+doAssert st.get(0, 0) == 12
+doAssert st.prod(0 .. 1, 0 .. 1) == 26
+doAssert st.prod(0 .. 2, 0 .. 2) == 39
+~~~
 
-    doAssert st.get(0, 0) == 12
-    doAssert st.prod(0..2, 0..2) == 39
+## 制約
 
-## 注意
+`add`, `get`, `prod` で使う点は、コンストラクタに渡した点集合に含まれている必要があります。
 
-コンストラクタに渡していない点には更新できません。
+## 計算量
 
-矩形クエリは、座標値の範囲で指定します。内部の圧縮 index ではなく、元の `x`, `y` の値を使います。
+点数を `n` とすると、おおよそ
+
+- 構築: `O(n log n)`
+- 点加算: `O(log^2 n)`
+- 点取得: `O(log^2 n)`
+- 矩形集約: `O(log^2 n)`
+
+です。
