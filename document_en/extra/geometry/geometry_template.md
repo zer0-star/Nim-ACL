@@ -1,5 +1,7 @@
 # Geometry Template
 
+For new code, you can also use the readable facade [`atcoder/extra/geometry/geometry`](./geometry.html).
+
 `geometry_template` provides basic types and operations for two-dimensional computational geometry.
 
 It includes points, lines, segments, circles, cross products, dot products, ccw classification, intersections, distances, and cross points.
