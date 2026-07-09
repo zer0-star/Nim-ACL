@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Tangent</title>
+  <title>Triangle</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -70,42 +70,65 @@
     </a>
   </header>
   <main>
-<h1 id="tangent">Tangent</h1>
-<p><code>tangent</code> は、円に対する接線を求める module です。</p>
-<p>外部点から円への接点と、2つの円の共通接線を扱えます。</p>
-<h2 id="import">import</h2>
+<h1 id="triangle">Triangle</h1>
+<p><code>triangle</code> provides helpers for common triangle centers and circles.</p>
+<p>It supports centroid, incenter, excenters, circumcenter, orthocenter, incircle, excircles, and circumcircle.</p>
+<h2 id="import">Import</h2>
 <pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
-import atcoder/extra/geometry/tangent
+import atcoder/extra/geometry/triangle
 </code></pre>
-<h2 id="_1">点から円への接線</h2>
+<h2 id="example">Example</h2>
 <pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
-import atcoder/extra/geometry/tangent
+import atcoder/extra/geometry/triangle
 
 let
-  c = initCircle(initPoint[float](0.0, 0.0), 1.0)
-  p = initPoint[float](2.0, 0.0)
+  a = initPoint[float](0.0, 0.0)
+  b = initPoint[float](4.0, 0.0)
+  c = initPoint[float](0.0, 3.0)
 
-let (u, v) = tangent(c, p)
+let g = centroid(a, b, c)
+let ic = incircle(a, b, c)
+let cc = circumcircle(a, b, c)
 
-doAssert distance(c.p, u) == c.r
-doAssert distance(c.p, v) == c.r
+doAssert g.re == 4.0 / 3.0
+doAssert g.im == 1.0
+
+doAssert ic.p.re == 1.0
+doAssert ic.p.im == 1.0
+doAssert ic.r == 1.0
+
+doAssert cc.p.re == 2.0
+doAssert cc.p.im == 1.5
+doAssert cc.r == 2.5
 </code></pre>
-<p><code>tangent(c, p)</code> は、点 <code>p</code> から円 <code>c</code> に引いた2本の接線の接点を返します。</p>
-<h2 id="2">2つの円の共通接線</h2>
-<pre><code class="language-nim">let
-  c1 = initCircle(initPoint[float](0.0, 0.0), 1.0)
-  c2 = initCircle(initPoint[float](4.0, 0.0), 1.0)
-
-let lines = tangent(c1, c2)
-
-doAssert lines.len == 4
+<h2 id="api">API</h2>
+<h3 id="centroid">centroid</h3>
+<pre><code class="language-nim">centroid(a, b, c)
 </code></pre>
-<p><code>tangent(c1, c2)</code> は、2つの円の共通接線を <code>seq[Line[Real]]</code> として返します。</p>
-<h2 id="_2">注意</h2>
+<p>Returns the centroid.</p>
+<h3 id="incircle-incenter">incircle / incenter</h3>
+<pre><code class="language-nim">incircle(a, b, c)
+incenter(a, b, c)
+</code></pre>
+<p>Returns the incircle or the incenter.</p>
+<h3 id="excircle-excenter">excircle / excenter</h3>
+<pre><code class="language-nim">excircle(a, b, c)
+excenter(a, b, c)
+</code></pre>
+<p>Returns the three excircles or the three excenters.</p>
+<h3 id="circumcircle-circumcenter">circumcircle / circumcenter</h3>
+<pre><code class="language-nim">circumcircle(a, b, c)
+circumcenter(a, b, c)
+</code></pre>
+<p>Returns the circumcircle or the circumcenter.</p>
+<h3 id="orthocenter">orthocenter</h3>
+<pre><code class="language-nim">orthocenter(a, b, c)
+</code></pre>
+<p>Returns the orthocenter.</p>
+<h2 id="notes">Notes</h2>
 <ul>
-<li>接線が存在しない場合、返る本数は少なくなります。</li>
-<li>円が重なっている場合や同心円の場合は、状況に応じて空列になります。</li>
-<li>浮動小数点型では誤差が発生します。</li>
+<li>The three input points are assumed to form a nondegenerate triangle.</li>
+<li>Floating-point errors may occur.</li>
 </ul>
   </main>
 </body>
