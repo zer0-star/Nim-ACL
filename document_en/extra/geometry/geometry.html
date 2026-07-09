@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Geometry</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="geometry">Geometry</h1>
+<p><code>atcoder/extra/geometry/geometry</code> is a friendly facade module for two-dimensional geometry utilities.</p>
+<p>It re-exports <code>geometry_template</code>, <code>polygon</code>, <code>closest_pair</code>, <code>triangle</code>, and <code>tangent</code>, and adds readable constructors and aliases.</p>
+<h2 id="import">Import</h2>
+<pre><code class="language-nim">import atcoder/extra/geometry/geometry
+</code></pre>
+<h2 id="basic-example">Basic example</h2>
+<pre><code class="language-nim">import atcoder/extra/geometry/geometry
+
+let
+  a = point(0.0, 0.0)
+  b = point(2.0, 2.0)
+  c = point(0.0, 2.0)
+  d = point(2.0, 0.0)
+
+let
+  l1 = line(a, b)
+  l2 = line(c, d)
+  s1 = segment(a, b)
+  s2 = segment(c, d)
+
+doAssert intersects(l1, l2)
+doAssert intersects(s1, s2)
+
+let p = intersection(l1, l2)
+
+doAssert p.re == 1.0
+doAssert p.im == 1.0
+</code></pre>
+<h2 id="friendly-constructors">Friendly constructors</h2>
+<p>In addition to the existing <code>initPoint</code>, <code>initLine</code>, <code>initSegment</code>, and <code>initCircle</code>, this facade provides shorter readable names.</p>
+<pre><code class="language-nim">let p = point(1.0, 2.0)
+let l = line(point(0.0, 0.0), point(1.0, 1.0))
+let s = segment(point(0.0, 0.0), point(1.0, 1.0))
+let c = circle(point(0.0, 0.0), 2.0)
+</code></pre>
+<h2 id="friendly-aliases">Friendly aliases</h2>
+<p>The following type aliases are provided:</p>
+<pre><code class="language-nim">Point2[float]
+Line2[float]
+Segment2[float]
+Circle2[float]
+Polygon2[float]
+</code></pre>
+<p>They are aliases of the existing geometry types.</p>
+<h2 id="friendly-operations">Friendly operations</h2>
+<pre><code class="language-nim">dist(a, b)
+intersects(a, b)
+intersection(a, b)
+</code></pre>
+<ul>
+<li><code>dist</code>: distance</li>
+<li><code>intersects</code>: intersection predicate</li>
+<li><code>intersection</code>: intersection point</li>
+</ul>
+<p>The original names <code>distance</code>, <code>intersect</code>, and <code>crosspoint</code> are still available.</p>
+<h2 id="re-export">Re-export</h2>
+<p>This module re-exports:</p>
+<pre><code class="language-nim">atcoder/extra/geometry/geometry_template
+atcoder/extra/geometry/closest_pair
+atcoder/extra/geometry/polygon
+atcoder/extra/geometry/triangle
+atcoder/extra/geometry/tangent
+</code></pre>
+<p>Therefore, the following functions can be used with this single import:</p>
+<pre><code class="language-nim">closest_pair(points)
+convexHull(points)
+area(poly)
+contains(poly, p)
+centroid(a, b, c)
+incenter(a, b, c)
+tangent(circle, point)
+</code></pre>
+<h2 id="policy">Policy</h2>
+<p>This facade does not break existing APIs. It only adds readable aliases.<br>
+Existing competitive-programming shorthand such as <code>a -- b</code> and <code>a !! b</code> remains available.</p>
+  </main>
+</body>
+</html>
