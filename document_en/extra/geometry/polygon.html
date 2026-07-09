@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Closest Pair</title>
+  <title>Polygon</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -70,41 +70,77 @@
     </a>
   </header>
   <main>
-<h1 id="closest-pair">Closest Pair</h1>
-<p><code>closest_pair(ps)</code> は、二次元点集合の最近点対距離を求めます。</p>
-<h2 id="import">import</h2>
+<h1 id="polygon">Polygon</h1>
+<p><code>polygon</code> provides basic operations on two-dimensional polygons.</p>
+<p>It supports convexity checks, convex hulls, point containment, area, and diameter of a convex polygon.</p>
+<h2 id="import">Import</h2>
 <pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
-import atcoder/extra/geometry/closest_pair
+import atcoder/extra/geometry/polygon
 </code></pre>
-<h2 id="_1">使用例</h2>
+<h2 id="polygon_1">Polygon</h2>
+<pre><code class="language-nim">type Polygon[Real] = seq[Point[Real]]
+</code></pre>
+<p>A polygon is represented as a sequence of points.</p>
+<h2 id="area">area</h2>
 <pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
-import atcoder/extra/geometry/closest_pair
+import atcoder/extra/geometry/polygon
 
-let ps = @[
+let square: Polygon[float] = @[
   initPoint[float](0.0, 0.0),
-  initPoint[float](3.0, 4.0),
   initPoint[float](2.0, 0.0),
-  initPoint[float](2.0, 1.0),
+  initPoint[float](2.0, 2.0),
+  initPoint[float](0.0, 2.0),
 ]
 
-doAssert closest_pair(ps) == 1.0
+doAssert area(square) == 4.0
 </code></pre>
-<h2 id="api">API</h2>
-<pre><code class="language-nim">closest_pair(ps)
+<p><code>area(p)</code> returns the signed area. It is positive for counterclockwise order and negative for clockwise order.</p>
+<h2 id="contains">contains</h2>
+<pre><code class="language-nim">contains(poly, point)
 </code></pre>
-<p>点列 <code>ps</code> の中から、異なる 2 点の距離の最小値を返します。</p>
-<h2 id="_2">注意</h2>
+<p>Returns whether a point is inside, on the boundary of, or outside the polygon.</p>
+<p>The return value is <code>State</code>:</p>
 <ul>
-<li><code>ps.len &gt;= 2</code> を仮定します。</li>
-<li>同じ座標の点が複数ある場合、最近距離は <code>0</code> になります。</li>
-<li>浮動小数点比較には <code>geometry_template</code> / <code>floatutils</code> の許容誤差付き比較が使われます。</li>
+<li><code>State.IN</code></li>
+<li><code>State.ON</code></li>
+<li><code>State.OUT</code></li>
 </ul>
-<h2 id="_3">計算量</h2>
-<p>点数を <code>n</code> とすると、</p>
+<pre><code class="language-nim">doAssert contains(square, initPoint[float](1.0, 1.0)) == State.IN
+doAssert contains(square, initPoint[float](2.0, 1.0)) == State.ON
+doAssert contains(square, initPoint[float](3.0, 1.0)) == State.OUT
+</code></pre>
+<h2 id="convexhull">convexHull</h2>
+<pre><code class="language-nim">let h = convexHull(points)
+</code></pre>
+<p>Returns the convex hull of a point set.</p>
+<pre><code class="language-nim">let points: Polygon[float] = @[
+  initPoint[float](0.0, 0.0),
+  initPoint[float](2.0, 0.0),
+  initPoint[float](2.0, 2.0),
+  initPoint[float](0.0, 2.0),
+  initPoint[float](1.0, 1.0),
+]
+
+let h = convexHull(points)
+
+doAssert h.len == 4
+</code></pre>
+<h2 id="isconvex">isConvex</h2>
+<pre><code class="language-nim">isConvex(poly)
+</code></pre>
+<p>Returns <code>true</code> if the polygon is convex.</p>
+<h2 id="convex_diameter">convex_diameter</h2>
+<pre><code class="language-nim">convex_diameter(poly)
+</code></pre>
+<p>Returns the diameter of a convex polygon: the maximum distance between two vertices.</p>
+<h2 id="complexity">Complexity</h2>
 <ul>
-<li><code>O(n log n)</code></li>
+<li><code>area</code>: <code>O(n)</code></li>
+<li><code>contains</code>: <code>O(n)</code></li>
+<li><code>convexHull</code>: <code>O(n log n)</code></li>
+<li><code>isConvex</code>: <code>O(n)</code></li>
+<li><code>convex_diameter</code>: <code>O(n)</code></li>
 </ul>
-<p>です。</p>
   </main>
 </body>
 </html>

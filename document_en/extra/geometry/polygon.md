@@ -1,10 +1,10 @@
 # Polygon
 
-`polygon` は、二次元 polygon に対する基本操作を提供します。
+`polygon` provides basic operations on two-dimensional polygons.
 
-凸性判定、凸包、点包含判定、面積、凸多角形の直径などを扱えます。
+It supports convexity checks, convex hulls, point containment, area, and diameter of a convex polygon.
 
-## import
+## Import
 
 ~~~nim
 import atcoder/extra/geometry/geometry_template
@@ -17,7 +17,7 @@ import atcoder/extra/geometry/polygon
 type Polygon[Real] = seq[Point[Real]]
 ~~~
 
-polygon は点列として表されます。
+A polygon is represented as a sequence of points.
 
 ## area
 
@@ -35,7 +35,7 @@ let square: Polygon[float] = @[
 doAssert area(square) == 4.0
 ~~~
 
-`area(p)` は符号付き面積を返します。点列が反時計回りなら正、時計回りなら負になります。
+`area(p)` returns the signed area. It is positive for counterclockwise order and negative for clockwise order.
 
 ## contains
 
@@ -43,9 +43,9 @@ doAssert area(square) == 4.0
 contains(poly, point)
 ~~~
 
-点が polygon の内部・辺上・外部のどこにあるかを返します。
+Returns whether a point is inside, on the boundary of, or outside the polygon.
 
-戻り値は `State` です。
+The return value is `State`:
 
 - `State.IN`
 - `State.ON`
@@ -63,7 +63,7 @@ doAssert contains(square, initPoint[float](3.0, 1.0)) == State.OUT
 let h = convexHull(points)
 ~~~
 
-点集合の凸包を返します。
+Returns the convex hull of a point set.
 
 ~~~nim
 let points: Polygon[float] = @[
@@ -85,7 +85,7 @@ doAssert h.len == 4
 isConvex(poly)
 ~~~
 
-polygon が凸なら `true` を返します。
+Returns `true` if the polygon is convex.
 
 ## convex_diameter
 
@@ -93,9 +93,9 @@ polygon が凸なら `true` を返します。
 convex_diameter(poly)
 ~~~
 
-凸 polygon の直径、つまり最も遠い 2 点の距離を返します。
+Returns the diameter of a convex polygon: the maximum distance between two vertices.
 
-## 計算量
+## Complexity
 
 - `area`: `O(n)`
 - `contains`: `O(n)`
