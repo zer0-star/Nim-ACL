@@ -1,10 +1,10 @@
 # Geometry Template
 
-`geometry_template` は、二次元幾何でよく使う基本型と基本操作をまとめた module です。
+`geometry_template` provides basic types and operations for two-dimensional computational geometry.
 
-点、直線、線分、円、外積・内積、ccw、交差判定、距離、交点などを提供します。
+It includes points, lines, segments, circles, cross products, dot products, ccw classification, intersections, distances, and cross points.
 
-## import
+## Import
 
 ~~~nim
 import atcoder/extra/geometry/geometry_template
@@ -12,7 +12,7 @@ import atcoder/extra/geometry/geometry_template
 
 ## Point
 
-点は `Point[Real]` で表します。`initPoint[Real](x, y)` で作れます。
+A point is represented as `Point[Real]`. Use `initPoint[Real](x, y)` to create one.
 
 ~~~nim
 import atcoder/extra/geometry/geometry_template
@@ -25,19 +25,19 @@ doAssert distance(a, b) == 5.0
 doAssert dot(b, b) == 25.0
 ~~~
 
-主な操作です。
+Main operations:
 
 ~~~nim
-cross(a, b)      # 外積
-dot(a, b)        # 内積
+cross(a, b)      # cross product
+dot(a, b)        # dot product
 norm(a)          # dot(a, a)
-distance(a, b)   # 点と点の距離
-rotate(theta, p) # p を theta rad だけ反時計回りに回転
+distance(a, b)   # distance between two points
+rotate(theta, p) # rotate p counterclockwise by theta radians
 ~~~
 
 ## Line / Segment
 
-直線は `Line[Real]`、線分は `Segment[Real]` です。
+A line is `Line[Real]`, and a segment is `Segment[Real]`.
 
 ~~~nim
 let
@@ -63,7 +63,7 @@ doAssert p.im == 1.0
 
 ## ccw
 
-`ccw(a, b, c)` は、点 `a -> b -> c` の位置関係を返します。
+`ccw(a, b, c)` classifies the relation of the three points `a -> b -> c`.
 
 ~~~nim
 let
@@ -74,7 +74,7 @@ let
 doAssert ccw(a, b, c) == CCWState.COUNTER_CLOCKWISE
 ~~~
 
-返り値は次の enum です。
+The result is one of:
 
 - `COUNTER_CLOCKWISE`
 - `CLOCKWISE`
@@ -82,7 +82,7 @@ doAssert ccw(a, b, c) == CCWState.COUNTER_CLOCKWISE
 - `ONLINE_FRONT`
 - `ONLINE_BACK`
 
-## 平行・直交・距離
+## Parallel, orthogonal, and distance
 
 ~~~nim
 parallel(l1, l2)
@@ -94,7 +94,7 @@ distance(segment1, segment2)
 
 ## Circle
 
-円は `Circle[Real]` で表します。
+A circle is represented as `Circle[Real]`.
 
 ~~~nim
 let
@@ -102,8 +102,8 @@ let
   c = initCircle(p, 2.0)
 ~~~
 
-## 注意
+## Notes
 
-- 浮動小数点比較には `floatutils` の許容誤差付き比較が使われています。
-- 競技プログラミング向けの geometry template なので、厳密計算ではありません。
-- `Point[Real]` は内部的には complex-like な型です。通常は `initPoint` と geometry API 経由で使うのが安全です。
+- Floating-point comparisons use tolerant comparisons from `floatutils`.
+- This is a competitive-programming geometry template, not an exact arithmetic geometry package.
+- `Point[Real]` is internally a complex-like type. In user code, prefer creating points with `initPoint` and using geometry APIs.
