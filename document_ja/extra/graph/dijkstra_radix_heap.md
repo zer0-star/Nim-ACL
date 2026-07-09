@@ -1,26 +1,53 @@
-# dijkstra_radix_heap
+# Radix Heap Dijkstra
 
-このページは自動生成された下書きです。
+`dijkstra_radix_heap(g, s)` は、Radix Heap を用いて非負整数重み graph の単一始点最短路を求めます。
 
-公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。
+通常の `dijkstra(g, s)` と同じく、戻り値は `DijkstraResult` です。距離は `d[v]`、復元経路は `d.path(v)` で取得できます。
 
 ## import
 
-    import atcoder/extra/graph/dijkstra_radix_heap
-
-## 公開 API
-
-    const ATCODER_DIJKSTRA_RADIX_HEAP_HPP* = 1
-    proc dijkstra_radix_heap*[G:Graph](g:G, s:G.U or seq[G.U]): auto =
-
-## 概要
-
-TODO: このライブラリの用途と使いどころを記述してください。
+~~~nim
+import atcoder/extra/graph/graph_template
+import atcoder/extra/graph/dijkstra_radix_heap
+~~~
 
 ## 使用例
 
-TODO: 使用例を追加してください。
+~~~nim
+import atcoder/extra/graph/graph_template
+import atcoder/extra/graph/dijkstra_radix_heap
 
-## 注意
+var g = initGraph(5)
+g.addEdge(0, 1, 2)
+g.addEdge(0, 2, 9)
+g.addEdge(1, 2, 1)
+g.addEdge(2, 3, 1)
+g.addEdge(3, 4, 3)
 
-TODO: 制約、前提条件、落とし穴を記述してください。
+var d = dijkstra_radix_heap(g, 0)
+
+doAssert d[4] == 7
+doAssert d.path(4) == @[0, 1, 2, 3, 4]
+~~~
+
+## 複数始点
+
+始点には頂点ひとつだけでなく、頂点列も渡せます。この場合、与えた始点すべての距離を `0` として最短距離を計算します。
+
+~~~nim
+var d = dijkstra_radix_heap(g, @[0, 3])
+~~~
+
+## 制約
+
+- 辺重みの型 `G.T` は整数型である必要があります。
+- 辺重みは非負である必要があります。
+- 負辺がある場合は `bellman_ford` を使ってください。
+
+## 計算量
+
+頂点数を `n`、辺数を `m`、距離の最大値に依存する Radix Heap のビット幅を `B` とすると、おおよそ
+
+- `O((n + m) B)`
+
+です。通常の binary heap 版 `dijkstra` と同じ `DijkstraResult` interface で使えます。
