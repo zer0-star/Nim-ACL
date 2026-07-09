@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -71,18 +71,18 @@
   </header>
   <main>
 <h1 id="set_map">set_map</h1>
-<p><code>set_map</code> は互換用 alias module です。</p>
-<p>新規コードでは通常 <a href="./sorted_set_map.html"><code>sorted_set_map</code></a> を推奨します。</p>
-<h2 id="import">import</h2>
+<p><code>set_map</code> is a compatibility alias module.</p>
+<p>For new code, prefer <a href="./sorted_set_map.html"><code>sorted_set_map</code></a>.</p>
+<h2 id="import">Import</h2>
 <pre><code class="language-nim">import atcoder/extra/structure/set_map
 </code></pre>
-<h2 id="_1">定義</h2>
+<h2 id="definition">Definition</h2>
 <pre><code class="language-nim">import atcoder/extra/structure/sorted_set_map
 export sorted_set_map
 </code></pre>
-<p>この module は <code>sorted_set_map</code> を import/export します。<br>
-そのため、<code>set_map</code> を import しても <code>SortedSet</code>, <code>SortedMap</code>, <code>initSortedSet</code>, <code>initSortedMap</code> などを利用できます。</p>
-<h2 id="_2">使用例</h2>
+<p>This module imports and exports <code>sorted_set_map</code>.<br>
+Therefore, importing <code>set_map</code> also makes <code>SortedSet</code>, <code>SortedMap</code>, <code>initSortedSet</code>, <code>initSortedMap</code>, and related APIs available.</p>
+<h2 id="example">Example</h2>
 <pre><code class="language-nim">import atcoder/extra/structure/set_map
 
 var s = initSortedSet[int]()
@@ -93,9 +93,9 @@ s.insert(1)
 doAssert 1 in s
 doAssert 2 notin s
 </code></pre>
-<h2 id="_3">注意</h2>
-<p>古いコードとの互換性のために残されています。<br>
-新しく書く場合は次を推奨します。</p>
+<h2 id="notes">Notes</h2>
+<p>This module remains for compatibility with older code.<br>
+For new code, use:</p>
 <pre><code class="language-nim">import atcoder/extra/structure/sorted_set_map
 </code></pre>
   </main>
