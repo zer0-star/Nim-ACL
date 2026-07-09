@@ -63,6 +63,10 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 ## extra/dp
 
 - [`import atcoder/extra/dp/cumulative_sum`](./extra/dp/cumulative_sum.html)
+- [`import atcoder/extra/dp/cumulative_sum_2d`](./extra/dp/cumulative_sum_2d.html)
+- [`import atcoder/extra/dp/dual_cumulative_sum_2d`](./extra/dp/dual_cumulative_sum_2d.html)
+- [`import atcoder/extra/dp/edit_distance`](./extra/dp/edit_distance.html)
+- [`import atcoder/extra/dp/largest_rectangle`](./extra/dp/largest_rectangle.html)
 - [`import atcoder/extra/dp/dual_cumulative_sum`](./extra/dp/dual_cumulative_sum.html)
 - [`import atcoder/extra/dp/longest_increasing_subsequence`](./extra/dp/longest_increasing_subsequence.html)
 - [`import atcoder/extra/dp/slide_min`](./extra/dp/slide_min.html)

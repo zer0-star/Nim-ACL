@@ -1,14 +1,14 @@
 # Largest Rectangle
 
-`largestRectangle(height)` は、histogram に含まれる最大長方形の面積を求めます。
+`largestRectangle(height)` computes the largest rectangle area in a histogram.
 
-## import
+## Import
 
 ~~~nim
 import atcoder/extra/dp/largest_rectangle
 ~~~
 
-## 使用例
+## Example
 
 ~~~nim
 import atcoder/extra/dp/largest_rectangle
@@ -18,10 +18,8 @@ let h = @[2, 1, 5, 6, 2, 3]
 doAssert largestRectangle(h) == 10
 ~~~
 
-## 計算量
+## Complexity
 
-`height.len = n` とすると、
+For `height.len = n`:
 
 - `O(n)`
-
-です。

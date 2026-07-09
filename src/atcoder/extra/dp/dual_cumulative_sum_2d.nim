@@ -1,63 +1,73 @@
-import sequtils
+when not declared ATCODER_DUAL_CUMULATIVE_SUM_2D_HPP:
+  const ATCODER_DUAL_CUMULATIVE_SUM_2D_HPP* = 1
 
-# DualCumulativeSum2D(imos) {{{
-type DualCumulativeSum2D*[T] = object
-  X, Y:int
-  built: bool
-  data: seq[seq[T]]
+  import std/sequtils
 
-proc init*[T](self:var DualCumulativeSum2D[T], X, Y:int) =
-  self.X = X
-  self.Y = Y
-  self.built = false
-  if self.data.len < X + 1 or self.data[0].len < Y + 1:
+  type DualCumulativeSum2D*[T] = object
+    X, Y: int
+    built: bool
+    data: seq[seq[T]]
+
+  proc init*[T](self: var DualCumulativeSum2D[T], X, Y: int) =
+    self.X = X
+    self.Y = Y
+    self.built = false
     self.data = newSeqWith(X + 1, newSeqWith(Y + 1, T(0)))
-  else:
-    for x in 0..<X+1:
-      for y in 0..<Y+1:
-        self.data[x][y] = T(0)
 
-proc initDualCumulativeSum2D*[T](X, Y:int):DualCumulativeSum2D[T] =
-  result.init(X, Y)
+  proc initDualCumulativeSum2D*[T](X, Y: int): DualCumulativeSum2D[T] =
+    result.init(X, Y)
 
-#proc initDualCumulativeSum2D[T](data:seq[seq[T]]):CumulativeSum2D[T] =
-#  result = initCumulativeSum2D[T](data.len, data[0].len)
-#  for i in 0..<data.len:
-#    for j in 0..<data[i].len:
-#      result.add(i,j,data[i][j])
-#  result.build()
+  proc add*[T](self: var DualCumulativeSum2D[T]; rx, ry: Slice[int], z: T) =
+    assert not self.built
 
-proc add*[T](self:var DualCumulativeSum2D[T]; rx, ry: Slice[int], z:T) =
-  assert not self.built
-  var (gx, gy) = (min(rx.b + 1, self.X), min(ry.b + 1, self.Y))
-  var (sx, sy) = (max(rx.a, 0), max(ry.a, 0))
-  if gx < 0 or gy < 0: return
-  if sx >= self.X or sy >= self.Y: return
-  
-  self.data[gx][gy] += z
-  self.data[sx][gy] -= z
-  self.data[gx][sy] -= z
-  self.data[sx][sy] += z
+    let gx = min(rx.b + 1, self.X)
+    let gy = min(ry.b + 1, self.Y)
+    let sx = max(rx.a, 0)
+    let sy = max(ry.a, 0)
 
-proc build*[T](self:var DualCumulativeSum2D[T]) =
-  self.built = true
-  for i in 1..<self.data.len:
-    for j in 0..<self.data[0].len:
-      self.data[i][j] += self.data[i - 1][j]
-  for j in 1..<self.data[0].len:
-    for i in 0..<self.data.len:
-      self.data[i][j] += self.data[i][j - 1]
+    if gx < 0 or gy < 0:
+      return
+    if sx >= self.X or sy >= self.Y:
+      return
+    if sx >= gx or sy >= gy:
+      return
 
-proc `[]`*[T](self: DualCumulativeSum2D[T], x:int, y:int):T =
-  assert(self.built)
-#  let (x, y) = (x + 1, y + 1)
-  if x >= self.data.len or y >= self.data[0].len: return T(0)
-  return self.data[x][y]
+    self.data[sx][sy] += z
+    self.data[gx][sy] -= z
+    self.data[sx][gy] -= z
+    self.data[gx][gy] += z
 
-proc write*[T](self: DualCumulativeSum2D[T]) =
-  assert(self.built)
-  for i in 0..<self.X:
-    for j in 0..<self.Y:
-      stdout.write(self[i,j])
-    echo ""
-#}}}
+  proc add*[T](self: var DualCumulativeSum2D[T]; x, y: int, z: T) =
+    self.add(x .. x, y .. y, z)
+
+  proc build*[T](self: var DualCumulativeSum2D[T]) =
+    if self.built:
+      return
+
+    self.built = true
+
+    for x in 1 ..< self.data.len:
+      for y in 0 ..< self.data[x].len:
+        self.data[x][y] += self.data[x - 1][y]
+
+    for y in 1 ..< self.data[0].len:
+      for x in 0 ..< self.data.len:
+        self.data[x][y] += self.data[x][y - 1]
+
+  proc `[]`*[T](self: DualCumulativeSum2D[T], x, y: int): T =
+    assert self.built
+
+    if x < 0 or y < 0:
+      return T(0)
+    if x >= self.X or y >= self.Y:
+      return T(0)
+
+    return self.data[x][y]
+
+  proc write*[T](self: DualCumulativeSum2D[T]) =
+    assert self.built
+
+    for x in 0 ..< self.X:
+      for y in 0 ..< self.Y:
+        stdout.write(self[x, y])
+      echo ""

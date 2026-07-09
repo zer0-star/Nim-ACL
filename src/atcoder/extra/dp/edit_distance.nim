@@ -1,19 +1,27 @@
-# editDistance(S, T:string) {{{
-import sequtils
+when not declared ATCODER_EDIT_DISTANCE_HPP:
+  const ATCODER_EDIT_DISTANCE_HPP* = 1
 
-proc editDistance(S,T:string):int =
-  let
-    N = S.len
-    M = T.len
-  dump(S)
-  dump(T)
-  var dp = newSeqWith(N + 1, newSeqWith(M + 1, N + M))
-  for i in 0..N: dp[i][0] = i
-  for j in 0..M: dp[0][j] = j
-  for i in 1..N:
-    for j in 1..M:
-      dp[i][j] = min(dp[i][j], dp[i - 1][j] + 1)
-      dp[i][j] = min(dp[i][j], dp[i][j - 1] + 1)
-      dp[i][j] = min(dp[i][j], dp[i - 1][j - 1] + (if S[i - 1] != T[j - 1]: 1 else: 0))
-  return dp[N][M]
-# }}}
+  proc editDistance*(S, T: string): int =
+    let N = S.len
+    let M = T.len
+
+    var prev = newSeq[int](M + 1)
+    var cur = newSeq[int](M + 1)
+
+    for j in 0 .. M:
+      prev[j] = j
+
+    for i in 1 .. N:
+      cur[0] = i
+
+      for j in 1 .. M:
+        let cost = if S[i - 1] == T[j - 1]: 0 else: 1
+
+        cur[j] = min(
+          min(prev[j] + 1, cur[j - 1] + 1),
+          prev[j - 1] + cost
+        )
+
+      swap(prev, cur)
+
+    return prev[M]

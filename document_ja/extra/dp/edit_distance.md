@@ -1,25 +1,30 @@
-# edit_distance
+# Edit Distance
 
-このページは自動生成された下書きです。
+`editDistance(S, T)` は、文字列 `S` を `T` に変換するための編集距離を求めます。
 
-公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。
+許される操作は、1 文字の挿入・削除・置換です。
 
 ## import
 
-    import atcoder/extra/dp/edit_distance
-
-## 公開 API
-
-このファイルから公開 API を自動抽出できませんでした。ソースを確認して追記してください。
-
-## 概要
-
-TODO: このライブラリの用途と使いどころを記述してください。
+~~~nim
+import atcoder/extra/dp/edit_distance
+~~~
 
 ## 使用例
 
-TODO: 使用例を追加してください。
+~~~nim
+import atcoder/extra/dp/edit_distance
 
-## 注意
+doAssert editDistance("kitten", "sitting") == 3
+doAssert editDistance("abc", "abc") == 0
+doAssert editDistance("abc", "") == 3
+~~~
 
-TODO: 制約、前提条件、落とし穴を記述してください。
+## 計算量
+
+`S.len = n`, `T.len = m` とすると、
+
+- 時間計算量: `O(nm)`
+- メモリ: `O(m)`
+
+です。

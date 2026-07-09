@@ -1,14 +1,14 @@
 # Dual Cumulative Sum 2D
 
-`DualCumulativeSum2D` は、二次元の矩形加算・一点取得を行う imos 構造です。
+`DualCumulativeSum2D` is a two-dimensional imos helper supporting rectangle additions and point queries.
 
-## import
+## Import
 
 ~~~nim
 import atcoder/extra/dp/dual_cumulative_sum_2d
 ~~~
 
-## 使用例
+## Example
 
 ~~~nim
 import atcoder/extra/dp/dual_cumulative_sum_2d
@@ -42,8 +42,8 @@ ds.add(x1 .. x2, y1 .. y2, z)
 ds.add(x, y, z)
 ~~~
 
-閉矩形 `[x1, x2] × [y1, y2]` に `z` を加算します。  
-`ds.add(x, y, z)` は一点加算です。
+Adds `z` to the closed rectangle `[x1, x2] × [y1, y2]`.  
+`ds.add(x, y, z)` is a point addition.
 
 ### build
 
@@ -51,7 +51,7 @@ ds.add(x, y, z)
 ds.build()
 ~~~
 
-imos の累積を反映します。
+Applies the imos prefix sums.
 
 ### []
 
@@ -59,10 +59,10 @@ imos の累積を反映します。
 ds[x, y]
 ~~~
 
-座標 `(x, y)` の値を返します。
+Returns the value at cell `(x, y)`.
 
-## 計算量
+## Complexity
 
 - `add`: `O(1)`
 - `build`: `O(W H)`
-- 一点取得: `O(1)`
+- point query: `O(1)`

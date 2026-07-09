@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Edit Distance</title>
+  <title>Cumulative Sum 2D</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -70,26 +70,59 @@
     </a>
   </header>
   <main>
-<h1 id="edit-distance">Edit Distance</h1>
-<p><code>editDistance(S, T)</code> は、文字列 <code>S</code> を <code>T</code> に変換するための編集距離を求めます。</p>
-<p>許される操作は、1 文字の挿入・削除・置換です。</p>
-<h2 id="import">import</h2>
-<pre><code class="language-nim">import atcoder/extra/dp/edit_distance
+<h1 id="cumulative-sum-2d">Cumulative Sum 2D</h1>
+<p><code>CumulativeSum2D</code> is a two-dimensional cumulative-sum helper for rectangle-sum queries.</p>
+<h2 id="import">Import</h2>
+<pre><code class="language-nim">import atcoder/extra/dp/cumulative_sum_2d
 </code></pre>
-<h2 id="_1">使用例</h2>
-<pre><code class="language-nim">import atcoder/extra/dp/edit_distance
+<h2 id="example">Example</h2>
+<pre><code class="language-nim">import atcoder/extra/dp/cumulative_sum_2d
 
-doAssert editDistance(&quot;kitten&quot;, &quot;sitting&quot;) == 3
-doAssert editDistance(&quot;abc&quot;, &quot;abc&quot;) == 0
-doAssert editDistance(&quot;abc&quot;, &quot;&quot;) == 3
+let a = @[
+  @[1, 2, 3],
+  @[4, 5, 6],
+  @[7, 8, 9],
+]
+
+var cs = initCumulativeSum2D(a)
+
+doAssert cs[0 .. 1, 0 .. 1] == 12
+doAssert cs[1 .. 2, 1 .. 2] == 28
+doAssert cs[0 .. 2, 0 .. 2] == 45
 </code></pre>
-<h2 id="_2">計算量</h2>
-<p><code>S.len = n</code>, <code>T.len = m</code> とすると、</p>
+<h2 id="starting-from-an-empty-grid">Starting from an empty grid</h2>
+<pre><code class="language-nim">var cs = initCumulativeSum2D[int](3, 3)
+
+cs.add(0, 0, 5)
+cs.add(2, 1, 7)
+cs.build()
+
+doAssert cs[0 .. 2, 0 .. 2] == 12
+doAssert cs[2 .. 2, 1 .. 1] == 7
+</code></pre>
+<h2 id="api">API</h2>
+<h3 id="initcumulativesum2d">initCumulativeSum2D</h3>
+<pre><code class="language-nim">var cs = initCumulativeSum2D(a)
+var cs2 = initCumulativeSum2D[int](W, H)
+</code></pre>
+<h3 id="add">add</h3>
+<pre><code class="language-nim">cs.add(x, y, z)
+</code></pre>
+<p>Adds <code>z</code> to cell <code>(x, y)</code>. Call it before <code>build()</code>.</p>
+<h3 id="build">build</h3>
+<pre><code class="language-nim">cs.build()
+</code></pre>
+<p>Builds the cumulative sum table.</p>
+<h3 id="_1">[]</h3>
+<pre><code class="language-nim">cs[x1 .. x2, y1 .. y2]
+</code></pre>
+<p>Returns the sum of the closed rectangle <code>[x1, x2] × [y1, y2]</code>.</p>
+<h2 id="complexity">Complexity</h2>
 <ul>
-<li>時間計算量: <code>O(nm)</code></li>
-<li>メモリ: <code>O(m)</code></li>
+<li><code>add</code>: <code>O(1)</code></li>
+<li><code>build</code>: <code>O(W H)</code></li>
+<li>rectangle query: <code>O(1)</code></li>
 </ul>
-<p>です。</p>
   </main>
 </body>
 </html>
