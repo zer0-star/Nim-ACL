@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>polygon</title>
+  <title>Polygon</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -70,30 +70,77 @@
     </a>
   </header>
   <main>
-<h1 id="polygon">polygon</h1>
-<p>このページは自動生成された下書きです。</p>
-<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
+<h1 id="polygon">Polygon</h1>
+<p><code>polygon</code> は、二次元 polygon に対する基本操作を提供します。</p>
+<p>凸性判定、凸包、点包含判定、面積、凸多角形の直径などを扱えます。</p>
 <h2 id="import">import</h2>
-<pre><code>import atcoder/extra/geometry/polygon
+<pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
+import atcoder/extra/geometry/polygon
 </code></pre>
-<h2 id="api">公開 API</h2>
-<pre><code>const ATCODER_POLYGON_HPP* = 1
-type Polygon*[Real] = seq[Point[Real]]
-proc isConvex*[Real](p:Polygon[Real]):bool =
-proc convexHull*[Real](p:Polygon[Real], strict = false): Polygon[Real] =
-proc convex_cut*[Real](U: Polygon[Real], l:Line[Real]):Polygon[Real] =
-proc convex_diameter*[Real](p: Polygon[Real]):Real =
-type State* = enum
-proc contains*[Real](Q: Polygon[Real], p:Point[Real]):State =
-proc area*[Real](p: Polygon[Real]):Real =
-proc area*[Real](p:Polygon[Real], c:Circle[Real]):Real =
+<h2 id="polygon_1">Polygon</h2>
+<pre><code class="language-nim">type Polygon[Real] = seq[Point[Real]]
 </code></pre>
-<h2 id="_1">概要</h2>
-<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
-<h2 id="_2">使用例</h2>
-<p>TODO: 使用例を追加してください。</p>
-<h2 id="_3">注意</h2>
-<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+<p>polygon は点列として表されます。</p>
+<h2 id="area">area</h2>
+<pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
+import atcoder/extra/geometry/polygon
+
+let square: Polygon[float] = @[
+  initPoint[float](0.0, 0.0),
+  initPoint[float](2.0, 0.0),
+  initPoint[float](2.0, 2.0),
+  initPoint[float](0.0, 2.0),
+]
+
+doAssert area(square) == 4.0
+</code></pre>
+<p><code>area(p)</code> は符号付き面積を返します。点列が反時計回りなら正、時計回りなら負になります。</p>
+<h2 id="contains">contains</h2>
+<pre><code class="language-nim">contains(poly, point)
+</code></pre>
+<p>点が polygon の内部・辺上・外部のどこにあるかを返します。</p>
+<p>戻り値は <code>State</code> です。</p>
+<ul>
+<li><code>State.IN</code></li>
+<li><code>State.ON</code></li>
+<li><code>State.OUT</code></li>
+</ul>
+<pre><code class="language-nim">doAssert contains(square, initPoint[float](1.0, 1.0)) == State.IN
+doAssert contains(square, initPoint[float](2.0, 1.0)) == State.ON
+doAssert contains(square, initPoint[float](3.0, 1.0)) == State.OUT
+</code></pre>
+<h2 id="convexhull">convexHull</h2>
+<pre><code class="language-nim">let h = convexHull(points)
+</code></pre>
+<p>点集合の凸包を返します。</p>
+<pre><code class="language-nim">let points: Polygon[float] = @[
+  initPoint[float](0.0, 0.0),
+  initPoint[float](2.0, 0.0),
+  initPoint[float](2.0, 2.0),
+  initPoint[float](0.0, 2.0),
+  initPoint[float](1.0, 1.0),
+]
+
+let h = convexHull(points)
+
+doAssert h.len == 4
+</code></pre>
+<h2 id="isconvex">isConvex</h2>
+<pre><code class="language-nim">isConvex(poly)
+</code></pre>
+<p>polygon が凸なら <code>true</code> を返します。</p>
+<h2 id="convex_diameter">convex_diameter</h2>
+<pre><code class="language-nim">convex_diameter(poly)
+</code></pre>
+<p>凸 polygon の直径、つまり最も遠い 2 点の距離を返します。</p>
+<h2 id="_1">計算量</h2>
+<ul>
+<li><code>area</code>: <code>O(n)</code></li>
+<li><code>contains</code>: <code>O(n)</code></li>
+<li><code>convexHull</code>: <code>O(n log n)</code></li>
+<li><code>isConvex</code>: <code>O(n)</code></li>
+<li><code>convex_diameter</code>: <code>O(n)</code></li>
+</ul>
   </main>
 </body>
 </html>

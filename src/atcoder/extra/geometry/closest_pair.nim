@@ -1,5 +1,6 @@
 when not declared ATCODER_CLOSEST_PAIR_HPP:
   const ATCODER_CLOSEST_PAIR_HPP* = 1
+  import std/algorithm
   import atcoder/extra/other/internal_complex
   import atcoder/extra/other/floatutils
   import atcoder/extra/geometry/geometry_template

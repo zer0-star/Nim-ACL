@@ -29,6 +29,7 @@ STEP=init
     tests/test_extra_math_basic.nim
     tests/test_extra_arbitrary_mod_combination.nim
     tests/test_extra_geometry_template.nim
+    tests/test_extra_geometry_polygon.nim
     tests/test_extra_graph_shortest_paths.nim
     tests/test_extra_graph_structural.nim
     tests/test_extra_universal_segtree.nim
