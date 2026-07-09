@@ -64,6 +64,8 @@ bash tools/quick_verify.sh
 
 This keeps CI behavior aligned with the local smoke test.
 
+In CI, `tools/quick_verify.sh` treats generated documentation diffs as non-strict by default. This avoids Linux/macOS documentation rendering drift from failing unrelated code checks. Documentation publication remains the responsibility of `tools/publish_docs.sh`. Set `NACL_STRICT_DOCS=1` to make CI fail on generated documentation diffs.
+
 When adding a new facade or user-facing helper, prefer the following sequence:
 
 1. Add or update implementation.

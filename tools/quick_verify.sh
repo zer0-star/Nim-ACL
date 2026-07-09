@@ -53,11 +53,35 @@ STEP=init
     python3 tools/generate_document.py
   fi
 
-  STEP="check docs are committed"
-  test -z "$(git status --porcelain document_ja document_en)"
+  STEP="check generated docs"
+  doc_changes="$(git status --porcelain document_ja document_en)"
+  if [ -n "$doc_changes" ]; then
+    echo "Generated documentation changed:"
+    echo "$doc_changes"
+    git --no-pager diff --stat -- document_ja document_en || true
+
+    if [ "${CI:-}" = "true" ] && [ "${NACL_STRICT_DOCS:-0}" != "1" ]; then
+      echo
+      echo "CI non-strict docs mode:"
+      echo "  The documentation generator ran successfully."
+      echo "  Generated documentation diffs are reset in CI."
+      echo "  Use tools/publish_docs.sh to regenerate, commit, and publish documentation."
+      git checkout -- document_ja document_en
+    else
+      echo
+      echo "Generated docs are not committed."
+      echo "Run:"
+      echo "  bash tools/publish_docs.sh"
+      echo "or commit the regenerated documentation."
+      false
+    fi
+  fi
 
   STEP="final clean"
-  test -z "$(git status --porcelain)"
+  if [ -n "$(git status --porcelain)" ]; then
+    git status --short
+    false
+  fi
 
 } >"$LOG" 2>&1 || STATUS=NG
 
