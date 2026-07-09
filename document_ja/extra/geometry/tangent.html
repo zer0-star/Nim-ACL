@@ -77,11 +77,16 @@
 <pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
 import atcoder/extra/geometry/tangent
 </code></pre>
-<h2 id="_1">点から円への接線</h2>
-<pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
-import atcoder/extra/geometry/tangent
-
-let
+<h2 id="_1">定義</h2>
+<pre><code class="language-nim">proc tangent[Real](c: Circle[Real], p: Point[Real]): (Point[Real], Point[Real])
+proc tangent[Real](c1, c2: Circle[Real]): seq[Line[Real]]
+</code></pre>
+<ul>
+<li><code>tangent(c, p)</code> は、点 <code>p</code> から円 <code>c</code> に引いた 2 本の接線の接点を返します。</li>
+<li><code>tangent(c1, c2)</code> は、2 つの円の共通接線を返します。</li>
+</ul>
+<h2 id="_2">使用例</h2>
+<pre><code class="language-nim">let
   c = initCircle(initPoint[float](0.0, 0.0), 1.0)
   p = initPoint[float](2.0, 0.0)
 
@@ -90,18 +95,7 @@ let (u, v) = tangent(c, p)
 doAssert distance(c.p, u) == c.r
 doAssert distance(c.p, v) == c.r
 </code></pre>
-<p><code>tangent(c, p)</code> は、点 <code>p</code> から円 <code>c</code> に引いた2本の接線の接点を返します。</p>
-<h2 id="2">2つの円の共通接線</h2>
-<pre><code class="language-nim">let
-  c1 = initCircle(initPoint[float](0.0, 0.0), 1.0)
-  c2 = initCircle(initPoint[float](4.0, 0.0), 1.0)
-
-let lines = tangent(c1, c2)
-
-doAssert lines.len == 4
-</code></pre>
-<p><code>tangent(c1, c2)</code> は、2つの円の共通接線を <code>seq[Line[Real]]</code> として返します。</p>
-<h2 id="_2">注意</h2>
+<h2 id="_3">制約</h2>
 <ul>
 <li>接線が存在しない場合、返る本数は少なくなります。</li>
 <li>円が重なっている場合や同心円の場合は、状況に応じて空列になります。</li>

@@ -76,11 +76,12 @@
 <pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
 import atcoder/extra/geometry/closest_pair
 </code></pre>
-<h2 id="_1">使用例</h2>
-<pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
-import atcoder/extra/geometry/closest_pair
-
-let ps = @[
+<h2 id="_1">定義</h2>
+<pre><code class="language-nim">proc closest_pair[Real](ps: seq[Point[Real]]): Real
+</code></pre>
+<p>点列 <code>ps</code> の中から、異なる 2 点の距離の最小値を返します。</p>
+<h2 id="_2">使用例</h2>
+<pre><code class="language-nim">let ps = @[
   initPoint[float](0.0, 0.0),
   initPoint[float](3.0, 4.0),
   initPoint[float](2.0, 0.0),
@@ -89,17 +90,12 @@ let ps = @[
 
 doAssert closest_pair(ps) == 1.0
 </code></pre>
-<h2 id="api">API</h2>
-<pre><code class="language-nim">closest_pair(ps)
-</code></pre>
-<p>点列 <code>ps</code> の中から、異なる 2 点の距離の最小値を返します。</p>
-<h2 id="_2">注意</h2>
+<h2 id="_3">制約</h2>
 <ul>
-<li><code>ps.len &gt;= 2</code> を仮定します。</li>
+<li><code>ps.len &gt;= 2</code></li>
 <li>同じ座標の点が複数ある場合、最近距離は <code>0</code> になります。</li>
-<li>浮動小数点比較には <code>geometry_template</code> / <code>floatutils</code> の許容誤差付き比較が使われます。</li>
 </ul>
-<h2 id="_3">計算量</h2>
+<h2 id="_4">計算量</h2>
 <p>点数を <code>n</code> とすると、</p>
 <ul>
 <li><code>O(n log n)</code></li>

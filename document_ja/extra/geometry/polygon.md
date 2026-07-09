@@ -11,7 +11,7 @@ import atcoder/extra/geometry/geometry_template
 import atcoder/extra/geometry/polygon
 ~~~
 
-## Polygon
+## 型
 
 ~~~nim
 type Polygon[Real] = seq[Point[Real]]
@@ -19,12 +19,27 @@ type Polygon[Real] = seq[Point[Real]]
 
 polygon は点列として表されます。
 
-## area
+## 定義
 
 ~~~nim
-import atcoder/extra/geometry/geometry_template
-import atcoder/extra/geometry/polygon
+proc isConvex[Real](p: Polygon[Real]): bool
+proc convexHull[Real](p: Polygon[Real], strict = false): Polygon[Real]
+proc convex_cut[Real](p: Polygon[Real], l: Line[Real]): Polygon[Real]
+proc convex_diameter[Real](p: Polygon[Real]): Real
 
+type State = enum
+  OUT
+  ON
+  IN
+
+proc contains[Real](p: Polygon[Real], q: Point[Real]): State
+proc area[Real](p: Polygon[Real]): Real
+proc area[Real](p: Polygon[Real], c: Circle[Real]): Real
+~~~
+
+## 使用例
+
+~~~nim
 let square: Polygon[float] = @[
   initPoint[float](0.0, 0.0),
   initPoint[float](2.0, 0.0),
@@ -33,67 +48,10 @@ let square: Polygon[float] = @[
 ]
 
 doAssert area(square) == 4.0
-~~~
-
-`area(p)` は符号付き面積を返します。点列が反時計回りなら正、時計回りなら負になります。
-
-## contains
-
-~~~nim
-contains(poly, point)
-~~~
-
-点が polygon の内部・辺上・外部のどこにあるかを返します。
-
-戻り値は `State` です。
-
-- `State.IN`
-- `State.ON`
-- `State.OUT`
-
-~~~nim
 doAssert contains(square, initPoint[float](1.0, 1.0)) == State.IN
 doAssert contains(square, initPoint[float](2.0, 1.0)) == State.ON
 doAssert contains(square, initPoint[float](3.0, 1.0)) == State.OUT
 ~~~
-
-## convexHull
-
-~~~nim
-let h = convexHull(points)
-~~~
-
-点集合の凸包を返します。
-
-~~~nim
-let points: Polygon[float] = @[
-  initPoint[float](0.0, 0.0),
-  initPoint[float](2.0, 0.0),
-  initPoint[float](2.0, 2.0),
-  initPoint[float](0.0, 2.0),
-  initPoint[float](1.0, 1.0),
-]
-
-let h = convexHull(points)
-
-doAssert h.len == 4
-~~~
-
-## isConvex
-
-~~~nim
-isConvex(poly)
-~~~
-
-polygon が凸なら `true` を返します。
-
-## convex_diameter
-
-~~~nim
-convex_diameter(poly)
-~~~
-
-凸 polygon の直径、つまり最も遠い 2 点の距離を返します。
 
 ## 計算量
 

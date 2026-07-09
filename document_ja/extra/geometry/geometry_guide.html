@@ -75,48 +75,46 @@
 <p>新しく書くコードでは、まず次の import を使うのがおすすめです。</p>
 <pre><code class="language-nim">import atcoder/extra/geometry/geometry
 </code></pre>
-<p>この module は、基本幾何・polygon・triangle・tangent・closest pair をまとめて re-export し、読みやすい constructor / alias も追加します。</p>
-<h2 id="_1">推奨スタイル</h2>
-<h3 id="_2">点</h3>
+<h2 id="_1">基本型</h2>
+<h3 id="_2">定義</h3>
+<pre><code class="language-nim">type Point[Real]
+type Line[Real]
+type Segment[Real]
+type Circle[Real]
+type Polygon[Real] = seq[Point[Real]]
+</code></pre>
+<p>facade module では次の alias も使えます。</p>
+<pre><code class="language-nim">type Point2[Real] = Point[Real]
+type Line2[Real] = Line[Real]
+type Segment2[Real] = Segment[Real]
+type Circle2[Real] = Circle[Real]
+type Polygon2[Real] = Polygon[Real]
+</code></pre>
+<h2 id="constructor">推奨 constructor</h2>
+<h3 id="_3">定義</h3>
+<pre><code class="language-nim">proc point[Real](x, y: Real): Point[Real]
+proc line[Real](a, b: Point[Real]): Line[Real]
+proc segment[Real](a, b: Point[Real]): Segment[Real]
+proc circle[Real](center: Point[Real], radius: Real): Circle[Real]
+</code></pre>
+<h3 id="_4">使用例</h3>
 <pre><code class="language-nim">let
   a = point(0.0, 0.0)
   b = point(3.0, 4.0)
 
 doAssert dist(a, b) == 5.0
 </code></pre>
-<p>従来の書き方も使えます。</p>
-<pre><code class="language-nim">let a = initPoint[float](0.0, 0.0)
+<h2 id="constructor_1">従来 constructor</h2>
+<h3 id="_5">定義</h3>
+<pre><code class="language-nim">proc initPoint[Real](x, y: Real): Point[Real]
+proc initLine[Real](a, b: Point[Real]): Line[Real]
+proc initSegment[Real](a, b: Point[Real]): Segment[Real]
+proc initCircle[Real](center: Point[Real], radius: Real): Circle[Real]
 </code></pre>
-<h3 id="_3">直線・線分</h3>
-<pre><code class="language-nim">let
-  a = point(0.0, 0.0)
-  b = point(2.0, 2.0)
-  c = point(0.0, 2.0)
-  d = point(2.0, 0.0)
-
-let
-  l1 = line(a, b)
-  l2 = line(c, d)
-  s1 = segment(a, b)
-  s2 = segment(c, d)
-
-doAssert intersects(l1, l2)
-doAssert intersects(s1, s2)
-
-let p = intersection(l1, l2)
+<p>既存の書き方もそのまま使えます。</p>
+<pre><code class="language-nim">let p = initPoint[float](1.0, 2.0)
 </code></pre>
-<p>従来の短縮表記も残っています。</p>
-<pre><code class="language-nim">let l = a -- b
-let s = a !! b
-</code></pre>
-<h3 id="_4">円</h3>
-<pre><code class="language-nim">let c = circle(point(0.0, 0.0), 2.0)
-</code></pre>
-<p>3点を通る円も作れます。</p>
-<pre><code class="language-nim">let c = circle(a, b, c)
-</code></pre>
-<h2 id="_5">名前の対応表</h2>
-<p>新しい facade 名と従来名の対応です。</p>
+<h2 id="_6">名前の対応表</h2>
 <table>
 <thead>
 <tr>
@@ -163,51 +161,47 @@ let s = a !! b
 </tr>
 </tbody>
 </table>
-<h2 id="_6">よく使う処理</h2>
-<h3 id="_7">外積・内積</h3>
-<pre><code class="language-nim">cross(a, b)
-dot(a, b)
-norm(a)
+<h2 id="_7">基本演算</h2>
+<h3 id="_8">定義</h3>
+<pre><code class="language-nim">proc cross[Real](a, b: Point[Real]): Real
+proc dot[Real](a, b: Point[Real]): Real
+proc norm[Real](a: Point[Real]): Real
+proc ccw[Real](a, b, c: Point[Real]): CCWState
 </code></pre>
-<h3 id="ccw">ccw</h3>
-<pre><code class="language-nim">ccw(a, b, c)
+<h2 id="polygon">polygon</h2>
+<h3 id="_9">定義</h3>
+<pre><code class="language-nim">proc convexHull[Real](p: Polygon[Real], strict = false): Polygon[Real]
+proc area[Real](p: Polygon[Real]): Real
+proc contains[Real](p: Polygon[Real], q: Point[Real]): State
+proc isConvex[Real](p: Polygon[Real]): bool
+proc convex_diameter[Real](p: Polygon[Real]): Real
 </code></pre>
-<p>戻り値は次の enum です。</p>
-<ul>
-<li><code>COUNTER_CLOCKWISE</code></li>
-<li><code>CLOCKWISE</code></li>
-<li><code>ON_SEGMENT</code></li>
-<li><code>ONLINE_FRONT</code></li>
-<li><code>ONLINE_BACK</code></li>
-</ul>
-<h3 id="polygon">polygon</h3>
-<pre><code class="language-nim">let h = convexHull(points)
-let s = area(poly)
-let state = contains(poly, p)
-let ok = isConvex(poly)
+<h2 id="triangle">triangle</h2>
+<h3 id="_10">定義</h3>
+<pre><code class="language-nim">proc centroid[Real](a, b, c: Point[Real]): Point[Real]
+proc incenter[Real](a, b, c: Point[Real]): Point[Real]
+proc circumcenter[Real](a, b, c: Point[Real]): Point[Real]
+proc orthocenter[Real](a, b, c: Point[Real]): Point[Real]
+proc incircle[Real](a, b, c: Point[Real]): Circle[Real]
+proc circumcircle[Real](a, b, c: Point[Real]): Circle[Real]
 </code></pre>
-<h3 id="triangle">triangle</h3>
-<pre><code class="language-nim">let g = centroid(a, b, c)
-let ic = incenter(a, b, c)
-let cc = circumcenter(a, b, c)
-let oc = orthocenter(a, b, c)
+<h2 id="tangent">tangent</h2>
+<h3 id="_11">定義</h3>
+<pre><code class="language-nim">proc tangent[Real](c: Circle[Real], p: Point[Real]): (Point[Real], Point[Real])
+proc tangent[Real](c1, c2: Circle[Real]): seq[Line[Real]]
 </code></pre>
-<h3 id="tangent">tangent</h3>
-<pre><code class="language-nim">let (u, v) = tangent(circle, point)
-let lines = tangent(circle1, circle2)
-</code></pre>
-<h2 id="_8">使い分け</h2>
-<p>基本的には次で十分です。</p>
+<h2 id="_12">使い分け</h2>
+<p>通常は次だけで十分です。</p>
 <pre><code class="language-nim">import atcoder/extra/geometry/geometry
 </code></pre>
-<p>個別 module だけを軽く import したい場合は、従来通り次も使えます。</p>
+<p>個別 module だけを import したい場合は、従来通り次も使えます。</p>
 <pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
 import atcoder/extra/geometry/polygon
 import atcoder/extra/geometry/triangle
 import atcoder/extra/geometry/tangent
 import atcoder/extra/geometry/closest_pair
 </code></pre>
-<h2 id="_9">注意</h2>
+<h2 id="_13">注意</h2>
 <ul>
 <li>geometry は浮動小数点誤差の影響を受けます。</li>
 <li>厳密幾何ではなく、競技プログラミング向けの実用的な geometry library です。</li>

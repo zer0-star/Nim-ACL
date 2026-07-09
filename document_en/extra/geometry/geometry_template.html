@@ -71,32 +71,79 @@
   </header>
   <main>
 <h1 id="geometry-template">Geometry Template</h1>
+<p><code>geometry_template</code> provides basic types and functions for two-dimensional geometry.</p>
+<p>It supports points, lines, segments, circles, cross products, dot products, ccw classification, intersection tests, distances, and intersection points.</p>
 <p>For new code, you can also use the readable facade <a href="./geometry.html"><code>atcoder/extra/geometry/geometry</code></a>.</p>
-<p><code>geometry_template</code> provides basic types and operations for two-dimensional computational geometry.</p>
-<p>It includes points, lines, segments, circles, cross products, dot products, ccw classification, intersections, distances, and cross points.</p>
 <h2 id="import">Import</h2>
 <pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
 </code></pre>
+<h2 id="types">Types</h2>
+<pre><code class="language-nim">type Point[Real]
+type Line[Real]
+type Segment[Real]
+type Circle[Real]
+</code></pre>
+<p><code>Real</code> is usually a floating-point type such as <code>float</code>.</p>
 <h2 id="point">Point</h2>
-<p>A point is represented as <code>Point[Real]</code>. Use <code>initPoint[Real](x, y)</code> to create one.</p>
-<pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
-
-let
-  a = initPoint[float](0.0, 0.0)
-  b = initPoint[float](3.0, 4.0)
-
-doAssert distance(a, b) == 5.0
-doAssert dot(b, b) == 25.0
+<h3 id="definition">Definition</h3>
+<pre><code class="language-nim">proc initPoint[Real](x, y: Real): Point[Real]
 </code></pre>
-<p>Main operations:</p>
-<pre><code class="language-nim">cross(a, b)      # cross product
-dot(a, b)        # dot product
-norm(a)          # dot(a, a)
-distance(a, b)   # distance between two points
-rotate(theta, p) # rotate p counterclockwise by theta radians
-</code></pre>
+<p>Returns the point <code>(x, y)</code>.</p>
 <h2 id="line-segment">Line / Segment</h2>
-<p>A line is <code>Line[Real]</code>, and a segment is <code>Segment[Real]</code>.</p>
+<h3 id="definition_1">Definition</h3>
+<pre><code class="language-nim">proc initLine[Real](a, b: Point[Real]): Line[Real]
+proc initLine[Real](A, B, C: Real): Line[Real]
+proc initSegment[Real](a, b: Point[Real]): Segment[Real]
+</code></pre>
+<p>The shorthand operators are also available:</p>
+<pre><code class="language-nim">proc `--`[Real](a, b: Point[Real]): Line[Real]
+proc `!!`[Real](a, b: Point[Real]): Segment[Real]
+</code></pre>
+<h2 id="circle">Circle</h2>
+<h3 id="definition_2">Definition</h3>
+<pre><code class="language-nim">proc initCircle[Real](p: Point[Real], r: Real): Circle[Real]
+proc initCircle[Real](a, b, c: Point[Real]): Circle[Real]
+</code></pre>
+<h2 id="basic-operations">Basic operations</h2>
+<h3 id="definition_3">Definition</h3>
+<pre><code class="language-nim">proc cross[Real](a, b: Point[Real]): Real
+proc dot[Real](a, b: Point[Real]): Real
+proc norm[Real](a: Point[Real]): Real
+proc distance[Real](a, b: Point[Real]): Real
+proc rotate[Real](theta: Real, p: Point[Real]): Point[Real]
+proc radianToDegree[Real](r: Real): Real
+proc degreeToRadian[Real](d: Real): Real
+</code></pre>
+<h2 id="ccw">ccw</h2>
+<h3 id="definition_4">Definition</h3>
+<pre><code class="language-nim">type CCWState = enum
+  ONLINE_FRONT
+  CLOCKWISE
+  ON_SEGMENT
+  COUNTER_CLOCKWISE
+  ONLINE_BACK
+
+proc ccw[Real](a, b, c: Point[Real]): CCWState
+</code></pre>
+<h2 id="intersections-distances-and-cross-points">Intersections, distances, and cross points</h2>
+<h3 id="definition_5">Definition</h3>
+<pre><code class="language-nim">proc parallel[Real](a, b: Line[Real]): bool
+proc orthogonal[Real](a, b: Line[Real]): bool
+
+proc intersect[Real](a, b: Line[Real]): bool
+proc intersect[Real](a, b: Segment[Real]): bool
+proc intersect[Real](a, b: Circle[Real]): int
+
+proc distance[Real](l: Line[Real], p: Point[Real]): Real
+proc distance[Real](s: Segment[Real], p: Point[Real]): Real
+proc distance[Real](a, b: Segment[Real]): Real
+
+proc crosspoint[Real](a, b: Line[Real]): Point[Real]
+proc crosspoint[Real](a, b: Segment[Real]): Point[Real]
+proc crosspoint[Real](c: Circle[Real], l: Line[Real]): tuple
+proc crosspoint[Real](c1, c2: Circle[Real]): (Point[Real], Point[Real])
+</code></pre>
+<h2 id="example">Example</h2>
 <pre><code class="language-nim">let
   a = initPoint[float](0.0, 0.0)
   b = initPoint[float](2.0, 2.0)
@@ -106,52 +153,20 @@ rotate(theta, p) # rotate p counterclockwise by theta radians
 let
   l1 = initLine(a, b)
   l2 = initLine(c, d)
-  s1 = initSegment(a, b)
-  s2 = initSegment(c, d)
 
 doAssert intersect(l1, l2)
-doAssert intersect(s1, s2)
 
 let p = crosspoint(l1, l2)
 
 doAssert p.re == 1.0
 doAssert p.im == 1.0
 </code></pre>
-<h2 id="ccw">ccw</h2>
-<p><code>ccw(a, b, c)</code> classifies the relation of the three points <code>a -&gt; b -&gt; c</code>.</p>
-<pre><code class="language-nim">let
-  a = initPoint[float](0.0, 0.0)
-  b = initPoint[float](2.0, 0.0)
-  c = initPoint[float](1.0, 1.0)
-
-doAssert ccw(a, b, c) == CCWState.COUNTER_CLOCKWISE
-</code></pre>
-<p>The result is one of:</p>
-<ul>
-<li><code>COUNTER_CLOCKWISE</code></li>
-<li><code>CLOCKWISE</code></li>
-<li><code>ON_SEGMENT</code></li>
-<li><code>ONLINE_FRONT</code></li>
-<li><code>ONLINE_BACK</code></li>
-</ul>
-<h2 id="parallel-orthogonal-and-distance">Parallel, orthogonal, and distance</h2>
-<pre><code class="language-nim">parallel(l1, l2)
-orthogonal(l1, l2)
-distance(line, point)
-distance(segment, point)
-distance(segment1, segment2)
-</code></pre>
-<h2 id="circle">Circle</h2>
-<p>A circle is represented as <code>Circle[Real]</code>.</p>
-<pre><code class="language-nim">let
-  p = initPoint[float](0.0, 0.0)
-  c = initCircle(p, 2.0)
-</code></pre>
+<h2 id="complexity">Complexity</h2>
+<p>Basic operations are constant time.</p>
 <h2 id="notes">Notes</h2>
 <ul>
-<li>Floating-point comparisons use tolerant comparisons from <code>floatutils</code>.</li>
-<li>This is a competitive-programming geometry template, not an exact arithmetic geometry package.</li>
-<li><code>Point[Real]</code> is internally a complex-like type. In user code, prefer creating points with <code>initPoint</code> and using geometry APIs.</li>
+<li>Floating-point comparisons use tolerant comparisons.</li>
+<li>This is a practical competitive-programming geometry template, not an exact geometry package.</li>
 </ul>
   </main>
 </body>

@@ -1,8 +1,8 @@
 # Geometry
 
-See also [Geometry Guide](./geometry_guide.html) for a guided overview.
-
 `atcoder/extra/geometry/geometry` is a friendly facade module for two-dimensional geometry utilities.
+
+See also [Geometry Guide](./geometry_guide.html) for a guided overview.
 
 It re-exports `geometry_template`, `polygon`, `closest_pair`, `triangle`, and `tangent`, and adds readable constructors and aliases.
 
@@ -12,11 +12,66 @@ It re-exports `geometry_template`, `polygon`, `closest_pair`, `triangle`, and `t
 import atcoder/extra/geometry/geometry
 ~~~
 
-## Basic example
+## Re-export
+
+This module re-exports:
 
 ~~~nim
-import atcoder/extra/geometry/geometry
+import atcoder/extra/geometry/geometry_template
+import atcoder/extra/geometry/closest_pair
+import atcoder/extra/geometry/polygon
+import atcoder/extra/geometry/triangle
+import atcoder/extra/geometry/tangent
+~~~
 
+## Type aliases
+
+### Definition
+
+~~~nim
+type Point2[Real] = Point[Real]
+type Line2[Real] = Line[Real]
+type Segment2[Real] = Segment[Real]
+type Circle2[Real] = Circle[Real]
+type Polygon2[Real] = Polygon[Real]
+~~~
+
+## Friendly constructors
+
+### Definition
+
+~~~nim
+proc point[Real](x, y: Real): Point[Real]
+
+proc line[Real](a, b: Point[Real]): Line[Real]
+proc line[Real](A, B, C: Real): Line[Real]
+
+proc segment[Real](a, b: Point[Real]): Segment[Real]
+
+proc circle[Real](center: Point[Real], radius: Real): Circle[Real]
+proc circle[Real](a, b, c: Point[Real]): Circle[Real]
+~~~
+
+## Friendly operations
+
+### Definition
+
+~~~nim
+proc dist[Real](a, b: Point[Real]): Real
+proc dist[Real](l: Line[Real], p: Point[Real]): Real
+proc dist[Real](s: Segment[Real], p: Point[Real]): Real
+proc dist[Real](a, b: Segment[Real]): Real
+
+proc intersects[Real](a, b: Line[Real]): bool
+proc intersects[Real](a, b: Segment[Real]): bool
+
+proc intersection[Real](a, b: Line[Real]): Point[Real]
+proc intersection[Real](a, b: Segment[Real]): Point[Real]
+~~~
+
+## Example
+
+~~~nim
 let
   a = point(0.0, 0.0)
   b = point(2.0, 2.0)
@@ -37,71 +92,3 @@ let p = intersection(l1, l2)
 doAssert p.re == 1.0
 doAssert p.im == 1.0
 ~~~
-
-## Friendly constructors
-
-In addition to the existing `initPoint`, `initLine`, `initSegment`, and `initCircle`, this facade provides shorter readable names.
-
-~~~nim
-let p = point(1.0, 2.0)
-let l = line(point(0.0, 0.0), point(1.0, 1.0))
-let s = segment(point(0.0, 0.0), point(1.0, 1.0))
-let c = circle(point(0.0, 0.0), 2.0)
-~~~
-
-## Friendly aliases
-
-The following type aliases are provided:
-
-~~~nim
-Point2[float]
-Line2[float]
-Segment2[float]
-Circle2[float]
-Polygon2[float]
-~~~
-
-They are aliases of the existing geometry types.
-
-## Friendly operations
-
-~~~nim
-dist(a, b)
-intersects(a, b)
-intersection(a, b)
-~~~
-
-- `dist`: distance
-- `intersects`: intersection predicate
-- `intersection`: intersection point
-
-The original names `distance`, `intersect`, and `crosspoint` are still available.
-
-## Re-export
-
-This module re-exports:
-
-~~~nim
-atcoder/extra/geometry/geometry_template
-atcoder/extra/geometry/closest_pair
-atcoder/extra/geometry/polygon
-atcoder/extra/geometry/triangle
-atcoder/extra/geometry/tangent
-~~~
-
-Therefore, the following functions can be used with this single import:
-
-~~~nim
-closest_pair(points)
-convexHull(points)
-area(poly)
-contains(poly, p)
-centroid(a, b, c)
-incenter(a, b, c)
-tangent(circle, point)
-~~~
-
-## Policy
-
-This facade does not break existing APIs. It only adds readable aliases.  
-Existing competitive-programming shorthand such as `a -- b` and `a !! b` remains available.
