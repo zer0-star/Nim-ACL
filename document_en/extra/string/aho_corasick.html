@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -71,54 +71,55 @@
   </header>
   <main>
 <h1 id="aho-corasick">Aho-Corasick</h1>
-<p><code>Aho-Corasick</code> は、複数の pattern 文字列をまとめて検索するためのアルゴリズムです。</p>
-<p>すべての pattern を Trie に入れ、そこに failure link を張ることで、text を 1 回走査するだけで多数の pattern の出現位置をまとめて検出できます。</p>
-<h2 id="_1">使いどころ</h2>
-<p>次のような問題でよく使います。</p>
+<p><code>Aho-Corasick</code> is an algorithm for matching many patterns at once.</p>
+<p>It inserts all patterns into a trie and adds failure links.<br>
+Then a text can be scanned once to find occurrences of all registered patterns.</p>
+<h2 id="use-cases">Use cases</h2>
+<p>Typical use cases include:</p>
 <ul>
-<li>多数の禁止文字列を含むか判定する</li>
-<li>text 中に現れる pattern をすべて列挙する</li>
-<li>複数 pattern matching</li>
-<li>文字列 DP の状態遷移に「禁止 pattern の出現」を組み込む</li>
-<li>各 pattern ごとに KMP を回すと重すぎる問題</li>
+<li>checking whether a text contains any forbidden string</li>
+<li>listing all occurrences of many patterns</li>
+<li>multiple pattern matching</li>
+<li>string DP with forbidden patterns</li>
+<li>cases where running KMP for each pattern is too slow</li>
 </ul>
-<h2 id="_2">考え方</h2>
-<p>まず、すべての pattern を Trie に追加します。<br>
-Trie の node は、「ここまで読んだ suffix が、どの pattern prefix に一致しているか」を表します。</p>
-<p>しかし、text を走査している途中で次の文字に対応する Trie edge が無いことがあります。<br>
-そのとき、今まで読んだ文字列の suffix のうち、別の pattern prefix として使える最長のものへ移動します。これが failure link です。</p>
-<p>failure link を使うと、text の各文字について automaton state を 1 回進めるだけで済みます。<br>
-その state に pattern 終端があれば、そこに対応する pattern が出現したことになります。</p>
-<h2 id="import">import</h2>
+<h2 id="idea">Idea</h2>
+<p>First, insert all patterns into a trie.<br>
+A trie node represents the current longest pattern prefix matched by the text suffix.</p>
+<p>When there is no trie edge for the next character, we move to the longest suffix that is also a pattern prefix.<br>
+This fallback pointer is called a failure link.</p>
+<p>With failure links, each text character advances the automaton state once.<br>
+If the state has pattern outputs, those patterns occur ending at the current position.</p>
+<h2 id="import">Import</h2>
 <pre><code class="language-nim">import atcoder/extra/string/aho_corasick
 </code></pre>
-<h2 id="_3">型</h2>
+<h2 id="types">Types</h2>
 <pre><code class="language-nim">type AhoCorasick
 type AhoCorasickNode
 type AhoCorasickMatch
 </code></pre>
-<p><code>AhoCorasickMatch</code> は次の field を持ちます。</p>
+<p><code>AhoCorasickMatch</code> has these fields:</p>
 <pre><code class="language-nim">l: int
 r: int
 patternId: int
 </code></pre>
-<p>match 区間は半開区間 <code>[l, r)</code> です。</p>
-<h2 id="_4">コンストラクタ</h2>
+<p>The match interval is half-open <code>[l, r)</code>.</p>
+<h2 id="constructors">Constructors</h2>
 <pre><code class="language-nim">proc initAhoCorasick(): AhoCorasick
 proc initAhoCorasick(patterns: openArray[string]): AhoCorasick
 </code></pre>
-<p>空で作ってから pattern を追加するか、pattern list から一気に構築できます。</p>
-<h2 id="pattern-build">pattern 追加と build</h2>
+<p>You can either build an empty automaton and add patterns, or build directly from a pattern list.</p>
+<h2 id="add-patterns-and-build">Add patterns and build</h2>
 <pre><code class="language-nim">proc addPattern(ac: var AhoCorasick, pattern: string): int
 proc build(ac: var AhoCorasick)
 </code></pre>
 <ul>
-<li><code>addPattern(pattern)</code> は pattern を追加し、その pattern id を返します。</li>
-<li>pattern は空文字列にできません。</li>
-<li>すべての pattern を追加したあとに <code>build()</code> を呼んでください。</li>
-<li><code>build()</code> 後に pattern を追加することは想定していません。</li>
+<li><code>addPattern(pattern)</code> adds a pattern and returns its pattern id.</li>
+<li>Empty patterns are not allowed.</li>
+<li>Call <code>build()</code> after adding all patterns.</li>
+<li>Adding patterns after <code>build()</code> is not intended.</li>
 </ul>
-<h2 id="_5">操作</h2>
+<h2 id="operations">Operations</h2>
 <pre><code class="language-nim">proc len(ac: AhoCorasick): int
 proc patternCount(ac: AhoCorasick): int
 
@@ -131,13 +132,13 @@ proc matchCount(ac: AhoCorasick, text: string): int
 proc contains(ac: AhoCorasick, text: string): bool
 </code></pre>
 <ul>
-<li><code>findAll(text)</code> はすべての match を返します。</li>
-<li><code>countMatches(text)</code> は match 数を返します。</li>
-<li><code>contains(text)</code> は 1 つ以上の pattern が text に含まれるかを返します。</li>
-<li><code>text in ac</code> でも <code>contains</code> と同じ判定ができます。</li>
-<li><code>transition</code> は <code>nextState</code> の alias です。</li>
+<li><code>findAll(text)</code> returns all matches.</li>
+<li><code>countMatches(text)</code> returns the number of matches.</li>
+<li><code>contains(text)</code> checks whether at least one pattern occurs in the text.</li>
+<li><code>text in ac</code> is also available.</li>
+<li><code>transition</code> is an alias of <code>nextState</code>.</li>
 </ul>
-<h2 id="_6">使用例</h2>
+<h2 id="example">Example</h2>
 <pre><code class="language-nim">var ac = initAhoCorasick()
 
 let
@@ -155,46 +156,45 @@ for m in matches:
 doAssert ac.countMatches(&quot;ushers&quot;) == 3
 doAssert ac.contains(&quot;ushers&quot;)
 </code></pre>
-<p><code>initAhoCorasick(patterns)</code> で一気に構築することもできます。</p>
+<p>You can also build directly from a list.</p>
 <pre><code class="language-nim">let ac = initAhoCorasick(@[&quot;a&quot;, &quot;aa&quot;, &quot;aaa&quot;])
 
 doAssert ac.countMatches(&quot;aaaa&quot;) == 9
 </code></pre>
-<h2 id="nim">Nim らしい使い方</h2>
-<p><code>contains</code> が定義されているので、text が何かの pattern を含むかを <code>in</code> で書けます。</p>
+<h2 id="nim-friendly-usage">Nim-friendly usage</h2>
+<p>Since <code>contains</code> is defined, matching can be written with <code>in</code>.</p>
 <pre><code class="language-nim">if text in ac:
   echo &quot;matched&quot;
 </code></pre>
-<p><code>transition</code> を使うと、automaton を DP 状態として扱いやすくなります。</p>
+<p><code>transition</code> is useful when using the automaton as a DP state.</p>
 <pre><code class="language-nim">var state = 0
 
 for ch in text:
   state = ac.transition(state, ch)
 </code></pre>
-<h2 id="_7">計算量</h2>
-<p>pattern の総長を <code>M</code>、text 長を <code>N</code>、match 数を <code>Z</code> とします。</p>
+<h2 id="complexity">Complexity</h2>
+<p>Let <code>M</code> be the total pattern length, <code>N</code> be the text length, and <code>Z</code> be the number of matches.</p>
 <ul>
-<li>構築: <code>O(M * alphabet + M)</code> に近いです。この実装では char alphabet 256 の完全遷移表を作ります。</li>
+<li>build: close to <code>O(M * alphabet + M)</code>. This implementation builds a full transition table for 256 char values.</li>
 <li><code>findAll</code>: <code>O(N + Z)</code></li>
 <li><code>countMatches</code>: <code>O(N)</code></li>
 <li>memory: <code>O(states * 256 + total output)</code></li>
 </ul>
-<p>です。</p>
-<h2 id="_8">注意</h2>
+<h2 id="notes">Notes</h2>
 <ul>
-<li>この実装は <code>char</code> / <code>string</code> 用です。</li>
-<li>alphabet は 256 として完全遷移表を持ちます。</li>
-<li>Unicode の grapheme cluster 単位の処理には対応していません。</li>
-<li><code>findAll</code> の match 区間は半開区間 <code>[l, r)</code> です。</li>
-<li><code>build()</code> 後に pattern を追加することはできません。</li>
+<li>This implementation is for <code>char</code> / <code>string</code>.</li>
+<li>The alphabet size is fixed to 256.</li>
+<li>Unicode grapheme-cluster matching is not supported.</li>
+<li>Match intervals are half-open <code>[l, r)</code>.</li>
+<li>Adding patterns after <code>build()</code> is not allowed.</li>
 </ul>
-<h2 id="_9">関連資料・他言語ライブラリ</h2>
+<h2 id="related-resources-and-libraries">Related resources and libraries</h2>
 <ul>
 <li>cp-algorithms: Aho-Corasick algorithm</li>
 <li>Nyaan Library: Aho-Corasick</li>
 <li>ei1333 Library: Aho-Corasick</li>
 <li>KACTL: Aho-Corasick</li>
-<li>Library Checker: multiple pattern matching / string 系問題</li>
+<li>Library Checker: multiple pattern matching / string problems</li>
 </ul>
   </main>
 </body>

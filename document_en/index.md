@@ -120,4 +120,5 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 
 ## extra/string
 
+- [`import atcoder/extra/string/aho_corasick`](./extra/string/aho_corasick.html)
 - [`import atcoder/extra/string/manacher`](./extra/string/manacher.html)
