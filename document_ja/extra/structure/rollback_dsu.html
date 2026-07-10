@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>RollbackDSU</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="rollbackdsu">RollbackDSU</h1>
+<p><code>RollbackDSU</code> は、merge 操作を巻き戻せる Union-Find です。</p>
+<p>通常の DSU は、一度 <code>merge(a, b)</code> すると過去の状態に戻れません。<br>
+<code>RollbackDSU</code> は merge 前の情報を stack に保存しておき、あとから <code>undo()</code> や <code>rollback(snapshot)</code> で元の状態に戻せます。</p>
+<h2 id="_1">使いどころ</h2>
+<p>次のような問題でよく使います。</p>
+<ul>
+<li>辺の追加・削除がある graph を offline に処理する</li>
+<li>Segment tree over time + DSU rollback</li>
+<li>分割統治と DSU を組み合わせる問題</li>
+<li>MST 判定や edge set query を offline に処理する問題</li>
+<li><code>Online</code> では難しいが、全 query が先に与えられる dynamic connectivity</li>
+</ul>
+<h2 id="_2">考え方</h2>
+<p>通常の DSU は高速化のために path compression を使います。<br>
+しかし path compression は多くの親 pointer を変更するため、巻き戻しに向きません。</p>
+<p>Rollback DSU では path compression を使わず、union by size だけを使います。</p>
+<p><code>merge(a, b)</code> のたびに、変更前の root 情報を stack に保存します。</p>
+<ul>
+<li>root <code>x</code> の <code>parentOrSize[x]</code></li>
+<li>root <code>y</code> の <code>parentOrSize[y]</code></li>
+<li>実際に merge したかどうか</li>
+</ul>
+<p><code>undo()</code> では stack の最後を取り出し、保存していた値に戻します。<br>
+これにより、1 回の merge を <code>O(log n)</code> 程度で行い、undo も <code>O(1)</code> で処理できます。</p>
+<h2 id="import">import</h2>
+<pre><code class="language-nim">import atcoder/extra/structure/rollback_dsu
+</code></pre>
+<h2 id="_3">型</h2>
+<pre><code class="language-nim">type RollbackDSU
+type RollbackDSUHistory
+</code></pre>
+<h2 id="_4">コンストラクタ</h2>
+<pre><code class="language-nim">proc initRollbackDSU(n: int): RollbackDSU
+</code></pre>
+<p><code>n</code> 頂点の Rollback DSU を作ります。</p>
+<h2 id="_5">操作</h2>
+<pre><code class="language-nim">proc len(uf: RollbackDSU): int
+proc componentCount(uf: RollbackDSU): int
+
+proc leader(uf: RollbackDSU, a: int): int
+proc size(uf: RollbackDSU, a: int): int
+proc same(uf: RollbackDSU, a, b: int): bool
+proc merge(uf: var RollbackDSU, a, b: int): bool
+
+proc snapshot(uf: RollbackDSU): int
+proc time(uf: RollbackDSU): int
+
+proc undo(uf: var RollbackDSU): bool
+proc rollback(uf: var RollbackDSU): bool
+proc rollback(uf: var RollbackDSU, snap: int)
+
+proc groups(uf: RollbackDSU): seq[seq[int]]
+</code></pre>
+<ul>
+<li><code>merge(a, b)</code> は <code>a</code>, <code>b</code> の連結成分を併合します。</li>
+<li><code>same(a, b)</code> は同じ連結成分かを返します。</li>
+<li><code>size(a)</code> は <code>a</code> の連結成分サイズを返します。</li>
+<li><code>snapshot()</code> は現在の状態を表す rollback point を返します。</li>
+<li><code>undo()</code> は直前の <code>merge</code> を 1 回戻します。</li>
+<li><code>rollback(snap)</code> は指定した snapshot まで戻します。</li>
+<li><code>componentCount()</code> は現在の連結成分数を返します。</li>
+</ul>
+<h2 id="_6">使用例</h2>
+<pre><code class="language-nim">var uf = initRollbackDSU(5)
+
+discard uf.merge(0, 1)
+discard uf.merge(2, 3)
+
+let s = uf.snapshot
+
+discard uf.merge(1, 2)
+
+doAssert uf.same(0, 3)
+doAssert uf.size(0) == 4
+
+uf.rollback(s)
+
+doAssert uf.same(0, 1)
+doAssert uf.same(2, 3)
+doAssert not uf.same(0, 2)
+</code></pre>
+<h2 id="undo">undo</h2>
+<p><code>undo()</code> は直前の <code>merge</code> を 1 回だけ戻します。</p>
+<pre><code class="language-nim">var uf = initRollbackDSU(3)
+
+discard uf.merge(0, 1)
+
+doAssert uf.same(0, 1)
+
+discard uf.undo()
+
+doAssert not uf.same(0, 1)
+</code></pre>
+<p>すでに同じ連結成分だった場合の <code>merge</code> も history に積まれます。<br>
+そのため、<code>merge</code> 回数と <code>undo</code> 回数を対応させやすくなっています。</p>
+<h2 id="nim">Nim らしい使い方</h2>
+<p><code>componentCount</code>, <code>snapshot</code>, <code>time</code> は UFCS で自然に読めます。</p>
+<pre><code class="language-nim">let s = uf.snapshot
+
+discard uf.merge(0, 1)
+
+echo uf.componentCount
+
+uf.rollback(s)
+</code></pre>
+<h2 id="_7">計算量</h2>
+<p>頂点数を <code>n</code> とすると、</p>
+<ul>
+<li><code>leader</code>: <code>O(log n)</code></li>
+<li><code>same</code>: <code>O(log n)</code></li>
+<li><code>size</code>: <code>O(log n)</code></li>
+<li><code>merge</code>: <code>O(log n)</code></li>
+<li><code>undo</code>: <code>O(1)</code></li>
+<li><code>rollback(snap)</code>: 戻す merge 数に比例</li>
+<li><code>groups</code>: <code>O(n log n)</code></li>
+</ul>
+<p>です。</p>
+<p>path compression をしないため、通常の DSU より少し遅いですが、rollback 可能になります。</p>
+<h2 id="_8">注意</h2>
+<ul>
+<li>path compression は使っていません。</li>
+<li><code>snapshot</code> は <code>merge</code> history の長さです。</li>
+<li><code>rollback(snap)</code> には、以前取得した snapshot を渡してください。</li>
+<li>fully online な edge deletion にはそのままでは使えません。offline 処理と組み合わせるのが典型です。</li>
+</ul>
+<h2 id="_9">関連資料・他言語ライブラリ</h2>
+<ul>
+<li><a href="https://cp-algorithms.com/data_structures/deleting_in_log_n.html">cp-algorithms: Deleting from a data structure in O(T(n) log n)</a></li>
+<li><a href="https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum">Library Checker: Dynamic Graph Vertex Add Component Sum</a></li>
+<li>Nyaan Library: Offline Dynamic Connectivity</li>
+<li>ei1333 Library: Union-Find rollback / offline dynamic connectivity</li>
+</ul>
+  </main>
+</body>
+</html>
