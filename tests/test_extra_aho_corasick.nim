@@ -19,7 +19,7 @@ proc toTuples(matches: seq[AhoCorasickMatch]): seq[MatchTuple] =
     result = cmp(a.r, b.r)
     if result != 0: return
 
-    cmp(a.id, b.id)
+    result = cmp(a.id, b.id)
   )
 
 test "AhoCorasick basic multiple patterns":
@@ -78,11 +78,11 @@ test "AhoCorasick constructor and transitions":
   state = ac.transition(state, 'a')
   state = ac.transition(state, 'b')
 
-  check ac.nodes[state].out == @[0]
+  check ac.nodes[state].`out` == @[0]
 
   state = ac.transition(state, 'c')
 
-  check 1 in ac.nodes[state].out
+  check 1 in ac.nodes[state].`out`
   check ac.countMatches("abc") == 2
   check ac.contains("xxabyy")
   check not ac.contains("acac")

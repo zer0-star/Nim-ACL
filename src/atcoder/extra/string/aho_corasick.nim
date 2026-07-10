@@ -5,7 +5,7 @@ when not declared ATCODER_EXTRA_STRING_AHO_CORASICK_HPP:
     AhoCorasickNode* = object
       next*: array[256, int]
       link*: int
-      out*: seq[int]
+      `out`*: seq[int]
 
     AhoCorasickMatch* = object
       l*, r*, patternId*: int
@@ -20,7 +20,7 @@ when not declared ATCODER_EXTRA_STRING_AHO_CORASICK_HPP:
       result.next[i] = -1
 
     result.link = 0
-    result.out = @[]
+    result.`out` = @[]
 
   proc initAhoCorasick*(): AhoCorasick =
     ## Creates an empty Aho-Corasick automaton.
@@ -48,7 +48,7 @@ when not declared ATCODER_EXTRA_STRING_AHO_CORASICK_HPP:
 
     result = ac.patternLength.len
     ac.patternLength.add pattern.len
-    ac.nodes[v].out.add result
+    ac.nodes[v].`out`.add result
 
   proc build*(ac: var AhoCorasick) =
     ## Builds failure links and transition table.
@@ -72,10 +72,10 @@ when not declared ATCODER_EXTRA_STRING_AHO_CORASICK_HPP:
       head.inc
 
       let link = ac.nodes[v].link
-      let linkOut = ac.nodes[link].out
+      let linkOut = ac.nodes[link].`out`
 
       for id in linkOut:
-        ac.nodes[v].out.add id
+        ac.nodes[v].`out`.add id
 
       for c in 0 ..< 256:
         let to = ac.nodes[v].next[c]
@@ -127,7 +127,7 @@ when not declared ATCODER_EXTRA_STRING_AHO_CORASICK_HPP:
     for i, ch in text:
       state = ac.nextState(state, ch)
 
-      for id in ac.nodes[state].out:
+      for id in ac.nodes[state].`out`:
         let length = ac.patternLength[id]
 
         result.add AhoCorasickMatch(
@@ -144,7 +144,7 @@ when not declared ATCODER_EXTRA_STRING_AHO_CORASICK_HPP:
 
     for ch in text:
       state = ac.nextState(state, ch)
-      result += ac.nodes[state].out.len
+      result += ac.nodes[state].`out`.len
 
   proc matchCount*(ac: AhoCorasick, text: string): int =
     ## Alias of `countMatches`.
@@ -159,7 +159,7 @@ when not declared ATCODER_EXTRA_STRING_AHO_CORASICK_HPP:
     for ch in text:
       state = ac.nextState(state, ch)
 
-      if ac.nodes[state].out.len > 0:
+      if ac.nodes[state].`out`.len > 0:
         return true
 
     false
