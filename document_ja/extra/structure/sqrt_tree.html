@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sqrt Tree</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="sqrt-tree">Sqrt Tree</h1>
+<p><code>SqrtTree</code> は、静的なモノイド列を再帰的に平方分割し、区間積 query を高速に処理する data structure です。</p>
+<p>この Nim-ACL 実装は、理解しやすい再帰版です。</p>
+<ul>
+<li>前計算: <code>O(n log log n)</code></li>
+<li>query: <code>O(log log n)</code></li>
+<li>memory: <code>O(n log log n)</code></li>
+</ul>
+<p>AtCoder公式講座では、query 区間がどの level で分岐するかを bit 演算で直接求めることで、query を <code>O(1)</code> にする発展形も説明されています。</p>
+<h2 id="_1">使いどころ</h2>
+<ul>
+<li>静的配列の区間積</li>
+<li>演算は結合的だが冪等とは限らない</li>
+<li>query が非常に多い</li>
+<li>sum、product、文字列連結、行列積</li>
+<li>Segment Tree より query を速くしたい</li>
+<li>Disjoint Sparse Table より前計算 memory を抑えたい</li>
+</ul>
+<h2 id="_2">考え方</h2>
+<p>まず列をおよそ平方根個の block に分けます。</p>
+<p>各 block について、</p>
+<ul>
+<li>block 先頭から各位置までの <code>prefix</code></li>
+<li>各位置から block 末尾までの <code>suffix</code></li>
+<li>block 全体同士の区間積 <code>between</code></li>
+</ul>
+<p>を前計算します。</p>
+<p>query の両端が異なる block に入るなら、</p>
+<ol>
+<li>左端から左 block の末尾</li>
+<li>間にある完全な block</li>
+<li>右 block の先頭から右端</li>
+</ol>
+<p>の高々3部分に分解できます。</p>
+<p>両端が同じ block にある場合は、その block をさらに平方分割した子 node へ進みます。</p>
+<h2 id="import">import</h2>
+<pre><code class="language-nim">import atcoder/extra/structure/sqrt_tree
+</code></pre>
+<p>ローカル短縮 import：</p>
+<pre><code class="language-nim">import lib/structure/sqrt_tree
+</code></pre>
+<h2 id="api">API</h2>
+<pre><code class="language-nim">proc initSqrtTree[T](
+  data: openArray[T],
+  identity: T,
+  op: proc(a, b: T): T
+): SqrtTree[T]
+
+proc prod(
+  tree: SqrtTree[T],
+  l, r: int
+): T
+
+proc allProd(tree: SqrtTree[T]): T
+</code></pre>
+<p>query 区間は非空の半開区間 <code>[l, r)</code> です。</p>
+<h2 id="_3">使用例</h2>
+<pre><code class="language-nim">proc add(a, b: int): int = a + b
+
+let tree = initSqrtTree(
+  @[1, 2, 3, 4, 5],
+  identity = 0,
+  op = add,
+)
+
+doAssert tree.prod(1, 4) == 9
+doAssert tree[(2, 5)] == 12
+</code></pre>
+<p>非可換演算にも使えます。</p>
+<pre><code class="language-nim">proc concat(a, b: string): string = a &amp; b
+
+let tree = initSqrtTree(
+  @[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;],
+  identity = &quot;&quot;,
+  op = concat,
+)
+
+doAssert tree.prod(1, 4) == &quot;bcd&quot;
+</code></pre>
+<h2 id="_4">他の構造との使い分け</h2>
+<table>
+<thead>
+<tr>
+<th>構造</th>
+<th style="text-align: right;">前計算</th>
+<th style="text-align: right;">query</th>
+<th style="text-align: right;">memory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Segment Tree</td>
+<td style="text-align: right;"><code>O(n)</code></td>
+<td style="text-align: right;"><code>O(log n)</code></td>
+<td style="text-align: right;"><code>O(n)</code></td>
+</tr>
+<tr>
+<td>Disjoint Sparse Table</td>
+<td style="text-align: right;"><code>O(n log n)</code></td>
+<td style="text-align: right;"><code>O(1)</code></td>
+<td style="text-align: right;"><code>O(n log n)</code></td>
+</tr>
+<tr>
+<td>この Sqrt Tree</td>
+<td style="text-align: right;"><code>O(n log log n)</code></td>
+<td style="text-align: right;"><code>O(log log n)</code></td>
+<td style="text-align: right;"><code>O(n log log n)</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">注意</h2>
+<ul>
+<li>配列は静的です。</li>
+<li><code>op</code> は結合法則を満たす必要があります。</li>
+<li><code>identity</code> は <code>op</code> の単位元です。</li>
+<li>query 区間は空にできません。</li>
+<li><code>O(1)</code> query の level-selection 最適化は今後の候補です。</li>
+</ul>
+<h2 id="_6">関連資料</h2>
+<ul>
+<li><a href="https://info.atcoder.jp/entry/algorithm_lectures/sqrt_tree">AtCoder Algorithm Lectures: Sqrt Tree</a></li>
+<li>Disjoint Sparse Table</li>
+<li>Library Checker: Static RMQ</li>
+</ul>
+  </main>
+</body>
+</html>

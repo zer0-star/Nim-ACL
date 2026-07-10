@@ -191,6 +191,7 @@ import atcoder/modint
 | [Rerooting DP](../extra/graph/rerooting_dp.html) | 必須 | 全頂点を root とした木 DP |
 | Heavy-Light Decomposition | 発展 | 木上の path query |
 | LCA / Binary Lifting | 必須 | ancestor、距離、path |
+| [Euler Tour](../extra/graph/euler_tour.html) | 推奨 | subtree を区間へ変換 |
 | Weighted Union Find | 推奨 | 差分制約・potential |
 
 ## 中級のおすすめ学習順
@@ -317,6 +318,14 @@ import atcoder/modint
 | convolution / NTT | 必須 | 多項式積 |
 | Arbitrary Mod Combination | 推奨 | 合成数 mod の組合せ |
 | XOR Basis | 推奨 | GF(2) 線形代数 |
+
+
+## 高度な静的・永続区間 data structure
+
+| ライブラリ | 重要度 | 典型的な用途 |
+|---|---:|---|
+| [Sqrt Tree](../extra/structure/sqrt_tree.html) | 発展 | 静的モノイド列の大量区間 query |
+| [Persistent Segment Tree](../extra/structure/persistent_segment_tree.html) | 推奨 | 過去 version の区間 query |
 
 ## 高度な graph
 
@@ -468,7 +477,6 @@ Nim-ACL で今後優先したい候補です。
 ## 初級〜中級
 
 - Z Algorithm の使いやすい facade
-- Euler Tour utility
 - Prefix Sum facade の統一
 - Monotonic Queue / Stack helper
 - Interval Set
@@ -488,7 +496,6 @@ Nim-ACL で今後優先したい候補です。
 - Mo on Tree
 - Segment Tree Beats facade
 - Dynamic Tree DP
-- Persistent Segment Tree
 - Li Chao Tree persistent version
 - General matching / blossom
 - Min-plus convolution 系

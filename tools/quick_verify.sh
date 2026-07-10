@@ -47,6 +47,9 @@ STEP=init
     tests/test_extra_rollback_dsu.nim
     tests/test_extra_offline_dynamic_connectivity.nim
     tests/test_extra_virtual_tree.nim
+    tests/test_extra_euler_tour.nim
+    tests/test_extra_persistent_segment_tree.nim
+    tests/test_extra_sqrt_tree.nim
     tests/test_extra_dsu_on_tree.nim
     tests/test_extra_undirected_decomposition.nim
     tests/test_extra_rerooting_dp.nim

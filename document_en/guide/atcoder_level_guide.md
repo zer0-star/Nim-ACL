@@ -91,6 +91,15 @@ Intermediate problems require selecting a structure based on static/dynamic, onl
 | Heavy-Light Decomposition | Path queries |
 | LCA | Ancestor and distance queries |
 
+
+## Static and persistent range structures
+
+| Module | Use |
+|---|---|
+| [Sqrt Tree](../extra/structure/sqrt_tree.html) | Static monoid range products |
+| [Persistent Segment Tree](../extra/structure/persistent_segment_tree.html) | Queries over old versions |
+| [Euler Tour](../extra/graph/euler_tour.html) | Convert subtrees to intervals |
+
 # Advanced
 
 Advanced problems frequently combine offline processing, rollback, tree compression, and graph decomposition.
