@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>VirtualTree</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="virtualtree">VirtualTree</h1>
+<p><code>VirtualTree</code> は、木の中から重要な頂点だけを取り出し、それらの LCA を追加して作る小さい補助木です。</p>
+<p>元の木全体に対して毎回 DP すると重い場合でも、query ごとに重要頂点数を <code>k</code> とすると、<code>O(k log k)</code> 程度で小さい木を作って処理できます。</p>
+<h2 id="_1">使いどころ</h2>
+<p>次のような問題でよく使います。</p>
+<ul>
+<li>木上で、query ごとに指定された頂点集合だけが重要</li>
+<li>重要頂点をすべて結ぶ最小部分木が欲しい</li>
+<li>指定頂点集合に対して木 DP をしたい</li>
+<li>LCA を使った圧縮木で距離や親子関係を処理したい</li>
+<li>元の木が大きく、毎 query で全体を走査できない</li>
+</ul>
+<h2 id="_2">考え方</h2>
+<p>指定された重要頂点だけを見ると、元の木上の経路が途中で交わることがあります。<br>
+その交点は、重要頂点同士の LCA です。</p>
+<p>そこで、重要頂点を DFS order で並べ、隣り合う頂点の LCA を追加します。<br>
+この集合を DFS order で sort し、stack を使って親子関係を復元すると、重要頂点と必要な LCA だけからなる小さい木ができます。</p>
+<p>Virtual Tree の edge の長さは、元の木上の距離です。</p>
+<h2 id="import">import</h2>
+<pre><code class="language-nim">import atcoder/extra/graph/virtual_tree
+</code></pre>
+<h2 id="_3">型</h2>
+<pre><code class="language-nim">type VirtualTree
+type BuiltVirtualTree
+
+type VirtualTreeEdge = tuple[parent, child, dist: int]
+type VirtualTreeAdjEdge = tuple[to, dist: int]
+</code></pre>
+<p><code>VirtualTree</code> は元の木に対する LCA 前計算を持つ builder です。<br>
+<code>BuiltVirtualTree</code> は query ごとに作られる圧縮木です。</p>
+<h2 id="_4">コンストラクタ</h2>
+<pre><code class="language-nim">proc initVirtualTree(graph: seq[seq[int]], root: int = 0): VirtualTree
+</code></pre>
+<p><code>graph</code> は無向木の adjacency list です。</p>
+<h2 id="lca">LCA / 距離</h2>
+<pre><code class="language-nim">proc isAncestor(vt: VirtualTree, a, b: int): bool
+proc lca(vt: VirtualTree, a, b: int): int
+proc dist(vt: VirtualTree, a, b: int): int
+</code></pre>
+<ul>
+<li><code>isAncestor(a, b)</code> は <code>a</code> が <code>b</code> の ancestor かを返します。</li>
+<li><code>lca(a, b)</code> は LCA を返します。</li>
+<li><code>dist(a, b)</code> は元の木上の距離を返します。</li>
+</ul>
+<h2 id="virtual-tree">Virtual Tree の構築</h2>
+<pre><code class="language-nim">proc buildVirtualTree(vt: VirtualTree, keys: openArray[int]): BuiltVirtualTree
+</code></pre>
+<p><code>keys</code> に含まれる重要頂点と、必要な LCA からなる virtual tree を作ります。</p>
+<p><code>BuiltVirtualTree</code> の主な field は次です。</p>
+<pre><code class="language-nim">root: int
+vertices: seq[int]
+edges: seq[VirtualTreeEdge]
+adj: seq[seq[VirtualTreeAdjEdge]]
+</code></pre>
+<ul>
+<li><code>root</code> は virtual tree の root の元頂点番号です。</li>
+<li><code>vertices[i]</code> は compressed node <code>i</code> に対応する元頂点番号です。</li>
+<li><code>edges</code> は元頂点番号で見た edge list です。</li>
+<li><code>adj[i]</code> は compressed node <code>i</code> からの子を表します。<code>to</code> は compressed index です。</li>
+</ul>
+<h2 id="_5">使用例</h2>
+<pre><code class="language-nim">var g = newSeq[seq[int]](7)
+
+proc addEdge(u, v: int) =
+  g[u].add v
+  g[v].add u
+
+addEdge(0, 1)
+addEdge(0, 2)
+addEdge(1, 3)
+addEdge(1, 4)
+addEdge(2, 5)
+addEdge(2, 6)
+
+let vt = initVirtualTree(g)
+let built = vt.buildVirtualTree(@[3, 4, 5])
+
+doAssert built.root == 0
+doAssert built.vertices == @[0, 1, 3, 4, 5]
+
+doAssert built.edges == @[
+  (parent: 0, child: 1, dist: 1),
+  (parent: 1, child: 3, dist: 1),
+  (parent: 1, child: 4, dist: 1),
+  (parent: 0, child: 5, dist: 2),
+]
+</code></pre>
+<h2 id="compressed-adjacency">compressed adjacency</h2>
+<p><code>adj</code> は compressed index で持っています。元頂点番号が必要な場合は <code>vertices[to]</code> を見ます。</p>
+<pre><code class="language-nim">for e in built.adj[0]:
+  let childOriginalVertex = built.vertices[e.to]
+  echo childOriginalVertex, &quot; dist = &quot;, e.dist
+</code></pre>
+<h2 id="nim">Nim らしい使い方</h2>
+<p><code>lca</code>, <code>dist</code>, <code>buildVirtualTree</code> は UFCS で自然に読めます。</p>
+<pre><code class="language-nim">let c = vt.lca(u, v)
+let d = vt.dist(u, v)
+let tree = vt.buildVirtualTree(keys)
+</code></pre>
+<h2 id="_6">計算量</h2>
+<p>元の木の頂点数を <code>n</code>、重要頂点数を <code>k</code>、virtual tree の頂点数を <code>K</code> とします。</p>
+<ul>
+<li>前計算: <code>O(n log n)</code></li>
+<li><code>lca</code>: <code>O(log n)</code></li>
+<li><code>dist</code>: <code>O(log n)</code></li>
+<li><code>buildVirtualTree</code>: <code>O(k log k + k log n)</code></li>
+<li>memory: 前計算 <code>O(n log n)</code>, 構築結果 <code>O(K)</code></li>
+</ul>
+<p>です。</p>
+<h2 id="_7">注意</h2>
+<ul>
+<li><code>graph</code> は木である必要があります。</li>
+<li><code>keys</code> は空にできません。</li>
+<li><code>keys</code> に重複があっても、構築時に除かれます。</li>
+<li><code>adj</code> の <code>to</code> は元頂点番号ではなく compressed index です。</li>
+<li>edge の <code>dist</code> は元の木上での距離です。</li>
+</ul>
+<h2 id="_8">関連資料・他言語ライブラリ</h2>
+<ul>
+<li>cp-algorithms: Lowest Common Ancestor / auxiliary tree concepts</li>
+<li>Nyaan Library: Virtual Tree</li>
+<li>ei1333 Library: Auxiliary Tree</li>
+<li>Codeforces: important vertices on tree / auxiliary tree 型の問題</li>
+</ul>
+  </main>
+</body>
+</html>
