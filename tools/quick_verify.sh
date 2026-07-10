@@ -57,16 +57,20 @@ STEP=init
     tests/test_extra_undirected_decomposition.nim
     tests/test_extra_rerooting_dp.nim
     tests/test_extra_functional_graph.nim
+    tests/test_extra_functional_graph_random.nim
     tests/test_extra_manacher.nim
     tests/test_extra_manacher_random.nim
     tests/test_extra_aho_corasick.nim
+    tests/test_extra_aho_corasick_random.nim
     tests/test_extra_kmp.nim
     tests/test_extra_kmp_random.nim
     tests/test_extra_minimum_rotation.nim
     tests/test_extra_suffix_automaton.nim
+    tests/test_extra_suffix_automaton_random.nim
     tests/test_extra_palindromic_tree.nim
     tests/test_extra_cartesian_tree.nim
     tests/test_extra_fast_set.nim
+    tests/test_extra_fast_set_random.nim
     tests/test_extra_disjoint_sparse_table.nim
     tests/test_extra_mo.nim
     tests/test_extra_coordinate_compression.nim
