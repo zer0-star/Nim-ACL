@@ -115,6 +115,10 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 
 ## extra/graph
 
+- [`import atcoder/extra/graph/undirected_decomposition`](./extra/graph/undirected_decomposition.html)
+- [`import atcoder/extra/graph/biconnected_components`](./extra/graph/biconnected_components.html)
+- [`import atcoder/extra/graph/two_edge_connected_components`](./extra/graph/two_edge_connected_components.html)
+- [`import atcoder/extra/graph/block_cut_tree`](./extra/graph/block_cut_tree.html)
 - [`import atcoder/extra/graph/rerooting_dp`](./extra/graph/rerooting_dp.html)
 - [`import atcoder/extra/graph/dsu_on_tree`](./extra/graph/dsu_on_tree.html)
 - [`import atcoder/extra/graph/virtual_tree`](./extra/graph/virtual_tree.html)

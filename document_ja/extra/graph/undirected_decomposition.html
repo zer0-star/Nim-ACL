@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Undirected Graph Decomposition</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="undirected-graph-decomposition">Undirected Graph Decomposition</h1>
+<p>この module は、無向グラフに対する次の分解をまとめて提供します。</p>
+<ul>
+<li>articulation point と bridge</li>
+<li>vertex-biconnected components</li>
+<li>two-edge-connected components</li>
+<li>block-cut tree</li>
+</ul>
+<p>いずれも DFS tree と low-link 値を利用します。</p>
+<h2 id="low-link">Low-link の考え方</h2>
+<p>DFS で頂点 <code>v</code> を訪問した時刻を <code>ord[v]</code> とします。</p>
+<p><code>low[v]</code> は、<code>v</code> の subtree から tree edge を下り、back edge を高々1本使って到達できる最小の <code>ord</code> です。</p>
+<p>tree edge <code>v -&gt; to</code> について、</p>
+<ul>
+<li><code>low[to] &gt; ord[v]</code> なら、その edge は bridge</li>
+<li><code>low[to] &gt;= ord[v]</code> なら、そこで biconnected component を区切れる</li>
+</ul>
+<p>と判定できます。</p>
+<h2 id="import">import</h2>
+<p>用途に応じて facade を選べます。</p>
+<pre><code class="language-nim">import atcoder/extra/graph/biconnected_components
+import atcoder/extra/graph/two_edge_connected_components
+import atcoder/extra/graph/block_cut_tree
+</code></pre>
+<p>全機能を直接使う場合はこちらです。</p>
+<pre><code class="language-nim">import atcoder/extra/graph/undirected_decomposition
+</code></pre>
+<h2 id="_1">グラフの構築</h2>
+<pre><code class="language-nim">proc initUndirectedGraph(n: int): UndirectedGraph
+proc addEdge(g: var UndirectedGraph, u, v: int): int
+</code></pre>
+<p><code>addEdge</code> は edge id を返します。</p>
+<p>parallel edge は使用できます。self-loop は使用できません。</p>
+<h2 id="biconnected-components">Biconnected Components</h2>
+<pre><code class="language-nim">proc biconnectedComponents(
+  g: UndirectedGraph
+): BiconnectedComponentsResult
+</code></pre>
+<p>結果には次が含まれます。</p>
+<pre><code class="language-nim">ord, low: seq[int]
+articulation: seq[int]
+bridges: seq[int]
+edgeComponents: seq[seq[int]]
+vertexComponents: seq[seq[int]]
+componentOfEdge: seq[int]
+</code></pre>
+<ul>
+<li><code>articulation</code> は関節点</li>
+<li><code>bridges</code> は橋の edge id</li>
+<li><code>edgeComponents[i]</code> は component <code>i</code> に属する edge id</li>
+<li><code>vertexComponents[i]</code> は component <code>i</code> に属する頂点</li>
+</ul>
+<h2 id="two-edge-connected-components">Two-Edge-Connected Components</h2>
+<p>橋を取り除いて得られる連結成分です。</p>
+<pre><code class="language-nim">proc twoEdgeConnectedComponents(
+  g: UndirectedGraph
+): TwoEdgeConnectedComponentsResult
+</code></pre>
+<pre><code class="language-nim">component: seq[int]
+groups: seq[seq[int]]
+bridgeIds: seq[int]
+forest: seq[seq[int]]
+</code></pre>
+<p><code>forest</code> は各 component を縮約して得られる bridge forest です。</p>
+<h2 id="block-cut-tree">Block-Cut Tree</h2>
+<p>Biconnected component node と articulation vertex node からなる二部 forest です。</p>
+<pre><code class="language-nim">proc blockCutTree(
+  g: UndirectedGraph
+): BlockCutTreeResult
+</code></pre>
+<pre><code class="language-nim">tree: seq[seq[int]]
+blockVertices: seq[seq[int]]
+articulationVertices: seq[int]
+articulationNode: seq[int]
+vertexNode: seq[int]
+blockNodeCount: int
+</code></pre>
+<p>block node は <code>0 ..&lt; blockNodeCount</code> に置かれ、その後ろに articulation node が置かれます。</p>
+<h2 id="_2">使用例</h2>
+<pre><code class="language-nim">var g = initUndirectedGraph(6)
+
+discard g.addEdge(0, 1)
+discard g.addEdge(1, 2)
+discard g.addEdge(2, 0)
+
+let bridge = g.addEdge(1, 3)
+
+discard g.addEdge(3, 4)
+discard g.addEdge(4, 5)
+discard g.addEdge(5, 3)
+
+let bcc = g.biconnectedComponents()
+
+doAssert bcc.articulation == @[1, 3]
+doAssert bcc.bridges == @[bridge]
+
+let tecc = g.twoEdgeConnectedComponents(bcc)
+let blockCut = g.blockCutTree(bcc)
+</code></pre>
+<h2 id="_3">計算量</h2>
+<p>頂点数を <code>n</code>、辺数を <code>m</code> とすると、</p>
+<ul>
+<li>Biconnected Components: <code>O(n + m)</code></li>
+<li>Two-Edge-Connected Components: <code>O(n + m)</code></li>
+<li>Block-Cut Tree: <code>O(n + m)</code></li>
+<li>memory: <code>O(n + m)</code></li>
+</ul>
+<h2 id="_4">注意</h2>
+<ul>
+<li>無向グラフ用です。</li>
+<li>disconnected graph にも対応し、結果は forest になります。</li>
+<li>parallel edge に対応します。</li>
+<li>self-loop は使用できません。</li>
+<li>DFS 部分は再帰実装です。極端に深い path graph では call stack に注意してください。</li>
+</ul>
+<h2 id="_5">関連資料・他言語ライブラリ</h2>
+<ul>
+<li>cp-algorithms: Cutpoints and Bridges</li>
+<li>Library Checker: Biconnected Components</li>
+<li>Library Checker: Two-Edge-Connected Components</li>
+<li>Nyaan Library: LowLink / Block-Cut Tree</li>
+<li>ei1333 Library: LowLink / BiConnected Components</li>
+</ul>
+  </main>
+</body>
+</html>
