@@ -73,6 +73,7 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 
 ## extra/math
 
+- [`import atcoder/extra/math/xor_basis`](./extra/math/xor_basis.html)
 - [`import atcoder/extra/math/convert_base`](./extra/math/convert_base.html)
 - [`import atcoder/extra/math/mod_sqrt`](./extra/math/mod_sqrt.html)
 - [`import atcoder/extra/math/combination_table`](./extra/math/combination_table.html)
