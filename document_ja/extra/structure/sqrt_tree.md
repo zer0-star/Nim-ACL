@@ -122,5 +122,5 @@ doAssert tree.prod(1, 4) == "bcd"
 ## 関連資料
 
 - [AtCoder Algorithm Lectures: Sqrt Tree](https://info.atcoder.jp/entry/algorithm_lectures/sqrt_tree)
-- Disjoint Sparse Table
-- Library Checker: Static RMQ
+- [Disjoint Sparse Table](./disjoint_sparse_table.html)
+- [Library Checker: Static RMQ](https://judge.yosupo.jp/problem/staticrmq)

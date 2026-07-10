@@ -117,5 +117,5 @@ for i in range.l ..< range.r:
 ## 関連資料
 
 - [AtCoder Algorithm Lectures](https://info.atcoder.jp/entry/algorithm_lectures/index)
-- Heavy-Light Decomposition
-- Fenwick Tree / Segment Tree
+- [cp-algorithms: Heavy-Light Decomposition](https://cp-algorithms.com/graph/hld.html)
+- [AC Library: Fenwick Tree](https://atcoder.github.io/ac-library/production/document_en/fenwicktree.html) / [AC Library: Segment Tree](https://atcoder.github.io/ac-library/production/document_en/segtree.html)

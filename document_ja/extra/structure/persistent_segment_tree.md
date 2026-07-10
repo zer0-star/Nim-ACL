@@ -125,5 +125,5 @@ let rootB = tree.setValue(root0, 0, 200)
 ## 関連資料
 
 - [AtCoder Algorithm Lectures](https://info.atcoder.jp/entry/algorithm_lectures/index)
-- Persistent data structures
-- Library Checker の persistent / range query 問題
+- [cp-algorithms: Persistent Segment Tree](https://cp-algorithms.com/data_structures/segment_tree.html#preserving-the-history-of-its-values-persistent-segment-tree)
+- [Library Checker problem list](https://judge.yosupo.jp/problems)
