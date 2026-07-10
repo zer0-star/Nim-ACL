@@ -4,6 +4,7 @@
 ## ガイド
 
 - [AtCoder 色別ライブラリガイド](./guide/atcoder_level_guide.html)
+- [AtCoder Algorithm Lectures 対応表](./guide/atcoder_algorithm_lectures_coverage.html)
 
 ## インストール方法
 

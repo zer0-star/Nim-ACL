@@ -12,6 +12,16 @@
 | 中級 | 水・青以下 | ABC E〜F、ARC の基本問題 |
 | 上級 | 黄以上 | ARC 上位、AGC、CF Div.1、Library Checker 上級 |
 
+
+## AtCoder 公式講座との関係
+
+このページの「初級・中級・上級」は Nim-ACL 独自の利用頻度・色帯分類です。
+AtCoder Algorithm Lectures の難易度 1〜9 とは別の指標です。
+
+公式講座との対応状況は
+[AtCoder Algorithm Lectures 対応表](./atcoder_algorithm_lectures_coverage.html)
+を参照してください。
+
 ## 記号
 
 - **必須**：その色帯で優先して覚えたい
