@@ -120,10 +120,6 @@ let rootB = tree.setValue(root0, 0, 200)
 - `op` は結合法則を満たす必要があります。
 - `identity` は `op` の単位元です。
 - version は root index として利用者が保持します。
-- 区間は半開区間 `[l, r)` です。
-
-## 関連資料
-
-- [AtCoder Algorithm Lectures](https://info.atcoder.jp/entry/algorithm_lectures/index)
+- 区間は半開区間 `[AtCoder Algorithm Lectures: 永続セグメント木](https://info.atcoder.jp/entry/algorithm_lectures/persistent_segment_tree)
 - [cp-algorithms: Persistent Segment Tree](https://cp-algorithms.com/data_structures/segment_tree.html#preserving-the-history-of-its-values-persistent-segment-tree)
 - [Library Checker problem list](https://judge.yosupo.jp/problems)

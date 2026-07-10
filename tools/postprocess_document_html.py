@@ -517,6 +517,12 @@ def add_line_markup(
     highlighted: str,
     source: str,
 ) -> str:
+    """Wrap lines without inserting whitespace text nodes inside `<pre>`.
+
+    `.code-line` is already a block element. Literal newlines between
+    adjacent spans would add extra visual spacing. Genuine blank source
+    lines remain represented by empty spans.
+    """
     lines = highlighted.split("\n")
 
     if (
@@ -526,11 +532,10 @@ def add_line_markup(
     ):
         lines.pop()
 
-    return "\n".join(
+    return "".join(
         f'<span class="code-line">{line}</span>'
         for line in lines
     )
-
 
 def inject_style(text: str) -> str:
     if STYLE_ID in text:
@@ -800,6 +805,22 @@ doAssert twice(value) == 84
         )
 
         assert before_second_run == after_second_run
+
+        assert (
+            '</span>\n<span class="code-line">'
+            not in result
+        )
+
+        # The fixture contains six source lines. The trailing newline is
+        # deliberately not emitted as a seventh empty visual line.
+        assert result.count(
+            'class="code-line"'
+        ) == 6
+
+        assert (
+            '<span class="code-line"></span>'
+            not in result
+        )
 
     print("nim documentation highlighter self-test: OK")
 

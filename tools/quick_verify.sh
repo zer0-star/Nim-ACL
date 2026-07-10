@@ -208,3 +208,5 @@ if [ "$NIM_ACL_MARKERS" -gt 0 ]; then
   test "$NIM_ACL_LINES" -gt 0
 fi
 
+# NIM_ACL_SPECIFIC_LECTURE_LINK_AUDIT_V1
+python3 tools/audit_atcoder_lecture_links.py
