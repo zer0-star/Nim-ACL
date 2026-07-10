@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>日本語API（試験的）</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style id="nim-acl-highlight-style-v1">
+:root {
+  --nim-code-background: #f6f8fa;
+  --nim-code-foreground: #24292f;
+  --nim-code-border: #d0d7de;
+  --nim-code-line-number: #8c959f;
+  --nim-code-line-number-border: #d8dee4;
+
+  --nim-token-keyword: #8250df;
+  --nim-token-string: #0a7f37;
+  --nim-token-escape: #116329;
+  --nim-token-number: #0550ae;
+  --nim-token-comment: #6e7781;
+  --nim-token-operator: #cf222e;
+  --nim-token-punctuation: #57606a;
+  --nim-token-identifier: #24292f;
+  --nim-token-directive: #953800;
+  --nim-token-hyperlink: #0969da;
+  --nim-token-other: #24292f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nim-code-background: #161b22;
+    --nim-code-foreground: #c9d1d9;
+    --nim-code-border: #30363d;
+    --nim-code-line-number: #7d8590;
+    --nim-code-line-number-border: #30363d;
+
+    --nim-token-keyword: #d2a8ff;
+    --nim-token-string: #a5d6ff;
+    --nim-token-escape: #79c0ff;
+    --nim-token-number: #79c0ff;
+    --nim-token-comment: #8b949e;
+    --nim-token-operator: #ff7b72;
+    --nim-token-punctuation: #c9d1d9;
+    --nim-token-identifier: #c9d1d9;
+    --nim-token-directive: #ffa657;
+    --nim-token-hyperlink: #58a6ff;
+    --nim-token-other: #c9d1d9;
+  }
+}
+
+html[data-theme="dark"],
+html.dark,
+body.dark,
+body[data-theme="dark"] {
+  --nim-code-background: #161b22;
+  --nim-code-foreground: #c9d1d9;
+  --nim-code-border: #30363d;
+  --nim-code-line-number: #7d8590;
+  --nim-code-line-number-border: #30363d;
+
+  --nim-token-keyword: #d2a8ff;
+  --nim-token-string: #a5d6ff;
+  --nim-token-escape: #79c0ff;
+  --nim-token-number: #79c0ff;
+  --nim-token-comment: #8b949e;
+  --nim-token-operator: #ff7b72;
+  --nim-token-punctuation: #c9d1d9;
+  --nim-token-identifier: #c9d1d9;
+  --nim-token-directive: #ffa657;
+  --nim-token-hyperlink: #58a6ff;
+  --nim-token-other: #c9d1d9;
+}
+
+pre.nim-code {
+  position: relative;
+  overflow: auto;
+  box-sizing: border-box;
+  tab-size: 2;
+
+  background: var(--nim-code-background);
+  color: var(--nim-code-foreground);
+  border: 1px solid var(--nim-code-border);
+  border-radius: 7px;
+}
+
+pre.nim-code code {
+  display: block;
+  box-sizing: border-box;
+  min-width: max-content;
+
+  color: var(--nim-code-foreground);
+  background: transparent;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    monospace;
+  line-height: 1.55;
+}
+
+pre.nim-line-numbers code {
+  counter-reset: nim-code-line;
+}
+
+pre.nim-line-numbers .code-line {
+  display: block;
+  position: relative;
+  min-height: 1.55em;
+  padding-left: 4.25rem;
+  padding-right: 1rem;
+  white-space: pre;
+}
+
+pre.nim-line-numbers .code-line::before {
+  counter-increment: nim-code-line;
+  content: counter(nim-code-line);
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 3.25rem;
+  padding-right: 0.75rem;
+
+  color: var(--nim-code-line-number);
+  border-right: 1px solid var(--nim-code-line-number-border);
+  text-align: right;
+
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+.tok-keyword {
+  color: var(--nim-token-keyword);
+  font-weight: 650;
+}
+
+.tok-string {
+  color: var(--nim-token-string);
+}
+
+.tok-escape {
+  color: var(--nim-token-escape);
+  font-weight: 600;
+}
+
+.tok-number {
+  color: var(--nim-token-number);
+}
+
+.tok-comment {
+  color: var(--nim-token-comment);
+  font-style: italic;
+}
+
+.tok-operator {
+  color: var(--nim-token-operator);
+}
+
+.tok-punctuation {
+  color: var(--nim-token-punctuation);
+}
+
+.tok-identifier {
+  color: var(--nim-token-identifier);
+}
+
+.tok-directive {
+  color: var(--nim-token-directive);
+  font-weight: 600;
+}
+
+.tok-hyperlink {
+  color: var(--nim-token-hyperlink);
+  text-decoration: underline;
+}
+
+.tok-other {
+  color: var(--nim-token-other);
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="api">日本語API（試験的）</h1>
+<p>Nim-ACL の既存実装を、日本語の import 名と API 名から利用するための薄い facade です。</p>
+<p>アルゴリズム本体は複製せず、ASCII の正式 API をそのまま呼び出します。そのため、計算量・戻り値・境界条件は正式 API と同一です。</p>
+<h2 id="_1">方針</h2>
+<ul>
+<li>正式かつ安定した API は従来の ASCII 名です。</li>
+<li>日本語APIは <code>atcoder/extra/ja</code> 以下の試験的な入口です。</li>
+<li>日本語facadeと正式APIの結果一致をCIで検証します。</li>
+<li>ファイル名のUnicode正規化衝突を自動監査します。</li>
+</ul>
+<h2 id="_2">最小全域木</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">graph_template</span>
+<span class="tok-keyword">import</span> <span class="tok-string">&quot;atcoder/extra/ja/graph/最小全域木&quot;</span>
+
+<span class="tok-keyword">var</span> <span class="tok-identifier">g</span> <span class="tok-operator">=</span> <span class="tok-identifier">initGraph</span><span class="tok-punctuation">(</span><span class="tok-number">4</span><span class="tok-punctuation">)</span>
+
+<span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addBiEdge</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addBiEdge</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addBiEdge</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addBiEdge</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span>
+
+<span class="tok-keyword">let</span> <span class="tok-punctuation">(</span><span class="tok-identifier">重み合計</span><span class="tok-punctuation">,</span> <span class="tok-identifier">辺集合</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span> <span class="tok-identifier">最小全域木</span><span class="tok-punctuation">(</span><span class="tok-identifier">g</span><span class="tok-punctuation">)</span>
+
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">重み合計</span> <span class="tok-operator">==</span> <span class="tok-number">4</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">辺集合</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">==</span> <span class="tok-number">3</span>
+</code></pre>
+<p>正式APIは <code>kruskal(g)</code> です。</p>
+<h2 id="_3">最小全域有向木</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">std</span><span class="tok-operator">/</span><span class="tok-identifier">options</span>
+<span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">graph_template</span>
+<span class="tok-keyword">import</span> <span class="tok-string">&quot;atcoder/extra/ja/graph/最小全域有向木&quot;</span>
+
+<span class="tok-keyword">let</span> <span class="tok-identifier">es</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Edges</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">int</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span>
+  <span class="tok-identifier">initEdge</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">initEdge</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">initEdge</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">initEdge</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
+<span class="tok-punctuation">]</span>
+
+<span class="tok-keyword">let</span> <span class="tok-identifier">ans</span> <span class="tok-operator">=</span> <span class="tok-identifier">最小全域有向木</span><span class="tok-punctuation">(</span><span class="tok-identifier">es</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">,</span> <span class="tok-number">0</span><span class="tok-punctuation">)</span>
+
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">ans</span><span class="tok-operator">.</span><span class="tok-identifier">isSome</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">ans</span><span class="tok-operator">.</span><span class="tok-identifier">get</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">3</span>
+</code></pre>
+<p>英語の機能名は <code>minimumArborescence</code>、従来名は <code>minimumSpanningTreeArborescence</code> です。</p>
+<h2 id="_4">素集合データ構造</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-string">&quot;atcoder/extra/ja/structure/素集合データ構造&quot;</span>
+
+<span class="tok-keyword">var</span> <span class="tok-identifier">uf</span> <span class="tok-operator">=</span> <span class="tok-identifier">素集合データ構造を初期化</span><span class="tok-punctuation">(</span><span class="tok-number">5</span><span class="tok-punctuation">)</span>
+
+<span class="tok-keyword">discard</span> <span class="tok-identifier">uf</span><span class="tok-operator">.</span><span class="tok-identifier">併合</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">discard</span> <span class="tok-identifier">uf</span><span class="tok-operator">.</span><span class="tok-identifier">併合</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">)</span>
+
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">uf</span><span class="tok-operator">.</span><span class="tok-identifier">同じ集合か</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">uf</span><span class="tok-operator">.</span><span class="tok-identifier">集合の大きさ</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-number">3</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">uf</span><span class="tok-operator">.</span><span class="tok-identifier">代表元</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-identifier">uf</span><span class="tok-operator">.</span><span class="tok-identifier">代表元</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">)</span>
+</code></pre>
+<p>正式APIは <code>initDSU</code>, <code>merge</code>, <code>same</code>, <code>leader</code>, <code>size</code>, <code>groups</code> です。</p>
+<h2 id="_5">現在の対応表</h2>
+<table>
+<thead>
+<tr>
+<th>日本語import</th>
+<th>日本語API</th>
+<th>正式API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>atcoder/extra/ja/graph/最小全域木</code></td>
+<td><code>最小全域木(g)</code></td>
+<td><code>kruskal(g)</code></td>
+</tr>
+<tr>
+<td><code>atcoder/extra/ja/graph/最小全域有向木</code></td>
+<td><code>最小全域有向木(es, V, root)</code></td>
+<td><code>minimumArborescence(es, V, root)</code></td>
+</tr>
+<tr>
+<td><code>atcoder/extra/ja/structure/素集合データ構造</code></td>
+<td><code>併合</code>, <code>同じ集合か</code>, <code>代表元</code> など</td>
+<td><code>merge</code>, <code>same</code>, <code>leader</code> など</td>
+</tr>
+</tbody>
+</table>
+  </main>
+</body>
+</html>

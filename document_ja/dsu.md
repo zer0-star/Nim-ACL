@@ -111,3 +111,19 @@ d.groups():seq[seq[int]]
 ## @{keyword.examples}
 
 @{example.dsu_practice}
+
+<!-- NIM_ACL_JAPANESE_FACADE_V1 -->
+## 日本語API（試験的）
+
+~~~nim
+import "atcoder/extra/ja/structure/素集合データ構造"
+
+var uf = 素集合データ構造を初期化(n)
+
+discard uf.併合(a, b)
+doAssert uf.同じ集合か(a, b)
+~~~
+
+正式APIの `initDSU`, `merge`, `same`,
+`leader`, `size`, `groups` もそのまま利用できます。
+<!-- /NIM_ACL_JAPANESE_FACADE_V1 -->

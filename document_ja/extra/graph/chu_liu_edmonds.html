@@ -284,6 +284,18 @@ pre.nim-line-numbers .code-line::before {
 <li><code>O(m log n)</code></li>
 </ul>
 <p>です。</p>
+<!-- NIM_ACL_JAPANESE_FACADE_V1 -->
+<h2 id="_5">機能名・日本語名による別名</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">minimum_arborescence</span>
+
+<span class="tok-keyword">let</span> <span class="tok-identifier">ans</span> <span class="tok-operator">=</span> <span class="tok-identifier">minimumArborescence</span><span class="tok-punctuation">(</span><span class="tok-identifier">es</span><span class="tok-punctuation">,</span> <span class="tok-identifier">V</span><span class="tok-punctuation">,</span> <span class="tok-identifier">start</span><span class="tok-punctuation">)</span>
+</code></pre>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-string">&quot;atcoder/extra/ja/graph/最小全域有向木&quot;</span>
+
+<span class="tok-keyword">let</span> <span class="tok-identifier">ans</span> <span class="tok-operator">=</span> <span class="tok-identifier">最小全域有向木</span><span class="tok-punctuation">(</span><span class="tok-identifier">es</span><span class="tok-punctuation">,</span> <span class="tok-identifier">V</span><span class="tok-punctuation">,</span> <span class="tok-identifier">start</span><span class="tok-punctuation">)</span>
+</code></pre>
+<p>従来の <code>minimumSpanningTreeArborescence</code> も維持されます。</p>
+<!-- /NIM_ACL_JAPANESE_FACADE_V1 -->
   </main>
 </body>
 </html>

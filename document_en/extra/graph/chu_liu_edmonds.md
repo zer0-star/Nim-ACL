@@ -63,3 +63,30 @@ If not all vertices can be reached from the root, the result is `none`.
 Let `n` be the number of vertices and `m` the number of edges. The running time is roughly:
 
 - `O(m log n)`
+
+<!-- NIM_ACL_JAPANESE_FACADE_V1 -->
+## Functional and Japanese aliases
+
+~~~nim
+import atcoder/extra/graph/minimum_arborescence
+
+let ans = minimumArborescence(
+  es,
+  vertexCount,
+  root,
+)
+~~~
+
+~~~nim
+import "atcoder/extra/ja/graph/最小全域有向木"
+
+let ans = 最小全域有向木(
+  es,
+  vertexCount,
+  root,
+)
+~~~
+
+The historical `minimumSpanningTreeArborescence`
+name remains available.
+<!-- /NIM_ACL_JAPANESE_FACADE_V1 -->

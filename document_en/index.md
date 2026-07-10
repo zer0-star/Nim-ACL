@@ -150,3 +150,12 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 - [`import atcoder/extra/algorithm/coordinate_compression`](./extra/algorithm/coordinate_compression.html)
 - [`import atcoder/extra/algorithm/run_length_encoding`](./extra/algorithm/run_length_encoding.html)
 - [`import atcoder/extra/algorithm/mo`](./extra/algorithm/mo.html)
+
+<!-- NIM_ACL_JAPANESE_FACADE_INDEX_V1 -->
+## Japanese API facades (experimental)
+
+Canonical Nim-ACL implementations can also be reached
+through Japanese import paths and API names.
+
+- [Japanese API facade index](extra/ja/index.md)
+<!-- /NIM_ACL_JAPANESE_FACADE_INDEX_V1 -->
