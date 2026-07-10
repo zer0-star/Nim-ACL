@@ -94,6 +94,8 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 
 ## extra/structure
 
+- [`import atcoder/extra/structure/fast_set`](./extra/structure/fast_set.html)
+- [`import atcoder/extra/structure/disjoint_sparse_table`](./extra/structure/disjoint_sparse_table.html)
 - [`import atcoder/extra/structure/cartesian_tree`](./extra/structure/cartesian_tree.html)
 - [`import atcoder/extra/structure/rollback_dsu`](./extra/structure/rollback_dsu.html)
 - [`import atcoder/extra/structure/binary_trie`](./extra/structure/binary_trie.html)
@@ -125,3 +127,7 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 - [`import atcoder/extra/string/palindromic_tree`](./extra/string/palindromic_tree.html)
 - [`import atcoder/extra/string/aho_corasick`](./extra/string/aho_corasick.html)
 - [`import atcoder/extra/string/manacher`](./extra/string/manacher.html)
+
+## extra/algorithm
+
+- [`import atcoder/extra/algorithm/mo`](./extra/algorithm/mo.html)

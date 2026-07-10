@@ -55,6 +55,9 @@ STEP=init
     tests/test_extra_suffix_automaton.nim
     tests/test_extra_palindromic_tree.nim
     tests/test_extra_cartesian_tree.nim
+    tests/test_extra_fast_set.nim
+    tests/test_extra_disjoint_sparse_table.nim
+    tests/test_extra_mo.nim
     tests/test_extra_sorted_set_map.nim
     tests/test_extra_set_map.nim
     tests/test_extra_tree_backend_common_interface.nim
