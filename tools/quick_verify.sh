@@ -28,6 +28,7 @@ STEP=init
     tests/test_extra_dp_2d_edit_rectangle.nim
     tests/test_extra_math_basic.nim
     tests/test_extra_xor_basis.nim
+    tests/test_extra_xor_basis_random.nim
     tests/test_extra_arbitrary_mod_combination.nim
     tests/test_extra_geometry_template.nim
     tests/test_extra_geometry_polygon.nim
@@ -44,7 +45,9 @@ STEP=init
     tests/test_extra_partially_persistent_dsu.nim
     tests/test_extra_succinct_indexable_dictionary.nim
     tests/test_extra_binary_trie.nim
+    tests/test_extra_binary_trie_random.nim
     tests/test_extra_rollback_dsu.nim
+    tests/test_extra_rollback_dsu_random.nim
     tests/test_extra_offline_dynamic_connectivity.nim
     tests/test_extra_virtual_tree.nim
     tests/test_extra_euler_tour.nim
@@ -55,8 +58,10 @@ STEP=init
     tests/test_extra_rerooting_dp.nim
     tests/test_extra_functional_graph.nim
     tests/test_extra_manacher.nim
+    tests/test_extra_manacher_random.nim
     tests/test_extra_aho_corasick.nim
     tests/test_extra_kmp.nim
+    tests/test_extra_kmp_random.nim
     tests/test_extra_minimum_rotation.nim
     tests/test_extra_suffix_automaton.nim
     tests/test_extra_palindromic_tree.nim
