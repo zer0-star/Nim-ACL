@@ -48,6 +48,7 @@ STEP=init
     tests/test_extra_offline_dynamic_connectivity.nim
     tests/test_extra_virtual_tree.nim
     tests/test_extra_dsu_on_tree.nim
+    tests/test_extra_rerooting_dp.nim
     tests/test_extra_functional_graph.nim
     tests/test_extra_manacher.nim
     tests/test_extra_sorted_set_map.nim
