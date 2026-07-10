@@ -95,5 +95,5 @@ doAssert cc.decode(2) == 100
 
 ## 関連資料
 
-- AtCoder ABC の Fenwick Tree / sweep line 問題
-- cp-algorithms: Coordinate Compression を用いる offline algorithm
+- [AtCoder Library Practice Contest B - Fenwick Tree](https://atcoder.jp/contests/practice2/tasks/practice2_b) / [AtCoder ABC036 C - 座圧](https://atcoder.jp/contests/abc036/tasks/abc036_c)
+- [AtCoder ABC036 C - 座圧](https://atcoder.jp/contests/abc036/tasks/abc036_c)

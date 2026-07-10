@@ -146,3 +146,28 @@ To suppress automatic line numbering in an example section, place:
 Line numbers are rendered with CSS counters and are not part of the copied
 source text. Syntax highlighting and line numbers do not depend on a CDN or
 browser-side JavaScript.
+
+## Documentation link policy
+
+Entries under `関連資料`, `Related resources`, `References`, and similar
+sections should use concrete links rather than plain resource names.
+
+- Internal Nim-ACL documentation uses relative links and opens in the same tab.
+- External HTTP/HTTPS links open in a new tab.
+- Generated external links include `target="_blank" rel="noopener"`.
+- `noreferrer` is not added by default, so ordinary referral information is
+  preserved.
+- Prefer official documentation, original papers, official problem pages,
+  and primary project repositories.
+- Do not reproduce substantial external text, figures, or source code merely
+  to avoid linking to the original source.
+
+Run the related-resource linker and audit with:
+
+~~~bash
+python3 tools/link_related_resources.py
+python3 tools/link_related_resources.py --audit-only
+python3 tools/postprocess_document_links.py
+python3 tools/audit_generated_document_html.py
+~~~
+

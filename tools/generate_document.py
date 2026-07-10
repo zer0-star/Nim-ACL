@@ -364,3 +364,24 @@ if __name__ == "__main__":
         check=True,
     )
 
+# NIM_ACL_EXTERNAL_LINK_POSTPROCESS_HOOK_V1
+if __name__ == "__main__":
+    import subprocess as _nim_acl_link_subprocess
+    import sys as _nim_acl_link_sys
+    from pathlib import Path as _NimAclLinkPath
+
+    _nim_acl_link_processor = (
+        _NimAclLinkPath(__file__).resolve().with_name(
+            "postprocess_document_links.py"
+        )
+    )
+
+    _nim_acl_link_subprocess.run(
+        [
+            _nim_acl_link_sys.executable,
+            str(_nim_acl_link_processor),
+        ],
+        cwd=_nim_acl_link_processor.parent.parent,
+        check=True,
+    )
+

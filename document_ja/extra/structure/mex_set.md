@@ -107,6 +107,6 @@ doAssert s.count(0) == 1
 
 ## 関連資料
 
-- AtCoder ABC の mex 問題
-- Codeforces の dynamic mex 問題
-- `FastSet`
+- [AtCoder ABC330 E - Mex and Update](https://atcoder.jp/contests/abc330/tasks/abc330_e)
+- [Codeforces 1294D - MEX maximizing](https://codeforces.com/problemset/problem/1294/D)
+- [`FastSet`](./fast_set.html)

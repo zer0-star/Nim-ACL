@@ -157,3 +157,7 @@ fi
 echo "===== NACL RESULT END ====="
 
 [ "$STATUS" = OK ]
+
+# NIM_ACL_GENERATED_DOCUMENT_AUDIT_V1
+python3 tools/postprocess_document_links.py
+python3 tools/audit_generated_document_html.py
