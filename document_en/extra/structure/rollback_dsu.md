@@ -160,6 +160,17 @@ It is slightly slower than a normal DSU because it does not use path compression
 - Pass a previously saved snapshot to `rollback(snap)`.
 - This is not a fully online edge-deletion structure by itself. It is typically combined with offline processing.
 
+<!-- NIM_ACL_PROBLEM_EXAMPLES_V1 -->
+## Practice problems
+
+<details class="problem-examples">
+<summary>Show problems that can use this library (may reveal the intended technique)</summary>
+<ul>
+  <li><a href="https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum" target="_blank" rel="noopener">Library Checker - Dynamic Graph Vertex Add Component Sum</a></li>
+</ul>
+</details>
+<!-- /NIM_ACL_PROBLEM_EXAMPLES_V1 -->
+
 ## Related resources and libraries
 
 - [cp-algorithms: Deleting from a data structure in O(T(n) log n)](https://cp-algorithms.com/data_structures/deleting_in_log_n.html)

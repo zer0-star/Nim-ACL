@@ -120,6 +120,18 @@ doAssert tr.count(5) == 1
 
 です。
 
+<!-- NIM_ACL_PROBLEM_EXAMPLES_V1 -->
+## このライブラリが使える問題
+
+<details class="problem-examples">
+<summary>問題例を表示する（解法のネタバレを含む可能性があります）</summary>
+<ul>
+  <li><a href="https://atcoder.jp/contests/abc308/tasks/abc308_g" target="_blank" rel="noopener">AtCoder Beginner Contest 308 G - Minimum Xor Pair Query</a></li>
+  <li><a href="https://judge.yosupo.jp/problem/set_xor_min" target="_blank" rel="noopener">Library Checker - Set Xor-Min</a></li>
+</ul>
+</details>
+<!-- /NIM_ACL_PROBLEM_EXAMPLES_V1 -->
+
 ## 関連資料・他言語ライブラリ
 
 - Library Checker: `Set Xor-Min`

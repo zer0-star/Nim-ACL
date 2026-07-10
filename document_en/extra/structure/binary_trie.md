@@ -118,6 +118,18 @@ Let `B = maxLog + 1`.
 - `minXor`, `maxXor`: `O(B)`
 - memory: `O(B * distinct values)`
 
+<!-- NIM_ACL_PROBLEM_EXAMPLES_V1 -->
+## Practice problems
+
+<details class="problem-examples">
+<summary>Show problems that can use this library (may reveal the intended technique)</summary>
+<ul>
+  <li><a href="https://atcoder.jp/contests/abc308/tasks/abc308_g" target="_blank" rel="noopener">AtCoder Beginner Contest 308 G - Minimum Xor Pair Query</a></li>
+  <li><a href="https://judge.yosupo.jp/problem/set_xor_min" target="_blank" rel="noopener">Library Checker - Set Xor-Min</a></li>
+</ul>
+</details>
+<!-- /NIM_ACL_PROBLEM_EXAMPLES_V1 -->
+
 ## Related resources and libraries
 
 - Library Checker: `Set Xor-Min`

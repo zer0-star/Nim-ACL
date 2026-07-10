@@ -69,6 +69,17 @@ pattern 長を `m`、text 長を `n` とすると、
 - 検索: `O(n)`
 - memory: `O(m)`
 
+<!-- NIM_ACL_PROBLEM_EXAMPLES_V1 -->
+## このライブラリが使える問題
+
+<details class="problem-examples">
+<summary>問題例を表示する（解法のネタバレを含む可能性があります）</summary>
+<ul>
+  <li><a href="https://atcoder.jp/contests/abc257/tasks/abc257_g" target="_blank" rel="noopener">AtCoder Beginner Contest 257 G - Prefix Concatenation</a></li>
+</ul>
+</details>
+<!-- /NIM_ACL_PROBLEM_EXAMPLES_V1 -->
+
 ## 関連資料・他言語ライブラリ
 
 - [cp-algorithms: Prefix Function](https://cp-algorithms.com/string/prefix-function.html)

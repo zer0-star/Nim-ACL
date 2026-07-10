@@ -175,6 +175,17 @@ if m.isPalindrome(l, r):
 - `odd` と `even` の半径の意味が異なるので注意してください。
 - `countPalindromicSubstrings` は全回文 substring 数を返すため、最悪 `O(n^2)` 個になります。戻り値型は `int` です。
 
+<!-- NIM_ACL_PROBLEM_EXAMPLES_V1 -->
+## このライブラリが使える問題
+
+<details class="problem-examples">
+<summary>問題例を表示する（解法のネタバレを含む可能性があります）</summary>
+<ul>
+  <li><a href="https://judge.yosupo.jp/problem/enumerate_palindromes" target="_blank" rel="noopener">Library Checker - Enumerate Palindromes</a></li>
+</ul>
+</details>
+<!-- /NIM_ACL_PROBLEM_EXAMPLES_V1 -->
+
 ## 関連資料・他言語ライブラリ
 
 - cp-algorithms: Manacher's Algorithm
