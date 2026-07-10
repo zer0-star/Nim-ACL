@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AtCoder Level-Based Library Guide</title>
+  <link rel="stylesheet" href="../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../index.html">
+      <img class="site-logo" src="../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="atcoder-level-based-library-guide">AtCoder Level-Based Library Guide</h1>
+<p>This page groups Nim-ACL modules by approximate AtCoder color level.</p>
+<p>The classification is only a guideline. The difficulty of a problem depends heavily on recognizing the technique and combining it with other ideas.</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Approximate colors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Beginner</td>
+<td>Gray, brown, green</td>
+</tr>
+<tr>
+<td>Intermediate</td>
+<td>Cyan, blue</td>
+</tr>
+<tr>
+<td>Advanced</td>
+<td>Yellow and above</td>
+</tr>
+</tbody>
+</table>
+<h1 id="beginner">Beginner</h1>
+<p>Focus on basic transformations, graph traversal, prefix aggregation, and standard data structures.</p>
+<h2 id="recommended-modules">Recommended modules</h2>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Module</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Array</td>
+<td><a href="../extra/algorithm/coordinate_compression.html">Coordinate Compression</a></td>
+<td>Large sparse coordinates</td>
+</tr>
+<tr>
+<td>Array</td>
+<td><a href="../extra/algorithm/run_length_encoding.html">Run-Length Encoding</a></td>
+<td>Consecutive equal groups</td>
+</tr>
+<tr>
+<td>Set</td>
+<td><a href="../extra/structure/mex_set.html">MexSet</a></td>
+<td>Dynamic mex</td>
+</tr>
+<tr>
+<td>Set</td>
+<td><a href="../extra/structure/sorted_set_map.html">SortedSet / SortedMap</a></td>
+<td>Ordered containers</td>
+</tr>
+<tr>
+<td>Graph</td>
+<td><a href="../extra/graph/functional_graph.html">Functional Graph / Doubling</a></td>
+<td>Apply a function many times</td>
+</tr>
+<tr>
+<td>String</td>
+<td><a href="../extra/string/kmp.html">KMP</a></td>
+<td>Single-pattern matching</td>
+</tr>
+<tr>
+<td>Geometry</td>
+<td><a href="../extra/geometry/geometry.html">Geometry facade</a></td>
+<td>Basic geometry</td>
+</tr>
+</tbody>
+</table>
+<p>Core ACL modules:</p>
+<pre><code class="language-nim">import atcoder/dsu
+import atcoder/fenwicktree
+import atcoder/segtree
+import atcoder/modint
+</code></pre>
+<h2 id="suggested-order">Suggested order</h2>
+<ol>
+<li>Run-Length Encoding</li>
+<li>Coordinate Compression</li>
+<li>Prefix sums</li>
+<li>DSU</li>
+<li>Fenwick Tree</li>
+<li>Dijkstra</li>
+<li>Segment Tree</li>
+<li>Functional Graph</li>
+<li>KMP</li>
+</ol>
+<h1 id="intermediate">Intermediate</h1>
+<p>Intermediate problems require selecting a structure based on static/dynamic, online/offline, and algebraic properties.</p>
+<h2 id="range-queries">Range queries</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../extra/structure/sparse_table.html">Sparse Table</a></td>
+<td>Static idempotent queries</td>
+</tr>
+<tr>
+<td><a href="../extra/structure/disjoint_sparse_table.html">Disjoint Sparse Table</a></td>
+<td>Static associative queries</td>
+</tr>
+<tr>
+<td><a href="../extra/structure/fast_set.html">FastSet</a></td>
+<td>Successor / predecessor</td>
+</tr>
+<tr>
+<td><a href="../extra/structure/binary_trie.html">Binary Trie</a></td>
+<td>XOR optimization</td>
+</tr>
+<tr>
+<td><a href="../extra/structure/wavelet_matrix.html">Wavelet Matrix</a></td>
+<td>Rank, frequency, k-th</td>
+</tr>
+<tr>
+<td><a href="../extra/algorithm/mo.html">Mo</a></td>
+<td>Offline range queries</td>
+</tr>
+<tr>
+<td><a href="../extra/structure/cartesian_tree.html">Cartesian Tree</a></td>
+<td>RMQ and monotonic stack structure</td>
+</tr>
+</tbody>
+</table>
+<h2 id="strings">Strings</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../extra/string/manacher.html">Manacher</a></td>
+<td>Palindrome radii</td>
+</tr>
+<tr>
+<td><a href="../extra/string/aho_corasick.html">Aho-Corasick</a></td>
+<td>Multiple-pattern matching</td>
+</tr>
+<tr>
+<td><a href="../extra/string/minimum_rotation.html">Minimum Rotation</a></td>
+<td>Canonical cyclic rotation</td>
+</tr>
+<tr>
+<td>Rolling Hash</td>
+<td>Substring comparison</td>
+</tr>
+<tr>
+<td>Suffix Array</td>
+<td>Lexicographic substring structure</td>
+</tr>
+</tbody>
+</table>
+<h2 id="trees-and-dp">Trees and DP</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../extra/graph/rerooting_dp.html">Rerooting DP</a></td>
+<td>Tree DP for every root</td>
+</tr>
+<tr>
+<td>Heavy-Light Decomposition</td>
+<td>Path queries</td>
+</tr>
+<tr>
+<td>LCA</td>
+<td>Ancestor and distance queries</td>
+</tr>
+</tbody>
+</table>
+<h1 id="advanced">Advanced</h1>
+<p>Advanced problems frequently combine offline processing, rollback, tree compression, and graph decomposition.</p>
+<h2 id="dynamic-connectivity">Dynamic connectivity</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../extra/structure/rollback_dsu.html">Rollback DSU</a></td>
+<td>Undo DSU merges</td>
+</tr>
+<tr>
+<td><a href="../extra/graph/offline_dynamic_connectivity.html">Offline Dynamic Connectivity</a></td>
+<td>Edge insertion/deletion offline</td>
+</tr>
+<tr>
+<td>Partially Persistent DSU</td>
+<td>Queries about past states</td>
+</tr>
+</tbody>
+</table>
+<h2 id="advanced-tree-techniques">Advanced tree techniques</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../extra/graph/virtual_tree.html">Virtual Tree</a></td>
+<td>Compress important vertices</td>
+</tr>
+<tr>
+<td><a href="../extra/graph/dsu_on_tree.html">DSU on Tree</a></td>
+<td>Subtree frequency queries</td>
+</tr>
+<tr>
+<td>Rerooting DP</td>
+<td>All-root tree DP</td>
+</tr>
+<tr>
+<td>Link-Cut Tree</td>
+<td>Dynamic forests</td>
+</tr>
+</tbody>
+</table>
+<h2 id="undirected-graph-decomposition">Undirected graph decomposition</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../extra/graph/undirected_decomposition.html">Undirected Graph Decomposition</a></td>
+<td>Shared low-link interface</td>
+</tr>
+<tr>
+<td><a href="../extra/graph/biconnected_components.html">Biconnected Components</a></td>
+<td>Articulation-based blocks</td>
+</tr>
+<tr>
+<td><a href="../extra/graph/two_edge_connected_components.html">Two-Edge-Connected Components</a></td>
+<td>Bridge-based components</td>
+</tr>
+<tr>
+<td><a href="../extra/graph/block_cut_tree.html">Block-Cut Tree</a></td>
+<td>Tree of blocks and articulations</td>
+</tr>
+</tbody>
+</table>
+<h2 id="advanced-strings">Advanced strings</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../extra/string/suffix_automaton.html">Suffix Automaton</a></td>
+<td>Distinct substrings and occurrences</td>
+</tr>
+<tr>
+<td><a href="../extra/string/palindromic_tree.html">Palindromic Tree</a></td>
+<td>Distinct palindromes</td>
+</tr>
+<tr>
+<td>Aho-Corasick</td>
+<td>Automaton DP</td>
+</tr>
+<tr>
+<td>Suffix Array / LCP</td>
+<td>Substring ordering</td>
+</tr>
+</tbody>
+</table>
+<h2 id="advanced-mathematics">Advanced mathematics</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../extra/math/fps.html">FPS</a></td>
+<td>Formal power series</td>
+</tr>
+<tr>
+<td>Convolution / NTT</td>
+<td>Polynomial multiplication</td>
+</tr>
+<tr>
+<td><a href="../extra/math/xor_basis.html">XOR Basis</a></td>
+<td>GF(2) linear basis</td>
+</tr>
+</tbody>
+</table>
+<h1 id="quick-selection-guide">Quick selection guide</h1>
+<table>
+<thead>
+<tr>
+<th>Problem shape</th>
+<th>Candidate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Large values, few distinct coordinates</td>
+<td>Coordinate Compression</td>
+</tr>
+<tr>
+<td>Apply a mapping <code>k</code> times</td>
+<td>Functional Graph</td>
+</tr>
+<tr>
+<td>Max/min XOR with an element</td>
+<td>Binary Trie</td>
+</tr>
+<tr>
+<td>Representable subset XOR</td>
+<td>XOR Basis</td>
+</tr>
+<tr>
+<td>Multiple patterns</td>
+<td>Aho-Corasick</td>
+</tr>
+<tr>
+<td>Palindrome range checks</td>
+<td>Manacher</td>
+</tr>
+<tr>
+<td>Distinct palindromes</td>
+<td>Palindromic Tree</td>
+</tr>
+<tr>
+<td>Every-root tree DP</td>
+<td>Rerooting</td>
+</tr>
+<tr>
+<td>Subtree frequency queries</td>
+<td>DSU on Tree</td>
+</tr>
+<tr>
+<td>Important vertex subset on a tree</td>
+<td>Virtual Tree</td>
+</tr>
+<tr>
+<td>Offline edge deletion</td>
+<td>Offline Dynamic Connectivity</td>
+</tr>
+<tr>
+<td>Bridges and articulation points</td>
+<td>Low-link decomposition</td>
+</tr>
+</tbody>
+</table>
+<h1 id="future-candidates">Future candidates</h1>
+<p>High-priority future candidates include:</p>
+<ul>
+<li>Dominator Tree</li>
+<li>Mo on Tree</li>
+<li>Persistent Binary Trie</li>
+<li>Miller-Rabin / Pollard Rho</li>
+<li>Segment Tree Beats facade</li>
+<li>Persistent Segment Tree</li>
+</ul>
+  </main>
+</body>
+</html>
