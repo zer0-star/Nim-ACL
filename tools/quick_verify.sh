@@ -51,6 +51,7 @@ STEP=init
     tests/test_extra_rerooting_dp.nim
     tests/test_extra_functional_graph.nim
     tests/test_extra_manacher.nim
+    tests/test_extra_aho_corasick.nim
     tests/test_extra_sorted_set_map.nim
     tests/test_extra_set_map.nim
     tests/test_extra_tree_backend_common_interface.nim
