@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BinaryTrie</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="binarytrie">BinaryTrie</h1>
+<p><code>BinaryTrie</code> is a data structure that stores integers as bit strings.</p>
+<p>Unlike a normal trie for strings, <code>BinaryTrie</code> branches by the bits of an integer from high to low. This makes it possible to find an element <code>y</code> that maximizes or minimizes <code>x xor y</code>.</p>
+<h2 id="use-cases">Use cases</h2>
+<p>Typical use cases include:</p>
+<ul>
+<li>dynamic multiset queries: insert/delete integers and answer maximum <code>x xor y</code></li>
+<li>minimum or maximum XOR queries over a set of integers</li>
+<li>bitwise greedy problems</li>
+<li>XOR minimization on non-negative integer arrays, such as <code>0 &lt;= a_i &lt; 2^30</code></li>
+</ul>
+<p>Codeforces 706D “Vasiliy's Multiset” and Library Checker <code>Set Xor-Min</code> are representative examples.</p>
+<h2 id="idea">Idea</h2>
+<p>Each integer is inserted from bit <code>maxLog</code> down to bit <code>0</code>.</p>
+<p>For <code>maxXor(x)</code>, we greedily choose the opposite bit of <code>x</code> whenever possible. Higher bits have larger value, so this greedy choice gives the maximum XOR value.</p>
+<p>For <code>minXor(x)</code>, we greedily choose the same bit as <code>x</code> whenever possible.</p>
+<p>Each node stores <code>count</code>, the number of elements under the node. This supports duplicate values and lets queries avoid branches that became empty after deletion.</p>
+<h2 id="import">Import</h2>
+<pre><code class="language-nim">import atcoder/extra/structure/binary_trie
+</code></pre>
+<h2 id="type">Type</h2>
+<pre><code class="language-nim">type BinaryTrie[T: SomeInteger]
+</code></pre>
+<p><code>T</code> is an integer type, usually <code>int</code>, <code>int64</code>, or <code>uint64</code>.</p>
+<h2 id="constructor">Constructor</h2>
+<pre><code class="language-nim">proc initBinaryTrie[T: SomeInteger](maxLog: int = 60): BinaryTrie[T]
+</code></pre>
+<p><code>maxLog</code> is the largest bit index inspected by the trie.</p>
+<p>For example, if all values satisfy <code>0 &lt;= x &lt; 2^30</code>, use <code>maxLog = 29</code>, or <code>maxLog = 30</code> with a little extra room.</p>
+<h2 id="operations">Operations</h2>
+<pre><code class="language-nim">proc len[T](tr: BinaryTrie[T]): int
+proc empty[T](tr: BinaryTrie[T]): bool
+
+proc insert[T](tr: var BinaryTrie[T], x: T)
+proc add[T](tr: var BinaryTrie[T], x: T, c: int)
+proc erase[T](tr: var BinaryTrie[T], x: T, c: int = 1)
+
+proc count[T](tr: BinaryTrie[T], x: T): int
+proc contains[T](tr: BinaryTrie[T], x: T): bool
+
+proc minXor[T](tr: BinaryTrie[T], x: T): T
+proc maxXor[T](tr: BinaryTrie[T], x: T): T
+
+proc minElementXor[T](tr: BinaryTrie[T], x: T): T
+proc maxElementXor[T](tr: BinaryTrie[T], x: T): T
+</code></pre>
+<ul>
+<li><code>insert(x)</code> inserts one copy of <code>x</code>.</li>
+<li><code>add(x, c)</code> inserts <code>c</code> copies of <code>x</code>.</li>
+<li><code>erase(x, c)</code> erases <code>c</code> copies of <code>x</code>.</li>
+<li><code>count(x)</code> returns the multiplicity of <code>x</code>.</li>
+<li><code>x in tr</code> checks whether <code>x</code> exists.</li>
+<li><code>minXor(x)</code> returns the minimum value of <code>x xor y</code>.</li>
+<li><code>maxXor(x)</code> returns the maximum value of <code>x xor y</code>.</li>
+<li><code>minElementXor(x)</code> returns an element <code>y</code> minimizing <code>x xor y</code>.</li>
+<li><code>maxElementXor(x)</code> returns an element <code>y</code> maximizing <code>x xor y</code>.</li>
+</ul>
+<h2 id="example">Example</h2>
+<pre><code class="language-nim">var tr = initBinaryTrie[int](maxLog = 30)
+
+tr.insert(0)
+tr.insert(5)
+tr.insert(7)
+tr.insert(5)
+
+doAssert tr.len == 4
+doAssert 5 in tr
+doAssert tr.count(5) == 2
+
+doAssert tr.minXor(2) == 2  # 2 xor 0
+doAssert tr.maxXor(2) == 7  # 2 xor 5
+
+tr.erase(5)
+
+doAssert tr.count(5) == 1
+</code></pre>
+<h2 id="constraints">Constraints</h2>
+<p>This implementation is mainly intended for non-negative integers satisfying <code>0 &lt;= x &lt; 2^(maxLog + 1)</code>.</p>
+<p>If negative integers are inserted, their <code>uint64</code> representation is used. For competitive programming, non-negative values are recommended.</p>
+<h2 id="complexity">Complexity</h2>
+<p>Let <code>B = maxLog + 1</code>.</p>
+<ul>
+<li><code>insert</code>: <code>O(B)</code></li>
+<li><code>erase</code>: <code>O(B)</code></li>
+<li><code>count</code>: <code>O(B)</code></li>
+<li><code>minXor</code>, <code>maxXor</code>: <code>O(B)</code></li>
+<li>memory: <code>O(B * distinct values)</code></li>
+</ul>
+<h2 id="related-resources-and-libraries">Related resources and libraries</h2>
+<ul>
+<li>Library Checker: <code>Set Xor-Min</code></li>
+<li>Nyaan Library: Binary Trie</li>
+<li>ei1333 Library: Binary Trie</li>
+<li>Codeforces 706D: Vasiliy's Multiset</li>
+</ul>
+  </main>
+</body>
+</html>
