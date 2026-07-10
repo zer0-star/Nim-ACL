@@ -115,6 +115,7 @@ block node は `0 ..< blockNodeCount` に置かれ、その後ろに articulatio
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 var g = initUndirectedGraph(6)
 

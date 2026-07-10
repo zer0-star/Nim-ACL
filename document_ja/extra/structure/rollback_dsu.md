@@ -83,6 +83,7 @@ proc groups(uf: RollbackDSU): seq[seq[int]]
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 var uf = initRollbackDSU(5)
 

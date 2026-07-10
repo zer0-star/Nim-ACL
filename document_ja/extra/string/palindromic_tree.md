@@ -52,6 +52,7 @@ proc longestPalindromeLength(pt: PalindromicTree): int
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 let pt = initPalindromicTree("ababa")
 

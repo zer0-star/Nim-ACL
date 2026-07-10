@@ -101,3 +101,48 @@ Prefer the following structure:
 Do not copy implementations from other languages into the documentation.
 When other public competitive-programming libraries are useful references, link
 to them instead.
+
+## Nim documentation syntax highlighting
+
+Generated documentation uses Nim's official
+`packages/docutils/highlite` tokenizer.
+
+Use a normal Nim fence for API definitions and short fragments:
+
+~~~markdown
+~~~nim
+proc prod(tree: SqrtTree, l, r: int): T
+~~~
+~~~
+
+Substantial usage examples should display line numbers. Place this marker
+immediately before the Nim code block:
+
+~~~markdown
+<!-- nim-line-numbers -->
+~~~nim
+import atcoder/extra/structure/sqrt_tree
+
+proc add(a, b: int): int = a + b
+
+let tree = initSqrtTree(@[1, 2, 3], 0, add)
+doAssert tree.prod(0, 3) == 6
+~~~
+~~~
+
+The marker utility automatically adds the marker to substantial Nim blocks
+under headings such as `使用例`, `実行例`, `Example`, and `Usage`:
+
+~~~bash
+python3 tools/mark_complete_nim_examples.py
+~~~
+
+To suppress automatic line numbering in an example section, place:
+
+~~~html
+<!-- nim-no-line-numbers -->
+~~~
+
+Line numbers are rendered with CSS counters and are not part of the copied
+source text. Syntax highlighting and line numbers do not depend on a CDN or
+browser-side JavaScript.

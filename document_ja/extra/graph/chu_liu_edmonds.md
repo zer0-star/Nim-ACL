@@ -14,6 +14,7 @@ import atcoder/extra/graph/chu_liu_edmonds
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 import std/options
 import atcoder/extra/graph/graph_template

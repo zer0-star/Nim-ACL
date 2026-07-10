@@ -74,6 +74,7 @@ query 区間は非空の半開区間 `[l, r)` です。
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 proc add(a, b: int): int = a + b
 
@@ -89,6 +90,7 @@ doAssert tree[(2, 5)] == 12
 
 非可換演算にも使えます。
 
+<!-- nim-line-numbers -->
 ~~~nim
 proc concat(a, b: string): string = a & b
 

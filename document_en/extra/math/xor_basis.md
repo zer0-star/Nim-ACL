@@ -88,6 +88,7 @@ proc merge[T](a, b: XorBasis[T]): XorBasis[T]
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 var xb = initXorBasis[int](maxLog = 4)
 

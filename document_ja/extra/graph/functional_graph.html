@@ -132,6 +132,8 @@ proc orbit(fg: FunctionalGraph, start: int): tuple[prefix, cycle: seq[int]]
 <li><code>orbit(start)</code> は、訪問列を <code>prefix</code> と <code>cycle</code> に分けて返します。</li>
 </ul>
 <h2 id="_6">使用例</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">let to = @[1, 2, 0, 4, 4]
 let fg = initFunctionalGraph(to, maxLog = 60)
 

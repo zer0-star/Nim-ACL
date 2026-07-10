@@ -11,6 +11,7 @@ import atcoder/extra/dp/slide_min
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 import atcoder/extra/dp/slide_min
 

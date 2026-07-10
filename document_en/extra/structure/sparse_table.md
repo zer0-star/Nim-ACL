@@ -41,6 +41,7 @@ Returns the aggregate value over range `r`.
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 proc op(a, b: int): int = max(a, b)
 proc e(): int = int.low

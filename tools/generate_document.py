@@ -342,3 +342,25 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+# NIM_ACL_DOCUMENT_POSTPROCESS_HOOK_V1
+if __name__ == "__main__":
+    import subprocess as _nim_acl_subprocess
+    import sys as _nim_acl_sys
+    from pathlib import Path as _NimAclPath
+
+    _nim_acl_postprocessor = (
+        _NimAclPath(__file__).resolve().with_name(
+            "postprocess_document_html.py"
+        )
+    )
+
+    _nim_acl_subprocess.run(
+        [
+            _nim_acl_sys.executable,
+            str(_nim_acl_postprocessor),
+        ],
+        cwd=_nim_acl_postprocessor.parent.parent,
+        check=True,
+    )
+

@@ -63,6 +63,7 @@ proc longestCommonSubstring(
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 let sam = initSuffixAutomaton("ababa")
 

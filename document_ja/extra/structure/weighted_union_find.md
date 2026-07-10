@@ -50,6 +50,7 @@ weight(y) - weight(x) = w
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 var uf = initWeightedUnionFind[int](4)
 

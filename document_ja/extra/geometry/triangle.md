@@ -30,6 +30,7 @@ proc orthocenter[Real](a, b, c: Point[Real]): Point[Real]
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 let
   a = initPoint[float](0.0, 0.0)

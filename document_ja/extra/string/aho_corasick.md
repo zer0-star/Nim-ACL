@@ -93,6 +93,7 @@ proc contains(ac: AhoCorasick, text: string): bool
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 var ac = initAhoCorasick()
 

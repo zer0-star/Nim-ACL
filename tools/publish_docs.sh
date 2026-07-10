@@ -26,6 +26,8 @@ STEP=init
     .venv-docs/bin/python tools/generate_document.py
   else
     python3 tools/generate_document.py
+# NIM_ACL_DOCUMENT_HIGHLIGHT_FALLBACK_V1
+python3 tools/postprocess_document_html.py
   fi
 
   STEP="commit generated docs if needed"

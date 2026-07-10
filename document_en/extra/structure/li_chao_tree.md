@@ -41,6 +41,7 @@ proc query[T](cht: LiChaoTree[T], k: int): T
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 const INF = int.high div 4
 

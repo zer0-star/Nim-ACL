@@ -84,6 +84,7 @@ proc groups(uf: RollbackDSU): seq[seq[int]]
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 var uf = initRollbackDSU(5)
 
@@ -127,6 +128,7 @@ This makes it easy to match the number of merge calls and undo calls.
 
 `componentCount`, `snapshot`, and `time` read naturally with UFCS.
 
+<!-- nim-line-numbers -->
 ~~~nim
 let s = uf.snapshot
 

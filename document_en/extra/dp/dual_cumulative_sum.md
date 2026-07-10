@@ -10,6 +10,7 @@ import atcoder/extra/dp/dual_cumulative_sum
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 import atcoder/extra/dp/dual_cumulative_sum
 

@@ -11,6 +11,7 @@ import atcoder/extra/math/factorial
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 import atcoder/modint
 import atcoder/extra/math/factorial

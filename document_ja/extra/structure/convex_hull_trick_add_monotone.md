@@ -43,6 +43,7 @@ proc query_monotone_dec[T](cht: var ConvexHullTrickAddMonotone[T], x: T): T
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 var cht = initConvexHullTrickAddMonotone[int](true)
 

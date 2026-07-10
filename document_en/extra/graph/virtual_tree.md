@@ -88,6 +88,7 @@ adj: seq[seq[VirtualTreeAdjEdge]]
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 var g = newSeq[seq[int]](7)
 

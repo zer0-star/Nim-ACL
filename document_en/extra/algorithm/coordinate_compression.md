@@ -18,6 +18,7 @@ proc compress(cc, a): seq[int]
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 let
   a = @[100, -5, 100, 7]

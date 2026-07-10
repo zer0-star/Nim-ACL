@@ -14,6 +14,7 @@ import atcoder/extra/math/mod_sqrt
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 import std/options
 import atcoder/modint

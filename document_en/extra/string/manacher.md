@@ -107,6 +107,7 @@ proc countPalindromes[T](m: Manacher[T]): int
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 let m = initManacher("ababa")
 
@@ -125,6 +126,7 @@ doAssert m.countPalindromicSubstrings == 9
 
 Even-length palindromes are also supported.
 
+<!-- nim-line-numbers -->
 ~~~nim
 let m = initManacher("abba")
 

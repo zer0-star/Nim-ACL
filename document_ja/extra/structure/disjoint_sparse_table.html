@@ -93,6 +93,8 @@ proc `[]`[T](
 </code></pre>
 <p><code>op</code> は結合法則を満たす必要があります。区間は非空の半開区間 <code>[l, r)</code> です。</p>
 <h2 id="_2">使用例</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">proc add(a, b: int): int = a + b
 
 let dst = initDisjointSparseTable(@[1, 2, 3, 4, 5], add)

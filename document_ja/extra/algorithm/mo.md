@@ -52,6 +52,7 @@ query 区間は半開区間 `[l, r)` です。
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 import std/tables
 import atcoder/extra/algorithm/mo

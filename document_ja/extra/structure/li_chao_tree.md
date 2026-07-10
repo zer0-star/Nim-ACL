@@ -41,6 +41,7 @@ proc query[T](cht: LiChaoTree[T], k: int): T
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 const INF = int.high div 4
 
@@ -56,6 +57,7 @@ doAssert cht.query(5) == 5
 
 区間追加もできます。
 
+<!-- nim-line-numbers -->
 ~~~nim
 var cht = initLiChaoTree[int](@[0, 1, 2, 3, 4, 5], INF)
 

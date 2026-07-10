@@ -14,6 +14,7 @@ The `fps` module is intended as a short competitive-programming entry point for 
 
 ## Basic usage
 
+<!-- nim-line-numbers -->
 ~~~nim
 import atcoder/extra/math/fps
 
@@ -193,6 +194,7 @@ doAssert h.len == 5
 
 The `fps` facade constructors accept arrays, `seq[int]`, `seq[mint]`, existing FPS values, and formal variables.
 
+<!-- nim-line-numbers -->
 ~~~nim
 useFPS(mint{x}, F, prec = 8)
 
@@ -207,6 +209,7 @@ doAssert c.len == 4
 
 You can also pass an existing FPS and only change its length.
 
+<!-- nim-line-numbers -->
 ~~~nim
 let f = F(@[1, 2, 3])
 let g = F(f, 5)

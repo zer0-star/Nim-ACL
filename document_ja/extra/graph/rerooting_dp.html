@@ -129,6 +129,8 @@ proc rerooting[T](
 <p><code>addEdge</code> を省略した場合、edge をまたいでも値が変わらないものとして扱います。</p>
 <p><code>rerootingDP</code> という alias もあります。</p>
 <h2 id="_6">使用例: 各頂点から全頂点への距離和</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">import std/sequtils
 import atcoder/extra/graph/rerooting_dp
 
@@ -156,6 +158,8 @@ doAssert ans.mapIt(it.dist) == @[6, 4, 4, 6]
 <p><code>size</code> はその方向にある頂点数、<code>dist</code> は現在の root からの距離和です。<br>
 edge を 1 本またぐと、その成分の全頂点への距離が 1 増えるので、<code>dist + size</code> になります。</p>
 <h2 id="_7">使用例: 全頂点からの最遠距離</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">var g = initRerootingGraph(6)
 
 discard g.addEdge(0, 1)

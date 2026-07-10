@@ -18,6 +18,7 @@ proc mex(s: MexSet): int
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 var s = initMexSet(10)
 

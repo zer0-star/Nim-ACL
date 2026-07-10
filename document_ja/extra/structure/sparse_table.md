@@ -41,6 +41,7 @@ proc `[]`[T](st: SparseTable[T], r: RangeType): T
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 proc op(a, b: int): int = max(a, b)
 proc e(): int = int.low

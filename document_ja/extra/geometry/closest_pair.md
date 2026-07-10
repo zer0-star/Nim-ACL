@@ -19,6 +19,7 @@ proc closest_pair[Real](ps: seq[Point[Real]]): Real
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 let ps = @[
   initPoint[float](0.0, 0.0),

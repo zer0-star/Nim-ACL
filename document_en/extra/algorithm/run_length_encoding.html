@@ -80,6 +80,8 @@ proc rle(a): seq[Run[T]]
 proc runLengthDecode(runs): seq[T]
 </code></pre>
 <h2 id="example">Example</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">let runs = rle(&quot;aaabbc&quot;)
 
 doAssert runs == @[

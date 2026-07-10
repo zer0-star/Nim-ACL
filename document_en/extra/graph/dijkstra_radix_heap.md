@@ -13,6 +13,7 @@ import atcoder/extra/graph/dijkstra_radix_heap
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 import atcoder/extra/graph/graph_template
 import atcoder/extra/graph/dijkstra_radix_heap

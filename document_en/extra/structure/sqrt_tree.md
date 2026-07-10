@@ -26,6 +26,7 @@ proc prod(tree: SqrtTree[T], l, r: int): T
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 proc add(a, b: int): int = a + b
 

@@ -18,6 +18,7 @@ import atcoder/extra/math/floor_sum_square
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 import atcoder/extra/math/floor_sum_square
 

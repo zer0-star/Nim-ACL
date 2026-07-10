@@ -20,6 +20,7 @@ Missing successor/predecessor results are represented by `-1`.
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 var s = initFastSet(100)
 

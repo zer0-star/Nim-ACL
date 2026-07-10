@@ -103,6 +103,7 @@ ACL の `segtree` と同様に、条件 `f` を満たす最大右端・最小左
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ```nim
 import atcoder/dynamic_segtree
 

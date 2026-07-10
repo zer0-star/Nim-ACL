@@ -123,6 +123,8 @@ proc end(s): iterator
 </code></pre>
 <p><code>key in s</code> and <code>key notin s</code> are also available.</p>
 <h2 id="sortedset-example">SortedSet example</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">var s = initSortedSet[int](countable = true)
 
 s.insert(3)
@@ -144,6 +146,8 @@ doAssert 3 notin s
 doAssert s.len == 2
 </code></pre>
 <h2 id="sortedmap-example">SortedMap example</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">var mp = initSortedMap[string, int](countable = true)
 
 mp[&quot;three&quot;] = 3

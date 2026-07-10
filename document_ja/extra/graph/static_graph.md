@@ -12,6 +12,7 @@ import atcoder/extra/graph/static_graph
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 import atcoder/extra/graph/static_graph
 

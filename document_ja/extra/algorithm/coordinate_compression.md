@@ -69,6 +69,7 @@ proc restore(cc, indices): seq[T]
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 let
   a = @[100, -5, 100, 7]

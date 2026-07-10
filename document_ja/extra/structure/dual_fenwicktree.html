@@ -93,6 +93,8 @@ proc `[]`[FT: DualFenwickTree](fw: FT, p: IndexType): FT.T
 <li><code>fw[p]</code> は位置 <code>p</code> の値を返します。</li>
 </ul>
 <h2 id="_4">使用例</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">var fw = initDualFenwickTree[int](5)
 
 fw.add(1 .. 3, 10)
