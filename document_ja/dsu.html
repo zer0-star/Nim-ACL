@@ -349,6 +349,19 @@ for i in 0..&lt;q:
       echo 1
     else:
       echo 0</div>
+
+<!-- NIM_ACL_JAPANESE_FACADE_V1 -->
+<h2 id="api">日本語API（試験的）</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-string">&quot;atcoder/extra/ja/structure/素集合データ構造&quot;</span>
+
+<span class="tok-keyword">var</span> <span class="tok-identifier">uf</span> <span class="tok-operator">=</span> <span class="tok-identifier">素集合データ構造を初期化</span><span class="tok-punctuation">(</span><span class="tok-identifier">n</span><span class="tok-punctuation">)</span>
+
+<span class="tok-keyword">discard</span> <span class="tok-identifier">uf</span><span class="tok-operator">.</span><span class="tok-identifier">併合</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">uf</span><span class="tok-operator">.</span><span class="tok-identifier">同じ集合か</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">)</span>
+</code></pre>
+<p>正式APIの <code>initDSU</code>, <code>merge</code>, <code>same</code>,
+<code>leader</code>, <code>size</code>, <code>groups</code> もそのまま利用できます。</p>
+<!-- /NIM_ACL_JAPANESE_FACADE_V1 -->
   </main>
 </body>
 </html>

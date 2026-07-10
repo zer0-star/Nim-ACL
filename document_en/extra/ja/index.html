@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>kruskal</title>
+  <title>Japanese API facades (experimental)</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -250,46 +250,63 @@ pre.nim-line-numbers .code-line::before {
     </a>
   </header>
   <main>
-<h1 id="kruskal">kruskal</h1>
-<p>このページは自動生成された下書きです。</p>
-<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
-<h2 id="import">import</h2>
-<pre><code>import atcoder/extra/graph/kruskal
-</code></pre>
-<h2 id="api">公開 API</h2>
-<pre><code>const ATCODER_KRUSKAL_HPP* = 1
-proc kruskal*[G:Graph](g:G):(G.T, seq[Edge[G.T, G.U]]) =
-</code></pre>
-<h2 id="_1">概要</h2>
-<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
-<h2 id="_2">使用例</h2>
-<p>TODO: 使用例を追加してください。</p>
-<h2 id="_3">注意</h2>
-<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
-<h2 id="_4">基本例</h2>
-<p><code>kruskal(g)</code> は最小全域木の重み合計と、選ばれた辺の列を返します。</p>
+<h1 id="japanese-api-facades-experimental">Japanese API facades (experimental)</h1>
+<p>These thin facades make existing Nim-ACL implementations available through Japanese import paths and API names.</p>
+<p>The algorithms are not duplicated. Each facade delegates to the canonical ASCII API, so return values, complexity, and preconditions remain unchanged.</p>
+<h2 id="policy">Policy</h2>
+<ul>
+<li>The canonical stable APIs remain the ASCII APIs.</li>
+<li>Japanese facades live under <code>atcoder/extra/ja</code>.</li>
+<li>CI checks parity between Japanese and canonical calls.</li>
+<li>CI also checks Unicode-normalization collisions in module paths.</li>
+</ul>
+<h2 id="minimum-spanning-tree">Minimum spanning tree</h2>
 <pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">graph_template</span>
-<span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">kruskal</span>
+<span class="tok-keyword">import</span> <span class="tok-string">&quot;atcoder/extra/ja/graph/最小全域木&quot;</span>
 
 <span class="tok-keyword">var</span> <span class="tok-identifier">g</span> <span class="tok-operator">=</span> <span class="tok-identifier">initGraph</span><span class="tok-punctuation">(</span><span class="tok-number">4</span><span class="tok-punctuation">)</span>
+
 <span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addBiEdge</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span>
 <span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addBiEdge</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">)</span>
 <span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addBiEdge</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">)</span>
 <span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addBiEdge</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span>
 
-<span class="tok-keyword">let</span> <span class="tok-punctuation">(</span><span class="tok-identifier">cost</span><span class="tok-punctuation">,</span> <span class="tok-identifier">es</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span> <span class="tok-identifier">kruskal</span><span class="tok-punctuation">(</span><span class="tok-identifier">g</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">let</span> <span class="tok-punctuation">(</span><span class="tok-identifier">cost</span><span class="tok-punctuation">,</span> <span class="tok-identifier">edges</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span> <span class="tok-identifier">最小全域木</span><span class="tok-punctuation">(</span><span class="tok-identifier">g</span><span class="tok-punctuation">)</span>
 
 <span class="tok-identifier">doAssert</span> <span class="tok-identifier">cost</span> <span class="tok-operator">==</span> <span class="tok-number">4</span>
-<span class="tok-identifier">doAssert</span> <span class="tok-identifier">es</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">==</span> <span class="tok-number">3</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">edges</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">==</span> <span class="tok-number">3</span>
 </code></pre>
-<!-- NIM_ACL_JAPANESE_FACADE_V1 -->
-<h2 id="api_1">日本語API（試験的）</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-string">&quot;atcoder/extra/ja/graph/最小全域木&quot;</span>
+<p>The canonical API is <code>kruskal(g)</code>.</p>
+<h2 id="minimum-arborescence">Minimum arborescence</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">std</span><span class="tok-operator">/</span><span class="tok-identifier">options</span>
+<span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">graph_template</span>
+<span class="tok-keyword">import</span> <span class="tok-string">&quot;atcoder/extra/ja/graph/最小全域有向木&quot;</span>
 
-<span class="tok-keyword">let</span> <span class="tok-punctuation">(</span><span class="tok-identifier">重み合計</span><span class="tok-punctuation">,</span> <span class="tok-identifier">辺集合</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span> <span class="tok-identifier">最小全域木</span><span class="tok-punctuation">(</span><span class="tok-identifier">g</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">let</span> <span class="tok-identifier">es</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Edges</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">int</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span>
+  <span class="tok-identifier">initEdge</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">initEdge</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">initEdge</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">initEdge</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
+<span class="tok-punctuation">]</span>
+
+<span class="tok-keyword">let</span> <span class="tok-identifier">ans</span> <span class="tok-operator">=</span> <span class="tok-identifier">最小全域有向木</span><span class="tok-punctuation">(</span><span class="tok-identifier">es</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">,</span> <span class="tok-number">0</span><span class="tok-punctuation">)</span>
+
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">ans</span><span class="tok-operator">.</span><span class="tok-identifier">isSome</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">ans</span><span class="tok-operator">.</span><span class="tok-identifier">get</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">3</span>
 </code></pre>
-<p><a href="../ja/index.html">日本語APIの一覧</a>も参照してください。</p>
-<!-- /NIM_ACL_JAPANESE_FACADE_V1 -->
+<p>The functional English name is <code>minimumArborescence</code>; the historical API remains <code>minimumSpanningTreeArborescence</code>.</p>
+<h2 id="disjoint-set-union">Disjoint-set union</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-string">&quot;atcoder/extra/ja/structure/素集合データ構造&quot;</span>
+
+<span class="tok-keyword">var</span> <span class="tok-identifier">uf</span> <span class="tok-operator">=</span> <span class="tok-identifier">素集合データ構造を初期化</span><span class="tok-punctuation">(</span><span class="tok-number">5</span><span class="tok-punctuation">)</span>
+
+<span class="tok-keyword">discard</span> <span class="tok-identifier">uf</span><span class="tok-operator">.</span><span class="tok-identifier">併合</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">discard</span> <span class="tok-identifier">uf</span><span class="tok-operator">.</span><span class="tok-identifier">併合</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">)</span>
+
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">uf</span><span class="tok-operator">.</span><span class="tok-identifier">同じ集合か</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">uf</span><span class="tok-operator">.</span><span class="tok-identifier">集合の大きさ</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-number">3</span>
+</code></pre>
+<p>The canonical API remains <code>initDSU</code>, <code>merge</code>, <code>same</code>, <code>leader</code>, <code>size</code>, and <code>groups</code>.</p>
   </main>
 </body>
 </html>

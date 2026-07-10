@@ -44,3 +44,15 @@ let (cost, es) = kruskal(g)
 doAssert cost == 4
 doAssert es.len == 3
 ```
+
+<!-- NIM_ACL_JAPANESE_FACADE_V1 -->
+## 日本語API（試験的）
+
+~~~nim
+import "atcoder/extra/ja/graph/最小全域木"
+
+let (重み合計, 辺集合) = 最小全域木(g)
+~~~
+
+[日本語APIの一覧](../ja/index.md)も参照してください。
+<!-- /NIM_ACL_JAPANESE_FACADE_V1 -->

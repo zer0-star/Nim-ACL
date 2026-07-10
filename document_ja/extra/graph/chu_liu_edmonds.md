@@ -65,3 +65,21 @@ Option[(T, seq[int])]
 - `O(m log n)`
 
 です。
+
+<!-- NIM_ACL_JAPANESE_FACADE_V1 -->
+## 機能名・日本語名による別名
+
+~~~nim
+import atcoder/extra/graph/minimum_arborescence
+
+let ans = minimumArborescence(es, V, start)
+~~~
+
+~~~nim
+import "atcoder/extra/ja/graph/最小全域有向木"
+
+let ans = 最小全域有向木(es, V, start)
+~~~
+
+従来の `minimumSpanningTreeArborescence` も維持されます。
+<!-- /NIM_ACL_JAPANESE_FACADE_V1 -->

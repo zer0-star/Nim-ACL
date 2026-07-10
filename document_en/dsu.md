@@ -111,3 +111,19 @@ Both of the orders of the connected components and the vertices are undefined.
 ## @{keyword.examples}
 
 @{example.dsu_practice}
+
+<!-- NIM_ACL_JAPANESE_FACADE_V1 -->
+## Japanese API facade (experimental)
+
+~~~nim
+import "atcoder/extra/ja/structure/素集合データ構造"
+
+var uf = 素集合データ構造を初期化(n)
+
+discard uf.併合(a, b)
+doAssert uf.同じ集合か(a, b)
+~~~
+
+The canonical `initDSU`, `merge`, `same`,
+`leader`, `size`, and `groups` APIs remain available.
+<!-- /NIM_ACL_JAPANESE_FACADE_V1 -->
