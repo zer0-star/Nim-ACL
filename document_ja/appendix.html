@@ -78,7 +78,7 @@
 <li><code>__int128 / unsigned __int128(g++, clang++)</code> か <code>_mul128 / _umul128(Visual Studio)</code> が使えること</li>
 <li><code>__builtin_(ctz/ctzll/clz/clzll/popcount)(g++, clang++)</code> か <code>_BitScan(Forward/Reverse)(Visual Studio)</code> が使えること</li>
 <li><code>char / short / int / ll</code>が <code>8 / 16 / 32 / 64</code> bit、またその<code>unsigned</code>型(および<code>signed char</code>)も同じbit長</li>
-<li>💻 <a href="https://cpprefjp.github.io/lang/cpp20/signed_integers_are_twos_complement.html">符号付き整数型が2の補数表現であることを規定</a></li>
+<li>💻 <a href="https://cpprefjp.github.io/lang/cpp20/signed_integers_are_twos_complement.html" target="_blank" rel="noopener">符号付き整数型が2の補数表現であることを規定</a></li>
 </ul>
 <h2 id="_2">インストール方法</h2>
 <h3 id="g-clang">g++ / clang++へのインストール方法</h3>
@@ -86,7 +86,7 @@
 <p><code>atcoder</code>フォルダをいちいちコピーしたくない場合は以下のような方法があります。</p>
 <ul>
 <li><code>g++ main.cpp -std=c++14 -I /path/to/ac-library</code>のように指定する (<code>/path/to/ac-library</code> は自分のPCの <code>ac-library</code> を置いてある場所へ書き換えてください)。</li>
-<li>環境変数 <code>CPLUS_INCLUDE_PATH</code> で、<code>CPLUS_INCLUDE_PATH="/path/to/ac-library"</code>のように<code>atcoder</code>フォルダの場所を指定する。(Windowsの場合は、<a href="https://img.atcoder.jp/practice2/01333b7c5575b09b5868376ef242aa52.png">ユーザー環境変数の設定画面</a> で、変数の欄に <code>CPLUS_INCLUDE_PATH</code> 値の欄に <code>C:\path\to\ac-library</code>　などと入力する。スラッシュではなくバックスラッシュを用いることに注意。なお、バックスラッシュは環境によっては円記号として表示されることがあります)。すると普通に<code>g++ main.cpp -std=c++14</code>とコンパイルできる。</li>
+<li>環境変数 <code>CPLUS_INCLUDE_PATH</code> で、<code>CPLUS_INCLUDE_PATH="/path/to/ac-library"</code>のように<code>atcoder</code>フォルダの場所を指定する。(Windowsの場合は、<a href="https://img.atcoder.jp/practice2/01333b7c5575b09b5868376ef242aa52.png" target="_blank" rel="noopener">ユーザー環境変数の設定画面</a> で、変数の欄に <code>CPLUS_INCLUDE_PATH</code> 値の欄に <code>C:\path\to\ac-library</code>　などと入力する。スラッシュではなくバックスラッシュを用いることに注意。なお、バックスラッシュは環境によっては円記号として表示されることがあります)。すると普通に<code>g++ main.cpp -std=c++14</code>とコンパイルできる。</li>
 </ul>
 <h3 id="visual-studio">Visual Studioへのインストール方法</h3>
 <p>古いVisual Studioを使っている場合、アップデートしてください。Visual Studio 2017 / 2019をサポートしています。</p>

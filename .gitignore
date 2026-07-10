@@ -7,3 +7,5 @@ src/lib
 # Nim generated runtime artifacts
 .nim_runtime/
 nimcache/
+__pycache__/
+*.py[cod]

@@ -24,12 +24,19 @@ HIGHLIGHTER_SOURCE = (
 CODE_BLOCK_RE = re.compile(
     r"""
     <pre(?P<pre_attrs>[^>]*)>
-    \s*
+    (?P<inner>.*?)
+    </pre>
+    """,
+    re.IGNORECASE | re.DOTALL | re.VERBOSE,
+)
+
+CODE_WRAPPER_RE = re.compile(
+    r"""
+    ^\s*
     <code(?P<code_attrs>[^>]*)>
     (?P<body>.*?)
     </code>
-    \s*
-    </pre>
+    \s*$
     """,
     re.IGNORECASE | re.DOTALL | re.VERBOSE,
 )
@@ -385,26 +392,24 @@ def nearby_marker(
 
 def wants_line_numbers(
     text: str,
-    match: re.Match[str],
+    position: int,
+    pre_attrs: str,
+    code_attrs: str,
     source: str,
     heading: str,
 ) -> bool:
-    attrs = (
-        match.group("pre_attrs")
-        + " "
-        + match.group("code_attrs")
-    )
+    attrs = f"{pre_attrs} {code_attrs}"
 
     if nearby_marker(
         text,
-        match.start(),
+        position,
         "<!-- nim-no-line-numbers -->",
     ):
         return False
 
     if nearby_marker(
         text,
-        match.start(),
+        position,
         "<!-- nim-line-numbers -->",
     ):
         return True
@@ -546,6 +551,34 @@ def inject_style(text: str) -> str:
     return STYLE + "\n" + text
 
 
+
+def extract_code_parts(
+    match: re.Match[str],
+) -> tuple[str, str, str]:
+    """Return pre attrs, code attrs, and escaped source body.
+
+    Generated Nim documentation may use either:
+
+        <pre class="language-nim">...</pre>
+
+    or:
+
+        <pre><code class="language-nim">...</code></pre>
+    """
+    pre_attrs = match.group("pre_attrs") or ""
+    inner = match.group("inner")
+
+    code_match = CODE_WRAPPER_RE.match(inner)
+
+    if code_match is None:
+        return pre_attrs, "", inner
+
+    return (
+        pre_attrs,
+        code_match.group("code_attrs") or "",
+        code_match.group("body"),
+    )
+
 def collect_file(path: Path) -> FileRecord | None:
     text = path.read_text(encoding="utf-8")
 
@@ -556,8 +589,9 @@ def collect_file(path: Path) -> FileRecord | None:
     blocks: list[CodeBlock] = []
 
     for match in CODE_BLOCK_RE.finditer(text):
-        code_attrs = match.group("code_attrs")
-        pre_attrs = match.group("pre_attrs")
+        pre_attrs, code_attrs, source_body = (
+            extract_code_parts(match)
+        )
 
         if not (
             is_nim_code(code_attrs)
@@ -571,7 +605,7 @@ def collect_file(path: Path) -> FileRecord | None:
         ):
             continue
 
-        source = html.unescape(match.group("body"))
+        source = html.unescape(source_body)
         heading = heading_before(
             positions,
             headings,
@@ -588,7 +622,9 @@ def collect_file(path: Path) -> FileRecord | None:
                 source=source,
                 line_numbers=wants_line_numbers(
                     text,
-                    match,
+                    match.start(),
+                    pre_attrs,
+                    code_attrs,
                     source,
                     heading,
                 ),

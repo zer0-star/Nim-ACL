@@ -61,6 +61,186 @@
     };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style id="nim-acl-highlight-style-v1">
+:root {
+  --nim-code-background: #f6f8fa;
+  --nim-code-foreground: #24292f;
+  --nim-code-border: #d0d7de;
+  --nim-code-line-number: #8c959f;
+  --nim-code-line-number-border: #d8dee4;
+
+  --nim-token-keyword: #8250df;
+  --nim-token-string: #0a7f37;
+  --nim-token-escape: #116329;
+  --nim-token-number: #0550ae;
+  --nim-token-comment: #6e7781;
+  --nim-token-operator: #cf222e;
+  --nim-token-punctuation: #57606a;
+  --nim-token-identifier: #24292f;
+  --nim-token-directive: #953800;
+  --nim-token-hyperlink: #0969da;
+  --nim-token-other: #24292f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nim-code-background: #161b22;
+    --nim-code-foreground: #c9d1d9;
+    --nim-code-border: #30363d;
+    --nim-code-line-number: #7d8590;
+    --nim-code-line-number-border: #30363d;
+
+    --nim-token-keyword: #d2a8ff;
+    --nim-token-string: #a5d6ff;
+    --nim-token-escape: #79c0ff;
+    --nim-token-number: #79c0ff;
+    --nim-token-comment: #8b949e;
+    --nim-token-operator: #ff7b72;
+    --nim-token-punctuation: #c9d1d9;
+    --nim-token-identifier: #c9d1d9;
+    --nim-token-directive: #ffa657;
+    --nim-token-hyperlink: #58a6ff;
+    --nim-token-other: #c9d1d9;
+  }
+}
+
+html[data-theme="dark"],
+html.dark,
+body.dark,
+body[data-theme="dark"] {
+  --nim-code-background: #161b22;
+  --nim-code-foreground: #c9d1d9;
+  --nim-code-border: #30363d;
+  --nim-code-line-number: #7d8590;
+  --nim-code-line-number-border: #30363d;
+
+  --nim-token-keyword: #d2a8ff;
+  --nim-token-string: #a5d6ff;
+  --nim-token-escape: #79c0ff;
+  --nim-token-number: #79c0ff;
+  --nim-token-comment: #8b949e;
+  --nim-token-operator: #ff7b72;
+  --nim-token-punctuation: #c9d1d9;
+  --nim-token-identifier: #c9d1d9;
+  --nim-token-directive: #ffa657;
+  --nim-token-hyperlink: #58a6ff;
+  --nim-token-other: #c9d1d9;
+}
+
+pre.nim-code {
+  position: relative;
+  overflow: auto;
+  box-sizing: border-box;
+  tab-size: 2;
+
+  background: var(--nim-code-background);
+  color: var(--nim-code-foreground);
+  border: 1px solid var(--nim-code-border);
+  border-radius: 7px;
+}
+
+pre.nim-code code {
+  display: block;
+  box-sizing: border-box;
+  min-width: max-content;
+
+  color: var(--nim-code-foreground);
+  background: transparent;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    monospace;
+  line-height: 1.55;
+}
+
+pre.nim-line-numbers code {
+  counter-reset: nim-code-line;
+}
+
+pre.nim-line-numbers .code-line {
+  display: block;
+  position: relative;
+  min-height: 1.55em;
+  padding-left: 4.25rem;
+  padding-right: 1rem;
+  white-space: pre;
+}
+
+pre.nim-line-numbers .code-line::before {
+  counter-increment: nim-code-line;
+  content: counter(nim-code-line);
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 3.25rem;
+  padding-right: 0.75rem;
+
+  color: var(--nim-code-line-number);
+  border-right: 1px solid var(--nim-code-line-number-border);
+  text-align: right;
+
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+.tok-keyword {
+  color: var(--nim-token-keyword);
+  font-weight: 650;
+}
+
+.tok-string {
+  color: var(--nim-token-string);
+}
+
+.tok-escape {
+  color: var(--nim-token-escape);
+  font-weight: 600;
+}
+
+.tok-number {
+  color: var(--nim-token-number);
+}
+
+.tok-comment {
+  color: var(--nim-token-comment);
+  font-style: italic;
+}
+
+.tok-operator {
+  color: var(--nim-token-operator);
+}
+
+.tok-punctuation {
+  color: var(--nim-token-punctuation);
+}
+
+.tok-identifier {
+  color: var(--nim-token-identifier);
+}
+
+.tok-directive {
+  color: var(--nim-token-directive);
+  font-weight: 600;
+}
+
+.tok-hyperlink {
+  color: var(--nim-token-hyperlink);
+  text-decoration: underline;
+}
+
+.tok-other {
+  color: var(--nim-token-other);
+}
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -74,39 +254,37 @@
 <p><code>atcoder/extra/math/fps</code> is a convenience facade for modint-based formal power series.</p>
 <p>The existing <code>atcoder/extra/math/formal_power_series</code> module is kept compatible. If you want to explicitly choose a convolution backend or use more generic coefficient types, import <code>formal_power_series</code> directly.</p>
 <h2 id="import">Import</h2>
-<pre><code class="language-nim">import atcoder/extra/math/fps
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">math</span><span class="tok-operator">/</span><span class="tok-identifier">fps</span>
 </code></pre>
 <p>The <code>fps</code> module is intended as a short competitive-programming entry point for modint + NTT based formal power series.</p>
 <h2 id="basic-usage">Basic usage</h2>
 <!-- nim-line-numbers -->
 
-<pre><code class="language-nim">import atcoder/extra/math/fps
-
-type mint = modint998244353
-
-useFPS(mint{x}, F, prec = 100)
-
-let f = F(@[0, 1]) # resized to length 100
-let g = f.exp()    # length 100
-let h = f.exp(50)  # explicit length 50 overrides the default
-</code></pre>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">math</span><span class="tok-operator">/</span><span class="tok-identifier">fps</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">type</span> <span class="tok-identifier">mint</span> <span class="tok-operator">=</span> <span class="tok-identifier">modint998244353</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">useFPS</span><span class="tok-punctuation">(</span><span class="tok-identifier">mint</span><span class="tok-punctuation">{</span><span class="tok-identifier">x</span><span class="tok-punctuation">}</span><span class="tok-punctuation">,</span> <span class="tok-identifier">F</span><span class="tok-punctuation">,</span> <span class="tok-identifier">prec</span> <span class="tok-operator">=</span> <span class="tok-number">100</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">f</span> <span class="tok-operator">=</span> <span class="tok-identifier">F</span><span class="tok-punctuation">(</span><span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span> <span class="tok-comment"># resized to length 100</span></span>
+<span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">g</span> <span class="tok-operator">=</span> <span class="tok-identifier">f</span><span class="tok-operator">.</span><span class="tok-identifier">exp</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>    <span class="tok-comment"># length 100</span></span>
+<span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">h</span> <span class="tok-operator">=</span> <span class="tok-identifier">f</span><span class="tok-operator">.</span><span class="tok-identifier">exp</span><span class="tok-punctuation">(</span><span class="tok-number">50</span><span class="tok-punctuation">)</span>  <span class="tok-comment"># explicit length 50 overrides the default</span></span></code></pre>
 <p><code>useFPS(mint{x}, F, prec = 100)</code> declares the coefficient type <code>mint</code>, the variable name <code>x</code>, the constructor name <code>F</code>, and the default precision <code>100</code>.</p>
 <h2 id="custom-variable-name">Custom variable name</h2>
-<pre><code class="language-nim">useFPS(mint{y}, G, prec = 50)
-
-let f = G(y)
-</code></pre>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-identifier">useFPS</span><span class="tok-punctuation">(</span><span class="tok-identifier">mint</span><span class="tok-punctuation">{</span><span class="tok-identifier">y</span><span class="tok-punctuation">}</span><span class="tok-punctuation">,</span> <span class="tok-identifier">G</span><span class="tok-punctuation">,</span> <span class="tok-identifier">prec</span> <span class="tok-operator">=</span> <span class="tok-number">50</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">f</span> <span class="tok-operator">=</span> <span class="tok-identifier">G</span><span class="tok-punctuation">(</span><span class="tok-identifier">y</span><span class="tok-punctuation">)</span></span></code></pre>
 <p>Use <code>mint{y}</code> to inject <code>y</code> as the formal variable.</p>
 <h2 id="default-precision">Default precision</h2>
 <p>When the length is omitted, constructors such as <code>F(@[...])</code> and <code>F(x)</code> resize the series to the default precision.</p>
-<pre><code class="language-nim">useFPS(mint{x}, F, prec = 8)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">useFPS</span><span class="tok-punctuation">(</span><span class="tok-identifier">mint</span><span class="tok-punctuation">{</span><span class="tok-identifier">x</span><span class="tok-punctuation">}</span><span class="tok-punctuation">,</span> <span class="tok-identifier">F</span><span class="tok-punctuation">,</span> <span class="tok-identifier">prec</span> <span class="tok-operator">=</span> <span class="tok-number">8</span><span class="tok-punctuation">)</span>
 
-let f = F(@[0, 1])
-doAssert f.len == 8
+<span class="tok-keyword">let</span> <span class="tok-identifier">f</span> <span class="tok-operator">=</span> <span class="tok-identifier">F</span><span class="tok-punctuation">(</span><span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">f</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">==</span> <span class="tok-number">8</span>
 </code></pre>
 <p>An explicit length always overrides the default.</p>
-<pre><code class="language-nim">let f = F(@[0, 1], 3)
-doAssert f.len == 3
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">f</span> <span class="tok-operator">=</span> <span class="tok-identifier">F</span><span class="tok-punctuation">(</span><span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">f</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">==</span> <span class="tok-number">3</span>
 </code></pre>
 <p>Existing FPS methods such as <code>f.exp()</code> usually use the current length of the input series. Therefore, resizing at construction time makes <code>f.exp()</code> use the declared default precision.</p>
 <h2 id="difference-from-formal_power_series">Difference from formal_power_series</h2>
@@ -117,111 +295,109 @@ doAssert f.len == 3
 </ul>
 <h2 id="sagemath-like-string-declaration">SageMath-like string declaration</h2>
 <p><code>useFPSDecl</code> provides a SageMath-like string declaration helper.</p>
-<pre><code class="language-nim">useFPSDecl(H = mint{z}, prec = 6)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">useFPSDecl</span><span class="tok-punctuation">(</span><span class="tok-identifier">H</span> <span class="tok-operator">=</span> <span class="tok-identifier">mint</span><span class="tok-punctuation">{</span><span class="tok-identifier">z</span><span class="tok-punctuation">}</span><span class="tok-punctuation">,</span> <span class="tok-identifier">prec</span> <span class="tok-operator">=</span> <span class="tok-number">6</span><span class="tok-punctuation">)</span>
 
-let f = H(z)
-let g = f.exp()
+<span class="tok-keyword">let</span> <span class="tok-identifier">f</span> <span class="tok-operator">=</span> <span class="tok-identifier">H</span><span class="tok-punctuation">(</span><span class="tok-identifier">z</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">let</span> <span class="tok-identifier">g</span> <span class="tok-operator">=</span> <span class="tok-identifier">f</span><span class="tok-operator">.</span><span class="tok-identifier">exp</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>This declares <code>H</code> as the constructor name, <code>mint</code> as the coefficient type, <code>z</code> as the formal variable name, and <code>6</code> as the default precision.</p>
 <p>The more basic Nim-style syntax is:</p>
-<pre><code class="language-nim">useFPS(mint{z}, H, prec = 6)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">useFPS</span><span class="tok-punctuation">(</span><span class="tok-identifier">mint</span><span class="tok-punctuation">{</span><span class="tok-identifier">z</span><span class="tok-punctuation">}</span><span class="tok-punctuation">,</span> <span class="tok-identifier">H</span><span class="tok-punctuation">,</span> <span class="tok-identifier">prec</span> <span class="tok-operator">=</span> <span class="tok-number">6</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p><code>useFPSDecl</code> is a convenience helper for readability. If you prefer type resolution and editor support, use <code>useFPS(mint{z}, H, prec = 6)</code>.</p>
 <p>You can also write the declaration as a string.</p>
-<pre><code class="language-nim">useFPSDecl(&quot;H = mint{z}&quot;, prec = 6)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">useFPSDecl</span><span class="tok-punctuation">(</span><span class="tok-string">&quot;H = mint{z}&quot;</span><span class="tok-punctuation">,</span> <span class="tok-identifier">prec</span> <span class="tok-operator">=</span> <span class="tok-number">6</span><span class="tok-punctuation">)</span>
 </code></pre>
 <h2 id="angle-bracket-string-declaration">Angle-bracket string declaration</h2>
 <p>In string declarations, both <code>mint{z}</code> and <code>mint&lt;z&gt;</code> are supported.</p>
-<pre><code class="language-nim">useFPSDecl(&quot;L = mint&lt;t&gt;&quot;, prec = 9)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">useFPSDecl</span><span class="tok-punctuation">(</span><span class="tok-string">&quot;L = mint&lt;t&gt;&quot;</span><span class="tok-punctuation">,</span> <span class="tok-identifier">prec</span> <span class="tok-operator">=</span> <span class="tok-number">9</span><span class="tok-punctuation">)</span>
 
-let f = L(t)
+<span class="tok-keyword">let</span> <span class="tok-identifier">f</span> <span class="tok-operator">=</span> <span class="tok-identifier">L</span><span class="tok-punctuation">(</span><span class="tok-identifier">t</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p><code>mint&lt;t&gt;</code> is convenience syntax only inside a string declaration. In normal Nim syntax, use <code>useFPSDecl(L = mint{t}, prec = 9)</code> or <code>useFPS(mint{t}, L, prec = 9)</code>.</p>
 <h2 id="default-precision-and-existing-operations">Default precision and existing operations</h2>
 <p>Constructors provided by the <code>fps</code> facade resize the series to <code>prec</code> when the length is omitted.</p>
 <p>Therefore, existing FPS methods that use the input length naturally follow the default precision chosen at construction time.</p>
-<pre><code class="language-nim">useFPS(mint{x}, F, prec = 8)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">useFPS</span><span class="tok-punctuation">(</span><span class="tok-identifier">mint</span><span class="tok-punctuation">{</span><span class="tok-identifier">x</span><span class="tok-punctuation">}</span><span class="tok-punctuation">,</span> <span class="tok-identifier">F</span><span class="tok-punctuation">,</span> <span class="tok-identifier">prec</span> <span class="tok-operator">=</span> <span class="tok-number">8</span><span class="tok-punctuation">)</span>
 
-let f = F(1 + x)   # length 8
-let g = f.inv()    # length 8
-let h = f.exp()    # length 8
+<span class="tok-keyword">let</span> <span class="tok-identifier">f</span> <span class="tok-operator">=</span> <span class="tok-identifier">F</span><span class="tok-punctuation">(</span><span class="tok-number">1</span> <span class="tok-operator">+</span> <span class="tok-identifier">x</span><span class="tok-punctuation">)</span>   <span class="tok-comment"># length 8</span>
+<span class="tok-keyword">let</span> <span class="tok-identifier">g</span> <span class="tok-operator">=</span> <span class="tok-identifier">f</span><span class="tok-operator">.</span><span class="tok-identifier">inv</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>    <span class="tok-comment"># length 8</span>
+<span class="tok-keyword">let</span> <span class="tok-identifier">h</span> <span class="tok-operator">=</span> <span class="tok-identifier">f</span><span class="tok-operator">.</span><span class="tok-identifier">exp</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>    <span class="tok-comment"># length 8</span>
 </code></pre>
 <p>An explicit length always overrides the default precision.</p>
-<pre><code class="language-nim">let f = F(1 + x, 4)
-doAssert f.len == 4
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">f</span> <span class="tok-operator">=</span> <span class="tok-identifier">F</span><span class="tok-punctuation">(</span><span class="tok-number">1</span> <span class="tok-operator">+</span> <span class="tok-identifier">x</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">f</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">==</span> <span class="tok-number">4</span>
 </code></pre>
 <h2 id="default-precision-with-additional-operations">Default precision with additional operations</h2>
 <p>The <code>fps</code> facade also imports/exports <code>formal_power_series_sqrt</code>, so <code>sqrt</code> is available from the same entry point.</p>
-<pre><code class="language-nim">import std/options
-import atcoder/extra/math/fps
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">std</span><span class="tok-operator">/</span><span class="tok-identifier">options</span>
+<span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">math</span><span class="tok-operator">/</span><span class="tok-identifier">fps</span>
 
-type mint = modint998244353
-useFPS(mint{x}, F, prec = 8)
+<span class="tok-keyword">type</span> <span class="tok-identifier">mint</span> <span class="tok-operator">=</span> <span class="tok-identifier">modint998244353</span>
+<span class="tok-identifier">useFPS</span><span class="tok-punctuation">(</span><span class="tok-identifier">mint</span><span class="tok-punctuation">{</span><span class="tok-identifier">x</span><span class="tok-punctuation">}</span><span class="tok-punctuation">,</span> <span class="tok-identifier">F</span><span class="tok-punctuation">,</span> <span class="tok-identifier">prec</span> <span class="tok-operator">=</span> <span class="tok-number">8</span><span class="tok-punctuation">)</span>
 
-let f = F(1 + 2 * x + x^2)
-let g = f.sqrt()
+<span class="tok-keyword">let</span> <span class="tok-identifier">f</span> <span class="tok-operator">=</span> <span class="tok-identifier">F</span><span class="tok-punctuation">(</span><span class="tok-number">1</span> <span class="tok-operator">+</span> <span class="tok-number">2</span> <span class="tok-operator">*</span> <span class="tok-identifier">x</span> <span class="tok-operator">+</span> <span class="tok-identifier">x</span><span class="tok-operator">^</span><span class="tok-number">2</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">let</span> <span class="tok-identifier">g</span> <span class="tok-operator">=</span> <span class="tok-identifier">f</span><span class="tok-operator">.</span><span class="tok-identifier">sqrt</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
 
-doAssert g.isSome
-doAssert g.get.len == 8
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">isSome</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">get</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">==</span> <span class="tok-number">8</span>
 </code></pre>
 <p>Existing <code>formal_power_series</code> operations such as <code>powMod</code> and <code>eval</code> can also be used as usual.</p>
-<pre><code class="language-nim">let base = F(@[0, 1])
-let m = F(@[-1, 0, 0, 1], 4) # x^3 - 1
-let r = base.powMod(5, m)    # x^5 mod (x^3 - 1) = x^2
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">base</span> <span class="tok-operator">=</span> <span class="tok-identifier">F</span><span class="tok-punctuation">(</span><span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">let</span> <span class="tok-identifier">m</span> <span class="tok-operator">=</span> <span class="tok-identifier">F</span><span class="tok-punctuation">(</span><span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-operator">-</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">)</span> <span class="tok-comment"># x^3 - 1</span>
+<span class="tok-keyword">let</span> <span class="tok-identifier">r</span> <span class="tok-operator">=</span> <span class="tok-identifier">base</span><span class="tok-operator">.</span><span class="tok-identifier">powMod</span><span class="tok-punctuation">(</span><span class="tok-number">5</span><span class="tok-punctuation">,</span> <span class="tok-identifier">m</span><span class="tok-punctuation">)</span>    <span class="tok-comment"># x^5 mod (x^3 - 1) = x^2</span>
 
-doAssert r[2] == mint(1)
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">r</span><span class="tok-punctuation">[</span><span class="tok-number">2</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-identifier">mint</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">)</span>
 
-let h = F(@[1, 2, 3])
-doAssert h.eval(mint(2)) == mint(17)
+<span class="tok-keyword">let</span> <span class="tok-identifier">h</span> <span class="tok-operator">=</span> <span class="tok-identifier">F</span><span class="tok-punctuation">(</span><span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">h</span><span class="tok-operator">.</span><span class="tok-identifier">eval</span><span class="tok-punctuation">(</span><span class="tok-identifier">mint</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">)</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-identifier">mint</span><span class="tok-punctuation">(</span><span class="tok-number">17</span><span class="tok-punctuation">)</span>
 </code></pre>
 <h2 id="string-constructor-and-log-exp">String constructor and log / exp</h2>
 <p>Constructors from strings such as <code>F("x")</code> also follow the default precision.</p>
-<pre><code class="language-nim">useFPS(mint{x}, F, prec = 8)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">useFPS</span><span class="tok-punctuation">(</span><span class="tok-identifier">mint</span><span class="tok-punctuation">{</span><span class="tok-identifier">x</span><span class="tok-punctuation">}</span><span class="tok-punctuation">,</span> <span class="tok-identifier">F</span><span class="tok-punctuation">,</span> <span class="tok-identifier">prec</span> <span class="tok-operator">=</span> <span class="tok-number">8</span><span class="tok-punctuation">)</span>
 
-let f = F(&quot;x&quot;)
-doAssert f.len == 8
+<span class="tok-keyword">let</span> <span class="tok-identifier">f</span> <span class="tok-operator">=</span> <span class="tok-identifier">F</span><span class="tok-punctuation">(</span><span class="tok-string">&quot;x&quot;</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">f</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">==</span> <span class="tok-number">8</span>
 </code></pre>
 <p><code>log</code> and <code>exp</code> can be used through the usual input-length behavior.</p>
-<pre><code class="language-nim">let f = F(1 + x)
-let g = f.log()
-let h = g.exp()
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">f</span> <span class="tok-operator">=</span> <span class="tok-identifier">F</span><span class="tok-punctuation">(</span><span class="tok-number">1</span> <span class="tok-operator">+</span> <span class="tok-identifier">x</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">let</span> <span class="tok-identifier">g</span> <span class="tok-operator">=</span> <span class="tok-identifier">f</span><span class="tok-operator">.</span><span class="tok-identifier">log</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">let</span> <span class="tok-identifier">h</span> <span class="tok-operator">=</span> <span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">exp</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
 
-doAssert g.len == 8
-doAssert h.len == 8
-doAssert h[0] == mint(1)
-doAssert h[1] == mint(1)
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">==</span> <span class="tok-number">8</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">h</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">==</span> <span class="tok-number">8</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">h</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-identifier">mint</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">h</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-identifier">mint</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>Explicit lengths still override the default.</p>
-<pre><code class="language-nim">let g = f.log(5)
-let h = g.exp(5)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">g</span> <span class="tok-operator">=</span> <span class="tok-identifier">f</span><span class="tok-operator">.</span><span class="tok-identifier">log</span><span class="tok-punctuation">(</span><span class="tok-number">5</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">let</span> <span class="tok-identifier">h</span> <span class="tok-operator">=</span> <span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">exp</span><span class="tok-punctuation">(</span><span class="tok-number">5</span><span class="tok-punctuation">)</span>
 
-doAssert g.len == 5
-doAssert h.len == 5
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">==</span> <span class="tok-number">5</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">h</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">==</span> <span class="tok-number">5</span>
 </code></pre>
 <h2 id="constructor-overload-examples">Constructor overload examples</h2>
 <p>The <code>fps</code> facade constructors accept arrays, <code>seq[int]</code>, <code>seq[mint]</code>, existing FPS values, and formal variables.</p>
 <!-- nim-line-numbers -->
 
-<pre><code class="language-nim">useFPS(mint{x}, F, prec = 8)
-
-let a = F([1, 2, 3])
-let b = F(@[mint(1), mint(2), mint(3)])
-let c = F(x, 4)
-
-doAssert a.len == 8
-doAssert b.len == 8
-doAssert c.len == 4
-</code></pre>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-identifier">useFPS</span><span class="tok-punctuation">(</span><span class="tok-identifier">mint</span><span class="tok-punctuation">{</span><span class="tok-identifier">x</span><span class="tok-punctuation">}</span><span class="tok-punctuation">,</span> <span class="tok-identifier">F</span><span class="tok-punctuation">,</span> <span class="tok-identifier">prec</span> <span class="tok-operator">=</span> <span class="tok-number">8</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">a</span> <span class="tok-operator">=</span> <span class="tok-identifier">F</span><span class="tok-punctuation">(</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">b</span> <span class="tok-operator">=</span> <span class="tok-identifier">F</span><span class="tok-punctuation">(</span><span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-identifier">mint</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span> <span class="tok-identifier">mint</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span> <span class="tok-identifier">mint</span><span class="tok-punctuation">(</span><span class="tok-number">3</span><span class="tok-punctuation">)</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">c</span> <span class="tok-operator">=</span> <span class="tok-identifier">F</span><span class="tok-punctuation">(</span><span class="tok-identifier">x</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">a</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">==</span> <span class="tok-number">8</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">b</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">==</span> <span class="tok-number">8</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">c</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">==</span> <span class="tok-number">4</span></span></code></pre>
 <p>You can also pass an existing FPS and only change its length.</p>
 <!-- nim-line-numbers -->
 
-<pre><code class="language-nim">let f = F(@[1, 2, 3])
-let g = F(f, 5)
-let h = F(f, 2)
-
-doAssert g.len == 5
-doAssert h.len == 2
-</code></pre>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">f</span> <span class="tok-operator">=</span> <span class="tok-identifier">F</span><span class="tok-punctuation">(</span><span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">g</span> <span class="tok-operator">=</span> <span class="tok-identifier">F</span><span class="tok-punctuation">(</span><span class="tok-identifier">f</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">h</span> <span class="tok-operator">=</span> <span class="tok-identifier">F</span><span class="tok-punctuation">(</span><span class="tok-identifier">f</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">==</span> <span class="tok-number">5</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">h</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">==</span> <span class="tok-number">2</span></span></code></pre>
   </main>
 </body>
 </html>

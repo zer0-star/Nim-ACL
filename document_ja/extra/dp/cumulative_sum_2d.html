@@ -61,6 +61,186 @@
     };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style id="nim-acl-highlight-style-v1">
+:root {
+  --nim-code-background: #f6f8fa;
+  --nim-code-foreground: #24292f;
+  --nim-code-border: #d0d7de;
+  --nim-code-line-number: #8c959f;
+  --nim-code-line-number-border: #d8dee4;
+
+  --nim-token-keyword: #8250df;
+  --nim-token-string: #0a7f37;
+  --nim-token-escape: #116329;
+  --nim-token-number: #0550ae;
+  --nim-token-comment: #6e7781;
+  --nim-token-operator: #cf222e;
+  --nim-token-punctuation: #57606a;
+  --nim-token-identifier: #24292f;
+  --nim-token-directive: #953800;
+  --nim-token-hyperlink: #0969da;
+  --nim-token-other: #24292f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nim-code-background: #161b22;
+    --nim-code-foreground: #c9d1d9;
+    --nim-code-border: #30363d;
+    --nim-code-line-number: #7d8590;
+    --nim-code-line-number-border: #30363d;
+
+    --nim-token-keyword: #d2a8ff;
+    --nim-token-string: #a5d6ff;
+    --nim-token-escape: #79c0ff;
+    --nim-token-number: #79c0ff;
+    --nim-token-comment: #8b949e;
+    --nim-token-operator: #ff7b72;
+    --nim-token-punctuation: #c9d1d9;
+    --nim-token-identifier: #c9d1d9;
+    --nim-token-directive: #ffa657;
+    --nim-token-hyperlink: #58a6ff;
+    --nim-token-other: #c9d1d9;
+  }
+}
+
+html[data-theme="dark"],
+html.dark,
+body.dark,
+body[data-theme="dark"] {
+  --nim-code-background: #161b22;
+  --nim-code-foreground: #c9d1d9;
+  --nim-code-border: #30363d;
+  --nim-code-line-number: #7d8590;
+  --nim-code-line-number-border: #30363d;
+
+  --nim-token-keyword: #d2a8ff;
+  --nim-token-string: #a5d6ff;
+  --nim-token-escape: #79c0ff;
+  --nim-token-number: #79c0ff;
+  --nim-token-comment: #8b949e;
+  --nim-token-operator: #ff7b72;
+  --nim-token-punctuation: #c9d1d9;
+  --nim-token-identifier: #c9d1d9;
+  --nim-token-directive: #ffa657;
+  --nim-token-hyperlink: #58a6ff;
+  --nim-token-other: #c9d1d9;
+}
+
+pre.nim-code {
+  position: relative;
+  overflow: auto;
+  box-sizing: border-box;
+  tab-size: 2;
+
+  background: var(--nim-code-background);
+  color: var(--nim-code-foreground);
+  border: 1px solid var(--nim-code-border);
+  border-radius: 7px;
+}
+
+pre.nim-code code {
+  display: block;
+  box-sizing: border-box;
+  min-width: max-content;
+
+  color: var(--nim-code-foreground);
+  background: transparent;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    monospace;
+  line-height: 1.55;
+}
+
+pre.nim-line-numbers code {
+  counter-reset: nim-code-line;
+}
+
+pre.nim-line-numbers .code-line {
+  display: block;
+  position: relative;
+  min-height: 1.55em;
+  padding-left: 4.25rem;
+  padding-right: 1rem;
+  white-space: pre;
+}
+
+pre.nim-line-numbers .code-line::before {
+  counter-increment: nim-code-line;
+  content: counter(nim-code-line);
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 3.25rem;
+  padding-right: 0.75rem;
+
+  color: var(--nim-code-line-number);
+  border-right: 1px solid var(--nim-code-line-number-border);
+  text-align: right;
+
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+.tok-keyword {
+  color: var(--nim-token-keyword);
+  font-weight: 650;
+}
+
+.tok-string {
+  color: var(--nim-token-string);
+}
+
+.tok-escape {
+  color: var(--nim-token-escape);
+  font-weight: 600;
+}
+
+.tok-number {
+  color: var(--nim-token-number);
+}
+
+.tok-comment {
+  color: var(--nim-token-comment);
+  font-style: italic;
+}
+
+.tok-operator {
+  color: var(--nim-token-operator);
+}
+
+.tok-punctuation {
+  color: var(--nim-token-punctuation);
+}
+
+.tok-identifier {
+  color: var(--nim-token-identifier);
+}
+
+.tok-directive {
+  color: var(--nim-token-directive);
+  font-weight: 600;
+}
+
+.tok-hyperlink {
+  color: var(--nim-token-hyperlink);
+  text-decoration: underline;
+}
+
+.tok-other {
+  color: var(--nim-token-other);
+}
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -73,50 +253,48 @@
 <h1 id="cumulative-sum-2d">Cumulative Sum 2D</h1>
 <p><code>CumulativeSum2D</code> は、二次元配列の矩形和を求めるための二次元累積和です。</p>
 <h2 id="import">import</h2>
-<pre><code class="language-nim">import atcoder/extra/dp/cumulative_sum_2d
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">dp</span><span class="tok-operator">/</span><span class="tok-identifier">cumulative_sum_2d</span>
 </code></pre>
 <h2 id="_1">使用例</h2>
 <!-- nim-line-numbers -->
 
-<pre><code class="language-nim">import atcoder/extra/dp/cumulative_sum_2d
-
-let a = @[
-  @[1, 2, 3],
-  @[4, 5, 6],
-  @[7, 8, 9],
-]
-
-var cs = initCumulativeSum2D(a)
-
-doAssert cs[0 .. 1, 0 .. 1] == 12
-doAssert cs[1 .. 2, 1 .. 2] == 28
-doAssert cs[0 .. 2, 0 .. 2] == 45
-</code></pre>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">dp</span><span class="tok-operator">/</span><span class="tok-identifier">cumulative_sum_2d</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">a</span> <span class="tok-operator">=</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span></span>
+<span class="code-line">  <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">  <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">4</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">,</span> <span class="tok-number">6</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">  <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">7</span><span class="tok-punctuation">,</span> <span class="tok-number">8</span><span class="tok-punctuation">,</span> <span class="tok-number">9</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span></span>
+<span class="code-line"><span class="tok-punctuation">]</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">cs</span> <span class="tok-operator">=</span> <span class="tok-identifier">initCumulativeSum2D</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">cs</span><span class="tok-punctuation">[</span><span class="tok-number">0</span> <span class="tok-operator">..</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">0</span> <span class="tok-operator">..</span> <span class="tok-number">1</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">12</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">cs</span><span class="tok-punctuation">[</span><span class="tok-number">1</span> <span class="tok-operator">..</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span> <span class="tok-operator">..</span> <span class="tok-number">2</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">28</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">cs</span><span class="tok-punctuation">[</span><span class="tok-number">0</span> <span class="tok-operator">..</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">0</span> <span class="tok-operator">..</span> <span class="tok-number">2</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">45</span></span></code></pre>
 <h2 id="_2">空の状態から使う</h2>
-<pre><code class="language-nim">var cs = initCumulativeSum2D[int](3, 3)
-
-cs.add(0, 0, 5)
-cs.add(2, 1, 7)
-cs.build()
-
-doAssert cs[0 .. 2, 0 .. 2] == 12
-doAssert cs[2 .. 2, 1 .. 1] == 7
-</code></pre>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">cs</span> <span class="tok-operator">=</span> <span class="tok-identifier">initCumulativeSum2D</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">cs</span><span class="tok-operator">.</span><span class="tok-identifier">add</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"><span class="tok-identifier">cs</span><span class="tok-operator">.</span><span class="tok-identifier">add</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">7</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"><span class="tok-identifier">cs</span><span class="tok-operator">.</span><span class="tok-identifier">build</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">cs</span><span class="tok-punctuation">[</span><span class="tok-number">0</span> <span class="tok-operator">..</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">0</span> <span class="tok-operator">..</span> <span class="tok-number">2</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">12</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">cs</span><span class="tok-punctuation">[</span><span class="tok-number">2</span> <span class="tok-operator">..</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span> <span class="tok-operator">..</span> <span class="tok-number">1</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">7</span></span></code></pre>
 <h2 id="api">API</h2>
 <h3 id="initcumulativesum2d">initCumulativeSum2D</h3>
-<pre><code class="language-nim">var cs = initCumulativeSum2D(a)
-var cs2 = initCumulativeSum2D[int](W, H)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">cs</span> <span class="tok-operator">=</span> <span class="tok-identifier">initCumulativeSum2D</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">var</span> <span class="tok-identifier">cs2</span> <span class="tok-operator">=</span> <span class="tok-identifier">initCumulativeSum2D</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">W</span><span class="tok-punctuation">,</span> <span class="tok-identifier">H</span><span class="tok-punctuation">)</span>
 </code></pre>
 <h3 id="add">add</h3>
-<pre><code class="language-nim">cs.add(x, y, z)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">cs</span><span class="tok-operator">.</span><span class="tok-identifier">add</span><span class="tok-punctuation">(</span><span class="tok-identifier">x</span><span class="tok-punctuation">,</span> <span class="tok-identifier">y</span><span class="tok-punctuation">,</span> <span class="tok-identifier">z</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>座標 <code>(x, y)</code> に <code>z</code> を加算します。<code>build()</code> の前に呼んでください。</p>
 <h3 id="build">build</h3>
-<pre><code class="language-nim">cs.build()
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">cs</span><span class="tok-operator">.</span><span class="tok-identifier">build</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>累積和を構築します。</p>
 <h3 id="_3">[]</h3>
-<pre><code class="language-nim">cs[x1 .. x2, y1 .. y2]
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">cs</span><span class="tok-punctuation">[</span><span class="tok-identifier">x1</span> <span class="tok-operator">..</span> <span class="tok-identifier">x2</span><span class="tok-punctuation">,</span> <span class="tok-identifier">y1</span> <span class="tok-operator">..</span> <span class="tok-identifier">y2</span><span class="tok-punctuation">]</span>
 </code></pre>
 <p>閉矩形 <code>[x1, x2] × [y1, y2]</code> の和を返します。</p>
 <h2 id="_4">計算量</h2>

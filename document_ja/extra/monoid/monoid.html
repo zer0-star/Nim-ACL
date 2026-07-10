@@ -61,6 +61,186 @@
     };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style id="nim-acl-highlight-style-v1">
+:root {
+  --nim-code-background: #f6f8fa;
+  --nim-code-foreground: #24292f;
+  --nim-code-border: #d0d7de;
+  --nim-code-line-number: #8c959f;
+  --nim-code-line-number-border: #d8dee4;
+
+  --nim-token-keyword: #8250df;
+  --nim-token-string: #0a7f37;
+  --nim-token-escape: #116329;
+  --nim-token-number: #0550ae;
+  --nim-token-comment: #6e7781;
+  --nim-token-operator: #cf222e;
+  --nim-token-punctuation: #57606a;
+  --nim-token-identifier: #24292f;
+  --nim-token-directive: #953800;
+  --nim-token-hyperlink: #0969da;
+  --nim-token-other: #24292f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nim-code-background: #161b22;
+    --nim-code-foreground: #c9d1d9;
+    --nim-code-border: #30363d;
+    --nim-code-line-number: #7d8590;
+    --nim-code-line-number-border: #30363d;
+
+    --nim-token-keyword: #d2a8ff;
+    --nim-token-string: #a5d6ff;
+    --nim-token-escape: #79c0ff;
+    --nim-token-number: #79c0ff;
+    --nim-token-comment: #8b949e;
+    --nim-token-operator: #ff7b72;
+    --nim-token-punctuation: #c9d1d9;
+    --nim-token-identifier: #c9d1d9;
+    --nim-token-directive: #ffa657;
+    --nim-token-hyperlink: #58a6ff;
+    --nim-token-other: #c9d1d9;
+  }
+}
+
+html[data-theme="dark"],
+html.dark,
+body.dark,
+body[data-theme="dark"] {
+  --nim-code-background: #161b22;
+  --nim-code-foreground: #c9d1d9;
+  --nim-code-border: #30363d;
+  --nim-code-line-number: #7d8590;
+  --nim-code-line-number-border: #30363d;
+
+  --nim-token-keyword: #d2a8ff;
+  --nim-token-string: #a5d6ff;
+  --nim-token-escape: #79c0ff;
+  --nim-token-number: #79c0ff;
+  --nim-token-comment: #8b949e;
+  --nim-token-operator: #ff7b72;
+  --nim-token-punctuation: #c9d1d9;
+  --nim-token-identifier: #c9d1d9;
+  --nim-token-directive: #ffa657;
+  --nim-token-hyperlink: #58a6ff;
+  --nim-token-other: #c9d1d9;
+}
+
+pre.nim-code {
+  position: relative;
+  overflow: auto;
+  box-sizing: border-box;
+  tab-size: 2;
+
+  background: var(--nim-code-background);
+  color: var(--nim-code-foreground);
+  border: 1px solid var(--nim-code-border);
+  border-radius: 7px;
+}
+
+pre.nim-code code {
+  display: block;
+  box-sizing: border-box;
+  min-width: max-content;
+
+  color: var(--nim-code-foreground);
+  background: transparent;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    monospace;
+  line-height: 1.55;
+}
+
+pre.nim-line-numbers code {
+  counter-reset: nim-code-line;
+}
+
+pre.nim-line-numbers .code-line {
+  display: block;
+  position: relative;
+  min-height: 1.55em;
+  padding-left: 4.25rem;
+  padding-right: 1rem;
+  white-space: pre;
+}
+
+pre.nim-line-numbers .code-line::before {
+  counter-increment: nim-code-line;
+  content: counter(nim-code-line);
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 3.25rem;
+  padding-right: 0.75rem;
+
+  color: var(--nim-code-line-number);
+  border-right: 1px solid var(--nim-code-line-number-border);
+  text-align: right;
+
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+.tok-keyword {
+  color: var(--nim-token-keyword);
+  font-weight: 650;
+}
+
+.tok-string {
+  color: var(--nim-token-string);
+}
+
+.tok-escape {
+  color: var(--nim-token-escape);
+  font-weight: 600;
+}
+
+.tok-number {
+  color: var(--nim-token-number);
+}
+
+.tok-comment {
+  color: var(--nim-token-comment);
+  font-style: italic;
+}
+
+.tok-operator {
+  color: var(--nim-token-operator);
+}
+
+.tok-punctuation {
+  color: var(--nim-token-punctuation);
+}
+
+.tok-identifier {
+  color: var(--nim-token-identifier);
+}
+
+.tok-directive {
+  color: var(--nim-token-directive);
+  font-weight: 600;
+}
+
+.tok-hyperlink {
+  color: var(--nim-token-hyperlink);
+  text-decoration: underline;
+}
+
+.tok-other {
+  color: var(--nim-token-other);
+}
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -72,34 +252,34 @@
   <main>
 <h1 id="monoid">monoid</h1>
 <p><code>MonoidType</code> は、型 <code>E</code>、二項演算 <code>op</code>、単位元 <code>e</code> から monoid 型を作るための helper です。</p>
-<pre><code class="language-nim">import atcoder/extra/monoid/monoid
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">monoid</span><span class="tok-operator">/</span><span class="tok-identifier">monoid</span>
 
-proc addInt(a, b: int): int = a + b
-proc zeroInt(): int = 0
+<span class="tok-keyword">proc</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span> <span class="tok-identifier">a</span> <span class="tok-operator">+</span> <span class="tok-identifier">b</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span> <span class="tok-number">0</span>
 
-type SumMonoid = MonoidType(int, addInt, zeroInt)
+<span class="tok-keyword">type</span> <span class="tok-identifier">SumMonoid</span> <span class="tok-operator">=</span> <span class="tok-identifier">MonoidType</span><span class="tok-punctuation">(</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">)</span>
 
-doAssert SumMonoid.op(2, 3) == 5
-doAssert SumMonoid.e() == 0
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">SumMonoid</span><span class="tok-operator">.</span><span class="tok-identifier">op</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-number">5</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">SumMonoid</span><span class="tok-operator">.</span><span class="tok-identifier">e</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-number">0</span>
 </code></pre>
 <p>逆元を持つ場合は、4 番目の引数に <code>inv</code> を渡せます。</p>
-<pre><code class="language-nim">proc negInt(a: int): int = -a
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">negInt</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span> <span class="tok-operator">-</span><span class="tok-identifier">a</span>
 
-type AddGroup = MonoidType(int, addInt, zeroInt, negInt)
+<span class="tok-keyword">type</span> <span class="tok-identifier">AddGroup</span> <span class="tok-operator">=</span> <span class="tok-identifier">MonoidType</span><span class="tok-punctuation">(</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span> <span class="tok-identifier">negInt</span><span class="tok-punctuation">)</span>
 
-doAssert AddGroup.inv(3) == -3
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">AddGroup</span><span class="tok-operator">.</span><span class="tok-identifier">inv</span><span class="tok-punctuation">(</span><span class="tok-number">3</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-operator">-</span><span class="tok-number">3</span>
 </code></pre>
 <p><code>ActedMonoidType</code> は、値側 monoid <code>MS</code>、作用側 monoid <code>MF</code>、作用 <code>mapping</code> から acted monoid を作ります。lazy segment tree などで使う <code>mapping / composition / id</code> の組をまとめて扱えます。</p>
-<pre><code class="language-nim">proc addMap(f, x: int): int = x + f
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">addMap</span><span class="tok-punctuation">(</span><span class="tok-identifier">f</span><span class="tok-punctuation">,</span> <span class="tok-identifier">x</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span> <span class="tok-identifier">x</span> <span class="tok-operator">+</span> <span class="tok-identifier">f</span>
 
-type AddAction = ActedMonoidType(SumMonoid, SumMonoid, addMap)
+<span class="tok-keyword">type</span> <span class="tok-identifier">AddAction</span> <span class="tok-operator">=</span> <span class="tok-identifier">ActedMonoidType</span><span class="tok-punctuation">(</span><span class="tok-identifier">SumMonoid</span><span class="tok-punctuation">,</span> <span class="tok-identifier">SumMonoid</span><span class="tok-punctuation">,</span> <span class="tok-identifier">addMap</span><span class="tok-punctuation">)</span>
 
-doAssert AddAction.op(2, 3) == 5
-doAssert AddAction.composition(4, 5) == 9
-doAssert AddAction.mapping(7, 10) == 17
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">AddAction</span><span class="tok-operator">.</span><span class="tok-identifier">op</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-number">5</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">AddAction</span><span class="tok-operator">.</span><span class="tok-identifier">composition</span><span class="tok-punctuation">(</span><span class="tok-number">4</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-number">9</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">AddAction</span><span class="tok-operator">.</span><span class="tok-identifier">mapping</span><span class="tok-punctuation">(</span><span class="tok-number">7</span><span class="tok-punctuation">,</span> <span class="tok-number">10</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-number">17</span>
 </code></pre>
 <h2 id="import">import</h2>
-<pre><code class="language-nim">import atcoder/extra/monoid/monoid
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">monoid</span><span class="tok-operator">/</span><span class="tok-identifier">monoid</span>
 </code></pre>
 <h2 id="api">公開 API</h2>
 <ul>
@@ -121,21 +301,21 @@ doAssert AddAction.mapping(7, 10) == 17
 <p><code>MonoidType</code> / <code>ActedMonoidType</code> は、既存の低レベル API と互換性を保ったまま使うための型生成 helper です。より短い競技プログラミング向け facade は、今後 <code>fps</code> と同じ方針で追加できます。</p>
 <h2 id="facade-aliases">facade aliases</h2>
 <p><code>MonoidOf</code>, <code>GroupOf</code>, <code>ActedMonoidOf</code> は、既存の <code>MonoidType</code> / <code>ActedMonoidType</code> の読みやすい別名です。</p>
-<pre><code class="language-nim">type Sum = MonoidOf(int, addInt, zeroInt)
-type AddGroup = GroupOf(int, addInt, zeroInt, negInt)
-type AddAction = ActedMonoidOf(Sum, Sum, addMap)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">type</span> <span class="tok-identifier">Sum</span> <span class="tok-operator">=</span> <span class="tok-identifier">MonoidOf</span><span class="tok-punctuation">(</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">type</span> <span class="tok-identifier">AddGroup</span> <span class="tok-operator">=</span> <span class="tok-identifier">GroupOf</span><span class="tok-punctuation">(</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span> <span class="tok-identifier">negInt</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">type</span> <span class="tok-identifier">AddAction</span> <span class="tok-operator">=</span> <span class="tok-identifier">ActedMonoidOf</span><span class="tok-punctuation">(</span><span class="tok-identifier">Sum</span><span class="tok-punctuation">,</span> <span class="tok-identifier">Sum</span><span class="tok-punctuation">,</span> <span class="tok-identifier">addMap</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>既存 API と同じ型を作るだけなので、従来の <code>MonoidType</code> / <code>ActedMonoidType</code> と併用できます。</p>
 <h2 id="usemonoid-helpers">useMonoid helpers</h2>
 <p><code>useMonoid</code>, <code>useGroup</code>, <code>useActedMonoid</code> を使うと、型名を先に書く形で monoid 型を宣言できます。</p>
-<pre><code class="language-nim">useMonoid(Sum, int, addInt, zeroInt)
-useGroup(AddGroup, int, addInt, zeroInt, negInt)
-useActedMonoid(AddAction, Sum, Sum, addMap)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">useMonoid</span><span class="tok-punctuation">(</span><span class="tok-identifier">Sum</span><span class="tok-punctuation">,</span> <span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">useGroup</span><span class="tok-punctuation">(</span><span class="tok-identifier">AddGroup</span><span class="tok-punctuation">,</span> <span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span> <span class="tok-identifier">negInt</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">useActedMonoid</span><span class="tok-punctuation">(</span><span class="tok-identifier">AddAction</span><span class="tok-punctuation">,</span> <span class="tok-identifier">Sum</span><span class="tok-punctuation">,</span> <span class="tok-identifier">Sum</span><span class="tok-punctuation">,</span> <span class="tok-identifier">addMap</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>これは次と同じ意味です。</p>
-<pre><code class="language-nim">type Sum = MonoidType(int, addInt, zeroInt)
-type AddGroup = MonoidType(int, addInt, zeroInt, negInt)
-type AddAction = ActedMonoidType(Sum, Sum, addMap)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">type</span> <span class="tok-identifier">Sum</span> <span class="tok-operator">=</span> <span class="tok-identifier">MonoidType</span><span class="tok-punctuation">(</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">type</span> <span class="tok-identifier">AddGroup</span> <span class="tok-operator">=</span> <span class="tok-identifier">MonoidType</span><span class="tok-punctuation">(</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span> <span class="tok-identifier">negInt</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">type</span> <span class="tok-identifier">AddAction</span> <span class="tok-operator">=</span> <span class="tok-identifier">ActedMonoidType</span><span class="tok-punctuation">(</span><span class="tok-identifier">Sum</span><span class="tok-punctuation">,</span> <span class="tok-identifier">Sum</span><span class="tok-punctuation">,</span> <span class="tok-identifier">addMap</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p><code>useMonoid</code> 系は、競技プログラミング中に型宣言を短く書くための convenience helper です。</p>
   </main>

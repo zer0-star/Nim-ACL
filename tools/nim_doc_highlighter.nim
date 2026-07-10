@@ -109,7 +109,11 @@ when not declared NIM_ACL_DOC_HIGHLIGHTER_HPP:
       resultHtml.add "</span>"
 
   proc highlightNim(code: string): string =
-    for token, kind in tokenize(code, langNim):
+    for item in tokenize(code, langNim):
+      let
+        token = item[0]
+        kind = item[1]
+
       result.appendHighlightedToken(
         token,
         tokenCssClass(kind),

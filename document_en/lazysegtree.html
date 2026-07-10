@@ -71,7 +71,7 @@
   </header>
   <main>
 <h1 id="lazy-segtree">Lazy Segtree</h1>
-<p>It is the data structure for the pair of a <a href="https://en.wikipedia.org/wiki/Monoid">monoid</a> $(S, \cdot: S \times S \to S, e \in S)$ and a set $F$ of $S \to S$ mappings that satisfies the following properties.</p>
+<p>It is the data structure for the pair of a <a href="https://en.wikipedia.org/wiki/Monoid" target="_blank" rel="noopener">monoid</a> $(S, \cdot: S \times S \to S, e \in S)$ and a set $F$ of $S \to S$ mappings that satisfies the following properties.</p>
 <ul>
 <li>$F$ contains the identity map $\mathrm{id}$, where the identity map is the map that satisfies $\mathrm{id}(x) = x$ for all $x \in S$.</li>
 <li>$F$ is closed under composition, i.e., $f \circ g \in F$ holds for all $f, g \in F$.</li>
@@ -97,7 +97,7 @@
 <li>The function <code>F composition(F f, F g)</code> that returns $f \circ g$</li>
 <li>The function <code>F id()</code> that returns $\mathrm{id}$</li>
 </ul>
-<p>See examples and <a href="https://atcoder.jp/contests/practice2/editorial">here</a> for further details.</p>
+<p>See examples and <a href="https://atcoder.jp/contests/practice2/editorial" target="_blank" rel="noopener">here</a> for further details.</p>
 <ul>
 <li>(1): It creates an array <code>a</code> of length <code>n</code>. All the elements are initialized to <code>e()</code>.</li>
 <li>(2): It creates an array <code>a</code> of length <code>n = v.size()</code>, initialized to <code>v</code>.</li>
@@ -220,7 +220,7 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2 id="examples">Examples</h2>
-<p class="example-caption">AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_k">https://atcoder.jp/contests/practice2/tasks/practice2_k</a></p>
+<p class="example-caption">AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_k" target="_blank" rel="noopener">https://atcoder.jp/contests/practice2/tasks/practice2_k</a></p>
 <div class="sample-code">import atcoder/header
 import atcoder/lazysegtree
 import atcoder/modint
@@ -255,7 +255,7 @@ for i in 0..&lt;q:
     let l, r = nextInt()
     echo seg.prod(l..&lt;r).a.val()</div>
 
-<p class="example-caption">AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_l">https://atcoder.jp/contests/practice2/tasks/practice2_l</a></p>
+<p class="example-caption">AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_l" target="_blank" rel="noopener">https://atcoder.jp/contests/practice2/tasks/practice2_l</a></p>
 <div class="sample-code">include atcoder/header
 import atcoder/lazysegtree
 

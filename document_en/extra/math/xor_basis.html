@@ -61,6 +61,186 @@
     };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style id="nim-acl-highlight-style-v1">
+:root {
+  --nim-code-background: #f6f8fa;
+  --nim-code-foreground: #24292f;
+  --nim-code-border: #d0d7de;
+  --nim-code-line-number: #8c959f;
+  --nim-code-line-number-border: #d8dee4;
+
+  --nim-token-keyword: #8250df;
+  --nim-token-string: #0a7f37;
+  --nim-token-escape: #116329;
+  --nim-token-number: #0550ae;
+  --nim-token-comment: #6e7781;
+  --nim-token-operator: #cf222e;
+  --nim-token-punctuation: #57606a;
+  --nim-token-identifier: #24292f;
+  --nim-token-directive: #953800;
+  --nim-token-hyperlink: #0969da;
+  --nim-token-other: #24292f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nim-code-background: #161b22;
+    --nim-code-foreground: #c9d1d9;
+    --nim-code-border: #30363d;
+    --nim-code-line-number: #7d8590;
+    --nim-code-line-number-border: #30363d;
+
+    --nim-token-keyword: #d2a8ff;
+    --nim-token-string: #a5d6ff;
+    --nim-token-escape: #79c0ff;
+    --nim-token-number: #79c0ff;
+    --nim-token-comment: #8b949e;
+    --nim-token-operator: #ff7b72;
+    --nim-token-punctuation: #c9d1d9;
+    --nim-token-identifier: #c9d1d9;
+    --nim-token-directive: #ffa657;
+    --nim-token-hyperlink: #58a6ff;
+    --nim-token-other: #c9d1d9;
+  }
+}
+
+html[data-theme="dark"],
+html.dark,
+body.dark,
+body[data-theme="dark"] {
+  --nim-code-background: #161b22;
+  --nim-code-foreground: #c9d1d9;
+  --nim-code-border: #30363d;
+  --nim-code-line-number: #7d8590;
+  --nim-code-line-number-border: #30363d;
+
+  --nim-token-keyword: #d2a8ff;
+  --nim-token-string: #a5d6ff;
+  --nim-token-escape: #79c0ff;
+  --nim-token-number: #79c0ff;
+  --nim-token-comment: #8b949e;
+  --nim-token-operator: #ff7b72;
+  --nim-token-punctuation: #c9d1d9;
+  --nim-token-identifier: #c9d1d9;
+  --nim-token-directive: #ffa657;
+  --nim-token-hyperlink: #58a6ff;
+  --nim-token-other: #c9d1d9;
+}
+
+pre.nim-code {
+  position: relative;
+  overflow: auto;
+  box-sizing: border-box;
+  tab-size: 2;
+
+  background: var(--nim-code-background);
+  color: var(--nim-code-foreground);
+  border: 1px solid var(--nim-code-border);
+  border-radius: 7px;
+}
+
+pre.nim-code code {
+  display: block;
+  box-sizing: border-box;
+  min-width: max-content;
+
+  color: var(--nim-code-foreground);
+  background: transparent;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    monospace;
+  line-height: 1.55;
+}
+
+pre.nim-line-numbers code {
+  counter-reset: nim-code-line;
+}
+
+pre.nim-line-numbers .code-line {
+  display: block;
+  position: relative;
+  min-height: 1.55em;
+  padding-left: 4.25rem;
+  padding-right: 1rem;
+  white-space: pre;
+}
+
+pre.nim-line-numbers .code-line::before {
+  counter-increment: nim-code-line;
+  content: counter(nim-code-line);
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 3.25rem;
+  padding-right: 0.75rem;
+
+  color: var(--nim-code-line-number);
+  border-right: 1px solid var(--nim-code-line-number-border);
+  text-align: right;
+
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+.tok-keyword {
+  color: var(--nim-token-keyword);
+  font-weight: 650;
+}
+
+.tok-string {
+  color: var(--nim-token-string);
+}
+
+.tok-escape {
+  color: var(--nim-token-escape);
+  font-weight: 600;
+}
+
+.tok-number {
+  color: var(--nim-token-number);
+}
+
+.tok-comment {
+  color: var(--nim-token-comment);
+  font-style: italic;
+}
+
+.tok-operator {
+  color: var(--nim-token-operator);
+}
+
+.tok-punctuation {
+  color: var(--nim-token-punctuation);
+}
+
+.tok-identifier {
+  color: var(--nim-token-identifier);
+}
+
+.tok-directive {
+  color: var(--nim-token-directive);
+  font-weight: 600;
+}
+
+.tok-hyperlink {
+  color: var(--nim-token-hyperlink);
+  text-decoration: underline;
+}
+
+.tok-other {
+  color: var(--nim-token-other);
+}
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -95,35 +275,35 @@ For example, <code>13 = 1101_2</code> is a vector over GF(2).</p>
 Otherwise, the remaining value has a new pivot bit and is inserted as an independent vector.</p>
 <p>This is the same idea as Gaussian elimination over GF(2).</p>
 <h2 id="import">Import</h2>
-<pre><code class="language-nim">import atcoder/extra/math/xor_basis
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">math</span><span class="tok-operator">/</span><span class="tok-identifier">xor_basis</span>
 </code></pre>
 <h2 id="type">Type</h2>
-<pre><code class="language-nim">type XorBasis[T: SomeInteger]
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">type</span> <span class="tok-identifier">XorBasis</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">:</span> <span class="tok-identifier">SomeInteger</span><span class="tok-punctuation">]</span>
 </code></pre>
 <p><code>T</code> is an integer type, usually <code>int</code>, <code>int64</code>, or <code>uint64</code>.</p>
 <h2 id="constructor">Constructor</h2>
-<pre><code class="language-nim">proc initXorBasis[T: SomeInteger](maxLog: int = 60): XorBasis[T]
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">initXorBasis</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">:</span> <span class="tok-identifier">SomeInteger</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">maxLog</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span> <span class="tok-number">60</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">XorBasis</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span>
 </code></pre>
 <p><code>maxLog</code> is the largest bit index inspected by the basis.</p>
 <p>For example, if all values satisfy <code>0 &lt;= x &lt; 2^60</code>, use <code>maxLog = 59</code>, or <code>maxLog = 60</code> with a little extra room.</p>
 <h2 id="operations">Operations</h2>
-<pre><code class="language-nim">proc rank[T](xb: XorBasis[T]): int
-proc len[T](xb: XorBasis[T]): int
-proc empty[T](xb: XorBasis[T]): bool
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">rank</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">xb</span><span class="tok-punctuation">:</span> <span class="tok-identifier">XorBasis</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">len</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">xb</span><span class="tok-punctuation">:</span> <span class="tok-identifier">XorBasis</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">empty</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">xb</span><span class="tok-punctuation">:</span> <span class="tok-identifier">XorBasis</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">bool</span>
 
-proc add[T](xb: var XorBasis[T], x: T): bool
-proc addAll[T](xb: var XorBasis[T], xs: openArray[T])
+<span class="tok-keyword">proc</span> <span class="tok-identifier">add</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">xb</span><span class="tok-punctuation">:</span> <span class="tok-keyword">var</span> <span class="tok-identifier">XorBasis</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">x</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">bool</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">addAll</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">xb</span><span class="tok-punctuation">:</span> <span class="tok-keyword">var</span> <span class="tok-identifier">XorBasis</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">xs</span><span class="tok-punctuation">:</span> <span class="tok-identifier">openArray</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span>
 
-proc reduce[T](xb: XorBasis[T], x: T): T
-proc canRepresent[T](xb: XorBasis[T], x: T): bool
-proc contains[T](xb: XorBasis[T], x: T): bool
+<span class="tok-keyword">proc</span> <span class="tok-identifier">reduce</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">xb</span><span class="tok-punctuation">:</span> <span class="tok-identifier">XorBasis</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">x</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">canRepresent</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">xb</span><span class="tok-punctuation">:</span> <span class="tok-identifier">XorBasis</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">x</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">bool</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">contains</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">xb</span><span class="tok-punctuation">:</span> <span class="tok-identifier">XorBasis</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">x</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">bool</span>
 
-proc maxXor[T](xb: XorBasis[T]): T
-proc maxXor[T](xb: XorBasis[T], x: T): T
-proc minXor[T](xb: XorBasis[T], x: T): T
+<span class="tok-keyword">proc</span> <span class="tok-identifier">maxXor</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">xb</span><span class="tok-punctuation">:</span> <span class="tok-identifier">XorBasis</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">maxXor</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">xb</span><span class="tok-punctuation">:</span> <span class="tok-identifier">XorBasis</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">x</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">minXor</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">xb</span><span class="tok-punctuation">:</span> <span class="tok-identifier">XorBasis</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">x</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span>
 
-proc basisSeq[T](xb: XorBasis[T]): seq[T]
-proc merge[T](a, b: XorBasis[T]): XorBasis[T]
+<span class="tok-keyword">proc</span> <span class="tok-identifier">basisSeq</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">xb</span><span class="tok-punctuation">:</span> <span class="tok-identifier">XorBasis</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">merge</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">XorBasis</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">XorBasis</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span>
 </code></pre>
 <ul>
 <li><code>rank()</code> / <code>len()</code> returns the number of independent basis vectors.</li>
@@ -139,43 +319,41 @@ proc merge[T](a, b: XorBasis[T]): XorBasis[T]
 <h2 id="example">Example</h2>
 <!-- nim-line-numbers -->
 
-<pre><code class="language-nim">var xb = initXorBasis[int](maxLog = 4)
-
-doAssert xb.add(3) == true
-doAssert xb.add(5) == true
-doAssert xb.add(6) == false  # 6 = 3 xor 5
-
-doAssert xb.rank == 2
-
-doAssert 6 in xb
-doAssert 1 notin xb
-
-doAssert xb.maxXor() == 6
-doAssert xb.maxXor(1) == 7
-doAssert xb.minXor(7) == 1
-</code></pre>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">xb</span> <span class="tok-operator">=</span> <span class="tok-identifier">initXorBasis</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">maxLog</span> <span class="tok-operator">=</span> <span class="tok-number">4</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">xb</span><span class="tok-operator">.</span><span class="tok-identifier">add</span><span class="tok-punctuation">(</span><span class="tok-number">3</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-identifier">true</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">xb</span><span class="tok-operator">.</span><span class="tok-identifier">add</span><span class="tok-punctuation">(</span><span class="tok-number">5</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-identifier">true</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">xb</span><span class="tok-operator">.</span><span class="tok-identifier">add</span><span class="tok-punctuation">(</span><span class="tok-number">6</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-identifier">false</span>  <span class="tok-comment"># 6 = 3 xor 5</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">xb</span><span class="tok-operator">.</span><span class="tok-identifier">rank</span> <span class="tok-operator">==</span> <span class="tok-number">2</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-number">6</span> <span class="tok-keyword">in</span> <span class="tok-identifier">xb</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-number">1</span> <span class="tok-keyword">notin</span> <span class="tok-identifier">xb</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">xb</span><span class="tok-operator">.</span><span class="tok-identifier">maxXor</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-number">6</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">xb</span><span class="tok-operator">.</span><span class="tok-identifier">maxXor</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-number">7</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">xb</span><span class="tok-operator">.</span><span class="tok-identifier">minXor</span><span class="tok-punctuation">(</span><span class="tok-number">7</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-number">1</span></span></code></pre>
 <h2 id="merge">Merge</h2>
 <p>Bases can be merged.</p>
-<pre><code class="language-nim">var a = initXorBasis[int](maxLog = 3)
-var b = initXorBasis[int](maxLog = 3)
-
-discard a.add(1)
-discard a.add(2)
-
-discard b.add(4)
-
-let c = merge(a, b)
-
-doAssert c.maxXor() == 7
-doAssert 7 in c
-</code></pre>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">a</span> <span class="tok-operator">=</span> <span class="tok-identifier">initXorBasis</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">maxLog</span> <span class="tok-operator">=</span> <span class="tok-number">3</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">b</span> <span class="tok-operator">=</span> <span class="tok-identifier">initXorBasis</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">maxLog</span> <span class="tok-operator">=</span> <span class="tok-number">3</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">discard</span> <span class="tok-identifier">a</span><span class="tok-operator">.</span><span class="tok-identifier">add</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"><span class="tok-keyword">discard</span> <span class="tok-identifier">a</span><span class="tok-operator">.</span><span class="tok-identifier">add</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">discard</span> <span class="tok-identifier">b</span><span class="tok-operator">.</span><span class="tok-identifier">add</span><span class="tok-punctuation">(</span><span class="tok-number">4</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">c</span> <span class="tok-operator">=</span> <span class="tok-identifier">merge</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">c</span><span class="tok-operator">.</span><span class="tok-identifier">maxXor</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-number">7</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-number">7</span> <span class="tok-keyword">in</span> <span class="tok-identifier">c</span></span></code></pre>
 <h2 id="nim-friendly-usage">Nim-friendly usage</h2>
 <p>Since <code>contains</code> is defined, representability can be written with <code>in</code>.</p>
-<pre><code class="language-nim">if x in xb:
-  echo &quot;x is representable&quot;
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">if</span> <span class="tok-identifier">x</span> <span class="tok-keyword">in</span> <span class="tok-identifier">xb</span><span class="tok-punctuation">:</span>
+  <span class="tok-identifier">echo</span> <span class="tok-string">&quot;x is representable&quot;</span>
 </code></pre>
 <p>Also, <code>rank</code> is a proc, but Nim UFCS allows <code>xb.rank</code>.</p>
-<pre><code class="language-nim">doAssert xb.rank == xb.len
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">xb</span><span class="tok-operator">.</span><span class="tok-identifier">rank</span> <span class="tok-operator">==</span> <span class="tok-identifier">xb</span><span class="tok-operator">.</span><span class="tok-identifier">len</span>
 </code></pre>
 <h2 id="constraints">Constraints</h2>
 <p>This implementation is mainly intended for non-negative integers satisfying <code>0 &lt;= x &lt; 2^(maxLog + 1)</code>.</p>
