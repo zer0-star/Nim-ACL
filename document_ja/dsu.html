@@ -61,6 +61,186 @@
     };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style id="nim-acl-highlight-style-v1">
+:root {
+  --nim-code-background: #f6f8fa;
+  --nim-code-foreground: #24292f;
+  --nim-code-border: #d0d7de;
+  --nim-code-line-number: #8c959f;
+  --nim-code-line-number-border: #d8dee4;
+
+  --nim-token-keyword: #8250df;
+  --nim-token-string: #0a7f37;
+  --nim-token-escape: #116329;
+  --nim-token-number: #0550ae;
+  --nim-token-comment: #6e7781;
+  --nim-token-operator: #cf222e;
+  --nim-token-punctuation: #57606a;
+  --nim-token-identifier: #24292f;
+  --nim-token-directive: #953800;
+  --nim-token-hyperlink: #0969da;
+  --nim-token-other: #24292f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nim-code-background: #161b22;
+    --nim-code-foreground: #c9d1d9;
+    --nim-code-border: #30363d;
+    --nim-code-line-number: #7d8590;
+    --nim-code-line-number-border: #30363d;
+
+    --nim-token-keyword: #d2a8ff;
+    --nim-token-string: #a5d6ff;
+    --nim-token-escape: #79c0ff;
+    --nim-token-number: #79c0ff;
+    --nim-token-comment: #8b949e;
+    --nim-token-operator: #ff7b72;
+    --nim-token-punctuation: #c9d1d9;
+    --nim-token-identifier: #c9d1d9;
+    --nim-token-directive: #ffa657;
+    --nim-token-hyperlink: #58a6ff;
+    --nim-token-other: #c9d1d9;
+  }
+}
+
+html[data-theme="dark"],
+html.dark,
+body.dark,
+body[data-theme="dark"] {
+  --nim-code-background: #161b22;
+  --nim-code-foreground: #c9d1d9;
+  --nim-code-border: #30363d;
+  --nim-code-line-number: #7d8590;
+  --nim-code-line-number-border: #30363d;
+
+  --nim-token-keyword: #d2a8ff;
+  --nim-token-string: #a5d6ff;
+  --nim-token-escape: #79c0ff;
+  --nim-token-number: #79c0ff;
+  --nim-token-comment: #8b949e;
+  --nim-token-operator: #ff7b72;
+  --nim-token-punctuation: #c9d1d9;
+  --nim-token-identifier: #c9d1d9;
+  --nim-token-directive: #ffa657;
+  --nim-token-hyperlink: #58a6ff;
+  --nim-token-other: #c9d1d9;
+}
+
+pre.nim-code {
+  position: relative;
+  overflow: auto;
+  box-sizing: border-box;
+  tab-size: 2;
+
+  background: var(--nim-code-background);
+  color: var(--nim-code-foreground);
+  border: 1px solid var(--nim-code-border);
+  border-radius: 7px;
+}
+
+pre.nim-code code {
+  display: block;
+  box-sizing: border-box;
+  min-width: max-content;
+
+  color: var(--nim-code-foreground);
+  background: transparent;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    monospace;
+  line-height: 1.55;
+}
+
+pre.nim-line-numbers code {
+  counter-reset: nim-code-line;
+}
+
+pre.nim-line-numbers .code-line {
+  display: block;
+  position: relative;
+  min-height: 1.55em;
+  padding-left: 4.25rem;
+  padding-right: 1rem;
+  white-space: pre;
+}
+
+pre.nim-line-numbers .code-line::before {
+  counter-increment: nim-code-line;
+  content: counter(nim-code-line);
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 3.25rem;
+  padding-right: 0.75rem;
+
+  color: var(--nim-code-line-number);
+  border-right: 1px solid var(--nim-code-line-number-border);
+  text-align: right;
+
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+.tok-keyword {
+  color: var(--nim-token-keyword);
+  font-weight: 650;
+}
+
+.tok-string {
+  color: var(--nim-token-string);
+}
+
+.tok-escape {
+  color: var(--nim-token-escape);
+  font-weight: 600;
+}
+
+.tok-number {
+  color: var(--nim-token-number);
+}
+
+.tok-comment {
+  color: var(--nim-token-comment);
+  font-style: italic;
+}
+
+.tok-operator {
+  color: var(--nim-token-operator);
+}
+
+.tok-punctuation {
+  color: var(--nim-token-punctuation);
+}
+
+.tok-identifier {
+  color: var(--nim-token-identifier);
+}
+
+.tok-directive {
+  color: var(--nim-token-directive);
+  font-weight: 600;
+}
+
+.tok-hyperlink {
+  color: var(--nim-token-hyperlink);
+  text-decoration: underline;
+}
+
+.tok-other {
+  color: var(--nim-token-other);
+}
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -79,7 +259,7 @@
 <p>をならし $O(\alpha(n))$ 時間で処理することが出来ます。</p>
 <p>また、内部的に各連結成分ごとに代表となる頂点を $1$ つ持っています。辺の追加により連結成分がマージされる時、新たな代表元は元の連結成分の代表元のうちどちらかになります。</p>
 <h2 id="_1">コンストラクタ</h2>
-<pre><code class="language-nim">d = initDSU(n:int):DSU
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">d</span> <span class="tok-operator">=</span> <span class="tok-identifier">initDSU</span><span class="tok-punctuation">(</span><span class="tok-identifier">n</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">DSU</span>
 </code></pre>
 <ul>
 <li>$n$ 頂点 $0$ 辺の無向グラフを作ります。</li>
@@ -93,7 +273,7 @@
 <li>$O(n)$</li>
 </ul>
 <h2 id="merge">merge</h2>
-<pre><code class="language-nim">d.merge(a:int, b:int):int
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">d</span><span class="tok-operator">.</span><span class="tok-identifier">merge</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span>
 </code></pre>
 <p>辺 $(a, b)$ を足します。</p>
 <p>$a, b$ が連結だった場合はその代表元、非連結だった場合は新たな代表元を返します。</p>
@@ -107,7 +287,7 @@
 <li>ならし $O(\alpha(n))$</li>
 </ul>
 <h2 id="same">same</h2>
-<pre><code class="language-nim">d.same(a:int, b:int):bool
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">d</span><span class="tok-operator">.</span><span class="tok-identifier">same</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">bool</span>
 </code></pre>
 <p>頂点 $a, b$ が連結かどうかを返します。</p>
 <p><strong><h4 class="doc-keyword">制約</h4></strong></p>
@@ -120,7 +300,7 @@
 <li>ならし $O(\alpha(n))$</li>
 </ul>
 <h2 id="leader">leader</h2>
-<pre><code class="language-nim">d.leader(a:int):int
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">d</span><span class="tok-operator">.</span><span class="tok-identifier">leader</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span>
 </code></pre>
 <p>頂点 $a$ の属する連結成分の代表元を返します。</p>
 <p><strong><h4 class="doc-keyword">制約</h4></strong></p>
@@ -132,7 +312,7 @@
 <li>ならし $O(\alpha(n))$</li>
 </ul>
 <h2 id="size">size</h2>
-<pre><code class="language-nim">d.size(a:int):int
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">d</span><span class="tok-operator">.</span><span class="tok-identifier">size</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span>
 </code></pre>
 <p>頂点 $a$ の属する連結成分のサイズを返します。</p>
 <p><strong><h4 class="doc-keyword">制約</h4></strong></p>
@@ -144,7 +324,7 @@
 <li>ならし $O(\alpha(n))$</li>
 </ul>
 <h2 id="groups">groups</h2>
-<pre><code class="language-nim">d.groups():seq[seq[int]]
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">d</span><span class="tok-operator">.</span><span class="tok-identifier">groups</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">]</span>
 </code></pre>
 <p>グラフを連結成分に分け、その情報を返します。</p>
 <p>返り値は「「一つの連結成分の頂点番号のリスト」のリスト」です。
@@ -154,7 +334,7 @@
 <li>$O(n)$</li>
 </ul>
 <h2 id="_2">使用例</h2>
-<p class="example-caption">AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_a">https://atcoder.jp/contests/practice2/tasks/practice2_a</a></p>
+<p class="example-caption">AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_a" target="_blank" rel="noopener">https://atcoder.jp/contests/practice2/tasks/practice2_a</a></p>
 <div class="sample-code">import atcoder/header
 import atcoder/dsu
 

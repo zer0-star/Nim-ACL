@@ -61,6 +61,186 @@
     };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style id="nim-acl-highlight-style-v1">
+:root {
+  --nim-code-background: #f6f8fa;
+  --nim-code-foreground: #24292f;
+  --nim-code-border: #d0d7de;
+  --nim-code-line-number: #8c959f;
+  --nim-code-line-number-border: #d8dee4;
+
+  --nim-token-keyword: #8250df;
+  --nim-token-string: #0a7f37;
+  --nim-token-escape: #116329;
+  --nim-token-number: #0550ae;
+  --nim-token-comment: #6e7781;
+  --nim-token-operator: #cf222e;
+  --nim-token-punctuation: #57606a;
+  --nim-token-identifier: #24292f;
+  --nim-token-directive: #953800;
+  --nim-token-hyperlink: #0969da;
+  --nim-token-other: #24292f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nim-code-background: #161b22;
+    --nim-code-foreground: #c9d1d9;
+    --nim-code-border: #30363d;
+    --nim-code-line-number: #7d8590;
+    --nim-code-line-number-border: #30363d;
+
+    --nim-token-keyword: #d2a8ff;
+    --nim-token-string: #a5d6ff;
+    --nim-token-escape: #79c0ff;
+    --nim-token-number: #79c0ff;
+    --nim-token-comment: #8b949e;
+    --nim-token-operator: #ff7b72;
+    --nim-token-punctuation: #c9d1d9;
+    --nim-token-identifier: #c9d1d9;
+    --nim-token-directive: #ffa657;
+    --nim-token-hyperlink: #58a6ff;
+    --nim-token-other: #c9d1d9;
+  }
+}
+
+html[data-theme="dark"],
+html.dark,
+body.dark,
+body[data-theme="dark"] {
+  --nim-code-background: #161b22;
+  --nim-code-foreground: #c9d1d9;
+  --nim-code-border: #30363d;
+  --nim-code-line-number: #7d8590;
+  --nim-code-line-number-border: #30363d;
+
+  --nim-token-keyword: #d2a8ff;
+  --nim-token-string: #a5d6ff;
+  --nim-token-escape: #79c0ff;
+  --nim-token-number: #79c0ff;
+  --nim-token-comment: #8b949e;
+  --nim-token-operator: #ff7b72;
+  --nim-token-punctuation: #c9d1d9;
+  --nim-token-identifier: #c9d1d9;
+  --nim-token-directive: #ffa657;
+  --nim-token-hyperlink: #58a6ff;
+  --nim-token-other: #c9d1d9;
+}
+
+pre.nim-code {
+  position: relative;
+  overflow: auto;
+  box-sizing: border-box;
+  tab-size: 2;
+
+  background: var(--nim-code-background);
+  color: var(--nim-code-foreground);
+  border: 1px solid var(--nim-code-border);
+  border-radius: 7px;
+}
+
+pre.nim-code code {
+  display: block;
+  box-sizing: border-box;
+  min-width: max-content;
+
+  color: var(--nim-code-foreground);
+  background: transparent;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    monospace;
+  line-height: 1.55;
+}
+
+pre.nim-line-numbers code {
+  counter-reset: nim-code-line;
+}
+
+pre.nim-line-numbers .code-line {
+  display: block;
+  position: relative;
+  min-height: 1.55em;
+  padding-left: 4.25rem;
+  padding-right: 1rem;
+  white-space: pre;
+}
+
+pre.nim-line-numbers .code-line::before {
+  counter-increment: nim-code-line;
+  content: counter(nim-code-line);
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 3.25rem;
+  padding-right: 0.75rem;
+
+  color: var(--nim-code-line-number);
+  border-right: 1px solid var(--nim-code-line-number-border);
+  text-align: right;
+
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+.tok-keyword {
+  color: var(--nim-token-keyword);
+  font-weight: 650;
+}
+
+.tok-string {
+  color: var(--nim-token-string);
+}
+
+.tok-escape {
+  color: var(--nim-token-escape);
+  font-weight: 600;
+}
+
+.tok-number {
+  color: var(--nim-token-number);
+}
+
+.tok-comment {
+  color: var(--nim-token-comment);
+  font-style: italic;
+}
+
+.tok-operator {
+  color: var(--nim-token-operator);
+}
+
+.tok-punctuation {
+  color: var(--nim-token-punctuation);
+}
+
+.tok-identifier {
+  color: var(--nim-token-identifier);
+}
+
+.tok-directive {
+  color: var(--nim-token-directive);
+  font-weight: 600;
+}
+
+.tok-hyperlink {
+  color: var(--nim-token-hyperlink);
+  text-decoration: underline;
+}
+
+.tok-other {
+  color: var(--nim-token-other);
+}
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -84,7 +264,7 @@ initSegTreeBeats
 <pre><code class="language-text">import atcoder/extra/structure/universal_segtree
 </code></pre>
 <h2 id="segtree">通常の SegTree</h2>
-<pre><code class="language-nim">var st = initSegTree[S](v:int or seq[S], op, e)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">st</span> <span class="tok-operator">=</span> <span class="tok-identifier">initSegTree</span><span class="tok-punctuation">[</span><span class="tok-identifier">S</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">v</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span> <span class="tok-keyword">or</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">S</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">op</span><span class="tok-punctuation">,</span> <span class="tok-identifier">e</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>通常のセグメント木を作ります。</p>
 <p><code>op</code> は二項演算、<code>e</code> は単位元です。</p>
@@ -104,31 +284,29 @@ initSegTreeBeats
 <h3 id="_1">使用例</h3>
 <!-- nim-line-numbers -->
 
-<pre><code class="language-nim">import atcoder/extra/structure/universal_segtree
-
-proc op(a, b:int):int = a + b
-proc e():int = 0
-
-var st = initSegTree[int](@[1, 2, 3, 4, 5], op, e)
-
-doAssert st[0..&lt;5] == 15
-doAssert st[1..3] == 9
-
-st[2] = 10
-
-doAssert st[0..&lt;5] == 22
-doAssert st[2] == 10
-</code></pre>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">structure</span><span class="tok-operator">/</span><span class="tok-identifier">universal_segtree</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">proc</span> <span class="tok-identifier">op</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span> <span class="tok-operator">=</span> <span class="tok-identifier">a</span> <span class="tok-operator">+</span> <span class="tok-identifier">b</span></span>
+<span class="code-line"><span class="tok-keyword">proc</span> <span class="tok-identifier">e</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span> <span class="tok-operator">=</span> <span class="tok-number">0</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">st</span> <span class="tok-operator">=</span> <span class="tok-identifier">initSegTree</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">op</span><span class="tok-punctuation">,</span> <span class="tok-identifier">e</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">st</span><span class="tok-punctuation">[</span><span class="tok-number">0.</span><span class="tok-operator">.&lt;</span><span class="tok-number">5</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">15</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">st</span><span class="tok-punctuation">[</span><span class="tok-number">1.</span><span class="tok-operator">.</span><span class="tok-number">3</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">9</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">st</span><span class="tok-punctuation">[</span><span class="tok-number">2</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-number">10</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">st</span><span class="tok-punctuation">[</span><span class="tok-number">0.</span><span class="tok-operator">.&lt;</span><span class="tok-number">5</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">22</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">st</span><span class="tok-punctuation">[</span><span class="tok-number">2</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">10</span></span></code></pre>
 <h2 id="lazysegtree">LazySegTree</h2>
-<pre><code class="language-nim">var st = initLazySegTree[S, F](
-  v:int or seq[S],
-  op,
-  e,
-  mapping,
-  composition,
-  id
-)
-</code></pre>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">st</span> <span class="tok-operator">=</span> <span class="tok-identifier">initLazySegTree</span><span class="tok-punctuation">[</span><span class="tok-identifier">S</span><span class="tok-punctuation">,</span> <span class="tok-identifier">F</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span></span>
+<span class="code-line">  <span class="tok-identifier">v</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span> <span class="tok-keyword">or</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">S</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">  <span class="tok-identifier">op</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">  <span class="tok-identifier">e</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">  <span class="tok-identifier">mapping</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">  <span class="tok-identifier">composition</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">  <span class="tok-identifier">id</span></span>
+<span class="code-line"><span class="tok-punctuation">)</span></span></code></pre>
 <p>遅延セグメント木を作ります。</p>
 <p><code>S</code> は区間値の型、<code>F</code> は作用素の型です。</p>
 <p><code>mapping(f, x)</code> は、作用 <code>f</code> を区間値 <code>x</code> に適用した値を返します。</p>
@@ -152,49 +330,48 @@ doAssert st[2] == 10
 <h3 id="_2">使用例：区間加算・区間和</h3>
 <!-- nim-line-numbers -->
 
-<pre><code class="language-nim">import atcoder/extra/structure/universal_segtree
-
-type S = tuple[sum:int, len:int]
-
-proc op(a, b:S):S =
-  (sum: a.sum + b.sum, len: a.len + b.len)
-
-proc e():S =
-  (sum: 0, len: 0)
-
-proc mapping(f:int, x:S):S =
-  (sum: x.sum + f * x.len, len: x.len)
-
-proc composition(f, g:int):int =
-  f + g
-
-proc id():int =
-  0
-
-var st = initLazySegTree[S, int](
-  @[
-    (sum: 1, len: 1),
-    (sum: 2, len: 1),
-    (sum: 3, len: 1),
-    (sum: 4, len: 1),
-    (sum: 5, len: 1),
-  ],
-  op,
-  e,
-  mapping,
-  composition,
-  id
-)
-
-doAssert st[0..&lt;5].sum == 15
-
-st.apply(1..3, 10)
-
-doAssert st[0..&lt;5].sum == 45
-doAssert st[2].sum == 13
-</code></pre>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">structure</span><span class="tok-operator">/</span><span class="tok-identifier">universal_segtree</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">type</span> <span class="tok-identifier">S</span> <span class="tok-operator">=</span> <span class="tok-keyword">tuple</span><span class="tok-punctuation">[</span><span class="tok-identifier">sum</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">len</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">proc</span> <span class="tok-identifier">op</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span><span class="tok-identifier">S</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">S</span> <span class="tok-operator">=</span></span>
+<span class="code-line">  <span class="tok-punctuation">(</span><span class="tok-identifier">sum</span><span class="tok-punctuation">:</span> <span class="tok-identifier">a</span><span class="tok-operator">.</span><span class="tok-identifier">sum</span> <span class="tok-operator">+</span> <span class="tok-identifier">b</span><span class="tok-operator">.</span><span class="tok-identifier">sum</span><span class="tok-punctuation">,</span> <span class="tok-identifier">len</span><span class="tok-punctuation">:</span> <span class="tok-identifier">a</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">+</span> <span class="tok-identifier">b</span><span class="tok-operator">.</span><span class="tok-identifier">len</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">proc</span> <span class="tok-identifier">e</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">S</span> <span class="tok-operator">=</span></span>
+<span class="code-line">  <span class="tok-punctuation">(</span><span class="tok-identifier">sum</span><span class="tok-punctuation">:</span> <span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-identifier">len</span><span class="tok-punctuation">:</span> <span class="tok-number">0</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">proc</span> <span class="tok-identifier">mapping</span><span class="tok-punctuation">(</span><span class="tok-identifier">f</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">x</span><span class="tok-punctuation">:</span><span class="tok-identifier">S</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">S</span> <span class="tok-operator">=</span></span>
+<span class="code-line">  <span class="tok-punctuation">(</span><span class="tok-identifier">sum</span><span class="tok-punctuation">:</span> <span class="tok-identifier">x</span><span class="tok-operator">.</span><span class="tok-identifier">sum</span> <span class="tok-operator">+</span> <span class="tok-identifier">f</span> <span class="tok-operator">*</span> <span class="tok-identifier">x</span><span class="tok-operator">.</span><span class="tok-identifier">len</span><span class="tok-punctuation">,</span> <span class="tok-identifier">len</span><span class="tok-punctuation">:</span> <span class="tok-identifier">x</span><span class="tok-operator">.</span><span class="tok-identifier">len</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">proc</span> <span class="tok-identifier">composition</span><span class="tok-punctuation">(</span><span class="tok-identifier">f</span><span class="tok-punctuation">,</span> <span class="tok-identifier">g</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span> <span class="tok-operator">=</span></span>
+<span class="code-line">  <span class="tok-identifier">f</span> <span class="tok-operator">+</span> <span class="tok-identifier">g</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">proc</span> <span class="tok-identifier">id</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span> <span class="tok-operator">=</span></span>
+<span class="code-line">  <span class="tok-number">0</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">st</span> <span class="tok-operator">=</span> <span class="tok-identifier">initLazySegTree</span><span class="tok-punctuation">[</span><span class="tok-identifier">S</span><span class="tok-punctuation">,</span> <span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span></span>
+<span class="code-line">  <span class="tok-operator">@</span><span class="tok-punctuation">[</span></span>
+<span class="code-line">    <span class="tok-punctuation">(</span><span class="tok-identifier">sum</span><span class="tok-punctuation">:</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-identifier">len</span><span class="tok-punctuation">:</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">    <span class="tok-punctuation">(</span><span class="tok-identifier">sum</span><span class="tok-punctuation">:</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-identifier">len</span><span class="tok-punctuation">:</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">    <span class="tok-punctuation">(</span><span class="tok-identifier">sum</span><span class="tok-punctuation">:</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-identifier">len</span><span class="tok-punctuation">:</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">    <span class="tok-punctuation">(</span><span class="tok-identifier">sum</span><span class="tok-punctuation">:</span> <span class="tok-number">4</span><span class="tok-punctuation">,</span> <span class="tok-identifier">len</span><span class="tok-punctuation">:</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">    <span class="tok-punctuation">(</span><span class="tok-identifier">sum</span><span class="tok-punctuation">:</span> <span class="tok-number">5</span><span class="tok-punctuation">,</span> <span class="tok-identifier">len</span><span class="tok-punctuation">:</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">  <span class="tok-punctuation">]</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">  <span class="tok-identifier">op</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">  <span class="tok-identifier">e</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">  <span class="tok-identifier">mapping</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">  <span class="tok-identifier">composition</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">  <span class="tok-identifier">id</span></span>
+<span class="code-line"><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">st</span><span class="tok-punctuation">[</span><span class="tok-number">0.</span><span class="tok-operator">.&lt;</span><span class="tok-number">5</span><span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">sum</span> <span class="tok-operator">==</span> <span class="tok-number">15</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">st</span><span class="tok-operator">.</span><span class="tok-identifier">apply</span><span class="tok-punctuation">(</span><span class="tok-number">1.</span><span class="tok-operator">.</span><span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">10</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">st</span><span class="tok-punctuation">[</span><span class="tok-number">0.</span><span class="tok-operator">.&lt;</span><span class="tok-number">5</span><span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">sum</span> <span class="tok-operator">==</span> <span class="tok-number">45</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">st</span><span class="tok-punctuation">[</span><span class="tok-number">2</span><span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">sum</span> <span class="tok-operator">==</span> <span class="tok-number">13</span></span></code></pre>
 <h2 id="dualsegtree">DualSegTree</h2>
-<pre><code class="language-nim">var st = initDualSegTree[F](v:int or seq[F], composition, id)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">st</span> <span class="tok-operator">=</span> <span class="tok-identifier">initDualSegTree</span><span class="tok-punctuation">[</span><span class="tok-identifier">F</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">v</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span> <span class="tok-keyword">or</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">F</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">composition</span><span class="tok-punctuation">,</span> <span class="tok-identifier">id</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>双対セグメント木を作ります。</p>
 <p>双対セグメント木は「区間作用・点取得」に使います。区間に作用を追加して、各点で合成済みの作用を取得します。</p>
@@ -213,36 +390,34 @@ doAssert st[2].sum == 13
 <h3 id="_3">使用例：区間加算・点取得</h3>
 <!-- nim-line-numbers -->
 
-<pre><code class="language-nim">import atcoder/extra/structure/universal_segtree
-
-proc composition(f, g:int):int =
-  f + g
-
-proc id():int =
-  0
-
-var st = initDualSegTree[int](5, composition, id)
-
-st.apply(1..&lt;4, 10)
-st.apply(2..4, -3)
-
-doAssert st[0] == 0
-doAssert st[1] == 10
-doAssert st[2] == 7
-doAssert st[3] == 7
-doAssert st[4] == -3
-</code></pre>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">structure</span><span class="tok-operator">/</span><span class="tok-identifier">universal_segtree</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">proc</span> <span class="tok-identifier">composition</span><span class="tok-punctuation">(</span><span class="tok-identifier">f</span><span class="tok-punctuation">,</span> <span class="tok-identifier">g</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span> <span class="tok-operator">=</span></span>
+<span class="code-line">  <span class="tok-identifier">f</span> <span class="tok-operator">+</span> <span class="tok-identifier">g</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">proc</span> <span class="tok-identifier">id</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span> <span class="tok-operator">=</span></span>
+<span class="code-line">  <span class="tok-number">0</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">st</span> <span class="tok-operator">=</span> <span class="tok-identifier">initDualSegTree</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">5</span><span class="tok-punctuation">,</span> <span class="tok-identifier">composition</span><span class="tok-punctuation">,</span> <span class="tok-identifier">id</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">st</span><span class="tok-operator">.</span><span class="tok-identifier">apply</span><span class="tok-punctuation">(</span><span class="tok-number">1.</span><span class="tok-operator">.&lt;</span><span class="tok-number">4</span><span class="tok-punctuation">,</span> <span class="tok-number">10</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"><span class="tok-identifier">st</span><span class="tok-operator">.</span><span class="tok-identifier">apply</span><span class="tok-punctuation">(</span><span class="tok-number">2.</span><span class="tok-operator">.</span><span class="tok-number">4</span><span class="tok-punctuation">,</span> <span class="tok-operator">-</span><span class="tok-number">3</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">st</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">0</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">st</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">10</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">st</span><span class="tok-punctuation">[</span><span class="tok-number">2</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">7</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">st</span><span class="tok-punctuation">[</span><span class="tok-number">3</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">7</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">st</span><span class="tok-punctuation">[</span><span class="tok-number">4</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-operator">-</span><span class="tok-number">3</span></span></code></pre>
 <h2 id="lazysegtree_with_p">LazySegTree_with_p</h2>
-<pre><code class="language-nim">var st = initLazySegTree_with_p[S, F](
-  v:int or seq[S],
-  op,
-  e,
-  mapping,
-  composition,
-  id,
-  p
-)
-</code></pre>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">st</span> <span class="tok-operator">=</span> <span class="tok-identifier">initLazySegTree_with_p</span><span class="tok-punctuation">[</span><span class="tok-identifier">S</span><span class="tok-punctuation">,</span> <span class="tok-identifier">F</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span></span>
+<span class="code-line">  <span class="tok-identifier">v</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span> <span class="tok-keyword">or</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">S</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">  <span class="tok-identifier">op</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">  <span class="tok-identifier">e</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">  <span class="tok-identifier">mapping</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">  <span class="tok-identifier">composition</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">  <span class="tok-identifier">id</span><span class="tok-punctuation">,</span></span>
+<span class="code-line">  <span class="tok-identifier">p</span></span>
+<span class="code-line"><span class="tok-punctuation">)</span></span></code></pre>
 <p>区間の長さや相対位置に依存して作用を変えたい場合に使う遅延セグメント木です。</p>
 <p><code>p(f, s)</code> は、もとの作用 <code>f</code> を、ノードが表す区間 <code>s</code> に合わせて変換します。</p>
 <p>たとえば、等差数列加算や、区間の位置に応じて変化する作用を扱う場合に使います。</p>
@@ -253,14 +428,14 @@ doAssert st[4] == -3
 <li>区間取得 $O(\log n)$</li>
 </ul>
 <h2 id="segtreebeats">SegTreeBeats</h2>
-<pre><code class="language-nim">var st = initSegTreeBeats[S, F](
-  v:int or seq[S],
-  op,
-  e,
-  mapping,
-  composition,
-  id
-)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">st</span> <span class="tok-operator">=</span> <span class="tok-identifier">initSegTreeBeats</span><span class="tok-punctuation">[</span><span class="tok-identifier">S</span><span class="tok-punctuation">,</span> <span class="tok-identifier">F</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span>
+  <span class="tok-identifier">v</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span> <span class="tok-keyword">or</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">S</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">op</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">e</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">mapping</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">composition</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">id</span>
+<span class="tok-punctuation">)</span>
 </code></pre>
 <p>SegTree Beats 風の処理を扱うための wrapper です。</p>
 <p>通常の LazySegTree と異なり、<code>mapping(f, s)</code> は <code>Option[S]</code> を返します。</p>
@@ -308,8 +483,8 @@ st[p:RangeType]
 <li>$O(\log n)$</li>
 </ul>
 <h2 id="_6">区間作用</h2>
-<pre><code class="language-nim">st.apply(p:RangeType, f:F)
-st.apply(p:IndexType, f:F)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">st</span><span class="tok-operator">.</span><span class="tok-identifier">apply</span><span class="tok-punctuation">(</span><span class="tok-identifier">p</span><span class="tok-punctuation">:</span><span class="tok-identifier">RangeType</span><span class="tok-punctuation">,</span> <span class="tok-identifier">f</span><span class="tok-punctuation">:</span><span class="tok-identifier">F</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">st</span><span class="tok-operator">.</span><span class="tok-identifier">apply</span><span class="tok-punctuation">(</span><span class="tok-identifier">p</span><span class="tok-punctuation">:</span><span class="tok-identifier">IndexType</span><span class="tok-punctuation">,</span> <span class="tok-identifier">f</span><span class="tok-punctuation">:</span><span class="tok-identifier">F</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>遅延セグメント木または双対セグメント木で、区間または一点に作用 <code>f</code> を適用します。</p>
 <h4 class="doc-keyword">計算量</h4>
@@ -327,8 +502,8 @@ st.apply(p:IndexType, f:F)
 <li>$O(1)$</li>
 </ul>
 <h2 id="max_right-min_left">max_right / min_left</h2>
-<pre><code class="language-nim">st.max_right(l, g)
-st.min_left(r, g)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">st</span><span class="tok-operator">.</span><span class="tok-identifier">max_right</span><span class="tok-punctuation">(</span><span class="tok-identifier">l</span><span class="tok-punctuation">,</span> <span class="tok-identifier">g</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">st</span><span class="tok-operator">.</span><span class="tok-identifier">min_left</span><span class="tok-punctuation">(</span><span class="tok-identifier">r</span><span class="tok-punctuation">,</span> <span class="tok-identifier">g</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>ACL の <code>segtree</code> / <code>lazy_segtree</code> と同様に、条件 <code>g</code> を満たす最大右端・最小左端を二分探索します。</p>
 <h4 class="doc-keyword">制約</h4>

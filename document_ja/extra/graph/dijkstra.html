@@ -61,6 +61,186 @@
     };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style id="nim-acl-highlight-style-v1">
+:root {
+  --nim-code-background: #f6f8fa;
+  --nim-code-foreground: #24292f;
+  --nim-code-border: #d0d7de;
+  --nim-code-line-number: #8c959f;
+  --nim-code-line-number-border: #d8dee4;
+
+  --nim-token-keyword: #8250df;
+  --nim-token-string: #0a7f37;
+  --nim-token-escape: #116329;
+  --nim-token-number: #0550ae;
+  --nim-token-comment: #6e7781;
+  --nim-token-operator: #cf222e;
+  --nim-token-punctuation: #57606a;
+  --nim-token-identifier: #24292f;
+  --nim-token-directive: #953800;
+  --nim-token-hyperlink: #0969da;
+  --nim-token-other: #24292f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nim-code-background: #161b22;
+    --nim-code-foreground: #c9d1d9;
+    --nim-code-border: #30363d;
+    --nim-code-line-number: #7d8590;
+    --nim-code-line-number-border: #30363d;
+
+    --nim-token-keyword: #d2a8ff;
+    --nim-token-string: #a5d6ff;
+    --nim-token-escape: #79c0ff;
+    --nim-token-number: #79c0ff;
+    --nim-token-comment: #8b949e;
+    --nim-token-operator: #ff7b72;
+    --nim-token-punctuation: #c9d1d9;
+    --nim-token-identifier: #c9d1d9;
+    --nim-token-directive: #ffa657;
+    --nim-token-hyperlink: #58a6ff;
+    --nim-token-other: #c9d1d9;
+  }
+}
+
+html[data-theme="dark"],
+html.dark,
+body.dark,
+body[data-theme="dark"] {
+  --nim-code-background: #161b22;
+  --nim-code-foreground: #c9d1d9;
+  --nim-code-border: #30363d;
+  --nim-code-line-number: #7d8590;
+  --nim-code-line-number-border: #30363d;
+
+  --nim-token-keyword: #d2a8ff;
+  --nim-token-string: #a5d6ff;
+  --nim-token-escape: #79c0ff;
+  --nim-token-number: #79c0ff;
+  --nim-token-comment: #8b949e;
+  --nim-token-operator: #ff7b72;
+  --nim-token-punctuation: #c9d1d9;
+  --nim-token-identifier: #c9d1d9;
+  --nim-token-directive: #ffa657;
+  --nim-token-hyperlink: #58a6ff;
+  --nim-token-other: #c9d1d9;
+}
+
+pre.nim-code {
+  position: relative;
+  overflow: auto;
+  box-sizing: border-box;
+  tab-size: 2;
+
+  background: var(--nim-code-background);
+  color: var(--nim-code-foreground);
+  border: 1px solid var(--nim-code-border);
+  border-radius: 7px;
+}
+
+pre.nim-code code {
+  display: block;
+  box-sizing: border-box;
+  min-width: max-content;
+
+  color: var(--nim-code-foreground);
+  background: transparent;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    monospace;
+  line-height: 1.55;
+}
+
+pre.nim-line-numbers code {
+  counter-reset: nim-code-line;
+}
+
+pre.nim-line-numbers .code-line {
+  display: block;
+  position: relative;
+  min-height: 1.55em;
+  padding-left: 4.25rem;
+  padding-right: 1rem;
+  white-space: pre;
+}
+
+pre.nim-line-numbers .code-line::before {
+  counter-increment: nim-code-line;
+  content: counter(nim-code-line);
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 3.25rem;
+  padding-right: 0.75rem;
+
+  color: var(--nim-code-line-number);
+  border-right: 1px solid var(--nim-code-line-number-border);
+  text-align: right;
+
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+.tok-keyword {
+  color: var(--nim-token-keyword);
+  font-weight: 650;
+}
+
+.tok-string {
+  color: var(--nim-token-string);
+}
+
+.tok-escape {
+  color: var(--nim-token-escape);
+  font-weight: 600;
+}
+
+.tok-number {
+  color: var(--nim-token-number);
+}
+
+.tok-comment {
+  color: var(--nim-token-comment);
+  font-style: italic;
+}
+
+.tok-operator {
+  color: var(--nim-token-operator);
+}
+
+.tok-punctuation {
+  color: var(--nim-token-punctuation);
+}
+
+.tok-identifier {
+  color: var(--nim-token-identifier);
+}
+
+.tok-directive {
+  color: var(--nim-token-directive);
+  font-weight: 600;
+}
+
+.tok-hyperlink {
+  color: var(--nim-token-hyperlink);
+  text-decoration: underline;
+}
+
+.tok-other {
+  color: var(--nim-token-other);
+}
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -73,21 +253,21 @@
 <h1 id="_1">ダイクストラ法</h1>
 <p>重みが非負のグラフの単一始点最短距離を計算します。</p>
 <h2 id="_2">通常のダイクストラ法</h2>
-<pre><code class="language-nim">var d = dijkstra(g:Graph, s:U or seq[U])
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">d</span> <span class="tok-operator">=</span> <span class="tok-identifier">dijkstra</span><span class="tok-punctuation">(</span><span class="tok-identifier">g</span><span class="tok-punctuation">:</span><span class="tok-identifier">Graph</span><span class="tok-punctuation">,</span> <span class="tok-identifier">s</span><span class="tok-punctuation">:</span><span class="tok-identifier">U</span> <span class="tok-keyword">or</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">U</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>グラフ$g$の頂点$s$を始点とするダイクストラ法を実行。
 $s$はseqでも指定することができます。その場合は複数始点($s$の元はすべて距離0)で実行できます。
 $d$は内部的にはDijkstraResultというobjectで渡されていて、下記のような呼び出しが可能である。</p>
 <h3 id="_3">距離の取得</h3>
-<pre><code class="language-nim">d[u:int]:T
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">d</span><span class="tok-punctuation">[</span><span class="tok-identifier">u</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">:</span><span class="tok-identifier">T</span>
 </code></pre>
 <p>$s$から$u$までの距離を返します。</p>
 <h3 id="_4">直前ノードの取得</h3>
-<pre><code class="language-nim">d.prev(u):U
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">d</span><span class="tok-operator">.</span><span class="tok-identifier">prev</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">U</span>
 </code></pre>
 <p>$s$から$u$までの最短経路上で$u$の前のノード(の1つ)を返します。</p>
 <h3 id="_5">最短経路の取得</h3>
-<pre><code class="language-nim">d.path(t:int):seq[int]
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">d</span><span class="tok-operator">.</span><span class="tok-identifier">path</span><span class="tok-punctuation">(</span><span class="tok-identifier">t</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span>
 </code></pre>
 <p>頂点$t$までの最短経路を取得。
 戻り値は$s$で始まり$t$で終わるノード列となる。(Edge[T]で返すべきか。。。)</p>
@@ -99,7 +279,7 @@ $d$は内部的にはDijkstraResultというobjectで渡されていて、下記
 <p>追加した辺の本数を $m$ として
 - $O((n + m) \log n)$だと思う(たぶん)</p>
 <h2 id="01">01ダイクストラ法</h2>
-<pre><code class="language-nim">var d = dijkstra01(g:Graph, s:U or seq[U])
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">d</span> <span class="tok-operator">=</span> <span class="tok-identifier">dijkstra01</span><span class="tok-punctuation">(</span><span class="tok-identifier">g</span><span class="tok-punctuation">:</span><span class="tok-identifier">Graph</span><span class="tok-punctuation">,</span> <span class="tok-identifier">s</span><span class="tok-punctuation">:</span><span class="tok-identifier">U</span> <span class="tok-keyword">or</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">U</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>辺の重みが0または1であるグラフ$g$の頂点$s$を始点とする最短距離と直前ノードを計算
 0, 1以外の辺の重みがある場合は未定義である。
@@ -112,7 +292,7 @@ $d$は内部的にはDijkstraResultというobjectで渡されていて、下記
 <p>追加した辺の本数を $m$ として
 - $O(n + m)$だと思う(たぶん)</p>
 <h2 id="radix-heap">Radix-Heapを用いたダイクストラ法</h2>
-<pre><code class="language-nim">var d = dijkstra_radix_heap(g:Graph, s:U or seq[U])
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">d</span> <span class="tok-operator">=</span> <span class="tok-identifier">dijkstra_radix_heap</span><span class="tok-punctuation">(</span><span class="tok-identifier">g</span><span class="tok-punctuation">:</span><span class="tok-identifier">Graph</span><span class="tok-punctuation">,</span> <span class="tok-identifier">s</span><span class="tok-punctuation">:</span><span class="tok-identifier">U</span> <span class="tok-keyword">or</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">U</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>Radix Heapを用いたDijkstra法です。距離が小さいときは高速化が期待されます。
 戻り値の型はDijkstraResult型であり、呼び出し方法は上に同じです。</p>
@@ -129,28 +309,28 @@ $d$は内部的にはDijkstraResultというobjectで渡されていて、下記
 </ul>
 <h2 id="_6">基本例</h2>
 <p><code>dijkstra(g, s)</code> は、始点 <code>s</code> からの最短距離を返します。結果は <code>d[v]</code> で距離、<code>d.path(v)</code> で復元パスを取得できます。</p>
-<pre><code class="language-nim">import atcoder/extra/graph/graph_template
-import atcoder/extra/graph/dijkstra
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">graph_template</span>
+<span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">dijkstra</span>
 
-var g = initGraph(4)
-g.addEdge(0, 1, 2)
-g.addEdge(0, 2, 5)
-g.addEdge(1, 2, 1)
-g.addEdge(2, 3, 1)
+<span class="tok-keyword">var</span> <span class="tok-identifier">g</span> <span class="tok-operator">=</span> <span class="tok-identifier">initGraph</span><span class="tok-punctuation">(</span><span class="tok-number">4</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span>
 
-var d = dijkstra(g, 0)
+<span class="tok-keyword">var</span> <span class="tok-identifier">d</span> <span class="tok-operator">=</span> <span class="tok-identifier">dijkstra</span><span class="tok-punctuation">(</span><span class="tok-identifier">g</span><span class="tok-punctuation">,</span> <span class="tok-number">0</span><span class="tok-punctuation">)</span>
 
-doAssert d[3] == 4
-doAssert d.path(3) == @[0, 1, 2, 3]
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">d</span><span class="tok-punctuation">[</span><span class="tok-number">3</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">4</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">d</span><span class="tok-operator">.</span><span class="tok-identifier">path</span><span class="tok-punctuation">(</span><span class="tok-number">3</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">]</span>
 </code></pre>
 <p>辺重みが <code>0</code> または <code>1</code> の場合は <code>dijkstra01(g, s)</code> も使えます。</p>
-<pre><code class="language-nim">var h = initGraph(3)
-h.addEdge(0, 1, 0)
-h.addEdge(1, 2, 1)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">h</span> <span class="tok-operator">=</span> <span class="tok-identifier">initGraph</span><span class="tok-punctuation">(</span><span class="tok-number">3</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">h</span><span class="tok-operator">.</span><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">0</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">h</span><span class="tok-operator">.</span><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span>
 
-var e = dijkstra01(h, 0)
+<span class="tok-keyword">var</span> <span class="tok-identifier">e</span> <span class="tok-operator">=</span> <span class="tok-identifier">dijkstra01</span><span class="tok-punctuation">(</span><span class="tok-identifier">h</span><span class="tok-punctuation">,</span> <span class="tok-number">0</span><span class="tok-punctuation">)</span>
 
-doAssert e[2] == 1
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">e</span><span class="tok-punctuation">[</span><span class="tok-number">2</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">1</span>
 </code></pre>
   </main>
 </body>

@@ -61,6 +61,186 @@
     };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style id="nim-acl-highlight-style-v1">
+:root {
+  --nim-code-background: #f6f8fa;
+  --nim-code-foreground: #24292f;
+  --nim-code-border: #d0d7de;
+  --nim-code-line-number: #8c959f;
+  --nim-code-line-number-border: #d8dee4;
+
+  --nim-token-keyword: #8250df;
+  --nim-token-string: #0a7f37;
+  --nim-token-escape: #116329;
+  --nim-token-number: #0550ae;
+  --nim-token-comment: #6e7781;
+  --nim-token-operator: #cf222e;
+  --nim-token-punctuation: #57606a;
+  --nim-token-identifier: #24292f;
+  --nim-token-directive: #953800;
+  --nim-token-hyperlink: #0969da;
+  --nim-token-other: #24292f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nim-code-background: #161b22;
+    --nim-code-foreground: #c9d1d9;
+    --nim-code-border: #30363d;
+    --nim-code-line-number: #7d8590;
+    --nim-code-line-number-border: #30363d;
+
+    --nim-token-keyword: #d2a8ff;
+    --nim-token-string: #a5d6ff;
+    --nim-token-escape: #79c0ff;
+    --nim-token-number: #79c0ff;
+    --nim-token-comment: #8b949e;
+    --nim-token-operator: #ff7b72;
+    --nim-token-punctuation: #c9d1d9;
+    --nim-token-identifier: #c9d1d9;
+    --nim-token-directive: #ffa657;
+    --nim-token-hyperlink: #58a6ff;
+    --nim-token-other: #c9d1d9;
+  }
+}
+
+html[data-theme="dark"],
+html.dark,
+body.dark,
+body[data-theme="dark"] {
+  --nim-code-background: #161b22;
+  --nim-code-foreground: #c9d1d9;
+  --nim-code-border: #30363d;
+  --nim-code-line-number: #7d8590;
+  --nim-code-line-number-border: #30363d;
+
+  --nim-token-keyword: #d2a8ff;
+  --nim-token-string: #a5d6ff;
+  --nim-token-escape: #79c0ff;
+  --nim-token-number: #79c0ff;
+  --nim-token-comment: #8b949e;
+  --nim-token-operator: #ff7b72;
+  --nim-token-punctuation: #c9d1d9;
+  --nim-token-identifier: #c9d1d9;
+  --nim-token-directive: #ffa657;
+  --nim-token-hyperlink: #58a6ff;
+  --nim-token-other: #c9d1d9;
+}
+
+pre.nim-code {
+  position: relative;
+  overflow: auto;
+  box-sizing: border-box;
+  tab-size: 2;
+
+  background: var(--nim-code-background);
+  color: var(--nim-code-foreground);
+  border: 1px solid var(--nim-code-border);
+  border-radius: 7px;
+}
+
+pre.nim-code code {
+  display: block;
+  box-sizing: border-box;
+  min-width: max-content;
+
+  color: var(--nim-code-foreground);
+  background: transparent;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    monospace;
+  line-height: 1.55;
+}
+
+pre.nim-line-numbers code {
+  counter-reset: nim-code-line;
+}
+
+pre.nim-line-numbers .code-line {
+  display: block;
+  position: relative;
+  min-height: 1.55em;
+  padding-left: 4.25rem;
+  padding-right: 1rem;
+  white-space: pre;
+}
+
+pre.nim-line-numbers .code-line::before {
+  counter-increment: nim-code-line;
+  content: counter(nim-code-line);
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 3.25rem;
+  padding-right: 0.75rem;
+
+  color: var(--nim-code-line-number);
+  border-right: 1px solid var(--nim-code-line-number-border);
+  text-align: right;
+
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+.tok-keyword {
+  color: var(--nim-token-keyword);
+  font-weight: 650;
+}
+
+.tok-string {
+  color: var(--nim-token-string);
+}
+
+.tok-escape {
+  color: var(--nim-token-escape);
+  font-weight: 600;
+}
+
+.tok-number {
+  color: var(--nim-token-number);
+}
+
+.tok-comment {
+  color: var(--nim-token-comment);
+  font-style: italic;
+}
+
+.tok-operator {
+  color: var(--nim-token-operator);
+}
+
+.tok-punctuation {
+  color: var(--nim-token-punctuation);
+}
+
+.tok-identifier {
+  color: var(--nim-token-identifier);
+}
+
+.tok-directive {
+  color: var(--nim-token-directive);
+  font-weight: 600;
+}
+
+.tok-hyperlink {
+  color: var(--nim-token-hyperlink);
+  text-decoration: underline;
+}
+
+.tok-other {
+  color: var(--nim-token-other);
+}
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -77,30 +257,30 @@ documentation_of: //src/atcoder/extra/structure/tree_backends.nim</p>
 <h1 id="tree-backends">Tree backends</h1>
 <p>Nim-ACL has several low-level tree backends for ordered sets, sequence operations, and lazy propagation.</p>
 <p>If you need a normal ordered set or map, start with <a href="./sorted_set_map.html"><code>sorted_set_map</code></a>.</p>
-<pre><code class="language-nim">import atcoder/extra/structure/sorted_set_map
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">structure</span><span class="tok-operator">/</span><span class="tok-identifier">sorted_set_map</span>
 </code></pre>
 <h2 id="recommended-user-facing-module">Recommended user-facing module</h2>
 <h3 id="sorted_set_map">sorted_set_map</h3>
-<pre><code class="language-nim">import atcoder/extra/structure/sorted_set_map
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">structure</span><span class="tok-operator">/</span><span class="tok-identifier">sorted_set_map</span>
 </code></pre>
 <p>This is the recommended ordered set/map interface.</p>
 <p>Main container types:</p>
-<pre><code class="language-nim">SortedSet(K)
-SortedMultiSet(K)
-SortedMap(K, V)
-SortedMultiMap(K, V)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">SortedSet</span><span class="tok-punctuation">(</span><span class="tok-identifier">K</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">SortedMultiSet</span><span class="tok-punctuation">(</span><span class="tok-identifier">K</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">SortedMap</span><span class="tok-punctuation">(</span><span class="tok-identifier">K</span><span class="tok-punctuation">,</span> <span class="tok-identifier">V</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">SortedMultiMap</span><span class="tok-punctuation">(</span><span class="tok-identifier">K</span><span class="tok-punctuation">,</span> <span class="tok-identifier">V</span><span class="tok-punctuation">)</span>
 </code></pre>
 <h2 id="compatibility-alias">Compatibility alias</h2>
 <h3 id="set_map">set_map</h3>
-<pre><code class="language-nim">import atcoder/extra/structure/set_map
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">structure</span><span class="tok-operator">/</span><span class="tok-identifier">set_map</span>
 </code></pre>
 <p><code>set_map</code> is a compatibility alias for <code>sorted_set_map</code>.<br>
 For new code, prefer <code>sorted_set_map</code>.</p>
 <h2 id="low-level-backends">Low-level backends</h2>
 <p>The following modules are low-level or advanced tree backends:</p>
-<pre><code class="language-nim">import atcoder/extra/structure/red_black_tree
-import atcoder/extra/structure/randomized_binary_search_tree_with_parent
-import atcoder/extra/structure/splay_tree
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">structure</span><span class="tok-operator">/</span><span class="tok-identifier">red_black_tree</span>
+<span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">structure</span><span class="tok-operator">/</span><span class="tok-identifier">randomized_binary_search_tree_with_parent</span>
+<span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">structure</span><span class="tok-operator">/</span><span class="tok-identifier">splay_tree</span>
 </code></pre>
 <h3 id="redblacktree">RedBlackTree</h3>
 <p>The default backend of <code>sorted_set_map</code>.<br>

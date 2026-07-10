@@ -61,6 +61,186 @@
     };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style id="nim-acl-highlight-style-v1">
+:root {
+  --nim-code-background: #f6f8fa;
+  --nim-code-foreground: #24292f;
+  --nim-code-border: #d0d7de;
+  --nim-code-line-number: #8c959f;
+  --nim-code-line-number-border: #d8dee4;
+
+  --nim-token-keyword: #8250df;
+  --nim-token-string: #0a7f37;
+  --nim-token-escape: #116329;
+  --nim-token-number: #0550ae;
+  --nim-token-comment: #6e7781;
+  --nim-token-operator: #cf222e;
+  --nim-token-punctuation: #57606a;
+  --nim-token-identifier: #24292f;
+  --nim-token-directive: #953800;
+  --nim-token-hyperlink: #0969da;
+  --nim-token-other: #24292f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nim-code-background: #161b22;
+    --nim-code-foreground: #c9d1d9;
+    --nim-code-border: #30363d;
+    --nim-code-line-number: #7d8590;
+    --nim-code-line-number-border: #30363d;
+
+    --nim-token-keyword: #d2a8ff;
+    --nim-token-string: #a5d6ff;
+    --nim-token-escape: #79c0ff;
+    --nim-token-number: #79c0ff;
+    --nim-token-comment: #8b949e;
+    --nim-token-operator: #ff7b72;
+    --nim-token-punctuation: #c9d1d9;
+    --nim-token-identifier: #c9d1d9;
+    --nim-token-directive: #ffa657;
+    --nim-token-hyperlink: #58a6ff;
+    --nim-token-other: #c9d1d9;
+  }
+}
+
+html[data-theme="dark"],
+html.dark,
+body.dark,
+body[data-theme="dark"] {
+  --nim-code-background: #161b22;
+  --nim-code-foreground: #c9d1d9;
+  --nim-code-border: #30363d;
+  --nim-code-line-number: #7d8590;
+  --nim-code-line-number-border: #30363d;
+
+  --nim-token-keyword: #d2a8ff;
+  --nim-token-string: #a5d6ff;
+  --nim-token-escape: #79c0ff;
+  --nim-token-number: #79c0ff;
+  --nim-token-comment: #8b949e;
+  --nim-token-operator: #ff7b72;
+  --nim-token-punctuation: #c9d1d9;
+  --nim-token-identifier: #c9d1d9;
+  --nim-token-directive: #ffa657;
+  --nim-token-hyperlink: #58a6ff;
+  --nim-token-other: #c9d1d9;
+}
+
+pre.nim-code {
+  position: relative;
+  overflow: auto;
+  box-sizing: border-box;
+  tab-size: 2;
+
+  background: var(--nim-code-background);
+  color: var(--nim-code-foreground);
+  border: 1px solid var(--nim-code-border);
+  border-radius: 7px;
+}
+
+pre.nim-code code {
+  display: block;
+  box-sizing: border-box;
+  min-width: max-content;
+
+  color: var(--nim-code-foreground);
+  background: transparent;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    monospace;
+  line-height: 1.55;
+}
+
+pre.nim-line-numbers code {
+  counter-reset: nim-code-line;
+}
+
+pre.nim-line-numbers .code-line {
+  display: block;
+  position: relative;
+  min-height: 1.55em;
+  padding-left: 4.25rem;
+  padding-right: 1rem;
+  white-space: pre;
+}
+
+pre.nim-line-numbers .code-line::before {
+  counter-increment: nim-code-line;
+  content: counter(nim-code-line);
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 3.25rem;
+  padding-right: 0.75rem;
+
+  color: var(--nim-code-line-number);
+  border-right: 1px solid var(--nim-code-line-number-border);
+  text-align: right;
+
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+.tok-keyword {
+  color: var(--nim-token-keyword);
+  font-weight: 650;
+}
+
+.tok-string {
+  color: var(--nim-token-string);
+}
+
+.tok-escape {
+  color: var(--nim-token-escape);
+  font-weight: 600;
+}
+
+.tok-number {
+  color: var(--nim-token-number);
+}
+
+.tok-comment {
+  color: var(--nim-token-comment);
+  font-style: italic;
+}
+
+.tok-operator {
+  color: var(--nim-token-operator);
+}
+
+.tok-punctuation {
+  color: var(--nim-token-punctuation);
+}
+
+.tok-identifier {
+  color: var(--nim-token-identifier);
+}
+
+.tok-directive {
+  color: var(--nim-token-directive);
+  font-weight: 600;
+}
+
+.tok-hyperlink {
+  color: var(--nim-token-hyperlink);
+  text-decoration: underline;
+}
+
+.tok-other {
+  color: var(--nim-token-other);
+}
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -74,31 +254,29 @@
 <p><code>dijkstra_radix_heap(g, s)</code> は、Radix Heap を用いて非負整数重み graph の単一始点最短路を求めます。</p>
 <p>通常の <code>dijkstra(g, s)</code> と同じく、戻り値は <code>DijkstraResult</code> です。距離は <code>d[v]</code>、復元経路は <code>d.path(v)</code> で取得できます。</p>
 <h2 id="import">import</h2>
-<pre><code class="language-nim">import atcoder/extra/graph/graph_template
-import atcoder/extra/graph/dijkstra_radix_heap
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">graph_template</span>
+<span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">dijkstra_radix_heap</span>
 </code></pre>
 <h2 id="_1">使用例</h2>
 <!-- nim-line-numbers -->
 
-<pre><code class="language-nim">import atcoder/extra/graph/graph_template
-import atcoder/extra/graph/dijkstra_radix_heap
-
-var g = initGraph(5)
-g.addEdge(0, 1, 2)
-g.addEdge(0, 2, 9)
-g.addEdge(1, 2, 1)
-g.addEdge(2, 3, 1)
-g.addEdge(3, 4, 3)
-
-var d = dijkstra_radix_heap(g, 0)
-
-doAssert d[4] == 7
-doAssert d.path(4) == @[0, 1, 2, 3, 4]
-</code></pre>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">graph_template</span></span>
+<span class="code-line"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">dijkstra_radix_heap</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">g</span> <span class="tok-operator">=</span> <span class="tok-identifier">initGraph</span><span class="tok-punctuation">(</span><span class="tok-number">5</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"><span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"><span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">9</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"><span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"><span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"><span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">d</span> <span class="tok-operator">=</span> <span class="tok-identifier">dijkstra_radix_heap</span><span class="tok-punctuation">(</span><span class="tok-identifier">g</span><span class="tok-punctuation">,</span> <span class="tok-number">0</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">d</span><span class="tok-punctuation">[</span><span class="tok-number">4</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">7</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">d</span><span class="tok-operator">.</span><span class="tok-identifier">path</span><span class="tok-punctuation">(</span><span class="tok-number">4</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">]</span></span></code></pre>
 <h2 id="_2">複数始点</h2>
 <p>始点には頂点ひとつだけでなく、頂点列も渡せます。この場合、与えた始点すべての距離を <code>0</code> として最短距離を計算します。</p>
-<pre><code class="language-nim">var d = dijkstra_radix_heap(g, @[0, 3])
-</code></pre>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">d</span> <span class="tok-operator">=</span> <span class="tok-identifier">dijkstra_radix_heap</span><span class="tok-punctuation">(</span><span class="tok-identifier">g</span><span class="tok-punctuation">,</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span></span></code></pre>
 <h2 id="_3">制約</h2>
 <ul>
 <li>辺重みの型 <code>G.T</code> は整数型である必要があります。</li>

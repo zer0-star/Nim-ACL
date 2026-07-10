@@ -61,6 +61,186 @@
     };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style id="nim-acl-highlight-style-v1">
+:root {
+  --nim-code-background: #f6f8fa;
+  --nim-code-foreground: #24292f;
+  --nim-code-border: #d0d7de;
+  --nim-code-line-number: #8c959f;
+  --nim-code-line-number-border: #d8dee4;
+
+  --nim-token-keyword: #8250df;
+  --nim-token-string: #0a7f37;
+  --nim-token-escape: #116329;
+  --nim-token-number: #0550ae;
+  --nim-token-comment: #6e7781;
+  --nim-token-operator: #cf222e;
+  --nim-token-punctuation: #57606a;
+  --nim-token-identifier: #24292f;
+  --nim-token-directive: #953800;
+  --nim-token-hyperlink: #0969da;
+  --nim-token-other: #24292f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nim-code-background: #161b22;
+    --nim-code-foreground: #c9d1d9;
+    --nim-code-border: #30363d;
+    --nim-code-line-number: #7d8590;
+    --nim-code-line-number-border: #30363d;
+
+    --nim-token-keyword: #d2a8ff;
+    --nim-token-string: #a5d6ff;
+    --nim-token-escape: #79c0ff;
+    --nim-token-number: #79c0ff;
+    --nim-token-comment: #8b949e;
+    --nim-token-operator: #ff7b72;
+    --nim-token-punctuation: #c9d1d9;
+    --nim-token-identifier: #c9d1d9;
+    --nim-token-directive: #ffa657;
+    --nim-token-hyperlink: #58a6ff;
+    --nim-token-other: #c9d1d9;
+  }
+}
+
+html[data-theme="dark"],
+html.dark,
+body.dark,
+body[data-theme="dark"] {
+  --nim-code-background: #161b22;
+  --nim-code-foreground: #c9d1d9;
+  --nim-code-border: #30363d;
+  --nim-code-line-number: #7d8590;
+  --nim-code-line-number-border: #30363d;
+
+  --nim-token-keyword: #d2a8ff;
+  --nim-token-string: #a5d6ff;
+  --nim-token-escape: #79c0ff;
+  --nim-token-number: #79c0ff;
+  --nim-token-comment: #8b949e;
+  --nim-token-operator: #ff7b72;
+  --nim-token-punctuation: #c9d1d9;
+  --nim-token-identifier: #c9d1d9;
+  --nim-token-directive: #ffa657;
+  --nim-token-hyperlink: #58a6ff;
+  --nim-token-other: #c9d1d9;
+}
+
+pre.nim-code {
+  position: relative;
+  overflow: auto;
+  box-sizing: border-box;
+  tab-size: 2;
+
+  background: var(--nim-code-background);
+  color: var(--nim-code-foreground);
+  border: 1px solid var(--nim-code-border);
+  border-radius: 7px;
+}
+
+pre.nim-code code {
+  display: block;
+  box-sizing: border-box;
+  min-width: max-content;
+
+  color: var(--nim-code-foreground);
+  background: transparent;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    monospace;
+  line-height: 1.55;
+}
+
+pre.nim-line-numbers code {
+  counter-reset: nim-code-line;
+}
+
+pre.nim-line-numbers .code-line {
+  display: block;
+  position: relative;
+  min-height: 1.55em;
+  padding-left: 4.25rem;
+  padding-right: 1rem;
+  white-space: pre;
+}
+
+pre.nim-line-numbers .code-line::before {
+  counter-increment: nim-code-line;
+  content: counter(nim-code-line);
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 3.25rem;
+  padding-right: 0.75rem;
+
+  color: var(--nim-code-line-number);
+  border-right: 1px solid var(--nim-code-line-number-border);
+  text-align: right;
+
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+.tok-keyword {
+  color: var(--nim-token-keyword);
+  font-weight: 650;
+}
+
+.tok-string {
+  color: var(--nim-token-string);
+}
+
+.tok-escape {
+  color: var(--nim-token-escape);
+  font-weight: 600;
+}
+
+.tok-number {
+  color: var(--nim-token-number);
+}
+
+.tok-comment {
+  color: var(--nim-token-comment);
+  font-style: italic;
+}
+
+.tok-operator {
+  color: var(--nim-token-operator);
+}
+
+.tok-punctuation {
+  color: var(--nim-token-punctuation);
+}
+
+.tok-identifier {
+  color: var(--nim-token-identifier);
+}
+
+.tok-directive {
+  color: var(--nim-token-directive);
+  font-weight: 600;
+}
+
+.tok-hyperlink {
+  color: var(--nim-token-hyperlink);
+  text-decoration: underline;
+}
+
+.tok-other {
+  color: var(--nim-token-other);
+}
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -74,57 +254,55 @@
 <p><code>triangle</code> provides helpers for common triangle centers and circles.</p>
 <p>It supports centroid, incenter, excenters, circumcenter, orthocenter, incircle, excircles, and circumcircle.</p>
 <h2 id="import">Import</h2>
-<pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
-import atcoder/extra/geometry/triangle
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">geometry</span><span class="tok-operator">/</span><span class="tok-identifier">geometry_template</span>
+<span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">geometry</span><span class="tok-operator">/</span><span class="tok-identifier">triangle</span>
 </code></pre>
 <h2 id="example">Example</h2>
 <!-- nim-line-numbers -->
 
-<pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
-import atcoder/extra/geometry/triangle
-
-let
-  a = initPoint[float](0.0, 0.0)
-  b = initPoint[float](4.0, 0.0)
-  c = initPoint[float](0.0, 3.0)
-
-let g = centroid(a, b, c)
-let ic = incircle(a, b, c)
-let cc = circumcircle(a, b, c)
-
-doAssert g.re == 4.0 / 3.0
-doAssert g.im == 1.0
-
-doAssert ic.p.re == 1.0
-doAssert ic.p.im == 1.0
-doAssert ic.r == 1.0
-
-doAssert cc.p.re == 2.0
-doAssert cc.p.im == 1.5
-doAssert cc.r == 2.5
-</code></pre>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">geometry</span><span class="tok-operator">/</span><span class="tok-identifier">geometry_template</span></span>
+<span class="code-line"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">geometry</span><span class="tok-operator">/</span><span class="tok-identifier">triangle</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">let</span></span>
+<span class="code-line">  <span class="tok-identifier">a</span> <span class="tok-operator">=</span> <span class="tok-identifier">initPoint</span><span class="tok-punctuation">[</span><span class="tok-identifier">float</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">0.0</span><span class="tok-punctuation">,</span> <span class="tok-number">0.0</span><span class="tok-punctuation">)</span></span>
+<span class="code-line">  <span class="tok-identifier">b</span> <span class="tok-operator">=</span> <span class="tok-identifier">initPoint</span><span class="tok-punctuation">[</span><span class="tok-identifier">float</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">4.0</span><span class="tok-punctuation">,</span> <span class="tok-number">0.0</span><span class="tok-punctuation">)</span></span>
+<span class="code-line">  <span class="tok-identifier">c</span> <span class="tok-operator">=</span> <span class="tok-identifier">initPoint</span><span class="tok-punctuation">[</span><span class="tok-identifier">float</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">0.0</span><span class="tok-punctuation">,</span> <span class="tok-number">3.0</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">g</span> <span class="tok-operator">=</span> <span class="tok-identifier">centroid</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">,</span> <span class="tok-identifier">c</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">ic</span> <span class="tok-operator">=</span> <span class="tok-identifier">incircle</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">,</span> <span class="tok-identifier">c</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">cc</span> <span class="tok-operator">=</span> <span class="tok-identifier">circumcircle</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">,</span> <span class="tok-identifier">c</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">re</span> <span class="tok-operator">==</span> <span class="tok-number">4.0</span> <span class="tok-operator">/</span> <span class="tok-number">3.0</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">im</span> <span class="tok-operator">==</span> <span class="tok-number">1.0</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">ic</span><span class="tok-operator">.</span><span class="tok-identifier">p</span><span class="tok-operator">.</span><span class="tok-identifier">re</span> <span class="tok-operator">==</span> <span class="tok-number">1.0</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">ic</span><span class="tok-operator">.</span><span class="tok-identifier">p</span><span class="tok-operator">.</span><span class="tok-identifier">im</span> <span class="tok-operator">==</span> <span class="tok-number">1.0</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">ic</span><span class="tok-operator">.</span><span class="tok-identifier">r</span> <span class="tok-operator">==</span> <span class="tok-number">1.0</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">cc</span><span class="tok-operator">.</span><span class="tok-identifier">p</span><span class="tok-operator">.</span><span class="tok-identifier">re</span> <span class="tok-operator">==</span> <span class="tok-number">2.0</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">cc</span><span class="tok-operator">.</span><span class="tok-identifier">p</span><span class="tok-operator">.</span><span class="tok-identifier">im</span> <span class="tok-operator">==</span> <span class="tok-number">1.5</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">cc</span><span class="tok-operator">.</span><span class="tok-identifier">r</span> <span class="tok-operator">==</span> <span class="tok-number">2.5</span></span></code></pre>
 <h2 id="api">API</h2>
 <h3 id="centroid">centroid</h3>
-<pre><code class="language-nim">centroid(a, b, c)
-</code></pre>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-identifier">centroid</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">,</span> <span class="tok-identifier">c</span><span class="tok-punctuation">)</span></span></code></pre>
 <p>Returns the centroid.</p>
 <h3 id="incircle-incenter">incircle / incenter</h3>
-<pre><code class="language-nim">incircle(a, b, c)
-incenter(a, b, c)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">incircle</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">,</span> <span class="tok-identifier">c</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">incenter</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">,</span> <span class="tok-identifier">c</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>Returns the incircle or the incenter.</p>
 <h3 id="excircle-excenter">excircle / excenter</h3>
-<pre><code class="language-nim">excircle(a, b, c)
-excenter(a, b, c)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">excircle</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">,</span> <span class="tok-identifier">c</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">excenter</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">,</span> <span class="tok-identifier">c</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>Returns the three excircles or the three excenters.</p>
 <h3 id="circumcircle-circumcenter">circumcircle / circumcenter</h3>
-<pre><code class="language-nim">circumcircle(a, b, c)
-circumcenter(a, b, c)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">circumcircle</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">,</span> <span class="tok-identifier">c</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">circumcenter</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">,</span> <span class="tok-identifier">c</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>Returns the circumcircle or the circumcenter.</p>
 <h3 id="orthocenter">orthocenter</h3>
-<pre><code class="language-nim">orthocenter(a, b, c)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">orthocenter</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">,</span> <span class="tok-identifier">c</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>Returns the orthocenter.</p>
 <h2 id="notes">Notes</h2>

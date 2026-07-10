@@ -61,6 +61,186 @@
     };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style id="nim-acl-highlight-style-v1">
+:root {
+  --nim-code-background: #f6f8fa;
+  --nim-code-foreground: #24292f;
+  --nim-code-border: #d0d7de;
+  --nim-code-line-number: #8c959f;
+  --nim-code-line-number-border: #d8dee4;
+
+  --nim-token-keyword: #8250df;
+  --nim-token-string: #0a7f37;
+  --nim-token-escape: #116329;
+  --nim-token-number: #0550ae;
+  --nim-token-comment: #6e7781;
+  --nim-token-operator: #cf222e;
+  --nim-token-punctuation: #57606a;
+  --nim-token-identifier: #24292f;
+  --nim-token-directive: #953800;
+  --nim-token-hyperlink: #0969da;
+  --nim-token-other: #24292f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nim-code-background: #161b22;
+    --nim-code-foreground: #c9d1d9;
+    --nim-code-border: #30363d;
+    --nim-code-line-number: #7d8590;
+    --nim-code-line-number-border: #30363d;
+
+    --nim-token-keyword: #d2a8ff;
+    --nim-token-string: #a5d6ff;
+    --nim-token-escape: #79c0ff;
+    --nim-token-number: #79c0ff;
+    --nim-token-comment: #8b949e;
+    --nim-token-operator: #ff7b72;
+    --nim-token-punctuation: #c9d1d9;
+    --nim-token-identifier: #c9d1d9;
+    --nim-token-directive: #ffa657;
+    --nim-token-hyperlink: #58a6ff;
+    --nim-token-other: #c9d1d9;
+  }
+}
+
+html[data-theme="dark"],
+html.dark,
+body.dark,
+body[data-theme="dark"] {
+  --nim-code-background: #161b22;
+  --nim-code-foreground: #c9d1d9;
+  --nim-code-border: #30363d;
+  --nim-code-line-number: #7d8590;
+  --nim-code-line-number-border: #30363d;
+
+  --nim-token-keyword: #d2a8ff;
+  --nim-token-string: #a5d6ff;
+  --nim-token-escape: #79c0ff;
+  --nim-token-number: #79c0ff;
+  --nim-token-comment: #8b949e;
+  --nim-token-operator: #ff7b72;
+  --nim-token-punctuation: #c9d1d9;
+  --nim-token-identifier: #c9d1d9;
+  --nim-token-directive: #ffa657;
+  --nim-token-hyperlink: #58a6ff;
+  --nim-token-other: #c9d1d9;
+}
+
+pre.nim-code {
+  position: relative;
+  overflow: auto;
+  box-sizing: border-box;
+  tab-size: 2;
+
+  background: var(--nim-code-background);
+  color: var(--nim-code-foreground);
+  border: 1px solid var(--nim-code-border);
+  border-radius: 7px;
+}
+
+pre.nim-code code {
+  display: block;
+  box-sizing: border-box;
+  min-width: max-content;
+
+  color: var(--nim-code-foreground);
+  background: transparent;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    monospace;
+  line-height: 1.55;
+}
+
+pre.nim-line-numbers code {
+  counter-reset: nim-code-line;
+}
+
+pre.nim-line-numbers .code-line {
+  display: block;
+  position: relative;
+  min-height: 1.55em;
+  padding-left: 4.25rem;
+  padding-right: 1rem;
+  white-space: pre;
+}
+
+pre.nim-line-numbers .code-line::before {
+  counter-increment: nim-code-line;
+  content: counter(nim-code-line);
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 3.25rem;
+  padding-right: 0.75rem;
+
+  color: var(--nim-code-line-number);
+  border-right: 1px solid var(--nim-code-line-number-border);
+  text-align: right;
+
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+.tok-keyword {
+  color: var(--nim-token-keyword);
+  font-weight: 650;
+}
+
+.tok-string {
+  color: var(--nim-token-string);
+}
+
+.tok-escape {
+  color: var(--nim-token-escape);
+  font-weight: 600;
+}
+
+.tok-number {
+  color: var(--nim-token-number);
+}
+
+.tok-comment {
+  color: var(--nim-token-comment);
+  font-style: italic;
+}
+
+.tok-operator {
+  color: var(--nim-token-operator);
+}
+
+.tok-punctuation {
+  color: var(--nim-token-punctuation);
+}
+
+.tok-identifier {
+  color: var(--nim-token-identifier);
+}
+
+.tok-directive {
+  color: var(--nim-token-directive);
+  font-weight: 600;
+}
+
+.tok-hyperlink {
+  color: var(--nim-token-hyperlink);
+  text-decoration: underline;
+}
+
+.tok-other {
+  color: var(--nim-token-other);
+}
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -73,17 +253,17 @@
 <h1 id="_1">グラフのテンプレート</h1>
 <h2 id="_2">コンストラクタ</h2>
 <p>グラフを作成します。ノードの型を$U$, 重みの型を$T$としています。</p>
-<pre><code class="language-nim">var g = initGraph(n:int, T:typedesc)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">g</span> <span class="tok-operator">=</span> <span class="tok-identifier">initGraph</span><span class="tok-punctuation">(</span><span class="tok-identifier">n</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">T</span><span class="tok-punctuation">:</span><span class="tok-identifier">typedesc</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>頂点数$n$, 重みの型が$T$のグラフを作成。第2引数の$T$は省略可能で省略した場合はintとなります。この呼び方においてはノードの型Uはintが自動で指定されます。</p>
-<pre><code class="language-nim">var g = initGraph(n:int, id:proc(u:U):int, T:typedesc)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">g</span> <span class="tok-operator">=</span> <span class="tok-identifier">initGraph</span><span class="tok-punctuation">(</span><span class="tok-identifier">n</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">id</span><span class="tok-punctuation">:</span><span class="tok-keyword">proc</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">:</span><span class="tok-identifier">U</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">T</span><span class="tok-punctuation">:</span><span class="tok-identifier">typedesc</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>頂点数$n$, ノードの型が$U$, 重み型が$T$のグラフを作成します。
 第2引数のidは$U$からint($n$未満の非負整数)を返す関数で異なるノード$U$ごとに違う値を返さなければなりません。
 id関数は最短路問題等でノードに紐付けられたデータを一次元の配列として扱うためのもので必須です。
 $U$の型はid関数によって特定されます。第3引数の$T$は省略可能で省略した場合はintとなります。</p>
-<pre><code class="language-nim">var g = initGraph(n:int, id:proc(u:U):int, adj:proc(u:U):seq[tuple[dst:U, weight:T]])
-var g = initGraph(n:int, id:proc(u:U):int, adj:iterator(u:U):tuple[dst:U, weight:T])
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">g</span> <span class="tok-operator">=</span> <span class="tok-identifier">initGraph</span><span class="tok-punctuation">(</span><span class="tok-identifier">n</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">id</span><span class="tok-punctuation">:</span><span class="tok-keyword">proc</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">:</span><span class="tok-identifier">U</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">adj</span><span class="tok-punctuation">:</span><span class="tok-keyword">proc</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">:</span><span class="tok-identifier">U</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-keyword">tuple</span><span class="tok-punctuation">[</span><span class="tok-identifier">dst</span><span class="tok-punctuation">:</span><span class="tok-identifier">U</span><span class="tok-punctuation">,</span> <span class="tok-identifier">weight</span><span class="tok-punctuation">:</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">var</span> <span class="tok-identifier">g</span> <span class="tok-operator">=</span> <span class="tok-identifier">initGraph</span><span class="tok-punctuation">(</span><span class="tok-identifier">n</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">id</span><span class="tok-punctuation">:</span><span class="tok-keyword">proc</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">:</span><span class="tok-identifier">U</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">adj</span><span class="tok-punctuation">:</span><span class="tok-keyword">iterator</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">:</span><span class="tok-identifier">U</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span><span class="tok-keyword">tuple</span><span class="tok-punctuation">[</span><span class="tok-identifier">dst</span><span class="tok-punctuation">:</span><span class="tok-identifier">U</span><span class="tok-punctuation">,</span> <span class="tok-identifier">weight</span><span class="tok-punctuation">:</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>隣接点をprocやiterator(adj)で指定できます。この場合、各アルゴリズムで隣接点探索をする際にadjが呼び出されます。
 iteratorはclosureでなくてはなりません。
@@ -93,7 +273,7 @@ iteratorはclosureでなくてはなりません。
 <li>$0 \leq n \leq 10^8$</li>
 </ul>
 <h2 id="_3">辺の追加</h2>
-<pre><code class="language-nim">g.addEdge(u:U, v:U, w:T)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">:</span><span class="tok-identifier">U</span><span class="tok-punctuation">,</span> <span class="tok-identifier">v</span><span class="tok-punctuation">:</span><span class="tok-identifier">U</span><span class="tok-punctuation">,</span> <span class="tok-identifier">w</span><span class="tok-punctuation">:</span><span class="tok-identifier">T</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>頂点$u$から頂点$v$へ重み$w$の有向辺を追加する。
 $w$は省略可能。省略した場合はT(1)と解釈される。</p>
@@ -101,7 +281,7 @@ $w$は省略可能。省略した場合はT(1)と解釈される。</p>
 <ul>
 <li>$0 \leq u, v &lt; n$</li>
 </ul>
-<pre><code class="language-nim">g.addBiEdge(u:U, v:U, w:T)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addBiEdge</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">:</span><span class="tok-identifier">U</span><span class="tok-punctuation">,</span> <span class="tok-identifier">v</span><span class="tok-punctuation">:</span><span class="tok-identifier">U</span><span class="tok-punctuation">,</span> <span class="tok-identifier">w</span><span class="tok-punctuation">:</span><span class="tok-identifier">T</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>頂点$u$と頂点$v$を結ぶ重み$w$の無向辺を追加
 $w$は省略可能。省略した場合は1と解釈される。</p>
@@ -110,10 +290,10 @@ $w$は省略可能。省略した場合は1と解釈される。</p>
 <li>$0 \leq u, v &lt; n$</li>
 </ul>
 <h2 id="_4">配列指定によるグラフ作成</h2>
-<pre><code class="language-nim">initDirectedGraph[T](n:int, a:seq[int], b:seq[int], w:seq[T])
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">initDirectedGraph</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">n</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">a</span><span class="tok-punctuation">:</span><span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span><span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">w</span><span class="tok-punctuation">:</span><span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>aの長さを$m$としたとき、各$i = 0, 1, \ldots, m - 1$について、a[i]からb[i]へ重み$w[i]$の辺を持つ有向グラフを作成。a, b, wは0-basedでなくてはならないことに注意。</p>
-<pre><code class="language-nim">initUnDirectedGraph[T](n:int, a:seq[int], b:seq[int], w:seq[T])
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">initUnDirectedGraph</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">n</span><span class="tok-punctuation">:</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">a</span><span class="tok-punctuation">:</span><span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span><span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">w</span><span class="tok-punctuation">:</span><span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p>aの長さを$m$としたとき、各$i = 0, 1, \ldots, m - 1$について、a[i]とb[i]を結ぶ重み$w[i]$の辺を持つ無向グラフを作成。a, b, wは0-basedでなくてはならないことに注意。</p>
 <p><strong><h4 class="doc-keyword">計算量</h4></strong></p>
@@ -122,24 +302,24 @@ $w$は省略可能。省略した場合は1と解釈される。</p>
 </ul>
 <h2 id="_5">基本例</h2>
 <p><code>initGraph(n)</code> で隣接リスト形式の graph を作れます。<code>addEdge</code> は有向辺、<code>addBiEdge</code> は両方向の辺を追加します。</p>
-<pre><code class="language-nim">import atcoder/extra/graph/graph_template
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">graph_template</span>
 
-var g = initGraph(3)
-g.addEdge(0, 1)
-g.addEdge(1, 2, 5)
+<span class="tok-keyword">var</span> <span class="tok-identifier">g</span> <span class="tok-operator">=</span> <span class="tok-identifier">initGraph</span><span class="tok-punctuation">(</span><span class="tok-number">3</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">g</span><span class="tok-operator">.</span><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">)</span>
 
-doAssert g[0][0].dst == 1
-doAssert g[1][0].weight == 5
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">g</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">]</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">dst</span> <span class="tok-operator">==</span> <span class="tok-number">1</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">g</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">]</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">weight</span> <span class="tok-operator">==</span> <span class="tok-number">5</span>
 </code></pre>
 <p>辺の列から graph を作る場合は <code>initDirectedGraph</code> / <code>initUndirectedGraph</code> を使えます。</p>
-<pre><code class="language-nim">let a = @[0, 1]
-let b = @[1, 2]
-let c = @[3, 4]
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">a</span> <span class="tok-operator">=</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">]</span>
+<span class="tok-keyword">let</span> <span class="tok-identifier">b</span> <span class="tok-operator">=</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">]</span>
+<span class="tok-keyword">let</span> <span class="tok-identifier">c</span> <span class="tok-operator">=</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">]</span>
 
-let g = initDirectedGraph(3, a, b, c)
+<span class="tok-keyword">let</span> <span class="tok-identifier">g</span> <span class="tok-operator">=</span> <span class="tok-identifier">initDirectedGraph</span><span class="tok-punctuation">(</span><span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">,</span> <span class="tok-identifier">c</span><span class="tok-punctuation">)</span>
 
-doAssert g[0][0].dst == 1
-doAssert g[0][0].weight == 3
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">g</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">]</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">dst</span> <span class="tok-operator">==</span> <span class="tok-number">1</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">g</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">]</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">weight</span> <span class="tok-operator">==</span> <span class="tok-number">3</span>
 </code></pre>
   </main>
 </body>

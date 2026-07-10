@@ -28,5 +28,5 @@ O((n + q) sqrt(n) * add/remove cost)
 ## Related resources
 
 - [cp-algorithms: Mo's Algorithm](https://cp-algorithms.com/data_structures/sqrt_decomposition.html#mos-algorithm)
-- ei1333 Library: Mo
-- Nyaan Library: Mo
+- [ei1333 Library: Mo](https://ei1333.github.io/library/other/mo.hpp.html)
+- [Nyaan Library: Mo](https://nyaannyaan.github.io/library/misc/mo.hpp.html)

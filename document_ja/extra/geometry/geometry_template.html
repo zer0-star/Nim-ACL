@@ -61,6 +61,186 @@
     };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style id="nim-acl-highlight-style-v1">
+:root {
+  --nim-code-background: #f6f8fa;
+  --nim-code-foreground: #24292f;
+  --nim-code-border: #d0d7de;
+  --nim-code-line-number: #8c959f;
+  --nim-code-line-number-border: #d8dee4;
+
+  --nim-token-keyword: #8250df;
+  --nim-token-string: #0a7f37;
+  --nim-token-escape: #116329;
+  --nim-token-number: #0550ae;
+  --nim-token-comment: #6e7781;
+  --nim-token-operator: #cf222e;
+  --nim-token-punctuation: #57606a;
+  --nim-token-identifier: #24292f;
+  --nim-token-directive: #953800;
+  --nim-token-hyperlink: #0969da;
+  --nim-token-other: #24292f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nim-code-background: #161b22;
+    --nim-code-foreground: #c9d1d9;
+    --nim-code-border: #30363d;
+    --nim-code-line-number: #7d8590;
+    --nim-code-line-number-border: #30363d;
+
+    --nim-token-keyword: #d2a8ff;
+    --nim-token-string: #a5d6ff;
+    --nim-token-escape: #79c0ff;
+    --nim-token-number: #79c0ff;
+    --nim-token-comment: #8b949e;
+    --nim-token-operator: #ff7b72;
+    --nim-token-punctuation: #c9d1d9;
+    --nim-token-identifier: #c9d1d9;
+    --nim-token-directive: #ffa657;
+    --nim-token-hyperlink: #58a6ff;
+    --nim-token-other: #c9d1d9;
+  }
+}
+
+html[data-theme="dark"],
+html.dark,
+body.dark,
+body[data-theme="dark"] {
+  --nim-code-background: #161b22;
+  --nim-code-foreground: #c9d1d9;
+  --nim-code-border: #30363d;
+  --nim-code-line-number: #7d8590;
+  --nim-code-line-number-border: #30363d;
+
+  --nim-token-keyword: #d2a8ff;
+  --nim-token-string: #a5d6ff;
+  --nim-token-escape: #79c0ff;
+  --nim-token-number: #79c0ff;
+  --nim-token-comment: #8b949e;
+  --nim-token-operator: #ff7b72;
+  --nim-token-punctuation: #c9d1d9;
+  --nim-token-identifier: #c9d1d9;
+  --nim-token-directive: #ffa657;
+  --nim-token-hyperlink: #58a6ff;
+  --nim-token-other: #c9d1d9;
+}
+
+pre.nim-code {
+  position: relative;
+  overflow: auto;
+  box-sizing: border-box;
+  tab-size: 2;
+
+  background: var(--nim-code-background);
+  color: var(--nim-code-foreground);
+  border: 1px solid var(--nim-code-border);
+  border-radius: 7px;
+}
+
+pre.nim-code code {
+  display: block;
+  box-sizing: border-box;
+  min-width: max-content;
+
+  color: var(--nim-code-foreground);
+  background: transparent;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    monospace;
+  line-height: 1.55;
+}
+
+pre.nim-line-numbers code {
+  counter-reset: nim-code-line;
+}
+
+pre.nim-line-numbers .code-line {
+  display: block;
+  position: relative;
+  min-height: 1.55em;
+  padding-left: 4.25rem;
+  padding-right: 1rem;
+  white-space: pre;
+}
+
+pre.nim-line-numbers .code-line::before {
+  counter-increment: nim-code-line;
+  content: counter(nim-code-line);
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 3.25rem;
+  padding-right: 0.75rem;
+
+  color: var(--nim-code-line-number);
+  border-right: 1px solid var(--nim-code-line-number-border);
+  text-align: right;
+
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+.tok-keyword {
+  color: var(--nim-token-keyword);
+  font-weight: 650;
+}
+
+.tok-string {
+  color: var(--nim-token-string);
+}
+
+.tok-escape {
+  color: var(--nim-token-escape);
+  font-weight: 600;
+}
+
+.tok-number {
+  color: var(--nim-token-number);
+}
+
+.tok-comment {
+  color: var(--nim-token-comment);
+  font-style: italic;
+}
+
+.tok-operator {
+  color: var(--nim-token-operator);
+}
+
+.tok-punctuation {
+  color: var(--nim-token-punctuation);
+}
+
+.tok-identifier {
+  color: var(--nim-token-identifier);
+}
+
+.tok-directive {
+  color: var(--nim-token-directive);
+  font-weight: 600;
+}
+
+.tok-hyperlink {
+  color: var(--nim-token-hyperlink);
+  text-decoration: underline;
+}
+
+.tok-other {
+  color: var(--nim-token-other);
+}
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -75,28 +255,28 @@
 <p>点、直線、線分、円、外積・内積、ccw、交差判定、距離、交点などを扱えます。</p>
 <p>新しく書くコードでは、読みやすい facade の <a href="./geometry.html"><code>atcoder/extra/geometry/geometry</code></a> も利用できます。</p>
 <h2 id="import">import</h2>
-<pre><code class="language-nim">import atcoder/extra/geometry/geometry_template
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">geometry</span><span class="tok-operator">/</span><span class="tok-identifier">geometry_template</span>
 </code></pre>
 <h2 id="_1">型</h2>
-<pre><code class="language-nim">type Point[Real]
-type Line[Real]
-type Segment[Real]
-type Circle[Real]
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">type</span> <span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span>
+<span class="tok-keyword">type</span> <span class="tok-identifier">Line</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span>
+<span class="tok-keyword">type</span> <span class="tok-identifier">Segment</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span>
+<span class="tok-keyword">type</span> <span class="tok-identifier">Circle</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span>
 </code></pre>
 <p><code>Real</code> には通常 <code>float</code> などの実数型を指定します。</p>
 <h2 id="point">Point</h2>
 <h3 id="_2">定義</h3>
-<pre><code class="language-nim">proc initPoint[Real](x, y: Real): Point[Real]
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">initPoint</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">x</span><span class="tok-punctuation">,</span> <span class="tok-identifier">y</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Real</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span>
 </code></pre>
 <p>座標 <code>(x, y)</code> の点を返します。</p>
 <h3 id="_3">使用例</h3>
-<pre><code class="language-nim">let p = initPoint[float](1.0, 2.0)
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">p</span> <span class="tok-operator">=</span> <span class="tok-identifier">initPoint</span><span class="tok-punctuation">[</span><span class="tok-identifier">float</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">1.0</span><span class="tok-punctuation">,</span> <span class="tok-number">2.0</span><span class="tok-punctuation">)</span>
 </code></pre>
 <h2 id="line-segment">Line / Segment</h2>
 <h3 id="_4">定義</h3>
-<pre><code class="language-nim">proc initLine[Real](a, b: Point[Real]): Line[Real]
-proc initLine[Real](A, B, C: Real): Line[Real]
-proc initSegment[Real](a, b: Point[Real]): Segment[Real]
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">initLine</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Line</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">initLine</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">A</span><span class="tok-punctuation">,</span> <span class="tok-identifier">B</span><span class="tok-punctuation">,</span> <span class="tok-identifier">C</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Real</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Line</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">initSegment</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Segment</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span>
 </code></pre>
 <ul>
 <li><code>initLine(a, b)</code> は 2 点 <code>a</code>, <code>b</code> を通る直線を返します。</li>
@@ -104,13 +284,13 @@ proc initSegment[Real](a, b: Point[Real]): Segment[Real]
 <li><code>initSegment(a, b)</code> は端点 <code>a</code>, <code>b</code> の線分を返します。</li>
 </ul>
 <p>既存の短縮表記として、次も使えます。</p>
-<pre><code class="language-nim">proc `--`[Real](a, b: Point[Real]): Line[Real]
-proc `!!`[Real](a, b: Point[Real]): Segment[Real]
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-punctuation">`</span><span class="tok-operator">--</span><span class="tok-punctuation">`</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Line</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span>
+<span class="tok-keyword">proc</span> <span class="tok-punctuation">`</span><span class="tok-operator">!!</span><span class="tok-punctuation">`</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Segment</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span>
 </code></pre>
 <h2 id="circle">Circle</h2>
 <h3 id="_5">定義</h3>
-<pre><code class="language-nim">proc initCircle[Real](p: Point[Real], r: Real): Circle[Real]
-proc initCircle[Real](a, b, c: Point[Real]): Circle[Real]
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">initCircle</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">p</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">r</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Real</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Circle</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">initCircle</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">,</span> <span class="tok-identifier">c</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Circle</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span>
 </code></pre>
 <ul>
 <li><code>initCircle(p, r)</code> は中心 <code>p</code>、半径 <code>r</code> の円を返します。</li>
@@ -118,13 +298,13 @@ proc initCircle[Real](a, b, c: Point[Real]): Circle[Real]
 </ul>
 <h2 id="_6">基本演算</h2>
 <h3 id="_7">定義</h3>
-<pre><code class="language-nim">proc cross[Real](a, b: Point[Real]): Real
-proc dot[Real](a, b: Point[Real]): Real
-proc norm[Real](a: Point[Real]): Real
-proc distance[Real](a, b: Point[Real]): Real
-proc rotate[Real](theta: Real, p: Point[Real]): Point[Real]
-proc radianToDegree[Real](r: Real): Real
-proc degreeToRadian[Real](d: Real): Real
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">cross</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Real</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">dot</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Real</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">norm</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Real</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">distance</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Real</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">rotate</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">theta</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Real</span><span class="tok-punctuation">,</span> <span class="tok-identifier">p</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">radianToDegree</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">r</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Real</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Real</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">degreeToRadian</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">d</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Real</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Real</span>
 </code></pre>
 <ul>
 <li><code>cross(a, b)</code> は外積を返します。</li>
@@ -135,54 +315,53 @@ proc degreeToRadian[Real](d: Real): Real
 </ul>
 <h2 id="ccw">ccw</h2>
 <h3 id="_8">定義</h3>
-<pre><code class="language-nim">type CCWState = enum
-  ONLINE_FRONT
-  CLOCKWISE
-  ON_SEGMENT
-  COUNTER_CLOCKWISE
-  ONLINE_BACK
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">type</span> <span class="tok-identifier">CCWState</span> <span class="tok-operator">=</span> <span class="tok-keyword">enum</span>
+  <span class="tok-identifier">ONLINE_FRONT</span>
+  <span class="tok-identifier">CLOCKWISE</span>
+  <span class="tok-identifier">ON_SEGMENT</span>
+  <span class="tok-identifier">COUNTER_CLOCKWISE</span>
+  <span class="tok-identifier">ONLINE_BACK</span>
 
-proc ccw[Real](a, b, c: Point[Real]): CCWState
+<span class="tok-keyword">proc</span> <span class="tok-identifier">ccw</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">,</span> <span class="tok-identifier">c</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">CCWState</span>
 </code></pre>
 <p>点 <code>a</code>, <code>b</code>, <code>c</code> の位置関係を返します。</p>
 <h2 id="_9">交差判定・距離・交点</h2>
 <h3 id="_10">定義</h3>
-<pre><code class="language-nim">proc parallel[Real](a, b: Line[Real]): bool
-proc orthogonal[Real](a, b: Line[Real]): bool
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">parallel</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Line</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">bool</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">orthogonal</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Line</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">bool</span>
 
-proc intersect[Real](a, b: Line[Real]): bool
-proc intersect[Real](a, b: Segment[Real]): bool
-proc intersect[Real](a, b: Circle[Real]): int
+<span class="tok-keyword">proc</span> <span class="tok-identifier">intersect</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Line</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">bool</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">intersect</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Segment</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">bool</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">intersect</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Circle</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
 
-proc distance[Real](l: Line[Real], p: Point[Real]): Real
-proc distance[Real](s: Segment[Real], p: Point[Real]): Real
-proc distance[Real](a, b: Segment[Real]): Real
+<span class="tok-keyword">proc</span> <span class="tok-identifier">distance</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">l</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Line</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">p</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Real</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">distance</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">s</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Segment</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">p</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Real</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">distance</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Segment</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Real</span>
 
-proc crosspoint[Real](a, b: Line[Real]): Point[Real]
-proc crosspoint[Real](a, b: Segment[Real]): Point[Real]
-proc crosspoint[Real](c: Circle[Real], l: Line[Real]): tuple
-proc crosspoint[Real](c1, c2: Circle[Real]): (Point[Real], Point[Real])
+<span class="tok-keyword">proc</span> <span class="tok-identifier">crosspoint</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Line</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">crosspoint</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Segment</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">crosspoint</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">c</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Circle</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">l</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Line</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-keyword">tuple</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">crosspoint</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">c1</span><span class="tok-punctuation">,</span> <span class="tok-identifier">c2</span><span class="tok-punctuation">:</span> <span class="tok-identifier">Circle</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-punctuation">(</span><span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">Point</span><span class="tok-punctuation">[</span><span class="tok-identifier">Real</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span>
 </code></pre>
 <h2 id="_11">使用例</h2>
 <!-- nim-line-numbers -->
 
-<pre><code class="language-nim">let
-  a = initPoint[float](0.0, 0.0)
-  b = initPoint[float](2.0, 2.0)
-  c = initPoint[float](0.0, 2.0)
-  d = initPoint[float](2.0, 0.0)
-
-let
-  l1 = initLine(a, b)
-  l2 = initLine(c, d)
-
-doAssert intersect(l1, l2)
-
-let p = crosspoint(l1, l2)
-
-doAssert p.re == 1.0
-doAssert p.im == 1.0
-</code></pre>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">let</span></span>
+<span class="code-line">  <span class="tok-identifier">a</span> <span class="tok-operator">=</span> <span class="tok-identifier">initPoint</span><span class="tok-punctuation">[</span><span class="tok-identifier">float</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">0.0</span><span class="tok-punctuation">,</span> <span class="tok-number">0.0</span><span class="tok-punctuation">)</span></span>
+<span class="code-line">  <span class="tok-identifier">b</span> <span class="tok-operator">=</span> <span class="tok-identifier">initPoint</span><span class="tok-punctuation">[</span><span class="tok-identifier">float</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">2.0</span><span class="tok-punctuation">,</span> <span class="tok-number">2.0</span><span class="tok-punctuation">)</span></span>
+<span class="code-line">  <span class="tok-identifier">c</span> <span class="tok-operator">=</span> <span class="tok-identifier">initPoint</span><span class="tok-punctuation">[</span><span class="tok-identifier">float</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">0.0</span><span class="tok-punctuation">,</span> <span class="tok-number">2.0</span><span class="tok-punctuation">)</span></span>
+<span class="code-line">  <span class="tok-identifier">d</span> <span class="tok-operator">=</span> <span class="tok-identifier">initPoint</span><span class="tok-punctuation">[</span><span class="tok-identifier">float</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">2.0</span><span class="tok-punctuation">,</span> <span class="tok-number">0.0</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">let</span></span>
+<span class="code-line">  <span class="tok-identifier">l1</span> <span class="tok-operator">=</span> <span class="tok-identifier">initLine</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">)</span></span>
+<span class="code-line">  <span class="tok-identifier">l2</span> <span class="tok-operator">=</span> <span class="tok-identifier">initLine</span><span class="tok-punctuation">(</span><span class="tok-identifier">c</span><span class="tok-punctuation">,</span> <span class="tok-identifier">d</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">intersect</span><span class="tok-punctuation">(</span><span class="tok-identifier">l1</span><span class="tok-punctuation">,</span> <span class="tok-identifier">l2</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">p</span> <span class="tok-operator">=</span> <span class="tok-identifier">crosspoint</span><span class="tok-punctuation">(</span><span class="tok-identifier">l1</span><span class="tok-punctuation">,</span> <span class="tok-identifier">l2</span><span class="tok-punctuation">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">p</span><span class="tok-operator">.</span><span class="tok-identifier">re</span> <span class="tok-operator">==</span> <span class="tok-number">1.0</span></span>
+<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">p</span><span class="tok-operator">.</span><span class="tok-identifier">im</span> <span class="tok-operator">==</span> <span class="tok-number">1.0</span></span></code></pre>
 <h2 id="_12">計算量</h2>
 <p>各基本操作は定数時間です。</p>
 <h2 id="_13">注意</h2>
