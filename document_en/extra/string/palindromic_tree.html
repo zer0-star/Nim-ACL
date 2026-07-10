@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PalindromicTree / Eertree</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="palindromictree-eertree">PalindromicTree / Eertree</h1>
+<p><code>PalindromicTree</code>, also called <code>Eertree</code>, stores each distinct palindromic substring as a state.</p>
+<p>Manacher computes palindrome radii around centers, while a Palindromic Tree represents distinct palindromes and their suffix relations.</p>
+<h2 id="use-cases">Use cases</h2>
+<ul>
+<li>counting distinct palindromic substrings</li>
+<li>occurrence counts of each palindrome</li>
+<li>maintaining palindromes while appending characters</li>
+<li>DP over palindromic suffixes</li>
+<li>longest palindromic substring</li>
+</ul>
+<h2 id="import-and-construction">Import and construction</h2>
+<pre><code class="language-nim">import atcoder/extra/string/palindromic_tree
+
+proc initPalindromicTree(): PalindromicTree
+proc initPalindromicTree(s: string): PalindromicTree
+proc add(pt: var PalindromicTree, ch: char): int
+proc buildOccurrences(pt: var PalindromicTree)
+</code></pre>
+<h2 id="operations">Operations</h2>
+<pre><code class="language-nim">proc distinctPalindromeCount(pt: PalindromicTree): int
+proc totalPalindromeOccurrences(pt: PalindromicTree): int
+proc palindromes(pt: PalindromicTree): seq[string]
+proc longestPalindromeRange(pt: PalindromicTree): tuple[l, r: int]
+proc longestPalindromeLength(pt: PalindromicTree): int
+</code></pre>
+<h2 id="example">Example</h2>
+<pre><code class="language-nim">let pt = initPalindromicTree(&quot;ababa&quot;)
+
+doAssert pt.distinctPalindromeCount == 5
+doAssert pt.totalPalindromeOccurrences == 9
+doAssert pt.longestPalindromeLength == 5
+</code></pre>
+<h2 id="manacher-or-palindromic-tree">Manacher or Palindromic Tree?</h2>
+<ul>
+<li>palindrome radii and range checks: <code>Manacher</code></li>
+<li>distinct palindromes, counts, suffix relations: <code>PalindromicTree</code></li>
+</ul>
+<h2 id="complexity">Complexity</h2>
+<ul>
+<li>build: expected <code>O(n)</code></li>
+<li>nodes: at most <code>n+2</code></li>
+<li>memory: <code>O(n)</code></li>
+</ul>
+  </main>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PalindromicTree / Eertree</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="palindromictree-eertree">PalindromicTree / Eertree</h1>
+<p><code>PalindromicTree</code> は、文字列に含まれる異なる回文 substring を状態として管理する data structure です。<code>Eertree</code> とも呼ばれます。</p>
+<p>Manacher が各中心の回文半径を求めるのに対し、Palindromic Tree は「異なる回文そのもの」と suffix relation を管理します。</p>
+<h2 id="_1">使いどころ</h2>
+<ul>
+<li>異なる回文 substring の個数</li>
+<li>各回文の出現回数</li>
+<li>文字を末尾に追加しながら回文を管理する</li>
+<li>回文 suffix を使う DP</li>
+<li>最長回文 substring</li>
+</ul>
+<h2 id="_2">考え方</h2>
+<p>各 node は1つの異なる回文を表します。</p>
+<p>文字 <code>c</code> を追加すると、現在の最長 suffix palindrome から suffix link をたどり、両端に <code>c</code> を追加できる回文を探します。新しい回文なら node を1つ追加します。</p>
+<p>2つの特別な root を持ちます。</p>
+<ul>
+<li>長さ <code>-1</code> の仮想回文</li>
+<li>長さ <code>0</code> の空回文</li>
+</ul>
+<h2 id="import">import</h2>
+<pre><code class="language-nim">import atcoder/extra/string/palindromic_tree
+</code></pre>
+<h2 id="_3">構築</h2>
+<pre><code class="language-nim">proc initPalindromicTree(): PalindromicTree
+proc initPalindromicTree(s: string): PalindromicTree
+proc add(pt: var PalindromicTree, ch: char): int
+proc add(pt: var PalindromicTree, s: string)
+proc buildOccurrences(pt: var PalindromicTree)
+</code></pre>
+<h2 id="_4">操作</h2>
+<pre><code class="language-nim">proc distinctPalindromeCount(pt: PalindromicTree): int
+proc totalPalindromeOccurrences(pt: PalindromicTree): int
+proc palindrome(pt: PalindromicTree, node: int): string
+proc palindromes(pt: PalindromicTree): seq[string]
+proc longestPalindromeRange(pt: PalindromicTree): tuple[l, r: int]
+proc longestPalindromeLength(pt: PalindromicTree): int
+</code></pre>
+<h2 id="_5">使用例</h2>
+<pre><code class="language-nim">let pt = initPalindromicTree(&quot;ababa&quot;)
+
+doAssert pt.distinctPalindromeCount == 5
+doAssert pt.totalPalindromeOccurrences == 9
+doAssert pt.longestPalindromeLength == 5
+
+for p in pt.palindromes:
+  echo p
+</code></pre>
+<h2 id="manacher">Manacher との使い分け</h2>
+<ul>
+<li>回文判定や中心ごとの半径が欲しい: <code>Manacher</code></li>
+<li>異なる回文・出現回数・suffix relation が欲しい: <code>PalindromicTree</code></li>
+</ul>
+<h2 id="_6">計算量</h2>
+<ul>
+<li>構築: <code>O(n)</code> 期待時間</li>
+<li>node 数: 異なる回文数 + 2、高々 <code>n+2</code></li>
+<li>memory: <code>O(n)</code></li>
+</ul>
+<h2 id="_7">関連資料・他言語ライブラリ</h2>
+<ul>
+<li><a href="https://cp-algorithms.com/string/eertree.html">cp-algorithms: Palindromic Tree</a></li>
+<li>Nyaan Library: Palindromic Tree</li>
+<li>ei1333 Library: Palindromic Tree</li>
+</ul>
+  </main>
+</body>
+</html>
