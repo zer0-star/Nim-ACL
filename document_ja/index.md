@@ -1,5 +1,10 @@
 # AC(AtCoder) Library Document
 
+
+## ガイド
+
+- [AtCoder 色別ライブラリガイド](./guide/atcoder_level_guide.html)
+
 ## インストール方法
 
 - zipファイルを解凍すると、`ac-library`フォルダ, そしてその中に`atcoder`フォルダが入っているはずです。

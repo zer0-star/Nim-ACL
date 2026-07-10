@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AtCoder 色別ライブラリガイド</title>
+  <link rel="stylesheet" href="../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../index.html">
+      <img class="site-logo" src="../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="atcoder">AtCoder 色別ライブラリガイド</h1>
+<p>このページでは、Nim-ACL のライブラリを AtCoder のおおまかな色帯に合わせて分類します。</p>
+<p>分類は絶対的なものではありません。同じアルゴリズムでも、問題への気づき方や他の技法との組み合わせによって難易度は大きく変わります。</p>
+<p>ここでは、次の目安を使います。</p>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>色の目安</th>
+<th>想定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初級</td>
+<td>灰・茶・緑以下</td>
+<td>ABC の A〜D、基本的な E</td>
+</tr>
+<tr>
+<td>中級</td>
+<td>水・青以下</td>
+<td>ABC E〜F、ARC の基本問題</td>
+</tr>
+<tr>
+<td>上級</td>
+<td>黄以上</td>
+<td>ARC 上位、AGC、CF Div.1、Library Checker 上級</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_1">記号</h2>
+<ul>
+<li><strong>必須</strong>：その色帯で優先して覚えたい</li>
+<li><strong>推奨</strong>：出題頻度が高く、覚える価値が大きい</li>
+<li><strong>発展</strong>：特定の問題で非常に強い</li>
+<li><strong>内部・高度</strong>：利用よりも実装理解や特殊用途向け</li>
+</ul>
+<hr>
+<h1 id="_2">初級：緑以下</h1>
+<p>初級では、難しい data structure を大量に覚えるより、</p>
+<ol>
+<li>配列・文字列を整理する</li>
+<li>graph を正しく走査する</li>
+<li>prefix sum や DSU で計算量を落とす</li>
+<li>よく出る定型処理をライブラリ化する</li>
+</ol>
+<p>ことが重要です。</p>
+<h2 id="_3">最初に覚えたいもの</h2>
+<table>
+<thead>
+<tr>
+<th>分野</th>
+<th>ライブラリ</th>
+<th style="text-align: right;">重要度</th>
+<th>典型的な用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>配列</td>
+<td><a href="../extra/algorithm/coordinate_compression.html">Coordinate Compression</a></td>
+<td style="text-align: right;">必須</td>
+<td>大きい座標を <code>0 ..&lt; k</code> に圧縮</td>
+</tr>
+<tr>
+<td>配列</td>
+<td><a href="../extra/algorithm/run_length_encoding.html">Run-Length Encoding</a></td>
+<td style="text-align: right;">必須</td>
+<td>連続する同値要素を run にまとめる</td>
+</tr>
+<tr>
+<td>集合</td>
+<td><a href="../extra/structure/mex_set.html">MexSet</a></td>
+<td style="text-align: right;">推奨</td>
+<td>動的な mex</td>
+</tr>
+<tr>
+<td>集合</td>
+<td><a href="../extra/structure/sorted_set_map.html">SortedSet / SortedMap</a></td>
+<td style="text-align: right;">推奨</td>
+<td>順序付き集合・写像</td>
+</tr>
+<tr>
+<td>graph</td>
+<td>Dijkstra</td>
+<td style="text-align: right;">必須</td>
+<td>非負辺の最短路</td>
+</tr>
+<tr>
+<td>graph</td>
+<td>0-1 BFS / Dijkstra01</td>
+<td style="text-align: right;">推奨</td>
+<td>重みが 0/1 の最短路</td>
+</tr>
+<tr>
+<td>graph</td>
+<td>Topological Sort</td>
+<td style="text-align: right;">必須</td>
+<td>DAG の順序・DP</td>
+</tr>
+<tr>
+<td>graph</td>
+<td>Cycle Detection</td>
+<td style="text-align: right;">推奨</td>
+<td>graph の cycle 判定</td>
+</tr>
+<tr>
+<td>graph</td>
+<td>Kruskal / Prim</td>
+<td style="text-align: right;">推奨</td>
+<td>最小全域木</td>
+</tr>
+<tr>
+<td>graph</td>
+<td><a href="../extra/graph/functional_graph.html">Functional Graph / Doubling</a></td>
+<td style="text-align: right;">推奨</td>
+<td>写像を <code>k</code> 回適用</td>
+</tr>
+<tr>
+<td>文字列</td>
+<td><a href="../extra/string/kmp.html">KMP / Prefix Function</a></td>
+<td style="text-align: right;">推奨</td>
+<td>pattern 検索・周期</td>
+</tr>
+<tr>
+<td>幾何</td>
+<td><a href="../extra/geometry/geometry.html">Geometry facade</a></td>
+<td style="text-align: right;">発展</td>
+<td>点・直線・円の基本操作</td>
+</tr>
+</tbody>
+</table>
+<h2 id="acl">ACL 本体で優先して覚えるもの</h2>
+<p>次の module は競技プログラミングの基礎です。</p>
+<pre><code class="language-nim">import atcoder/dsu
+import atcoder/fenwicktree
+import atcoder/segtree
+import atcoder/modint
+</code></pre>
+<h3 id="dsu">DSU</h3>
+<p>無向 graph の連結成分を管理します。</p>
+<p>典型的なキーワード：</p>
+<ul>
+<li>頂点を順に結ぶ</li>
+<li>同じ連結成分か</li>
+<li>連結成分サイズ</li>
+<li>Kruskal</li>
+</ul>
+<h3 id="fenwick-tree">Fenwick Tree</h3>
+<p>点加算・prefix sum に向いています。</p>
+<p>典型的なキーワード：</p>
+<ul>
+<li>inversion number</li>
+<li>prefix sum を更新付きで求める</li>
+<li>座標圧縮後の頻度管理</li>
+</ul>
+<h3 id="segment-tree">Segment Tree</h3>
+<p>区間積・点更新を扱います。</p>
+<p>典型的なキーワード：</p>
+<ul>
+<li>区間最小・最大・和</li>
+<li>点更新</li>
+<li>二分探索付き区間 query</li>
+</ul>
+<h2 id="_4">初級のおすすめ学習順</h2>
+<ol>
+<li>Run-Length Encoding</li>
+<li>Coordinate Compression</li>
+<li>Cumulative Sum</li>
+<li>DSU</li>
+<li>Fenwick Tree</li>
+<li>Dijkstra</li>
+<li>Topological Sort</li>
+<li>Segment Tree</li>
+<li>Functional Graph / Doubling</li>
+<li>KMP</li>
+</ol>
+<h2 id="_5">初級の逆引き</h2>
+<table>
+<thead>
+<tr>
+<th>問題文の特徴</th>
+<th>候補</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>値が <code>10^9</code> だが種類数は少ない</td>
+<td>Coordinate Compression</td>
+</tr>
+<tr>
+<td>同じ文字・値が連続している</td>
+<td>Run-Length Encoding</td>
+</tr>
+<tr>
+<td><code>k</code> 回移動し、<code>k</code> が非常に大きい</td>
+<td>Functional Graph / Doubling</td>
+</tr>
+<tr>
+<td>連結成分を追加しながら管理</td>
+<td>DSU</td>
+</tr>
+<tr>
+<td>prefix sum を更新したい</td>
+<td>Fenwick Tree</td>
+</tr>
+<tr>
+<td>pattern の全出現位置</td>
+<td>KMP</td>
+</tr>
+<tr>
+<td>mex を追加・削除付きで求める</td>
+<td>MexSet</td>
+</tr>
+<tr>
+<td>最短路、辺重みが非負</td>
+<td>Dijkstra</td>
+</tr>
+<tr>
+<td>依存関係・先行順序</td>
+<td>Topological Sort</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="_6">中級：青以下</h1>
+<p>中級では、問題の構造に応じて data structure を選ぶ力が重要になります。</p>
+<p>「とりあえず Segment Tree」ではなく、</p>
+<ul>
+<li>静的か動的か</li>
+<li>演算が冪等か</li>
+<li>query が online か offline か</li>
+<li>XOR や文字列に特別な構造があるか</li>
+</ul>
+<p>を見分けます。</p>
+<h2 id="query">区間 query・集合</h2>
+<table>
+<thead>
+<tr>
+<th>ライブラリ</th>
+<th style="text-align: right;">重要度</th>
+<th>典型的な用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../extra/structure/sparse_table.html">Sparse Table</a></td>
+<td style="text-align: right;">推奨</td>
+<td>静的・冪等な区間 query</td>
+</tr>
+<tr>
+<td><a href="../extra/structure/disjoint_sparse_table.html">Disjoint Sparse Table</a></td>
+<td style="text-align: right;">推奨</td>
+<td>静的・結合的な区間 query</td>
+</tr>
+<tr>
+<td><a href="../extra/structure/fast_set.html">FastSet</a></td>
+<td style="text-align: right;">推奨</td>
+<td>successor / predecessor</td>
+</tr>
+<tr>
+<td><a href="../extra/structure/binary_trie.html">Binary Trie</a></td>
+<td style="text-align: right;">必須</td>
+<td>XOR 最小・最大</td>
+</tr>
+<tr>
+<td><a href="../extra/structure/wavelet_matrix.html">Wavelet Matrix</a></td>
+<td style="text-align: right;">発展</td>
+<td>区間 k-th、頻度、rank</td>
+</tr>
+<tr>
+<td><a href="../extra/structure/segtree_2d.html">SegTree2D</a></td>
+<td style="text-align: right;">発展</td>
+<td>二次元点・矩形 query</td>
+</tr>
+<tr>
+<td><a href="../extra/algorithm/mo.html">Mo's Algorithm</a></td>
+<td style="text-align: right;">推奨</td>
+<td>offline range query</td>
+</tr>
+<tr>
+<td><a href="../extra/structure/cartesian_tree.html">Cartesian Tree</a></td>
+<td style="text-align: right;">発展</td>
+<td>RMQ、単調 stack、木への変換</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dp">最適化 DP・直線集合</h2>
+<table>
+<thead>
+<tr>
+<th>ライブラリ</th>
+<th style="text-align: right;">重要度</th>
+<th>典型的な用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../extra/structure/convex_hull_trick_add_monotone.html">Convex Hull Trick Add Monotone</a></td>
+<td style="text-align: right;">発展</td>
+<td>傾きが単調な一次関数 DP</td>
+</tr>
+<tr>
+<td><a href="../extra/structure/li_chao_tree.html">Li Chao Tree</a></td>
+<td style="text-align: right;">発展</td>
+<td>一般的な一次関数最小値 query</td>
+</tr>
+<tr>
+<td>Lazy Segment Tree</td>
+<td style="text-align: right;">必須</td>
+<td>区間更新・区間 query</td>
+</tr>
+<tr>
+<td>Dual Fenwick Tree</td>
+<td style="text-align: right;">推奨</td>
+<td>区間更新・点取得</td>
+</tr>
+</tbody>
+</table>
+<h2 id="xor">XOR・数学</h2>
+<table>
+<thead>
+<tr>
+<th>ライブラリ</th>
+<th style="text-align: right;">重要度</th>
+<th>典型的な用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../extra/math/xor_basis.html">XOR Basis</a></td>
+<td style="text-align: right;">推奨</td>
+<td>subset XOR、cycle XOR</td>
+</tr>
+<tr>
+<td>Binary Trie</td>
+<td style="text-align: right;">必須</td>
+<td>集合内の値との XOR 最適化</td>
+</tr>
+<tr>
+<td>modint</td>
+<td style="text-align: right;">必須</td>
+<td>mod 計算</td>
+</tr>
+<tr>
+<td>convolution</td>
+<td style="text-align: right;">発展</td>
+<td>多項式積・数え上げ</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">文字列</h2>
+<table>
+<thead>
+<tr>
+<th>ライブラリ</th>
+<th style="text-align: right;">重要度</th>
+<th>典型的な用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../extra/string/manacher.html">Manacher</a></td>
+<td style="text-align: right;">推奨</td>
+<td>回文半径・回文判定</td>
+</tr>
+<tr>
+<td><a href="../extra/string/aho_corasick.html">Aho-Corasick</a></td>
+<td style="text-align: right;">推奨</td>
+<td>複数 pattern matching</td>
+</tr>
+<tr>
+<td><a href="../extra/string/minimum_rotation.html">Minimum Rotation / Booth</a></td>
+<td style="text-align: right;">発展</td>
+<td>最小巡回表現</td>
+</tr>
+<tr>
+<td>Rolling Hash</td>
+<td style="text-align: right;">推奨</td>
+<td>substring 比較・LCP</td>
+</tr>
+<tr>
+<td>Suffix Array / LCP</td>
+<td style="text-align: right;">推奨</td>
+<td>substring の順序・検索</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dp_1">木 DP</h2>
+<table>
+<thead>
+<tr>
+<th>ライブラリ</th>
+<th style="text-align: right;">重要度</th>
+<th>典型的な用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../extra/graph/rerooting_dp.html">Rerooting DP</a></td>
+<td style="text-align: right;">必須</td>
+<td>全頂点を root とした木 DP</td>
+</tr>
+<tr>
+<td>Heavy-Light Decomposition</td>
+<td style="text-align: right;">発展</td>
+<td>木上の path query</td>
+</tr>
+<tr>
+<td>LCA / Binary Lifting</td>
+<td style="text-align: right;">必須</td>
+<td>ancestor、距離、path</td>
+</tr>
+<tr>
+<td>Weighted Union Find</td>
+<td style="text-align: right;">推奨</td>
+<td>差分制約・potential</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_8">中級のおすすめ学習順</h2>
+<ol>
+<li>Lazy Segment Tree</li>
+<li>Sparse Table</li>
+<li>Disjoint Sparse Table</li>
+<li>Binary Trie</li>
+<li>XOR Basis</li>
+<li>Manacher</li>
+<li>Rolling Hash</li>
+<li>Mo's Algorithm</li>
+<li>Rerooting DP</li>
+<li>Wavelet Matrix</li>
+<li>Convex Hull Trick</li>
+<li>Li Chao Tree</li>
+</ol>
+<h2 id="data-structure">区間 data structure の使い分け</h2>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>選ぶもの</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>静的、min/max/gcd</td>
+<td>Sparse Table</td>
+</tr>
+<tr>
+<td>静的、sum/product/concat</td>
+<td>Disjoint Sparse Table</td>
+</tr>
+<tr>
+<td>点更新あり</td>
+<td>Segment Tree</td>
+</tr>
+<tr>
+<td>区間更新あり</td>
+<td>Lazy Segment Tree</td>
+</tr>
+<tr>
+<td>offline、add/remove が軽い</td>
+<td>Mo</td>
+</tr>
+<tr>
+<td>区間 k-th / rank / frequency</td>
+<td>Wavelet Matrix</td>
+</tr>
+<tr>
+<td>二次元座標</td>
+<td>SegTree2D</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">文字列の使い分け</h2>
+<table>
+<thead>
+<tr>
+<th>欲しいもの</th>
+<th>選ぶもの</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 pattern の検索</td>
+<td>KMP</td>
+</tr>
+<tr>
+<td>多数 pattern の検索</td>
+<td>Aho-Corasick</td>
+</tr>
+<tr>
+<td>substring の hash 比較</td>
+<td>Rolling Hash</td>
+</tr>
+<tr>
+<td>回文判定・回文半径</td>
+<td>Manacher</td>
+</tr>
+<tr>
+<td>最小巡回表現</td>
+<td>Minimum Rotation</td>
+</tr>
+<tr>
+<td>substring の辞書順</td>
+<td>Suffix Array</td>
+</tr>
+<tr>
+<td>異なる substring の状態</td>
+<td>Suffix Automaton</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="_10">上級：黄以上</h1>
+<p>上級では、単独のアルゴリズムを知っているだけではなく、</p>
+<ul>
+<li>offline 化</li>
+<li>rollback</li>
+<li>木や graph の圧縮</li>
+<li>複数 data structure の組み合わせ</li>
+<li>問題固有の invariant</li>
+</ul>
+<p>が必要になります。</p>
+<h2 id="graphrollback">動的 graph・rollback</h2>
+<table>
+<thead>
+<tr>
+<th>ライブラリ</th>
+<th style="text-align: right;">重要度</th>
+<th>典型的な用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../extra/structure/rollback_dsu.html">Rollback DSU</a></td>
+<td style="text-align: right;">必須</td>
+<td>DSU の状態を巻き戻す</td>
+</tr>
+<tr>
+<td><a href="../extra/graph/offline_dynamic_connectivity.html">Offline Dynamic Connectivity</a></td>
+<td style="text-align: right;">必須</td>
+<td>辺追加・削除付き連結性</td>
+</tr>
+<tr>
+<td>Partially Persistent DSU</td>
+<td style="text-align: right;">発展</td>
+<td>過去時刻の DSU query</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dsu_1">DSU の使い分け</h3>
+<table>
+<thead>
+<tr>
+<th>問題</th>
+<th>選ぶもの</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>現在の連結状態だけ</td>
+<td>DSU</td>
+</tr>
+<tr>
+<td>DFS / 分割統治で状態を戻す</td>
+<td>Rollback DSU</td>
+</tr>
+<tr>
+<td>各辺の有効時間区間がある</td>
+<td>Offline Dynamic Connectivity</td>
+</tr>
+<tr>
+<td>過去時刻の状態を直接 query</td>
+<td>Partially Persistent DSU</td>
+</tr>
+</tbody>
+</table>
+<h2 id="subtree-query">木の圧縮・subtree query</h2>
+<table>
+<thead>
+<tr>
+<th>ライブラリ</th>
+<th style="text-align: right;">重要度</th>
+<th>典型的な用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../extra/graph/virtual_tree.html">Virtual Tree</a></td>
+<td style="text-align: right;">必須</td>
+<td>指定頂点集合だけの圧縮木</td>
+</tr>
+<tr>
+<td><a href="../extra/graph/dsu_on_tree.html">DSU on Tree</a></td>
+<td style="text-align: right;">必須</td>
+<td>各 subtree の頻度集計</td>
+</tr>
+<tr>
+<td>Rerooting DP</td>
+<td style="text-align: right;">必須</td>
+<td>全 root に対する木 DP</td>
+</tr>
+<tr>
+<td>Link-Cut Tree</td>
+<td style="text-align: right;">内部・高度</td>
+<td>動的 forest</td>
+</tr>
+</tbody>
+</table>
+<h2 id="graph">無向 graph 分解</h2>
+<table>
+<thead>
+<tr>
+<th>ライブラリ</th>
+<th style="text-align: right;">重要度</th>
+<th>典型的な用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../extra/graph/undirected_decomposition.html">Undirected Graph Decomposition</a></td>
+<td style="text-align: right;">必須</td>
+<td>Low-link 分解の共通 API</td>
+</tr>
+<tr>
+<td><a href="../extra/graph/biconnected_components.html">Biconnected Components</a></td>
+<td style="text-align: right;">推奨</td>
+<td>関節点で分かれる block</td>
+</tr>
+<tr>
+<td><a href="../extra/graph/two_edge_connected_components.html">Two-Edge-Connected Components</a></td>
+<td style="text-align: right;">推奨</td>
+<td>橋を除いた component</td>
+</tr>
+<tr>
+<td><a href="../extra/graph/block_cut_tree.html">Block-Cut Tree</a></td>
+<td style="text-align: right;">発展</td>
+<td>block と articulation の木</td>
+</tr>
+</tbody>
+</table>
+<h3 id="low-link">Low-link 系の使い分け</h3>
+<table>
+<thead>
+<tr>
+<th>欲しいもの</th>
+<th>選ぶもの</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bridge / articulation point</td>
+<td>LowLink</td>
+</tr>
+<tr>
+<td>関節点で分かれる component</td>
+<td>Biconnected Components</td>
+</tr>
+<tr>
+<td>bridge で分かれる component</td>
+<td>Two-Edge-Connected Components</td>
+</tr>
+<tr>
+<td>component を木として DP</td>
+<td>Block-Cut Tree</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_11">高度な文字列</h2>
+<table>
+<thead>
+<tr>
+<th>ライブラリ</th>
+<th style="text-align: right;">重要度</th>
+<th>典型的な用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../extra/string/suffix_automaton.html">Suffix Automaton</a></td>
+<td style="text-align: right;">推奨</td>
+<td>異なる substring・出現回数</td>
+</tr>
+<tr>
+<td><a href="../extra/string/palindromic_tree.html">Palindromic Tree / Eertree</a></td>
+<td style="text-align: right;">発展</td>
+<td>異なる回文・回文 suffix DP</td>
+</tr>
+<tr>
+<td>Aho-Corasick</td>
+<td style="text-align: right;">推奨</td>
+<td>automaton 上の文字列 DP</td>
+</tr>
+<tr>
+<td>Suffix Array / LCP</td>
+<td style="text-align: right;">必須</td>
+<td>substring の順序構造</td>
+</tr>
+</tbody>
+</table>
+<h3 id="algorithm">回文 algorithm の使い分け</h3>
+<table>
+<thead>
+<tr>
+<th>欲しいもの</th>
+<th>選ぶもの</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>各中心の回文半径</td>
+<td>Manacher</td>
+</tr>
+<tr>
+<td>substring が回文か</td>
+<td>Manacher</td>
+</tr>
+<tr>
+<td>異なる回文の一覧</td>
+<td>Palindromic Tree</td>
+</tr>
+<tr>
+<td>回文ごとの出現回数</td>
+<td>Palindromic Tree</td>
+</tr>
+<tr>
+<td>回文 suffix を使う DP</td>
+<td>Palindromic Tree</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_12">多項式・高度な数学</h2>
+<table>
+<thead>
+<tr>
+<th>ライブラリ</th>
+<th style="text-align: right;">重要度</th>
+<th>典型的な用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../extra/math/fps.html">FPS facade</a></td>
+<td style="text-align: right;">発展</td>
+<td>形式的冪級数</td>
+</tr>
+<tr>
+<td>convolution / NTT</td>
+<td style="text-align: right;">必須</td>
+<td>多項式積</td>
+</tr>
+<tr>
+<td>Arbitrary Mod Combination</td>
+<td style="text-align: right;">推奨</td>
+<td>合成数 mod の組合せ</td>
+</tr>
+<tr>
+<td>XOR Basis</td>
+<td style="text-align: right;">推奨</td>
+<td>GF(2) 線形代数</td>
+</tr>
+</tbody>
+</table>
+<h2 id="graph_1">高度な graph</h2>
+<p>次の分野は、出題頻度は低めですが、必要な問題では代替が難しいです。</p>
+<pre><code class="language-nim">import atcoder/extra/graph/chu_liu_edmonds
+import atcoder/extra/graph/boruvka
+</code></pre>
+<ul>
+<li>Chu-Liu/Edmonds：有向最小全域木</li>
+<li>Borůvka：component 単位の最小全域木</li>
+<li>Dominator Tree：有向 graph の支配関係</li>
+<li>Mo on Tree：木上の offline path query</li>
+</ul>
+<h2 id="_13">上級のおすすめ学習順</h2>
+<ol>
+<li>Rollback DSU</li>
+<li>Offline Dynamic Connectivity</li>
+<li>Virtual Tree</li>
+<li>DSU on Tree</li>
+<li>Biconnected Components</li>
+<li>Two-Edge-Connected Components</li>
+<li>Block-Cut Tree</li>
+<li>Suffix Automaton</li>
+<li>Palindromic Tree</li>
+<li>FPS</li>
+<li>Link-Cut Tree</li>
+<li>Dominator Tree</li>
+</ol>
+<hr>
+<h1 id="_14">目的別の逆引き</h1>
+<h2 id="xor_1">XOR</h2>
+<table>
+<thead>
+<tr>
+<th>問題</th>
+<th>ライブラリ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>集合中の値との XOR 最大・最小</td>
+<td>Binary Trie</td>
+</tr>
+<tr>
+<td>subset XOR で作れる値</td>
+<td>XOR Basis</td>
+</tr>
+<tr>
+<td>区間 XOR basis</td>
+<td>Segment Tree + XOR Basis</td>
+</tr>
+<tr>
+<td>graph の cycle XOR</td>
+<td>XOR Basis</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_15">回文</h2>
+<table>
+<thead>
+<tr>
+<th>問題</th>
+<th>ライブラリ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最長回文 substring</td>
+<td>Manacher</td>
+</tr>
+<tr>
+<td>多数の回文判定</td>
+<td>Manacher</td>
+</tr>
+<tr>
+<td>異なる回文数</td>
+<td>Palindromic Tree</td>
+</tr>
+<tr>
+<td>回文出現回数</td>
+<td>Palindromic Tree</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_16">木</h2>
+<table>
+<thead>
+<tr>
+<th>問題</th>
+<th>ライブラリ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>subtree query を全頂点で</td>
+<td>DSU on Tree</td>
+</tr>
+<tr>
+<td>root を全頂点に変える</td>
+<td>Rerooting DP</td>
+</tr>
+<tr>
+<td>指定頂点だけが重要</td>
+<td>Virtual Tree</td>
+</tr>
+<tr>
+<td>path query</td>
+<td>Heavy-Light Decomposition</td>
+</tr>
+<tr>
+<td>動的 forest</td>
+<td>Link-Cut Tree</td>
+</tr>
+</tbody>
+</table>
+<h2 id="graph-connectivity">graph connectivity</h2>
+<table>
+<thead>
+<tr>
+<th>問題</th>
+<th>ライブラリ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>辺追加のみ</td>
+<td>DSU</td>
+</tr>
+<tr>
+<td>辺追加・削除を offline</td>
+<td>Offline Dynamic Connectivity</td>
+</tr>
+<tr>
+<td>状態を DFS 中に戻す</td>
+<td>Rollback DSU</td>
+</tr>
+<tr>
+<td>bridge / articulation</td>
+<td>LowLink</td>
+</tr>
+<tr>
+<td>component へ分解</td>
+<td>BCC / 2ECC</td>
+</tr>
+<tr>
+<td>component tree で DP</td>
+<td>Block-Cut Tree</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_17">文字列検索</h2>
+<table>
+<thead>
+<tr>
+<th>問題</th>
+<th>ライブラリ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 pattern</td>
+<td>KMP</td>
+</tr>
+<tr>
+<td>多数 pattern</td>
+<td>Aho-Corasick</td>
+</tr>
+<tr>
+<td>hash で substring 比較</td>
+<td>Rolling Hash</td>
+</tr>
+<tr>
+<td>全 substring の状態</td>
+<td>Suffix Automaton</td>
+</tr>
+<tr>
+<td>substring の辞書順</td>
+<td>Suffix Array</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="_18">コンテスト別の目安</h1>
+<h2 id="abc-ac">ABC A〜C</h2>
+<p>優先度が高いもの：</p>
+<ul>
+<li>Run-Length Encoding</li>
+<li>Coordinate Compression</li>
+<li>cumulative sum</li>
+<li>basic graph traversal</li>
+<li>DSU</li>
+<li>modint</li>
+</ul>
+<h2 id="abc-de">ABC D〜E</h2>
+<p>優先度が高いもの：</p>
+<ul>
+<li>Fenwick Tree</li>
+<li>Segment Tree</li>
+<li>Dijkstra</li>
+<li>Functional Graph / Doubling</li>
+<li>KMP</li>
+<li>MexSet</li>
+<li>SortedSet / SortedMap</li>
+<li>Rerooting DP</li>
+</ul>
+<h2 id="abc-farc">ABC F・ARC</h2>
+<p>優先度が高いもの：</p>
+<ul>
+<li>Lazy Segment Tree</li>
+<li>Binary Trie</li>
+<li>XOR Basis</li>
+<li>Sparse Table</li>
+<li>Disjoint Sparse Table</li>
+<li>Mo</li>
+<li>Wavelet Matrix</li>
+<li>Manacher</li>
+<li>Aho-Corasick</li>
+<li>Convex Hull Trick</li>
+<li>Li Chao Tree</li>
+</ul>
+<h2 id="arc-agccodeforces-div1">ARC 上位・AGC・Codeforces Div.1</h2>
+<p>候補：</p>
+<ul>
+<li>Rollback DSU</li>
+<li>Offline Dynamic Connectivity</li>
+<li>Virtual Tree</li>
+<li>DSU on Tree</li>
+<li>Biconnected Components</li>
+<li>Block-Cut Tree</li>
+<li>Suffix Automaton</li>
+<li>Palindromic Tree</li>
+<li>FPS</li>
+<li>Link-Cut Tree</li>
+</ul>
+<hr>
+<h1 id="_19">今後の追加候補</h1>
+<p>Nim-ACL で今後優先したい候補です。</p>
+<h2 id="_20">初級〜中級</h2>
+<ul>
+<li>Z Algorithm の使いやすい facade</li>
+<li>Euler Tour utility</li>
+<li>Prefix Sum facade の統一</li>
+<li>Monotonic Queue / Stack helper</li>
+<li>Interval Set</li>
+</ul>
+<h2 id="_21">中級</h2>
+<ul>
+<li>Mo with Updates</li>
+<li>Persistent Binary Trie</li>
+<li>Static Range Frequency facade</li>
+<li>Matrix utility</li>
+<li>Miller-Rabin</li>
+<li>Pollard Rho</li>
+</ul>
+<h2 id="_22">上級</h2>
+<ul>
+<li>Dominator Tree</li>
+<li>Mo on Tree</li>
+<li>Segment Tree Beats facade</li>
+<li>Dynamic Tree DP</li>
+<li>Persistent Segment Tree</li>
+<li>Li Chao Tree persistent version</li>
+<li>General matching / blossom</li>
+<li>Min-plus convolution 系</li>
+</ul>
+<hr>
+<h1 id="_23">学習方針</h1>
+<p>ライブラリを暗記するより、次を説明できる状態を目指すのがおすすめです。</p>
+<ol>
+<li>何を高速化するアルゴリズムか</li>
+<li>素朴解は何計算量か</li>
+<li>前提条件は何か</li>
+<li>update/query が online か offline か</li>
+<li>使用する data structure の invariant は何か</li>
+<li>似たライブラリとどう使い分けるか</li>
+</ol>
+<p>Nim-ACL の高度な module では、API だけでなく「概要・使いどころ・考え方」も記載していきます。</p>
+  </main>
+</body>
+</html>
