@@ -320,3 +320,32 @@ img {
     font-size: 1.4rem;
   }
 }
+
+
+/* NIM_ACL_PROBLEM_EXAMPLES_STYLE_V1 */
+.problem-examples {
+  margin: 1em 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fafafa;
+}
+
+.problem-examples > summary {
+  cursor: pointer;
+  padding: 0.75em 1em;
+  font-weight: 600;
+}
+
+.problem-examples[open] > summary {
+  border-bottom: 1px solid var(--border);
+}
+
+.problem-examples > ul {
+  margin: 0.8em 1em 1em 2.4em;
+  padding-left: 0.8em;
+}
+
+.problem-examples > ul > li {
+  margin: 0.45em 0;
+}
+/* /NIM_ACL_PROBLEM_EXAMPLES_STYLE_V1 */

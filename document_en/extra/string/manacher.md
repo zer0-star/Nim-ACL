@@ -172,6 +172,17 @@ For string length `n`:
 - Be careful that `odd` and `even` radii have different meanings.
 - `countPalindromicSubstrings` can be `O(n^2)` in value. The return type is `int`.
 
+<!-- NIM_ACL_PROBLEM_EXAMPLES_V1 -->
+## Practice problems
+
+<details class="problem-examples">
+<summary>Show problems that can use this library (may reveal the intended technique)</summary>
+<ul>
+  <li><a href="https://judge.yosupo.jp/problem/enumerate_palindromes" target="_blank" rel="noopener">Library Checker - Enumerate Palindromes</a></li>
+</ul>
+</details>
+<!-- /NIM_ACL_PROBLEM_EXAMPLES_V1 -->
+
 ## Related resources and libraries
 
 - cp-algorithms: Manacher's Algorithm

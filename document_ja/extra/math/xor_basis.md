@@ -159,6 +159,19 @@ doAssert xb.rank == xb.len
 
 です。
 
+<!-- NIM_ACL_PROBLEM_EXAMPLES_V1 -->
+## このライブラリが使える問題
+
+<details class="problem-examples">
+<summary>問題例を表示する（解法のネタバレを含む可能性があります）</summary>
+<ul>
+  <li><a href="https://atcoder.jp/contests/abc141/tasks/abc141_f" target="_blank" rel="noopener">AtCoder Beginner Contest 141 F - Xor Sum 3</a></li>
+  <li><a href="https://atcoder.jp/contests/abc236/tasks/abc236_f" target="_blank" rel="noopener">AtCoder Beginner Contest 236 F - Spices</a></li>
+  <li><a href="https://atcoder.jp/contests/abc283/tasks/abc283_g" target="_blank" rel="noopener">AtCoder Beginner Contest 283 G - Partial Xor Enumeration</a></li>
+</ul>
+</details>
+<!-- /NIM_ACL_PROBLEM_EXAMPLES_V1 -->
+
 ## 関連資料・他言語ライブラリ
 
 - cp-algorithms: Gaussian elimination / linear algebra over fields

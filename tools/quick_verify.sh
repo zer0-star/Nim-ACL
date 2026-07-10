@@ -215,3 +215,5 @@ fi
 
 # NIM_ACL_SPECIFIC_LECTURE_LINK_AUDIT_V1
 python3 tools/audit_atcoder_lecture_links.py
+# NIM_ACL_PROBLEM_EXAMPLES_AUDIT_V1
+python3 tools/audit_problem_examples.py

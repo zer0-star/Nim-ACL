@@ -157,6 +157,19 @@ Let `B = maxLog + 1`.
 - `merge`: about `O(B^2)`, but usually `B <= 64`
 - memory: `O(B)`
 
+<!-- NIM_ACL_PROBLEM_EXAMPLES_V1 -->
+## Practice problems
+
+<details class="problem-examples">
+<summary>Show problems that can use this library (may reveal the intended technique)</summary>
+<ul>
+  <li><a href="https://atcoder.jp/contests/abc141/tasks/abc141_f" target="_blank" rel="noopener">AtCoder Beginner Contest 141 F - Xor Sum 3</a></li>
+  <li><a href="https://atcoder.jp/contests/abc236/tasks/abc236_f" target="_blank" rel="noopener">AtCoder Beginner Contest 236 F - Spices</a></li>
+  <li><a href="https://atcoder.jp/contests/abc283/tasks/abc283_g" target="_blank" rel="noopener">AtCoder Beginner Contest 283 G - Partial Xor Enumeration</a></li>
+</ul>
+</details>
+<!-- /NIM_ACL_PROBLEM_EXAMPLES_V1 -->
+
 ## Related resources and libraries
 
 - cp-algorithms: Gaussian elimination / linear algebra over fields
