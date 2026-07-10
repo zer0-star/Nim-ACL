@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>OfflineDynamicConnectivity</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="offlinedynamicconnectivity">OfflineDynamicConnectivity</h1>
+<p><code>OfflineDynamicConnectivity</code> is a helper for processing graphs with edge insertions and deletions offline.</p>
+<p>You register the active time interval <code>[l, r)</code> of each edge.<br>
+Then each time point is visited with a <code>RollbackDSU</code> representing the graph state at that time.</p>
+<h2 id="use-cases">Use cases</h2>
+<p>Typical use cases include:</p>
+<ul>
+<li>undirected graph with edge insertions and deletions</li>
+<li>connectivity queries at each time</li>
+<li>number of connected components at each time</li>
+<li>all queries are known in advance</li>
+<li>offline processing is allowed</li>
+<li>segment tree over time + Rollback DSU</li>
+</ul>
+<h2 id="idea">Idea</h2>
+<p>Suppose an edge <code>(u, v)</code> is active during the time interval <code>[l, r)</code>.</p>
+<p>Build a segment tree over time <code>[0, q)</code>, and decompose <code>[l, r)</code> into segment tree nodes.<br>
+Store the edge on those nodes.</p>
+<p>Then DFS over the segment tree:</p>
+<ul>
+<li>When entering a node, merge all edges stored at the node into <code>RollbackDSU</code>.</li>
+<li>At a leaf, answer queries for that time.</li>
+<li>When leaving the node, roll back to the snapshot before entering.</li>
+</ul>
+<p>Each edge is stored in only <code>O(log q)</code> nodes, and each time state is restored efficiently.</p>
+<h2 id="import">Import</h2>
+<pre><code class="language-nim">import atcoder/extra/graph/offline_dynamic_connectivity
+</code></pre>
+<p>This module also re-exports <code>rollback_dsu</code>.<br>
+Inside callbacks, you can use <code>RollbackDSU</code> methods such as <code>same</code>, <code>size</code>, and <code>componentCount</code>.</p>
+<h2 id="types">Types</h2>
+<pre><code class="language-nim">type OfflineDCEdge = tuple[u, v: int]
+type OfflineDynamicConnectivity
+</code></pre>
+<h2 id="constructor">Constructor</h2>
+<pre><code class="language-nim">proc initOfflineDynamicConnectivity(n, q: int): OfflineDynamicConnectivity
+</code></pre>
+<ul>
+<li><code>n</code>: number of vertices</li>
+<li><code>q</code>: number of time points. Times are <code>0 ..&lt; q</code>.</li>
+</ul>
+<h2 id="adding-active-edge-intervals">Adding active edge intervals</h2>
+<pre><code class="language-nim">proc addEdgeInterval(dc: var OfflineDynamicConnectivity, l, r, u, v: int)
+</code></pre>
+<p>Registers an undirected edge <code>(u, v)</code> active during the half-open interval <code>[l, r)</code>.</p>
+<h2 id="run">Run</h2>
+<pre><code class="language-nim">proc run(dc: OfflineDynamicConnectivity, f: proc(t: int, uf: RollbackDSU))
+proc componentCounts(dc: OfflineDynamicConnectivity): seq[int]
+</code></pre>
+<ul>
+<li><code>run(f)</code> calls <code>f(t, uf)</code> for every time <code>t</code>.</li>
+<li>Inside the callback, <code>uf</code> represents the graph state at time <code>t</code>.</li>
+<li><code>componentCounts()</code> is a helper returning the number of connected components at each time.</li>
+</ul>
+<h2 id="example">Example</h2>
+<pre><code class="language-nim">var dc = initOfflineDynamicConnectivity(n = 4, q = 5)
+
+# t = 0: 0-1
+# t = 1: 0-1, 1-2
+# t = 2: 0-1, 1-2, 2-3
+# t = 3: 1-2, 2-3
+# t = 4: 1-2
+dc.addEdgeInterval(0, 3, 0, 1)
+dc.addEdgeInterval(1, 5, 1, 2)
+dc.addEdgeInterval(2, 4, 2, 3)
+
+var ans = newSeq[bool](5)
+
+dc.run(proc(t: int, uf: RollbackDSU) =
+  ans[t] = uf.same(0, 3)
+)
+
+doAssert ans == @[false, false, true, false, false]
+</code></pre>
+<p>For component counts, use the helper.</p>
+<pre><code class="language-nim">doAssert dc.componentCounts == @[3, 2, 1, 2, 3]
+</code></pre>
+<h2 id="nim-friendly-usage">Nim-friendly usage</h2>
+<p>Callbacks and UFCS make per-time queries concise.</p>
+<pre><code class="language-nim">dc.run(proc(t: int, uf: RollbackDSU) =
+  echo t, &quot;: &quot;, uf.componentCount
+)
+</code></pre>
+<h2 id="complexity">Complexity</h2>
+<p>Let <code>q</code> be the number of time points and <code>m</code> be the number of active edge intervals.</p>
+<ul>
+<li>registering an edge interval: <code>O(log q)</code></li>
+<li>whole DFS: <code>O(m log q * log n + q * callback)</code></li>
+<li>memory: <code>O(m log q)</code></li>
+</ul>
+<p><code>RollbackDSU</code> does not use path compression, so <code>merge</code>, <code>same</code>, and <code>size</code> are about <code>O(log n)</code>.</p>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>You must build active intervals <code>[l, r)</code> yourself.</li>
+<li>If the input is given as <code>add edge</code> / <code>delete edge</code>, keep the add time for each edge in a table and register <code>[addTime, deleteTime)</code> when it is deleted.</li>
+<li>This module restores graph states. What to answer at each time is up to the callback.</li>
+<li>This is not a fully online edge-deletion data structure.</li>
+</ul>
+<h2 id="related-resources-and-libraries">Related resources and libraries</h2>
+<ul>
+<li><a href="https://cp-algorithms.com/data_structures/deleting_in_log_n.html">cp-algorithms: Deleting from a data structure in O(T(n) log n)</a></li>
+<li><a href="https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum">Library Checker: Dynamic Graph Vertex Add Component Sum</a></li>
+<li>Nyaan Library: Offline Dynamic Connectivity</li>
+<li>ei1333 Library: Offline Dynamic Connectivity</li>
+</ul>
+  </main>
+</body>
+</html>
