@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DSUOnTree</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="dsuontree">DSUOnTree</h1>
+<p><code>DSUOnTree</code> is a technique for efficiently computing information over every subtree of a tree.</p>
+<p>It is also known as <code>Sack</code> or <code>small-to-large on tree</code>.</p>
+<h2 id="use-cases">Use cases</h2>
+<p>Typical use cases include:</p>
+<ul>
+<li>number of distinct colors in each subtree</li>
+<li>maximum color frequency in each subtree</li>
+<li>subtree queries using a frequency table</li>
+<li>tree DP with a multiset or counter for each subtree</li>
+<li>problems where running DFS for every vertex would be <code>O(n^2)</code></li>
+</ul>
+<p>Codeforces 600E “Lomsat gelral” is a representative subtree color-frequency problem.</p>
+<h2 id="idea">Idea</h2>
+<p>If we build subtree information from scratch at every vertex, the same vertices may be added and removed many times, leading to <code>O(n^2)</code>.</p>
+<p>DSU on Tree keeps the largest child subtree, called the heavy child, and only rebuilds the smaller light child subtrees.</p>
+<p>The usual flow is:</p>
+<ol>
+<li>Process light children first and clear their data.</li>
+<li>Process the heavy child and keep its data.</li>
+<li>Add all vertices in light child subtrees again.</li>
+<li>Add the current vertex.</li>
+<li>Call <code>answer(v)</code> with the current subtree data.</li>
+<li>Clear the whole subtree if needed.</li>
+</ol>
+<p>Each vertex is re-added through light edges only <code>O(log n)</code> times, so the whole process is efficient.</p>
+<h2 id="import">Import</h2>
+<pre><code class="language-nim">import atcoder/extra/graph/dsu_on_tree
+</code></pre>
+<h2 id="type">Type</h2>
+<pre><code class="language-nim">type DSUOnTree
+</code></pre>
+<h2 id="constructor">Constructor</h2>
+<pre><code class="language-nim">proc initDSUOnTree(graph: seq[seq[int]], root: int = 0): DSUOnTree
+</code></pre>
+<p><code>graph</code> is the adjacency list of an undirected tree.</p>
+<h2 id="metadata">Metadata</h2>
+<pre><code class="language-nim">proc len(dt: DSUOnTree): int
+proc subtreeVertices(dt: DSUOnTree, v: int): seq[int]
+</code></pre>
+<p><code>DSUOnTree</code> also exposes these fields:</p>
+<pre><code class="language-nim">n: int
+root: int
+graph: seq[seq[int]]
+parent: seq[int]
+depth: seq[int]
+subtreeSize: seq[int]
+heavy: seq[int]
+tin: seq[int]
+tout: seq[int]
+order: seq[int]
+</code></pre>
+<ul>
+<li><code>parent[v]</code>: parent vertex</li>
+<li><code>depth[v]</code>: depth from the root</li>
+<li><code>subtreeSize[v]</code>: subtree size</li>
+<li><code>heavy[v]</code>: child with the largest subtree, or <code>-1</code></li>
+<li><code>tin</code>, <code>tout</code>, <code>order</code>: Euler order for subtree intervals</li>
+</ul>
+<h2 id="run">Run</h2>
+<pre><code class="language-nim">proc run(
+  dt: DSUOnTree,
+  add: proc(v: int),
+  remove: proc(v: int),
+  answer: proc(v: int)
+)
+
+proc runDSUOnTree(
+  dt: DSUOnTree,
+  add: proc(v: int),
+  remove: proc(v: int),
+  answer: proc(v: int)
+)
+</code></pre>
+<p>When <code>answer(v)</code> is called, the current data structure contains <strong>exactly the vertices in the subtree of <code>v</code></strong>.</p>
+<ul>
+<li><code>add(v)</code>: add vertex <code>v</code> to the current state</li>
+<li><code>remove(v)</code>: remove vertex <code>v</code> from the current state</li>
+<li><code>answer(v)</code>: record the answer for vertex <code>v</code></li>
+</ul>
+<h2 id="example-distinct-colors-in-each-subtree">Example: distinct colors in each subtree</h2>
+<pre><code class="language-nim">import std/tables
+import atcoder/extra/graph/dsu_on_tree
+
+var g = newSeq[seq[int]](7)
+
+proc addEdge(u, v: int) =
+  g[u].add v
+  g[v].add u
+
+addEdge(0, 1)
+addEdge(0, 2)
+addEdge(1, 3)
+addEdge(1, 4)
+addEdge(2, 5)
+addEdge(2, 6)
+
+let
+  dt = initDSUOnTree(g)
+  color = @[1, 2, 1, 2, 3, 1, 3]
+
+var
+  freq = initTable[int, int]()
+  distinctCount = 0
+  ans = newSeq[int](7)
+
+proc addVertex(v: int) =
+  let c = color[v]
+  let old = freq.getOrDefault(c, 0)
+
+  if old == 0:
+    distinctCount.inc
+
+  freq[c] = old + 1
+
+proc removeVertex(v: int) =
+  let c = color[v]
+  let old = freq.getOrDefault(c, 0)
+
+  if old == 1:
+    freq.del(c)
+    distinctCount.dec
+  else:
+    freq[c] = old - 1
+
+proc answerVertex(v: int) =
+  ans[v] = distinctCount
+
+dt.run(addVertex, removeVertex, answerVertex)
+
+doAssert ans == @[3, 2, 2, 1, 1, 1, 1]
+</code></pre>
+<h2 id="nim-friendly-usage">Nim-friendly usage</h2>
+<p>Write callbacks as ordinary procs and call <code>dt.run(...)</code> with UFCS.</p>
+<pre><code class="language-nim">dt.run(addVertex, removeVertex, answerVertex)
+</code></pre>
+<p><code>subtreeVertices(v)</code> is also available as a helper.</p>
+<pre><code class="language-nim">for u in dt.subtreeVertices(v):
+  echo u
+</code></pre>
+<h2 id="complexity">Complexity</h2>
+<p>For <code>n</code> vertices:</p>
+<ul>
+<li>preprocessing: <code>O(n)</code></li>
+<li><code>run</code>: about <code>O(n log n * add/remove cost)</code></li>
+<li>memory: <code>O(n)</code></li>
+</ul>
+<p>For typical color-frequency queries, it is fast in practice.</p>
+<h2 id="notes">Notes</h2>
+<ul>
+<li><code>graph</code> must be a tree.</li>
+<li>At <code>answer(v)</code>, the current state contains only the subtree of <code>v</code>.</li>
+<li><code>add</code> and <code>remove</code> must be implemented consistently.</li>
+<li>This implementation uses an explicit stack, so it is less likely to overflow the call stack on deep trees.</li>
+</ul>
+<h2 id="related-resources-and-libraries">Related resources and libraries</h2>
+<ul>
+<li>Codeforces 600E: Lomsat gelral</li>
+<li>cp-algorithms: tree queries / small-to-large merging concepts</li>
+<li>Nyaan Library: DSU on Tree</li>
+<li>ei1333 Library: DSU on Tree / Sack</li>
+</ul>
+  </main>
+</body>
+</html>
