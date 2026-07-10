@@ -27,6 +27,7 @@ STEP=init
     tests/test_extra_dp_basic.nim
     tests/test_extra_dp_2d_edit_rectangle.nim
     tests/test_extra_math_basic.nim
+    tests/test_extra_xor_basis.nim
     tests/test_extra_arbitrary_mod_combination.nim
     tests/test_extra_geometry_template.nim
     tests/test_extra_geometry_polygon.nim

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>XorBasis</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="xorbasis">XorBasis</h1>
+<p><code>XorBasis</code> は、整数集合から XOR で作れる値の集合を「線形基底」として管理する data structure です。</p>
+<p>整数を bit vector とみなすと、XOR は GF(2) 上の加算になります。<br>
+そのため、通常の Gaussian elimination と同じように、独立な値だけを残しておけば、subset XOR に関する query を高速に処理できます。</p>
+<h2 id="_1">使いどころ</h2>
+<p>次のような問題でよく使います。</p>
+<ul>
+<li>集合の部分集合 XOR の最大値を求める</li>
+<li><code>x xor y</code> を最大化・最小化する。ただし <code>y</code> は挿入済み値の XOR で作れる値</li>
+<li>ある値 <code>x</code> が、挿入済み値の XOR で作れるか判定する</li>
+<li>グラフの cycle XOR を使った最大 XOR path</li>
+<li>range query に対する XOR basis の merge</li>
+</ul>
+<h2 id="_2">考え方</h2>
+<p>整数の各 bit を座標とみなします。<br>
+例えば <code>13 = 1101_2</code> は、GF(2) 上の vector と考えられます。</p>
+<p><code>add(x)</code> では、上位 bit から見ていきます。</p>
+<ul>
+<li>その bit を代表する basis がまだ無ければ、<code>x</code> を新しい basis として追加する</li>
+<li>すでに basis があれば、<code>x xor basis</code> によってその上位 bit を消す</li>
+</ul>
+<p>最後に <code>x = 0</code> になった場合、元の <code>x</code> は既存 basis の XOR で表せます。<br>
+逆に 0 にならずに新しい pivot bit が見つかれば、独立な vector として追加できます。</p>
+<p>これは GF(2) 上の掃き出し法と同じ考え方です。</p>
+<h2 id="import">import</h2>
+<pre><code class="language-nim">import atcoder/extra/math/xor_basis
+</code></pre>
+<h2 id="_3">型</h2>
+<pre><code class="language-nim">type XorBasis[T: SomeInteger]
+</code></pre>
+<p><code>T</code> は整数型です。通常は <code>int</code>, <code>int64</code>, <code>uint64</code> などを使います。</p>
+<h2 id="_4">コンストラクタ</h2>
+<pre><code class="language-nim">proc initXorBasis[T: SomeInteger](maxLog: int = 60): XorBasis[T]
+</code></pre>
+<p><code>maxLog</code> は見る最大 bit index です。</p>
+<p>例えば <code>0 &lt;= x &lt; 2^60</code> なら <code>maxLog = 59</code> または余裕を見て <code>maxLog = 60</code> とします。</p>
+<h2 id="_5">操作</h2>
+<pre><code class="language-nim">proc rank[T](xb: XorBasis[T]): int
+proc len[T](xb: XorBasis[T]): int
+proc empty[T](xb: XorBasis[T]): bool
+
+proc add[T](xb: var XorBasis[T], x: T): bool
+proc addAll[T](xb: var XorBasis[T], xs: openArray[T])
+
+proc reduce[T](xb: XorBasis[T], x: T): T
+proc canRepresent[T](xb: XorBasis[T], x: T): bool
+proc contains[T](xb: XorBasis[T], x: T): bool
+
+proc maxXor[T](xb: XorBasis[T]): T
+proc maxXor[T](xb: XorBasis[T], x: T): T
+proc minXor[T](xb: XorBasis[T], x: T): T
+
+proc basisSeq[T](xb: XorBasis[T]): seq[T]
+proc merge[T](a, b: XorBasis[T]): XorBasis[T]
+</code></pre>
+<ul>
+<li><code>rank()</code> / <code>len()</code> は独立な basis の数を返します。</li>
+<li><code>add(x)</code> は <code>x</code> を追加します。rank が増えたら <code>true</code> を返します。</li>
+<li><code>reduce(x)</code> は basis で <code>x</code> を簡約した残りを返します。</li>
+<li><code>canRepresent(x)</code> は <code>x</code> が作れるかを返します。</li>
+<li><code>x in xb</code> でも表現可能性を判定できます。</li>
+<li><code>maxXor()</code> は作れる値の最大値を返します。</li>
+<li><code>maxXor(x)</code> は <code>x xor y</code> の最大値を返します。</li>
+<li><code>minXor(x)</code> は <code>x xor y</code> の最小値を返します。</li>
+<li><code>merge(a, b)</code> は 2 つの basis を合成します。</li>
+</ul>
+<h2 id="_6">使用例</h2>
+<pre><code class="language-nim">var xb = initXorBasis[int](maxLog = 4)
+
+doAssert xb.add(3) == true
+doAssert xb.add(5) == true
+doAssert xb.add(6) == false  # 6 = 3 xor 5
+
+doAssert xb.rank == 2
+
+doAssert 6 in xb
+doAssert 1 notin xb
+
+doAssert xb.maxXor() == 6
+doAssert xb.maxXor(1) == 7
+doAssert xb.minXor(7) == 1
+</code></pre>
+<h2 id="merge">merge</h2>
+<p>basis は merge できます。</p>
+<pre><code class="language-nim">var a = initXorBasis[int](maxLog = 3)
+var b = initXorBasis[int](maxLog = 3)
+
+discard a.add(1)
+discard a.add(2)
+
+discard b.add(4)
+
+let c = merge(a, b)
+
+doAssert c.maxXor() == 7
+doAssert 7 in c
+</code></pre>
+<h2 id="nim">Nim らしい使い方</h2>
+<p><code>contains</code> が定義されているので、表現可能性を <code>in</code> で書けます。</p>
+<pre><code class="language-nim">if x in xb:
+  echo &quot;x is representable&quot;
+</code></pre>
+<p>また、<code>rank</code> は proc ですが、Nim の UFCS により <code>xb.rank</code> のように読めます。</p>
+<pre><code class="language-nim">doAssert xb.rank == xb.len
+</code></pre>
+<h2 id="_7">制約</h2>
+<p>この実装は、<code>0 &lt;= x &lt; 2^(maxLog + 1)</code> の非負整数を主な対象にしています。</p>
+<p>負の整数を入れた場合は <code>uint64</code> 表現に基づいて bit を見ます。通常の競プロ用途では、非負整数で使うことを推奨します。</p>
+<h2 id="_8">計算量</h2>
+<p><code>B = maxLog + 1</code> とすると、</p>
+<ul>
+<li><code>add</code>: <code>O(B)</code></li>
+<li><code>reduce</code>: <code>O(B)</code></li>
+<li><code>canRepresent</code>: <code>O(B)</code></li>
+<li><code>maxXor</code>, <code>minXor</code>: <code>O(B)</code></li>
+<li><code>merge</code>: <code>O(B^2)</code> 程度。ただし通常 <code>B &lt;= 64</code> なので実用上軽いです。</li>
+<li>memory: <code>O(B)</code></li>
+</ul>
+<p>です。</p>
+<h2 id="_9">関連資料・他言語ライブラリ</h2>
+<ul>
+<li>cp-algorithms: Gaussian elimination / linear algebra over fields</li>
+<li>Library Checker: GF(2) linear algebra 系の問題</li>
+<li>Codeforces: subset XOR / maximum XOR basis 型の問題</li>
+<li>Nyaan Library: Binary Basis / XOR Basis 系 module</li>
+<li>ei1333 Library: Linear Basis 系 module</li>
+</ul>
+  </main>
+</body>
+</html>
