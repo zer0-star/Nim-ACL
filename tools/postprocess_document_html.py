@@ -559,7 +559,10 @@ def collect_file(path: Path) -> FileRecord | None:
         code_attrs = match.group("code_attrs")
         pre_attrs = match.group("pre_attrs")
 
-        if not is_nim_code(code_attrs):
+        if not (
+            is_nim_code(code_attrs)
+            or is_nim_code(pre_attrs)
+        ):
             continue
 
         if (

@@ -161,3 +161,50 @@ echo "===== NACL RESULT END ====="
 # NIM_ACL_GENERATED_DOCUMENT_AUDIT_V1
 python3 tools/postprocess_document_links.py
 python3 tools/audit_generated_document_html.py
+
+# NIM_ACL_STRICT_HIGHLIGHT_COUNT_AUDIT_V1
+NIM_ACL_DOC_AUDIT_OUTPUT="$(
+  python3 tools/audit_generated_document_html.py
+)"
+printf '%s\n' "$NIM_ACL_DOC_AUDIT_OUTPUT"
+
+nim_acl_read_count() {
+  printf '%s\n' "$NIM_ACL_DOC_AUDIT_OUTPUT" \
+    | sed -n "s/^$1=\([0-9][0-9]*\)$/\1/p"
+}
+
+NIM_ACL_HIGHLIGHTED="$(
+  nim_acl_read_count HIGHLIGHTED_BLOCKS
+)"
+NIM_ACL_TOKENS="$(
+  nim_acl_read_count TOKEN_SPANS
+)"
+NIM_ACL_NUMBERED="$(
+  nim_acl_read_count NUMBERED_BLOCKS
+)"
+NIM_ACL_LINES="$(
+  nim_acl_read_count CODE_LINES
+)"
+NIM_ACL_MARKERS="$(
+  nim_acl_read_count MARKED_EXAMPLES
+)"
+NIM_ACL_NIM_BLOCKS="$(
+  nim_acl_read_count NIM_CODE_BLOCKS
+)"
+
+test -n "$NIM_ACL_HIGHLIGHTED"
+test -n "$NIM_ACL_TOKENS"
+test -n "$NIM_ACL_NUMBERED"
+test -n "$NIM_ACL_LINES"
+test -n "$NIM_ACL_MARKERS"
+test -n "$NIM_ACL_NIM_BLOCKS"
+
+test "$NIM_ACL_HIGHLIGHTED" -gt 0
+test "$NIM_ACL_TOKENS" -gt 0
+test "$NIM_ACL_NIM_BLOCKS" -gt 0
+
+if [ "$NIM_ACL_MARKERS" -gt 0 ]; then
+  test "$NIM_ACL_NUMBERED" -gt 0
+  test "$NIM_ACL_LINES" -gt 0
+fi
+

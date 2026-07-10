@@ -71,7 +71,7 @@
   </header>
   <main>
 <h1 id="lazy-segtree">Lazy Segtree</h1>
-<p><a href="https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%8E%E3%82%A4%E3%83%89">モノイド</a> $(S, \cdot: S \times S \to S, e \in S)$と、$S$ から $S$ への写像の集合 $F$ であって、以下の条件を満たすようなものについて使用できるデータ構造です。</p>
+<p><a href="https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%8E%E3%82%A4%E3%83%89" target="_blank" rel="noopener">モノイド</a> $(S, \cdot: S \times S \to S, e \in S)$と、$S$ から $S$ への写像の集合 $F$ であって、以下の条件を満たすようなものについて使用できるデータ構造です。</p>
 <ul>
 <li>$F$ は恒等写像 $\mathrm{id}$ を含む。つまり、任意の $x \in S$ に対し $\mathrm{id}(x) = x$ をみたす。</li>
 <li>$F$ は写像の合成について閉じている。つまり、任意の $f, g \in F$ に対し $f \circ g \in F$ である。</li>
@@ -102,7 +102,7 @@
 <li>$id$ を返す関数 <code>id():F</code></li>
 </ul>
 <p>を定義する必要があります。
-詳しくは、使用例や <a href="https://atcoder.jp/contests/practice2/editorial">こちら</a> も参照してください。</p>
+詳しくは、使用例や <a href="https://atcoder.jp/contests/practice2/editorial" target="_blank" rel="noopener">こちら</a> も参照してください。</p>
 <ul>
 <li>(1): 長さ <code>n</code> の数列 <code>a</code> を作ります。初期値は全部<code>e()</code>です。</li>
 <li>(2): 長さ <code>n = v.len</code> の数列 <code>a</code> を作ります。<code>v</code> の内容が初期値となります。</li>
@@ -228,7 +228,7 @@ seg[l..&lt;r]:S
 <li>$O(\log n)$</li>
 </ul>
 <h2 id="_2">使用例</h2>
-<p class="example-caption">AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_k">https://atcoder.jp/contests/practice2/tasks/practice2_k</a></p>
+<p class="example-caption">AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_k" target="_blank" rel="noopener">https://atcoder.jp/contests/practice2/tasks/practice2_k</a></p>
 <div class="sample-code">import atcoder/header
 import atcoder/lazysegtree
 import atcoder/modint
@@ -263,7 +263,7 @@ for i in 0..&lt;q:
     let l, r = nextInt()
     echo seg.prod(l..&lt;r).a.val()</div>
 
-<p class="example-caption">AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_l">https://atcoder.jp/contests/practice2/tasks/practice2_l</a></p>
+<p class="example-caption">AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_l" target="_blank" rel="noopener">https://atcoder.jp/contests/practice2/tasks/practice2_l</a></p>
 <div class="sample-code">include atcoder/header
 import atcoder/lazysegtree
 

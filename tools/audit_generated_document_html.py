@@ -31,6 +31,27 @@ def is_external(href: str) -> bool:
     return host != "nim-acl.github.io"
 
 
+def is_nim_class_set(classes: set[str]) -> bool:
+    for token in classes:
+        normalized = token.casefold().replace("_", "-")
+
+        if normalized in {
+            "nim",
+            "lang-nim",
+            "language-nim",
+            "langnim",
+        }:
+            return True
+
+        if (
+            normalized.startswith("language-")
+            and normalized.endswith("nim")
+        ):
+            return True
+
+    return False
+
+
 class AuditParser(HTMLParser):
     def __init__(self) -> None:
         super().__init__(
@@ -67,23 +88,14 @@ class AuditParser(HTMLParser):
             if "nim-line-numbers" in classes:
                 self.numbered_blocks += 1
 
-            if "nim-code" in classes:
+            if (
+                "nim-code" in classes
+                or is_nim_class_set(classes)
+            ):
                 self.nim_code_blocks += 1
 
         elif tag == "code":
-            if any(
-                token in {
-                    "nim",
-                    "lang-nim",
-                    "language-nim",
-                    "langnim",
-                }
-                or (
-                    token.startswith("language-")
-                    and token.endswith("nim")
-                )
-                for token in classes
-            ):
+            if is_nim_class_set(classes):
                 self.nim_code_blocks += 1
 
         elif tag == "span":
@@ -210,13 +222,25 @@ def main() -> None:
             "but generated HTML has no numbered blocks."
         )
 
-    if (
-        parser.nim_code_blocks > 0
-        and parser.token_spans == 0
-    ):
+    if markers > 0 and parser.code_lines == 0:
         errors.append(
-            "Generated HTML has Nim code blocks, "
-            "but no syntax-highlight token spans."
+            "Markdown has line-number markers, "
+            "but generated HTML has no code-line elements."
+        )
+
+    if parser.nim_code_blocks == 0:
+        errors.append(
+            "No Nim code blocks were recognized in generated HTML."
+        )
+
+    if parser.highlighted_blocks == 0:
+        errors.append(
+            "No generated Nim block has the highlighting marker."
+        )
+
+    if parser.token_spans == 0:
+        errors.append(
+            "Generated HTML has no Nim syntax token spans."
         )
 
     if parser.insecure_external_links:
