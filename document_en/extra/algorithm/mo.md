@@ -1,0 +1,32 @@
+# Mo's Algorithm
+
+`Mo` reorders offline static range queries to minimize endpoint movement.
+
+It is useful when adding or removing one array element from the current range is inexpensive.
+
+## Import and API
+
+~~~nim
+import atcoder/extra/algorithm/mo
+
+proc initMo(n: int, blockSize = 0): Mo
+proc addQuery(mo: var Mo, l, r: int): int
+proc orderedQueries(mo: Mo): seq[MoQuery]
+proc run(mo: Mo, add, remove, answer)
+~~~
+
+All ranges are half-open `[l, r)`.
+
+## Complexity
+
+Typically:
+
+```text
+O((n + q) sqrt(n) * add/remove cost)
+```
+
+## Related resources
+
+- [cp-algorithms: Mo's Algorithm](https://cp-algorithms.com/data_structures/sqrt_decomposition.html#mos-algorithm)
+- ei1333 Library: Mo
+- Nyaan Library: Mo

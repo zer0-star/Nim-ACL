@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DisjointSparseTable</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="disjointsparsetable">DisjointSparseTable</h1>
+<p><code>DisjointSparseTable</code> は、静的配列に対する結合的演算の区間積を <code>O(1)</code> で求める data structure です。</p>
+<p>通常の Sparse Table と異なり、演算が冪等である必要はありません。和・積・文字列連結・行列積などにも使えます。</p>
+<h2 id="_1">考え方</h2>
+<p>各 level で配列を block に分け、block 中央から左向きの suffix 積と、中央から右向きの prefix 積を前計算します。</p>
+<p>区間 <code>[l, r)</code> について <code>l</code> と <code>r-1</code> が初めて異なる上位 bit を選ぶと、区間は1つの中央をまたぎます。その左右の前計算結果を1回 <code>op</code> すれば答えになります。</p>
+<h2 id="import">import</h2>
+<pre><code class="language-nim">import atcoder/extra/structure/disjoint_sparse_table
+</code></pre>
+<h2 id="api">API</h2>
+<pre><code class="language-nim">proc initDisjointSparseTable[T](
+  a: openArray[T],
+  op: proc(a, b: T): T
+): DisjointSparseTable[T]
+
+proc prod[T](dst: DisjointSparseTable[T], l, r: int): T
+proc `[]`[T](
+  dst: DisjointSparseTable[T],
+  range: tuple[l, r: int]
+): T
+</code></pre>
+<p><code>op</code> は結合法則を満たす必要があります。区間は非空の半開区間 <code>[l, r)</code> です。</p>
+<h2 id="_2">使用例</h2>
+<pre><code class="language-nim">proc add(a, b: int): int = a + b
+
+let dst = initDisjointSparseTable(@[1, 2, 3, 4, 5], add)
+
+doAssert dst.prod(1, 4) == 9
+doAssert dst[(2, 5)] == 12
+</code></pre>
+<p>非可換演算にも対応します。</p>
+<pre><code class="language-nim">proc concat(a, b: string): string = a &amp; b
+
+let dst = initDisjointSparseTable(@[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;], concat)
+
+doAssert dst.prod(1, 4) == &quot;bcd&quot;
+</code></pre>
+<h2 id="_3">計算量</h2>
+<ul>
+<li>構築: <code>O(n log n)</code></li>
+<li>query: <code>O(1)</code></li>
+<li>memory: <code>O(n log n)</code></li>
+</ul>
+<h2 id="_4">関連資料・他言語ライブラリ</h2>
+<ul>
+<li><a href="https://judge.yosupo.jp/problem/staticrmq">Library Checker: Static RMQ</a></li>
+<li>Nyaan Library: Disjoint Sparse Table</li>
+<li>ei1333 Library: Disjoint Sparse Table</li>
+</ul>
+  </main>
+</body>
+</html>

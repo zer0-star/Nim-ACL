@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mo&#x27;s Algorithm</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="mos-algorithm">Mo's Algorithm</h1>
+<p><code>Mo</code> reorders offline static range queries to minimize endpoint movement.</p>
+<p>It is useful when adding or removing one array element from the current range is inexpensive.</p>
+<h2 id="import-and-api">Import and API</h2>
+<pre><code class="language-nim">import atcoder/extra/algorithm/mo
+
+proc initMo(n: int, blockSize = 0): Mo
+proc addQuery(mo: var Mo, l, r: int): int
+proc orderedQueries(mo: Mo): seq[MoQuery]
+proc run(mo: Mo, add, remove, answer)
+</code></pre>
+<p>All ranges are half-open <code>[l, r)</code>.</p>
+<h2 id="complexity">Complexity</h2>
+<p>Typically:</p>
+<pre><code class="language-text">O((n + q) sqrt(n) * add/remove cost)
+</code></pre>
+<h2 id="related-resources">Related resources</h2>
+<ul>
+<li><a href="https://cp-algorithms.com/data_structures/sqrt_decomposition.html#mos-algorithm">cp-algorithms: Mo's Algorithm</a></li>
+<li>ei1333 Library: Mo</li>
+<li>Nyaan Library: Mo</li>
+</ul>
+  </main>
+</body>
+</html>

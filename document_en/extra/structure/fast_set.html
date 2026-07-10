@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FastSet</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="fastset">FastSet</h1>
+<p><code>FastSet</code> stores integers in <code>[0, n)</code> using hierarchical bitsets.</p>
+<p>It supports insertion, deletion, membership, successor, and predecessor queries with small constants.</p>
+<h2 id="import-and-api">Import and API</h2>
+<pre><code class="language-nim">import atcoder/extra/structure/fast_set
+
+proc initFastSet(n: int): FastSet
+proc insert(s: var FastSet, x: int): bool
+proc erase(s: var FastSet, x: int): bool
+proc nextGE(s: FastSet, x: int): int
+proc prevLE(s: FastSet, x: int): int
+</code></pre>
+<p>Missing successor/predecessor results are represented by <code>-1</code>.</p>
+<h2 id="example">Example</h2>
+<pre><code class="language-nim">var s = initFastSet(100)
+
+s.incl(3)
+s.incl(20)
+s.incl(64)
+
+doAssert s.nextGE(4) == 20
+doAssert s.prevLE(63) == 20
+</code></pre>
+<h2 id="complexity">Complexity</h2>
+<p>With <code>L = O(log_64 n)</code> levels:</p>
+<ul>
+<li>insert/erase: <code>O(L)</code></li>
+<li>membership: <code>O(1)</code></li>
+<li>successor/predecessor: <code>O(L)</code></li>
+</ul>
+  </main>
+</body>
+</html>
