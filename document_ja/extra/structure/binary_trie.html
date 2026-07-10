@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BinaryTrie</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="binarytrie">BinaryTrie</h1>
+<p><code>BinaryTrie</code> は、整数を二進表記した bit 列として Trie に入れる data structure です。</p>
+<p>通常の <code>Trie</code> は文字列の prefix を扱いますが、<code>BinaryTrie</code> は整数の上位 bit から分岐します。これにより、集合に含まれる値 <code>y</code> のうち、<code>x xor y</code> を最大化・最小化する値を高速に探せます。</p>
+<h2 id="_1">使いどころ</h2>
+<p>次のような問題でよく使います。</p>
+<ul>
+<li>動的な multiset に整数を追加・削除しながら、<code>x xor y</code> の最大値を答える</li>
+<li>整数集合に対する XOR 最小値・最大値 query</li>
+<li>bit ごとの貪欲法で処理する XOR 問題</li>
+<li><code>0 &lt;= a_i &lt; 2^30</code> のような非負整数列の XOR minimization</li>
+</ul>
+<p>Codeforces 706D “Vasiliy's Multiset” や Library Checker の <code>Set Xor-Min</code> 型の問題が代表例です。</p>
+<h2 id="_2">考え方</h2>
+<p>各整数を <code>maxLog</code> bit 目から 0 bit 目まで見て、0/1 の枝に降りていきます。</p>
+<p><code>maxXor(x)</code> では、上位 bit から見て、できるだけ <code>x</code> と反対の bit を持つ枝を選びます。上位 bit の方が値への影響が大きいため、この貪欲法で最大 XOR が得られます。</p>
+<p><code>minXor(x)</code> では逆に、できるだけ <code>x</code> と同じ bit を持つ枝を選びます。</p>
+<p>各 node には、その node 以下にある要素数 <code>count</code> を持たせます。これにより、重複要素を扱えるうえ、削除後に空になった枝を避けて query できます。</p>
+<h2 id="import">import</h2>
+<pre><code class="language-nim">import atcoder/extra/structure/binary_trie
+</code></pre>
+<h2 id="_3">型</h2>
+<pre><code class="language-nim">type BinaryTrie[T: SomeInteger]
+</code></pre>
+<p><code>T</code> は整数型です。通常は <code>int</code>, <code>int64</code>, <code>uint64</code> などを使います。</p>
+<h2 id="_4">コンストラクタ</h2>
+<pre><code class="language-nim">proc initBinaryTrie[T: SomeInteger](maxLog: int = 60): BinaryTrie[T]
+</code></pre>
+<p><code>maxLog</code> は見る最大 bit index です。</p>
+<p>例えば <code>0 &lt;= x &lt; 2^30</code> の値だけを扱うなら、<code>maxLog = 29</code> または余裕を見て <code>maxLog = 30</code> とします。</p>
+<h2 id="_5">操作</h2>
+<pre><code class="language-nim">proc len[T](tr: BinaryTrie[T]): int
+proc empty[T](tr: BinaryTrie[T]): bool
+
+proc insert[T](tr: var BinaryTrie[T], x: T)
+proc add[T](tr: var BinaryTrie[T], x: T, c: int)
+proc erase[T](tr: var BinaryTrie[T], x: T, c: int = 1)
+
+proc count[T](tr: BinaryTrie[T], x: T): int
+proc contains[T](tr: BinaryTrie[T], x: T): bool
+
+proc minXor[T](tr: BinaryTrie[T], x: T): T
+proc maxXor[T](tr: BinaryTrie[T], x: T): T
+
+proc minElementXor[T](tr: BinaryTrie[T], x: T): T
+proc maxElementXor[T](tr: BinaryTrie[T], x: T): T
+</code></pre>
+<ul>
+<li><code>insert(x)</code> は <code>x</code> を 1 個追加します。</li>
+<li><code>add(x, c)</code> は <code>x</code> を <code>c</code> 個追加します。</li>
+<li><code>erase(x, c)</code> は <code>x</code> を <code>c</code> 個削除します。</li>
+<li><code>count(x)</code> は <code>x</code> の個数を返します。</li>
+<li><code>x in tr</code> で存在判定できます。</li>
+<li><code>minXor(x)</code> は <code>x xor y</code> の最小値を返します。</li>
+<li><code>maxXor(x)</code> は <code>x xor y</code> の最大値を返します。</li>
+<li><code>minElementXor(x)</code> は <code>x xor y</code> を最小化する要素 <code>y</code> を返します。</li>
+<li><code>maxElementXor(x)</code> は <code>x xor y</code> を最大化する要素 <code>y</code> を返します。</li>
+</ul>
+<h2 id="_6">使用例</h2>
+<pre><code class="language-nim">var tr = initBinaryTrie[int](maxLog = 30)
+
+tr.insert(0)
+tr.insert(5)
+tr.insert(7)
+tr.insert(5)
+
+doAssert tr.len == 4
+doAssert 5 in tr
+doAssert tr.count(5) == 2
+
+doAssert tr.minXor(2) == 2  # 2 xor 0
+doAssert tr.maxXor(2) == 7  # 2 xor 5
+
+tr.erase(5)
+
+doAssert tr.count(5) == 1
+</code></pre>
+<h2 id="_7">制約</h2>
+<p>この実装は、<code>0 &lt;= x &lt; 2^(maxLog + 1)</code> の非負整数を主な対象にしています。</p>
+<p>負の整数を入れた場合は <code>uint64</code> 表現に基づいて bit を見ます。通常の競プロ用途では、非負整数で使うことを推奨します。</p>
+<h2 id="_8">計算量</h2>
+<p><code>B = maxLog + 1</code> とすると、</p>
+<ul>
+<li><code>insert</code>: <code>O(B)</code></li>
+<li><code>erase</code>: <code>O(B)</code></li>
+<li><code>count</code>: <code>O(B)</code></li>
+<li><code>minXor</code>, <code>maxXor</code>: <code>O(B)</code></li>
+<li>memory: <code>O(B * distinct values)</code></li>
+</ul>
+<p>です。</p>
+<h2 id="_9">関連資料・他言語ライブラリ</h2>
+<ul>
+<li>Library Checker: <code>Set Xor-Min</code></li>
+<li>Nyaan Library: Binary Trie</li>
+<li>ei1333 Library: Binary Trie</li>
+<li>Codeforces 706D: Vasiliy's Multiset</li>
+</ul>
+  </main>
+</body>
+</html>

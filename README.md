@@ -38,7 +38,7 @@ apple silicon上でverifyに失敗した場合
 
 ## ドキュメント
 * ドキュメントはこちらです。
-  * https://zer0-star.github.io/Nim-ACL/document_ja/index.html
+  * https://nim-acl.github.io/Nim-ACL/document_ja/index.html
 
 ## 使用上の注意
 * 本ライブラリをコンパイルする際にはcppでのコンパイル、つまりnim cppが必要です。atcoderでもcppでコンパイルされています。nim cでは動きません。

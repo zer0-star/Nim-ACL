@@ -57,11 +57,11 @@ STEP=init
   rmdir "$tmp" 2>/dev/null || true
 
   STEP="live docs sanity"
-  curl -fsSL "https://zer0-star.github.io/Nim-ACL/document_ja/index.html?cacheBust=$(date +%s)" \
+  curl -fsSL "https://nim-acl.github.io/Nim-ACL/document_ja/index.html?cacheBust=$(date +%s)" \
     | grep -E "FPS facade|extra/math/fps.html"
-  curl -fsSL "https://zer0-star.github.io/Nim-ACL/document_ja/extra/monoid/monoid.html?cacheBust=$(date +%s)" \
+  curl -fsSL "https://nim-acl.github.io/Nim-ACL/document_ja/extra/monoid/monoid.html?cacheBust=$(date +%s)" \
     | grep -E "useMonoid|MonoidOf|ActedMonoidOf"
-  curl -fsSL "https://zer0-star.github.io/Nim-ACL/document_ja/extra/graph/dijkstra.html?cacheBust=$(date +%s)" \
+  curl -fsSL "https://nim-acl.github.io/Nim-ACL/document_ja/extra/graph/dijkstra.html?cacheBust=$(date +%s)" \
     | grep -E "基本例|dijkstra|dijkstra01"
 
   STEP="final clean"

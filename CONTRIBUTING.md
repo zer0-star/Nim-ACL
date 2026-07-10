@@ -82,3 +82,22 @@ Local Nim test runs may generate executable files next to test files and may als
 ## Warning policy
 
 Nim/C++ backend warnings such as generated-array-bound warnings may appear during local test builds. Treat them as warnings unless the test command fails. A successful run must still end with `STATUS: OK` in the `NACL RESULT` block.
+
+## Documentation policy for advanced algorithms
+
+For advanced or less common algorithms, documentation should be usable as both
+an API reference and a short learning note.
+
+Prefer the following structure:
+
+1. Overview: what problem the algorithm solves.
+2. Use cases: common contest patterns and representative problems.
+3. Idea: the core invariant or greedy/DP/graph principle.
+4. API reference: import, types, constructors, operations.
+5. Nim-friendly usage: operators, iterators, templates, or macros when helpful.
+6. Complexity and pitfalls.
+7. Related resources and libraries.
+
+Do not copy implementations from other languages into the documentation.
+When other public competitive-programming libraries are useful references, link
+to them instead.
