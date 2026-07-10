@@ -114,3 +114,7 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 
 - [`import atcoder/extra/graph/offline_dynamic_connectivity`](./extra/graph/offline_dynamic_connectivity.html)
 - [`import atcoder/extra/graph/functional_graph`](./extra/graph/functional_graph.html)
+
+## extra/string
+
+- [`import atcoder/extra/string/manacher`](./extra/string/manacher.html)

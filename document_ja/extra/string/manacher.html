@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Manacher</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="manacher">Manacher</h1>
+<p><code>Manacher</code> は、文字列中のすべての回文半径を線形時間で求めるアルゴリズムです。</p>
+<p>各位置を中心とする最長回文の半径を前計算しておくことで、任意の substring が回文かどうかを <code>O(1)</code> で判定できます。</p>
+<h2 id="_1">使いどころ</h2>
+<p>次のような問題でよく使います。</p>
+<ul>
+<li>最長回文 substring を求める</li>
+<li>回文 substring の個数を数える</li>
+<li><code>s[l ..&lt; r]</code> が回文かを多数回判定する</li>
+<li>回文を使う DP の高速化</li>
+<li>文字列の左右対称性を利用する問題</li>
+</ul>
+<h2 id="_2">考え方</h2>
+<p>素朴には、各中心から左右に伸ばして回文を調べると <code>O(n^2)</code> かかります。</p>
+<p>Manacher では、すでに見つけた回文区間 <code>[l, r]</code> を使って、次の中心の回文半径を再利用します。</p>
+<p>今見ている位置 <code>i</code> が既存の回文区間内にあるとき、左右対称な位置 <code>l + r - i</code> の回文半径を参考にできます。<br>
+そこから、まだ未確定の外側だけを比較して伸ばします。</p>
+<p>各文字は全体で高々定数回しか新しく比較されないため、合計 <code>O(n)</code> になります。</p>
+<h2 id="odd-radius-even-radius">odd radius と even radius</h2>
+<p>この module では、奇数長回文と偶数長回文を分けて扱います。</p>
+<pre><code class="language-nim">odd[i] = r
+</code></pre>
+<p>は、<code>i</code> を中心とする奇数長回文</p>
+<pre><code class="language-text">s[i-r+1 .. i+r-1]
+</code></pre>
+<p>が存在することを表します。回文長は <code>2*r - 1</code> です。</p>
+<pre><code class="language-nim">even[i] = r
+</code></pre>
+<p>は、<code>i-1</code> と <code>i</code> の間を中心とする偶数長回文</p>
+<pre><code class="language-text">s[i-r .. i+r-1]
+</code></pre>
+<p>が存在することを表します。回文長は <code>2*r</code> です。</p>
+<h2 id="import">import</h2>
+<pre><code class="language-nim">import atcoder/extra/string/manacher
+</code></pre>
+<h2 id="_3">型</h2>
+<pre><code class="language-nim">type Manacher[T]
+</code></pre>
+<p><code>string</code> に対しては <code>Manacher[char]</code> が作られます。<br>
+また、<code>seq[int]</code> などの一般の sequence に対しても使えます。</p>
+<h2 id="_4">コンストラクタ</h2>
+<pre><code class="language-nim">proc initManacher[T](s: openArray[T]): Manacher[T]
+proc initManacher(s: string): Manacher[char]
+</code></pre>
+<h2 id="_5">半径だけを求める関数</h2>
+<pre><code class="language-nim">proc manacherOdd[T](s: openArray[T]): seq[int]
+proc manacherOdd(s: string): seq[int]
+
+proc manacherEven[T](s: openArray[T]): seq[int]
+proc manacherEven(s: string): seq[int]
+
+proc palindromeRadii[T](s: openArray[T]): tuple[odd, even: seq[int]]
+proc palindromeRadii(s: string): tuple[odd, even: seq[int]]
+</code></pre>
+<h2 id="_6">操作</h2>
+<pre><code class="language-nim">proc len[T](m: Manacher[T]): int
+
+proc isPalindrome[T](m: Manacher[T], l, r: int): bool
+proc longestPalindromeRange[T](m: Manacher[T]): tuple[l, r: int]
+proc longestPalindromeLength[T](m: Manacher[T]): int
+
+proc countPalindromicSubstrings[T](m: Manacher[T]): int
+proc countPalindromes[T](m: Manacher[T]): int
+</code></pre>
+<ul>
+<li><code>isPalindrome(l, r)</code> は <code>s[l ..&lt; r]</code> が回文かを返します。</li>
+<li><code>longestPalindromeRange()</code> は最長回文 substring の半開区間 <code>[l, r)</code> を返します。</li>
+<li><code>longestPalindromeLength()</code> は最長回文 substring の長さを返します。</li>
+<li><code>countPalindromicSubstrings()</code> は回文 substring の個数を返します。</li>
+</ul>
+<h2 id="_7">使用例</h2>
+<pre><code class="language-nim">let m = initManacher(&quot;ababa&quot;)
+
+doAssert m.odd == @[1, 2, 3, 2, 1]
+doAssert m.even == @[0, 0, 0, 0, 0]
+
+doAssert m.isPalindrome(0, 5)
+doAssert m.isPalindrome(1, 4)
+doAssert not m.isPalindrome(0, 4)
+
+doAssert m.longestPalindromeLength == 5
+doAssert m.longestPalindromeRange == (l: 0, r: 5)
+
+doAssert m.countPalindromicSubstrings == 9
+</code></pre>
+<p>偶数長回文も扱えます。</p>
+<pre><code class="language-nim">let m = initManacher(&quot;abba&quot;)
+
+doAssert m.odd == @[1, 1, 1, 1]
+doAssert m.even == @[0, 0, 2, 0]
+
+doAssert m.isPalindrome(0, 4)
+doAssert m.longestPalindromeLength == 4
+</code></pre>
+<h2 id="nim">Nim らしい使い方</h2>
+<p><code>Manacher</code> は <code>string</code> だけでなく、比較可能な sequence にも使えます。</p>
+<pre><code class="language-nim">let m = initManacher(@[1, 2, 1, 2, 1])
+
+doAssert m.isPalindrome(0, 5)
+doAssert m.longestPalindromeLength == 5
+</code></pre>
+<p>また、UFCS により自然に読めます。</p>
+<pre><code class="language-nim">if m.isPalindrome(l, r):
+  echo &quot;palindrome&quot;
+</code></pre>
+<h2 id="_8">計算量</h2>
+<p>文字列長を <code>n</code> とすると、</p>
+<ul>
+<li>構築: <code>O(n)</code></li>
+<li><code>isPalindrome</code>: <code>O(1)</code></li>
+<li><code>longestPalindromeLength</code>: <code>O(n)</code></li>
+<li><code>longestPalindromeRange</code>: <code>O(n)</code></li>
+<li><code>countPalindromicSubstrings</code>: <code>O(n)</code></li>
+<li>memory: <code>O(n)</code></li>
+</ul>
+<p>です。</p>
+<h2 id="_9">注意</h2>
+<ul>
+<li>区間はすべて半開区間 <code>[l, r)</code> です。</li>
+<li><code>odd</code> と <code>even</code> の半径の意味が異なるので注意してください。</li>
+<li><code>countPalindromicSubstrings</code> は全回文 substring 数を返すため、最悪 <code>O(n^2)</code> 個になります。戻り値型は <code>int</code> です。</li>
+</ul>
+<h2 id="_10">関連資料・他言語ライブラリ</h2>
+<ul>
+<li>cp-algorithms: Manacher's Algorithm</li>
+<li>Library Checker: palindrome / string 系問題</li>
+<li>Nyaan Library: Manacher</li>
+<li>ei1333 Library: Manacher</li>
+</ul>
+  </main>
+</body>
+</html>

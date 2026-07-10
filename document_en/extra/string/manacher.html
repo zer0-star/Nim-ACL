@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Manacher</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="manacher">Manacher</h1>
+<p><code>Manacher</code> computes all palindrome radii in a string in linear time.</p>
+<p>After preprocessing, palindrome checks for arbitrary substrings can be answered in <code>O(1)</code>.</p>
+<h2 id="use-cases">Use cases</h2>
+<p>Typical use cases include:</p>
+<ul>
+<li>longest palindromic substring</li>
+<li>counting palindromic substrings</li>
+<li>many queries asking whether <code>s[l ..&lt; r]</code> is a palindrome</li>
+<li>speeding up DP involving palindromes</li>
+<li>problems based on symmetry in strings</li>
+</ul>
+<h2 id="idea">Idea</h2>
+<p>A naive approach expands around every center and can take <code>O(n^2)</code> time.</p>
+<p>Manacher reuses an already known palindrome interval <code>[l, r]</code>.<br>
+If the current position <code>i</code> is inside that interval, the radius of the mirrored position <code>l + r - i</code> gives a lower bound.<br>
+Then it only compares characters outside the already known region.</p>
+<p>Each character is newly compared only a constant number of times in total, so the whole algorithm runs in <code>O(n)</code>.</p>
+<h2 id="odd-and-even-radii">Odd and even radii</h2>
+<p>This module stores odd-length and even-length palindromes separately.</p>
+<pre><code class="language-nim">odd[i] = r
+</code></pre>
+<p>means that the odd palindrome centered at <code>i</code></p>
+<pre><code class="language-text">s[i-r+1 .. i+r-1]
+</code></pre>
+<p>exists. Its length is <code>2*r - 1</code>.</p>
+<pre><code class="language-nim">even[i] = r
+</code></pre>
+<p>means that the even palindrome centered between <code>i-1</code> and <code>i</code></p>
+<pre><code class="language-text">s[i-r .. i+r-1]
+</code></pre>
+<p>exists. Its length is <code>2*r</code>.</p>
+<h2 id="import">Import</h2>
+<pre><code class="language-nim">import atcoder/extra/string/manacher
+</code></pre>
+<h2 id="type">Type</h2>
+<pre><code class="language-nim">type Manacher[T]
+</code></pre>
+<p>For <code>string</code>, <code>Manacher[char]</code> is constructed.<br>
+It also works for general sequences such as <code>seq[int]</code>.</p>
+<h2 id="constructors">Constructors</h2>
+<pre><code class="language-nim">proc initManacher[T](s: openArray[T]): Manacher[T]
+proc initManacher(s: string): Manacher[char]
+</code></pre>
+<h2 id="radius-helpers">Radius helpers</h2>
+<pre><code class="language-nim">proc manacherOdd[T](s: openArray[T]): seq[int]
+proc manacherOdd(s: string): seq[int]
+
+proc manacherEven[T](s: openArray[T]): seq[int]
+proc manacherEven(s: string): seq[int]
+
+proc palindromeRadii[T](s: openArray[T]): tuple[odd, even: seq[int]]
+proc palindromeRadii(s: string): tuple[odd, even: seq[int]]
+</code></pre>
+<h2 id="operations">Operations</h2>
+<pre><code class="language-nim">proc len[T](m: Manacher[T]): int
+
+proc isPalindrome[T](m: Manacher[T], l, r: int): bool
+proc longestPalindromeRange[T](m: Manacher[T]): tuple[l, r: int]
+proc longestPalindromeLength[T](m: Manacher[T]): int
+
+proc countPalindromicSubstrings[T](m: Manacher[T]): int
+proc countPalindromes[T](m: Manacher[T]): int
+</code></pre>
+<ul>
+<li><code>isPalindrome(l, r)</code> checks whether <code>s[l ..&lt; r]</code> is a palindrome.</li>
+<li><code>longestPalindromeRange()</code> returns a half-open range <code>[l, r)</code> of one longest palindromic substring.</li>
+<li><code>longestPalindromeLength()</code> returns the longest palindromic substring length.</li>
+<li><code>countPalindromicSubstrings()</code> returns the number of palindromic substrings.</li>
+</ul>
+<h2 id="example">Example</h2>
+<pre><code class="language-nim">let m = initManacher(&quot;ababa&quot;)
+
+doAssert m.odd == @[1, 2, 3, 2, 1]
+doAssert m.even == @[0, 0, 0, 0, 0]
+
+doAssert m.isPalindrome(0, 5)
+doAssert m.isPalindrome(1, 4)
+doAssert not m.isPalindrome(0, 4)
+
+doAssert m.longestPalindromeLength == 5
+doAssert m.longestPalindromeRange == (l: 0, r: 5)
+
+doAssert m.countPalindromicSubstrings == 9
+</code></pre>
+<p>Even-length palindromes are also supported.</p>
+<pre><code class="language-nim">let m = initManacher(&quot;abba&quot;)
+
+doAssert m.odd == @[1, 1, 1, 1]
+doAssert m.even == @[0, 0, 2, 0]
+
+doAssert m.isPalindrome(0, 4)
+doAssert m.longestPalindromeLength == 4
+</code></pre>
+<h2 id="nim-friendly-usage">Nim-friendly usage</h2>
+<p><code>Manacher</code> works not only for strings but also for comparable sequences.</p>
+<pre><code class="language-nim">let m = initManacher(@[1, 2, 1, 2, 1])
+
+doAssert m.isPalindrome(0, 5)
+doAssert m.longestPalindromeLength == 5
+</code></pre>
+<p>UFCS makes queries readable.</p>
+<pre><code class="language-nim">if m.isPalindrome(l, r):
+  echo &quot;palindrome&quot;
+</code></pre>
+<h2 id="complexity">Complexity</h2>
+<p>For string length <code>n</code>:</p>
+<ul>
+<li>build: <code>O(n)</code></li>
+<li><code>isPalindrome</code>: <code>O(1)</code></li>
+<li><code>longestPalindromeLength</code>: <code>O(n)</code></li>
+<li><code>longestPalindromeRange</code>: <code>O(n)</code></li>
+<li><code>countPalindromicSubstrings</code>: <code>O(n)</code></li>
+<li>memory: <code>O(n)</code></li>
+</ul>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>All ranges are half-open ranges <code>[l, r)</code>.</li>
+<li>Be careful that <code>odd</code> and <code>even</code> radii have different meanings.</li>
+<li><code>countPalindromicSubstrings</code> can be <code>O(n^2)</code> in value. The return type is <code>int</code>.</li>
+</ul>
+<h2 id="related-resources-and-libraries">Related resources and libraries</h2>
+<ul>
+<li>cp-algorithms: Manacher's Algorithm</li>
+<li>Library Checker: palindrome / string problems</li>
+<li>Nyaan Library: Manacher</li>
+<li>ei1333 Library: Manacher</li>
+</ul>
+  </main>
+</body>
+</html>
