@@ -29,18 +29,18 @@
 |---|---:|---|---|---|
 | [スパーステーブル](https://info.atcoder.jp/entry/algorithm_lectures/sparse_table) | 3 | 実装・docsあり | [Nim-ACL](../extra/structure/sparse_table.html) | 公式講座への関連リンクを追加 |
 | [Disjoint Sparse Table](https://info.atcoder.jp/entry/algorithm_lectures/disjoint_sparse_table) | 4 | 実装・docsあり | [Nim-ACL](../extra/structure/disjoint_sparse_table.html) | 公式講座への関連リンクを追加 |
-| [Sqrt Tree](https://info.atcoder.jp/entry/algorithm_lectures/sqrt_tree) | 5 | 未検出（候補） | — | 出題頻度・実装コストを評価 |
+| [Sqrt Tree](https://info.atcoder.jp/entry/algorithm_lectures/sqrt_tree) | 5 | 実装・docsあり | [Nim-ACL](../extra/structure/sqrt_tree.html) | 公式講座への関連リンクを追加済み |
 | [静的な列の区間積クエリ](https://info.atcoder.jp/entry/algorithm_lectures/static_range_product) | 7 | 関連実装あり | — | 公式講座との対応範囲を監査 |
 | [Union-Find の計算量上界](https://info.atcoder.jp/entry/algorithm_lectures/unionfind_complexity) | 8 | 理論・参照中心 | — | Nim-ACL docs から公式解説を案内 |
 | [Wavelet Matrix（基礎）](https://info.atcoder.jp/entry/algorithm_lectures/wavelet_matrix_basic) | 6 | 実装・docsあり | [Nim-ACL](../extra/structure/wavelet_matrix.html) | 公式講座への関連リンクを追加 |
 | [Wavelet Matrix（発展）](https://info.atcoder.jp/entry/algorithm_lectures/wavelet_matrix_advanced) | 7 | 実装・docsあり | [Nim-ACL](../extra/structure/wavelet_matrix.html) | 公式講座への関連リンクを追加 |
-| [永続セグメント木](https://info.atcoder.jp/entry/algorithm_lectures/persistent_segment_tree) | 7 | 未検出（候補） | — | 出題頻度・実装コストを評価 |
+| [永続セグメント木](https://info.atcoder.jp/entry/algorithm_lectures/persistent_segment_tree) | 7 | 実装・docsあり | [Nim-ACL](../extra/structure/persistent_segment_tree.html) | 公式講座への関連リンクを追加済み |
 
 ## グラフ
 
 | 公式講座 | 難易度 | Nim-ACL 状態 | Nim-ACL docs | 次の対応 |
 |---|---:|---|---|---|
-| [オイラーツアーテクニック](https://info.atcoder.jp/entry/algorithm_lectures/euler_tour_technique) | 4 | 未検出（候補） | — | 出題頻度・実装コストを評価 |
+| [オイラーツアーテクニック](https://info.atcoder.jp/entry/algorithm_lectures/euler_tour_technique) | 4 | 実装・docsあり | [Nim-ACL](../extra/graph/euler_tour.html) | 公式講座への関連リンクを追加済み |
 | [重軽分解（HLD）](https://info.atcoder.jp/entry/algorithm_lectures/heavy_light_decomposition) | 4 | 未検出（候補） | — | 出題頻度・実装コストを評価 |
 | [線形時間 LCA](https://info.atcoder.jp/entry/algorithm_lectures/linear_time_lca) | 6 | 関連実装あり | — | 公式講座との対応範囲を監査 |
 | [グラフ理論用語集](https://info.atcoder.jp/entry/algorithm_lectures/graph_terms) | 1 | 理論・参照中心 | — | Nim-ACL docs から公式解説を案内 |

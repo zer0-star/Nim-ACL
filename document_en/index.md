@@ -100,6 +100,8 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 
 ## extra/structure
 
+- [`import atcoder/extra/structure/persistent_segment_tree`](./extra/structure/persistent_segment_tree.html)
+- [`import atcoder/extra/structure/sqrt_tree`](./extra/structure/sqrt_tree.html)
 - [`import atcoder/extra/structure/mex_set`](./extra/structure/mex_set.html)
 - [`import atcoder/extra/structure/fast_set`](./extra/structure/fast_set.html)
 - [`import atcoder/extra/structure/disjoint_sparse_table`](./extra/structure/disjoint_sparse_table.html)
@@ -122,6 +124,7 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 
 ## extra/graph
 
+- [`import atcoder/extra/graph/euler_tour`](./extra/graph/euler_tour.html)
 - [`import atcoder/extra/graph/undirected_decomposition`](./extra/graph/undirected_decomposition.html)
 - [`import atcoder/extra/graph/biconnected_components`](./extra/graph/biconnected_components.html)
 - [`import atcoder/extra/graph/two_edge_connected_components`](./extra/graph/two_edge_connected_components.html)

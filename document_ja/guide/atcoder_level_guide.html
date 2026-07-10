@@ -490,6 +490,11 @@ import atcoder/modint
 <td>ancestor、距離、path</td>
 </tr>
 <tr>
+<td><a href="../extra/graph/euler_tour.html">Euler Tour</a></td>
+<td style="text-align: right;">推奨</td>
+<td>subtree を区間へ変換</td>
+</tr>
+<tr>
 <td>Weighted Union Find</td>
 <td style="text-align: right;">推奨</td>
 <td>差分制約・potential</td>
@@ -840,6 +845,28 @@ import atcoder/modint
 </tr>
 </tbody>
 </table>
+<h2 id="data-structure_1">高度な静的・永続区間 data structure</h2>
+<table>
+<thead>
+<tr>
+<th>ライブラリ</th>
+<th style="text-align: right;">重要度</th>
+<th>典型的な用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../extra/structure/sqrt_tree.html">Sqrt Tree</a></td>
+<td style="text-align: right;">発展</td>
+<td>静的モノイド列の大量区間 query</td>
+</tr>
+<tr>
+<td><a href="../extra/structure/persistent_segment_tree.html">Persistent Segment Tree</a></td>
+<td style="text-align: right;">推奨</td>
+<td>過去 version の区間 query</td>
+</tr>
+</tbody>
+</table>
 <h2 id="graph_1">高度な graph</h2>
 <p>次の分野は、出題頻度は低めですが、必要な問題では代替が難しいです。</p>
 <pre><code class="language-nim">import atcoder/extra/graph/chu_liu_edmonds
@@ -1078,7 +1105,6 @@ import atcoder/extra/graph/boruvka
 <h2 id="_20">初級〜中級</h2>
 <ul>
 <li>Z Algorithm の使いやすい facade</li>
-<li>Euler Tour utility</li>
 <li>Prefix Sum facade の統一</li>
 <li>Monotonic Queue / Stack helper</li>
 <li>Interval Set</li>
@@ -1098,7 +1124,6 @@ import atcoder/extra/graph/boruvka
 <li>Mo on Tree</li>
 <li>Segment Tree Beats facade</li>
 <li>Dynamic Tree DP</li>
-<li>Persistent Segment Tree</li>
 <li>Li Chao Tree persistent version</li>
 <li>General matching / blossom</li>
 <li>Min-plus convolution 系</li>

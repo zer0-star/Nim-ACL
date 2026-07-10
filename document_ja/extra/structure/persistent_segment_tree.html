@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Persistent Segment Tree</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="persistent-segment-tree">Persistent Segment Tree</h1>
+<p><code>PersistentSegmentTree</code> は、更新前の version を破壊せずに残す Segment Tree です。</p>
+<p>通常の Segment Tree では点更新すると過去の状態が失われます。永続 Segment Tree では、更新経路上の node だけを複製し、変更されない subtree を古い version と共有します。</p>
+<h2 id="_1">使いどころ</h2>
+<ul>
+<li>過去時刻の配列に対する query</li>
+<li>version ごとに異なる更新を分岐させる</li>
+<li>区間 k-th などの persistent frequency tree</li>
+<li>rollback ではなく、任意の過去 version を直接参照したい</li>
+<li>offline query</li>
+</ul>
+<h2 id="_2">考え方</h2>
+<p>点更新で変更される node は root から leaf までの <code>O(log n)</code> 個だけです。</p>
+<p>それらだけを新しく作り、反対側の子は古い node をそのまま共有します。各 version は root node の index だけで表せます。</p>
+<h2 id="import">import</h2>
+<pre><code class="language-nim">import atcoder/extra/structure/persistent_segment_tree
+</code></pre>
+<p>ローカル短縮 import：</p>
+<pre><code class="language-nim">import lib/structure/persistent_segment_tree
+</code></pre>
+<h2 id="_3">コンストラクタ</h2>
+<pre><code class="language-nim">proc initPersistentSegmentTree[T](
+  n: int,
+  identity: T,
+  op: proc(a, b: T): T,
+  expectedUpdates: int = 0
+): PersistentSegmentTree[T]
+
+proc initPersistentSegmentTree[T](
+  values: openArray[T],
+  identity: T,
+  op: proc(a, b: T): T,
+  expectedUpdates: int = 0
+): PersistentSegmentTree[T]
+</code></pre>
+<h2 id="_4">操作</h2>
+<pre><code class="language-nim">proc setValue(
+  tree: var PersistentSegmentTree[T],
+  root, position: int,
+  value: T
+): int
+
+proc update(
+  tree: var PersistentSegmentTree[T],
+  root, position: int,
+  value: T
+): int
+
+proc prod(
+  tree: PersistentSegmentTree[T],
+  root, l, r: int
+): T
+
+proc get(tree, root, position): T
+proc allProd(tree, root): T
+proc toSeq(tree, root): seq[T]
+</code></pre>
+<p><code>setValue</code> は元の version を変更せず、新しい root index を返します。</p>
+<h2 id="_5">使用例</h2>
+<pre><code class="language-nim">proc add(a, b: int): int = a + b
+
+var tree = initPersistentSegmentTree(
+  @[1, 2, 3, 4],
+  identity = 0,
+  op = add,
+)
+
+let
+  root0 = tree.root
+  root1 = tree.setValue(root0, 1, 20)
+  root2 = tree.setValue(root1, 3, 40)
+
+doAssert tree.toSeq(root0) == @[1, 2, 3, 4]
+doAssert tree.toSeq(root1) == @[1, 20, 3, 4]
+doAssert tree.toSeq(root2) == @[1, 20, 3, 40]
+
+doAssert tree.prod(root0, 0, 4) == 10
+doAssert tree.prod(root2, 1, 4) == 63
+</code></pre>
+<p>古い version から別の branch を作れます。</p>
+<pre><code class="language-nim">let rootA = tree.setValue(root0, 0, 100)
+let rootB = tree.setValue(root0, 0, 200)
+</code></pre>
+<h2 id="_6">計算量</h2>
+<ul>
+<li>初期構築: <code>O(n)</code></li>
+<li>点更新: <code>O(log n)</code> 時間・追加 memory</li>
+<li>区間積: <code>O(log n)</code></li>
+<li>point get: <code>O(log n)</code></li>
+<li>version の保持: root index 1個</li>
+</ul>
+<h2 id="_7">注意</h2>
+<ul>
+<li><code>op</code> は結合法則を満たす必要があります。</li>
+<li><code>identity</code> は <code>op</code> の単位元です。</li>
+<li>version は root index として利用者が保持します。</li>
+<li>区間は半開区間 <code>[l, r)</code> です。</li>
+</ul>
+<h2 id="_8">関連資料</h2>
+<ul>
+<li><a href="https://info.atcoder.jp/entry/algorithm_lectures/index">AtCoder Algorithm Lectures</a></li>
+<li>Persistent data structures</li>
+<li>Library Checker の persistent / range query 問題</li>
+</ul>
+  </main>
+</body>
+</html>
