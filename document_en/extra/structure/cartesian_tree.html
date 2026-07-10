@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CartesianTree</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="cartesiantree">CartesianTree</h1>
+<p><code>CartesianTree</code> is a binary tree whose inorder traversal preserves array indices while its values satisfy a heap condition.</p>
+<p>A min Cartesian tree has parent values no greater than child values. It is useful for Range Minimum Query reductions, LCA relations, and monotonic-stack techniques.</p>
+<h2 id="import-and-construction">Import and construction</h2>
+<pre><code class="language-nim">import atcoder/extra/structure/cartesian_tree
+
+proc initCartesianTree[T](a: openArray[T]): CartesianTree
+proc initMinCartesianTree[T](a: openArray[T]): CartesianTree
+proc initMaxCartesianTree[T](a: openArray[T]): CartesianTree
+</code></pre>
+<h2 id="fields">Fields</h2>
+<pre><code class="language-nim">root: int
+parent: seq[int]
+left: seq[int]
+right: seq[int]
+</code></pre>
+<p>Missing parents and children are represented by <code>-1</code>.</p>
+<h2 id="example">Example</h2>
+<pre><code class="language-nim">let tree = initCartesianTree(@[3, 1, 4, 0, 2])
+
+doAssert tree.root == 3
+doAssert tree.inorder == @[0, 1, 2, 3, 4]
+</code></pre>
+<h2 id="complexity">Complexity</h2>
+<ul>
+<li>build: <code>O(n)</code></li>
+<li>memory: <code>O(n)</code></li>
+</ul>
+  </main>
+</body>
+</html>

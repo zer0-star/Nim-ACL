@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -71,29 +71,24 @@
   </header>
   <main>
 <h1 id="suffixautomaton">SuffixAutomaton</h1>
-<p><code>SuffixAutomaton</code> は、1つの文字列に含まれるすべての substring を受理する最小 DFA です。</p>
-<p>文字列長を <code>n</code> とすると状態数は高々 <code>2n-1</code> で、substring の存在判定、出現回数、異なる substring 数、最長共通 substring などを高速に処理できます。</p>
-<h2 id="_1">使いどころ</h2>
+<p><code>SuffixAutomaton</code> is the minimal DFA accepting all substrings of one string.</p>
+<p>For a string of length <code>n</code>, it has at most <code>2n-1</code> states and supports substring membership, occurrence counts, distinct-substring counting, and longest common substring queries.</p>
+<h2 id="use-cases">Use cases</h2>
 <ul>
-<li>pattern が元文字列の substring か判定する</li>
-<li>substring の出現回数を求める</li>
-<li>異なる substring の個数を数える</li>
-<li>2文字列の最長共通 substring を求める</li>
-<li>substring を状態として扱う DP</li>
+<li>checking whether a pattern is a substring</li>
+<li>counting pattern occurrences</li>
+<li>counting distinct substrings</li>
+<li>longest common substring of two strings</li>
+<li>DP over substring states</li>
 </ul>
-<h2 id="_2">考え方</h2>
-<p>各状態は、元文字列中で同じ <code>end position</code> 集合を持つ substring の集合を表します。</p>
-<p><code>link</code> は、現在の状態が表す substring の最長 proper suffix に対応する状態です。文字を1つ追加するたびに状態と suffix link を更新し、必要な場合は状態を clone します。</p>
-<p>状態 <code>v</code> が表す新しい substring 数は</p>
+<h2 id="idea">Idea</h2>
+<p>Each state represents substrings sharing the same set of end positions.</p>
+<p>A suffix link points to the state corresponding to the longest proper suffix. When a character is appended, states and suffix links are updated, with cloning when necessary.</p>
+<p>The number of new substrings represented by state <code>v</code> is:</p>
 <pre><code class="language-text">len[v] - len[link[v]]
 </code></pre>
-<p>なので、これを全状態について足すと異なる substring 数になります。</p>
-<h2 id="import">import</h2>
+<h2 id="import-and-construction">Import and construction</h2>
 <pre><code class="language-nim">import atcoder/extra/string/suffix_automaton
-</code></pre>
-<h2 id="_3">型と構築</h2>
-<pre><code class="language-nim">type SuffixAutomaton
-type SuffixAutomatonState
 
 proc initSuffixAutomaton(): SuffixAutomaton
 proc initSuffixAutomaton(s: string): SuffixAutomaton
@@ -101,10 +96,8 @@ proc extend(sam: var SuffixAutomaton, ch: char): int
 proc add(sam: var SuffixAutomaton, s: string)
 proc buildOccurrences(sam: var SuffixAutomaton)
 </code></pre>
-<p>空から構築する場合は、文字をすべて追加した後に <code>buildOccurrences()</code> を呼びます。</p>
-<h2 id="_4">操作</h2>
-<pre><code class="language-nim">proc stateFor(sam: SuffixAutomaton, pattern: string): int
-proc contains(sam: SuffixAutomaton, pattern: string): bool
+<h2 id="operations">Operations</h2>
+<pre><code class="language-nim">proc contains(sam: SuffixAutomaton, pattern: string): bool
 proc occurrenceCount(sam: SuffixAutomaton, pattern: string): int
 proc distinctSubstringCount(sam: SuffixAutomaton): int64
 
@@ -113,31 +106,21 @@ proc longestCommonSubstring(
   text: string
 ): tuple[length, l, r: int]
 </code></pre>
-<h2 id="_5">使用例</h2>
+<h2 id="example">Example</h2>
 <pre><code class="language-nim">let sam = initSuffixAutomaton(&quot;ababa&quot;)
 
 doAssert &quot;aba&quot; in sam
-doAssert &quot;abb&quot; notin sam
-
-doAssert sam.occurrenceCount(&quot;a&quot;) == 3
 doAssert sam.occurrenceCount(&quot;aba&quot;) == 2
 doAssert sam.distinctSubstringCount == 9
-
-let lcs = sam.longestCommonSubstring(&quot;zzbabc&quot;)
-
-doAssert lcs.length == 3
-doAssert &quot;zzbabc&quot;[lcs.l ..&lt; lcs.r] == &quot;bab&quot;
 </code></pre>
-<h2 id="_6">計算量</h2>
+<h2 id="complexity">Complexity</h2>
 <ul>
-<li>構築: <code>O(n)</code></li>
-<li>substring 存在判定: <code>O(|pattern|)</code></li>
-<li>出現回数: <code>O(|pattern|)</code></li>
-<li>異なる substring 数: <code>O(states)</code></li>
-<li>最長共通 substring: <code>O(|text|)</code></li>
-<li>状態数: 高々 <code>2n-1</code></li>
+<li>build: <code>O(n)</code></li>
+<li>membership/count query: <code>O(|pattern|)</code></li>
+<li>longest common substring: <code>O(|text|)</code></li>
+<li>states: at most <code>2n-1</code></li>
 </ul>
-<h2 id="_7">関連資料・他言語ライブラリ</h2>
+<h2 id="related-resources-and-libraries">Related resources and libraries</h2>
 <ul>
 <li><a href="https://cp-algorithms.com/string/suffix-automaton.html">cp-algorithms: Suffix Automaton</a></li>
 <li>Nyaan Library: Suffix Automaton</li>
