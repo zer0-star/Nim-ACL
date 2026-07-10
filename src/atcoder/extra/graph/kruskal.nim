@@ -1,5 +1,7 @@
 when not declared ATCODER_KRUSKAL_HPP:
   const ATCODER_KRUSKAL_HPP* = 1
+  import std/algorithm
+
   import atcoder/extra/graph/graph_template
   import atcoder/dsu
   proc kruskal*[G:Graph](g:G):(G.T, seq[Edge[G.T, G.U]]) =
