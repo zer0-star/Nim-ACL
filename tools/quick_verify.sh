@@ -52,6 +52,8 @@ STEP=init
     tests/test_extra_functional_graph.nim
     tests/test_extra_manacher.nim
     tests/test_extra_aho_corasick.nim
+    tests/test_extra_kmp.nim
+    tests/test_extra_minimum_rotation.nim
     tests/test_extra_suffix_automaton.nim
     tests/test_extra_palindromic_tree.nim
     tests/test_extra_cartesian_tree.nim

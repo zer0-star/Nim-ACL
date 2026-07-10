@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>KMP / Prefix Function</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="kmp-prefix-function">KMP / Prefix Function</h1>
+<p>KMP は、pattern を text 内から線形時間で検索するアルゴリズムです。</p>
+<p>一致に失敗したとき、pattern の先頭から比較をやり直すのではなく、それまでの一致情報を <code>prefix function</code> から再利用します。</p>
+<h2 id="_1">使いどころ</h2>
+<ul>
+<li>文字列内の pattern 検索</li>
+<li>重なりを許した全出現位置の列挙</li>
+<li>文字列の周期・border の検出</li>
+<li>prefix と suffix の関係を使う問題</li>
+<li>一般 sequence の部分列検索</li>
+</ul>
+<h2 id="prefix-function">Prefix Function</h2>
+<p><code>prefixFunction(s)[i]</code> は、<code>s[0 .. i]</code> の proper prefix であり suffix でもある最長文字列の長さです。</p>
+<p>例えば比較に失敗したとき、この値をたどることで、すでに分かっている一致部分を捨てずに次の比較位置を決められます。</p>
+<h2 id="import">import</h2>
+<pre><code class="language-nim">import atcoder/extra/string/kmp
+</code></pre>
+<h2 id="api">API</h2>
+<pre><code class="language-nim">proc prefixFunction[T](s: openArray[T]): seq[int]
+proc prefixFunction(s: string): seq[int]
+
+proc initKMP[T](pattern: openArray[T]): KMPMatcher[T]
+proc initKMP(pattern: string): KMPMatcher[char]
+
+proc findAll(matcher, text): seq[int]
+proc findFirst(matcher, text): int
+proc countMatches(matcher, text): int
+proc contains(matcher, text): bool
+</code></pre>
+<p>pattern は空にできません。</p>
+<h2 id="_2">使用例</h2>
+<pre><code class="language-nim">let matcher = initKMP(&quot;aba&quot;)
+
+doAssert matcher.findAll(&quot;ababa&quot;) == @[0, 2]
+doAssert matcher.findFirst(&quot;zzabazz&quot;) == 2
+doAssert matcher.countMatches(&quot;abababa&quot;) == 3
+doAssert &quot;xxabayy&quot; in matcher
+</code></pre>
+<p>整数列などにも使えます。</p>
+<pre><code class="language-nim">let matcher = initKMP(@[1, 2, 1])
+
+doAssert matcher.findAll(@[1, 2, 1, 2, 1]) == @[0, 2]
+</code></pre>
+<h2 id="_3">計算量</h2>
+<p>pattern 長を <code>m</code>、text 長を <code>n</code> とすると、</p>
+<ul>
+<li>前処理: <code>O(m)</code></li>
+<li>検索: <code>O(n)</code></li>
+<li>memory: <code>O(m)</code></li>
+</ul>
+<h2 id="_4">関連資料・他言語ライブラリ</h2>
+<ul>
+<li><a href="https://cp-algorithms.com/string/prefix-function.html">cp-algorithms: Prefix Function</a></li>
+<li>KACTL: KMP</li>
+<li>Nyaan Library: KMP</li>
+</ul>
+  </main>
+</body>
+</html>

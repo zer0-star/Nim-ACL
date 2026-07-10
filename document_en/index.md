@@ -123,6 +123,9 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 
 ## extra/string
 
+- [`import atcoder/extra/string/kmp`](./extra/string/kmp.html)
+- [`import atcoder/extra/string/rolling_hash`](./extra/string/rolling_hash.html)
+- [`import atcoder/extra/string/minimum_rotation`](./extra/string/minimum_rotation.html)
 - [`import atcoder/extra/string/suffix_automaton`](./extra/string/suffix_automaton.html)
 - [`import atcoder/extra/string/palindromic_tree`](./extra/string/palindromic_tree.html)
 - [`import atcoder/extra/string/aho_corasick`](./extra/string/aho_corasick.html)
