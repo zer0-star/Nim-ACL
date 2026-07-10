@@ -94,6 +94,7 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 
 ## extra/structure
 
+- [`import atcoder/extra/structure/mex_set`](./extra/structure/mex_set.html)
 - [`import atcoder/extra/structure/fast_set`](./extra/structure/fast_set.html)
 - [`import atcoder/extra/structure/disjoint_sparse_table`](./extra/structure/disjoint_sparse_table.html)
 - [`import atcoder/extra/structure/cartesian_tree`](./extra/structure/cartesian_tree.html)
@@ -137,4 +138,6 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 
 ## extra/algorithm
 
+- [`import atcoder/extra/algorithm/coordinate_compression`](./extra/algorithm/coordinate_compression.html)
+- [`import atcoder/extra/algorithm/run_length_encoding`](./extra/algorithm/run_length_encoding.html)
 - [`import atcoder/extra/algorithm/mo`](./extra/algorithm/mo.html)

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Run-Length Encoding</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="run-length-encoding">Run-Length Encoding</h1>
+<p>Run-Length Encoding, RLE は、連続する同じ値を</p>
+<pre><code class="language-text">(value, count)
+</code></pre>
+<p>の組にまとめる方法です。</p>
+<p>例えば、</p>
+<pre><code class="language-text">aaabbcaaaa
+</code></pre>
+<p>は、</p>
+<pre><code class="language-text">(a, 3), (b, 2), (c, 1), (a, 4)
+</code></pre>
+<p>になります。</p>
+<h2 id="_1">使いどころ</h2>
+<ul>
+<li>連続区間ごとの処理</li>
+<li>文字列の同じ文字の塊</li>
+<li>01列の block 数</li>
+<li>隣接する同値要素の圧縮</li>
+<li>simulation の状態数削減</li>
+<li>ABC の文字列・列問題</li>
+</ul>
+<h2 id="import">import</h2>
+<pre><code class="language-nim">import atcoder/extra/algorithm/run_length_encoding
+</code></pre>
+<h2 id="api">API</h2>
+<pre><code class="language-nim">type Run[T] = tuple[value: T, count: int]
+
+proc runLengthEncode(a): seq[Run[T]]
+proc rle(a): seq[Run[T]]
+
+proc runLengthDecode(runs): seq[T]
+proc runLengthDecodeString(runs): string
+
+proc compressedLength(runs): int
+proc originalLength(runs): int
+</code></pre>
+<h2 id="_2">使用例</h2>
+<pre><code class="language-nim">let runs = rle(&quot;aaabbcaaaa&quot;)
+
+doAssert runs == @[
+  (value: 'a', count: 3),
+  (value: 'b', count: 2),
+  (value: 'c', count: 1),
+  (value: 'a', count: 4),
+]
+
+doAssert runLengthDecodeString(runs) == &quot;aaabbcaaaa&quot;
+</code></pre>
+<p>一般の sequence にも使えます。</p>
+<pre><code class="language-nim">let runs = rle(@[1, 1, 2, 3, 3])
+
+doAssert runs == @[
+  (value: 1, count: 2),
+  (value: 2, count: 1),
+  (value: 3, count: 2),
+]
+</code></pre>
+<h2 id="_3">計算量</h2>
+<p>入力長を <code>n</code> とすると、</p>
+<ul>
+<li>encode: <code>O(n)</code></li>
+<li>decode: <code>O(n)</code></li>
+<li>memory: <code>O(number of runs)</code></li>
+</ul>
+<h2 id="_4">注意</h2>
+<p>RLE は同じ値の<strong>総頻度</strong>ではなく、連続する run を区別します。</p>
+<p>例えば <code>[1, 1, 2, 1]</code> は <code>(1, 2), (2, 1), (1, 1)</code> です。</p>
+  </main>
+</body>
+</html>

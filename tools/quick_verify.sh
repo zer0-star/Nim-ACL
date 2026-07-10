@@ -61,6 +61,9 @@ STEP=init
     tests/test_extra_fast_set.nim
     tests/test_extra_disjoint_sparse_table.nim
     tests/test_extra_mo.nim
+    tests/test_extra_coordinate_compression.nim
+    tests/test_extra_run_length_encoding.nim
+    tests/test_extra_mex_set.nim
     tests/test_extra_sorted_set_map.nim
     tests/test_extra_set_map.nim
     tests/test_extra_tree_backend_common_interface.nim

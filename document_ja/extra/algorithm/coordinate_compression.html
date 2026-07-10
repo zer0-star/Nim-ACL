@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Coordinate Compression</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="coordinate-compression">Coordinate Compression</h1>
+<p>座標圧縮は、大きい値や飛び飛びの値を、大小関係を保ったまま <code>0, 1, ..., k-1</code> に置き換える technique です。</p>
+<p>例えば、</p>
+<pre><code class="language-text">[100, -5, 100, 7]
+</code></pre>
+<p>は、異なる値を並べた</p>
+<pre><code class="language-text">[-5, 7, 100]
+</code></pre>
+<p>に対応させることで、</p>
+<pre><code class="language-text">[2, 0, 2, 1]
+</code></pre>
+<p>に圧縮できます。</p>
+<h2 id="_1">使いどころ</h2>
+<ul>
+<li>Fenwick Tree / Segment Tree の index に大きい座標を使いたい</li>
+<li>値の大小関係だけが重要</li>
+<li>頻度配列を作りたい</li>
+<li>sweep line</li>
+<li>offline query</li>
+<li><code>10^9</code> 程度の座標が高々 <code>2×10^5</code> 個だけ現れる問題</li>
+</ul>
+<h2 id="import">import</h2>
+<pre><code class="language-nim">import atcoder/extra/algorithm/coordinate_compression
+</code></pre>
+<p>ローカル短縮 import も使えます。</p>
+<pre><code class="language-nim">import lib/algorithm/coordinate_compression
+</code></pre>
+<h2 id="api">API</h2>
+<pre><code class="language-nim">proc initCoordinateCompression[T](
+  a: openArray[T]
+): CoordinateCompression[T]
+
+proc len(cc): int
+proc lowerBoundIndex(cc, x): int
+proc upperBoundIndex(cc, x): int
+
+proc indexOf(cc, x): int
+proc encode(cc, x): int
+proc decode(cc, index): T
+
+proc compress(cc, a): seq[int]
+proc restore(cc, indices): seq[T]
+</code></pre>
+<ul>
+<li><code>indexOf(x)</code> は未登録なら <code>-1</code></li>
+<li><code>encode(x)</code> は登録済みであることを要求</li>
+<li><code>decode(i)</code> は元の値を返す</li>
+<li><code>values</code> には sort・deduplicate 済みの元値が入る</li>
+</ul>
+<h2 id="_2">使用例</h2>
+<pre><code class="language-nim">let
+  a = @[100, -5, 100, 7]
+  cc = initCoordinateCompression(a)
+  compressed = cc.compress(a)
+
+doAssert cc.values == @[-5, 7, 100]
+doAssert compressed == @[2, 0, 2, 1]
+
+doAssert cc.encode(7) == 1
+doAssert cc.decode(2) == 100
+</code></pre>
+<h2 id="_3">計算量</h2>
+<p>異なる値の個数を <code>k</code>、入力長を <code>n</code> とすると、</p>
+<ul>
+<li>構築: <code>O(n log n)</code></li>
+<li><code>encode</code>, <code>indexOf</code>: <code>O(log k)</code></li>
+<li><code>decode</code>: <code>O(1)</code></li>
+<li>sequence 全体の圧縮: <code>O(n log k)</code></li>
+<li>memory: <code>O(k)</code></li>
+</ul>
+<h2 id="_4">関連資料</h2>
+<ul>
+<li>AtCoder ABC の Fenwick Tree / sweep line 問題</li>
+<li>cp-algorithms: Coordinate Compression を用いる offline algorithm</li>
+</ul>
+  </main>
+</body>
+</html>
