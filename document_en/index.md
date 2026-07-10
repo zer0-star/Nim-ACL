@@ -4,6 +4,7 @@
 ## Guides
 
 - [AtCoder level-based library guide](./guide/atcoder_level_guide.html)
+- [AtCoder Algorithm Lectures coverage](./guide/atcoder_algorithm_lectures_coverage.html)
 
 ## How to Install
 

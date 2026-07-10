@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AtCoder Algorithm Lectures 対応表</title>
+  <link rel="stylesheet" href="../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../index.html">
+      <img class="site-logo" src="../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="atcoder-algorithm-lectures">AtCoder Algorithm Lectures 対応表</h1>
+<p>確認日: 2026-07-11</p>
+<p>このページは AtCoder 公式の Algorithm Lectures と、Nim-ACL の実装・ドキュメント状況を対応付けた独自の棚卸しです。</p>
+<h2 id="_1">著作権・参照方針</h2>
+<ul>
+<li>公式講座の本文・図・コードは転載しません。</li>
+<li>掲載するのは講座名、難易度目安、リンク、および Nim-ACL 独自の状況評価です。</li>
+<li>アルゴリズム解説本文は Nim-ACL 側で独自に執筆します。</li>
+<li>
+<p>難易度目安や分類は公式側で変更される場合があります。</p>
+</li>
+<li>
+<p><a href="https://info.atcoder.jp/entry/algorithm_lectures/index">AtCoder Algorithm Lectures 公式一覧</a></p>
+</li>
+</ul>
+<h2 id="_2">状態の意味</h2>
+<table>
+<thead>
+<tr>
+<th>状態</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>実装・docsあり</td>
+<td>対応 module と学習 docs を検出</td>
+</tr>
+<tr>
+<td>実装あり</td>
+<td>対応実装を検出したが docs を要確認</td>
+</tr>
+<tr>
+<td>関連実装あり</td>
+<td>完全一致ではないが関連する機能を検出</td>
+</tr>
+<tr>
+<td>未検出（候補）</td>
+<td>今後の追加候補</td>
+</tr>
+<tr>
+<td>理論・参照中心</td>
+<td>module より公式解説への案内を重視</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">データ構造</h2>
+<table>
+<thead>
+<tr>
+<th>公式講座</th>
+<th style="text-align: right;">難易度</th>
+<th>Nim-ACL 状態</th>
+<th>Nim-ACL docs</th>
+<th>次の対応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/sparse_table">スパーステーブル</a></td>
+<td style="text-align: right;">3</td>
+<td>実装・docsあり</td>
+<td><a href="../extra/structure/sparse_table.html">Nim-ACL</a></td>
+<td>公式講座への関連リンクを追加</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/disjoint_sparse_table">Disjoint Sparse Table</a></td>
+<td style="text-align: right;">4</td>
+<td>実装・docsあり</td>
+<td><a href="../extra/structure/disjoint_sparse_table.html">Nim-ACL</a></td>
+<td>公式講座への関連リンクを追加</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/sqrt_tree">Sqrt Tree</a></td>
+<td style="text-align: right;">5</td>
+<td>未検出（候補）</td>
+<td>—</td>
+<td>出題頻度・実装コストを評価</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/static_range_product">静的な列の区間積クエリ</a></td>
+<td style="text-align: right;">7</td>
+<td>関連実装あり</td>
+<td>—</td>
+<td>公式講座との対応範囲を監査</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/unionfind_complexity">Union-Find の計算量上界</a></td>
+<td style="text-align: right;">8</td>
+<td>理論・参照中心</td>
+<td>—</td>
+<td>Nim-ACL docs から公式解説を案内</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/wavelet_matrix_basic">Wavelet Matrix（基礎）</a></td>
+<td style="text-align: right;">6</td>
+<td>実装・docsあり</td>
+<td><a href="../extra/structure/wavelet_matrix.html">Nim-ACL</a></td>
+<td>公式講座への関連リンクを追加</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/wavelet_matrix_advanced">Wavelet Matrix（発展）</a></td>
+<td style="text-align: right;">7</td>
+<td>実装・docsあり</td>
+<td><a href="../extra/structure/wavelet_matrix.html">Nim-ACL</a></td>
+<td>公式講座への関連リンクを追加</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/persistent_segment_tree">永続セグメント木</a></td>
+<td style="text-align: right;">7</td>
+<td>未検出（候補）</td>
+<td>—</td>
+<td>出題頻度・実装コストを評価</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">グラフ</h2>
+<table>
+<thead>
+<tr>
+<th>公式講座</th>
+<th style="text-align: right;">難易度</th>
+<th>Nim-ACL 状態</th>
+<th>Nim-ACL docs</th>
+<th>次の対応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/euler_tour_technique">オイラーツアーテクニック</a></td>
+<td style="text-align: right;">4</td>
+<td>未検出（候補）</td>
+<td>—</td>
+<td>出題頻度・実装コストを評価</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/heavy_light_decomposition">重軽分解（HLD）</a></td>
+<td style="text-align: right;">4</td>
+<td>未検出（候補）</td>
+<td>—</td>
+<td>出題頻度・実装コストを評価</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/linear_time_lca">線形時間 LCA</a></td>
+<td style="text-align: right;">6</td>
+<td>関連実装あり</td>
+<td>—</td>
+<td>公式講座との対応範囲を監査</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/graph_terms">グラフ理論用語集</a></td>
+<td style="text-align: right;">1</td>
+<td>理論・参照中心</td>
+<td>—</td>
+<td>Nim-ACL docs から公式解説を案内</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/degree_sequence">単純無向グラフの次数列</a></td>
+<td style="text-align: right;">6</td>
+<td>未検出（候補）</td>
+<td>—</td>
+<td>出題頻度・実装コストを評価</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">整数論</h2>
+<table>
+<thead>
+<tr>
+<th>公式講座</th>
+<th style="text-align: right;">難易度</th>
+<th>Nim-ACL 状態</th>
+<th>Nim-ACL docs</th>
+<th>次の対応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/modular_arithmetic">合同式の基礎</a></td>
+<td style="text-align: right;">1</td>
+<td>関連実装あり</td>
+<td>—</td>
+<td>公式講座との対応範囲を監査</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/euclidean_algorithm">Euclid の互除法</a></td>
+<td style="text-align: right;">2</td>
+<td>理論・参照中心</td>
+<td>—</td>
+<td>Nim-ACL docs から公式解説を案内</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/prime">素数の性質</a></td>
+<td style="text-align: right;">3</td>
+<td>理論・参照中心</td>
+<td>—</td>
+<td>Nim-ACL docs から公式解説を案内</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/polynomial_over_Fp">素数を法とする多項式</a></td>
+<td style="text-align: right;">5</td>
+<td>関連実装あり</td>
+<td>—</td>
+<td>公式講座との対応範囲を監査</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/chinese_remainder_theorem">中国剰余定理</a></td>
+<td style="text-align: right;">4</td>
+<td>実装あり</td>
+<td>—</td>
+<td>API・学習 docs を監査</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/primitive_root">原始根</a></td>
+<td style="text-align: right;">6</td>
+<td>実装あり</td>
+<td>—</td>
+<td>API・学習 docs を監査</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fps">多項式・FPS</h2>
+<table>
+<thead>
+<tr>
+<th>公式講座</th>
+<th style="text-align: right;">難易度</th>
+<th>Nim-ACL 状態</th>
+<th>Nim-ACL docs</th>
+<th>次の対応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/linearly_recurrent_sequence">線形漸化的数列</a></td>
+<td style="text-align: right;">6</td>
+<td>未検出（候補）</td>
+<td>—</td>
+<td>出題頻度・実装コストを評価</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/linearly_recurrent_sequence_kth_term">線形漸化的数列の第 K 項</a></td>
+<td style="text-align: right;">6</td>
+<td>未検出（候補）</td>
+<td>—</td>
+<td>出題頻度・実装コストを評価</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/bostan_mori_advanced">Bostan–Mori のアルゴリズム（発展）</a></td>
+<td style="text-align: right;">8</td>
+<td>未検出（候補）</td>
+<td>—</td>
+<td>出題頻度・実装コストを評価</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/linearly_recurrent_sequence_reconstruction">線形漸化式の復元</a></td>
+<td style="text-align: right;">7</td>
+<td>未検出（候補）</td>
+<td>—</td>
+<td>出題頻度・実装コストを評価</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/linearly_recurrent_sequence_reconstruction_mod">線形漸化式の復元（mod m）</a></td>
+<td style="text-align: right;">9</td>
+<td>未検出（候補）</td>
+<td>—</td>
+<td>出題頻度・実装コストを評価</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/faulhaber_formula">Faulhaber の公式</a></td>
+<td style="text-align: right;">6</td>
+<td>未検出（候補）</td>
+<td>—</td>
+<td>出題頻度・実装コストを評価</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">集合変換</h2>
+<table>
+<thead>
+<tr>
+<th>公式講座</th>
+<th style="text-align: right;">難易度</th>
+<th>Nim-ACL 状態</th>
+<th>Nim-ACL docs</th>
+<th>次の対応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/subset_zeta_mobius">ゼータ・メビウス変換（部分集合関係）</a></td>
+<td style="text-align: right;">4</td>
+<td>未検出（候補）</td>
+<td>—</td>
+<td>出題頻度・実装コストを評価</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/division_free_xor_convolution">XOR 畳み込み（除算なし）</a></td>
+<td style="text-align: right;">8</td>
+<td>未検出（候補）</td>
+<td>—</td>
+<td>出題頻度・実装コストを評価</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">その他</h2>
+<table>
+<thead>
+<tr>
+<th>公式講座</th>
+<th style="text-align: right;">難易度</th>
+<th>Nim-ACL 状態</th>
+<th>Nim-ACL docs</th>
+<th>次の対応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/min_plus_convolution">凸数列の min-plus 畳み込み</a></td>
+<td style="text-align: right;">4</td>
+<td>未検出（候補）</td>
+<td>—</td>
+<td>出題頻度・実装コストを評価</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/color_coding">Color-Coding</a></td>
+<td style="text-align: right;">5</td>
+<td>未検出（候補）</td>
+<td>—</td>
+<td>出題頻度・実装コストを評価</td>
+</tr>
+<tr>
+<td><a href="https://info.atcoder.jp/entry/algorithm_lectures/algebra_terms">代数構造用語集</a></td>
+<td style="text-align: right;">6</td>
+<td>理論・参照中心</td>
+<td>—</td>
+<td>Nim-ACL docs から公式解説を案内</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_8">優先候補の見方</h2>
+<p>公式講座にあることだけで実装優先度を決めるわけではありません。
+次の要素を合わせて判断します。</p>
+<ol>
+<li>AtCoder / Codeforces / yukicoder での利用頻度</li>
+<li>Library Checker に検証問題があるか</li>
+<li>既存 Nim-ACL module との依存関係</li>
+<li>実装・テスト・保守コスト</li>
+<li>Nim の macro、template、operator で読みやすい API にできるか</li>
+</ol>
+<p>特に <code>未検出（候補）</code> のうち、Sqrt Tree、永続 Segment Tree、Euler Tour、線形漸化数列、Bostan–Mori、subset transform などは、追加候補として別途優先順位を付けます。</p>
+  </main>
+</body>
+</html>

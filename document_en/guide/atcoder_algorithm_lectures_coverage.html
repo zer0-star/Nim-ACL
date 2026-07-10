@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AtCoder Algorithm Lectures coverage</title>
+  <link rel="stylesheet" href="../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../index.html">
+      <img class="site-logo" src="../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="atcoder-algorithm-lectures-coverage">AtCoder Algorithm Lectures coverage</h1>
+<p>Checked: 2026-07-11</p>
+<p>This page maps the official AtCoder Algorithm Lectures catalog to Nim-ACL implementations and documentation.</p>
+<p>It does not reproduce lecture text, figures, or source code. Only titles, difficulty metadata, links, and original Nim-ACL status assessments are included.</p>
+<ul>
+<li><a href="https://info.atcoder.jp/entry/algorithm_lectures/index">Official AtCoder Algorithm Lectures index</a></li>
+</ul>
+<p>The detailed coverage table is maintained in the <a href="../../document_ja/guide/atcoder_algorithm_lectures_coverage.html">Japanese page</a>.</p>
+<h2 id="evaluation-policy">Evaluation policy</h2>
+<ul>
+<li>Official difficulty is treated as reference metadata, not an AtCoder color.</li>
+<li>Nim-ACL implementation priority also considers contest frequency, Library Checker coverage, maintenance cost, and API quality.</li>
+<li>External lecture contents are linked rather than copied.</li>
+</ul>
+  </main>
+</body>
+</html>

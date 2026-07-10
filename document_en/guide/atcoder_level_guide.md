@@ -10,6 +10,16 @@ The classification is only a guideline. The difficulty of a problem depends heav
 | Intermediate | Cyan, blue |
 | Advanced | Yellow and above |
 
+
+## Relationship to the official lecture catalog
+
+The beginner/intermediate/advanced levels on this page are Nim-ACL-specific
+usage categories. They are separate from the official difficulty levels 1–9.
+
+See the
+[AtCoder Algorithm Lectures coverage page](./atcoder_algorithm_lectures_coverage.html)
+for the official cross-reference.
+
 # Beginner
 
 Focus on basic transformations, graph traversal, prefix aggregation, and standard data structures.
