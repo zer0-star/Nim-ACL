@@ -43,6 +43,7 @@ STEP=init
     tests/test_extra_partially_persistent_dsu.nim
     tests/test_extra_succinct_indexable_dictionary.nim
     tests/test_extra_binary_trie.nim
+    tests/test_extra_functional_graph.nim
     tests/test_extra_sorted_set_map.nim
     tests/test_extra_set_map.nim
     tests/test_extra_tree_backend_common_interface.nim

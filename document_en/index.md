@@ -107,3 +107,7 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 - [`import atcoder/extra/structure/sparse_table`](./extra/structure/sparse_table.html)
 - [`import atcoder/extra/structure/dual_fenwicktree`](./extra/structure/dual_fenwicktree.html)
 - [`import atcoder/extra/structure/weighted_union_find`](./extra/structure/weighted_union_find.html)
+
+## extra/graph
+
+- [`import atcoder/extra/graph/functional_graph`](./extra/graph/functional_graph.html)
