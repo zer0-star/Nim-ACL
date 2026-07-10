@@ -112,6 +112,7 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 
 ## extra/graph
 
+- [`import atcoder/extra/graph/rerooting_dp`](./extra/graph/rerooting_dp.html)
 - [`import atcoder/extra/graph/dsu_on_tree`](./extra/graph/dsu_on_tree.html)
 - [`import atcoder/extra/graph/virtual_tree`](./extra/graph/virtual_tree.html)
 - [`import atcoder/extra/graph/offline_dynamic_connectivity`](./extra/graph/offline_dynamic_connectivity.html)

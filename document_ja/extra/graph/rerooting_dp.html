@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Rerooting DP</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="rerooting-dp">Rerooting DP</h1>
+<p><code>Rerooting DP</code> は、木 DP をすべての頂点を root とした場合について高速に求める technique です。</p>
+<p>通常の木 DP は root を 1 つ決めて「子 subtree から親へ」計算します。<br>
+しかし問題によっては、「各頂点を root にしたときの答え」が欲しいことがあります。</p>
+<p>各頂点ごとに root を変えて DFS すると <code>O(n^2)</code> になりますが、Rerooting DP では全頂点の答えをまとめて <code>O(n)</code> または <code>O(n log n)</code> 程度で求められます。</p>
+<h2 id="_1">使いどころ</h2>
+<p>次のような問題でよく使います。</p>
+<ul>
+<li>各頂点から全頂点への距離和を求める</li>
+<li>各頂点を root にしたときの最長距離を求める</li>
+<li>木の各頂点を中心にした subtree DP の答えを求める</li>
+<li>木上の DP で、親方向からの寄与も含めたい</li>
+<li>ABC/ARC の木 DP 問題</li>
+</ul>
+<h2 id="_2">考え方</h2>
+<p>木 DP の値を「隣接頂点から来る寄与」として考えます。</p>
+<p>各頂点 <code>v</code> の答えは、隣接する全方向からの寄与を <code>merge</code> し、最後に <code>addRoot</code> することで得られます。</p>
+<p>子方向からの寄与は普通の DFS で求められます。<br>
+親方向からの寄与は、<code>v</code> の全隣接方向の寄与を prefix/suffix で集約し、特定の子だけを除いた値から作ります。</p>
+<p>この module では、次の 3 つの関数を渡します。</p>
+<ul>
+<li><code>merge(a, b)</code>: 複数方向からの寄与をまとめる</li>
+<li><code>addRoot(x, v)</code>: 頂点 <code>v</code> 自身を加味して DP 値にする</li>
+<li><code>addEdge(x, edgeId, fromVertex, toVertex)</code>: edge を 1 本またいだときの変換</li>
+</ul>
+<h2 id="import">import</h2>
+<pre><code class="language-nim">import atcoder/extra/graph/rerooting_dp
+</code></pre>
+<h2 id="_3">型</h2>
+<pre><code class="language-nim">type RerootingEdge
+type RerootingGraph
+</code></pre>
+<h2 id="_4">コンストラクタ</h2>
+<pre><code class="language-nim">proc initRerootingGraph(n: int): RerootingGraph
+proc addEdge(g: var RerootingGraph, u, v: int): int
+</code></pre>
+<ul>
+<li><code>initRerootingGraph(n)</code> は <code>n</code> 頂点の木 container を作ります。</li>
+<li><code>addEdge(u, v)</code> は無向辺を追加し、edge id を返します。</li>
+</ul>
+<h2 id="_5">実行</h2>
+<pre><code class="language-nim">proc rerooting[T](
+  g: RerootingGraph,
+  identity: T,
+  merge: proc(a, b: T): T,
+  addRoot: proc(x: T, v: int): T,
+  addEdge: proc(x: T, edgeId: int, fromVertex: int, toVertex: int): T
+): seq[T]
+
+proc rerooting[T](
+  g: RerootingGraph,
+  identity: T,
+  merge: proc(a, b: T): T,
+  addRoot: proc(x: T, v: int): T
+): seq[T]
+</code></pre>
+<p><code>addEdge</code> を省略した場合、edge をまたいでも値が変わらないものとして扱います。</p>
+<p><code>rerootingDP</code> という alias もあります。</p>
+<h2 id="_6">使用例: 各頂点から全頂点への距離和</h2>
+<pre><code class="language-nim">import std/sequtils
+import atcoder/extra/graph/rerooting_dp
+
+type DP = tuple[size, dist: int]
+
+var g = initRerootingGraph(4)
+
+discard g.addEdge(0, 1)
+discard g.addEdge(1, 2)
+discard g.addEdge(2, 3)
+
+proc merge(a, b: DP): DP =
+  (size: a.size + b.size, dist: a.dist + b.dist)
+
+proc addRoot(x: DP, v: int): DP =
+  (size: x.size + 1, dist: x.dist)
+
+proc addEdge(x: DP, edgeId: int, fromVertex: int, toVertex: int): DP =
+  (size: x.size, dist: x.dist + x.size)
+
+let ans = g.rerooting((size: 0, dist: 0), merge, addRoot, addEdge)
+
+doAssert ans.mapIt(it.dist) == @[6, 4, 4, 6]
+</code></pre>
+<p><code>size</code> はその方向にある頂点数、<code>dist</code> は現在の root からの距離和です。<br>
+edge を 1 本またぐと、その成分の全頂点への距離が 1 増えるので、<code>dist + size</code> になります。</p>
+<h2 id="_7">使用例: 全頂点からの最遠距離</h2>
+<pre><code class="language-nim">var g = initRerootingGraph(6)
+
+discard g.addEdge(0, 1)
+discard g.addEdge(0, 2)
+discard g.addEdge(1, 3)
+discard g.addEdge(1, 4)
+discard g.addEdge(4, 5)
+
+proc merge(a, b: int): int = max(a, b)
+proc addRoot(x: int, v: int): int = x
+proc addEdge(x: int, edgeId: int, fromVertex: int, toVertex: int): int = x + 1
+
+let ans = g.rerootingDP(0, merge, addRoot, addEdge)
+
+doAssert ans == @[3, 2, 4, 3, 3, 4]
+</code></pre>
+<h2 id="nim">Nim らしい使い方</h2>
+<p><code>merge</code>, <code>addRoot</code>, <code>addEdge</code> を普通の proc として書き、UFCS で呼べます。</p>
+<pre><code class="language-nim">let ans = g.rerooting(identity, merge, addRoot, addEdge)
+</code></pre>
+<p>edge 重みなどを使いたい場合は、<code>addEdge</code> 内で <code>edgeId</code> を使って外側の配列を参照できます。</p>
+<pre><code class="language-nim">proc addEdge(x: DP, edgeId: int, fromVertex: int, toVertex: int): DP =
+  let w = weight[edgeId]
+  ...
+</code></pre>
+<h2 id="_8">計算量</h2>
+<p>頂点数を <code>n</code> とすると、</p>
+<ul>
+<li>構築: <code>O(n)</code></li>
+<li>rerooting: <code>O(n * merge/addRoot/addEdge のコスト)</code></li>
+<li>memory: <code>O(n)</code></li>
+</ul>
+<p>です。</p>
+<h2 id="_9">注意</h2>
+<ul>
+<li><code>graph</code> は木である必要があります。</li>
+<li><code>merge</code> は結合法則を満たす必要があります。</li>
+<li><code>identity</code> は <code>merge</code> の単位元である必要があります。</li>
+<li>この実装では 0 番頂点を内部 root として前計算します。ただし答えは全頂点 root のものが得られます。</li>
+<li><code>addEdge</code> を省略した overload は、edge をまたいでも値が変わらない場合にだけ使ってください。</li>
+</ul>
+<h2 id="_10">関連資料・他言語ライブラリ</h2>
+<ul>
+<li>AtCoder / ABC / ARC: 木 DP rerooting 型問題</li>
+<li>ei1333 Library: ReRooting</li>
+<li>Nyaan Library: Rerooting</li>
+<li>AtCoder Library Practice 周辺の tree DP 解説</li>
+</ul>
+  </main>
+</body>
+</html>
