@@ -251,97 +251,71 @@ pre.nim-line-numbers .code-line::before {
   </header>
   <main>
 <h1 id="euler-tour">Euler Tour</h1>
-<p><code>EulerTour</code> は、木を DFS し、各 subtree を preorder 上の連続区間へ変換する utility です。</p>
-<p>頂点 <code>v</code> の subtree は、半開区間</p>
-<pre><code class="language-text">[tin[v], tout[v])
-</code></pre>
-<p>に対応します。この区間へ頂点の値を並べることで、subtree query を Fenwick Tree や Segment Tree の区間 query に変換できます。</p>
-<h2 id="_1">使いどころ</h2>
-<ul>
-<li>subtree 内の和・最小値・最大値</li>
-<li>subtree に対する一括更新</li>
-<li>木を配列へ変換して Fenwick Tree / Segment Tree を使う</li>
-<li>LCA 用の full Euler walk</li>
-<li>ancestor 判定</li>
-<li>木 DP の前処理</li>
-</ul>
-<h2 id="2">2種類の順序</h2>
-<p>この module は、次の2種類を保持します。</p>
-<h3 id="preorder">Preorder</h3>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">order</span>
-<span class="tok-identifier">tin</span>
-<span class="tok-identifier">tout</span>
-</code></pre>
-<p>各頂点は1回だけ現れ、subtree が連続区間になります。</p>
-<h3 id="full-euler-walk">Full Euler walk</h3>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">walk</span>
-<span class="tok-identifier">first</span>
-</code></pre>
-<p>子から親へ戻るときにも親を追加するため、長さは <code>2*n-1</code> になります。RMQ による LCA などで利用できます。</p>
+<p><code>EulerTour</code> は、木をDFSし、各subtreeをpreorder上の連続区間へ変換するutilityです。</p>
+<p>頂点 <code>v</code> のsubtreeは半開区間 <code>[tin[v], tout[v])</code> に対応します。この区間をFenwick TreeやSegment Treeへ渡すことで、subtree queryを通常の区間queryへ変換できます。</p>
+<h2 id="_1">対応するグラフ形式</h2>
+<p>標準的な形式として、sequence-backedなNim-ACL <code>Graph</code> に対応します。</p>
+<p>軽量な隣接リスト <code>seq[seq[int]]</code> も同じ <code>initEulerTour</code> へ渡せます。両形式は同じDFS実装を利用し、構築後の <code>EulerTour</code> は入力graphを保持しません。</p>
 <h2 id="import">import</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">euler_tour</span>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">graph_template</span>
+<span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">euler_tour</span>
 </code></pre>
-<p>ローカル短縮 import：</p>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">lib</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">euler_tour</span>
+<p>ローカル短縮import：</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">lib</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">graph_template</span>
+<span class="tok-keyword">import</span> <span class="tok-identifier">lib</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">euler_tour</span>
 </code></pre>
 <h2 id="api">API</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">initEulerTour</span><span class="tok-punctuation">(</span>
-  <span class="tok-identifier">graph</span><span class="tok-punctuation">:</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">initEulerTour</span><span class="tok-operator">*</span><span class="tok-punctuation">[</span><span class="tok-identifier">G</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span>
+  <span class="tok-identifier">graph</span><span class="tok-punctuation">:</span> <span class="tok-identifier">G</span><span class="tok-punctuation">,</span>
   <span class="tok-identifier">root</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span> <span class="tok-number">0</span>
 <span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">EulerTour</span>
 
 <span class="tok-keyword">proc</span> <span class="tok-identifier">subtreeRange</span><span class="tok-punctuation">(</span>
   <span class="tok-identifier">tour</span><span class="tok-punctuation">:</span> <span class="tok-identifier">EulerTour</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">v</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
+  <span class="tok-identifier">vertex</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
 <span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-keyword">tuple</span><span class="tok-punctuation">[</span><span class="tok-identifier">l</span><span class="tok-punctuation">,</span> <span class="tok-identifier">r</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">]</span>
 
-<span class="tok-keyword">proc</span> <span class="tok-identifier">subtreeSize</span><span class="tok-punctuation">(</span><span class="tok-identifier">tour</span><span class="tok-punctuation">:</span> <span class="tok-identifier">EulerTour</span><span class="tok-punctuation">,</span> <span class="tok-identifier">v</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
-<span class="tok-keyword">proc</span> <span class="tok-identifier">subtreeVertices</span><span class="tok-punctuation">(</span><span class="tok-identifier">tour</span><span class="tok-punctuation">:</span> <span class="tok-identifier">EulerTour</span><span class="tok-punctuation">,</span> <span class="tok-identifier">v</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span>
-<span class="tok-keyword">proc</span> <span class="tok-identifier">isAncestor</span><span class="tok-punctuation">(</span><span class="tok-identifier">tour</span><span class="tok-punctuation">:</span> <span class="tok-identifier">EulerTour</span><span class="tok-punctuation">,</span> <span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">bool</span>
-<span class="tok-keyword">proc</span> <span class="tok-identifier">vertexAt</span><span class="tok-punctuation">(</span><span class="tok-identifier">tour</span><span class="tok-punctuation">:</span> <span class="tok-identifier">EulerTour</span><span class="tok-punctuation">,</span> <span class="tok-identifier">preorderIndex</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">subtreeSize</span><span class="tok-punctuation">(</span>
+  <span class="tok-identifier">tour</span><span class="tok-punctuation">:</span> <span class="tok-identifier">EulerTour</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">vertex</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
+<span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
+
+<span class="tok-keyword">proc</span> <span class="tok-identifier">subtreeVertices</span><span class="tok-punctuation">(</span>
+  <span class="tok-identifier">tour</span><span class="tok-punctuation">:</span> <span class="tok-identifier">EulerTour</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">vertex</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
+<span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span>
+
+<span class="tok-keyword">proc</span> <span class="tok-identifier">isAncestor</span><span class="tok-punctuation">(</span>
+  <span class="tok-identifier">tour</span><span class="tok-punctuation">:</span> <span class="tok-identifier">EulerTour</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">ancestor</span><span class="tok-punctuation">,</span> <span class="tok-identifier">descendant</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
+<span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">bool</span>
 </code></pre>
-<h2 id="_2">使用例</h2>
+<h2 id="nim-acl-graph">使用例：Nim-ACL Graph</h2>
 <!-- nim-line-numbers -->
 
-<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">graph</span> <span class="tok-operator">=</span> <span class="tok-identifier">newSeq</span><span class="tok-punctuation">[</span><span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">5</span><span class="tok-punctuation">)</span></span>
-<span class="code-line"></span>
-<span class="code-line"><span class="tok-keyword">proc</span> <span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">,</span> <span class="tok-identifier">v</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span></span>
-<span class="code-line">  <span class="tok-identifier">graph</span><span class="tok-punctuation">[</span><span class="tok-identifier">u</span><span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">add</span> <span class="tok-identifier">v</span></span>
-<span class="code-line">  <span class="tok-identifier">graph</span><span class="tok-punctuation">[</span><span class="tok-identifier">v</span><span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">add</span> <span class="tok-identifier">u</span></span>
-<span class="code-line"></span>
-<span class="code-line"><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span></span>
-<span class="code-line"><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">)</span></span>
-<span class="code-line"><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">)</span></span>
-<span class="code-line"><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">)</span></span>
-<span class="code-line"></span>
-<span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">tour</span> <span class="tok-operator">=</span> <span class="tok-identifier">initEulerTour</span><span class="tok-punctuation">(</span><span class="tok-identifier">graph</span><span class="tok-punctuation">)</span></span>
-<span class="code-line"></span>
-<span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">range</span> <span class="tok-operator">=</span> <span class="tok-identifier">tour</span><span class="tok-operator">.</span><span class="tok-identifier">subtreeRange</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">)</span></span>
-<span class="code-line"></span>
-<span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">range</span><span class="tok-operator">.</span><span class="tok-identifier">r</span> <span class="tok-operator">-</span> <span class="tok-identifier">range</span><span class="tok-operator">.</span><span class="tok-identifier">l</span> <span class="tok-operator">==</span> <span class="tok-number">3</span></span>
-<span class="code-line"></span>
-<span class="code-line"><span class="tok-keyword">for</span> <span class="tok-identifier">i</span> <span class="tok-keyword">in</span> <span class="tok-identifier">range</span><span class="tok-operator">.</span><span class="tok-identifier">l</span> <span class="tok-operator">..&lt;</span> <span class="tok-identifier">range</span><span class="tok-operator">.</span><span class="tok-identifier">r</span><span class="tok-punctuation">:</span></span>
-<span class="code-line">  <span class="tok-keyword">let</span> <span class="tok-identifier">originalVertex</span> <span class="tok-operator">=</span> <span class="tok-identifier">tour</span><span class="tok-operator">.</span><span class="tok-identifier">order</span><span class="tok-punctuation">[</span><span class="tok-identifier">i</span><span class="tok-punctuation">]</span></span>
-<span class="code-line">  <span class="tok-identifier">echo</span> <span class="tok-identifier">originalVertex</span></span></code></pre>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">graph_template</span></span><span class="code-line"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">euler_tour</span></span><span class="code-line"></span><span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">graph</span> <span class="tok-operator">=</span> <span class="tok-identifier">initGraph</span><span class="tok-punctuation">(</span><span class="tok-number">5</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">graph</span><span class="tok-operator">.</span><span class="tok-identifier">addBiEdge</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-identifier">graph</span><span class="tok-operator">.</span><span class="tok-identifier">addBiEdge</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-identifier">graph</span><span class="tok-operator">.</span><span class="tok-identifier">addBiEdge</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-identifier">graph</span><span class="tok-operator">.</span><span class="tok-identifier">addBiEdge</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">tour</span> <span class="tok-operator">=</span> <span class="tok-identifier">initEulerTour</span><span class="tok-punctuation">(</span><span class="tok-identifier">graph</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">tour</span><span class="tok-operator">.</span><span class="tok-identifier">subtreeSize</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-number">3</span></span><span class="code-line"></span><span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">interval</span> <span class="tok-operator">=</span> <span class="tok-identifier">tour</span><span class="tok-operator">.</span><span class="tok-identifier">subtreeRange</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">interval</span><span class="tok-operator">.</span><span class="tok-identifier">r</span> <span class="tok-operator">-</span> <span class="tok-identifier">interval</span><span class="tok-operator">.</span><span class="tok-identifier">l</span> <span class="tok-operator">==</span> <span class="tok-number">3</span></span></code></pre>
+<h2 id="_2">使用例：軽量な隣接リスト</h2>
+<!-- nim-line-numbers -->
+
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">euler_tour</span></span><span class="code-line"></span><span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">graph</span> <span class="tok-operator">=</span> <span class="tok-identifier">newSeq</span><span class="tok-punctuation">[</span><span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">5</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-keyword">proc</span> <span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">,</span> <span class="tok-identifier">v</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span></span><span class="code-line">  <span class="tok-identifier">graph</span><span class="tok-punctuation">[</span><span class="tok-identifier">u</span><span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">add</span> <span class="tok-identifier">v</span></span><span class="code-line">  <span class="tok-identifier">graph</span><span class="tok-punctuation">[</span><span class="tok-identifier">v</span><span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">add</span> <span class="tok-identifier">u</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">tour</span> <span class="tok-operator">=</span> <span class="tok-identifier">initEulerTour</span><span class="tok-punctuation">(</span><span class="tok-identifier">graph</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">tour</span><span class="tok-operator">.</span><span class="tok-identifier">subtreeSize</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-number">3</span></span></code></pre>
 <h2 id="_3">計算量</h2>
 <p>頂点数を <code>n</code> とすると、</p>
 <ul>
-<li>構築: <code>O(n)</code></li>
-<li>subtree range / ancestor 判定: <code>O(1)</code></li>
-<li>subtree vertex 列挙: <code>O(subtree size)</code></li>
-<li>memory: <code>O(n)</code></li>
+<li>構築：<code>O(n)</code></li>
+<li>subtree interval：<code>O(1)</code></li>
+<li>ancestor判定：<code>O(1)</code></li>
+<li>subtree頂点列挙：<code>O(subtree size)</code></li>
+<li>memory：<code>O(n)</code></li>
 </ul>
 <h2 id="_4">注意</h2>
 <ul>
-<li><code>graph</code> は無向木である必要があります。</li>
-<li>subtree 区間は半開区間 <code>[l, r)</code> です。</li>
-<li>実装は明示 stack を使うため、深い木でも再帰 stack overflow を起こしにくいです。</li>
-</ul>
-<h2 id="_5">関連資料</h2>
-<ul>
-<li><a href="https://info.atcoder.jp/entry/algorithm_lectures/index" target="_blank" rel="noopener">AtCoder Algorithm Lectures</a></li>
-<li><a href="https://cp-algorithms.com/graph/hld.html" target="_blank" rel="noopener">cp-algorithms: Heavy-Light Decomposition</a></li>
-<li><a href="https://atcoder.github.io/ac-library/production/document_en/fenwicktree.html" target="_blank" rel="noopener">AC Library: Fenwick Tree</a> / <a href="https://atcoder.github.io/ac-library/production/document_en/segtree.html" target="_blank" rel="noopener">AC Library: Segment Tree</a></li>
+<li>入力は連結な無向木である必要があります。</li>
+<li>頂点番号は <code>0 ..&lt; n</code> の連続した非負整数とします。</li>
+<li>Nim-ACL Graphはsequence-backedな隣接リストを対象とします。</li>
+<li>subtree区間は半開区間 `<a href="https://info.atcoder.jp/entry/algorithm_lectures/euler_tour_technique" target="_blank" rel="noopener">AtCoder Algorithm Lectures: オイラーツアーテクニック</a></li>
+<li><a href="../tree/heavy_light_decomposition.html">Heavy-Light Decomposition</a></li>
+<li><a href="https://atcoder.github.io/ac-library/production/document_ja/fenwicktree.html" target="_blank" rel="noopener">AC Library: Fenwick Tree</a></li>
+<li><a href="https://atcoder.github.io/ac-library/production/document_ja/segtree.html" target="_blank" rel="noopener">AC Library: Segment Tree</a></li>
 </ul>
   </main>
 </body>
