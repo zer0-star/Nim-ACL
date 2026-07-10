@@ -134,6 +134,8 @@ proc groups(uf: RollbackDSU): seq[seq[int]]
 <li><code>componentCount()</code> は現在の連結成分数を返します。</li>
 </ul>
 <h2 id="_6">使用例</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">var uf = initRollbackDSU(5)
 
 discard uf.merge(0, 1)

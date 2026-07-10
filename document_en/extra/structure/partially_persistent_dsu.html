@@ -97,6 +97,8 @@ proc size(uf: var PartiallyPersistentDSU, t, x: int): int
 <li><code>size(t, x)</code> returns the component size of <code>x</code> at time <code>t</code>.</li>
 </ul>
 <h2 id="example">Example</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">var uf = initPartiallyPersistentDSU(4)
 
 discard uf.merge(1, 0, 1)

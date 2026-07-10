@@ -39,6 +39,7 @@ proc area[Real](p: Polygon[Real], c: Circle[Real]): Real
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 let square: Polygon[float] = @[
   initPoint[float](0.0, 0.0),

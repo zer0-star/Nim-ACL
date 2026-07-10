@@ -12,6 +12,7 @@ import atcoder/extra/math/arbitrary_mod_combination
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 import atcoder/extra/math/arbitrary_mod_combination
 

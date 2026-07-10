@@ -40,6 +40,7 @@ var st = initSegTree[S](v:int or seq[S], op, e)
 
 ### 使用例
 
+<!-- nim-line-numbers -->
 ```nim
 import atcoder/extra/structure/universal_segtree
 
@@ -92,6 +93,7 @@ var st = initLazySegTree[S, F](
 
 ### 使用例：区間加算・区間和
 
+<!-- nim-line-numbers -->
 ```nim
 import atcoder/extra/structure/universal_segtree
 
@@ -155,6 +157,7 @@ var st = initDualSegTree[F](v:int or seq[F], composition, id)
 
 ### 使用例：区間加算・点取得
 
+<!-- nim-line-numbers -->
 ```nim
 import atcoder/extra/structure/universal_segtree
 

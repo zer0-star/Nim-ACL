@@ -49,6 +49,7 @@ proc maxValue(s: FastSet): int
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 var s = initFastSet(100)
 

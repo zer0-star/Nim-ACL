@@ -22,6 +22,7 @@ export sorted_set_map
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 import atcoder/extra/structure/set_map
 

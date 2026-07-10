@@ -12,6 +12,7 @@ import atcoder/extra/dp/edit_distance
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 import atcoder/extra/dp/edit_distance
 

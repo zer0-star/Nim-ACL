@@ -80,6 +80,7 @@ If `addEdge` is omitted, values are unchanged across edges.
 
 ## Example: sum of distances from each vertex
 
+<!-- nim-line-numbers -->
 ~~~nim
 import std/sequtils
 import atcoder/extra/graph/rerooting_dp
@@ -111,6 +112,7 @@ When crossing one edge, all distances in that component increase by one, so `dis
 
 ## Example: farthest distance from each vertex
 
+<!-- nim-line-numbers -->
 ~~~nim
 var g = initRerootingGraph(6)
 

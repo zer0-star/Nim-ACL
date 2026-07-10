@@ -41,6 +41,7 @@ proc pop[key_t, val_t](h: var RadixHeap[key_t, val_t]): (key_t, val_t)
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 var h = initRadixHeap[int, string]()
 

@@ -43,6 +43,7 @@ proc circle[Real](center: Point[Real], radius: Real): Circle[Real]
 
 ### 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 let
   a = point(0.0, 0.0)

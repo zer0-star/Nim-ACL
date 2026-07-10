@@ -101,6 +101,8 @@ proc contains(matcher, text): bool
 </code></pre>
 <p>pattern は空にできません。</p>
 <h2 id="_2">使用例</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">let matcher = initKMP(&quot;aba&quot;)
 
 doAssert matcher.findAll(&quot;ababa&quot;) == @[0, 2]

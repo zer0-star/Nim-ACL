@@ -111,6 +111,8 @@ proc clear(s: var MexSet)
 <p><code>limit</code> は、mex として扱いたい最大範囲を決めます。結果は <code>0 .. limit+1</code> です。</p>
 <p>範囲外の値は mex に影響しないため無視されます。</p>
 <h2 id="_3">使用例</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">var s = initMexSet(10)
 
 s.incl(0)
@@ -128,6 +130,8 @@ s.excl(1)
 doAssert s.mex == 1
 </code></pre>
 <p>multiset として重複も扱います。</p>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">discard s.insert(0)
 discard s.insert(0)
 

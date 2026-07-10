@@ -137,6 +137,8 @@ proc merge[T](a, b: XorBasis[T]): XorBasis[T]
 <li><code>merge(a, b)</code> combines two bases.</li>
 </ul>
 <h2 id="example">Example</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">var xb = initXorBasis[int](maxLog = 4)
 
 doAssert xb.add(3) == true

@@ -41,6 +41,7 @@ proc size(uf: var PartiallyPersistentDSU, t, x: int): int
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 var uf = initPartiallyPersistentDSU(4)
 

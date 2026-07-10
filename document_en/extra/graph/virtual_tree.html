@@ -132,6 +132,8 @@ adj: seq[seq[VirtualTreeAdjEdge]]
 <li><code>adj[i]</code> stores children of compressed node <code>i</code>. <code>to</code> is a compressed index.</li>
 </ul>
 <h2 id="example">Example</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">var g = newSeq[seq[int]](7)
 
 proc addEdge(u, v: int) =

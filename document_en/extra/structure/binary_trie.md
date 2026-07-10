@@ -81,6 +81,7 @@ proc maxElementXor[T](tr: BinaryTrie[T], x: T): T
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 var tr = initBinaryTrie[int](maxLog = 30)
 

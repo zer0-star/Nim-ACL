@@ -35,6 +35,7 @@ proc `[]`[T](
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 proc add(a, b: int): int = a + b
 

@@ -112,6 +112,7 @@ proc crosspoint[Real](c1, c2: Circle[Real]): (Point[Real], Point[Real])
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 let
   a = initPoint[float](0.0, 0.0)

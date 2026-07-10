@@ -96,6 +96,8 @@ proc pop[key_t, val_t](h: var RadixHeap[key_t, val_t]): (key_t, val_t)
 <li><code>pop(h)</code> は最小 key の要素を返して削除します。</li>
 </ul>
 <h2 id="_4">使用例</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">var h = initRadixHeap[int, string]()
 
 h.push(0, &quot;zero&quot;)

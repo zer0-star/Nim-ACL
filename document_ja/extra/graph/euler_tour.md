@@ -75,6 +75,7 @@ proc vertexAt(tour: EulerTour, preorderIndex: int): int
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 var graph = newSeq[seq[int]](5)
 

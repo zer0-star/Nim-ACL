@@ -107,6 +107,7 @@ When `answer(v)` is called, the current data structure contains **exactly the ve
 
 ## Example: distinct colors in each subtree
 
+<!-- nim-line-numbers -->
 ~~~nim
 import std/tables
 import atcoder/extra/graph/dsu_on_tree

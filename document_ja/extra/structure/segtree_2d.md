@@ -48,6 +48,7 @@ proc `[]`[ST: SegTree2D](st: var ST, xp, yp: Slice[int] or int): ST.S
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 proc op(a, b: int): int = a + b
 proc e(): int = 0

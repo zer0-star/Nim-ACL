@@ -141,6 +141,8 @@ proc countPalindromes[T](m: Manacher[T]): int
 <li><code>countPalindromicSubstrings()</code> returns the number of palindromic substrings.</li>
 </ul>
 <h2 id="example">Example</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">let m = initManacher(&quot;ababa&quot;)
 
 doAssert m.odd == @[1, 2, 3, 2, 1]
@@ -156,6 +158,8 @@ doAssert m.longestPalindromeRange == (l: 0, r: 5)
 doAssert m.countPalindromicSubstrings == 9
 </code></pre>
 <p>Even-length palindromes are also supported.</p>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">let m = initManacher(&quot;abba&quot;)
 
 doAssert m.odd == @[1, 1, 1, 1]

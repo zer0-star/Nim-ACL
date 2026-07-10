@@ -80,6 +80,7 @@ proc rerooting[T](
 
 ## 使用例: 各頂点から全頂点への距離和
 
+<!-- nim-line-numbers -->
 ~~~nim
 import std/sequtils
 import atcoder/extra/graph/rerooting_dp
@@ -111,6 +112,7 @@ edge を 1 本またぐと、その成分の全頂点への距離が 1 増える
 
 ## 使用例: 全頂点からの最遠距離
 
+<!-- nim-line-numbers -->
 ~~~nim
 var g = initRerootingGraph(6)
 

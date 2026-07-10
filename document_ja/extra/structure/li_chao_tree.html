@@ -99,6 +99,8 @@ proc query[T](cht: LiChaoTree[T], k: int): T
 <li><code>query(k)</code> は <code>xs[k]</code> における最小値を返します。</li>
 </ul>
 <h2 id="_4">使用例</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">const INF = int.high div 4
 
 var cht = initLiChaoTree[int](@[0, 1, 2, 3, 4, 5], INF)
@@ -111,6 +113,8 @@ doAssert cht.query(0) == 3
 doAssert cht.query(5) == 5
 </code></pre>
 <p>区間追加もできます。</p>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">var cht = initLiChaoTree[int](@[0, 1, 2, 3, 4, 5], INF)
 
 cht.update(0, 100)

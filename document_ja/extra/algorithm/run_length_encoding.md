@@ -54,6 +54,7 @@ proc originalLength(runs): int
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 let runs = rle("aaabbcaaaa")
 
@@ -69,6 +70,7 @@ doAssert runLengthDecodeString(runs) == "aaabbcaaaa"
 
 一般の sequence にも使えます。
 
+<!-- nim-line-numbers -->
 ~~~nim
 let runs = rle(@[1, 1, 2, 3, 3])
 

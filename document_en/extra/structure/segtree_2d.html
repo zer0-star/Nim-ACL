@@ -105,6 +105,8 @@ proc `[]`[ST: SegTree2D](st: var ST, xp, yp: Slice[int] or int): ST.S
 <li><code>prod(xp, yp)</code> returns the aggregate over rectangle <code>xp × yp</code>.</li>
 </ul>
 <h2 id="example">Example</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">proc op(a, b: int): int = a + b
 proc e(): int = 0
 

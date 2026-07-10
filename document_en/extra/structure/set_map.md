@@ -22,6 +22,7 @@ Therefore, importing `set_map` also makes `SortedSet`, `SortedMap`, `initSortedS
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 import atcoder/extra/structure/set_map
 

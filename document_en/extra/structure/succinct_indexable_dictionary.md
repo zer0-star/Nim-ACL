@@ -41,6 +41,7 @@ proc rank(sid: SuccinctIndexableDictionary, bit: bool, k: int): int
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 var sid = initSuccinctIndexableDictionary(8)
 

@@ -12,6 +12,7 @@ import atcoder/extra/math/convert_base
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 import atcoder/extra/math/convert_base
 

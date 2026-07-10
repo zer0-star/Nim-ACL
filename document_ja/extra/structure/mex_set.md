@@ -57,6 +57,7 @@ proc clear(s: var MexSet)
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 var s = initMexSet(10)
 
@@ -77,6 +78,7 @@ doAssert s.mex == 1
 
 multiset として重複も扱います。
 
+<!-- nim-line-numbers -->
 ~~~nim
 discard s.insert(0)
 discard s.insert(0)

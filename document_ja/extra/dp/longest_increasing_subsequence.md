@@ -13,6 +13,7 @@ import atcoder/extra/other/return_type
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 import atcoder/extra/dp/longest_increasing_subsequence
 import atcoder/extra/other/return_type

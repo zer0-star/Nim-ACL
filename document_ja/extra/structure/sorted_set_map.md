@@ -68,6 +68,7 @@ proc end(s): iterator
 
 ## SortedSet の使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 var s = initSortedSet[int](countable = true)
 
@@ -92,6 +93,7 @@ doAssert s.len == 2
 
 ## SortedMap の使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 var mp = initSortedMap[string, int](countable = true)
 

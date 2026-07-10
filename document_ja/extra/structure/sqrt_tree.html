@@ -127,6 +127,8 @@ proc allProd(tree: SqrtTree[T]): T
 </code></pre>
 <p>query 区間は非空の半開区間 <code>[l, r)</code> です。</p>
 <h2 id="_3">使用例</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">proc add(a, b: int): int = a + b
 
 let tree = initSqrtTree(
@@ -139,6 +141,8 @@ doAssert tree.prod(1, 4) == 9
 doAssert tree[(2, 5)] == 12
 </code></pre>
 <p>非可換演算にも使えます。</p>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">proc concat(a, b: string): string = a &amp; b
 
 let tree = initSqrtTree(

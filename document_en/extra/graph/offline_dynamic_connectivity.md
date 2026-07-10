@@ -77,6 +77,7 @@ proc componentCounts(dc: OfflineDynamicConnectivity): seq[int]
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 var dc = initOfflineDynamicConnectivity(n = 4, q = 5)
 

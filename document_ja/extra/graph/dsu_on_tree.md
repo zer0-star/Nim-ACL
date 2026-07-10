@@ -107,6 +107,7 @@ proc runDSUOnTree(
 
 ## 使用例: subtree の色種類数
 
+<!-- nim-line-numbers -->
 ~~~nim
 import std/tables
 import atcoder/extra/graph/dsu_on_tree

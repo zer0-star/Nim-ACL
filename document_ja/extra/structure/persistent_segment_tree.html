@@ -129,6 +129,8 @@ proc toSeq(tree, root): seq[T]
 </code></pre>
 <p><code>setValue</code> は元の version を変更せず、新しい root index を返します。</p>
 <h2 id="_5">使用例</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">proc add(a, b: int): int = a + b
 
 var tree = initPersistentSegmentTree(

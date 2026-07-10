@@ -23,6 +23,7 @@ proc tangent[Real](c1, c2: Circle[Real]): seq[Line[Real]]
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 let
   c = initCircle(initPoint[float](0.0, 0.0), 1.0)

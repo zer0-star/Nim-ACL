@@ -38,6 +38,7 @@ proc `[]`[FT: DualFenwickTree](fw: FT, p: IndexType): FT.T
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 var fw = initDualFenwickTree[int](5)
 

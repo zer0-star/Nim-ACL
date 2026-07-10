@@ -135,6 +135,8 @@ proc groups(uf: RollbackDSU): seq[seq[int]]
 <li><code>componentCount()</code> returns the current number of connected components.</li>
 </ul>
 <h2 id="example">Example</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">var uf = initRollbackDSU(5)
 
 discard uf.merge(0, 1)
@@ -169,6 +171,8 @@ doAssert not uf.same(0, 1)
 This makes it easy to match the number of merge calls and undo calls.</p>
 <h2 id="nim-friendly-usage">Nim-friendly usage</h2>
 <p><code>componentCount</code>, <code>snapshot</code>, and <code>time</code> read naturally with UFCS.</p>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">let s = uf.snapshot
 
 discard uf.merge(0, 1)

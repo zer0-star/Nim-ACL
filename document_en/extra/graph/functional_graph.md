@@ -81,6 +81,7 @@ proc orbit(fg: FunctionalGraph, start: int): tuple[prefix, cycle: seq[int]]
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 let to = @[1, 2, 0, 4, 4]
 let fg = initFunctionalGraph(to, maxLog = 60)

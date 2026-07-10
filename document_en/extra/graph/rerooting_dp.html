@@ -129,6 +129,8 @@ proc rerooting[T](
 <p>If <code>addEdge</code> is omitted, values are unchanged across edges.</p>
 <p><code>rerootingDP</code> is also available as an alias.</p>
 <h2 id="example-sum-of-distances-from-each-vertex">Example: sum of distances from each vertex</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">import std/sequtils
 import atcoder/extra/graph/rerooting_dp
 
@@ -156,6 +158,8 @@ doAssert ans.mapIt(it.dist) == @[6, 4, 4, 6]
 <p>Here, <code>size</code> is the number of vertices in the component, and <code>dist</code> is the sum of distances from the current root.<br>
 When crossing one edge, all distances in that component increase by one, so <code>dist</code> becomes <code>dist + size</code>.</p>
 <h2 id="example-farthest-distance-from-each-vertex">Example: farthest distance from each vertex</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">var g = initRerootingGraph(6)
 
 discard g.addEdge(0, 1)

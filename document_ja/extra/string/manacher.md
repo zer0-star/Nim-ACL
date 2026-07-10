@@ -108,6 +108,7 @@ proc countPalindromes[T](m: Manacher[T]): int
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 let m = initManacher("ababa")
 
@@ -126,6 +127,7 @@ doAssert m.countPalindromicSubstrings == 9
 
 偶数長回文も扱えます。
 
+<!-- nim-line-numbers -->
 ~~~nim
 let m = initManacher("abba")
 

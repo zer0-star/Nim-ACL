@@ -141,6 +141,8 @@ proc countPalindromes[T](m: Manacher[T]): int
 <li><code>countPalindromicSubstrings()</code> は回文 substring の個数を返します。</li>
 </ul>
 <h2 id="_7">使用例</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">let m = initManacher(&quot;ababa&quot;)
 
 doAssert m.odd == @[1, 2, 3, 2, 1]
@@ -156,6 +158,8 @@ doAssert m.longestPalindromeRange == (l: 0, r: 5)
 doAssert m.countPalindromicSubstrings == 9
 </code></pre>
 <p>偶数長回文も扱えます。</p>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">let m = initManacher(&quot;abba&quot;)
 
 doAssert m.odd == @[1, 1, 1, 1]

@@ -47,6 +47,7 @@ proc inorder(tree: CartesianTree): seq[int]
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 let tree = initCartesianTree(@[3, 1, 4, 0, 2])
 

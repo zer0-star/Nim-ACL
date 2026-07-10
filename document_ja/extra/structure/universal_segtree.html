@@ -102,6 +102,8 @@ initSegTreeBeats
 <li>区間取得 $O(\log n)$</li>
 </ul>
 <h3 id="_1">使用例</h3>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">import atcoder/extra/structure/universal_segtree
 
 proc op(a, b:int):int = a + b
@@ -148,6 +150,8 @@ doAssert st[2] == 10
 <li>区間取得 $O(\log n)$</li>
 </ul>
 <h3 id="_2">使用例：区間加算・区間和</h3>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">import atcoder/extra/structure/universal_segtree
 
 type S = tuple[sum:int, len:int]
@@ -207,6 +211,8 @@ doAssert st[2].sum == 13
 <li>点取得 $O(\log n)$</li>
 </ul>
 <h3 id="_3">使用例：区間加算・点取得</h3>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">import atcoder/extra/structure/universal_segtree
 
 proc composition(f, g:int):int =

@@ -71,6 +71,7 @@ proc intersection[Real](a, b: Segment[Real]): Point[Real]
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 let
   a = point(0.0, 0.0)

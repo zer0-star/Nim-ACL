@@ -10,6 +10,7 @@ import atcoder/extra/dp/cumulative_sum_2d
 
 ## 使用例
 
+<!-- nim-line-numbers -->
 ~~~nim
 import atcoder/extra/dp/cumulative_sum_2d
 

@@ -12,6 +12,7 @@ import atcoder/extra/math/combination_table
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 import atcoder/extra/math/combination_table
 

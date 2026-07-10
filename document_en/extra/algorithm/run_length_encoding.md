@@ -14,6 +14,7 @@ proc runLengthDecode(runs): seq[T]
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 let runs = rle("aaabbc")
 

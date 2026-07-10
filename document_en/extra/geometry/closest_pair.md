@@ -11,6 +11,7 @@ import atcoder/extra/geometry/closest_pair
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 import atcoder/extra/geometry/geometry_template
 import atcoder/extra/geometry/closest_pair

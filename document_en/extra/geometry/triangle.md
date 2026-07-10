@@ -13,6 +13,7 @@ import atcoder/extra/geometry/triangle
 
 ## Example
 
+<!-- nim-line-numbers -->
 ~~~nim
 import atcoder/extra/geometry/geometry_template
 import atcoder/extra/geometry/triangle

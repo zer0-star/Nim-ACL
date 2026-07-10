@@ -107,6 +107,8 @@ proc compressedLength(runs): int
 proc originalLength(runs): int
 </code></pre>
 <h2 id="_2">使用例</h2>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">let runs = rle(&quot;aaabbcaaaa&quot;)
 
 doAssert runs == @[
@@ -119,6 +121,8 @@ doAssert runs == @[
 doAssert runLengthDecodeString(runs) == &quot;aaabbcaaaa&quot;
 </code></pre>
 <p>一般の sequence にも使えます。</p>
+<!-- nim-line-numbers -->
+
 <pre><code class="language-nim">let runs = rle(@[1, 1, 2, 3, 3])
 
 doAssert runs == @[
