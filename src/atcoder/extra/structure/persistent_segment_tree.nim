@@ -1,6 +1,8 @@
 when not declared ATCODER_EXTRA_STRUCTURE_PERSISTENT_SEGMENT_TREE_HPP:
   const ATCODER_EXTRA_STRUCTURE_PERSISTENT_SEGMENT_TREE_HPP* = 1
 
+  import atcoder/rangeutils
+
   type
     PersistentSegmentTreeNode*[T] = object
       left*, right*: int
@@ -308,3 +310,279 @@ when not declared ATCODER_EXTRA_STRUCTURE_PERSISTENT_SEGMENT_TREE_HPP:
 
     for i in 0 ..< tree.n:
       result[i] = tree.get(root, i)
+
+
+  type
+    PersistentVersion* = distinct int
+
+    PersistentSegTree*[S; p: static[tuple]] = object
+      ## Standard-style static-monoid facade.
+      ##
+      ## The legacy `PersistentSegmentTree[T]` backend remains
+      ## available for source compatibility.
+      impl: PersistentSegmentTree[S]
+
+  template calc_op*[
+    PST: PersistentSegTree
+  ](
+    self: PST or typedesc[PST],
+    a, b: PST.S
+  ): auto =
+    PST.p.op(a, b)
+
+  template calc_e*[
+    PST: PersistentSegTree
+  ](
+    self: PST or typedesc[PST]
+  ): auto =
+    PST.p.e()
+
+  template PersistentSegTreeType*[S](
+    op0,
+    e0: untyped
+  ): typedesc[PersistentSegTree] =
+    proc op1(
+      left,
+      right: S
+    ): S {.gensym, inline.} =
+      op0(left, right)
+
+    proc e1(): S {.gensym, inline.} =
+      e0()
+
+    PersistentSegTree[
+      S,
+      (
+        op: op1,
+        e: e1,
+      ),
+    ]
+
+  proc init*[
+    PST: PersistentSegTree
+  ](
+    tree: var PST,
+    n: int,
+    expectedUpdates: int = 0
+  ) =
+    proc runtimeOp(
+      left,
+      right: PST.S
+    ): PST.S {.closure.} =
+      PST.calc_op(left, right)
+
+    tree.impl = initPersistentSegmentTree(
+      n,
+      identity = PST.calc_e(),
+      op = runtimeOp,
+      expectedUpdates = expectedUpdates,
+    )
+
+  proc init*[
+    PST: PersistentSegTree
+  ](
+    tree: var PST,
+    values: seq[PST.S],
+    expectedUpdates: int = 0
+  ) =
+    proc runtimeOp(
+      left,
+      right: PST.S
+    ): PST.S {.closure.} =
+      PST.calc_op(left, right)
+
+    tree.impl = initPersistentSegmentTree(
+      values,
+      identity = PST.calc_e(),
+      op = runtimeOp,
+      expectedUpdates = expectedUpdates,
+    )
+
+  proc init*[
+    PST: PersistentSegTree
+  ](
+    treeType: typedesc[PST],
+    n: int,
+    expectedUpdates: int = 0
+  ): PST =
+    result.init(
+      n,
+      expectedUpdates,
+    )
+
+  proc init*[
+    PST: PersistentSegTree
+  ](
+    treeType: typedesc[PST],
+    values: seq[PST.S],
+    expectedUpdates: int = 0
+  ): PST =
+    result.init(
+      values,
+      expectedUpdates,
+    )
+
+  template initPersistentSegmentTree*[S](
+    values: seq[S],
+    op,
+    e: untyped,
+    expectedUpdates: int = 0
+  ): auto =
+    PersistentSegTreeType[S](
+      op,
+      e,
+    ).init(
+      values,
+      expectedUpdates,
+    )
+
+  template initPersistentSegmentTree*(
+    n: int,
+    op,
+    e: untyped,
+    expectedUpdates: int = 0
+  ): auto =
+    block:
+      type S = typeof(e())
+
+      PersistentSegTreeType[S](
+        op,
+        e,
+      ).init(
+        n,
+        expectedUpdates,
+      )
+
+  proc len*[
+    PST: PersistentSegTree
+  ](
+    tree: PST
+  ): int {.inline.} =
+    tree.impl.len
+
+  proc nodeCount*[
+    PST: PersistentSegTree
+  ](
+    tree: PST
+  ): int {.inline.} =
+    tree.impl.nodeCount
+
+  proc initialVersion*[
+    PST: PersistentSegTree
+  ](
+    tree: PST
+  ): PersistentVersion {.inline.} =
+    PersistentVersion(
+      tree.impl.root
+    )
+
+  proc set*[
+    PST: PersistentSegTree
+  ](
+    tree: var PST,
+    position: IndexType,
+    value: PST.S,
+    version: PersistentVersion
+  ): PersistentVersion =
+    let index = tree^^position
+
+    PersistentVersion(
+      tree.impl.setValue(
+        int(version),
+        index,
+        value,
+      )
+    )
+
+  proc setValue*[
+    PST: PersistentSegTree
+  ](
+    tree: var PST,
+    position: IndexType,
+    value: PST.S,
+    version: PersistentVersion
+  ): PersistentVersion =
+    ## Compatibility spelling for `set`.
+    tree.set(
+      position,
+      value,
+      version,
+    )
+
+  proc update*[
+    PST: PersistentSegTree
+  ](
+    tree: var PST,
+    position: IndexType,
+    value: PST.S,
+    version: PersistentVersion
+  ): PersistentVersion =
+    ## Compatibility spelling for `set`.
+    tree.set(
+      position,
+      value,
+      version,
+    )
+
+  proc get*[
+    PST: PersistentSegTree
+  ](
+    tree: PST,
+    position: IndexType,
+    version: PersistentVersion
+  ): PST.S =
+    let index = tree^^position
+
+    tree.impl.get(
+      int(version),
+      index,
+    )
+
+  proc prod*[
+    PST: PersistentSegTree
+  ](
+    tree: PST,
+    range: RangeType,
+    version: PersistentVersion
+  ): PST.S =
+    let (left, right) =
+      tree.halfOpenEndpoints(range)
+
+    tree.impl.prod(
+      int(version),
+      left,
+      right,
+    )
+
+  proc prod*[
+    PST: PersistentSegTree
+  ](
+    tree: PST,
+    left,
+    right: int,
+    version: PersistentVersion
+  ): PST.S =
+    tree.impl.prod(
+      int(version),
+      left,
+      right,
+    )
+
+  proc allProd*[
+    PST: PersistentSegTree
+  ](
+    tree: PST,
+    version: PersistentVersion
+  ): PST.S =
+    ## Returns the aggregate stored at `version`.
+    tree.impl.allProd(int(version))
+
+  proc toSeq*[
+    PST: PersistentSegTree
+  ](
+    tree: PST,
+    version: PersistentVersion
+  ): seq[PST.S] =
+    tree.impl.toSeq(
+      int(version)
+    )

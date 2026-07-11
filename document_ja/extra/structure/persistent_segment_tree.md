@@ -1,22 +1,8 @@
-# Persistent Segment Tree
+# Persistent Segment Tree（永続セグメント木）
 
-`PersistentSegmentTree` は、更新前の version を破壊せずに残す Segment Tree です。
+更新前のversionを保持したまま、新しいversionを作成できるセグメント木です。
 
-通常の Segment Tree では点更新すると過去の状態が失われます。永続 Segment Tree では、更新経路上の node だけを複製し、変更されない subtree を古い version と共有します。
-
-## 使いどころ
-
-- 過去時刻の配列に対する query
-- version ごとに異なる更新を分岐させる
-- 区間 k-th などの persistent frequency tree
-- rollback ではなく、任意の過去 version を直接参照したい
-- offline query
-
-## 考え方
-
-点更新で変更される node は root から leaf までの `O(log n)` 個だけです。
-
-それらだけを新しく作り、反対側の子は古い node をそのまま共有します。各 version は root node の index だけで表せます。
+Nim-ACL標準の`SegTree`と同様に、モノイド演算`op`と単位元`e`をstatic generic tupleから呼び出します。
 
 ## import
 
@@ -24,102 +10,186 @@
 import atcoder/extra/structure/persistent_segment_tree
 ~~~
 
-ローカル短縮 import：
+## モノイド
 
 ~~~nim
-import lib/structure/persistent_segment_tree
+proc addInt(
+  left,
+  right: int,
+): int =
+  left + right
+
+proc zeroInt(): int =
+  0
 ~~~
 
-## コンストラクタ
+## 初期化
 
 ~~~nim
-proc initPersistentSegmentTree[T](
-  n: int,
-  identity: T,
-  op: proc(a, b: T): T,
-  expectedUpdates: int = 0
-): PersistentSegmentTree[T]
-
-proc initPersistentSegmentTree[T](
-  values: openArray[T],
-  identity: T,
-  op: proc(a, b: T): T,
-  expectedUpdates: int = 0
-): PersistentSegmentTree[T]
+var tree =
+  PersistentSegTree[
+    int,
+    (
+      op: addInt,
+      e: zeroInt,
+    ),
+  ].init(
+    @[1, 2, 3, 4],
+    expectedUpdates = 100,
+  )
 ~~~
 
-## 操作
+長さだけを指定すると、すべて`e()`で初期化されます。
 
 ~~~nim
-proc setValue(
-  tree: var PersistentSegmentTree[T],
-  root, position: int,
-  value: T
-): int
-
-proc update(
-  tree: var PersistentSegmentTree[T],
-  root, position: int,
-  value: T
-): int
-
-proc prod(
-  tree: PersistentSegmentTree[T],
-  root, l, r: int
-): T
-
-proc get(tree, root, position): T
-proc allProd(tree, root): T
-proc toSeq(tree, root): seq[T]
+var tree =
+  PersistentSegTree[
+    int,
+    (
+      op: addInt,
+      e: zeroInt,
+    ),
+  ].init(
+    200_000,
+    expectedUpdates = 200_000,
+  )
 ~~~
 
-`setValue` は元の version を変更せず、新しい root index を返します。
+次の簡略記法も、同じstatic generic型を生成します。
 
-## 使用例
-
-<!-- nim-line-numbers -->
 ~~~nim
-proc add(a, b: int): int = a + b
-
 var tree = initPersistentSegmentTree(
   @[1, 2, 3, 4],
-  identity = 0,
-  op = add,
+  addInt,
+  zeroInt,
+  expectedUpdates = 100,
 )
-
-let
-  root0 = tree.root
-  root1 = tree.setValue(root0, 1, 20)
-  root2 = tree.setValue(root1, 3, 40)
-
-doAssert tree.toSeq(root0) == @[1, 2, 3, 4]
-doAssert tree.toSeq(root1) == @[1, 20, 3, 4]
-doAssert tree.toSeq(root2) == @[1, 20, 3, 40]
-
-doAssert tree.prod(root0, 0, 4) == 10
-doAssert tree.prod(root2, 1, 4) == 63
 ~~~
 
-古い version から別の branch を作れます。
+## version
 
 ~~~nim
-let rootA = tree.setValue(root0, 0, 100)
-let rootB = tree.setValue(root0, 0, 200)
+let version0 = tree.initialVersion
 ~~~
+
+versionは`PersistentVersion`型です。頂点番号や区間端点とは異なる型なので、生の`int`より引数順の間違いを検出しやすくなります。
+
+## 一点更新
+
+~~~nim
+let version1 = tree.set(
+  1,
+  20,
+  version0,
+)
+~~~
+
+引数順は標準`SegTree`に合わせて、
+
+```text
+position, value, version
+```
+
+です。`version0`は変更されず、`version1`だけが新しい値を持ちます。
+
+## 一点取得
+
+~~~nim
+echo tree.get(
+  1,
+  version0,
+)
+
+echo tree.get(
+  1,
+  version1,
+)
+~~~
+
+引数順は、
+
+```text
+position, version
+```
+
+です。
+
+## 区間積
+
+~~~nim
+echo tree.prod(
+  1 ..< 4,
+  version1,
+)
+~~~
+
+または、
+
+~~~nim
+echo tree.prod(
+  1,
+  4,
+  version1,
+)
+~~~
+
+半開区間\([l,r)\)の積を返します。引数順はrangeまたは`l, r`を先に置き、versionを最後に置きます。
+
+## 全体積
+
+~~~nim
+echo tree.allProd(version1)
+~~~
+
+Nimの識別子は大文字小文字とunderscoreを区別しないため、`all_prod`も同じprocを呼びます。
+
+## 配列化
+
+~~~nim
+let values = tree.toSeq(version1)
+~~~
+
+debugや小規模な確認用です。計算量は\(O(N\log N)\)です。
+
+## `expectedUpdates`
+
+<!-- NIM_ACL_TUNING_PARAMETER: expectedUpdates -->
+
+| 項目 | 説明 |
+|---|---|
+| 意味 | 今後行う一点更新回数の見積もりです。version数の上限ではありません。 |
+| 事前確保 | 内部のnode poolをあらかじめ確保し、更新中の再確保を減らします。 |
+| 正しさ | 値はcapacity hintだけに使われるため、正しさには影響しません。 |
+| 小さすぎる場合 | 必要に応じて`seq`が自動拡張されます。再確保やcopyが増える可能性があります。 |
+| 大きすぎる場合 | 使わないcapacityも予約するため、メモリ消費が増える可能性があります。 |
+| 省略時 | 既定値は`0`です。初期木に必要なcapacityだけを事前確保します。 |
+
+内部の`size`は\(N\)以上の最小の2冪で、木の高さを\(h=\log_2(\mathrm{size})\)とすると、node poolの初期capacityは
+
+\[
+2\mathrm{size}
++
+\mathrm{expectedUpdates}(h+1)
+\]
+
+です。
+
+一点更新では、根から葉までの経路を複製するため、ちょうど\(h+1\)個のnodeを追加します。
 
 ## 計算量
 
-- 初期構築: `O(n)`
-- 点更新: `O(log n)` 時間・追加 memory
-- 区間積: `O(log n)`
-- point get: `O(log n)`
-- version の保持: root index 1個
+初期配列の長さを\(N\)、更新回数を\(U\)とします。
 
-## 注意
+- 初期化: \(O(N)\)
+- `set`: \(O(\log N)\)
+- `get`: \(O(\log N)\)
+- `prod`: \(O(\log N)\)
+- `allProd`: \(O(1)\)
+- versionの保持・代入: \(O(1)\)
+- node数: \(O(N+U\log N)\)
 
-- `op` は結合法則を満たす必要があります。
-- `identity` は `op` の単位元です。
-- version は root index として利用者が保持します。
-- 区間は半開区間 `[AtCoder Algorithm Lectures: 永続セグメント木](https://info.atcoder.jp/entry/algorithm_lectures/persistent_segment_tree)
-- [cp-algorithms: Persistent Segment Tree](https://cp-algorithms.com/data_structures/segment_tree.html#preserving-the-history-of-its-values-persistent-segment-tree)
-- [Library Checker problem list](https://judge.yosupo.jp/problems)
+## 旧runtime API
+
+既存コードとの互換性のため、`identity`とclosureの`op`をconstructorへ渡し、生のroot番号を先頭引数に取る旧APIも残しています。
+
+新しいコードでは、引数順の安全性と標準`SegTree`との一貫性のため、static generic APIを推奨します。

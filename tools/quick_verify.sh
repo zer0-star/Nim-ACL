@@ -54,6 +54,7 @@ STEP=init
     tests/test_extra_virtual_tree.nim
     tests/test_extra_euler_tour.nim
     tests/test_extra_persistent_segment_tree.nim
+    tests/test_extra_persistent_segment_tree_static_api.nim
     tests/test_extra_sqrt_tree.nim
     tests/test_extra_dsu_on_tree.nim
     tests/test_extra_undirected_decomposition.nim
@@ -227,5 +228,9 @@ python3 tools/audit_problem_examples.py
 python3 tools/audit_dp_optimization.py
 # NIM_ACL_CURATED_DOCS_AUDIT_V1
 python3 tools/audit_curated_docs.py
+# NIM_ACL_PERSISTENT_SEGTREE_API_AUDIT_V1
+python3 tools/audit_persistent_segment_tree_api.py
+# NIM_ACL_TUNING_PARAMETER_DOC_AUDIT_V1
+python3 tools/audit_tuning_parameters.py
 # NIM_ACL_JAPANESE_FACADE_AUDIT_V1
 python3 tools/audit_japanese_facades.py
