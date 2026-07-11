@@ -199,6 +199,53 @@ fi
 rm -rf "$PST_VERSION_FIRST_TMP"
 # <<< PST_VERSION_FIRST_CROSS_TEST <<<
 
+# >>> POLYNOMIAL_INTERPOLATION_TEST >>>
+POLYNOMIAL_INTERPOLATION_TMP="/tmp/nacl_polynomial_interpolation_quick_$$"
+
+rm -rf "$POLYNOMIAL_INTERPOLATION_TMP"
+mkdir -p "$POLYNOMIAL_INTERPOLATION_TMP"
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$POLYNOMIAL_INTERPOLATION_TMP/nimcache-main" \
+  --out:"$POLYNOMIAL_INTERPOLATION_TMP/main-test" \
+  tests/test_extra_polynomial_interpolation.nim
+then
+  STATUS="NG"
+  STEP="Polynomial Interpolation test compile"
+
+elif ! "$POLYNOMIAL_INTERPOLATION_TMP/main-test"
+then
+  STATUS="NG"
+  STEP="Polynomial Interpolation test run"
+fi
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$POLYNOMIAL_INTERPOLATION_TMP/nimcache-cross" \
+  --out:"$POLYNOMIAL_INTERPOLATION_TMP/cross-test" \
+  tests/test_extra_polynomial_interpolation_cross_module.nim
+then
+  STATUS="NG"
+  STEP="Polynomial Interpolation cross compile"
+
+elif ! "$POLYNOMIAL_INTERPOLATION_TMP/cross-test"
+then
+  STATUS="NG"
+  STEP="Polynomial Interpolation cross run"
+fi
+
+rm -rf "$POLYNOMIAL_INTERPOLATION_TMP"
+# <<< POLYNOMIAL_INTERPOLATION_TEST <<<
+
 STEP="final clean"
   if [ -n "$(git status --porcelain)" ]; then
     git status --short
