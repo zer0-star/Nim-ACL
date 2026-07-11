@@ -246,6 +246,53 @@ fi
 rm -rf "$POLYNOMIAL_INTERPOLATION_TMP"
 # <<< POLYNOMIAL_INTERPOLATION_TEST <<<
 
+# >>> SUBSET_CONVOLUTION_TEST >>>
+SUBSET_CONVOLUTION_TMP="/tmp/nacl_subset_convolution_quick_$$"
+
+rm -rf "$SUBSET_CONVOLUTION_TMP"
+mkdir -p "$SUBSET_CONVOLUTION_TMP"
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$SUBSET_CONVOLUTION_TMP/nimcache-main" \
+  --out:"$SUBSET_CONVOLUTION_TMP/main-test" \
+  tests/test_extra_subset_convolution.nim
+then
+  STATUS="NG"
+  STEP="Subset Convolution test compile"
+
+elif ! "$SUBSET_CONVOLUTION_TMP/main-test"
+then
+  STATUS="NG"
+  STEP="Subset Convolution test run"
+fi
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$SUBSET_CONVOLUTION_TMP/nimcache-cross" \
+  --out:"$SUBSET_CONVOLUTION_TMP/cross-test" \
+  tests/test_extra_subset_convolution_cross_module.nim
+then
+  STATUS="NG"
+  STEP="Subset Convolution cross compile"
+
+elif ! "$SUBSET_CONVOLUTION_TMP/cross-test"
+then
+  STATUS="NG"
+  STEP="Subset Convolution cross run"
+fi
+
+rm -rf "$SUBSET_CONVOLUTION_TMP"
+# <<< SUBSET_CONVOLUTION_TEST <<<
+
 STEP="final clean"
   if [ -n "$(git status --porcelain)" ]; then
     git status --short
