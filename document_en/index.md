@@ -131,7 +131,6 @@ The header files in `atcoder` folder are licensed under a CC0 license. See `atco
 - [`import atcoder/extra/graph/block_cut_tree`](./extra/graph/block_cut_tree.html)
 - [`import atcoder/extra/graph/rerooting_dp`](./extra/graph/rerooting_dp.html)
 - [`import atcoder/extra/graph/dsu_on_tree`](./extra/graph/dsu_on_tree.html)
-- [`import atcoder/extra/graph/virtual_tree`](./extra/graph/virtual_tree.html)
 - [`import atcoder/extra/graph/offline_dynamic_connectivity`](./extra/graph/offline_dynamic_connectivity.html)
 - [`import atcoder/extra/graph/functional_graph`](./extra/graph/functional_graph.html)
 
@@ -159,3 +158,16 @@ through Japanese import paths and API names.
 
 - [Japanese API facade index](extra/ja/index.md)
 <!-- /NIM_ACL_JAPANESE_FACADE_INDEX_V1 -->
+
+<!-- NIM_ACL_CURATED_AUXILIARY_TREE_V1 -->
+## Tree algorithms
+
+- [Auxiliary Tree (Virtual Tree)](extra/graph/virtual_tree.md)
+<!-- /NIM_ACL_CURATED_AUXILIARY_TREE_V1 -->
+
+<!-- NIM_ACL_CURATED_DP_OPTIMIZATION_V1 -->
+## DP optimization
+
+- [Monotone Minima](extra/dp/monotone_minima.md)
+- [Divide-and-Conquer Optimization](extra/dp/divide_and_conquer_optimization.md)
+<!-- /NIM_ACL_CURATED_DP_OPTIMIZATION_V1 -->

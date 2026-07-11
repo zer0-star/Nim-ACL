@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>VirtualTree</title>
+  <title>Auxiliary Tree (Virtual Tree)</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -250,107 +250,60 @@ pre.nim-line-numbers .code-line::before {
     </a>
   </header>
   <main>
-<h1 id="virtualtree">VirtualTree</h1>
-<p><code>VirtualTree</code> builds a small auxiliary tree from a subset of important vertices and their necessary LCAs.</p>
-<p>If running DP on the whole tree for every query is too expensive, a virtual tree lets you process only <code>O(k)</code> relevant vertices for a query with <code>k</code> important vertices.</p>
-<h2 id="use-cases">Use cases</h2>
-<p>Typical use cases include:</p>
-<ul>
-<li>queries where only a given subset of vertices is important</li>
-<li>building the minimum subtree connecting important vertices</li>
-<li>tree DP over a compressed set of vertices</li>
-<li>handling distances and ancestor relations using LCA</li>
-<li>large original tree with many small per-query vertex sets</li>
-</ul>
-<h2 id="idea">Idea</h2>
-<p>Paths between important vertices may meet at LCA vertices.<br>
-Those LCA vertices are necessary to preserve the tree structure.</p>
-<p>Sort important vertices by DFS order and add LCAs of adjacent vertices.<br>
-After sorting this expanded set again, use a stack to restore parent-child relations.<br>
-The result is a small tree consisting only of important vertices and necessary LCAs.</p>
-<p>Each virtual tree edge stores the distance in the original tree.</p>
+<h1 id="auxiliary-tree-virtual-tree">Auxiliary Tree (Virtual Tree)</h1>
+<p>Builds a compressed tree containing selected vertices and the LCAs needed to connect them.</p>
+<p>The structure is commonly called an <strong>Auxiliary Tree</strong> or <strong>Virtual Tree</strong>. This page uses Auxiliary Tree as the primary name while retaining Virtual Tree to match the existing module and API names.</p>
 <h2 id="import">Import</h2>
 <pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">virtual_tree</span>
 </code></pre>
-<h2 id="types">Types</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">type</span> <span class="tok-identifier">VirtualTree</span>
-<span class="tok-keyword">type</span> <span class="tok-identifier">BuiltVirtualTree</span>
-
-<span class="tok-keyword">type</span> <span class="tok-identifier">VirtualTreeEdge</span> <span class="tok-operator">=</span> <span class="tok-keyword">tuple</span><span class="tok-punctuation">[</span><span class="tok-identifier">parent</span><span class="tok-punctuation">,</span> <span class="tok-identifier">child</span><span class="tok-punctuation">,</span> <span class="tok-identifier">dist</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">]</span>
-<span class="tok-keyword">type</span> <span class="tok-identifier">VirtualTreeAdjEdge</span> <span class="tok-operator">=</span> <span class="tok-keyword">tuple</span><span class="tok-punctuation">[</span><span class="tok-identifier">to</span><span class="tok-punctuation">,</span> <span class="tok-identifier">dist</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">]</span>
+<h2 id="preprocessing">Preprocessing</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">vt</span> <span class="tok-operator">=</span> <span class="tok-identifier">initVirtualTree</span><span class="tok-punctuation">(</span><span class="tok-identifier">graph</span><span class="tok-punctuation">,</span> <span class="tok-identifier">root</span> <span class="tok-operator">=</span> <span class="tok-number">0</span><span class="tok-punctuation">)</span>
 </code></pre>
-<p><code>VirtualTree</code> is the builder with LCA preprocessing for the original tree.<br>
-<code>BuiltVirtualTree</code> is the compressed tree built for a query.</p>
-<h2 id="constructor">Constructor</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">initVirtualTree</span><span class="tok-punctuation">(</span><span class="tok-identifier">graph</span><span class="tok-punctuation">:</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">root</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span> <span class="tok-number">0</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">VirtualTree</span>
+<p><code>graph</code> is a zero-indexed undirected tree. Preprocessing builds Euler-tour order, depths, and binary-lifting LCA metadata.</p>
+<h2 id="buildvirtualtree"><code>buildVirtualTree</code></h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">built</span> <span class="tok-operator">=</span> <span class="tok-identifier">vt</span><span class="tok-operator">.</span><span class="tok-identifier">buildVirtualTree</span><span class="tok-punctuation">(</span><span class="tok-identifier">keys</span><span class="tok-punctuation">)</span>
 </code></pre>
-<p><code>graph</code> is the adjacency list of an undirected tree.</p>
-<h2 id="lca-distance">LCA / distance</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">isAncestor</span><span class="tok-punctuation">(</span><span class="tok-identifier">vt</span><span class="tok-punctuation">:</span> <span class="tok-identifier">VirtualTree</span><span class="tok-punctuation">,</span> <span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">bool</span>
-<span class="tok-keyword">proc</span> <span class="tok-identifier">lca</span><span class="tok-punctuation">(</span><span class="tok-identifier">vt</span><span class="tok-punctuation">:</span> <span class="tok-identifier">VirtualTree</span><span class="tok-punctuation">,</span> <span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
-<span class="tok-keyword">proc</span> <span class="tok-identifier">dist</span><span class="tok-punctuation">(</span><span class="tok-identifier">vt</span><span class="tok-punctuation">:</span> <span class="tok-identifier">VirtualTree</span><span class="tok-punctuation">,</span> <span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
-</code></pre>
+<p>The result contains every selected vertex and every LCA required to connect them.</p>
 <ul>
-<li><code>isAncestor(a, b)</code> checks whether <code>a</code> is an ancestor of <code>b</code>.</li>
-<li><code>lca(a, b)</code> returns the lowest common ancestor.</li>
-<li><code>dist(a, b)</code> returns the distance in the original tree.</li>
+<li><code>built.root</code>: compressed index of the root</li>
+<li><code>built.vertices[i]</code>: original vertex represented by compressed vertex <code>i</code></li>
+<li><code>built.edges</code>: <code>(parent, child, dist)</code> tuples</li>
+<li><code>built.adj[i]</code>: child edges from compressed vertex <code>i</code></li>
+<li><code>dist</code>: distance in the original tree</li>
 </ul>
-<h2 id="building-a-virtual-tree">Building a virtual tree</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">buildVirtualTree</span><span class="tok-punctuation">(</span><span class="tok-identifier">vt</span><span class="tok-punctuation">:</span> <span class="tok-identifier">VirtualTree</span><span class="tok-punctuation">,</span> <span class="tok-identifier">keys</span><span class="tok-punctuation">:</span> <span class="tok-identifier">openArray</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">BuiltVirtualTree</span>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">for</span> <span class="tok-identifier">edge</span> <span class="tok-keyword">in</span> <span class="tok-identifier">built</span><span class="tok-operator">.</span><span class="tok-identifier">edges</span><span class="tok-punctuation">:</span>
+  <span class="tok-identifier">echo</span> <span class="tok-identifier">built</span><span class="tok-operator">.</span><span class="tok-identifier">vertices</span><span class="tok-punctuation">[</span><span class="tok-identifier">edge</span><span class="tok-operator">.</span><span class="tok-identifier">parent</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
+       <span class="tok-string">&quot; -&gt; &quot;</span><span class="tok-punctuation">,</span>
+       <span class="tok-identifier">built</span><span class="tok-operator">.</span><span class="tok-identifier">vertices</span><span class="tok-punctuation">[</span><span class="tok-identifier">edge</span><span class="tok-operator">.</span><span class="tok-identifier">child</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
+       <span class="tok-string">&quot; distance = &quot;</span><span class="tok-punctuation">,</span>
+       <span class="tok-identifier">edge</span><span class="tok-operator">.</span><span class="tok-identifier">dist</span>
 </code></pre>
-<p>Builds a virtual tree containing the important vertices in <code>keys</code> and necessary LCAs.</p>
-<p>Main fields of <code>BuiltVirtualTree</code>:</p>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">root</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
-<span class="tok-identifier">vertices</span><span class="tok-punctuation">:</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span>
-<span class="tok-identifier">edges</span><span class="tok-punctuation">:</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">VirtualTreeEdge</span><span class="tok-punctuation">]</span>
-<span class="tok-identifier">adj</span><span class="tok-punctuation">:</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">VirtualTreeAdjEdge</span><span class="tok-punctuation">]</span><span class="tok-punctuation">]</span>
-</code></pre>
-<ul>
-<li><code>root</code> is the original vertex id of the virtual tree root.</li>
-<li><code>vertices[i]</code> is the original vertex id of compressed node <code>i</code>.</li>
-<li><code>edges</code> is an edge list using original vertex ids.</li>
-<li><code>adj[i]</code> stores children of compressed node <code>i</code>. <code>to</code> is a compressed index.</li>
-</ul>
-<h2 id="example">Example</h2>
-<!-- nim-line-numbers -->
-
-<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">g</span> <span class="tok-operator">=</span> <span class="tok-identifier">newSeq</span><span class="tok-punctuation">[</span><span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">7</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-keyword">proc</span> <span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">,</span> <span class="tok-identifier">v</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span></span><span class="code-line">  <span class="tok-identifier">g</span><span class="tok-punctuation">[</span><span class="tok-identifier">u</span><span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">add</span> <span class="tok-identifier">v</span></span><span class="code-line">  <span class="tok-identifier">g</span><span class="tok-punctuation">[</span><span class="tok-identifier">v</span><span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">add</span> <span class="tok-identifier">u</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">6</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">vt</span> <span class="tok-operator">=</span> <span class="tok-identifier">initVirtualTree</span><span class="tok-punctuation">(</span><span class="tok-identifier">g</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">built</span> <span class="tok-operator">=</span> <span class="tok-identifier">vt</span><span class="tok-operator">.</span><span class="tok-identifier">buildVirtualTree</span><span class="tok-punctuation">(</span><span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">built</span><span class="tok-operator">.</span><span class="tok-identifier">root</span> <span class="tok-operator">==</span> <span class="tok-number">0</span></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">built</span><span class="tok-operator">.</span><span class="tok-identifier">vertices</span> <span class="tok-operator">==</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">]</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">built</span><span class="tok-operator">.</span><span class="tok-identifier">edges</span> <span class="tok-operator">==</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span></span><span class="code-line">  <span class="tok-punctuation">(</span><span class="tok-identifier">parent</span><span class="tok-punctuation">:</span> <span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-identifier">child</span><span class="tok-punctuation">:</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-identifier">dist</span><span class="tok-punctuation">:</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span></span><span class="code-line">  <span class="tok-punctuation">(</span><span class="tok-identifier">parent</span><span class="tok-punctuation">:</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-identifier">child</span><span class="tok-punctuation">:</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-identifier">dist</span><span class="tok-punctuation">:</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span></span><span class="code-line">  <span class="tok-punctuation">(</span><span class="tok-identifier">parent</span><span class="tok-punctuation">:</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-identifier">child</span><span class="tok-punctuation">:</span> <span class="tok-number">4</span><span class="tok-punctuation">,</span> <span class="tok-identifier">dist</span><span class="tok-punctuation">:</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span></span><span class="code-line">  <span class="tok-punctuation">(</span><span class="tok-identifier">parent</span><span class="tok-punctuation">:</span> <span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-identifier">child</span><span class="tok-punctuation">:</span> <span class="tok-number">5</span><span class="tok-punctuation">,</span> <span class="tok-identifier">dist</span><span class="tok-punctuation">:</span> <span class="tok-number">2</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span></span><span class="code-line"><span class="tok-punctuation">]</span></span></code></pre>
-<h2 id="compressed-adjacency">Compressed adjacency</h2>
-<p><code>adj</code> is indexed by compressed node id. To get the original vertex id, use <code>vertices[to]</code>.</p>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">for</span> <span class="tok-identifier">e</span> <span class="tok-keyword">in</span> <span class="tok-identifier">built</span><span class="tok-operator">.</span><span class="tok-identifier">adj</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">]</span><span class="tok-punctuation">:</span>
-  <span class="tok-keyword">let</span> <span class="tok-identifier">childOriginalVertex</span> <span class="tok-operator">=</span> <span class="tok-identifier">built</span><span class="tok-operator">.</span><span class="tok-identifier">vertices</span><span class="tok-punctuation">[</span><span class="tok-identifier">e</span><span class="tok-operator">.</span><span class="tok-identifier">to</span><span class="tok-punctuation">]</span>
-  <span class="tok-identifier">echo</span> <span class="tok-identifier">childOriginalVertex</span><span class="tok-punctuation">,</span> <span class="tok-string">&quot; dist = &quot;</span><span class="tok-punctuation">,</span> <span class="tok-identifier">e</span><span class="tok-operator">.</span><span class="tok-identifier">dist</span>
-</code></pre>
-<h2 id="nim-friendly-usage">Nim-friendly usage</h2>
-<p><code>lca</code>, <code>dist</code>, and <code>buildVirtualTree</code> read naturally with UFCS.</p>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">c</span> <span class="tok-operator">=</span> <span class="tok-identifier">vt</span><span class="tok-operator">.</span><span class="tok-identifier">lca</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">,</span> <span class="tok-identifier">v</span><span class="tok-punctuation">)</span>
-<span class="tok-keyword">let</span> <span class="tok-identifier">d</span> <span class="tok-operator">=</span> <span class="tok-identifier">vt</span><span class="tok-operator">.</span><span class="tok-identifier">dist</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">,</span> <span class="tok-identifier">v</span><span class="tok-punctuation">)</span>
-<span class="tok-keyword">let</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span> <span class="tok-identifier">vt</span><span class="tok-operator">.</span><span class="tok-identifier">buildVirtualTree</span><span class="tok-punctuation">(</span><span class="tok-identifier">keys</span><span class="tok-punctuation">)</span>
+<h2 id="additional-apis">Additional APIs</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">echo</span> <span class="tok-identifier">vt</span><span class="tok-operator">.</span><span class="tok-identifier">lca</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">,</span> <span class="tok-identifier">v</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">echo</span> <span class="tok-identifier">vt</span><span class="tok-operator">.</span><span class="tok-identifier">dist</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">,</span> <span class="tok-identifier">v</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">echo</span> <span class="tok-identifier">vt</span><span class="tok-operator">.</span><span class="tok-identifier">isAncestor</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">,</span> <span class="tok-identifier">v</span><span class="tok-punctuation">)</span>
 </code></pre>
 <h2 id="complexity">Complexity</h2>
-<p>Let <code>n</code> be the number of original tree vertices, <code>k</code> be the number of important vertices, and <code>K</code> be the number of virtual tree vertices.</p>
+<p>For an original tree with (N) vertices and a selected set of size (K):</p>
 <ul>
-<li>preprocessing: <code>O(n log n)</code></li>
-<li><code>lca</code>: <code>O(log n)</code></li>
-<li><code>dist</code>: <code>O(log n)</code></li>
-<li><code>buildVirtualTree</code>: <code>O(k log k + k log n)</code></li>
-<li>memory: preprocessing <code>O(n log n)</code>, built tree <code>O(K)</code></li>
+<li>preprocessing: (O(N\log N))</li>
+<li>Auxiliary Tree construction: (O(K\log K + K\log N))</li>
+<li>number of compressed vertices: (O(K))</li>
 </ul>
-<h2 id="notes">Notes</h2>
+<h2 id="related-material">Related material</h2>
 <ul>
-<li><code>graph</code> must be a tree.</li>
-<li><code>keys</code> must not be empty.</li>
-<li>Duplicate keys are removed.</li>
-<li>In <code>adj</code>, <code>to</code> is a compressed index, not an original vertex id.</li>
-<li>Edge <code>dist</code> is the distance in the original tree.</li>
+<li><a href="https://atcoder.jp/contests/abc340/editorial/9256" target="_blank" rel="noopener">ABC340 G official editorial: definition and construction of an Auxiliary Tree</a></li>
+<li><a href="https://atcoder.jp/contests/abc359/editorial/10259?lang=en" target="_blank" rel="noopener">ABC359 G official editorial: an application of an Auxiliary Tree</a></li>
+<li><a href="euler_tour.html">Euler Tour</a></li>
 </ul>
-<h2 id="related-resources-and-libraries">Related resources and libraries</h2>
+<h2 id="practice-problems">Practice problems</h2>
+<details class="problem-examples">
+<summary>Show problems that can use this library (may reveal the intended technique)</summary>
 <ul>
-<li>cp-algorithms: Lowest Common Ancestor / auxiliary tree concepts</li>
-<li>Nyaan Library: Virtual Tree</li>
-<li>ei1333 Library: Auxiliary Tree</li>
-<li>Codeforces: important vertices on tree / auxiliary tree style problems</li>
+  <li><a href="https://atcoder.jp/contests/abc340/tasks/abc340_g" target="_blank" rel="noopener">AtCoder Beginner Contest 340 G - Leaf Color</a></li>
+  <li><a href="https://atcoder.jp/contests/abc359/tasks/abc359_g" target="_blank" rel="noopener">AtCoder Beginner Contest 359 G - Sum of Tree Distance</a></li>
 </ul>
+</details>
   </main>
 </body>
 </html>
