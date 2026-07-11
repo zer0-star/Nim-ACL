@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>VirtualTree</title>
+  <title>Auxiliary Tree（Virtual Tree／仮想木）</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -250,107 +250,60 @@ pre.nim-line-numbers .code-line::before {
     </a>
   </header>
   <main>
-<h1 id="virtualtree">VirtualTree</h1>
-<p><code>VirtualTree</code> は、木の中から重要な頂点だけを取り出し、それらの LCA を追加して作る小さい補助木です。</p>
-<p>元の木全体に対して毎回 DP すると重い場合でも、query ごとに重要頂点数を <code>k</code> とすると、<code>O(k log k)</code> 程度で小さい木を作って処理できます。</p>
-<h2 id="_1">使いどころ</h2>
-<p>次のような問題でよく使います。</p>
-<ul>
-<li>木上で、query ごとに指定された頂点集合だけが重要</li>
-<li>重要頂点をすべて結ぶ最小部分木が欲しい</li>
-<li>指定頂点集合に対して木 DP をしたい</li>
-<li>LCA を使った圧縮木で距離や親子関係を処理したい</li>
-<li>元の木が大きく、毎 query で全体を走査できない</li>
-</ul>
-<h2 id="_2">考え方</h2>
-<p>指定された重要頂点だけを見ると、元の木上の経路が途中で交わることがあります。<br>
-その交点は、重要頂点同士の LCA です。</p>
-<p>そこで、重要頂点を DFS order で並べ、隣り合う頂点の LCA を追加します。<br>
-この集合を DFS order で sort し、stack を使って親子関係を復元すると、重要頂点と必要な LCA だけからなる小さい木ができます。</p>
-<p>Virtual Tree の edge の長さは、元の木上の距離です。</p>
+<h1 id="auxiliary-treevirtual-tree">Auxiliary Tree（Virtual Tree／仮想木）</h1>
+<p>根付き木から必要な頂点と、それらのLCAだけを取り出して圧縮木を構築します。</p>
+<p>この構造は <strong>Auxiliary Tree</strong>、<strong>Virtual Tree</strong>、<strong>仮想木</strong>、<strong>補助木</strong>などと呼ばれます。このドキュメントでは、AtCoder公式解説で使われているAuxiliary Treeを主名称とし、既存module名との対応のためVirtual Treeを併記します。</p>
 <h2 id="import">import</h2>
 <pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">virtual_tree</span>
 </code></pre>
-<h2 id="_3">型</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">type</span> <span class="tok-identifier">VirtualTree</span>
-<span class="tok-keyword">type</span> <span class="tok-identifier">BuiltVirtualTree</span>
-
-<span class="tok-keyword">type</span> <span class="tok-identifier">VirtualTreeEdge</span> <span class="tok-operator">=</span> <span class="tok-keyword">tuple</span><span class="tok-punctuation">[</span><span class="tok-identifier">parent</span><span class="tok-punctuation">,</span> <span class="tok-identifier">child</span><span class="tok-punctuation">,</span> <span class="tok-identifier">dist</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">]</span>
-<span class="tok-keyword">type</span> <span class="tok-identifier">VirtualTreeAdjEdge</span> <span class="tok-operator">=</span> <span class="tok-keyword">tuple</span><span class="tok-punctuation">[</span><span class="tok-identifier">to</span><span class="tok-punctuation">,</span> <span class="tok-identifier">dist</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">]</span>
+<h2 id="_1">前処理</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">vt</span> <span class="tok-operator">=</span> <span class="tok-identifier">initVirtualTree</span><span class="tok-punctuation">(</span><span class="tok-identifier">graph</span><span class="tok-punctuation">,</span> <span class="tok-identifier">root</span> <span class="tok-operator">=</span> <span class="tok-number">0</span><span class="tok-punctuation">)</span>
 </code></pre>
-<p><code>VirtualTree</code> は元の木に対する LCA 前計算を持つ builder です。<br>
-<code>BuiltVirtualTree</code> は query ごとに作られる圧縮木です。</p>
-<h2 id="_4">コンストラクタ</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">initVirtualTree</span><span class="tok-punctuation">(</span><span class="tok-identifier">graph</span><span class="tok-punctuation">:</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">root</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span> <span class="tok-number">0</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">VirtualTree</span>
+<p><code>graph</code>は0-indexedの無向木です。前処理ではEuler Tour順、深さ、二分累積によるLCA情報を構築します。</p>
+<h2 id="buildvirtualtree"><code>buildVirtualTree</code></h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">built</span> <span class="tok-operator">=</span> <span class="tok-identifier">vt</span><span class="tok-operator">.</span><span class="tok-identifier">buildVirtualTree</span><span class="tok-punctuation">(</span><span class="tok-identifier">keys</span><span class="tok-punctuation">)</span>
 </code></pre>
-<p><code>graph</code> は無向木の adjacency list です。</p>
-<h2 id="lca">LCA / 距離</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">isAncestor</span><span class="tok-punctuation">(</span><span class="tok-identifier">vt</span><span class="tok-punctuation">:</span> <span class="tok-identifier">VirtualTree</span><span class="tok-punctuation">,</span> <span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">bool</span>
-<span class="tok-keyword">proc</span> <span class="tok-identifier">lca</span><span class="tok-punctuation">(</span><span class="tok-identifier">vt</span><span class="tok-punctuation">:</span> <span class="tok-identifier">VirtualTree</span><span class="tok-punctuation">,</span> <span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
-<span class="tok-keyword">proc</span> <span class="tok-identifier">dist</span><span class="tok-punctuation">(</span><span class="tok-identifier">vt</span><span class="tok-punctuation">:</span> <span class="tok-identifier">VirtualTree</span><span class="tok-punctuation">,</span> <span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
-</code></pre>
+<p><code>keys</code>と、それらを接続するために必要なLCAを含む圧縮木を返します。</p>
 <ul>
-<li><code>isAncestor(a, b)</code> は <code>a</code> が <code>b</code> の ancestor かを返します。</li>
-<li><code>lca(a, b)</code> は LCA を返します。</li>
-<li><code>dist(a, b)</code> は元の木上の距離を返します。</li>
+<li><code>built.root</code>: 圧縮木の根の添字</li>
+<li><code>built.vertices[i]</code>: 圧縮頂点<code>i</code>に対応する元の頂点</li>
+<li><code>built.edges</code>: <code>(parent, child, dist)</code>の列</li>
+<li><code>built.adj[i]</code>: 圧縮頂点<code>i</code>から子への辺</li>
+<li><code>dist</code>: 元の木における距離</li>
 </ul>
-<h2 id="virtual-tree">Virtual Tree の構築</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">buildVirtualTree</span><span class="tok-punctuation">(</span><span class="tok-identifier">vt</span><span class="tok-punctuation">:</span> <span class="tok-identifier">VirtualTree</span><span class="tok-punctuation">,</span> <span class="tok-identifier">keys</span><span class="tok-punctuation">:</span> <span class="tok-identifier">openArray</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">BuiltVirtualTree</span>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">for</span> <span class="tok-identifier">edge</span> <span class="tok-keyword">in</span> <span class="tok-identifier">built</span><span class="tok-operator">.</span><span class="tok-identifier">edges</span><span class="tok-punctuation">:</span>
+  <span class="tok-identifier">echo</span> <span class="tok-identifier">built</span><span class="tok-operator">.</span><span class="tok-identifier">vertices</span><span class="tok-punctuation">[</span><span class="tok-identifier">edge</span><span class="tok-operator">.</span><span class="tok-identifier">parent</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
+       <span class="tok-string">&quot; -&gt; &quot;</span><span class="tok-punctuation">,</span>
+       <span class="tok-identifier">built</span><span class="tok-operator">.</span><span class="tok-identifier">vertices</span><span class="tok-punctuation">[</span><span class="tok-identifier">edge</span><span class="tok-operator">.</span><span class="tok-identifier">child</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
+       <span class="tok-string">&quot; distance = &quot;</span><span class="tok-punctuation">,</span>
+       <span class="tok-identifier">edge</span><span class="tok-operator">.</span><span class="tok-identifier">dist</span>
 </code></pre>
-<p><code>keys</code> に含まれる重要頂点と、必要な LCA からなる virtual tree を作ります。</p>
-<p><code>BuiltVirtualTree</code> の主な field は次です。</p>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">root</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
-<span class="tok-identifier">vertices</span><span class="tok-punctuation">:</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span>
-<span class="tok-identifier">edges</span><span class="tok-punctuation">:</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">VirtualTreeEdge</span><span class="tok-punctuation">]</span>
-<span class="tok-identifier">adj</span><span class="tok-punctuation">:</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">VirtualTreeAdjEdge</span><span class="tok-punctuation">]</span><span class="tok-punctuation">]</span>
+<h2 id="api">補助API</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">echo</span> <span class="tok-identifier">vt</span><span class="tok-operator">.</span><span class="tok-identifier">lca</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">,</span> <span class="tok-identifier">v</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">echo</span> <span class="tok-identifier">vt</span><span class="tok-operator">.</span><span class="tok-identifier">dist</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">,</span> <span class="tok-identifier">v</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">echo</span> <span class="tok-identifier">vt</span><span class="tok-operator">.</span><span class="tok-identifier">isAncestor</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">,</span> <span class="tok-identifier">v</span><span class="tok-punctuation">)</span>
 </code></pre>
+<h2 id="_2">計算量</h2>
+<p>元の木の頂点数を (N)、指定頂点数を (K) とします。</p>
 <ul>
-<li><code>root</code> は virtual tree の root の元頂点番号です。</li>
-<li><code>vertices[i]</code> は compressed node <code>i</code> に対応する元頂点番号です。</li>
-<li><code>edges</code> は元頂点番号で見た edge list です。</li>
-<li><code>adj[i]</code> は compressed node <code>i</code> からの子を表します。<code>to</code> は compressed index です。</li>
+<li>前処理: (O(N\log N))</li>
+<li>Auxiliary Treeの構築: (O(K\log K + K\log N))</li>
+<li>構築後の頂点数: (O(K))</li>
 </ul>
-<h2 id="_5">使用例</h2>
-<!-- nim-line-numbers -->
-
-<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">g</span> <span class="tok-operator">=</span> <span class="tok-identifier">newSeq</span><span class="tok-punctuation">[</span><span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">7</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-keyword">proc</span> <span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">,</span> <span class="tok-identifier">v</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span></span><span class="code-line">  <span class="tok-identifier">g</span><span class="tok-punctuation">[</span><span class="tok-identifier">u</span><span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">add</span> <span class="tok-identifier">v</span></span><span class="code-line">  <span class="tok-identifier">g</span><span class="tok-punctuation">[</span><span class="tok-identifier">v</span><span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">add</span> <span class="tok-identifier">u</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-identifier">addEdge</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">6</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">vt</span> <span class="tok-operator">=</span> <span class="tok-identifier">initVirtualTree</span><span class="tok-punctuation">(</span><span class="tok-identifier">g</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">built</span> <span class="tok-operator">=</span> <span class="tok-identifier">vt</span><span class="tok-operator">.</span><span class="tok-identifier">buildVirtualTree</span><span class="tok-punctuation">(</span><span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">]</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">built</span><span class="tok-operator">.</span><span class="tok-identifier">root</span> <span class="tok-operator">==</span> <span class="tok-number">0</span></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">built</span><span class="tok-operator">.</span><span class="tok-identifier">vertices</span> <span class="tok-operator">==</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">]</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">built</span><span class="tok-operator">.</span><span class="tok-identifier">edges</span> <span class="tok-operator">==</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span></span><span class="code-line">  <span class="tok-punctuation">(</span><span class="tok-identifier">parent</span><span class="tok-punctuation">:</span> <span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-identifier">child</span><span class="tok-punctuation">:</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-identifier">dist</span><span class="tok-punctuation">:</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span></span><span class="code-line">  <span class="tok-punctuation">(</span><span class="tok-identifier">parent</span><span class="tok-punctuation">:</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-identifier">child</span><span class="tok-punctuation">:</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-identifier">dist</span><span class="tok-punctuation">:</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span></span><span class="code-line">  <span class="tok-punctuation">(</span><span class="tok-identifier">parent</span><span class="tok-punctuation">:</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-identifier">child</span><span class="tok-punctuation">:</span> <span class="tok-number">4</span><span class="tok-punctuation">,</span> <span class="tok-identifier">dist</span><span class="tok-punctuation">:</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span></span><span class="code-line">  <span class="tok-punctuation">(</span><span class="tok-identifier">parent</span><span class="tok-punctuation">:</span> <span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-identifier">child</span><span class="tok-punctuation">:</span> <span class="tok-number">5</span><span class="tok-punctuation">,</span> <span class="tok-identifier">dist</span><span class="tok-punctuation">:</span> <span class="tok-number">2</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span></span><span class="code-line"><span class="tok-punctuation">]</span></span></code></pre>
-<h2 id="compressed-adjacency">compressed adjacency</h2>
-<p><code>adj</code> は compressed index で持っています。元頂点番号が必要な場合は <code>vertices[to]</code> を見ます。</p>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">for</span> <span class="tok-identifier">e</span> <span class="tok-keyword">in</span> <span class="tok-identifier">built</span><span class="tok-operator">.</span><span class="tok-identifier">adj</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">]</span><span class="tok-punctuation">:</span>
-  <span class="tok-keyword">let</span> <span class="tok-identifier">childOriginalVertex</span> <span class="tok-operator">=</span> <span class="tok-identifier">built</span><span class="tok-operator">.</span><span class="tok-identifier">vertices</span><span class="tok-punctuation">[</span><span class="tok-identifier">e</span><span class="tok-operator">.</span><span class="tok-identifier">to</span><span class="tok-punctuation">]</span>
-  <span class="tok-identifier">echo</span> <span class="tok-identifier">childOriginalVertex</span><span class="tok-punctuation">,</span> <span class="tok-string">&quot; dist = &quot;</span><span class="tok-punctuation">,</span> <span class="tok-identifier">e</span><span class="tok-operator">.</span><span class="tok-identifier">dist</span>
-</code></pre>
-<h2 id="nim">Nim らしい使い方</h2>
-<p><code>lca</code>, <code>dist</code>, <code>buildVirtualTree</code> は UFCS で自然に読めます。</p>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">c</span> <span class="tok-operator">=</span> <span class="tok-identifier">vt</span><span class="tok-operator">.</span><span class="tok-identifier">lca</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">,</span> <span class="tok-identifier">v</span><span class="tok-punctuation">)</span>
-<span class="tok-keyword">let</span> <span class="tok-identifier">d</span> <span class="tok-operator">=</span> <span class="tok-identifier">vt</span><span class="tok-operator">.</span><span class="tok-identifier">dist</span><span class="tok-punctuation">(</span><span class="tok-identifier">u</span><span class="tok-punctuation">,</span> <span class="tok-identifier">v</span><span class="tok-punctuation">)</span>
-<span class="tok-keyword">let</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span> <span class="tok-identifier">vt</span><span class="tok-operator">.</span><span class="tok-identifier">buildVirtualTree</span><span class="tok-punctuation">(</span><span class="tok-identifier">keys</span><span class="tok-punctuation">)</span>
-</code></pre>
-<h2 id="_6">計算量</h2>
-<p>元の木の頂点数を <code>n</code>、重要頂点数を <code>k</code>、virtual tree の頂点数を <code>K</code> とします。</p>
+<h2 id="_3">関連資料</h2>
 <ul>
-<li>前計算: <code>O(n log n)</code></li>
-<li><code>lca</code>: <code>O(log n)</code></li>
-<li><code>dist</code>: <code>O(log n)</code></li>
-<li><code>buildVirtualTree</code>: <code>O(k log k + k log n)</code></li>
-<li>memory: 前計算 <code>O(n log n)</code>, 構築結果 <code>O(K)</code></li>
+<li><a href="https://atcoder.jp/contests/abc340/editorial/9249" target="_blank" rel="noopener">ABC340 G公式解説：Auxiliary Treeの定義と構築</a></li>
+<li><a href="https://atcoder.jp/contests/abc359/editorial/10259?lang=ja" target="_blank" rel="noopener">ABC359 G公式解説：Auxiliary Treeの適用例</a></li>
+<li><a href="euler_tour.html">Euler Tour</a></li>
 </ul>
-<p>です。</p>
-<h2 id="_7">注意</h2>
+<h2 id="_4">このライブラリが使える問題</h2>
+<details class="problem-examples">
+<summary>問題例を表示する（解法のネタバレを含む可能性があります）</summary>
 <ul>
-<li><code>graph</code> は木である必要があります。</li>
-<li><code>keys</code> は空にできません。</li>
-<li><code>keys</code> に重複があっても、構築時に除かれます。</li>
-<li><code>adj</code> の <code>to</code> は元頂点番号ではなく compressed index です。</li>
-<li>edge の <code>dist</code> は元の木上での距離です。</li>
+  <li><a href="https://atcoder.jp/contests/abc340/tasks/abc340_g" target="_blank" rel="noopener">AtCoder Beginner Contest 340 G - Leaf Color</a></li>
+  <li><a href="https://atcoder.jp/contests/abc359/tasks/abc359_g" target="_blank" rel="noopener">AtCoder Beginner Contest 359 G - Sum of Tree Distance</a></li>
 </ul>
-<h2 id="_8">関連資料・他言語ライブラリ</h2>
-<ul>
-<li>cp-algorithms: Lowest Common Ancestor / auxiliary tree concepts</li>
-<li>Nyaan Library: Virtual Tree</li>
-<li>ei1333 Library: Auxiliary Tree</li>
-<li>Codeforces: important vertices on tree / auxiliary tree 型の問題</li>
-</ul>
+</details>
   </main>
 </body>
 </html>

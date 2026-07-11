@@ -26,6 +26,7 @@ STEP=init
     tests/test_extra_chu_liu_edmonds.nim
     tests/test_extra_ja_facades.nim
     tests/test_extra_dp_basic.nim
+    tests/test_extra_monotone_minima.nim
     tests/test_extra_dp_2d_edit_rectangle.nim
     tests/test_extra_math_basic.nim
     tests/test_extra_xor_basis.nim
@@ -222,5 +223,9 @@ fi
 python3 tools/audit_atcoder_lecture_links.py
 # NIM_ACL_PROBLEM_EXAMPLES_AUDIT_V1
 python3 tools/audit_problem_examples.py
+# NIM_ACL_DP_OPTIMIZATION_AUDIT_V1
+python3 tools/audit_dp_optimization.py
+# NIM_ACL_CURATED_DOCS_AUDIT_V1
+python3 tools/audit_curated_docs.py
 # NIM_ACL_JAPANESE_FACADE_AUDIT_V1
 python3 tools/audit_japanese_facades.py

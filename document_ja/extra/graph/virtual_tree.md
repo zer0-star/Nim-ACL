@@ -1,28 +1,8 @@
-# VirtualTree
+# Auxiliary Tree（Virtual Tree／仮想木）
 
-`VirtualTree` は、木の中から重要な頂点だけを取り出し、それらの LCA を追加して作る小さい補助木です。
+根付き木から必要な頂点と、それらのLCAだけを取り出して圧縮木を構築します。
 
-元の木全体に対して毎回 DP すると重い場合でも、query ごとに重要頂点数を `k` とすると、`O(k log k)` 程度で小さい木を作って処理できます。
-
-## 使いどころ
-
-次のような問題でよく使います。
-
-- 木上で、query ごとに指定された頂点集合だけが重要
-- 重要頂点をすべて結ぶ最小部分木が欲しい
-- 指定頂点集合に対して木 DP をしたい
-- LCA を使った圧縮木で距離や親子関係を処理したい
-- 元の木が大きく、毎 query で全体を走査できない
-
-## 考え方
-
-指定された重要頂点だけを見ると、元の木上の経路が途中で交わることがあります。  
-その交点は、重要頂点同士の LCA です。
-
-そこで、重要頂点を DFS order で並べ、隣り合う頂点の LCA を追加します。  
-この集合を DFS order で sort し、stack を使って親子関係を復元すると、重要頂点と必要な LCA だけからなる小さい木ができます。
-
-Virtual Tree の edge の長さは、元の木上の距離です。
+この構造は **Auxiliary Tree**、**Virtual Tree**、**仮想木**、**補助木**などと呼ばれます。このドキュメントでは、AtCoder公式解説で使われているAuxiliary Treeを主名称とし、既存module名との対応のためVirtual Treeを併記します。
 
 ## import
 
@@ -30,135 +10,65 @@ Virtual Tree の edge の長さは、元の木上の距離です。
 import atcoder/extra/graph/virtual_tree
 ~~~
 
-## 型
+## 前処理
 
 ~~~nim
-type VirtualTree
-type BuiltVirtualTree
-
-type VirtualTreeEdge = tuple[parent, child, dist: int]
-type VirtualTreeAdjEdge = tuple[to, dist: int]
+let vt = initVirtualTree(graph, root = 0)
 ~~~
 
-`VirtualTree` は元の木に対する LCA 前計算を持つ builder です。  
-`BuiltVirtualTree` は query ごとに作られる圧縮木です。
+`graph`は0-indexedの無向木です。前処理ではEuler Tour順、深さ、二分累積によるLCA情報を構築します。
 
-## コンストラクタ
+## `buildVirtualTree`
 
 ~~~nim
-proc initVirtualTree(graph: seq[seq[int]], root: int = 0): VirtualTree
+let built = vt.buildVirtualTree(keys)
 ~~~
 
-`graph` は無向木の adjacency list です。
+`keys`と、それらを接続するために必要なLCAを含む圧縮木を返します。
 
-## LCA / 距離
+- `built.root`: 圧縮木の根の添字
+- `built.vertices[i]`: 圧縮頂点`i`に対応する元の頂点
+- `built.edges`: `(parent, child, dist)`の列
+- `built.adj[i]`: 圧縮頂点`i`から子への辺
+- `dist`: 元の木における距離
 
 ~~~nim
-proc isAncestor(vt: VirtualTree, a, b: int): bool
-proc lca(vt: VirtualTree, a, b: int): int
-proc dist(vt: VirtualTree, a, b: int): int
+for edge in built.edges:
+  echo built.vertices[edge.parent],
+       " -> ",
+       built.vertices[edge.child],
+       " distance = ",
+       edge.dist
 ~~~
 
-- `isAncestor(a, b)` は `a` が `b` の ancestor かを返します。
-- `lca(a, b)` は LCA を返します。
-- `dist(a, b)` は元の木上の距離を返します。
-
-## Virtual Tree の構築
+## 補助API
 
 ~~~nim
-proc buildVirtualTree(vt: VirtualTree, keys: openArray[int]): BuiltVirtualTree
-~~~
-
-`keys` に含まれる重要頂点と、必要な LCA からなる virtual tree を作ります。
-
-`BuiltVirtualTree` の主な field は次です。
-
-~~~nim
-root: int
-vertices: seq[int]
-edges: seq[VirtualTreeEdge]
-adj: seq[seq[VirtualTreeAdjEdge]]
-~~~
-
-- `root` は virtual tree の root の元頂点番号です。
-- `vertices[i]` は compressed node `i` に対応する元頂点番号です。
-- `edges` は元頂点番号で見た edge list です。
-- `adj[i]` は compressed node `i` からの子を表します。`to` は compressed index です。
-
-## 使用例
-
-<!-- nim-line-numbers -->
-~~~nim
-var g = newSeq[seq[int]](7)
-
-proc addEdge(u, v: int) =
-  g[u].add v
-  g[v].add u
-
-addEdge(0, 1)
-addEdge(0, 2)
-addEdge(1, 3)
-addEdge(1, 4)
-addEdge(2, 5)
-addEdge(2, 6)
-
-let vt = initVirtualTree(g)
-let built = vt.buildVirtualTree(@[3, 4, 5])
-
-doAssert built.root == 0
-doAssert built.vertices == @[0, 1, 3, 4, 5]
-
-doAssert built.edges == @[
-  (parent: 0, child: 1, dist: 1),
-  (parent: 1, child: 3, dist: 1),
-  (parent: 1, child: 4, dist: 1),
-  (parent: 0, child: 5, dist: 2),
-]
-~~~
-
-## compressed adjacency
-
-`adj` は compressed index で持っています。元頂点番号が必要な場合は `vertices[to]` を見ます。
-
-~~~nim
-for e in built.adj[0]:
-  let childOriginalVertex = built.vertices[e.to]
-  echo childOriginalVertex, " dist = ", e.dist
-~~~
-
-## Nim らしい使い方
-
-`lca`, `dist`, `buildVirtualTree` は UFCS で自然に読めます。
-
-~~~nim
-let c = vt.lca(u, v)
-let d = vt.dist(u, v)
-let tree = vt.buildVirtualTree(keys)
+echo vt.lca(u, v)
+echo vt.dist(u, v)
+echo vt.isAncestor(u, v)
 ~~~
 
 ## 計算量
 
-元の木の頂点数を `n`、重要頂点数を `k`、virtual tree の頂点数を `K` とします。
+元の木の頂点数を \(N\)、指定頂点数を \(K\) とします。
 
-- 前計算: `O(n log n)`
-- `lca`: `O(log n)`
-- `dist`: `O(log n)`
-- `buildVirtualTree`: `O(k log k + k log n)`
-- memory: 前計算 `O(n log n)`, 構築結果 `O(K)`
+- 前処理: \(O(N\log N)\)
+- Auxiliary Treeの構築: \(O(K\log K + K\log N)\)
+- 構築後の頂点数: \(O(K)\)
 
-です。
+## 関連資料
 
-## 注意
+- [ABC340 G公式解説：Auxiliary Treeの定義と構築](https://atcoder.jp/contests/abc340/editorial/9249)
+- [ABC359 G公式解説：Auxiliary Treeの適用例](https://atcoder.jp/contests/abc359/editorial/10259?lang=ja)
+- [Euler Tour](euler_tour.md)
 
-- `graph` は木である必要があります。
-- `keys` は空にできません。
-- `keys` に重複があっても、構築時に除かれます。
-- `adj` の `to` は元頂点番号ではなく compressed index です。
-- edge の `dist` は元の木上での距離です。
+## このライブラリが使える問題
 
-## 関連資料・他言語ライブラリ
-
-- cp-algorithms: Lowest Common Ancestor / auxiliary tree concepts
-- Nyaan Library: Virtual Tree
-- ei1333 Library: Auxiliary Tree
-- Codeforces: important vertices on tree / auxiliary tree 型の問題
+<details class="problem-examples">
+<summary>問題例を表示する（解法のネタバレを含む可能性があります）</summary>
+<ul>
+  <li><a href="https://atcoder.jp/contests/abc340/tasks/abc340_g" target="_blank" rel="noopener">AtCoder Beginner Contest 340 G - Leaf Color</a></li>
+  <li><a href="https://atcoder.jp/contests/abc359/tasks/abc359_g" target="_blank" rel="noopener">AtCoder Beginner Contest 359 G - Sum of Tree Distance</a></li>
+</ul>
+</details>
