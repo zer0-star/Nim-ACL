@@ -4,6 +4,78 @@ A persistent segment tree creates a new version without modifying previous versi
 
 Like Nim-ACL's standard `SegTree`, the canonical API obtains the monoid operation `op` and identity `e` from a static generic tuple.
 
+## Recommended API
+
+<!-- PST_CANONICAL_FACTORY_API -->
+
+Use `PersistentSegTreeType` for normal code. Like the standard
+`SegTreeType`, it wraps `op` and `e` in distinct
+`{.gensym, inline.}` procedures, allowing multiple monoids to coexist
+safely in one program.
+
+```nim
+proc addInt(
+    left,
+    right: int,
+): int =
+  left + right
+
+proc zeroInt(): int =
+  0
+
+type
+  SumPersistentSegTree =
+    PersistentSegTreeType[int](
+      addInt,
+      zeroInt,
+    )
+
+var tree =
+  SumPersistentSegTree.init(
+    @[1, 2, 3, 4],
+    expectedUpdates = 100,
+  )
+```
+
+The shorthand constructor uses the same factory internally.
+
+```nim
+var tree =
+  initPersistentSegmentTree(
+    @[1, 2, 3, 4],
+    addInt,
+    zeroInt,
+    expectedUpdates = 100,
+  )
+```
+
+For the length-only form, the element type is inferred from the return
+type of `e()`, and every initial value is `e()`.
+
+```nim
+var tree =
+  initPersistentSegmentTree(
+    200_000,
+    addInt,
+    zeroInt,
+    expectedUpdates = 200_000,
+  )
+```
+
+### Raw static tuple form
+
+<!-- PST_RAW_TUPLE_LOW_LEVEL_WARNING -->
+
+`PersistentSegTree[S, (op: ..., e: ...)]` is a low-level API.
+
+In Nim, storing multiple different anonymous procedures with the same
+signature directly in raw static tuples may cause a later type to reuse
+the first procedure. In an isolated test, separately defined sum and max
+trees both used the sum operation.
+
+Use `PersistentSegTreeType` or `initPersistentSegmentTree` for normal
+code.
+
 ## Import
 
 ~~~nim

@@ -253,6 +253,64 @@ pre.nim-line-numbers .code-line::before {
 <h1 id="persistent-segment-tree">Persistent Segment Tree</h1>
 <p>A persistent segment tree creates a new version without modifying previous versions.</p>
 <p>Like Nim-ACL's standard <code>SegTree</code>, the canonical API obtains the monoid operation <code>op</code> and identity <code>e</code> from a static generic tuple.</p>
+<h2 id="recommended-api">Recommended API</h2>
+<!-- PST_CANONICAL_FACTORY_API -->
+
+<p>Use <code>PersistentSegTreeType</code> for normal code. Like the standard
+<code>SegTreeType</code>, it wraps <code>op</code> and <code>e</code> in distinct
+<code>{.gensym, inline.}</code> procedures, allowing multiple monoids to coexist
+safely in one program.</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">left</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">right</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">,</span>
+<span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">left</span> <span class="tok-operator">+</span> <span class="tok-identifier">right</span>
+
+<span class="tok-keyword">proc</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span>
+  <span class="tok-number">0</span>
+
+<span class="tok-keyword">type</span>
+  <span class="tok-identifier">SumPersistentSegTree</span> <span class="tok-operator">=</span>
+    <span class="tok-identifier">PersistentSegTreeType</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span>
+      <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
+      <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
+    <span class="tok-punctuation">)</span>
+
+<span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">SumPersistentSegTree</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span>
+    <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">100</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
+</code></pre>
+<p>The shorthand constructor uses the same factory internally.</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">initPersistentSegmentTree</span><span class="tok-punctuation">(</span>
+    <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">100</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
+</code></pre>
+<p>For the length-only form, the element type is inferred from the return
+type of <code>e()</code>, and every initial value is <code>e()</code>.</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">initPersistentSegmentTree</span><span class="tok-punctuation">(</span>
+    <span class="tok-number">200_000</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">200_000</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
+</code></pre>
+<h3 id="raw-static-tuple-form">Raw static tuple form</h3>
+<!-- PST_RAW_TUPLE_LOW_LEVEL_WARNING -->
+
+<p><code>PersistentSegTree[S, (op: ..., e: ...)]</code> is a low-level API.</p>
+<p>In Nim, storing multiple different anonymous procedures with the same
+signature directly in raw static tuples may cause a later type to reuse
+the first procedure. In an isolated test, separately defined sum and max
+trees both used the sum operation.</p>
+<p>Use <code>PersistentSegTreeType</code> or <code>initPersistentSegmentTree</code> for normal
+code.</p>
 <h2 id="import">Import</h2>
 <pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">structure</span><span class="tok-operator">/</span><span class="tok-identifier">persistent_segment_tree</span>
 </code></pre>

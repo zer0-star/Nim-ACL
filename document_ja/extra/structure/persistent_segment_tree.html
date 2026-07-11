@@ -253,6 +253,64 @@ pre.nim-line-numbers .code-line::before {
 <h1 id="persistent-segment-tree">Persistent Segment Tree（永続セグメント木）</h1>
 <p>更新前のversionを保持したまま、新しいversionを作成できるセグメント木です。</p>
 <p>Nim-ACL標準の<code>SegTree</code>と同様に、モノイド演算<code>op</code>と単位元<code>e</code>をstatic generic tupleから呼び出します。</p>
+<h2 id="api">推奨API</h2>
+<!-- PST_CANONICAL_FACTORY_API -->
+
+<p>通常は <code>PersistentSegTreeType</code> を使用します。標準の
+<code>SegTreeType</code> と同様に、<code>op</code> と <code>e</code> をそれぞれ一意な
+<code>{.gensym, inline.}</code> procでwrapするため、複数種類のモノイドを
+同じプログラム内で安全に使用できます。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">left</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">right</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">,</span>
+<span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">left</span> <span class="tok-operator">+</span> <span class="tok-identifier">right</span>
+
+<span class="tok-keyword">proc</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span>
+  <span class="tok-number">0</span>
+
+<span class="tok-keyword">type</span>
+  <span class="tok-identifier">SumPersistentSegTree</span> <span class="tok-operator">=</span>
+    <span class="tok-identifier">PersistentSegTreeType</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span>
+      <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
+      <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
+    <span class="tok-punctuation">)</span>
+
+<span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">SumPersistentSegTree</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span>
+    <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">100</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
+</code></pre>
+<p>簡略constructorも同じfactoryを内部で使用します。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">initPersistentSegmentTree</span><span class="tok-punctuation">(</span>
+    <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">100</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
+</code></pre>
+<p>長さだけを指定する場合、要素型は <code>e()</code> の返り値から推論され、
+初期値はすべて <code>e()</code> になります。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">initPersistentSegmentTree</span><span class="tok-punctuation">(</span>
+    <span class="tok-number">200_000</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">200_000</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
+</code></pre>
+<h3 id="raw-static-tuple">raw static tuple形式</h3>
+<!-- PST_RAW_TUPLE_LOW_LEVEL_WARNING -->
+
+<p><code>PersistentSegTree[S, (op: ..., e: ...)]</code> は低水準APIです。</p>
+<p>Nimでは、同じsignatureを持つ異なる匿名procをraw static tupleへ
+複数直接格納すると、後から定義した型でも最初のprocが再利用される
+場合があります。実験ではsumとmaxを別々に定義したにもかかわらず、
+max側でもsumが呼ばれる現象を確認しています。</p>
+<p>通常のコードでは <code>PersistentSegTreeType</code> または
+<code>initPersistentSegmentTree</code> を使用してください。</p>
 <h2 id="import">import</h2>
 <pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">structure</span><span class="tok-operator">/</span><span class="tok-identifier">persistent_segment_tree</span>
 </code></pre>

@@ -4,6 +4,78 @@
 
 Nim-ACL標準の`SegTree`と同様に、モノイド演算`op`と単位元`e`をstatic generic tupleから呼び出します。
 
+## 推奨API
+
+<!-- PST_CANONICAL_FACTORY_API -->
+
+通常は `PersistentSegTreeType` を使用します。標準の
+`SegTreeType` と同様に、`op` と `e` をそれぞれ一意な
+`{.gensym, inline.}` procでwrapするため、複数種類のモノイドを
+同じプログラム内で安全に使用できます。
+
+```nim
+proc addInt(
+    left,
+    right: int,
+): int =
+  left + right
+
+proc zeroInt(): int =
+  0
+
+type
+  SumPersistentSegTree =
+    PersistentSegTreeType[int](
+      addInt,
+      zeroInt,
+    )
+
+var tree =
+  SumPersistentSegTree.init(
+    @[1, 2, 3, 4],
+    expectedUpdates = 100,
+  )
+```
+
+簡略constructorも同じfactoryを内部で使用します。
+
+```nim
+var tree =
+  initPersistentSegmentTree(
+    @[1, 2, 3, 4],
+    addInt,
+    zeroInt,
+    expectedUpdates = 100,
+  )
+```
+
+長さだけを指定する場合、要素型は `e()` の返り値から推論され、
+初期値はすべて `e()` になります。
+
+```nim
+var tree =
+  initPersistentSegmentTree(
+    200_000,
+    addInt,
+    zeroInt,
+    expectedUpdates = 200_000,
+  )
+```
+
+### raw static tuple形式
+
+<!-- PST_RAW_TUPLE_LOW_LEVEL_WARNING -->
+
+`PersistentSegTree[S, (op: ..., e: ...)]` は低水準APIです。
+
+Nimでは、同じsignatureを持つ異なる匿名procをraw static tupleへ
+複数直接格納すると、後から定義した型でも最初のprocが再利用される
+場合があります。実験ではsumとmaxを別々に定義したにもかかわらず、
+max側でもsumが呼ばれる現象を確認しています。
+
+通常のコードでは `PersistentSegTreeType` または
+`initPersistentSegmentTree` を使用してください。
+
 ## import
 
 ~~~nim

@@ -289,6 +289,44 @@ require(
 )
 
 
+
+doc_requirements = {
+    ROOT
+    / "document_ja"
+    / "extra"
+    / "structure"
+    / "persistent_segment_tree.md": [
+        "PST_CANONICAL_FACTORY_API",
+        "PST_RAW_TUPLE_LOW_LEVEL_WARNING",
+        "PersistentSegTreeType[int]",
+        "低水準API",
+    ],
+
+    ROOT
+    / "document_en"
+    / "extra"
+    / "structure"
+    / "persistent_segment_tree.md": [
+        "PST_CANONICAL_FACTORY_API",
+        "PST_RAW_TUPLE_LOW_LEVEL_WARNING",
+        "PersistentSegTreeType[int]",
+        "low-level API",
+    ],
+}
+
+for doc_path, fragments in doc_requirements.items():
+    doc_text = doc_path.read_text(
+        encoding="utf-8",
+        errors="replace",
+    )
+
+    for fragment in fragments:
+        require(
+            fragment in doc_text,
+            "required canonical PST documentation "
+            f"fragment missing in {doc_path}: {fragment}",
+        )
+
 if errors:
     print("PERSISTENT_SEGTREE_API_AUDIT=NG")
 
