@@ -387,6 +387,53 @@ fi
 rm -rf "$SMAWK_TMP"
 # <<< SMAWK_TEST <<<
 
+# >>> BIPARTITE_EDGE_COLORING_TEST >>>
+BIPARTITE_EDGE_COLORING_TMP="/tmp/nacl_bipartite_edge_coloring_quick_$$"
+
+rm -rf "$BIPARTITE_EDGE_COLORING_TMP"
+mkdir -p "$BIPARTITE_EDGE_COLORING_TMP"
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$BIPARTITE_EDGE_COLORING_TMP/nimcache-main" \
+  --out:"$BIPARTITE_EDGE_COLORING_TMP/main-test" \
+  tests/test_extra_bipartite_edge_coloring.nim
+then
+  STATUS="NG"
+  STEP="bipartite edge coloring test compile"
+
+elif ! "$BIPARTITE_EDGE_COLORING_TMP/main-test"
+then
+  STATUS="NG"
+  STEP="bipartite edge coloring test run"
+fi
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$BIPARTITE_EDGE_COLORING_TMP/nimcache-cross" \
+  --out:"$BIPARTITE_EDGE_COLORING_TMP/cross-test" \
+  tests/test_extra_bipartite_edge_coloring_cross_module.nim
+then
+  STATUS="NG"
+  STEP="bipartite edge coloring cross compile"
+
+elif ! "$BIPARTITE_EDGE_COLORING_TMP/cross-test"
+then
+  STATUS="NG"
+  STEP="bipartite edge coloring cross run"
+fi
+
+rm -rf "$BIPARTITE_EDGE_COLORING_TMP"
+# <<< BIPARTITE_EDGE_COLORING_TEST <<<
+
 STEP="final clean"
   if [ -n "$(git status --porcelain)" ]; then
     git status --short
