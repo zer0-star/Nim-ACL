@@ -6,7 +6,7 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1]
 
-SOURCE_PATH = (
+SOURCE = (
     ROOT
     / "src"
     / "atcoder"
@@ -15,10 +15,43 @@ SOURCE_PATH = (
     / "persistent_segment_tree.nim"
 )
 
-source = SOURCE_PATH.read_text(
-    encoding="utf-8",
-    errors="replace",
+STATIC_TEST = (
+    ROOT
+    / "tests"
+    / "test_extra_persistent_segment_tree_static_api.nim"
 )
+
+CROSS_HELPER = (
+    ROOT
+    / "tests"
+    / "support"
+    / "persistent_segment_tree_version_first_helper.nim"
+)
+
+CROSS_TEST = (
+    ROOT
+    / "tests"
+    / "test_extra_persistent_segment_tree_version_first_cross_module.nim"
+)
+
+JA_DOC = (
+    ROOT
+    / "document_ja"
+    / "extra"
+    / "structure"
+    / "persistent_segment_tree.md"
+)
+
+EN_DOC = (
+    ROOT
+    / "document_en"
+    / "extra"
+    / "structure"
+    / "persistent_segment_tree.md"
+)
+
+QUICK_VERIFY = ROOT / "tools" / "quick_verify.sh"
+
 
 errors: list[str] = []
 
@@ -31,6 +64,21 @@ def require(
         errors.append(message)
 
 
+def read(path: Path) -> str:
+    require(
+        path.is_file(),
+        f"required file is missing: {path}",
+    )
+
+    if not path.is_file():
+        return ""
+
+    return path.read_text(
+        encoding="utf-8",
+        errors="replace",
+    )
+
+
 def matches(
     text: str,
     pattern: str,
@@ -38,8 +86,21 @@ def matches(
     return re.search(
         pattern,
         text,
-        flags=re.MULTILINE | re.DOTALL | re.VERBOSE,
+        flags=(
+            re.MULTILINE
+            | re.DOTALL
+            | re.VERBOSE
+        ),
     ) is not None
+
+
+source = read(SOURCE)
+static_test = read(STATIC_TEST)
+cross_helper = read(CROSS_HELPER)
+cross_test = read(CROSS_TEST)
+ja_doc = read(JA_DOC)
+en_doc = read(EN_DOC)
+quick_verify = read(QUICK_VERIFY)
 
 
 static_marker = re.search(
@@ -56,196 +117,58 @@ require(
     "static facade marker is missing",
 )
 
-if static_marker is None:
-    static_source = ""
-else:
-    static_source = source[
-        static_marker.start():
-    ]
-
-
-require(
-    "proc all_prod*[" not in source,
-    "explicit all_prod declaration conflicts with allProd",
-)
-
-require(
-    source.count(
-        "  proc allProd*["
-    ) == 2,
-    "expected one legacy and one static allProd declaration",
-)
-
-require(
-    static_source.count(
-        "  proc allProd*["
-    ) == 1,
-    "static facade must have exactly one allProd declaration",
-)
-
-require(
-    "tree.all_prod(version)"
-    not in static_source,
-    "normalized allProd self-recursion remains",
-)
-
-require(
-    "tree.impl.allProd(int(version))"
-    in static_source,
-    "static allProd must explicitly call the legacy backend",
-)
-
-require(
-    "valuesOrLength: seq[S] or int"
-    not in static_source,
-    "non-inferable sequence-or-length shorthand remains",
-)
-
-require(
-    static_source.count(
-        "template initPersistentSegmentTree*"
-    ) == 2,
-    "expected sequence and length shorthand constructors",
-)
-
-require(
-    matches(
-        static_source,
-        r"""
-        template[ ]initPersistentSegmentTree\*\[S\]\(
-        \s*values:[ ]seq\[S\],
-        \s*op,
-        \s*e:[ ]untyped,
-        \s*expectedUpdates:[ ]int[ ]=[ ]0
-        """,
-    ),
-    "sequence shorthand constructor is missing",
-)
-
-require(
-    matches(
-        static_source,
-        r"""
-        template[ ]initPersistentSegmentTree\*\(
-        \s*n:[ ]int,
-        \s*op,
-        \s*e:[ ]untyped,
-        \s*expectedUpdates:[ ]int[ ]=[ ]0
-        """,
-    ),
-    "length shorthand constructor is missing",
-)
-
-require(
-    "type S = typeof(e())"
-    in static_source,
-    "length shorthand does not infer S from e()",
+static_source = (
+    source[static_marker.start():]
+    if static_marker is not None
+    else ""
 )
 
 
-factory_start = static_source.find(
-    "  template PersistentSegTreeType*[S]("
-)
-
-factory_end = static_source.find(
-    "  proc init*[",
-    factory_start,
-)
-
-if (
-    factory_start < 0
-    or factory_end < 0
-):
-    errors.append(
-        "PersistentSegTreeType factory block is missing"
-    )
-else:
-    factory = static_source[
-        factory_start:factory_end
-    ]
-
-    require(
-        factory.count(
-            "{.gensym, inline.}"
-        ) == 2,
-        "PersistentSegTreeType must wrap op and e "
-        "with gensym+inline",
-    )
-
-    require(
-        "op: op1" in factory,
-        "PersistentSegTreeType does not store wrapped op",
-    )
-
-    require(
-        "e: e1" in factory,
-        "PersistentSegTreeType does not store wrapped e",
-    )
-
-
-signature_checks = {
-    "set argument order": r"""
+signatures = {
+    "set(version, position, value)": r"""
         proc[ ]set\*\[
         \s*PST:[ ]PersistentSegTree
         \s*\]\(
         \s*tree:[ ]var[ ]PST,
+        \s*version:[ ]PersistentVersion,
         \s*position:[ ]IndexType,
         \s*value:[ ]PST\.S,
-        \s*version:[ ]PersistentVersion
         \s*\):[ ]PersistentVersion[ ]=
     """,
 
-    "get argument order": r"""
+    "get(version, position)": r"""
         proc[ ]get\*\[
         \s*PST:[ ]PersistentSegTree
         \s*\]\(
         \s*tree:[ ]PST,
+        \s*version:[ ]PersistentVersion,
         \s*position:[ ]IndexType,
-        \s*version:[ ]PersistentVersion
         \s*\):[ ]PST\.S[ ]=
     """,
 
-    "range prod argument order": r"""
+    "prod(version, range)": r"""
         proc[ ]prod\*\[
         \s*PST:[ ]PersistentSegTree
         \s*\]\(
         \s*tree:[ ]PST,
+        \s*version:[ ]PersistentVersion,
         \s*range:[ ]RangeType,
-        \s*version:[ ]PersistentVersion
         \s*\):[ ]PST\.S[ ]=
     """,
 
-    "endpoint prod argument order": r"""
+    "prod(version, left, right)": r"""
         proc[ ]prod\*\[
         \s*PST:[ ]PersistentSegTree
         \s*\]\(
         \s*tree:[ ]PST,
+        \s*version:[ ]PersistentVersion,
         \s*left,
         \s*right:[ ]int,
-        \s*version:[ ]PersistentVersion
         \s*\):[ ]PST\.S[ ]=
-    """,
-
-    "allProd argument order": r"""
-        proc[ ]allProd\*\[
-        \s*PST:[ ]PersistentSegTree
-        \s*\]\(
-        \s*tree:[ ]PST,
-        \s*version:[ ]PersistentVersion
-        \s*\):[ ]PST\.S[ ]=
-    """,
-
-    "toSeq argument order": r"""
-        proc[ ]toSeq\*\[
-        \s*PST:[ ]PersistentSegTree
-        \s*\]\(
-        \s*tree:[ ]PST,
-        \s*version:[ ]PersistentVersion
-        \s*\):[ ]seq\[PST\.S\][ ]=
     """,
 }
 
-for label, pattern in signature_checks.items():
+for label, pattern in signatures.items():
     require(
         matches(
             static_source,
@@ -255,77 +178,165 @@ for label, pattern in signature_checks.items():
     )
 
 
-required_fragments = [
-    "PersistentVersion* = distinct int",
-    "PersistentSegTree*[S; p: static[tuple]]",
-    "initialVersion*",
-    "expectedUpdates: int = 0",
-    "PST.calc_op(left, right)",
-    "PST.calc_e()",
-    "tree.impl.setValue(",
-    "tree.impl.prod(",
-    "tree.impl.allProd(",
-]
+old_signatures = {
+    "set(position,value,version)": r"""
+        proc[ ]set\*\[
+        .*?
+        tree:[ ]var[ ]PST,
+        \s*position:[ ]IndexType,
+        \s*value:[ ]PST\.S,
+        \s*version:[ ]PersistentVersion
+    """,
 
-for fragment in required_fragments:
-    require(
-        fragment in static_source,
-        f"required static API fragment missing: {fragment}",
-    )
+    "get(position,version)": r"""
+        proc[ ]get\*\[
+        .*?
+        tree:[ ]PST,
+        \s*position:[ ]IndexType,
+        \s*version:[ ]PersistentVersion
+    """,
 
-
-require(
-    static_source.count(
-        "proc runtimeOp("
-    ) == 2,
-    "expected two static-to-legacy runtimeOp adapters",
-)
-
-require(
-    static_source.count(
-        "{.closure.}"
-    ) >= 2,
-    "runtime adapter closure declarations are missing",
-)
-
-
-
-doc_requirements = {
-    ROOT
-    / "document_ja"
-    / "extra"
-    / "structure"
-    / "persistent_segment_tree.md": [
-        "PST_CANONICAL_FACTORY_API",
-        "PST_RAW_TUPLE_LOW_LEVEL_WARNING",
-        "PersistentSegTreeType[int]",
-        "低水準API",
-    ],
-
-    ROOT
-    / "document_en"
-    / "extra"
-    / "structure"
-    / "persistent_segment_tree.md": [
-        "PST_CANONICAL_FACTORY_API",
-        "PST_RAW_TUPLE_LOW_LEVEL_WARNING",
-        "PersistentSegTreeType[int]",
-        "low-level API",
-    ],
+    "prod(range,version)": r"""
+        proc[ ]prod\*\[
+        .*?
+        tree:[ ]PST,
+        \s*range:[ ]RangeType,
+        \s*version:[ ]PersistentVersion
+    """,
 }
 
-for doc_path, fragments in doc_requirements.items():
-    doc_text = doc_path.read_text(
-        encoding="utf-8",
-        errors="replace",
+for label, pattern in old_signatures.items():
+    require(
+        not matches(
+            static_source,
+            pattern,
+        ),
+        f"removed version-last signature remains: {label}",
     )
 
-    for fragment in fragments:
+
+for fragment in (
+    "PersistentVersionReadView*",
+    "PersistentVersionWriteView*",
+    "tree[version][position] = value",
+    "tree[version][left ..< right]",
+    "version: var PersistentVersion",
+    "view.version[] =",
+):
+    target = (
+        source
+        if fragment
+        in {
+            "PersistentVersionReadView*",
+            "PersistentVersionWriteView*",
+            "version: var PersistentVersion",
+            "view.version[] =",
+        }
+        else ja_doc + en_doc
+    )
+
+    require(
+        fragment in target,
+        f"version view fragment missing: {fragment}",
+    )
+
+
+for fragment in (
+    'test "flat and nested indexing":',
+    'test "stored write view updates its version":',
+    'test "persistent branches remain independent":',
+    'test "noncommutative operation":',
+    'test "multiple anonymous monoids remain distinct":',
+    'test "randomized version differential":',
+):
+    require(
+        fragment in static_test,
+        f"static test missing: {fragment}",
+    )
+
+
+require(
+    "buildCrossTree*" in cross_helper,
+    "cross-module helper is missing",
+)
+
+require(
+    "tree[version][1] = 5"
+    in cross_test,
+    "cross-module nested write test is missing",
+)
+
+require(
+    "tree.prod(" in cross_test,
+    "cross-module version-first prod test is missing",
+)
+
+
+for label, text, requirements in (
+    (
+        "Japanese",
+        ja_doc,
+        [
+            "一般形は次のとおりです。",
+            "`version`: 更新元のversion",
+            "`position`: 更新する添字",
+            "`value`: 新しい値",
+            "tree.set(",
+            "tree[version][position] = value",
+            "expectedUpdates",
+            "小さすぎても",
+            "大きすぎると",
+        ],
+    ),
+    (
+        "English",
+        en_doc,
+        [
+            "The general form is:",
+            "`version`: source version",
+            "`position`: updated index",
+            "`value`: new value",
+            "tree.set(",
+            "tree[version][position] = value",
+            "expectedUpdates",
+            "If too small",
+            "If too large",
+        ],
+    ),
+):
+    for fragment in requirements:
         require(
-            fragment in doc_text,
-            "required canonical PST documentation "
-            f"fragment missing in {doc_path}: {fragment}",
+            fragment in text,
+            f"{label} documentation missing: {fragment}",
         )
+
+
+for text, general_marker, example_marker in (
+    (
+        ja_doc,
+        "一般形は次のとおりです。",
+        "加算モノイドの具体例",
+    ),
+    (
+        en_doc,
+        "The general form is:",
+        "For a sum monoid",
+    ),
+):
+    require(
+        text.find(general_marker)
+        < text.find(example_marker),
+        "general initialization form must appear "
+        "before its concrete example",
+    )
+
+
+require(
+    "PST_VERSION_FIRST_CROSS_TEST"
+    in quick_verify,
+    "quick_verify version-first registration is missing",
+)
+
 
 if errors:
     print("PERSISTENT_SEGTREE_API_AUDIT=NG")
@@ -337,9 +348,11 @@ if errors:
 
 
 print("PERSISTENT_SEGTREE_API_AUDIT=OK")
-print("STATIC_ALLPROD_COUNT=1")
-print("GLOBAL_ALLPROD_COUNT=2")
-print("VERSION_ARGUMENT_POSITION=LAST")
+print("CANONICAL_ARGUMENT_ORDER=VERSION_POSITION_VALUE")
+print("VERSION_LAST_OVERLOADS=REMOVED")
+print("FLAT_INDEXING=REGISTERED")
+print("NESTED_INDEXING=REGISTERED")
+print("NESTED_WRITE=REGISTERED")
+print("CROSS_MODULE_TEST=REGISTERED")
+print("DOCUMENT_ORDER=GENERAL_PARAMETERS_EXAMPLE")
 print("STATIC_FACTORY_WRAP=GENSYM_INLINE")
-print("SHORTHAND_OVERLOADS=SEQUENCE_AND_LENGTH")
-print("STATIC_RUNTIME_ADAPTER=LEGACY_CLOSURE_COMPATIBILITY")

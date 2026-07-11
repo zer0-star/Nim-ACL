@@ -251,217 +251,192 @@ pre.nim-line-numbers .code-line::before {
   </header>
   <main>
 <h1 id="persistent-segment-tree">Persistent Segment Tree</h1>
-<p>A persistent segment tree creates a new version without modifying previous versions.</p>
-<p>Like Nim-ACL's standard <code>SegTree</code>, the canonical API obtains the monoid operation <code>op</code> and identity <code>e</code> from a static generic tuple.</p>
-<h2 id="recommended-api">Recommended API</h2>
-<!-- PST_CANONICAL_FACTORY_API -->
+<p>One tree owns all nodes, while each <code>PersistentVersion</code> identifies a root.</p>
+<p>Copy a sequence by copying its version rather than its elements.</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">versions</span><span class="tok-punctuation">[</span><span class="tok-identifier">x</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-identifier">versions</span><span class="tok-punctuation">[</span><span class="tok-identifier">y</span><span class="tok-punctuation">]</span>
+</code></pre>
+<h2 id="initialization">Initialization</h2>
+<p>The general form is:</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">type</span> <span class="tok-identifier">Tree</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">PersistentSegTreeType</span><span class="tok-punctuation">[</span><span class="tok-identifier">S</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">op</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">e</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
 
-<p>Use <code>PersistentSegTreeType</code> for normal code. Like the standard
-<code>SegTreeType</code>, it wraps <code>op</code> and <code>e</code> in distinct
-<code>{.gensym, inline.}</code> procedures, allowing multiple monoids to coexist
-safely in one program.</p>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">(</span>
+<span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">Tree</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">valuesOrLength</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">0</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
+</code></pre>
+<ul>
+<li><code>S</code>: element and aggregate type</li>
+<li><code>op(left, right)</code>: combines the left and right aggregates</li>
+<li><code>e()</code>: returns the identity element of <code>op</code></li>
+<li><code>valuesOrLength</code>: initial sequence or initial length</li>
+<li><code>expectedUpdates</code>: estimated number of point updates</li>
+</ul>
+<p>For a sum monoid, <code>op</code> and <code>e</code> can be defined as follows.</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">op</span><span class="tok-punctuation">(</span>
     <span class="tok-identifier">left</span><span class="tok-punctuation">,</span>
     <span class="tok-identifier">right</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">,</span>
 <span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span>
   <span class="tok-identifier">left</span> <span class="tok-operator">+</span> <span class="tok-identifier">right</span>
 
-<span class="tok-keyword">proc</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">e</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span>
   <span class="tok-number">0</span>
-
-<span class="tok-keyword">type</span>
-  <span class="tok-identifier">SumPersistentSegTree</span> <span class="tok-operator">=</span>
-    <span class="tok-identifier">PersistentSegTreeType</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span>
-      <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
-      <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
-    <span class="tok-punctuation">)</span>
+</code></pre>
+<p>Pass these definitions to the general form.</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">type</span> <span class="tok-identifier">SumTree</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">PersistentSegTreeType</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">op</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">e</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
 
 <span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span>
-  <span class="tok-identifier">SumPersistentSegTree</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span>
-    <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
-    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">100</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">SumTree</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">n</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-identifier">q</span><span class="tok-punctuation">,</span>
   <span class="tok-punctuation">)</span>
 </code></pre>
-<p>The shorthand constructor uses the same factory internally.</p>
+<p>Passing only a length initializes every element with <code>e()</code>.</p>
+<p>The shorthand constructor is also available.</p>
 <pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span>
   <span class="tok-identifier">initPersistentSegmentTree</span><span class="tok-punctuation">(</span>
-    <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
-    <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
-    <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
-    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">100</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">n</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">op</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">e</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-identifier">q</span><span class="tok-punctuation">,</span>
   <span class="tok-punctuation">)</span>
 </code></pre>
-<p>For the length-only form, the element type is inferred from the return
-type of <code>e()</code>, and every initial value is <code>e()</code>.</p>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span>
-  <span class="tok-identifier">initPersistentSegmentTree</span><span class="tok-punctuation">(</span>
-    <span class="tok-number">200_000</span><span class="tok-punctuation">,</span>
-    <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
-    <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
-    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">200_000</span><span class="tok-punctuation">,</span>
+<h2 id="initial-version">Initial version</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">version</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">initialVersion</span>
+</code></pre>
+<p>A version is a lightweight root identifier.</p>
+<h2 id="point-update">Point update</h2>
+<p>The general form is:</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">newVersion</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">set</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">version</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">position</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">value</span><span class="tok-punctuation">,</span>
   <span class="tok-punctuation">)</span>
 </code></pre>
-<h3 id="raw-static-tuple-form">Raw static tuple form</h3>
-<!-- PST_RAW_TUPLE_LOW_LEVEL_WARNING -->
-
-<p><code>PersistentSegTree[S, (op: ..., e: ...)]</code> is a low-level API.</p>
-<p>In Nim, storing multiple different anonymous procedures with the same
-signature directly in raw static tuples may cause a later type to reuse
-the first procedure. In an isolated test, separately defined sum and max
-trees both used the sum operation.</p>
-<p>Use <code>PersistentSegTreeType</code> or <code>initPersistentSegmentTree</code> for normal
-code.</p>
-<h2 id="import">Import</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">structure</span><span class="tok-operator">/</span><span class="tok-identifier">persistent_segment_tree</span>
-</code></pre>
-<h2 id="monoid">Monoid</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">(</span>
-  <span class="tok-identifier">left</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">right</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">,</span>
-<span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span>
-  <span class="tok-identifier">left</span> <span class="tok-operator">+</span> <span class="tok-identifier">right</span>
-
-<span class="tok-keyword">proc</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span>
-  <span class="tok-number">0</span>
-</code></pre>
-<h2 id="construction">Construction</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span>
-  <span class="tok-identifier">PersistentSegTree</span><span class="tok-punctuation">[</span>
-    <span class="tok-identifier">int</span><span class="tok-punctuation">,</span>
-    <span class="tok-punctuation">(</span>
-      <span class="tok-identifier">op</span><span class="tok-punctuation">:</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
-      <span class="tok-identifier">e</span><span class="tok-punctuation">:</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
-    <span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
-  <span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span>
-    <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
-    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">100</span><span class="tok-punctuation">,</span>
+<ul>
+<li><code>version</code>: source version</li>
+<li><code>position</code>: updated index</li>
+<li><code>value</code>: new value</li>
+<li>return value: newly created version</li>
+</ul>
+<p>The source version remains unchanged.</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">versions</span><span class="tok-punctuation">[</span><span class="tok-identifier">x</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">set</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">versions</span><span class="tok-punctuation">[</span><span class="tok-identifier">x</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">y</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">z</span><span class="tok-punctuation">,</span>
   <span class="tok-punctuation">)</span>
 </code></pre>
-<p>Passing only a length initializes every position with <code>e()</code>.</p>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span>
-  <span class="tok-identifier">PersistentSegTree</span><span class="tok-punctuation">[</span>
-    <span class="tok-identifier">int</span><span class="tok-punctuation">,</span>
-    <span class="tok-punctuation">(</span>
-      <span class="tok-identifier">op</span><span class="tok-punctuation">:</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
-      <span class="tok-identifier">e</span><span class="tok-punctuation">:</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
-    <span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
-  <span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span>
-    <span class="tok-number">200_000</span><span class="tok-punctuation">,</span>
-    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">200_000</span><span class="tok-punctuation">,</span>
-  <span class="tok-punctuation">)</span>
+<p>The indexing form updates the supplied version variable.</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">tree</span><span class="tok-punctuation">[</span><span class="tok-identifier">version</span><span class="tok-punctuation">]</span><span class="tok-punctuation">[</span><span class="tok-identifier">position</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-identifier">value</span>
 </code></pre>
-<p>The following shorthand generates the same static generic type.</p>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span> <span class="tok-identifier">initPersistentSegmentTree</span><span class="tok-punctuation">(</span>
-  <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">100</span><span class="tok-punctuation">,</span>
-<span class="tok-punctuation">)</span>
+<p>or:</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">tree</span><span class="tok-punctuation">[</span><span class="tok-identifier">version</span><span class="tok-punctuation">,</span> <span class="tok-identifier">position</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-identifier">value</span>
 </code></pre>
-<h2 id="versions">Versions</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">version0</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">initialVersion</span>
-</code></pre>
-<p>Versions use the distinct <code>PersistentVersion</code> type. This helps detect accidental mixing of versions with positions or range endpoints.</p>
-<h2 id="point-assignment">Point assignment</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">version1</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">set</span><span class="tok-punctuation">(</span>
-  <span class="tok-number">1</span><span class="tok-punctuation">,</span>
-  <span class="tok-number">20</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">version0</span><span class="tok-punctuation">,</span>
-<span class="tok-punctuation">)</span>
-</code></pre>
-<p>The argument order follows the standard segment-tree API:</p>
-<pre><code class="language-text">position, value, version
-</code></pre>
-<p><code>version0</code> remains unchanged.</p>
 <h2 id="point-access">Point access</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">echo</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">get</span><span class="tok-punctuation">(</span>
-  <span class="tok-number">1</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">version1</span><span class="tok-punctuation">,</span>
-<span class="tok-punctuation">)</span>
+<p>The general form is:</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">value</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">get</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">version</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">position</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
 </code></pre>
-<p>The argument order is:</p>
-<pre><code class="language-text">position, version
+<ul>
+<li><code>version</code>: queried version</li>
+<li><code>position</code>: queried index</li>
+</ul>
+<p>Indexing forms:</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">value</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-punctuation">[</span><span class="tok-identifier">version</span><span class="tok-punctuation">]</span><span class="tok-punctuation">[</span><span class="tok-identifier">position</span><span class="tok-punctuation">]</span>
+</code></pre>
+<p>or:</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">value</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-punctuation">[</span><span class="tok-identifier">version</span><span class="tok-punctuation">,</span> <span class="tok-identifier">position</span><span class="tok-punctuation">]</span>
 </code></pre>
 <h2 id="range-product">Range product</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">echo</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">prod</span><span class="tok-punctuation">(</span>
-  <span class="tok-number">1</span> <span class="tok-operator">..&lt;</span> <span class="tok-number">4</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">version1</span><span class="tok-punctuation">,</span>
-<span class="tok-punctuation">)</span>
+<p>The general form is:</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">answer</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">prod</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">version</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">range</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
 </code></pre>
-<p>The explicit half-open form is also available.</p>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">echo</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">prod</span><span class="tok-punctuation">(</span>
-  <span class="tok-number">1</span><span class="tok-punctuation">,</span>
-  <span class="tok-number">4</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">version1</span><span class="tok-punctuation">,</span>
-<span class="tok-punctuation">)</span>
+<ul>
+<li><code>version</code>: queried version</li>
+<li><code>range</code>: aggregated range</li>
+</ul>
+<p>Half-open endpoints can be supplied directly.</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">answer</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">prod</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">version</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">left</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">right</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
 </code></pre>
-<p>The range or endpoints come first and the version comes last.</p>
-<h2 id="whole-array-product">Whole-array product</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">echo</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">allProd</span><span class="tok-punctuation">(</span><span class="tok-identifier">version1</span><span class="tok-punctuation">)</span>
+<p>Indexing forms:</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">answer</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-punctuation">[</span><span class="tok-identifier">version</span><span class="tok-punctuation">]</span><span class="tok-punctuation">[</span><span class="tok-identifier">left</span> <span class="tok-operator">..&lt;</span> <span class="tok-identifier">right</span><span class="tok-punctuation">]</span>
 </code></pre>
-<p>Nim identifiers are style-insensitive, so <code>all_prod</code> resolves to the same procedure.</p>
-<h2 id="materialization">Materialization</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">values</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">toSeq</span><span class="tok-punctuation">(</span><span class="tok-identifier">version1</span><span class="tok-punctuation">)</span>
+<p>or:</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">answer</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-punctuation">[</span><span class="tok-identifier">version</span><span class="tok-punctuation">,</span> <span class="tok-identifier">left</span> <span class="tok-operator">..&lt;</span> <span class="tok-identifier">right</span><span class="tok-punctuation">]</span>
 </code></pre>
-<p>This is mainly useful for debugging and small checks. It takes (O(N\log N)).</p>
-<h2 id="expectedupdates"><code>expectedUpdates</code></h2>
+<h2 id="whole-tree-product">Whole-tree product</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">answer</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">allProd</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">version</span>
+  <span class="tok-punctuation">)</span>
+</code></pre>
+<h2 id="restore-a-sequence">Restore a sequence</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">values</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">toSeq</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">version</span>
+  <span class="tok-punctuation">)</span>
+</code></pre>
+<p>This takes <code>O(n log n)</code> time and is mainly useful for debugging.</p>
+<h2 id="version-views">Version views</h2>
+<p><code>tree[version]</code> is a temporary view referencing both the tree and version.</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">tree</span><span class="tok-punctuation">[</span><span class="tok-identifier">version</span><span class="tok-punctuation">]</span><span class="tok-punctuation">[</span><span class="tok-identifier">position</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-identifier">value</span>
+<span class="tok-identifier">answer</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-punctuation">[</span><span class="tok-identifier">version</span><span class="tok-punctuation">]</span><span class="tok-punctuation">[</span><span class="tok-identifier">range</span><span class="tok-punctuation">]</span>
+</code></pre>
+<p>A view may be stored in a variable, but must not outlive its tree or version.</p>
+<h2 id="expectedupdates">expectedUpdates</h2>
+<!-- NACL_EXPECTED_UPDATES_SECTION_START -->
 <!-- NIM_ACL_TUNING_PARAMETER: expectedUpdates -->
 
-<table>
-<thead>
-<tr>
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Meaning</td>
-<td>An estimate of the number of future point updates. It is not a limit on versions or updates.</td>
-</tr>
-<tr>
-<td>Preallocation</td>
-<td>It reserves capacity for the internal node pool and reduces reallocations while updating.</td>
-</tr>
-<tr>
-<td>Correctness</td>
-<td>It is only a capacity hint, so it does not affect correctness.</td>
-</tr>
-<tr>
-<td>Too small</td>
-<td>The sequence grows automatically. More reallocations and copies may occur.</td>
-</tr>
-<tr>
-<td>Too large</td>
-<td>Unused capacity may increase memory consumption.</td>
-</tr>
-<tr>
-<td>Default</td>
-<td>The default is <code>0</code>, which preallocates only the capacity required by the initial tree.</td>
-</tr>
-</tbody>
-</table>
-<p>Let <code>size</code> be the smallest power of two at least (N), and let (h=\log_2(\mathrm{size})). The initial node-pool capacity is</p>
-<p>[
-2\mathrm{size}
-+
-\mathrm{expectedUpdates}(h+1).
-]</p>
-<p>Each point update copies the root-to-leaf path and therefore appends exactly (h+1) nodes.</p>
-<h2 id="complexity">Complexity</h2>
-<p>For an initial length (N) and (U) updates:</p>
 <ul>
-<li>construction: (O(N))</li>
-<li><code>set</code>: (O(\log N))</li>
-<li><code>get</code>: (O(\log N))</li>
-<li><code>prod</code>: (O(\log N))</li>
-<li><code>allProd</code>: (O(1))</li>
-<li>retaining or copying a version: (O(1))</li>
-<li>node count: (O(N+U\log N))</li>
+<li>expectedUpdates: Meaning — estimates the number of future point updates.</li>
+<li>expectedUpdates: Default — the default value is <code>0</code>.</li>
+<li>expectedUpdates: Correctness — it does not affect results or the number of versions that can be created.</li>
+<li>expectedUpdates: If too small — node storage grows automatically and results remain correct.</li>
+<li>expectedUpdates: If too large — additional unused capacity is reserved.</li>
+<li>expectedUpdates: Memory — it is used only to preallocate initial node capacity.</li>
+<li>With tree height <code>h</code>, every point update creates exactly <code>h + 1</code> nodes.</li>
+<li>Initial capacity is approximately <code>2 * size + expectedUpdates * (h + 1)</code>.</li>
 </ul>
-<h2 id="legacy-runtime-api">Legacy runtime API</h2>
-<p>For compatibility, the previous API that stores runtime <code>identity</code> and closure <code>op</code> values and accepts a raw root integer first remains available.</p>
-<p>New code should prefer the static generic API for consistency with <code>SegTree</code> and safer argument ordering.</p>
+<!-- NACL_EXPECTED_UPDATES_SECTION_END -->
+
+<h2 id="raw-static-tuple-form">Raw static tuple form</h2>
+<p><code>PersistentSegTree[S, (op: ..., e: ...)]</code> is a low-level API.</p>
+<p>When multiple anonymous procedures with the same signature are passed
+directly through raw static tuples, Nim may reuse the first procedure for
+later types.</p>
+<p>Use <code>PersistentSegTreeType</code> or <code>initPersistentSegmentTree</code> for normal code.</p>
+<h2 id="complexity">Complexity</h2>
+<ul>
+<li>Initialization: <code>O(n)</code></li>
+<li>Version copy: <code>O(1)</code></li>
+<li>Point update: <code>O(log n)</code> time and <code>O(log n)</code> additional memory</li>
+<li>Point access: <code>O(log n)</code></li>
+<li>Range product: <code>O(log n)</code></li>
+<li>Whole-tree product: <code>O(1)</code></li>
+</ul>
   </main>
 </body>
 </html>

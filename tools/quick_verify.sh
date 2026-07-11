@@ -152,6 +152,53 @@ then
 fi
 # <<< BERLEKAMP_MASSEY_AUDIT <<<
 
+# >>> PST_VERSION_FIRST_CROSS_TEST >>>
+PST_VERSION_FIRST_TMP="/tmp/nacl_pst_version_first_quick_$$"
+
+rm -rf "$PST_VERSION_FIRST_TMP"
+mkdir -p "$PST_VERSION_FIRST_TMP"
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$PST_VERSION_FIRST_TMP/nimcache-static" \
+  --out:"$PST_VERSION_FIRST_TMP/static-test" \
+  tests/test_extra_persistent_segment_tree_static_api.nim
+then
+  STATUS="NG"
+  STEP="PersistentSegTree version-first static test"
+
+elif ! "$PST_VERSION_FIRST_TMP/static-test"
+then
+  STATUS="NG"
+  STEP="PersistentSegTree version-first static run"
+fi
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$PST_VERSION_FIRST_TMP/nimcache-cross" \
+  --out:"$PST_VERSION_FIRST_TMP/cross-test" \
+  tests/test_extra_persistent_segment_tree_version_first_cross_module.nim
+then
+  STATUS="NG"
+  STEP="PersistentSegTree version-first cross test"
+
+elif ! "$PST_VERSION_FIRST_TMP/cross-test"
+then
+  STATUS="NG"
+  STEP="PersistentSegTree version-first cross run"
+fi
+
+rm -rf "$PST_VERSION_FIRST_TMP"
+# <<< PST_VERSION_FIRST_CROSS_TEST <<<
+
 STEP="final clean"
   if [ -n "$(git status --porcelain)" ]; then
     git status --short

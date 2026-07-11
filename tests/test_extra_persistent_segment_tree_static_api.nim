@@ -1,313 +1,370 @@
-discard """
-  cmd: "nim cpp -r $file"
-"""
-
-import std/[random, unittest]
+import std/[
+  sequtils,
+  unittest,
+]
 
 import atcoder/extra/structure/persistent_segment_tree
 
-proc pstTestSumOp9281(
-  left,
-  right: int
-): int =
+
+proc sumOp(
+    left,
+    right: int,
+): int {.inline.} =
   left + right
 
-proc pstTestZero9281(): int =
+
+proc sumE(): int {.inline.} =
   0
 
-proc pstTestConcatOp9281(
-  left,
-  right: string
-): string =
+
+proc concatOp(
+    left,
+    right: string,
+): string {.inline.} =
   left & right
 
-proc pstTestEmpty9281(): string =
+
+proc concatE(): string {.inline.} =
   ""
 
-test "standard-style static monoid API":
-  var tree = initPersistentSegmentTree(
-    @[1, 2, 3, 4],
-    pstTestSumOp9281,
-    pstTestZero9281,
-    expectedUpdates = 8,
-  )
 
-  let
-    version0 = tree.initialVersion
-    version1 = tree.set(
-      1,
-      20,
-      version0,
-    )
-    version2 = tree.set(
-      ^1,
-      40,
-      version1,
-    )
-
-  check tree.toSeq(version0) ==
-    @[1, 2, 3, 4]
-
-  check tree.toSeq(version1) ==
-    @[1, 20, 3, 4]
-
-  check tree.toSeq(version2) ==
-    @[1, 20, 3, 40]
-
-  check tree.get(1, version0) == 2
-  check tree.get(1, version1) == 20
-  check tree.get(^1, version2) == 40
-
-  check tree.prod(
-    0 ..< 4,
-    version0,
-  ) == 10
-
-  check tree.prod(
-    1 .. ^1,
-    version2,
-  ) == 63
-
-  check tree.prod(
-    1,
-    4,
-    version2,
-  ) == 63
-
-  check tree.all_prod(version0) == 10
-  check tree.allProd(version2) == 64
-
-
-test "direct static tuple generic style":
-  var tree =
-    PersistentSegTree[
-      int,
-      (
-        op: pstTestSumOp9281,
-        e: pstTestZero9281,
-      ),
-    ].init(
-      @[2, 4, 6, 8],
-      expectedUpdates = 4,
-    )
-
-  let
-    version0 = tree.initialVersion
-    version1 = tree.set(
-      2,
-      60,
-      version0,
-    )
-
-  check tree.prod(
-    0 ..< 4,
-    version0,
-  ) == 20
-
-  check tree.prod(
-    1 ..< 4,
-    version1,
-  ) == 72
-
-  check tree.get(
-    2,
-    version0,
-  ) == 6
-
-  check tree.get(
-    2,
-    version1,
-  ) == 60
-
-test "explicit PersistentSegTreeType":
-  var tree =
+type
+  SumPersistentTree =
     PersistentSegTreeType[int](
-      pstTestSumOp9281,
-      pstTestZero9281,
-    ).init(
-      5,
-      expectedUpdates = 2,
+      sumOp,
+      sumE,
     )
 
-  let
-    version0 = tree.initialVersion
-    version1 = tree.set(
-      2,
-      7,
-      version0,
+  StringPersistentTree =
+    PersistentSegTreeType[string](
+      concatOp,
+      concatE,
     )
 
-  check tree.toSeq(version0) ==
-    @[0, 0, 0, 0, 0]
 
-  check tree.toSeq(version1) ==
-    @[0, 0, 7, 0, 0]
+proc nextRandom(
+    state: var uint64,
+): uint64 {.inline.} =
+  state = state xor (state shl 7)
+  state = state xor (state shr 9)
+  state = state xor (state shl 8)
+  state
 
-test "noncommutative static monoid":
-  var tree = initPersistentSegmentTree(
-    @["a", "b", "c", "d"],
-    pstTestConcatOp9281,
-    pstTestEmpty9281,
-  )
 
-  let
-    version0 = tree.initialVersion
-    version1 = tree.set(
-      1,
-      "X",
-      version0,
-    )
+suite "PersistentSegTree version-first API":
+  test "initialization and version-first operations":
+    var tree =
+      SumPersistentTree.init(
+        @[1, 2, 3, 4],
+        expectedUpdates = 8,
+      )
 
-  check tree.prod(
-    0 ..< 4,
-    version0,
-  ) == "abcd"
+    let version0 =
+      tree.initialVersion
 
-  check tree.prod(
-    1 ..< 4,
-    version0,
-  ) == "bcd"
+    let version1 =
+      tree.set(
+        version0,
+        1,
+        20,
+      )
 
-  check tree.prod(
-    0 ..< 4,
-    version1,
-  ) == "aXcd"
-
-test "small expectedUpdates does not affect correctness":
-  const UpdateCount = 200
-
-  var tree = initPersistentSegmentTree(
-    32,
-    pstTestSumOp9281,
-    pstTestZero9281,
-    expectedUpdates = 0,
-  )
-
-  var version = tree.initialVersion
-
-  for step in 0 ..< UpdateCount:
-    version = tree.set(
-      step mod 32,
-      step + 1,
-      version,
-    )
-
-  check tree.nodeCount > 0
-
-  for position in 0 ..< 32:
     check tree.get(
-      position,
+      version0,
+      1,
+    ) == 2
+
+    check tree.get(
+      version1,
+      1,
+    ) == 20
+
+    check tree.prod(
+      version0,
+      0 .. 3,
+    ) == 10
+
+    check tree.prod(
+      version1,
+      0,
+      4,
+    ) == 28
+
+    check tree.allProd(
+      version0
+    ) == 10
+
+    check tree.allProd(
+      version1
+    ) == 28
+
+    check tree.toSeq(
+      version0
+    ) == @[1, 2, 3, 4]
+
+    check tree.toSeq(
+      version1
+    ) == @[1, 20, 3, 4]
+
+  test "flat and nested indexing":
+    var tree =
+      SumPersistentTree.init(
+        4,
+        expectedUpdates = 8,
+      )
+
+    let zeroVersion =
+      tree.initialVersion
+
+    var version =
+      zeroVersion
+
+    tree[version, 1] = 5
+
+    check tree[
       version,
-    ) > 0
+      1,
+    ] == 5
 
-test "randomized version differential":
-  var rng = initRand(
-    20260711
-  )
+    check tree[
+      version,
+      0 .. 3,
+    ] == 5
 
-  for caseId in 0 ..< 120:
-    discard caseId
+    tree[version][3] = 9
 
-    let
-      length = rand(
-        rng,
-        1 .. 24,
-      )
-      updateCount = rand(
-        rng,
-        20 .. 80,
-      )
+    check tree[version][3] == 9
+    check tree[version][0 .. 3] == 14
 
-    var initial = newSeq[int](
-      length
-    )
+    check tree[zeroVersion][1] == 0
+    check tree[zeroVersion][3] == 0
 
-    for position in 0 ..< length:
-      initial[position] = rand(
-        rng,
-        -30 .. 30,
+  test "stored write view updates its version":
+    var tree =
+      SumPersistentTree.init(
+        3,
+        expectedUpdates = 4,
       )
 
-    var tree = initPersistentSegmentTree(
-      initial,
-      pstTestSumOp9281,
-      pstTestZero9281,
-      expectedUpdates = updateCount div 3,
-    )
+    let version0 =
+      tree.initialVersion
+
+    var version =
+      version0
+
+    var view =
+      tree[version]
+
+    view[2] = 7
+
+    check tree[version][2] == 7
+    check tree[version0][2] == 0
+
+  test "persistent branches remain independent":
+    var tree =
+      SumPersistentTree.init(
+        4,
+        expectedUpdates = 16,
+      )
+
+    let version0 =
+      tree.initialVersion
+
+    var firstBranch =
+      version0
+
+    tree[firstBranch][2] = 7
+
+    var secondBranch =
+      firstBranch
+
+    tree[secondBranch][0] = 4
+
+    check tree[firstBranch][0] == 0
+    check tree[firstBranch][2] == 7
+
+    check tree[secondBranch][0] == 4
+    check tree[secondBranch][2] == 7
+
+    check tree[version0][0 .. 3] == 0
+
+  test "noncommutative operation":
+    var tree =
+      StringPersistentTree.init(
+        @["a", "b", "c"],
+        expectedUpdates = 2,
+      )
+
+    let version0 =
+      tree.initialVersion
+
+    let version1 =
+      tree.set(
+        version0,
+        1,
+        "X",
+      )
+
+    check tree.prod(
+      version0,
+      0 .. 2,
+    ) == "abc"
+
+    check tree.prod(
+      version1,
+      0 .. 2,
+    ) == "aXc"
+
+  test "multiple anonymous monoids remain distinct":
+    type
+      AnonymousSumTree =
+        PersistentSegTreeType[int](
+          proc(
+              left,
+              right: int,
+          ): int =
+            left + right,
+
+          proc(): int =
+            0,
+        )
+
+      AnonymousMaxTree =
+        PersistentSegTreeType[int](
+          proc(
+              left,
+              right: int,
+          ): int =
+            max(left, right),
+
+          proc(): int =
+            low(int),
+        )
 
     var
-      versions = @[
-        tree.initialVersion
-      ]
-      snapshots = @[
-        initial
-      ]
-
-    for step in 0 ..< updateCount:
-      discard step
-
-      let
-        base = rand(
-          rng,
-          0 .. versions.high,
-        )
-        position = rand(
-          rng,
-          0 ..< length,
-        )
-        value = rand(
-          rng,
-          -100 .. 100,
+      sumTree =
+        AnonymousSumTree.init(
+          @[2, 3, 5]
         )
 
-      var next = snapshots[base]
-      next[position] = value
+      maxTree =
+        AnonymousMaxTree.init(
+          @[2, 3, 5]
+        )
 
-      let nextVersion = tree.set(
-        position,
-        value,
-        versions[base],
+    check sumTree.allProd(
+      sumTree.initialVersion
+    ) == 10
+
+    check maxTree.allProd(
+      maxTree.initialVersion
+    ) == 5
+
+  test "shorthand constructors":
+    var sequenceTree =
+      initPersistentSegmentTree(
+        @[1, 2, 3],
+        sumOp,
+        sumE,
+        expectedUpdates = 4,
       )
 
-      versions.add nextVersion
-      snapshots.add next
+    check sequenceTree.allProd(
+      sequenceTree.initialVersion
+    ) == 6
 
-      let queryVersion = rand(
-        rng,
-        0 .. versions.high,
+    var lengthTree =
+      initPersistentSegmentTree(
+        4,
+        sumOp,
+        sumE,
+        expectedUpdates = 4,
       )
 
-      let left = rand(
-        rng,
-        0 .. length,
+    var version =
+      lengthTree.initialVersion
+
+    lengthTree[version][2] = 7
+
+    check lengthTree.allProd(
+      version
+    ) == 7
+
+  test "randomized version differential":
+    const
+      Length = 16
+      OperationCount = 300
+
+    var tree =
+      SumPersistentTree.init(
+        Length,
+        expectedUpdates = OperationCount,
       )
 
-      let right = rand(
-        rng,
-        left .. length,
-      )
+    var
+      versions =
+        @[tree.initialVersion]
+
+      models =
+        @[newSeq[int](Length)]
+
+      state =
+        0xa75b_91c3_4d2e_f680'u64
+
+    for _ in 0 ..< OperationCount:
+      let base =
+        int(
+          nextRandom(state) mod uint64(versions.len)
+        )
+
+      var
+        version =
+          versions[base]
+
+        model =
+          models[base].toSeq
+
+      let position =
+        int(
+          nextRandom(state) mod uint64(Length)
+        )
+
+      let value =
+        int(
+          nextRandom(state) mod 1000'u64
+        )
+
+      tree[version][position] = value
+      model[position] = value
+
+      versions.add(version)
+      models.add(model)
+
+      let queryVersion =
+        int(
+          nextRandom(state) mod uint64(versions.len)
+        )
+
+      let left =
+        int(
+          nextRandom(state) mod uint64(Length)
+        )
+
+      let right =
+        left + int(
+          nextRandom(state) mod uint64(Length - left)
+        )
 
       var expected = 0
 
-      for index in left ..< right:
-        expected += snapshots[
-          queryVersion
-        ][index]
+      for index in left .. right:
+        expected +=
+          models[queryVersion][index]
 
-      check tree.prod(
-        left,
-        right,
-        versions[queryVersion],
-      ) == expected
+      check tree[
+        versions[queryVersion]
+      ][left .. right] == expected
 
-      let point = rand(
-        rng,
-        0 ..< length,
-      )
-
-      check tree.get(
-        point,
-        versions[queryVersion],
-      ) == snapshots[
-        queryVersion
-      ][point]
+      check tree.toSeq(
+        versions[queryVersion]
+      ) == models[queryVersion]

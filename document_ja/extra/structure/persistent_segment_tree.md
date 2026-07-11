@@ -1,267 +1,259 @@
 # Persistent Segment Tree（永続セグメント木）
 
-更新前のversionを保持したまま、新しいversionを作成できるセグメント木です。
+1個の木がすべてのノードを管理し、`PersistentVersion`が各時点の
+根を表します。
 
-Nim-ACL標準の`SegTree`と同様に、モノイド演算`op`と単位元`e`をstatic generic tupleから呼び出します。
-
-## 推奨API
-
-<!-- PST_CANONICAL_FACTORY_API -->
-
-通常は `PersistentSegTreeType` を使用します。標準の
-`SegTreeType` と同様に、`op` と `e` をそれぞれ一意な
-`{.gensym, inline.}` procでwrapするため、複数種類のモノイドを
-同じプログラム内で安全に使用できます。
+数列をコピーするときは要素を複製せず、versionを代入します。
 
 ```nim
-proc addInt(
+versions[x] = versions[y]
+```
+
+## 初期化
+
+一般形は次のとおりです。
+
+```nim
+type Tree =
+  PersistentSegTreeType[S](
+    op,
+    e,
+  )
+
+var tree =
+  Tree.init(
+    valuesOrLength,
+    expectedUpdates = 0,
+  )
+```
+
+- `S`: 要素と区間積の型
+- `op(left, right)`: 左区間と右区間の値を結合する関数
+- `e()`: `op`の単位元を返す関数
+- `valuesOrLength`: 初期列、または初期長
+- `expectedUpdates`: 予定する一点更新回数
+
+`op`と`e`の加算モノイドの具体例は次のとおりです。
+
+```nim
+proc op(
     left,
     right: int,
 ): int =
   left + right
 
-proc zeroInt(): int =
+proc e(): int =
   0
+```
 
-type
-  SumPersistentSegTree =
-    PersistentSegTreeType[int](
-      addInt,
-      zeroInt,
-    )
+この`op`, `e`を一般形へ渡します。
+
+```nim
+type SumTree =
+  PersistentSegTreeType[int](
+    op,
+    e,
+  )
 
 var tree =
-  SumPersistentSegTree.init(
-    @[1, 2, 3, 4],
-    expectedUpdates = 100,
+  SumTree.init(
+    n,
+    expectedUpdates = q,
   )
 ```
 
-簡略constructorも同じfactoryを内部で使用します。
+長さだけを渡すと、すべての要素を`e()`で初期化します。
+
+簡略constructorも使用できます。
 
 ```nim
 var tree =
   initPersistentSegmentTree(
-    @[1, 2, 3, 4],
-    addInt,
-    zeroInt,
-    expectedUpdates = 100,
+    n,
+    op,
+    e,
+    expectedUpdates = q,
   )
 ```
 
-長さだけを指定する場合、要素型は `e()` の返り値から推論され、
-初期値はすべて `e()` になります。
+## 初期version
 
 ```nim
-var tree =
-  initPersistentSegmentTree(
-    200_000,
-    addInt,
-    zeroInt,
-    expectedUpdates = 200_000,
-  )
+let version =
+  tree.initialVersion
 ```
 
-### raw static tuple形式
-
-<!-- PST_RAW_TUPLE_LOW_LEVEL_WARNING -->
-
-`PersistentSegTree[S, (op: ..., e: ...)]` は低水準APIです。
-
-Nimでは、同じsignatureを持つ異なる匿名procをraw static tupleへ
-複数直接格納すると、後から定義した型でも最初のprocが再利用される
-場合があります。実験ではsumとmaxを別々に定義したにもかかわらず、
-max側でもsumが呼ばれる現象を確認しています。
-
-通常のコードでは `PersistentSegTreeType` または
-`initPersistentSegmentTree` を使用してください。
-
-## import
-
-~~~nim
-import atcoder/extra/structure/persistent_segment_tree
-~~~
-
-## モノイド
-
-~~~nim
-proc addInt(
-  left,
-  right: int,
-): int =
-  left + right
-
-proc zeroInt(): int =
-  0
-~~~
-
-## 初期化
-
-~~~nim
-var tree =
-  PersistentSegTree[
-    int,
-    (
-      op: addInt,
-      e: zeroInt,
-    ),
-  ].init(
-    @[1, 2, 3, 4],
-    expectedUpdates = 100,
-  )
-~~~
-
-長さだけを指定すると、すべて`e()`で初期化されます。
-
-~~~nim
-var tree =
-  PersistentSegTree[
-    int,
-    (
-      op: addInt,
-      e: zeroInt,
-    ),
-  ].init(
-    200_000,
-    expectedUpdates = 200_000,
-  )
-~~~
-
-次の簡略記法も、同じstatic generic型を生成します。
-
-~~~nim
-var tree = initPersistentSegmentTree(
-  @[1, 2, 3, 4],
-  addInt,
-  zeroInt,
-  expectedUpdates = 100,
-)
-~~~
-
-## version
-
-~~~nim
-let version0 = tree.initialVersion
-~~~
-
-versionは`PersistentVersion`型です。頂点番号や区間端点とは異なる型なので、生の`int`より引数順の間違いを検出しやすくなります。
+`version`は軽量なroot番号です。
 
 ## 一点更新
 
-~~~nim
-let version1 = tree.set(
-  1,
-  20,
-  version0,
-)
-~~~
+一般形は次のとおりです。
 
-引数順は標準`SegTree`に合わせて、
-
-```text
-position, value, version
+```nim
+newVersion =
+  tree.set(
+    version,
+    position,
+    value,
+  )
 ```
 
-です。`version0`は変更されず、`version1`だけが新しい値を持ちます。
+- `version`: 更新元のversion
+- `position`: 更新する添字
+- `value`: 新しい値
+- 返り値: 更新後の新しいversion
 
-## 一点取得
+元のversionは変更されません。
 
-~~~nim
-echo tree.get(
-  1,
-  version0,
-)
-
-echo tree.get(
-  1,
-  version1,
-)
-~~~
-
-引数順は、
-
-```text
-position, version
+```nim
+versions[x] =
+  tree.set(
+    versions[x],
+    y,
+    z,
+  )
 ```
 
-です。
+短縮記法では、渡したversion変数を新しいversionへ更新します。
 
-## 区間積
-
-~~~nim
-echo tree.prod(
-  1 ..< 4,
-  version1,
-)
-~~~
+```nim
+tree[version][position] = value
+```
 
 または、
 
-~~~nim
-echo tree.prod(
-  1,
-  4,
-  version1,
-)
-~~~
+```nim
+tree[version, position] = value
+```
 
-半開区間\([l,r)\)の積を返します。引数順はrangeまたは`l, r`を先に置き、versionを最後に置きます。
+## 一点取得
+
+一般形は次のとおりです。
+
+```nim
+value =
+  tree.get(
+    version,
+    position,
+  )
+```
+
+- `version`: 読み取り対象のversion
+- `position`: 読み取る添字
+
+短縮記法は次のとおりです。
+
+```nim
+value = tree[version][position]
+```
+
+または、
+
+```nim
+value = tree[version, position]
+```
+
+## 区間積
+
+一般形は次のとおりです。
+
+```nim
+answer =
+  tree.prod(
+    version,
+    range,
+  )
+```
+
+- `version`: 読み取り対象のversion
+- `range`: 集約する範囲
+
+半開区間の端点を直接渡すこともできます。
+
+```nim
+answer =
+  tree.prod(
+    version,
+    left,
+    right,
+  )
+```
+
+短縮記法は次のとおりです。
+
+```nim
+answer = tree[version][left ..< right]
+```
+
+または、
+
+```nim
+answer = tree[version, left ..< right]
+```
 
 ## 全体積
 
-~~~nim
-echo tree.allProd(version1)
-~~~
+```nim
+answer =
+  tree.allProd(
+    version
+  )
+```
 
-Nimの識別子は大文字小文字とunderscoreを区別しないため、`all_prod`も同じprocを呼びます。
+## 配列への復元
 
-## 配列化
+```nim
+values =
+  tree.toSeq(
+    version
+  )
+```
 
-~~~nim
-let values = tree.toSeq(version1)
-~~~
+計算量は`O(n log n)`です。主にdebug用途です。
 
-debugや小規模な確認用です。計算量は\(O(N\log N)\)です。
+## version view
 
-## `expectedUpdates`
+`tree[version]`はtreeとversionを参照する一時的なviewです。
 
+```nim
+tree[version][position] = value
+answer = tree[version][range]
+```
+
+viewを変数へ保存することもできますが、元のtreeとversionより長く
+保持しないでください。
+
+## expectedUpdates
+
+<!-- NACL_EXPECTED_UPDATES_SECTION_START -->
 <!-- NIM_ACL_TUNING_PARAMETER: expectedUpdates -->
 
-| 項目 | 説明 |
-|---|---|
-| 意味 | 今後行う一点更新回数の見積もりです。version数の上限ではありません。 |
-| 事前確保 | 内部のnode poolをあらかじめ確保し、更新中の再確保を減らします。 |
-| 正しさ | 値はcapacity hintだけに使われるため、正しさには影響しません。 |
-| 小さすぎる場合 | 必要に応じて`seq`が自動拡張されます。再確保やcopyが増える可能性があります。 |
-| 大きすぎる場合 | 使わないcapacityも予約するため、メモリ消費が増える可能性があります。 |
-| 省略時 | 既定値は`0`です。初期木に必要なcapacityだけを事前確保します。 |
+- expectedUpdates: 意味 — 将来行う一点更新回数の見積もりです。
+- expectedUpdates: 既定値 — 省略時は `0` です。
+- expectedUpdates: 正しさ — 値は計算結果や作成可能なversion数に影響しません。
+- expectedUpdates: 小さすぎても — node storageが自動拡張され、結果は正しいままです。
+- expectedUpdates: 大きすぎると — 余分なcapacityを事前確保します。
+- expectedUpdates: メモリ — 初期node capacityの事前確保にだけ使います。
+- 木の高さを `h` とすると、一点更新ごとに正確に `h + 1` 個のnodeを作ります。
+- 初期capacityは概ね `2 * size + expectedUpdates * (h + 1)` です。
 
-内部の`size`は\(N\)以上の最小の2冪で、木の高さを\(h=\log_2(\mathrm{size})\)とすると、node poolの初期capacityは
+<!-- NACL_EXPECTED_UPDATES_SECTION_END -->
 
-\[
-2\mathrm{size}
-+
-\mathrm{expectedUpdates}(h+1)
-\]
+## raw static tuple形式
 
-です。
+`PersistentSegTree[S, (op: ..., e: ...)]`は低水準APIです。
 
-一点更新では、根から葉までの経路を複製するため、ちょうど\(h+1\)個のnodeを追加します。
+同じsignatureを持つ複数の匿名procをraw static tupleへ直接渡すと、
+Nimが後のprocにも最初のprocを再利用する場合があります。
+
+通常は`PersistentSegTreeType`または
+`initPersistentSegmentTree`を使用してください。
 
 ## 計算量
 
-初期配列の長さを\(N\)、更新回数を\(U\)とします。
-
-- 初期化: \(O(N)\)
-- `set`: \(O(\log N)\)
-- `get`: \(O(\log N)\)
-- `prod`: \(O(\log N)\)
-- `allProd`: \(O(1)\)
-- versionの保持・代入: \(O(1)\)
-- node数: \(O(N+U\log N)\)
-
-## 旧runtime API
-
-既存コードとの互換性のため、`identity`とclosureの`op`をconstructorへ渡し、生のroot番号を先頭引数に取る旧APIも残しています。
-
-新しいコードでは、引数順の安全性と標準`SegTree`との一貫性のため、static generic APIを推奨します。
+- 初期化: `O(n)`
+- versionのコピー: `O(1)`
+- 一点更新: `O(log n)`時間・`O(log n)`追加memory
+- 一点取得: `O(log n)`
+- 区間積: `O(log n)`
+- 全体積: `O(1)`

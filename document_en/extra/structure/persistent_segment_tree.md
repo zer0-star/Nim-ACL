@@ -1,258 +1,257 @@
 # Persistent Segment Tree
 
-A persistent segment tree creates a new version without modifying previous versions.
+One tree owns all nodes, while each `PersistentVersion` identifies a root.
 
-Like Nim-ACL's standard `SegTree`, the canonical API obtains the monoid operation `op` and identity `e` from a static generic tuple.
-
-## Recommended API
-
-<!-- PST_CANONICAL_FACTORY_API -->
-
-Use `PersistentSegTreeType` for normal code. Like the standard
-`SegTreeType`, it wraps `op` and `e` in distinct
-`{.gensym, inline.}` procedures, allowing multiple monoids to coexist
-safely in one program.
+Copy a sequence by copying its version rather than its elements.
 
 ```nim
-proc addInt(
+versions[x] = versions[y]
+```
+
+## Initialization
+
+The general form is:
+
+```nim
+type Tree =
+  PersistentSegTreeType[S](
+    op,
+    e,
+  )
+
+var tree =
+  Tree.init(
+    valuesOrLength,
+    expectedUpdates = 0,
+  )
+```
+
+- `S`: element and aggregate type
+- `op(left, right)`: combines the left and right aggregates
+- `e()`: returns the identity element of `op`
+- `valuesOrLength`: initial sequence or initial length
+- `expectedUpdates`: estimated number of point updates
+
+For a sum monoid, `op` and `e` can be defined as follows.
+
+```nim
+proc op(
     left,
     right: int,
 ): int =
   left + right
 
-proc zeroInt(): int =
+proc e(): int =
   0
+```
 
-type
-  SumPersistentSegTree =
-    PersistentSegTreeType[int](
-      addInt,
-      zeroInt,
-    )
+Pass these definitions to the general form.
+
+```nim
+type SumTree =
+  PersistentSegTreeType[int](
+    op,
+    e,
+  )
 
 var tree =
-  SumPersistentSegTree.init(
-    @[1, 2, 3, 4],
-    expectedUpdates = 100,
+  SumTree.init(
+    n,
+    expectedUpdates = q,
   )
 ```
 
-The shorthand constructor uses the same factory internally.
+Passing only a length initializes every element with `e()`.
+
+The shorthand constructor is also available.
 
 ```nim
 var tree =
   initPersistentSegmentTree(
-    @[1, 2, 3, 4],
-    addInt,
-    zeroInt,
-    expectedUpdates = 100,
+    n,
+    op,
+    e,
+    expectedUpdates = q,
   )
 ```
 
-For the length-only form, the element type is inferred from the return
-type of `e()`, and every initial value is `e()`.
+## Initial version
 
 ```nim
-var tree =
-  initPersistentSegmentTree(
-    200_000,
-    addInt,
-    zeroInt,
-    expectedUpdates = 200_000,
+let version =
+  tree.initialVersion
+```
+
+A version is a lightweight root identifier.
+
+## Point update
+
+The general form is:
+
+```nim
+newVersion =
+  tree.set(
+    version,
+    position,
+    value,
   )
 ```
 
-### Raw static tuple form
+- `version`: source version
+- `position`: updated index
+- `value`: new value
+- return value: newly created version
 
-<!-- PST_RAW_TUPLE_LOW_LEVEL_WARNING -->
+The source version remains unchanged.
 
-`PersistentSegTree[S, (op: ..., e: ...)]` is a low-level API.
-
-In Nim, storing multiple different anonymous procedures with the same
-signature directly in raw static tuples may cause a later type to reuse
-the first procedure. In an isolated test, separately defined sum and max
-trees both used the sum operation.
-
-Use `PersistentSegTreeType` or `initPersistentSegmentTree` for normal
-code.
-
-## Import
-
-~~~nim
-import atcoder/extra/structure/persistent_segment_tree
-~~~
-
-## Monoid
-
-~~~nim
-proc addInt(
-  left,
-  right: int,
-): int =
-  left + right
-
-proc zeroInt(): int =
-  0
-~~~
-
-## Construction
-
-~~~nim
-var tree =
-  PersistentSegTree[
-    int,
-    (
-      op: addInt,
-      e: zeroInt,
-    ),
-  ].init(
-    @[1, 2, 3, 4],
-    expectedUpdates = 100,
+```nim
+versions[x] =
+  tree.set(
+    versions[x],
+    y,
+    z,
   )
-~~~
-
-Passing only a length initializes every position with `e()`.
-
-~~~nim
-var tree =
-  PersistentSegTree[
-    int,
-    (
-      op: addInt,
-      e: zeroInt,
-    ),
-  ].init(
-    200_000,
-    expectedUpdates = 200_000,
-  )
-~~~
-
-The following shorthand generates the same static generic type.
-
-~~~nim
-var tree = initPersistentSegmentTree(
-  @[1, 2, 3, 4],
-  addInt,
-  zeroInt,
-  expectedUpdates = 100,
-)
-~~~
-
-## Versions
-
-~~~nim
-let version0 = tree.initialVersion
-~~~
-
-Versions use the distinct `PersistentVersion` type. This helps detect accidental mixing of versions with positions or range endpoints.
-
-## Point assignment
-
-~~~nim
-let version1 = tree.set(
-  1,
-  20,
-  version0,
-)
-~~~
-
-The argument order follows the standard segment-tree API:
-
-```text
-position, value, version
 ```
 
-`version0` remains unchanged.
+The indexing form updates the supplied version variable.
+
+```nim
+tree[version][position] = value
+```
+
+or:
+
+```nim
+tree[version, position] = value
+```
 
 ## Point access
 
-~~~nim
-echo tree.get(
-  1,
-  version1,
-)
-~~~
+The general form is:
 
-The argument order is:
+```nim
+value =
+  tree.get(
+    version,
+    position,
+  )
+```
 
-```text
-position, version
+- `version`: queried version
+- `position`: queried index
+
+Indexing forms:
+
+```nim
+value = tree[version][position]
+```
+
+or:
+
+```nim
+value = tree[version, position]
 ```
 
 ## Range product
 
-~~~nim
-echo tree.prod(
-  1 ..< 4,
-  version1,
-)
-~~~
+The general form is:
 
-The explicit half-open form is also available.
+```nim
+answer =
+  tree.prod(
+    version,
+    range,
+  )
+```
 
-~~~nim
-echo tree.prod(
-  1,
-  4,
-  version1,
-)
-~~~
+- `version`: queried version
+- `range`: aggregated range
 
-The range or endpoints come first and the version comes last.
+Half-open endpoints can be supplied directly.
 
-## Whole-array product
+```nim
+answer =
+  tree.prod(
+    version,
+    left,
+    right,
+  )
+```
 
-~~~nim
-echo tree.allProd(version1)
-~~~
+Indexing forms:
 
-Nim identifiers are style-insensitive, so `all_prod` resolves to the same procedure.
+```nim
+answer = tree[version][left ..< right]
+```
 
-## Materialization
+or:
 
-~~~nim
-let values = tree.toSeq(version1)
-~~~
+```nim
+answer = tree[version, left ..< right]
+```
 
-This is mainly useful for debugging and small checks. It takes \(O(N\log N)\).
+## Whole-tree product
 
-## `expectedUpdates`
+```nim
+answer =
+  tree.allProd(
+    version
+  )
+```
 
+## Restore a sequence
+
+```nim
+values =
+  tree.toSeq(
+    version
+  )
+```
+
+This takes `O(n log n)` time and is mainly useful for debugging.
+
+## Version views
+
+`tree[version]` is a temporary view referencing both the tree and version.
+
+```nim
+tree[version][position] = value
+answer = tree[version][range]
+```
+
+A view may be stored in a variable, but must not outlive its tree or version.
+
+## expectedUpdates
+
+<!-- NACL_EXPECTED_UPDATES_SECTION_START -->
 <!-- NIM_ACL_TUNING_PARAMETER: expectedUpdates -->
 
-| Item | Description |
-|---|---|
-| Meaning | An estimate of the number of future point updates. It is not a limit on versions or updates. |
-| Preallocation | It reserves capacity for the internal node pool and reduces reallocations while updating. |
-| Correctness | It is only a capacity hint, so it does not affect correctness. |
-| Too small | The sequence grows automatically. More reallocations and copies may occur. |
-| Too large | Unused capacity may increase memory consumption. |
-| Default | The default is `0`, which preallocates only the capacity required by the initial tree. |
+- expectedUpdates: Meaning — estimates the number of future point updates.
+- expectedUpdates: Default — the default value is `0`.
+- expectedUpdates: Correctness — it does not affect results or the number of versions that can be created.
+- expectedUpdates: If too small — node storage grows automatically and results remain correct.
+- expectedUpdates: If too large — additional unused capacity is reserved.
+- expectedUpdates: Memory — it is used only to preallocate initial node capacity.
+- With tree height `h`, every point update creates exactly `h + 1` nodes.
+- Initial capacity is approximately `2 * size + expectedUpdates * (h + 1)`.
 
-Let `size` be the smallest power of two at least \(N\), and let \(h=\log_2(\mathrm{size})\). The initial node-pool capacity is
+<!-- NACL_EXPECTED_UPDATES_SECTION_END -->
 
-\[
-2\mathrm{size}
-+
-\mathrm{expectedUpdates}(h+1).
-\]
+## Raw static tuple form
 
-Each point update copies the root-to-leaf path and therefore appends exactly \(h+1\) nodes.
+`PersistentSegTree[S, (op: ..., e: ...)]` is a low-level API.
+
+When multiple anonymous procedures with the same signature are passed
+directly through raw static tuples, Nim may reuse the first procedure for
+later types.
+
+Use `PersistentSegTreeType` or `initPersistentSegmentTree` for normal code.
 
 ## Complexity
 
-For an initial length \(N\) and \(U\) updates:
-
-- construction: \(O(N)\)
-- `set`: \(O(\log N)\)
-- `get`: \(O(\log N)\)
-- `prod`: \(O(\log N)\)
-- `allProd`: \(O(1)\)
-- retaining or copying a version: \(O(1)\)
-- node count: \(O(N+U\log N)\)
-
-## Legacy runtime API
-
-For compatibility, the previous API that stores runtime `identity` and closure `op` values and accepts a raw root integer first remains available.
-
-New code should prefer the static generic API for consistency with `SegTree` and safer argument ordering.
+- Initialization: `O(n)`
+- Version copy: `O(1)`
+- Point update: `O(log n)` time and `O(log n)` additional memory
+- Point access: `O(log n)`
+- Range product: `O(log n)`
+- Whole-tree product: `O(1)`
