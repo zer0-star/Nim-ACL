@@ -144,7 +144,15 @@ python3 tools/postprocess_document_html.py
   STEP="cleanup generated files after docs"
   rm -rf .nim_runtime nimcache
 
-  STEP="final clean"
+  # >>> BERLEKAMP_MASSEY_AUDIT >>>
+if ! python3 tools/audit_berlekamp_massey.py
+then
+  STATUS="NG"
+  STEP="Berlekamp-Massey audit"
+fi
+# <<< BERLEKAMP_MASSEY_AUDIT <<<
+
+STEP="final clean"
   if [ -n "$(git status --porcelain)" ]; then
     git status --short
     false
