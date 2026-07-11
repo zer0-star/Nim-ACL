@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Persistent Segment Tree</title>
+  <title>Persistent Segment Tree（永続セグメント木）</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -250,87 +250,167 @@ pre.nim-line-numbers .code-line::before {
     </a>
   </header>
   <main>
-<h1 id="persistent-segment-tree">Persistent Segment Tree</h1>
-<p><code>PersistentSegmentTree</code> は、更新前の version を破壊せずに残す Segment Tree です。</p>
-<p>通常の Segment Tree では点更新すると過去の状態が失われます。永続 Segment Tree では、更新経路上の node だけを複製し、変更されない subtree を古い version と共有します。</p>
-<h2 id="_1">使いどころ</h2>
-<ul>
-<li>過去時刻の配列に対する query</li>
-<li>version ごとに異なる更新を分岐させる</li>
-<li>区間 k-th などの persistent frequency tree</li>
-<li>rollback ではなく、任意の過去 version を直接参照したい</li>
-<li>offline query</li>
-</ul>
-<h2 id="_2">考え方</h2>
-<p>点更新で変更される node は root から leaf までの <code>O(log n)</code> 個だけです。</p>
-<p>それらだけを新しく作り、反対側の子は古い node をそのまま共有します。各 version は root node の index だけで表せます。</p>
+<h1 id="persistent-segment-tree">Persistent Segment Tree（永続セグメント木）</h1>
+<p>更新前のversionを保持したまま、新しいversionを作成できるセグメント木です。</p>
+<p>Nim-ACL標準の<code>SegTree</code>と同様に、モノイド演算<code>op</code>と単位元<code>e</code>をstatic generic tupleから呼び出します。</p>
 <h2 id="import">import</h2>
 <pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">structure</span><span class="tok-operator">/</span><span class="tok-identifier">persistent_segment_tree</span>
 </code></pre>
-<p>ローカル短縮 import：</p>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">lib</span><span class="tok-operator">/</span><span class="tok-identifier">structure</span><span class="tok-operator">/</span><span class="tok-identifier">persistent_segment_tree</span>
+<h2 id="_1">モノイド</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">(</span>
+  <span class="tok-identifier">left</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">right</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">,</span>
+<span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">left</span> <span class="tok-operator">+</span> <span class="tok-identifier">right</span>
+
+<span class="tok-keyword">proc</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span>
+  <span class="tok-number">0</span>
 </code></pre>
-<h2 id="_3">コンストラクタ</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">initPersistentSegmentTree</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span>
-  <span class="tok-identifier">n</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">identity</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">op</span><span class="tok-punctuation">:</span> <span class="tok-keyword">proc</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">expectedUpdates</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span> <span class="tok-number">0</span>
-<span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">PersistentSegmentTree</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span>
-
-<span class="tok-keyword">proc</span> <span class="tok-identifier">initPersistentSegmentTree</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span>
-  <span class="tok-identifier">values</span><span class="tok-punctuation">:</span> <span class="tok-identifier">openArray</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">identity</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">op</span><span class="tok-punctuation">:</span> <span class="tok-keyword">proc</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">expectedUpdates</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span> <span class="tok-number">0</span>
-<span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">PersistentSegmentTree</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span>
+<h2 id="_2">初期化</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">PersistentSegTree</span><span class="tok-punctuation">[</span>
+    <span class="tok-identifier">int</span><span class="tok-punctuation">,</span>
+    <span class="tok-punctuation">(</span>
+      <span class="tok-identifier">op</span><span class="tok-punctuation">:</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
+      <span class="tok-identifier">e</span><span class="tok-punctuation">:</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
+    <span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span>
+    <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">100</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
 </code></pre>
-<h2 id="_4">操作</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">setValue</span><span class="tok-punctuation">(</span>
-  <span class="tok-identifier">tree</span><span class="tok-punctuation">:</span> <span class="tok-keyword">var</span> <span class="tok-identifier">PersistentSegmentTree</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">root</span><span class="tok-punctuation">,</span> <span class="tok-identifier">position</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">value</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span>
-<span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
-
-<span class="tok-keyword">proc</span> <span class="tok-identifier">update</span><span class="tok-punctuation">(</span>
-  <span class="tok-identifier">tree</span><span class="tok-punctuation">:</span> <span class="tok-keyword">var</span> <span class="tok-identifier">PersistentSegmentTree</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">root</span><span class="tok-punctuation">,</span> <span class="tok-identifier">position</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">value</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span>
-<span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
-
-<span class="tok-keyword">proc</span> <span class="tok-identifier">prod</span><span class="tok-punctuation">(</span>
-  <span class="tok-identifier">tree</span><span class="tok-punctuation">:</span> <span class="tok-identifier">PersistentSegmentTree</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">root</span><span class="tok-punctuation">,</span> <span class="tok-identifier">l</span><span class="tok-punctuation">,</span> <span class="tok-identifier">r</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
-<span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span>
-
-<span class="tok-keyword">proc</span> <span class="tok-identifier">get</span><span class="tok-punctuation">(</span><span class="tok-identifier">tree</span><span class="tok-punctuation">,</span> <span class="tok-identifier">root</span><span class="tok-punctuation">,</span> <span class="tok-identifier">position</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span>
-<span class="tok-keyword">proc</span> <span class="tok-identifier">allProd</span><span class="tok-punctuation">(</span><span class="tok-identifier">tree</span><span class="tok-punctuation">,</span> <span class="tok-identifier">root</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">T</span>
-<span class="tok-keyword">proc</span> <span class="tok-identifier">toSeq</span><span class="tok-punctuation">(</span><span class="tok-identifier">tree</span><span class="tok-punctuation">,</span> <span class="tok-identifier">root</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-identifier">T</span><span class="tok-punctuation">]</span>
+<p>長さだけを指定すると、すべて<code>e()</code>で初期化されます。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">PersistentSegTree</span><span class="tok-punctuation">[</span>
+    <span class="tok-identifier">int</span><span class="tok-punctuation">,</span>
+    <span class="tok-punctuation">(</span>
+      <span class="tok-identifier">op</span><span class="tok-punctuation">:</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
+      <span class="tok-identifier">e</span><span class="tok-punctuation">:</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
+    <span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span>
+    <span class="tok-number">200_000</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">200_000</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
 </code></pre>
-<p><code>setValue</code> は元の version を変更せず、新しい root index を返します。</p>
-<h2 id="_5">使用例</h2>
-<!-- nim-line-numbers -->
+<p>次の簡略記法も、同じstatic generic型を生成します。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span> <span class="tok-identifier">initPersistentSegmentTree</span><span class="tok-punctuation">(</span>
+  <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">100</span><span class="tok-punctuation">,</span>
+<span class="tok-punctuation">)</span>
+</code></pre>
+<h2 id="version">version</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">version0</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">initialVersion</span>
+</code></pre>
+<p>versionは<code>PersistentVersion</code>型です。頂点番号や区間端点とは異なる型なので、生の<code>int</code>より引数順の間違いを検出しやすくなります。</p>
+<h2 id="_3">一点更新</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">version1</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">set</span><span class="tok-punctuation">(</span>
+  <span class="tok-number">1</span><span class="tok-punctuation">,</span>
+  <span class="tok-number">20</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">version0</span><span class="tok-punctuation">,</span>
+<span class="tok-punctuation">)</span>
+</code></pre>
+<p>引数順は標準<code>SegTree</code>に合わせて、</p>
+<pre><code class="language-text">position, value, version
+</code></pre>
+<p>です。<code>version0</code>は変更されず、<code>version1</code>だけが新しい値を持ちます。</p>
+<h2 id="_4">一点取得</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">echo</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">get</span><span class="tok-punctuation">(</span>
+  <span class="tok-number">1</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">version0</span><span class="tok-punctuation">,</span>
+<span class="tok-punctuation">)</span>
 
-<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">proc</span> <span class="tok-identifier">add</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span> <span class="tok-identifier">a</span> <span class="tok-operator">+</span> <span class="tok-identifier">b</span></span><span class="code-line"></span><span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span> <span class="tok-identifier">initPersistentSegmentTree</span><span class="tok-punctuation">(</span></span><span class="code-line">  <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span></span><span class="code-line">  <span class="tok-identifier">identity</span> <span class="tok-operator">=</span> <span class="tok-number">0</span><span class="tok-punctuation">,</span></span><span class="code-line">  <span class="tok-identifier">op</span> <span class="tok-operator">=</span> <span class="tok-identifier">add</span><span class="tok-punctuation">,</span></span><span class="code-line"><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-keyword">let</span></span><span class="code-line">  <span class="tok-identifier">root0</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">root</span></span><span class="code-line">  <span class="tok-identifier">root1</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">setValue</span><span class="tok-punctuation">(</span><span class="tok-identifier">root0</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">20</span><span class="tok-punctuation">)</span></span><span class="code-line">  <span class="tok-identifier">root2</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">setValue</span><span class="tok-punctuation">(</span><span class="tok-identifier">root1</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">40</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">toSeq</span><span class="tok-punctuation">(</span><span class="tok-identifier">root0</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">]</span></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">toSeq</span><span class="tok-punctuation">(</span><span class="tok-identifier">root1</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">20</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">]</span></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">toSeq</span><span class="tok-punctuation">(</span><span class="tok-identifier">root2</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">20</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">40</span><span class="tok-punctuation">]</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">prod</span><span class="tok-punctuation">(</span><span class="tok-identifier">root0</span><span class="tok-punctuation">,</span> <span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-number">10</span></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">prod</span><span class="tok-punctuation">(</span><span class="tok-identifier">root2</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-number">63</span></span></code></pre>
-<p>古い version から別の branch を作れます。</p>
-<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">rootA</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">setValue</span><span class="tok-punctuation">(</span><span class="tok-identifier">root0</span><span class="tok-punctuation">,</span> <span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">100</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">rootB</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">setValue</span><span class="tok-punctuation">(</span><span class="tok-identifier">root0</span><span class="tok-punctuation">,</span> <span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">200</span><span class="tok-punctuation">)</span></span></code></pre>
-<h2 id="_6">計算量</h2>
+<span class="tok-identifier">echo</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">get</span><span class="tok-punctuation">(</span>
+  <span class="tok-number">1</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">version1</span><span class="tok-punctuation">,</span>
+<span class="tok-punctuation">)</span>
+</code></pre>
+<p>引数順は、</p>
+<pre><code class="language-text">position, version
+</code></pre>
+<p>です。</p>
+<h2 id="_5">区間積</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">echo</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">prod</span><span class="tok-punctuation">(</span>
+  <span class="tok-number">1</span> <span class="tok-operator">..&lt;</span> <span class="tok-number">4</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">version1</span><span class="tok-punctuation">,</span>
+<span class="tok-punctuation">)</span>
+</code></pre>
+<p>または、</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">echo</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">prod</span><span class="tok-punctuation">(</span>
+  <span class="tok-number">1</span><span class="tok-punctuation">,</span>
+  <span class="tok-number">4</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">version1</span><span class="tok-punctuation">,</span>
+<span class="tok-punctuation">)</span>
+</code></pre>
+<p>半開区間([l,r))の積を返します。引数順はrangeまたは<code>l, r</code>を先に置き、versionを最後に置きます。</p>
+<h2 id="_6">全体積</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">echo</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">allProd</span><span class="tok-punctuation">(</span><span class="tok-identifier">version1</span><span class="tok-punctuation">)</span>
+</code></pre>
+<p>Nimの識別子は大文字小文字とunderscoreを区別しないため、<code>all_prod</code>も同じprocを呼びます。</p>
+<h2 id="_7">配列化</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">values</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">toSeq</span><span class="tok-punctuation">(</span><span class="tok-identifier">version1</span><span class="tok-punctuation">)</span>
+</code></pre>
+<p>debugや小規模な確認用です。計算量は(O(N\log N))です。</p>
+<h2 id="expectedupdates"><code>expectedUpdates</code></h2>
+<!-- NIM_ACL_TUNING_PARAMETER: expectedUpdates -->
+
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>意味</td>
+<td>今後行う一点更新回数の見積もりです。version数の上限ではありません。</td>
+</tr>
+<tr>
+<td>事前確保</td>
+<td>内部のnode poolをあらかじめ確保し、更新中の再確保を減らします。</td>
+</tr>
+<tr>
+<td>正しさ</td>
+<td>値はcapacity hintだけに使われるため、正しさには影響しません。</td>
+</tr>
+<tr>
+<td>小さすぎる場合</td>
+<td>必要に応じて<code>seq</code>が自動拡張されます。再確保やcopyが増える可能性があります。</td>
+</tr>
+<tr>
+<td>大きすぎる場合</td>
+<td>使わないcapacityも予約するため、メモリ消費が増える可能性があります。</td>
+</tr>
+<tr>
+<td>省略時</td>
+<td>既定値は<code>0</code>です。初期木に必要なcapacityだけを事前確保します。</td>
+</tr>
+</tbody>
+</table>
+<p>内部の<code>size</code>は(N)以上の最小の2冪で、木の高さを(h=\log_2(\mathrm{size}))とすると、node poolの初期capacityは</p>
+<p>[
+2\mathrm{size}
++
+\mathrm{expectedUpdates}(h+1)
+]</p>
+<p>です。</p>
+<p>一点更新では、根から葉までの経路を複製するため、ちょうど(h+1)個のnodeを追加します。</p>
+<h2 id="_8">計算量</h2>
+<p>初期配列の長さを(N)、更新回数を(U)とします。</p>
 <ul>
-<li>初期構築: <code>O(n)</code></li>
-<li>点更新: <code>O(log n)</code> 時間・追加 memory</li>
-<li>区間積: <code>O(log n)</code></li>
-<li>point get: <code>O(log n)</code></li>
-<li>version の保持: root index 1個</li>
+<li>初期化: (O(N))</li>
+<li><code>set</code>: (O(\log N))</li>
+<li><code>get</code>: (O(\log N))</li>
+<li><code>prod</code>: (O(\log N))</li>
+<li><code>allProd</code>: (O(1))</li>
+<li>versionの保持・代入: (O(1))</li>
+<li>node数: (O(N+U\log N))</li>
 </ul>
-<h2 id="_7">注意</h2>
-<ul>
-<li><code>op</code> は結合法則を満たす必要があります。</li>
-<li><code>identity</code> は <code>op</code> の単位元です。</li>
-<li>version は root index として利用者が保持します。</li>
-<li>区間は半開区間 `<a href="https://info.atcoder.jp/entry/algorithm_lectures/persistent_segment_tree" target="_blank" rel="noopener">AtCoder Algorithm Lectures: 永続セグメント木</a></li>
-<li><a href="https://cp-algorithms.com/data_structures/segment_tree.html#preserving-the-history-of-its-values-persistent-segment-tree" target="_blank" rel="noopener">cp-algorithms: Persistent Segment Tree</a></li>
-<li><a href="https://judge.yosupo.jp/problems" target="_blank" rel="noopener">Library Checker problem list</a></li>
-</ul>
+<h2 id="runtime-api">旧runtime API</h2>
+<p>既存コードとの互換性のため、<code>identity</code>とclosureの<code>op</code>をconstructorへ渡し、生のroot番号を先頭引数に取る旧APIも残しています。</p>
+<p>新しいコードでは、引数順の安全性と標準<code>SegTree</code>との一貫性のため、static generic APIを推奨します。</p>
   </main>
 </body>
 </html>
