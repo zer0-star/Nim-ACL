@@ -340,6 +340,53 @@ fi
 rm -rf "$EXP_SET_POWER_SERIES_TMP"
 # <<< EXP_OF_SET_POWER_SERIES_TEST <<<
 
+# >>> SMAWK_TEST >>>
+SMAWK_TMP="/tmp/nacl_smawk_quick_$$"
+
+rm -rf "$SMAWK_TMP"
+mkdir -p "$SMAWK_TMP"
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$SMAWK_TMP/nimcache-main" \
+  --out:"$SMAWK_TMP/main-test" \
+  tests/test_extra_smawk.nim
+then
+  STATUS="NG"
+  STEP="SMAWK test compile"
+
+elif ! "$SMAWK_TMP/main-test"
+then
+  STATUS="NG"
+  STEP="SMAWK test run"
+fi
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$SMAWK_TMP/nimcache-cross" \
+  --out:"$SMAWK_TMP/cross-test" \
+  tests/test_extra_smawk_cross_module.nim
+then
+  STATUS="NG"
+  STEP="SMAWK cross compile"
+
+elif ! "$SMAWK_TMP/cross-test"
+then
+  STATUS="NG"
+  STEP="SMAWK cross run"
+fi
+
+rm -rf "$SMAWK_TMP"
+# <<< SMAWK_TEST <<<
+
 STEP="final clean"
   if [ -n "$(git status --porcelain)" ]; then
     git status --short
