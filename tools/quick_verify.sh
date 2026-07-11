@@ -434,6 +434,53 @@ fi
 rm -rf "$BIPARTITE_EDGE_COLORING_TMP"
 # <<< BIPARTITE_EDGE_COLORING_TEST <<<
 
+# >>> IMPLICIT_TREAP_TEST >>>
+IMPLICIT_TREAP_TMP="/tmp/nacl_implicit_treap_quick_$$"
+
+rm -rf "$IMPLICIT_TREAP_TMP"
+mkdir -p "$IMPLICIT_TREAP_TMP"
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$IMPLICIT_TREAP_TMP/nimcache-main" \
+  --out:"$IMPLICIT_TREAP_TMP/main-test" \
+  tests/test_extra_implicit_treap.nim
+then
+  STATUS="NG"
+  STEP="Implicit Treap test compile"
+
+elif ! "$IMPLICIT_TREAP_TMP/main-test"
+then
+  STATUS="NG"
+  STEP="Implicit Treap test run"
+fi
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$IMPLICIT_TREAP_TMP/nimcache-cross" \
+  --out:"$IMPLICIT_TREAP_TMP/cross-test" \
+  tests/test_extra_implicit_treap_cross_module.nim
+then
+  STATUS="NG"
+  STEP="Implicit Treap cross compile"
+
+elif ! "$IMPLICIT_TREAP_TMP/cross-test"
+then
+  STATUS="NG"
+  STEP="Implicit Treap cross run"
+fi
+
+rm -rf "$IMPLICIT_TREAP_TMP"
+# <<< IMPLICIT_TREAP_TEST <<<
+
 STEP="final clean"
   if [ -n "$(git status --porcelain)" ]; then
     git status --short
