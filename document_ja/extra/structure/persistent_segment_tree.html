@@ -251,224 +251,194 @@ pre.nim-line-numbers .code-line::before {
   </header>
   <main>
 <h1 id="persistent-segment-tree">Persistent Segment Tree（永続セグメント木）</h1>
-<p>更新前のversionを保持したまま、新しいversionを作成できるセグメント木です。</p>
-<p>Nim-ACL標準の<code>SegTree</code>と同様に、モノイド演算<code>op</code>と単位元<code>e</code>をstatic generic tupleから呼び出します。</p>
-<h2 id="api">推奨API</h2>
-<!-- PST_CANONICAL_FACTORY_API -->
+<p>1個の木がすべてのノードを管理し、<code>PersistentVersion</code>が各時点の
+根を表します。</p>
+<p>数列をコピーするときは要素を複製せず、versionを代入します。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">versions</span><span class="tok-punctuation">[</span><span class="tok-identifier">x</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-identifier">versions</span><span class="tok-punctuation">[</span><span class="tok-identifier">y</span><span class="tok-punctuation">]</span>
+</code></pre>
+<h2 id="_1">初期化</h2>
+<p>一般形は次のとおりです。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">type</span> <span class="tok-identifier">Tree</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">PersistentSegTreeType</span><span class="tok-punctuation">[</span><span class="tok-identifier">S</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">op</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">e</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
 
-<p>通常は <code>PersistentSegTreeType</code> を使用します。標準の
-<code>SegTreeType</code> と同様に、<code>op</code> と <code>e</code> をそれぞれ一意な
-<code>{.gensym, inline.}</code> procでwrapするため、複数種類のモノイドを
-同じプログラム内で安全に使用できます。</p>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">(</span>
+<span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">Tree</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">valuesOrLength</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">0</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
+</code></pre>
+<ul>
+<li><code>S</code>: 要素と区間積の型</li>
+<li><code>op(left, right)</code>: 左区間と右区間の値を結合する関数</li>
+<li><code>e()</code>: <code>op</code>の単位元を返す関数</li>
+<li><code>valuesOrLength</code>: 初期列、または初期長</li>
+<li><code>expectedUpdates</code>: 予定する一点更新回数</li>
+</ul>
+<p><code>op</code>と<code>e</code>の加算モノイドの具体例は次のとおりです。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">op</span><span class="tok-punctuation">(</span>
     <span class="tok-identifier">left</span><span class="tok-punctuation">,</span>
     <span class="tok-identifier">right</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">,</span>
 <span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span>
   <span class="tok-identifier">left</span> <span class="tok-operator">+</span> <span class="tok-identifier">right</span>
 
-<span class="tok-keyword">proc</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span>
+<span class="tok-keyword">proc</span> <span class="tok-identifier">e</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span>
   <span class="tok-number">0</span>
-
-<span class="tok-keyword">type</span>
-  <span class="tok-identifier">SumPersistentSegTree</span> <span class="tok-operator">=</span>
-    <span class="tok-identifier">PersistentSegTreeType</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span>
-      <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
-      <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
-    <span class="tok-punctuation">)</span>
+</code></pre>
+<p>この<code>op</code>, <code>e</code>を一般形へ渡します。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">type</span> <span class="tok-identifier">SumTree</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">PersistentSegTreeType</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">op</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">e</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
 
 <span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span>
-  <span class="tok-identifier">SumPersistentSegTree</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span>
-    <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
-    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">100</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">SumTree</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">n</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-identifier">q</span><span class="tok-punctuation">,</span>
   <span class="tok-punctuation">)</span>
 </code></pre>
-<p>簡略constructorも同じfactoryを内部で使用します。</p>
+<p>長さだけを渡すと、すべての要素を<code>e()</code>で初期化します。</p>
+<p>簡略constructorも使用できます。</p>
 <pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span>
   <span class="tok-identifier">initPersistentSegmentTree</span><span class="tok-punctuation">(</span>
-    <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
-    <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
-    <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
-    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">100</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">n</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">op</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">e</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-identifier">q</span><span class="tok-punctuation">,</span>
   <span class="tok-punctuation">)</span>
 </code></pre>
-<p>長さだけを指定する場合、要素型は <code>e()</code> の返り値から推論され、
-初期値はすべて <code>e()</code> になります。</p>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span>
-  <span class="tok-identifier">initPersistentSegmentTree</span><span class="tok-punctuation">(</span>
-    <span class="tok-number">200_000</span><span class="tok-punctuation">,</span>
-    <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
-    <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
-    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">200_000</span><span class="tok-punctuation">,</span>
+<h2 id="version">初期version</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">version</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">initialVersion</span>
+</code></pre>
+<p><code>version</code>は軽量なroot番号です。</p>
+<h2 id="_2">一点更新</h2>
+<p>一般形は次のとおりです。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">newVersion</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">set</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">version</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">position</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">value</span><span class="tok-punctuation">,</span>
   <span class="tok-punctuation">)</span>
 </code></pre>
-<h3 id="raw-static-tuple">raw static tuple形式</h3>
-<!-- PST_RAW_TUPLE_LOW_LEVEL_WARNING -->
-
-<p><code>PersistentSegTree[S, (op: ..., e: ...)]</code> は低水準APIです。</p>
-<p>Nimでは、同じsignatureを持つ異なる匿名procをraw static tupleへ
-複数直接格納すると、後から定義した型でも最初のprocが再利用される
-場合があります。実験ではsumとmaxを別々に定義したにもかかわらず、
-max側でもsumが呼ばれる現象を確認しています。</p>
-<p>通常のコードでは <code>PersistentSegTreeType</code> または
-<code>initPersistentSegmentTree</code> を使用してください。</p>
-<h2 id="import">import</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">structure</span><span class="tok-operator">/</span><span class="tok-identifier">persistent_segment_tree</span>
-</code></pre>
-<h2 id="_1">モノイド</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">(</span>
-  <span class="tok-identifier">left</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">right</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">,</span>
-<span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span>
-  <span class="tok-identifier">left</span> <span class="tok-operator">+</span> <span class="tok-identifier">right</span>
-
-<span class="tok-keyword">proc</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span> <span class="tok-operator">=</span>
-  <span class="tok-number">0</span>
-</code></pre>
-<h2 id="_2">初期化</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span>
-  <span class="tok-identifier">PersistentSegTree</span><span class="tok-punctuation">[</span>
-    <span class="tok-identifier">int</span><span class="tok-punctuation">,</span>
-    <span class="tok-punctuation">(</span>
-      <span class="tok-identifier">op</span><span class="tok-punctuation">:</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
-      <span class="tok-identifier">e</span><span class="tok-punctuation">:</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
-    <span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
-  <span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span>
-    <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
-    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">100</span><span class="tok-punctuation">,</span>
+<ul>
+<li><code>version</code>: 更新元のversion</li>
+<li><code>position</code>: 更新する添字</li>
+<li><code>value</code>: 新しい値</li>
+<li>返り値: 更新後の新しいversion</li>
+</ul>
+<p>元のversionは変更されません。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">versions</span><span class="tok-punctuation">[</span><span class="tok-identifier">x</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">set</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">versions</span><span class="tok-punctuation">[</span><span class="tok-identifier">x</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">y</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">z</span><span class="tok-punctuation">,</span>
   <span class="tok-punctuation">)</span>
 </code></pre>
-<p>長さだけを指定すると、すべて<code>e()</code>で初期化されます。</p>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span>
-  <span class="tok-identifier">PersistentSegTree</span><span class="tok-punctuation">[</span>
-    <span class="tok-identifier">int</span><span class="tok-punctuation">,</span>
-    <span class="tok-punctuation">(</span>
-      <span class="tok-identifier">op</span><span class="tok-punctuation">:</span> <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
-      <span class="tok-identifier">e</span><span class="tok-punctuation">:</span> <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
-    <span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
-  <span class="tok-punctuation">]</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span>
-    <span class="tok-number">200_000</span><span class="tok-punctuation">,</span>
-    <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">200_000</span><span class="tok-punctuation">,</span>
-  <span class="tok-punctuation">)</span>
-</code></pre>
-<p>次の簡略記法も、同じstatic generic型を生成します。</p>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span> <span class="tok-identifier">initPersistentSegmentTree</span><span class="tok-punctuation">(</span>
-  <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">expectedUpdates</span> <span class="tok-operator">=</span> <span class="tok-number">100</span><span class="tok-punctuation">,</span>
-<span class="tok-punctuation">)</span>
-</code></pre>
-<h2 id="version">version</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">version0</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">initialVersion</span>
-</code></pre>
-<p>versionは<code>PersistentVersion</code>型です。頂点番号や区間端点とは異なる型なので、生の<code>int</code>より引数順の間違いを検出しやすくなります。</p>
-<h2 id="_3">一点更新</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">version1</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">set</span><span class="tok-punctuation">(</span>
-  <span class="tok-number">1</span><span class="tok-punctuation">,</span>
-  <span class="tok-number">20</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">version0</span><span class="tok-punctuation">,</span>
-<span class="tok-punctuation">)</span>
-</code></pre>
-<p>引数順は標準<code>SegTree</code>に合わせて、</p>
-<pre><code class="language-text">position, value, version
-</code></pre>
-<p>です。<code>version0</code>は変更されず、<code>version1</code>だけが新しい値を持ちます。</p>
-<h2 id="_4">一点取得</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">echo</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">get</span><span class="tok-punctuation">(</span>
-  <span class="tok-number">1</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">version0</span><span class="tok-punctuation">,</span>
-<span class="tok-punctuation">)</span>
-
-<span class="tok-identifier">echo</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">get</span><span class="tok-punctuation">(</span>
-  <span class="tok-number">1</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">version1</span><span class="tok-punctuation">,</span>
-<span class="tok-punctuation">)</span>
-</code></pre>
-<p>引数順は、</p>
-<pre><code class="language-text">position, version
-</code></pre>
-<p>です。</p>
-<h2 id="_5">区間積</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">echo</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">prod</span><span class="tok-punctuation">(</span>
-  <span class="tok-number">1</span> <span class="tok-operator">..&lt;</span> <span class="tok-number">4</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">version1</span><span class="tok-punctuation">,</span>
-<span class="tok-punctuation">)</span>
+<p>短縮記法では、渡したversion変数を新しいversionへ更新します。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">tree</span><span class="tok-punctuation">[</span><span class="tok-identifier">version</span><span class="tok-punctuation">]</span><span class="tok-punctuation">[</span><span class="tok-identifier">position</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-identifier">value</span>
 </code></pre>
 <p>または、</p>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">echo</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">prod</span><span class="tok-punctuation">(</span>
-  <span class="tok-number">1</span><span class="tok-punctuation">,</span>
-  <span class="tok-number">4</span><span class="tok-punctuation">,</span>
-  <span class="tok-identifier">version1</span><span class="tok-punctuation">,</span>
-<span class="tok-punctuation">)</span>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">tree</span><span class="tok-punctuation">[</span><span class="tok-identifier">version</span><span class="tok-punctuation">,</span> <span class="tok-identifier">position</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-identifier">value</span>
 </code></pre>
-<p>半開区間([l,r))の積を返します。引数順はrangeまたは<code>l, r</code>を先に置き、versionを最後に置きます。</p>
-<h2 id="_6">全体積</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">echo</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">allProd</span><span class="tok-punctuation">(</span><span class="tok-identifier">version1</span><span class="tok-punctuation">)</span>
+<h2 id="_3">一点取得</h2>
+<p>一般形は次のとおりです。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">value</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">get</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">version</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">position</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
 </code></pre>
-<p>Nimの識別子は大文字小文字とunderscoreを区別しないため、<code>all_prod</code>も同じprocを呼びます。</p>
-<h2 id="_7">配列化</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">values</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">toSeq</span><span class="tok-punctuation">(</span><span class="tok-identifier">version1</span><span class="tok-punctuation">)</span>
+<ul>
+<li><code>version</code>: 読み取り対象のversion</li>
+<li><code>position</code>: 読み取る添字</li>
+</ul>
+<p>短縮記法は次のとおりです。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">value</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-punctuation">[</span><span class="tok-identifier">version</span><span class="tok-punctuation">]</span><span class="tok-punctuation">[</span><span class="tok-identifier">position</span><span class="tok-punctuation">]</span>
 </code></pre>
-<p>debugや小規模な確認用です。計算量は(O(N\log N))です。</p>
-<h2 id="expectedupdates"><code>expectedUpdates</code></h2>
+<p>または、</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">value</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-punctuation">[</span><span class="tok-identifier">version</span><span class="tok-punctuation">,</span> <span class="tok-identifier">position</span><span class="tok-punctuation">]</span>
+</code></pre>
+<h2 id="_4">区間積</h2>
+<p>一般形は次のとおりです。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">answer</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">prod</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">version</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">range</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
+</code></pre>
+<ul>
+<li><code>version</code>: 読み取り対象のversion</li>
+<li><code>range</code>: 集約する範囲</li>
+</ul>
+<p>半開区間の端点を直接渡すこともできます。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">answer</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">prod</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">version</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">left</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">right</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
+</code></pre>
+<p>短縮記法は次のとおりです。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">answer</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-punctuation">[</span><span class="tok-identifier">version</span><span class="tok-punctuation">]</span><span class="tok-punctuation">[</span><span class="tok-identifier">left</span> <span class="tok-operator">..&lt;</span> <span class="tok-identifier">right</span><span class="tok-punctuation">]</span>
+</code></pre>
+<p>または、</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">answer</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-punctuation">[</span><span class="tok-identifier">version</span><span class="tok-punctuation">,</span> <span class="tok-identifier">left</span> <span class="tok-operator">..&lt;</span> <span class="tok-identifier">right</span><span class="tok-punctuation">]</span>
+</code></pre>
+<h2 id="_5">全体積</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">answer</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">allProd</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">version</span>
+  <span class="tok-punctuation">)</span>
+</code></pre>
+<h2 id="_6">配列への復元</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">values</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">tree</span><span class="tok-operator">.</span><span class="tok-identifier">toSeq</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">version</span>
+  <span class="tok-punctuation">)</span>
+</code></pre>
+<p>計算量は<code>O(n log n)</code>です。主にdebug用途です。</p>
+<h2 id="version-view">version view</h2>
+<p><code>tree[version]</code>はtreeとversionを参照する一時的なviewです。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">tree</span><span class="tok-punctuation">[</span><span class="tok-identifier">version</span><span class="tok-punctuation">]</span><span class="tok-punctuation">[</span><span class="tok-identifier">position</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-identifier">value</span>
+<span class="tok-identifier">answer</span> <span class="tok-operator">=</span> <span class="tok-identifier">tree</span><span class="tok-punctuation">[</span><span class="tok-identifier">version</span><span class="tok-punctuation">]</span><span class="tok-punctuation">[</span><span class="tok-identifier">range</span><span class="tok-punctuation">]</span>
+</code></pre>
+<p>viewを変数へ保存することもできますが、元のtreeとversionより長く
+保持しないでください。</p>
+<h2 id="expectedupdates">expectedUpdates</h2>
+<!-- NACL_EXPECTED_UPDATES_SECTION_START -->
 <!-- NIM_ACL_TUNING_PARAMETER: expectedUpdates -->
 
-<table>
-<thead>
-<tr>
-<th>項目</th>
-<th>説明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>意味</td>
-<td>今後行う一点更新回数の見積もりです。version数の上限ではありません。</td>
-</tr>
-<tr>
-<td>事前確保</td>
-<td>内部のnode poolをあらかじめ確保し、更新中の再確保を減らします。</td>
-</tr>
-<tr>
-<td>正しさ</td>
-<td>値はcapacity hintだけに使われるため、正しさには影響しません。</td>
-</tr>
-<tr>
-<td>小さすぎる場合</td>
-<td>必要に応じて<code>seq</code>が自動拡張されます。再確保やcopyが増える可能性があります。</td>
-</tr>
-<tr>
-<td>大きすぎる場合</td>
-<td>使わないcapacityも予約するため、メモリ消費が増える可能性があります。</td>
-</tr>
-<tr>
-<td>省略時</td>
-<td>既定値は<code>0</code>です。初期木に必要なcapacityだけを事前確保します。</td>
-</tr>
-</tbody>
-</table>
-<p>内部の<code>size</code>は(N)以上の最小の2冪で、木の高さを(h=\log_2(\mathrm{size}))とすると、node poolの初期capacityは</p>
-<p>[
-2\mathrm{size}
-+
-\mathrm{expectedUpdates}(h+1)
-]</p>
-<p>です。</p>
-<p>一点更新では、根から葉までの経路を複製するため、ちょうど(h+1)個のnodeを追加します。</p>
-<h2 id="_8">計算量</h2>
-<p>初期配列の長さを(N)、更新回数を(U)とします。</p>
 <ul>
-<li>初期化: (O(N))</li>
-<li><code>set</code>: (O(\log N))</li>
-<li><code>get</code>: (O(\log N))</li>
-<li><code>prod</code>: (O(\log N))</li>
-<li><code>allProd</code>: (O(1))</li>
-<li>versionの保持・代入: (O(1))</li>
-<li>node数: (O(N+U\log N))</li>
+<li>expectedUpdates: 意味 — 将来行う一点更新回数の見積もりです。</li>
+<li>expectedUpdates: 既定値 — 省略時は <code>0</code> です。</li>
+<li>expectedUpdates: 正しさ — 値は計算結果や作成可能なversion数に影響しません。</li>
+<li>expectedUpdates: 小さすぎても — node storageが自動拡張され、結果は正しいままです。</li>
+<li>expectedUpdates: 大きすぎると — 余分なcapacityを事前確保します。</li>
+<li>expectedUpdates: メモリ — 初期node capacityの事前確保にだけ使います。</li>
+<li>木の高さを <code>h</code> とすると、一点更新ごとに正確に <code>h + 1</code> 個のnodeを作ります。</li>
+<li>初期capacityは概ね <code>2 * size + expectedUpdates * (h + 1)</code> です。</li>
 </ul>
-<h2 id="runtime-api">旧runtime API</h2>
-<p>既存コードとの互換性のため、<code>identity</code>とclosureの<code>op</code>をconstructorへ渡し、生のroot番号を先頭引数に取る旧APIも残しています。</p>
-<p>新しいコードでは、引数順の安全性と標準<code>SegTree</code>との一貫性のため、static generic APIを推奨します。</p>
+<!-- NACL_EXPECTED_UPDATES_SECTION_END -->
+
+<h2 id="raw-static-tuple">raw static tuple形式</h2>
+<p><code>PersistentSegTree[S, (op: ..., e: ...)]</code>は低水準APIです。</p>
+<p>同じsignatureを持つ複数の匿名procをraw static tupleへ直接渡すと、
+Nimが後のprocにも最初のprocを再利用する場合があります。</p>
+<p>通常は<code>PersistentSegTreeType</code>または
+<code>initPersistentSegmentTree</code>を使用してください。</p>
+<h2 id="_7">計算量</h2>
+<ul>
+<li>初期化: <code>O(n)</code></li>
+<li>versionのコピー: <code>O(1)</code></li>
+<li>一点更新: <code>O(log n)</code>時間・<code>O(log n)</code>追加memory</li>
+<li>一点取得: <code>O(log n)</code></li>
+<li>区間積: <code>O(log n)</code></li>
+<li>全体積: <code>O(1)</code></li>
+</ul>
   </main>
 </body>
 </html>
