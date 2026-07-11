@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Exp of Set Power Series（集合冪級数の指数関数）</title>
+  <link rel="stylesheet" href="../../lib/main.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/mode-nim.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.ace) return;
+
+      ace.config.set(
+        "basePath",
+        "https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/"
+      );
+
+      for (const e of document.getElementsByClassName("sample-code")) {
+        const code = e.textContent.replace(/^\n/, "").replace(/\s+$/, "");
+        e.textContent = code;
+
+        const editor = ace.edit(e);
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/nim");
+        editor.getSession().setUseWrapMode(false);
+        editor.setReadOnly(true);
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        editor.setHighlightGutterLine(false);
+        editor.setOptions({
+          maxLines: Infinity,
+          minLines: 1,
+          fontSize: "14px",
+          tabSize: 2,
+          useSoftTabs: true
+        });
+
+        editor.renderer.setShowGutter(true);
+        editor.renderer.setScrollMargin(8, 8, 0, 0);
+
+        const cursor = editor.renderer.$cursorLayer;
+        if (cursor && cursor.element) {
+          cursor.element.style.display = "none";
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style id="nim-acl-highlight-style-v1">
+:root {
+  --nim-code-background: #f6f8fa;
+  --nim-code-foreground: #24292f;
+  --nim-code-border: #d0d7de;
+  --nim-code-line-number: #8c959f;
+  --nim-code-line-number-border: #d8dee4;
+
+  --nim-token-keyword: #8250df;
+  --nim-token-string: #0a7f37;
+  --nim-token-escape: #116329;
+  --nim-token-number: #0550ae;
+  --nim-token-comment: #6e7781;
+  --nim-token-operator: #cf222e;
+  --nim-token-punctuation: #57606a;
+  --nim-token-identifier: #24292f;
+  --nim-token-directive: #953800;
+  --nim-token-hyperlink: #0969da;
+  --nim-token-other: #24292f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nim-code-background: #161b22;
+    --nim-code-foreground: #c9d1d9;
+    --nim-code-border: #30363d;
+    --nim-code-line-number: #7d8590;
+    --nim-code-line-number-border: #30363d;
+
+    --nim-token-keyword: #d2a8ff;
+    --nim-token-string: #a5d6ff;
+    --nim-token-escape: #79c0ff;
+    --nim-token-number: #79c0ff;
+    --nim-token-comment: #8b949e;
+    --nim-token-operator: #ff7b72;
+    --nim-token-punctuation: #c9d1d9;
+    --nim-token-identifier: #c9d1d9;
+    --nim-token-directive: #ffa657;
+    --nim-token-hyperlink: #58a6ff;
+    --nim-token-other: #c9d1d9;
+  }
+}
+
+html[data-theme="dark"],
+html.dark,
+body.dark,
+body[data-theme="dark"] {
+  --nim-code-background: #161b22;
+  --nim-code-foreground: #c9d1d9;
+  --nim-code-border: #30363d;
+  --nim-code-line-number: #7d8590;
+  --nim-code-line-number-border: #30363d;
+
+  --nim-token-keyword: #d2a8ff;
+  --nim-token-string: #a5d6ff;
+  --nim-token-escape: #79c0ff;
+  --nim-token-number: #79c0ff;
+  --nim-token-comment: #8b949e;
+  --nim-token-operator: #ff7b72;
+  --nim-token-punctuation: #c9d1d9;
+  --nim-token-identifier: #c9d1d9;
+  --nim-token-directive: #ffa657;
+  --nim-token-hyperlink: #58a6ff;
+  --nim-token-other: #c9d1d9;
+}
+
+pre.nim-code {
+  position: relative;
+  overflow: auto;
+  box-sizing: border-box;
+  tab-size: 2;
+
+  background: var(--nim-code-background);
+  color: var(--nim-code-foreground);
+  border: 1px solid var(--nim-code-border);
+  border-radius: 7px;
+}
+
+pre.nim-code code {
+  display: block;
+  box-sizing: border-box;
+  min-width: max-content;
+
+  color: var(--nim-code-foreground);
+  background: transparent;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    monospace;
+  line-height: 1.55;
+}
+
+pre.nim-line-numbers code {
+  counter-reset: nim-code-line;
+}
+
+pre.nim-line-numbers .code-line {
+  display: block;
+  position: relative;
+  min-height: 1.55em;
+  padding-left: 4.25rem;
+  padding-right: 1rem;
+  white-space: pre;
+}
+
+pre.nim-line-numbers .code-line::before {
+  counter-increment: nim-code-line;
+  content: counter(nim-code-line);
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 3.25rem;
+  padding-right: 0.75rem;
+
+  color: var(--nim-code-line-number);
+  border-right: 1px solid var(--nim-code-line-number-border);
+  text-align: right;
+
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+.tok-keyword {
+  color: var(--nim-token-keyword);
+  font-weight: 650;
+}
+
+.tok-string {
+  color: var(--nim-token-string);
+}
+
+.tok-escape {
+  color: var(--nim-token-escape);
+  font-weight: 600;
+}
+
+.tok-number {
+  color: var(--nim-token-number);
+}
+
+.tok-comment {
+  color: var(--nim-token-comment);
+  font-style: italic;
+}
+
+.tok-operator {
+  color: var(--nim-token-operator);
+}
+
+.tok-punctuation {
+  color: var(--nim-token-punctuation);
+}
+
+.tok-identifier {
+  color: var(--nim-token-identifier);
+}
+
+.tok-directive {
+  color: var(--nim-token-directive);
+  font-weight: 600;
+}
+
+.tok-hyperlink {
+  color: var(--nim-token-hyperlink);
+  text-decoration: underline;
+}
+
+.tok-other {
+  color: var(--nim-token-other);
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="../../index.html">
+      <img class="site-logo" src="../../lib/logo-crown.png" alt="" aria-hidden="true">
+      <span class="site-title">Nim-ACL</span>
+    </a>
+  </header>
+  <main>
+<h1 id="exp-of-set-power-series">Exp of Set Power Series（集合冪級数の指数関数）</h1>
+<p>集合冪級数<code>f</code>の指数関数を計算します。</p>
+<h2 id="_1">一般形</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">result</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">expOfSetPowerSeries</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">f</span>
+  <span class="tok-punctuation">)</span>
+</code></pre>
+<h2 id="_2">引数</h2>
+<ul>
+<li><code>f</code>: 集合冪級数</li>
+<li><code>T</code>: 係数型。加算・減算・乗算と、整数<code>1</code>からの変換を利用できる必要があります</li>
+</ul>
+<p>長さが<code>2^k</code>の配列では、添字<code>mask</code>を<code>k</code>要素集合の部分集合として
+扱います。</p>
+<h2 id="_3">前提条件</h2>
+<ul>
+<li>入力長は正の2冪</li>
+<li><code>f[0] == 0</code></li>
+<li>空列は使用できない</li>
+</ul>
+<p><code>f[0]</code>は空集合の係数です。</p>
+<p>条件を満たさない場合は<code>ValueError</code>を送出します。</p>
+<h2 id="_4">返り値</h2>
+<p>返り値は入力と同じ長さの<code>seq[T]</code>です。</p>
+<p>空集合について、</p>
+<pre><code class="language-text">result[0] = 1
+</code></pre>
+<p>です。</p>
+<p>空でない集合<code>S</code>について、<code>result[S]</code>は<code>S</code>の集合分割全体にわたる</p>
+<pre><code class="language-text">product f[block]
+</code></pre>
+<p>の和です。</p>
+<p>入力<code>f</code>は変更しません。</p>
+<h2 id="_5">具体例</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">modint</span>
+<span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">math</span><span class="tok-operator">/</span><span class="tok-identifier">exp_of_set_power_series</span>
+
+<span class="tok-keyword">type</span> <span class="tok-identifier">mint</span> <span class="tok-operator">=</span> <span class="tok-identifier">modint998244353</span>
+
+<span class="tok-keyword">let</span> <span class="tok-identifier">f</span> <span class="tok-operator">=</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span>
+  <span class="tok-identifier">mint</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">mint</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">mint</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span><span class="tok-number">3</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">mint</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span><span class="tok-number">5</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
+<span class="tok-punctuation">]</span>
+
+<span class="tok-keyword">let</span> <span class="tok-identifier">result</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">expOfSetPowerSeries</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">f</span>
+  <span class="tok-punctuation">)</span>
+
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">result</span> <span class="tok-operator">==</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span>
+  <span class="tok-identifier">mint</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">mint</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">mint</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span><span class="tok-number">3</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">mint</span><span class="tok-operator">.</span><span class="tok-identifier">init</span><span class="tok-punctuation">(</span><span class="tok-number">11</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span>
+<span class="tok-punctuation">]</span>
+</code></pre>
+<p>最後の係数は、</p>
+<pre><code class="language-text">f[{0,1}] + f[{0}] * f[{1}]
+= 5 + 2 * 3
+= 11
+</code></pre>
+<p>です。</p>
+<h2 id="api">関連API</h2>
+<ul>
+<li><code>subsetConvolution(f, g)</code>:
+  集合を互いに素な2部分へ分ける部分集合畳み込み</li>
+<li><code>zeta_transform</code>:
+  subset/superset zeta transformを直接扱う低水準API</li>
+</ul>
+<p><code>expOfSetPowerSeries</code>は内部で段階的に<code>subsetConvolution</code>を使用します。</p>
+<h2 id="_6">計算量</h2>
+<p>入力長を<code>2^k</code>とすると、</p>
+<ul>
+<li>時間: <code>O(k^2 * 2^k)</code></li>
+<li>メモリ: <code>O(k * 2^k)</code></li>
+</ul>
+  </main>
+</body>
+</html>

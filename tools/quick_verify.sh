@@ -293,6 +293,53 @@ fi
 rm -rf "$SUBSET_CONVOLUTION_TMP"
 # <<< SUBSET_CONVOLUTION_TEST <<<
 
+# >>> EXP_OF_SET_POWER_SERIES_TEST >>>
+EXP_SET_POWER_SERIES_TMP="/tmp/nacl_exp_set_power_series_quick_$$"
+
+rm -rf "$EXP_SET_POWER_SERIES_TMP"
+mkdir -p "$EXP_SET_POWER_SERIES_TMP"
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$EXP_SET_POWER_SERIES_TMP/nimcache-main" \
+  --out:"$EXP_SET_POWER_SERIES_TMP/main-test" \
+  tests/test_extra_exp_of_set_power_series.nim
+then
+  STATUS="NG"
+  STEP="Exp of Set Power Series test compile"
+
+elif ! "$EXP_SET_POWER_SERIES_TMP/main-test"
+then
+  STATUS="NG"
+  STEP="Exp of Set Power Series test run"
+fi
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$EXP_SET_POWER_SERIES_TMP/nimcache-cross" \
+  --out:"$EXP_SET_POWER_SERIES_TMP/cross-test" \
+  tests/test_extra_exp_of_set_power_series_cross_module.nim
+then
+  STATUS="NG"
+  STEP="Exp of Set Power Series cross compile"
+
+elif ! "$EXP_SET_POWER_SERIES_TMP/cross-test"
+then
+  STATUS="NG"
+  STEP="Exp of Set Power Series cross run"
+fi
+
+rm -rf "$EXP_SET_POWER_SERIES_TMP"
+# <<< EXP_OF_SET_POWER_SERIES_TEST <<<
+
 STEP="final clean"
   if [ -n "$(git status --porcelain)" ]; then
     git status --short
