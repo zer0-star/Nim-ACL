@@ -528,6 +528,66 @@ fi
 rm -rf "$LOG_OF_SET_POWER_SERIES_TMP"
 # <<< LOG_OF_SET_POWER_SERIES_TEST <<<
 
+# >>> BFLOW_TEST >>>
+BFLOW_TMP="/tmp/nacl_bflow_quick_$$"
+
+rm -rf "$BFLOW_TMP"
+mkdir -p "$BFLOW_TMP"
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$BFLOW_TMP/nimcache-main" \
+  --out:"$BFLOW_TMP/main-test" \
+  tests/test_extra_bflow.nim
+then
+  STATUS="NG"
+  STEP="BFlow test compile"
+
+elif ! "$BFLOW_TMP/main-test"
+then
+  STATUS="NG"
+  STEP="BFlow test run"
+fi
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$BFLOW_TMP/nimcache-cross" \
+  --out:"$BFLOW_TMP/cross-test" \
+  tests/test_extra_bflow_cross_module.nim
+then
+  STATUS="NG"
+  STEP="BFlow cross compile"
+
+elif ! "$BFLOW_TMP/cross-test"
+then
+  STATUS="NG"
+  STEP="BFlow cross run"
+fi
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$BFLOW_TMP/nimcache-verify" \
+  --out:"$BFLOW_TMP/verify-test" \
+  src/verify/extra/graph/min_cost_b_flow_test.nim
+then
+  STATUS="NG"
+  STEP="BFlow verifier compile"
+fi
+
+rm -rf "$BFLOW_TMP"
+# <<< BFLOW_TEST <<<
+
 STEP="final clean"
   if [ -n "$(git status --porcelain)" ]; then
     git status --short
