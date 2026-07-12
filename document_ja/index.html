@@ -71,18 +71,179 @@
   </header>
   <main>
 <h1 id="acatcoder-library-document">AC(AtCoder) Library Document</h1>
-<h2 id="_1">ガイド</h2>
+<!-- NIM_ACL_HOME_NAV_START -->
+
+<h2 id="_1">ライブラリマップ</h2>
+<p><a href="../document_en/index.html">English documentation</a></p>
+<p>Nim-ACLは、AtCoder Library互換APIに加えて、競技プログラミング向けの
+追加アルゴリズム、データ構造、日本語・英語ドキュメントを提供します。</p>
+<h3 id="api">まず使う標準API</h3>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>ドキュメント</th>
+<th>主なAPI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>区間積</td>
+<td><a href="./segtree.html">Segment Tree</a></td>
+<td><code>SegTree</code>, <code>prod</code>, <code>set</code></td>
+</tr>
+<tr>
+<td>遅延伝播</td>
+<td><a href="./lazysegtree.html">Lazy Segment Tree</a></td>
+<td><code>LazySegTree</code>, <code>apply</code>, <code>prod</code></td>
+</tr>
+<tr>
+<td>累積和</td>
+<td><a href="./fenwicktree.html">Fenwick Tree</a></td>
+<td><code>FenwickTree</code>, <code>add</code>, <code>sum</code></td>
+</tr>
+<tr>
+<td>畳み込み</td>
+<td><a href="./convolution.html">Convolution</a></td>
+<td><code>convolution</code></td>
+</tr>
+<tr>
+<td>最大流</td>
+<td><a href="./maxflow.html">Max Flow</a></td>
+<td><code>MFGraph</code>, <code>flow</code></td>
+</tr>
+<tr>
+<td>最小費用流</td>
+<td><a href="./mincostflow.html">Min-Cost Flow</a></td>
+<td><code>MCFGraph</code>, <code>flow</code>, <code>slope</code></td>
+</tr>
+<tr>
+<td>素集合データ構造</td>
+<td><a href="./dsu.html">DSU</a></td>
+<td><code>DSU</code>, <code>merge</code>, <code>leader</code></td>
+</tr>
+<tr>
+<td>強連結成分</td>
+<td><a href="./scc.html">SCC</a></td>
+<td><code>SCCGraph</code>, <code>scc</code></td>
+</tr>
+<tr>
+<td>文字列</td>
+<td><a href="./string.html">String Algorithms</a></td>
+<td>suffix array, LCP, Z algorithm</td>
+</tr>
+<tr>
+<td>mod整数</td>
+<td><a href="./modint.html">ModInt</a></td>
+<td>static／dynamic modint</td>
+</tr>
+</tbody>
+</table>
+<h3 id="api_1">最近追加・整備されたAPI</h3>
+<table>
+<thead>
+<tr>
+<th>分野</th>
+<th>API</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>多次元探索</td>
+<td><a href="./extra/structure/kd_tree.html">KD-tree</a></td>
+<td>最近傍探索、半開直交範囲探索</td>
+</tr>
+<tr>
+<td>計算幾何</td>
+<td><a href="./extra/geometry/minkowski_sum.html">Minkowski Sum</a></td>
+<td>任意点集合の凸包Minkowski和</td>
+</tr>
+<tr>
+<td>集合冪級数</td>
+<td><a href="./extra/math/exp_of_set_power_series.html">Set Power Series Exp</a> / <a href="./extra/math/log_of_set_power_series.html">Log</a></td>
+<td>集合冪級数の指数・対数</td>
+</tr>
+<tr>
+<td>フロー</td>
+<td><a href="./extra/graph/bflow.html">Minimum-Cost B-Flow</a></td>
+<td>下限・上限、供給・需要、費用</td>
+</tr>
+<tr>
+<td>永続データ構造</td>
+<td><a href="./extra/structure/persistent_segment_tree.html">Persistent Segment Tree</a></td>
+<td>version付き更新・区間積</td>
+</tr>
+<tr>
+<td>列データ構造</td>
+<td><a href="./extra/structure/implicit_treap.html">Implicit Treap</a></td>
+<td>split／merge、列操作</td>
+</tr>
+<tr>
+<td>Trie</td>
+<td><a href="./extra/structure/binary_trie.html">Binary Trie</a></td>
+<td>XOR最小・最大、multiset操作</td>
+</tr>
+<tr>
+<td>FPS</td>
+<td><a href="./extra/math/fps.html">Formal Power Series facade</a></td>
+<td>FPS APIへの統一的な入口</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">分野別追加ライブラリ</h3>
+<table>
+<thead>
+<tr>
+<th>分野</th>
+<th>ドキュメント</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DP最適化</td>
+<td><a href="./extra/dp/monotone_minima.html">Monotone Minima</a> · <a href="./extra/dp/divide_and_conquer_optimization.html">Divide and Conquer Optimization</a> · <a href="./extra/dp/smawk.html">SMAWK</a></td>
+</tr>
+<tr>
+<td>数学・多項式</td>
+<td><a href="./extra/math/berlekamp_massey.html">Berlekamp–Massey</a> · <a href="./extra/math/polynomial_interpolation.html">Polynomial Interpolation</a> · <a href="./extra/math/subset_convolution.html">Subset Convolution</a> · <a href="./extra/math/fps.html">FPS</a></td>
+</tr>
+<tr>
+<td>データ構造</td>
+<td><a href="./extra/structure/persistent_segment_tree.html">Persistent Segment Tree</a> · <a href="./extra/structure/implicit_treap.html">Implicit Treap</a> · <a href="./extra/structure/kd_tree.html">KD-tree</a> · <a href="./extra/structure/binary_trie.html">Binary Trie</a></td>
+</tr>
+<tr>
+<td>グラフ</td>
+<td><a href="./extra/graph/bipartite_edge_coloring.html">Bipartite Edge Coloring</a> · <a href="./extra/graph/bflow.html">Minimum-Cost B-Flow</a></td>
+</tr>
+<tr>
+<td>計算幾何</td>
+<td><a href="./extra/geometry/minkowski_sum.html">Minkowski Sum</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">ガイド</h3>
+<ul>
+<li><a href="./guide/atcoder_level_guide.html">AtCoderレベル別ガイド</a></li>
+<li><a href="./guide/atcoder_algorithm_lectures_coverage.html">AtCoderアルゴリズム講座カバレッジ</a></li>
+</ul>
+<h3 id="_4">ドキュメントの構成</h3>
+<p>追加ライブラリのページは原則として、一般形、引数・型、前提条件、
+返り値・副作用、具体例、関連API、計算量・内部実装の順に記載しています。</p>
+<!-- NIM_ACL_HOME_NAV_END -->
+
+<h2 id="_5">ガイド</h2>
 <ul>
 <li><a href="./guide/atcoder_level_guide.html">AtCoder 色別ライブラリガイド</a></li>
 <li><a href="./guide/atcoder_algorithm_lectures_coverage.html">AtCoder Algorithm Lectures 対応表</a></li>
 </ul>
-<h2 id="_2">インストール方法</h2>
+<h2 id="_6">インストール方法</h2>
 <ul>
 <li>zipファイルを解凍すると、<code>ac-library</code>フォルダ, そしてその中に<code>atcoder</code>フォルダが入っているはずです。</li>
 <li>g++を使っている場合, <code>atcoder</code>フォルダを<code>main.nim</code>と同じ場所に置いて、<code>nim cpp main.nim --include:.</code>でコンパイルできます。  </li>
 <li>詳しくは <a href="./appendix.html">Appendix</a> を参照してください。</li>
 </ul>
-<h2 id="_3">お約束</h2>
+<h2 id="_7">お約束</h2>
 <ul>
 <li>制約外の入力を入れたときの挙動はすべて未定義です。</li>
 <li>このドキュメントでは長い型を便宜上短く書きます</li>
@@ -92,22 +253,22 @@
 <li>$0^0$ は $1$ です</li>
 <li>明記されていない場合、多重辺や自己ループも入力可能です。</li>
 </ul>
-<h2 id="_4">リスト</h2>
+<h2 id="_8">リスト</h2>
 <p><code>import atcoder/all</code> : 一括include</p>
-<h3 id="_5">データ構造</h3>
+<h3 id="_9">データ構造</h3>
 <ul>
 <li><a href="./fenwicktree.html"><code>import atcoder/fenwicktree</code></a></li>
 <li><a href="./segtree.html"><code>import atcoder/segtree</code></a></li>
 <li><a href="./lazysegtree.html"><code>import atcoder/lazysegtree</code></a></li>
 <li><a href="./string.html"><code>import atcoder/string</code></a></li>
 </ul>
-<h3 id="_6">数学</h3>
+<h3 id="_10">数学</h3>
 <ul>
 <li><a href="./math.html"><code>import atcoder/math</code></a></li>
 <li><a href="./convolution.html"><code>import atcoder/convolution</code></a></li>
 <li>💻<a href="./modint.html"><code>import atcoder/modint</code></a></li>
 </ul>
-<h3 id="_7">グラフ</h3>
+<h3 id="_11">グラフ</h3>
 <ul>
 <li><a href="./dsu.html"><code>import atcoder/dsu</code></a></li>
 <li><a href="./maxflow.html"><code>import atcoder/maxflow</code></a></li>
@@ -115,9 +276,9 @@
 <li><a href="./scc.html"><code>import atcoder/scc</code></a></li>
 <li><a href="./twosat.html"><code>import atcoder/twosat</code></a></li>
 </ul>
-<h2 id="_8">エキストラライブラリ</h2>
+<h2 id="_12">エキストラライブラリ</h2>
 <p>ACLには収録されていないが、使用頻度が高そうなライブラリを追加しました。</p>
-<h3 id="_9">データ構造</h3>
+<h3 id="_13">データ構造</h3>
 <ul>
 <li>ソート済みのset, table(map)(C++のset, mapと同機能)  <a href="./extra/structure/sorted_set_map.html"><code>import atcoder/extra/structure/set_map</code></a></li>
 <li>Skew Heap</li>
@@ -138,7 +299,7 @@
 <li>永続DSU <a href="./extra/structure/persistent_dsu.html"><code>import atcoder/extra/structure/persistent_dsu</code></a></li>
 <li>Partially Persistent DSU</li>
 </ul>
-<h3 id="_10">数学</h3>
+<h3 id="_14">数学</h3>
 <ul>
 <li>約数系</li>
 <li>約数列挙 <a href="./extra/math/divisor.html"><code>import atcoder/extra/math/divisor</code></a></li>
@@ -163,7 +324,7 @@
 <li>modintによる平方根</li>
 <li>modintの分数推測</li>
 </ul>
-<h3 id="_11">グラフ</h3>
+<h3 id="_15">グラフ</h3>
 <ul>
 <li><a href="./extra/graph/graph_template.html"><code>import atcoder/extra/graph/graph_template</code></a></li>
 <li><a href="./extra/graph/static_graph.html"><code>import atcoder/extra/graph/static_graph</code></a></li>
@@ -202,7 +363,7 @@
 <li>強連結の向き付け</li>
 <li><a href="./extra/graph/strong_orientation.html"><code>import atcoder/extra/graph/strong_orientation</code></a></li>
 </ul>
-<h3 id="_12">木</h3>
+<h3 id="_16">木</h3>
 <ul>
 <li>木の直径</li>
 <li>重心分解</li>
@@ -210,7 +371,7 @@
 <li>Heavy-Light Decomposition</li>
 <li>全方位DP(rerooting): <a href="./extra/tree/rerooting.html"><code>import atcoder/extra/tree/rerooting</code></a></li>
 </ul>
-<h3 id="_13">その他</h3>
+<h3 id="_17">その他</h3>
 <ul>
 <li>Assignment Operator</li>
 <li>二分探索</li>
@@ -260,31 +421,31 @@
 </ul>
 <!-- PROMOTED-EXTRA-LIBRARY-DOCS:END -->
 
-<h2 id="_14">付録</h2>
+<h2 id="_18">付録</h2>
 <ul>
 <li><a href="./appendix.html">Appendix / FAQ</a></li>
 </ul>
-<h2 id="_15">テスト</h2>
+<h2 id="_19">テスト</h2>
 <ul>
 <li><a href="https://atcoder.jp/contests/practice2" target="_blank" rel="noopener">こちら</a> で実際にこの Library を使う問題を解いてみることができます。</li>
 </ul>
-<h2 id="_16">ライセンス</h2>
+<h2 id="_20">ライセンス</h2>
 <p>ヘッダファイル群(同梱の <code>atcoder</code> フォルダ以下)はCC0ライセンスで公開しています。詳しくは<code>atcoder/LICENSE</code>を参照してください。</p>
 <!-- NIM_ACL_CURATED_JA_FACADE_V1 -->
 <h2 id="facade">日本語facade</h2>
-<h3 id="_17">グラフ</h3>
+<h3 id="_21">グラフ</h3>
 <ul>
 <li><a href="extra/ja/graph/最小全域木.html">Minimum Spanning Tree（最小全域木）</a></li>
 <li><a href="extra/ja/graph/最小全域有向木.html">Minimum Arborescence（Directed MST／最小全域有向木）</a></li>
 </ul>
-<h3 id="_18">データ構造</h3>
+<h3 id="_22">データ構造</h3>
 <ul>
 <li><a href="extra/ja/structure/素集合データ構造.html">Disjoint Set Union（Union-Find／素集合データ構造）</a></li>
 </ul>
 <!-- /NIM_ACL_CURATED_JA_FACADE_V1 -->
 
 <!-- NIM_ACL_CURATED_AUXILIARY_TREE_V1 -->
-<h2 id="_19">木アルゴリズム</h2>
+<h2 id="_23">木アルゴリズム</h2>
 <ul>
 <li><a href="extra/graph/virtual_tree.html">Auxiliary Tree（Virtual Tree／仮想木）</a></li>
 </ul>
@@ -300,9 +461,9 @@
 
 <!-- AUTO-GENERATED-DOC-LINKS:BEGIN -->
 
-<h2 id="_20">自動生成ドキュメント一覧</h2>
+<h2 id="_24">自動生成ドキュメント一覧</h2>
 <p>この節は <code>tools/create_missing_docs_and_update_index.py</code> により自動更新されます。</p>
-<h3 id="_21">標準ライブラリ</h3>
+<h3 id="_25">標準ライブラリ</h3>
 <ul>
 <li><a href="convolution.html">convolution</a></li>
 <li><a href="dsu.html">dsu</a></li>
@@ -562,7 +723,7 @@
 <li><a href="./extra/algorithm/mo.html"><code>import atcoder/extra/algorithm/mo</code></a></li>
 </ul>
 <!-- NIM_ACL_JAPANESE_FACADE_INDEX_V1 -->
-<h2 id="api">日本語API（試験的）</h2>
+<h2 id="api_2">日本語API（試験的）</h2>
 <p>Nim-ACL の正式APIを、日本語のimport名と
 関数名から利用できます。</p>
 <ul>
