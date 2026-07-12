@@ -588,6 +588,91 @@ fi
 rm -rf "$BFLOW_TMP"
 # <<< BFLOW_TEST <<<
 
+# >>> KD_TREE_AND_MINKOWSKI_SUM_TEST >>>
+KD_MINKOWSKI_TMP="/tmp/nacl_kd_minkowski_quick_$$"
+
+rm -rf "$KD_MINKOWSKI_TMP"
+mkdir -p "$KD_MINKOWSKI_TMP"
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$KD_MINKOWSKI_TMP/nimcache-kd" \
+  --out:"$KD_MINKOWSKI_TMP/kd-test" \
+  tests/test_extra_kd_tree.nim
+then
+  STATUS="NG"
+  STEP="KD-tree test compile"
+
+elif ! "$KD_MINKOWSKI_TMP/kd-test"
+then
+  STATUS="NG"
+  STEP="KD-tree test run"
+fi
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$KD_MINKOWSKI_TMP/nimcache-kd-cross" \
+  --out:"$KD_MINKOWSKI_TMP/kd-cross-test" \
+  tests/test_extra_kd_tree_cross_module.nim
+then
+  STATUS="NG"
+  STEP="KD-tree cross compile"
+
+elif ! "$KD_MINKOWSKI_TMP/kd-cross-test"
+then
+  STATUS="NG"
+  STEP="KD-tree cross run"
+fi
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$KD_MINKOWSKI_TMP/nimcache-minkowski" \
+  --out:"$KD_MINKOWSKI_TMP/minkowski-test" \
+  tests/test_extra_minkowski_sum.nim
+then
+  STATUS="NG"
+  STEP="Minkowski Sum test compile"
+
+elif ! "$KD_MINKOWSKI_TMP/minkowski-test"
+then
+  STATUS="NG"
+  STEP="Minkowski Sum test run"
+fi
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$KD_MINKOWSKI_TMP/nimcache-minkowski-cross" \
+  --out:"$KD_MINKOWSKI_TMP/minkowski-cross-test" \
+  tests/test_extra_minkowski_sum_cross_module.nim
+then
+  STATUS="NG"
+  STEP="Minkowski Sum cross compile"
+
+elif ! "$KD_MINKOWSKI_TMP/minkowski-cross-test"
+then
+  STATUS="NG"
+  STEP="Minkowski Sum cross run"
+fi
+
+rm -rf "$KD_MINKOWSKI_TMP"
+# <<< KD_TREE_AND_MINKOWSKI_SUM_TEST <<<
+
 STEP="final clean"
   if [ -n "$(git status --porcelain)" ]; then
     git status --short
