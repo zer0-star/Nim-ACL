@@ -21,38 +21,153 @@ when not declared ATCODER_INTERNAL_SCC_HPP:
   proc add_edge*(self: var internal_scc_graph, src, dst:int) = self.edges.add((src, edge(dst:dst)))
 
   # @return pair of (# of scc, scc id)
+  #
+  # Tarjan's algorithm implemented with an explicit DFS frame stack.
+  # This avoids depending on the process call-stack depth.
   proc scc_ids*(self: internal_scc_graph):(int,seq[int]) =
-    var g = initCsr[edge](self.n, self.edges)
-    var now_ord, group_num = 0
+    type DfsFrame = object
+      vertex, nextEdge, endEdge, parent: int
+
+    let g =
+      initCsr[edge](
+        self.n,
+        self.edges,
+      )
+
     var
-      visited = newSeqOfCap[int](self.n)
-      low = newSeq[int](self.n)
-      ord = newSeqWith(self.n, -1)
-      ids = newSeq[int](self.n)
-    proc dfs(v:int) =
-      low[v] = now_ord
-      ord[v] = now_ord
-      now_ord.inc
-      visited.add(v)
-      for i in g.start[v] ..< g.start[v + 1]:
-        let dst = g.elist[i].dst
-        if ord[dst] == -1:
-          dfs(dst)
-          low[v] = min(low[v], low[dst])
+      nowOrd = 0
+      groupNum = 0
+
+      active =
+        newSeqOfCap[int](self.n)
+
+      frames =
+        newSeqOfCap[DfsFrame](self.n)
+
+      low =
+        newSeq[int](self.n)
+
+      ord =
+        newSeqWith(
+          self.n,
+          -1,
+        )
+
+      ids =
+        newSeq[int](self.n)
+
+    for root in 0 ..< self.n:
+      if ord[root] != -1:
+        continue
+
+      low[root] =
+        nowOrd
+
+      ord[root] =
+        nowOrd
+
+      nowOrd.inc
+
+      active.add(root)
+
+      frames.add(
+        DfsFrame(
+          vertex: root,
+          nextEdge: g.start[root],
+          endEdge: g.start[root + 1],
+          parent: -1,
+        )
+      )
+
+      while frames.len > 0:
+        let
+          frameIndex =
+            frames.high
+
+          vertex =
+            frames[frameIndex].vertex
+
+        if frames[frameIndex].nextEdge <
+            frames[frameIndex].endEdge:
+
+          let edgeIndex =
+            frames[frameIndex].nextEdge
+
+          frames[frameIndex].nextEdge.inc
+
+          let dst =
+            g.elist[edgeIndex].dst
+
+          if ord[dst] == -1:
+            low[dst] =
+              nowOrd
+
+            ord[dst] =
+              nowOrd
+
+            nowOrd.inc
+
+            active.add(dst)
+
+            frames.add(
+              DfsFrame(
+                vertex: dst,
+                nextEdge: g.start[dst],
+                endEdge: g.start[dst + 1],
+                parent: vertex,
+              )
+            )
+
+          elif ord[dst] < self.n:
+            low[vertex] =
+              min(
+                low[vertex],
+                ord[dst],
+              )
+
         else:
-          low[v] = min(low[v], ord[dst])
-      if low[v] == ord[v]:
-        while true:
-          let u = visited[^1]
-          discard visited.pop()
-          ord[u] = self.n
-          ids[u] = group_num
-          if u == v: break
-        group_num.inc
-    for i in 0..<self.n:
-      if ord[i] == -1: dfs(i)
-    ids.applyIt(group_num - 1 - it)
-    return (group_num, ids)
+          let parent =
+            frames[frameIndex].parent
+
+          if low[vertex] ==
+              ord[vertex]:
+
+            while true:
+              let componentVertex =
+                active[^1]
+
+              discard active.pop()
+
+              ord[componentVertex] =
+                self.n
+
+              ids[componentVertex] =
+                groupNum
+
+              if componentVertex ==
+                  vertex:
+
+                break
+
+            groupNum.inc
+
+          discard frames.pop()
+
+          if parent >= 0:
+            low[parent] =
+              min(
+                low[parent],
+                low[vertex],
+              )
+
+    ids.applyIt(
+      groupNum - 1 - it
+    )
+
+    return (
+      groupNum,
+      ids,
+    )
 
   proc scc*(self: internal_scc_graph):auto =
     let
