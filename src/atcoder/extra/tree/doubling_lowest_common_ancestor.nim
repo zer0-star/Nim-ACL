@@ -8,8 +8,8 @@ when not declared ATCODER_LOWEST_COMMON_ANCESTOR_DOUBLING:
     dep*:seq[int]
     table:seq[seq[int]]
   
-  proc initDoublingLowestCommonAncestor*[G:GraphC](g:G, r = 0):DoublingLowestCommonAncestor[G.T] =
-    type T = G.T
+  proc initDoublingLowestCommonAncestor*[G](g:G, r = 0): auto =
+    type T = typeof(g[0][0].weight)
     var (LOG, t) = (0, 1)
     while t <= g.len: t *= 2;LOG+=1
     var
