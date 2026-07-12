@@ -78,4 +78,4 @@ test "BinaryTrie uint64":
 
   check tr.minXor(0'u64) == 1'u64
   check tr.maxXor(0'u64) == 63'u64
-  check tr.maxXor(31'u64) == 62'u64
+  check tr.maxXor(31'u64) == 63'u64 # 31 xor 32
