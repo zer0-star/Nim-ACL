@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>最小費用B-flow</title>
+  <title>Minimum-Cost B-Flow</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -250,10 +250,10 @@ pre.nim-line-numbers .code-line::before {
     </a>
   </header>
   <main>
-<h1 id="b-flow">最小費用B-flow</h1>
-<p>下限・上限付き有向辺、各頂点の供給量・需要量、および辺費用を持つ
-最小費用B-flow問題を解きます。</p>
-<h2 id="_1">一般形</h2>
+<h1 id="minimum-cost-b-flow">Minimum-Cost B-Flow</h1>
+<p>Solves a minimum-cost B-flow problem with lower and upper edge bounds,
+per-vertex supplies and demands, and edge costs.</p>
+<h2 id="general-form">General form</h2>
 <pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">flow</span> <span class="tok-operator">=</span>
   <span class="tok-identifier">initBFlow</span><span class="tok-punctuation">[</span><span class="tok-identifier">Capacity</span><span class="tok-punctuation">,</span> <span class="tok-identifier">Cost</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span>
     <span class="tok-identifier">vertexCount</span><span class="tok-punctuation">,</span>
@@ -280,88 +280,63 @@ pre.nim-line-numbers .code-line::before {
 <span class="tok-keyword">let</span> <span class="tok-punctuation">(</span><span class="tok-identifier">feasible</span><span class="tok-punctuation">,</span> <span class="tok-identifier">minimumCost</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span>
   <span class="tok-identifier">flow</span><span class="tok-operator">.</span><span class="tok-identifier">solve</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
 </code></pre>
-<h2 id="_2">引数・型</h2>
+<h2 id="parameters-and-types">Parameters and types</h2>
 <ul>
-<li><code>CAP</code>: 容量、供給量、需要量、flowの型</li>
-<li><code>COST</code>: 辺費用、最小費用、potentialの型</li>
-<li><code>vertexCount</code>: 頂点数</li>
-<li><code>add_supply(v, amount)</code>: 頂点<code>v</code>へ供給量を追加</li>
-<li><code>add_demand(v, amount)</code>: 頂点<code>v</code>へ需要量を追加</li>
-<li><code>add_edge(s, t, lower, upper, cost)</code>: 下限・上限・単位費用付き有向辺を追加</li>
+<li><code>CAP</code>: capacity, supply, demand, and flow type</li>
+<li><code>COST</code>: edge-cost, minimum-cost, and potential type</li>
+<li><code>vertexCount</code>: number of vertices</li>
+<li><code>add_supply(v, amount)</code>: adds supply at vertex <code>v</code></li>
+<li><code>add_demand(v, amount)</code>: adds demand at vertex <code>v</code></li>
+<li><code>add_edge(s, t, lower, upper, cost)</code>: adds a directed edge with lower and
+  upper capacity bounds and a unit cost</li>
 </ul>
-<p>辺は追加順に番号付けされます。平行辺を追加できます。負の辺費用にも対応します。</p>
-<h2 id="_3">前提条件</h2>
+<p>Edges are numbered in insertion order. Parallel edges and negative edge costs
+are supported.</p>
+<h2 id="preconditions">Preconditions</h2>
 <ul>
-<li>頂点番号は<code>0 ..&lt; vertexCount</code></li>
-<li><code>CAP</code>と<code>COST</code>は内部の最大流・費用スケーリング実装に必要な
-  四則演算と比較をサポートする</li>
-<li>各辺では通常<code>lower &lt;= upper</code></li>
+<li>vertex indices are in <code>0 ..&lt; vertexCount</code></li>
+<li><code>CAP</code> and <code>COST</code> support the arithmetic and comparisons required by the
+  internal maximum-flow and cost-scaling implementations</li>
+<li>normally, every edge satisfies <code>lower &lt;= upper</code></li>
 </ul>
-<p><code>lower &gt; upper</code>の辺を追加すると<code>flow.infeasible</code>が<code>true</code>になります。</p>
-<p>一般の実行可能性判定には<code>flow.infeasible</code>ではなく、必ず<code>solve()</code>の
-返り値の第1要素を使用してください。容量不足や供給・需要総量の不一致では、
-<code>solve()[0]</code>が<code>false</code>でも<code>flow.infeasible</code>は<code>false</code>のままです。</p>
-<h2 id="_4">返り値と副作用</h2>
+<p>Adding an edge with <code>lower &gt; upper</code> sets <code>flow.infeasible</code> to <code>true</code>.</p>
+<p>For general feasibility, always use the first component returned by <code>solve()</code>,
+not <code>flow.infeasible</code>. Capacity shortage or unequal total supply and demand can
+make <code>solve()[0]</code> false while <code>flow.infeasible</code> remains false.</p>
+<h2 id="return-values-and-side-effects">Return values and side effects</h2>
 <pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-punctuation">(</span><span class="tok-identifier">feasible</span><span class="tok-punctuation">,</span> <span class="tok-identifier">minimumCost</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span>
   <span class="tok-identifier">flow</span><span class="tok-operator">.</span><span class="tok-identifier">solve</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
 </code></pre>
 <ul>
-<li><code>feasible</code>: 実行可能なB-flowが存在するか</li>
-<li><code>minimumCost</code>: 実行可能な場合の最小費用</li>
-<li><code>flow.f[edgeId]</code>: 追加順の辺<code>edgeId</code>へ流れたflow</li>
-<li><code>flow.potential[v]</code>: solve後の頂点<code>v</code>のpotential</li>
-<li><code>flow.infeasible</code>: <code>lower &gt; upper</code>を追加したことを示す事前検査フラグ</li>
+<li><code>feasible</code>: whether a feasible B-flow exists</li>
+<li><code>minimumCost</code>: minimum cost when the problem is feasible</li>
+<li><code>flow.f[edgeId]</code>: flow on edge <code>edgeId</code>, in insertion order</li>
+<li><code>flow.potential[v]</code>: potential of vertex <code>v</code> after solving</li>
+<li><code>flow.infeasible</code>: pre-solve flag recording an edge with <code>lower &gt; upper</code></li>
 </ul>
-<p><code>solve()[0]</code>が一般の実行可能性を表す正本です。</p>
-<h2 id="_5">具体例</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">bflow</span>
-
-<span class="tok-keyword">var</span> <span class="tok-identifier">flow</span> <span class="tok-operator">=</span>
-  <span class="tok-identifier">initBFlow</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">)</span>
-
-<span class="tok-identifier">flow</span><span class="tok-operator">.</span><span class="tok-identifier">add_supply</span><span class="tok-punctuation">(</span>
-  <span class="tok-number">0</span><span class="tok-punctuation">,</span>
-  <span class="tok-number">2</span><span class="tok-punctuation">,</span>
-<span class="tok-punctuation">)</span>
-
-<span class="tok-identifier">flow</span><span class="tok-operator">.</span><span class="tok-identifier">add_demand</span><span class="tok-punctuation">(</span>
-  <span class="tok-number">1</span><span class="tok-punctuation">,</span>
-  <span class="tok-number">2</span><span class="tok-punctuation">,</span>
-<span class="tok-punctuation">)</span>
-
-<span class="tok-identifier">flow</span><span class="tok-operator">.</span><span class="tok-identifier">add_edge</span><span class="tok-punctuation">(</span>
-  <span class="tok-number">0</span><span class="tok-punctuation">,</span>
-  <span class="tok-number">1</span><span class="tok-punctuation">,</span>
-  <span class="tok-number">2</span><span class="tok-punctuation">,</span>
-  <span class="tok-number">5</span><span class="tok-punctuation">,</span>
-  <span class="tok-number">3</span><span class="tok-punctuation">,</span>
-<span class="tok-punctuation">)</span>
-
-<span class="tok-keyword">let</span> <span class="tok-identifier">answer</span> <span class="tok-operator">=</span>
-  <span class="tok-identifier">flow</span><span class="tok-operator">.</span><span class="tok-identifier">solve</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
-
-<span class="tok-identifier">doAssert</span> <span class="tok-identifier">answer</span> <span class="tok-operator">==</span>
-  <span class="tok-punctuation">(</span><span class="tok-identifier">true</span><span class="tok-punctuation">,</span> <span class="tok-number">6</span><span class="tok-punctuation">)</span>
-
-<span class="tok-identifier">doAssert</span> <span class="tok-identifier">flow</span><span class="tok-operator">.</span><span class="tok-identifier">f</span> <span class="tok-operator">==</span>
-  <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">2</span><span class="tok-punctuation">]</span>
-</code></pre>
-<h2 id="api">関連API</h2>
+<p>The authoritative general feasibility result is <code>solve()[0]</code>.</p>
+<h2 id="example">Example</h2>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">graph</span><span class="tok-operator">/</span><span class="tok-identifier">bflow</span></span><span class="code-line"></span><span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">flow</span> <span class="tok-operator">=</span></span><span class="code-line">  <span class="tok-identifier">initBFlow</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">flow</span><span class="tok-operator">.</span><span class="tok-identifier">add_supply</span><span class="tok-punctuation">(</span></span><span class="code-line">  <span class="tok-number">0</span><span class="tok-punctuation">,</span></span><span class="code-line">  <span class="tok-number">2</span><span class="tok-punctuation">,</span></span><span class="code-line"><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">flow</span><span class="tok-operator">.</span><span class="tok-identifier">add_demand</span><span class="tok-punctuation">(</span></span><span class="code-line">  <span class="tok-number">1</span><span class="tok-punctuation">,</span></span><span class="code-line">  <span class="tok-number">2</span><span class="tok-punctuation">,</span></span><span class="code-line"><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">flow</span><span class="tok-operator">.</span><span class="tok-identifier">add_edge</span><span class="tok-punctuation">(</span></span><span class="code-line">  <span class="tok-number">0</span><span class="tok-punctuation">,</span></span><span class="code-line">  <span class="tok-number">1</span><span class="tok-punctuation">,</span></span><span class="code-line">  <span class="tok-number">2</span><span class="tok-punctuation">,</span></span><span class="code-line">  <span class="tok-number">5</span><span class="tok-punctuation">,</span></span><span class="code-line">  <span class="tok-number">3</span><span class="tok-punctuation">,</span></span><span class="code-line"><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">answer</span> <span class="tok-operator">=</span></span><span class="code-line">  <span class="tok-identifier">flow</span><span class="tok-operator">.</span><span class="tok-identifier">solve</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">answer</span> <span class="tok-operator">==</span></span><span class="code-line">  <span class="tok-punctuation">(</span><span class="tok-identifier">true</span><span class="tok-punctuation">,</span> <span class="tok-number">6</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">flow</span><span class="tok-operator">.</span><span class="tok-identifier">f</span> <span class="tok-operator">==</span></span><span class="code-line">  <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">2</span><span class="tok-punctuation">]</span></span></code></pre>
+<h2 id="related-apis">Related APIs</h2>
 <ul>
-<li><code>MinCostFlow</code>: 通常の始点・終点・流量指定型の最小費用流</li>
-<li><code>MinCostFlowLowerBound</code>: 下限制約付き最小費用流</li>
-<li><code>MFGraph</code>: 最大流</li>
+<li><code>MinCostFlow</code>: source/sink/flow-oriented minimum-cost flow</li>
+<li><code>MinCostFlowLowerBound</code>: minimum-cost flow with lower bounds</li>
+<li><code>MFGraph</code>: maximum flow</li>
 </ul>
-<p>このmoduleは下限・上限、頂点balance、費用を1つのB-flow問題として扱います。
-内部では最大流と費用スケーリング型最小費用流を組み合わせます。</p>
-<h2 id="_6">計算量と内部実装</h2>
+<p>This module combines lower and upper bounds, vertex balances, and costs in one
+B-flow formulation. Internally, it uses maximum flow and a cost-scaling
+minimum-cost-flow solver.</p>
+<h2 id="complexity-and-implementation">Complexity and implementation</h2>
 <ul>
 <li><code>initBFlow</code>: <code>O(vertexCount)</code></li>
-<li><code>add_supply</code>, <code>add_demand</code>, <code>add_edge</code>: 償却<code>O(1)</code></li>
-<li><code>solve</code>: 内部の最大流および費用スケーリング最小費用流の計算量に従う</li>
-<li>メモリ: <code>O(vertexCount + edgeCount)</code>に内部solverの作業領域を加えた量</li>
+<li><code>add_supply</code>, <code>add_demand</code>, <code>add_edge</code>: amortized <code>O(1)</code></li>
+<li><code>solve</code>: follows the complexity of the internal maximum-flow and
+  cost-scaling minimum-cost-flow implementations</li>
+<li>Memory: <code>O(vertexCount + edgeCount)</code> plus the workspaces of the internal
+  solvers</li>
 </ul>
-<p><code>solve</code>の詳細な上界は、内部で利用する<code>MFGraph</code>と<code>MCFCostScaling</code>に依存します。</p>
+<p>The detailed bound for <code>solve</code> depends on the internal <code>MFGraph</code> and
+<code>MCFCostScaling</code> implementations.</p>
   </main>
 </body>
 </html>
