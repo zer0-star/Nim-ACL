@@ -673,6 +673,14 @@ fi
 rm -rf "$KD_MINKOWSKI_TMP"
 # <<< KD_TREE_AND_MINKOWSKI_SUM_TEST <<<
 
+# >>> DOCS_HOMEPAGE_AUDIT >>>
+if ! python3 tools/audit_docs_homepage.py --html
+then
+  STATUS="NG"
+  STEP="documentation homepage audit"
+fi
+# <<< DOCS_HOMEPAGE_AUDIT <<<
+
 STEP="final clean"
   if [ -n "$(git status --porcelain)" ]; then
     git status --short

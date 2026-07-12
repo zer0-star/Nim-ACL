@@ -1,6 +1,65 @@
 # AC(AtCoder) Library Document
 
 
+<!-- NIM_ACL_HOME_NAV_START -->
+
+## ライブラリマップ
+
+[English documentation](../document_en/index.html)
+
+Nim-ACLは、AtCoder Library互換APIに加えて、競技プログラミング向けの
+追加アルゴリズム、データ構造、日本語・英語ドキュメントを提供します。
+
+### まず使う標準API
+
+| 用途 | ドキュメント | 主なAPI |
+|---|---|---|
+| 区間積 | [Segment Tree](./segtree.html) | `SegTree`, `prod`, `set` |
+| 遅延伝播 | [Lazy Segment Tree](./lazysegtree.html) | `LazySegTree`, `apply`, `prod` |
+| 累積和 | [Fenwick Tree](./fenwicktree.html) | `FenwickTree`, `add`, `sum` |
+| 畳み込み | [Convolution](./convolution.html) | `convolution` |
+| 最大流 | [Max Flow](./maxflow.html) | `MFGraph`, `flow` |
+| 最小費用流 | [Min-Cost Flow](./mincostflow.html) | `MCFGraph`, `flow`, `slope` |
+| 素集合データ構造 | [DSU](./dsu.html) | `DSU`, `merge`, `leader` |
+| 強連結成分 | [SCC](./scc.html) | `SCCGraph`, `scc` |
+| 文字列 | [String Algorithms](./string.html) | suffix array, LCP, Z algorithm |
+| mod整数 | [ModInt](./modint.html) | static／dynamic modint |
+
+### 最近追加・整備されたAPI
+
+| 分野 | API | 内容 |
+|---|---|---|
+| 多次元探索 | [KD-tree](./extra/structure/kd_tree.html) | 最近傍探索、半開直交範囲探索 |
+| 計算幾何 | [Minkowski Sum](./extra/geometry/minkowski_sum.html) | 任意点集合の凸包Minkowski和 |
+| 集合冪級数 | [Set Power Series Exp](./extra/math/exp_of_set_power_series.html) / [Log](./extra/math/log_of_set_power_series.html) | 集合冪級数の指数・対数 |
+| フロー | [Minimum-Cost B-Flow](./extra/graph/bflow.html) | 下限・上限、供給・需要、費用 |
+| 永続データ構造 | [Persistent Segment Tree](./extra/structure/persistent_segment_tree.html) | version付き更新・区間積 |
+| 列データ構造 | [Implicit Treap](./extra/structure/implicit_treap.html) | split／merge、列操作 |
+| Trie | [Binary Trie](./extra/structure/binary_trie.html) | XOR最小・最大、multiset操作 |
+| FPS | [Formal Power Series facade](./extra/math/fps.html) | FPS APIへの統一的な入口 |
+
+### 分野別追加ライブラリ
+
+| 分野 | ドキュメント |
+|---|---|
+| DP最適化 | [Monotone Minima](./extra/dp/monotone_minima.html) · [Divide and Conquer Optimization](./extra/dp/divide_and_conquer_optimization.html) · [SMAWK](./extra/dp/smawk.html) |
+| 数学・多項式 | [Berlekamp–Massey](./extra/math/berlekamp_massey.html) · [Polynomial Interpolation](./extra/math/polynomial_interpolation.html) · [Subset Convolution](./extra/math/subset_convolution.html) · [FPS](./extra/math/fps.html) |
+| データ構造 | [Persistent Segment Tree](./extra/structure/persistent_segment_tree.html) · [Implicit Treap](./extra/structure/implicit_treap.html) · [KD-tree](./extra/structure/kd_tree.html) · [Binary Trie](./extra/structure/binary_trie.html) |
+| グラフ | [Bipartite Edge Coloring](./extra/graph/bipartite_edge_coloring.html) · [Minimum-Cost B-Flow](./extra/graph/bflow.html) |
+| 計算幾何 | [Minkowski Sum](./extra/geometry/minkowski_sum.html) |
+
+### ガイド
+
+- [AtCoderレベル別ガイド](./guide/atcoder_level_guide.html)
+- [AtCoderアルゴリズム講座カバレッジ](./guide/atcoder_algorithm_lectures_coverage.html)
+
+### ドキュメントの構成
+
+追加ライブラリのページは原則として、一般形、引数・型、前提条件、
+返り値・副作用、具体例、関連API、計算量・内部実装の順に記載しています。
+
+<!-- NIM_ACL_HOME_NAV_END -->
+
 ## ガイド
 
 - [AtCoder 色別ライブラリガイド](./guide/atcoder_level_guide.html)

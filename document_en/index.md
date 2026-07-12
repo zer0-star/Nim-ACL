@@ -1,6 +1,67 @@
 # AC(AtCoder) Library Document
 
 
+<!-- NIM_ACL_HOME_NAV_START -->
+
+## Library map
+
+[日本語ドキュメント](../document_ja/index.html)
+
+Nim-ACL provides AtCoder Library-compatible APIs together with additional
+competitive-programming algorithms, data structures, and Japanese/English
+documentation.
+
+### Start with the standard APIs
+
+| Purpose | Documentation | Main APIs |
+|---|---|---|
+| Range products | [Segment Tree](./segtree.html) | `SegTree`, `prod`, `set` |
+| Lazy propagation | [Lazy Segment Tree](./lazysegtree.html) | `LazySegTree`, `apply`, `prod` |
+| Prefix sums | [Fenwick Tree](./fenwicktree.html) | `FenwickTree`, `add`, `sum` |
+| Convolution | [Convolution](./convolution.html) | `convolution` |
+| Maximum flow | [Max Flow](./maxflow.html) | `MFGraph`, `flow` |
+| Minimum-cost flow | [Min-Cost Flow](./mincostflow.html) | `MCFGraph`, `flow`, `slope` |
+| Disjoint sets | [DSU](./dsu.html) | `DSU`, `merge`, `leader` |
+| Strongly connected components | [SCC](./scc.html) | `SCCGraph`, `scc` |
+| Strings | [String Algorithms](./string.html) | suffix array, LCP, Z algorithm |
+| Modular arithmetic | [ModInt](./modint.html) | static and dynamic modint |
+
+### Recently added or substantially improved
+
+| Area | API | Purpose |
+|---|---|---|
+| Multidimensional search | [KD-tree](./extra/structure/kd_tree.html) | nearest neighbor and half-open orthogonal ranges |
+| Computational geometry | [Minkowski Sum](./extra/geometry/minkowski_sum.html) | Minkowski sum of arbitrary point-set hulls |
+| Set power series | [Set Power Series Exp](./extra/math/exp_of_set_power_series.html) / [Log](./extra/math/log_of_set_power_series.html) | exponential and logarithm |
+| Flow | [Minimum-Cost B-Flow](./extra/graph/bflow.html) | lower/upper bounds, supplies, demands, and costs |
+| Persistent structures | [Persistent Segment Tree](./extra/structure/persistent_segment_tree.html) | versioned updates and range products |
+| Sequence structures | [Implicit Treap](./extra/structure/implicit_treap.html) | split/merge and sequence operations |
+| Trie | [Binary Trie](./extra/structure/binary_trie.html) | XOR minimum/maximum and multiset operations |
+| FPS | [Formal Power Series facade](./extra/math/fps.html) | a unified entry point for FPS APIs |
+
+### Additional libraries by category
+
+| Category | Documentation |
+|---|---|
+| DP optimization | [Monotone Minima](./extra/dp/monotone_minima.html) · [Divide and Conquer Optimization](./extra/dp/divide_and_conquer_optimization.html) · [SMAWK](./extra/dp/smawk.html) |
+| Mathematics and polynomials | [Berlekamp–Massey](./extra/math/berlekamp_massey.html) · [Polynomial Interpolation](./extra/math/polynomial_interpolation.html) · [Subset Convolution](./extra/math/subset_convolution.html) · [FPS](./extra/math/fps.html) |
+| Data structures | [Persistent Segment Tree](./extra/structure/persistent_segment_tree.html) · [Implicit Treap](./extra/structure/implicit_treap.html) · [KD-tree](./extra/structure/kd_tree.html) · [Binary Trie](./extra/structure/binary_trie.html) |
+| Graphs | [Bipartite Edge Coloring](./extra/graph/bipartite_edge_coloring.html) · [Minimum-Cost B-Flow](./extra/graph/bflow.html) |
+| Computational geometry | [Minkowski Sum](./extra/geometry/minkowski_sum.html) |
+
+### Guides
+
+- [AtCoder level guide](./guide/atcoder_level_guide.html)
+- [AtCoder algorithm-lecture coverage](./guide/atcoder_algorithm_lectures_coverage.html)
+
+### Documentation structure
+
+Additional-library pages generally follow this order: general form, parameters
+and types, preconditions, return values and side effects, example, related
+APIs, and complexity and implementation.
+
+<!-- NIM_ACL_HOME_NAV_END -->
+
 ## Guides
 
 - [AtCoder level-based library guide](./guide/atcoder_level_guide.html)
