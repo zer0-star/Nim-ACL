@@ -481,6 +481,53 @@ fi
 rm -rf "$IMPLICIT_TREAP_TMP"
 # <<< IMPLICIT_TREAP_TEST <<<
 
+# >>> LOG_OF_SET_POWER_SERIES_TEST >>>
+LOG_OF_SET_POWER_SERIES_TMP="/tmp/nacl_log_of_set_power_series_quick_$$"
+
+rm -rf "$LOG_OF_SET_POWER_SERIES_TMP"
+mkdir -p "$LOG_OF_SET_POWER_SERIES_TMP"
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$LOG_OF_SET_POWER_SERIES_TMP/nimcache-main" \
+  --out:"$LOG_OF_SET_POWER_SERIES_TMP/main-test" \
+  tests/test_extra_log_of_set_power_series.nim
+then
+  STATUS="NG"
+  STEP="Log of Set Power Series test compile"
+
+elif ! "$LOG_OF_SET_POWER_SERIES_TMP/main-test"
+then
+  STATUS="NG"
+  STEP="Log of Set Power Series test run"
+fi
+
+if ! nim cpp \
+  -d:release \
+  --path:src \
+  --path:tests \
+  --hints:off \
+  --verbosity:0 \
+  --nimcache:"$LOG_OF_SET_POWER_SERIES_TMP/nimcache-cross" \
+  --out:"$LOG_OF_SET_POWER_SERIES_TMP/cross-test" \
+  tests/test_extra_log_of_set_power_series_cross_module.nim
+then
+  STATUS="NG"
+  STEP="Log of Set Power Series cross compile"
+
+elif ! "$LOG_OF_SET_POWER_SERIES_TMP/cross-test"
+then
+  STATUS="NG"
+  STEP="Log of Set Power Series cross run"
+fi
+
+rm -rf "$LOG_OF_SET_POWER_SERIES_TMP"
+# <<< LOG_OF_SET_POWER_SERIES_TEST <<<
+
 STEP="final clean"
   if [ -n "$(git status --porcelain)" ]; then
     git status --short
