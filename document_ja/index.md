@@ -295,7 +295,8 @@ Nim-ACLはAtCoder Library互換APIに加えて、
 
 | 用途 | ドキュメント | import方法 | 主なAPI |
 |---|---|---|---|
-| このページは自動生成された下書きです。 | [algorithmutils](./extra/other/algorithmutils.html) | `import atcoder/extra/other/algorithmutils` | `permutation, combination, copy, reverse, nth_element` |
+| 旧iterator名、nth_element、集合utilityを提供する互換moduleです。新規列挙コードではItertoolsを推奨します。 | [Algorithm utilities](./extra/other/algorithmutils.html) | `import atcoder/extra/other/algorithmutils` | `permutation, combination, nth_element, setUnion` |
+| permutation・combination・直積を遅延列挙し、Cartesian power構文も提供します。 | [Itertools](./extra/other/itertools.html) | `import atcoder/extra/other/itertools` | `permutations, combinations, product, cartesianProduct, cartesianPower, ^` |
 | このページは自動生成された下書きです。 | [assignment_operator](./extra/other/assignment_operator.html) | `import atcoder/extra/other/assignment_operator` | `generateAssignmentOperator` |
 | このページは自動生成された下書きです。 | [binary_search](./extra/other/binary_search.html) | `import atcoder/extra/other/binary_search` | `minLeft, maxRight` |
 | このページは自動生成された下書きです。 | [binary_search_float](./extra/other/binary_search_float.html) | `import atcoder/extra/other/binary_search_float` | `minLeft, maxRight` |

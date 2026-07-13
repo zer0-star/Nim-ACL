@@ -853,6 +853,50 @@ done
 
 # <<< RANGE_SLICE_CONTRACT_REGRESSION_V2_END >>>
 
+
+# <<< ITERTOOLS_CONTRACT_REGRESSION_V1 >>>
+
+STEP="Canonical Itertools and AlgorithmUtils regression"
+
+python3 tools/audit_itertools_contract.py \
+  >>"$LOG" 2>&1
+
+for itertools_test in \
+  tests/test_itertools.nim \
+  tests/test_itertools_coexistence.nim \
+  tests/test_algorithmutils.nim \
+  tests/test_algorithmutils_importer.nim \
+  tests/test_itertools_header.nim
+do
+  itertools_name="$(
+    basename "$itertools_test" .nim
+  )"
+
+  for itertools_mm in refc orc
+  do
+    itertools_output="/tmp/nacl_${itertools_name}_${itertools_mm}_$$"
+    itertools_cache="/tmp/nacl_${itertools_name}_${itertools_mm}_cache_$$"
+
+    nim cpp \
+      -r \
+      --hints:off \
+      --verbosity:0 \
+      --path:src \
+      -d:release \
+      --mm:"$itertools_mm" \
+      --nimcache:"$itertools_cache" \
+      -o:"$itertools_output" \
+      "$itertools_test" \
+      >>"$LOG" 2>&1
+
+    rm -rf \
+      "$itertools_output" \
+      "$itertools_cache"
+  done
+done
+
+# <<< ITERTOOLS_CONTRACT_REGRESSION_V1_END >>>
+
 STEP="cleanup compiler runtime after final Nim tests"
 rm -rf .nim_runtime nimcache
 

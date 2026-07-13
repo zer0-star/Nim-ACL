@@ -1,24 +1,15 @@
 when not declared ATCODER_ALGORITHM_UTILS_HPP:
   const ATCODER_ALGORITHM_UTILS_HPP* = 1
   import std/algorithm
+  import atcoder/extra/other/itertools as itertools
+
   iterator permutation*[T](v:seq[T]):seq[T] =
-    let n = v.len
-    var a = (0..<n).toSeq
-    while true:
-      var result = newSeq[int]()
-      for i in 0..<n: result.add v[a[i]]
-      yield result
-      if not a.nextPermutation(): break
-  
+    for value in itertools.permutations(v):
+      yield value
+
   iterator combination*[T](v:seq[T], r:int):seq[T] =
-    let n = v.len
-    var a = 1.repeat(r) & 0.repeat(n - r)
-    while true:
-      var result = newSeq[int]()
-      for i in 0..<n:
-        if a[i] == 1: result.add(v[i])
-      yield result
-      if not a.prevPermutation(): break
+    for value in itertools.combinations(v, r):
+      yield value
 
   proc copy*[T](a:seq[T], p:Slice[int], b:var seq[T], i = 0) =
     for j in p:
@@ -39,7 +30,7 @@ when not declared ATCODER_ALGORITHM_UTILS_HPP:
 
   # https://cpprefjp.github.io/reference/algorithm/nth_element.html
 
-  proc nth_element*[T](a:var openArray[T], first, nth, last: int, comp:proc(a, b:T):bool = (proc(a, b:T):bool = a < b)) =
+  proc nth_element*[T](a:var openArray[T], first, nth, last: int, comp:proc(a, b:T):bool) =
     proc insertion_sort(a:var openArray[T], first, last:int) =
       for i in first ..< last:
         for j in i + 1 ..< last:
@@ -67,8 +58,18 @@ when not declared ATCODER_ALGORITHM_UTILS_HPP:
         last = cut
     a.insertion_sort(first, last)
 
-  proc nth_element*[T](a:var openArray[T], nth: int, comp:proc(a, b:T):bool = (proc(a, b:T):bool = a < b)) =
+  proc nth_element*[T](a:var openArray[T], first, nth, last: int) =
+    proc defaultLess(a, b:T):bool =
+      a < b
+    nth_element(a, first, nth, last, defaultLess)
+
+  proc nth_element*[T](a:var openArray[T], nth: int, comp:proc(a, b:T):bool) =
     nth_element(a, 0, nth, a.len, comp)
+
+  proc nth_element*[T](a:var openArray[T], nth: int) =
+    proc defaultLess(a, b:T):bool =
+      a < b
+    nth_element(a, 0, nth, a.len, defaultLess)
   
   # https://cpprefjp.github.io/reference/algorithm/set_union.html
   proc setUnion*[T](u, v: seq[T]):seq[T] =
