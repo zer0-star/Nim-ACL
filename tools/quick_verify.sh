@@ -106,7 +106,7 @@ STEP=init
   for t in "${tests[@]}"; do
     rm -f "${t%.nim}"
   done
-  rm -rf .nim_runtime nimcache
+  rm -rf nimcache
 
   STEP="generate docs"
   if [ -x .venv-docs/bin/python ]; then
@@ -142,7 +142,7 @@ python3 tools/postprocess_document_html.py
   fi
 
   STEP="cleanup generated files after docs"
-  rm -rf .nim_runtime nimcache
+  rm -rf nimcache
 
   # >>> BERLEKAMP_MASSEY_AUDIT >>>
 if ! python3 tools/audit_berlekamp_massey.py
@@ -680,6 +680,9 @@ then
   STEP="documentation homepage audit"
 fi
 # <<< DOCS_HOMEPAGE_AUDIT <<<
+
+STEP="cleanup compiler runtime after final Nim tests"
+rm -rf .nim_runtime nimcache
 
 STEP="final clean"
   if [ -n "$(git status --porcelain)" ]; then

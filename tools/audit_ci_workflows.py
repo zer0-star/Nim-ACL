@@ -80,3 +80,32 @@ require(
 )
 
 print("CI_WORKFLOW_AUDIT_OK")
+
+
+# NIM_ACL_NIM_RUNTIME_LIFETIME_AUDIT_V1
+QUICK_VERIFY_PATH = ROOT / "tools/quick_verify.sh"
+quick_verify = QUICK_VERIFY_PATH.read_text(encoding="utf-8")
+runtime_cleanup = "rm -rf .nim_runtime nimcache"
+pst_end_marker = "# <<< PST_VERSION_FIRST_CROSS_TEST <<<"
+
+require(
+    quick_verify.count(runtime_cleanup) == 1,
+    (
+        "quick_verify must remove .nim_runtime exactly once, "
+        "after all Nim-based checks"
+    ),
+)
+require(
+    pst_end_marker in quick_verify,
+    "quick_verify must retain the PersistentSegTree audit marker",
+)
+require(
+    quick_verify.rfind(runtime_cleanup)
+    > quick_verify.rfind(pst_end_marker),
+    (
+        "quick_verify must keep .nim_runtime alive through "
+        "the final Nim-based PersistentSegTree checks"
+    ),
+)
+
+print("NIM_RUNTIME_LIFETIME_AUDIT_OK")
