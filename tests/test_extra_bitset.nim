@@ -4,7 +4,7 @@ discard """
 
 import std/strutils
 
-import atcoder/extra/other/bitset
+import atcoder/extra/structure/dense_bitset
 
 
 proc nextRand(state: var uint64): uint64 =

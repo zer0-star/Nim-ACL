@@ -1,4 +1,4 @@
-# BitSet
+# Dense BitSet
 
 ## 概要
 
@@ -12,11 +12,11 @@ shift、set bit数の計算、最初・最後のset bitの探索、
 ## import
 
 ```nim
-import atcoder/extra/other/bitset
+import atcoder/extra/structure/dense_bitset
 ```
 
-現在のpathは既存コードとの互換性のため維持されています。
-構造を表すcanonical pathは今後compatibility shimとともに追加予定です。
+このmoduleが推奨import pathです。
+旧pathは互換shimとしてwarningなしで維持されています。
 
 ## 型
 
@@ -161,7 +161,7 @@ doAssert a[4] == 0
 ## 使用例
 
 ```nim
-import atcoder/extra/other/bitset
+import atcoder/extra/structure/dense_bitset
 
 var bits = initDynamicBitSet(130)
 
@@ -181,7 +181,7 @@ doAssert shifted[65] == 1
 
 ## 関連
 
-- `atcoder/extra/other/bitutils`
+- `atcoder/extra/bit/bitmask`
   - 整数1個をbit maskとして扱うutility
 - `std/bitops`
   - 整数型に対する標準bit操作
@@ -203,3 +203,29 @@ doAssert shifted[65] == 1
 - 数値比較
 - copy semantics
 - 素朴配列とのrandom differential
+
+
+## 説明的なconstructor alias
+
+全bitが1の値には、次の名前も使用できます。
+
+```nim
+let fixed = initFullBitSet[128]()
+let dynamic = initFullDynamicBitSet(128)
+```
+
+既存の`initBitSet1`と`initDynamicBitSet1`も引き続き使用できます。
+
+## 旧import pathとの互換性
+
+次の旧pathは互換shimとして維持されています。
+
+```nim
+import atcoder/extra/other/bitset
+```
+
+新しいコードでは次を推奨します。
+
+```nim
+import atcoder/extra/structure/dense_bitset
+```

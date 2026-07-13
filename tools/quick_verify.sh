@@ -734,6 +734,44 @@ do
   rm -rf "$output" "$cache"
 done
 
+
+# <<< BIT_UTILITY_CANONICAL_AND_COMPATIBILITY_IMPORTS_V1 >>>
+
+python3 \
+  tools/audit_document_catalog_link_normalization.py \
+  >>"$LOG" 2>&1
+
+for bit_api_test in \
+  tests/test_bit_utility_canonical_api.nim \
+  tests/test_bit_utility_legacy_compatibility.nim
+do
+  test_name="$(
+    basename "$bit_api_test" .nim
+  )"
+
+  for mm in refc orc
+  do
+    output="/tmp/nacl_${test_name}_${mm}_$$"
+    cache="/tmp/nacl_${test_name}_${mm}_cache_$$"
+
+    nim cpp \
+      -r \
+      --hints:off \
+      --verbosity:0 \
+      --path:src \
+      -d:release \
+      --mm:"$mm" \
+      --nimcache:"$cache" \
+      -o:"$output" \
+      "$bit_api_test" \
+      >>"$LOG" 2>&1
+
+    rm -rf "$output" "$cache"
+  done
+done
+
+# <<< BIT_UTILITY_CANONICAL_AND_COMPATIBILITY_IMPORTS_V1_END >>>
+
 # <<< BITSET_CONTRACT_REGRESSION_V1_END >>>
 
 STEP="cleanup compiler runtime after final Nim tests"

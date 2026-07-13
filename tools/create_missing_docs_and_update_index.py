@@ -56,6 +56,8 @@ SKIP_FILE_NAMES = {
     "combined.nim",
 }
 
+COMPATIBILITY_SHIM_MARKER = "NIM_ACL_COMPATIBILITY_SHIM"
+
 
 PUBLIC_DECL_RE = re.compile(
     r"^\s*(proc|func|template|macro|iterator|converter|type|const|let|var)\s+"
@@ -65,6 +67,14 @@ PUBLIC_DECL_RE = re.compile(
 def should_skip_src(path: Path, include_legacy: bool) -> bool:
     name = path.name
     stem = path.stem
+
+    source_head = path.read_text(
+        encoding="utf-8",
+        errors="replace",
+    )[:4096]
+
+    if COMPATIBILITY_SHIM_MARKER in source_head:
+        return True
 
     if name in SKIP_FILE_NAMES:
         return True
@@ -266,6 +276,7 @@ def existing_links(index_text: str) -> set[str]:
 
     for link in links:
         link = link.split("#", 1)[0].strip()
+        link = link.removeprefix("./")
         normalized.add(link)
 
         if link.endswith(".html"):
@@ -359,14 +370,16 @@ def update_index(apply: bool) -> None:
         raise FileNotFoundError(INDEX)
 
     text = INDEX.read_text(encoding="utf-8")
-    known = existing_links(text)
-    rows = collect_all_docs()
-    block = render_index_block(rows, known)
 
     pattern = re.compile(
         re.escape(BEGIN) + r".*?" + re.escape(END) + r"\n?",
         flags=re.S,
     )
+
+    manual_text = pattern.sub("", text)
+    known = existing_links(manual_text)
+    rows = collect_all_docs()
+    block = render_index_block(rows, known)
 
     if pattern.search(text):
         new_text = pattern.sub(block, text)

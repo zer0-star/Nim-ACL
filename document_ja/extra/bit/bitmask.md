@@ -1,4 +1,4 @@
-# BitUtils
+# Bitmask
 
 ## 概要
 
@@ -12,7 +12,7 @@ bit位置列との相互変換、bit access、bit範囲の抽出、
 ## import
 
 ```nim
-import atcoder/extra/other/bitutils
+import atcoder/extra/bit/bitmask
 ```
 
 ## bit access
@@ -136,7 +136,7 @@ toBitStr(mask, width)
 ## 使用例
 
 ```nim
-import atcoder/extra/other/bitutils
+import atcoder/extra/bit/bitmask
 
 let mask = seqToBits[uint64](0, 2, 5, 63)
 
@@ -149,7 +149,7 @@ for submask in subsets(mask):
 
 ## 関連
 
-- `atcoder/extra/other/bitset`
+- `atcoder/extra/structure/dense_bitset`
   - 複数wordにまたがる固定長・可変長bit列
 - `std/bitops`
   - 整数型に対する標準bit操作
@@ -165,3 +165,41 @@ for submask in subsets(mask):
 - `uint64` submask列挙
 - refc / ORC
 - Nim 2.2.10 / AtCoder Nim 2.2.4
+
+
+## 説明的なAPI名
+
+```nim
+let mask =
+  maskFromBitIndices[uint64](0, 2, 5)
+
+doAssert bitIndices(mask) == @[0, 2, 5]
+doAssert lowBitsMask[uint64](5) == 0b11111'u64
+
+for submask in submasks(mask):
+  discard submask
+
+for subsetMask in subsetMasks(@[1, 3, 7], uint64):
+  discard subsetMask
+```
+
+| 説明的な名前 | 既存名 |
+|---|---|
+| `maskFromBitIndices` | `seqToBits` |
+| `bitIndices` | `bitsToSeq` |
+| `lowBitsMask` | `allSetBits` |
+| `toBitString` | `toBitStr` |
+| `submasks` | `subsets(mask)` |
+| `subsetMasks` | `subsets(positions, B)` |
+
+## 旧import pathとの互換性
+
+```nim
+import atcoder/extra/other/bitutils
+```
+
+新しいコードでは次を推奨します。
+
+```nim
+import atcoder/extra/bit/bitmask
+```

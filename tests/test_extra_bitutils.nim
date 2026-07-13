@@ -4,7 +4,7 @@ discard """
 
 import std/algorithm
 
-import atcoder/extra/other/bitutils
+import atcoder/extra/bit/bitmask
 
 
 proc oracleMask[B: SomeInteger](n: int): B =
