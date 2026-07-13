@@ -72,17 +72,18 @@
   <main>
 <h1 id="acatcoder-library-document">AC(AtCoder) Library Document</h1>
 <!-- NIM_ACL_HOME_NAV_START -->
-
 <h2 id="_1">ライブラリマップ</h2>
 <p><a href="../document_en/index.html">English documentation</a></p>
-<p>Nim-ACLは、AtCoder Library互換APIに加えて、競技プログラミング向けの
-追加アルゴリズム、データ構造、日本語・英語ドキュメントを提供します。</p>
+<p>Nim-ACLはAtCoder Library互換APIに加えて、
+競技プログラミング向けの追加アルゴリズムと
+データ構造を提供します。</p>
 <h3 id="api">まず使う標準API</h3>
 <table>
 <thead>
 <tr>
 <th>用途</th>
 <th>ドキュメント</th>
+<th>import方法</th>
 <th>主なAPI</th>
 </tr>
 </thead>
@@ -90,51 +91,67 @@
 <tr>
 <td>区間積</td>
 <td><a href="./segtree.html">Segment Tree</a></td>
+<td><code>import atcoder/segtree</code></td>
 <td><code>SegTree</code>, <code>prod</code>, <code>set</code></td>
 </tr>
 <tr>
 <td>遅延伝播</td>
 <td><a href="./lazysegtree.html">Lazy Segment Tree</a></td>
+<td><code>import atcoder/lazysegtree</code></td>
 <td><code>LazySegTree</code>, <code>apply</code>, <code>prod</code></td>
 </tr>
 <tr>
 <td>累積和</td>
 <td><a href="./fenwicktree.html">Fenwick Tree</a></td>
+<td><code>import atcoder/fenwicktree</code></td>
 <td><code>FenwickTree</code>, <code>add</code>, <code>sum</code></td>
 </tr>
 <tr>
 <td>畳み込み</td>
 <td><a href="./convolution.html">Convolution</a></td>
+<td><code>import atcoder/convolution</code></td>
 <td><code>convolution</code></td>
 </tr>
 <tr>
 <td>最大流</td>
 <td><a href="./maxflow.html">Max Flow</a></td>
+<td><code>import atcoder/maxflow</code></td>
 <td><code>MFGraph</code>, <code>flow</code></td>
 </tr>
 <tr>
 <td>最小費用流</td>
 <td><a href="./mincostflow.html">Min-Cost Flow</a></td>
+<td><code>import atcoder/mincostflow</code></td>
 <td><code>MCFGraph</code>, <code>flow</code>, <code>slope</code></td>
 </tr>
 <tr>
 <td>素集合データ構造</td>
 <td><a href="./dsu.html">DSU</a></td>
+<td><code>import atcoder/dsu</code></td>
 <td><code>DSU</code>, <code>merge</code>, <code>leader</code></td>
 </tr>
 <tr>
 <td>強連結成分</td>
 <td><a href="./scc.html">SCC</a></td>
+<td><code>import atcoder/scc</code></td>
 <td><code>SCCGraph</code>, <code>scc</code></td>
+</tr>
+<tr>
+<td>2-SAT</td>
+<td><a href="./twosat.html">TwoSAT</a></td>
+<td><code>import atcoder/twosat</code></td>
+<td><code>add_clause</code>, <code>satisfiable</code></td>
 </tr>
 <tr>
 <td>文字列</td>
 <td><a href="./string.html">String Algorithms</a></td>
-<td>suffix array, LCP, Z algorithm</td>
+<td><code>import atcoder/string</code></td>
+<td><code>suffix_array</code>, <code>lcp_array</code>, <code>z_algorithm</code></td>
 </tr>
 <tr>
 <td>mod整数</td>
 <td><a href="./modint.html">ModInt</a></td>
+<td><code>import atcoder/modint</code></td>
 <td>static／dynamic modint</td>
 </tr>
 </tbody>
@@ -143,107 +160,1647 @@
 <table>
 <thead>
 <tr>
-<th>分野</th>
-<th>API</th>
-<th>内容</th>
+<th>用途</th>
+<th>ドキュメント</th>
+<th>import方法</th>
+<th>主なAPI</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>多次元探索</td>
 <td><a href="./extra/structure/kd_tree.html">KD-tree</a></td>
-<td>最近傍探索、半開直交範囲探索</td>
+<td><code>import atcoder/extra/structure/kd_tree</code></td>
+<td><code>initKDTree</code>, <code>nearest</code>, <code>rangeSearch</code></td>
 </tr>
 <tr>
-<td>計算幾何</td>
+<td>最小包含円</td>
+<td><a href="./extra/geometry/minimum_enclosing_circle.html">Minimum Enclosing Circle</a></td>
+<td><code>import atcoder/extra/geometry/minimum_enclosing_circle</code></td>
+<td><code>minimumEnclosingCircle</code></td>
+</tr>
+<tr>
+<td>Minkowski和</td>
 <td><a href="./extra/geometry/minkowski_sum.html">Minkowski Sum</a></td>
-<td>任意点集合の凸包Minkowski和</td>
+<td><code>import atcoder/extra/geometry/minkowski_sum</code></td>
+<td><code>minkowskiSum</code></td>
+</tr>
+<tr>
+<td>min-plus畳み込み</td>
+<td><a href="./extra/math/min_plus_convolution.html">Min-Plus Convolution</a></td>
+<td><code>import atcoder/extra/math/min_plus_convolution</code></td>
+<td><code>minPlusConvolutionConvexArbitrary</code></td>
 </tr>
 <tr>
 <td>集合冪級数</td>
-<td><a href="./extra/math/exp_of_set_power_series.html">Set Power Series Exp</a> / <a href="./extra/math/log_of_set_power_series.html">Log</a></td>
-<td>集合冪級数の指数・対数</td>
+<td><a href="./extra/math/exp_of_set_power_series.html">Set Power Series Exp</a>／<a href="./extra/math/log_of_set_power_series.html">Log</a></td>
+<td><code>import atcoder/extra/math/exp_of_set_power_series</code></td>
+<td><code>expOfSetPowerSeries</code>, <code>logOfSetPowerSeries</code></td>
 </tr>
 <tr>
-<td>フロー</td>
+<td>最小費用B-flow</td>
 <td><a href="./extra/graph/bflow.html">Minimum-Cost B-Flow</a></td>
-<td>下限・上限、供給・需要、費用</td>
+<td><code>import atcoder/extra/graph/bflow</code></td>
+<td><code>BFlow</code>, <code>solve</code></td>
 </tr>
 <tr>
-<td>永続データ構造</td>
+<td>永続セグメント木</td>
 <td><a href="./extra/structure/persistent_segment_tree.html">Persistent Segment Tree</a></td>
-<td>version付き更新・区間積</td>
+<td><code>import atcoder/extra/structure/persistent_segment_tree</code></td>
+<td><code>initialVersion</code>, <code>set</code>, <code>prod</code></td>
 </tr>
 <tr>
-<td>列データ構造</td>
+<td>動的列</td>
 <td><a href="./extra/structure/implicit_treap.html">Implicit Treap</a></td>
-<td>split／merge、列操作</td>
+<td><code>import atcoder/extra/structure/implicit_treap</code></td>
+<td><code>insert</code>, <code>erase</code>, <code>reverse</code>, <code>prod</code></td>
 </tr>
 <tr>
-<td>Trie</td>
+<td>XOR Trie</td>
 <td><a href="./extra/structure/binary_trie.html">Binary Trie</a></td>
-<td>XOR最小・最大、multiset操作</td>
+<td><code>import atcoder/extra/structure/binary_trie</code></td>
+<td><code>insert</code>, <code>erase</code>, <code>minElement</code>, <code>maxElement</code></td>
 </tr>
 <tr>
-<td>FPS</td>
-<td><a href="./extra/math/fps.html">Formal Power Series facade</a></td>
-<td>FPS APIへの統一的な入口</td>
+<td>FPS facade</td>
+<td><a href="./extra/math/fps.html">FPS</a></td>
+<td><code>import atcoder/extra/math/fps</code></td>
+<td><code>useFPS</code>, <code>useFPSDecl</code></td>
 </tr>
 </tbody>
 </table>
 <h3 id="_2">分野別追加ライブラリ</h3>
+<p>以下の完全一覧は、すべて同じ4列で掲載しています。</p>
+<h4 id="_3">標準ライブラリ</h4>
 <table>
 <thead>
 <tr>
-<th>分野</th>
+<th>用途</th>
 <th>ドキュメント</th>
+<th>import方法</th>
+<th>主なAPI</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>DP最適化</td>
-<td><a href="./extra/dp/monotone_minima.html">Monotone Minima</a> · <a href="./extra/dp/divide_and_conquer_optimization.html">Divide and Conquer Optimization</a> · <a href="./extra/dp/smawk.html">SMAWK</a></td>
+<td>2-SATを解きます。 変数 $x0, x1, \cdots, x{N - 1}$ に関して、</td>
+<td><a href="./twosat.html">2-SAT</a></td>
+<td><code>import atcoder/twosat</code></td>
+<td><code>add_clause, satisfiable, answer</code></td>
 </tr>
 <tr>
-<td>数学・多項式</td>
-<td><a href="./extra/math/berlekamp_massey.html">Berlekamp–Massey</a> · <a href="./extra/math/polynomial_interpolation.html">Polynomial Interpolation</a> · <a href="./extra/math/subset_convolution.html">Subset Convolution</a> · <a href="./extra/math/fps.html">FPS</a></td>
+<td>畳み込みを行います。数列 $a0, a1, \cdots, a{N - 1}$ と数列 $b0, b1, \cdots, b{M - 1}$ から、長さ $N + M - 1…</td>
+<td><a href="./convolution.html">Convolution</a></td>
+<td><code>import atcoder/convolution</code></td>
+<td><code>convolution, convolution_ll</code></td>
 </tr>
 <tr>
-<td>データ構造</td>
-<td><a href="./extra/structure/persistent_segment_tree.html">Persistent Segment Tree</a> · <a href="./extra/structure/implicit_treap.html">Implicit Treap</a> · <a href="./extra/structure/kd_tree.html">KD-tree</a> · <a href="./extra/structure/binary_trie.html">Binary Trie</a></td>
+<td>無向グラフに対して、</td>
+<td><a href="./dsu.html">DSU</a></td>
+<td><code>import atcoder/dsu</code></td>
+<td><code>merge, same, leader, size, groups</code></td>
 </tr>
 <tr>
-<td>グラフ</td>
-<td><a href="./extra/graph/bipartite_edge_coloring.html">Bipartite Edge Coloring</a> · <a href="./extra/graph/bflow.html">Minimum-Cost B-Flow</a></td>
+<td>dynamiclazysegtree は、実行時に op, e, mapping, composition, id を渡して使う遅延セグメント木です。</td>
+<td><a href="./dynamic_lazysegtree.html">DynamicLazySegTree</a></td>
+<td><code>import atcoder/dynamic_lazysegtree</code></td>
+<td><code>prod, apply, all_prod</code></td>
 </tr>
 <tr>
-<td>計算幾何</td>
-<td><a href="./extra/geometry/minkowski_sum.html">Minkowski Sum</a></td>
+<td>dynamicsegtree は、実行時に op と e を渡して使うセグメント木です。</td>
+<td><a href="./dynamic_segtree.html">DynamicSegTree</a></td>
+<td><code>import atcoder/dynamic_segtree</code></td>
+<td><code>set, get, prod, all_prod</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./element_concepts.html">element_concepts</a></td>
+<td><code>import atcoder/element_concepts</code></td>
+<td><code>inv, HasInitInt, HasIntConverter, AdditiveGroupElem, MultiplicativeGroupElem</code></td>
+</tr>
+<tr>
+<td>長さ $N$ の配列に対し、</td>
+<td><a href="./fenwicktree.html">Fenwick Tree</a></td>
+<td><code>import atcoder/fenwicktree</code></td>
+<td><code>add, sum</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./header.html">header</a></td>
+<td><code>import atcoder/header</code></td>
+<td><code>scanf, getchar, nextInt, nextFloat, nextString</code></td>
+</tr>
+<tr>
+<td>モノイド $(S, \cdot: S \times S \to S, e \in S)$と、$S$ から $S$ への写像の集合 $F$ であって、以下の条件を満たすようなも…</td>
+<td><a href="./lazysegtree.html">Lazy Segtree</a></td>
+<td><code>import atcoder/lazysegtree</code></td>
+<td><code>set, get, prod, all_prod, apply</code></td>
+</tr>
+<tr>
+<td>数論的アルゴリズム詰め合わせです。</td>
+<td><a href="./math.html">Math</a></td>
+<td><code>import atcoder/math</code></td>
+<td><code>pow_mod, inv_mod, crt, floor_sum</code></td>
+</tr>
+<tr>
+<td>最大フロー問題 を解くライブラリです。</td>
+<td><a href="./maxflow.html">MaxFlow</a></td>
+<td><code>import atcoder/maxflow</code></td>
+<td><code>add_edge, flow, min_cut, change_edge</code></td>
+</tr>
+<tr>
+<td>Minimum-cost flow problemを扱うライブラリです。</td>
+<td><a href="./mincostflow.html">MinCostFlow</a></td>
+<td><code>import atcoder/mincostflow</code></td>
+<td><code>add_edge, edges</code></td>
+</tr>
+<tr>
+<td>自動でmodを取る構造体です。AC Libraryはmodintを使わなくとも全アルゴリズムが使えるように整備しているので、必ずしもこのファイルの内容を把握する必要はありません。</td>
+<td><a href="./modint.html">Modint</a></td>
+<td><code>import atcoder/modint</code></td>
+<td><code>mod, val, inv, raw</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./rangeutils.html">rangeutils</a></td>
+<td><code>import atcoder/rangeutils</code></td>
+<td><code>RangeType, IndexType, halfOpenEndpoints</code></td>
+</tr>
+<tr>
+<td>有向グラフを強連結成分分解します。</td>
+<td><a href="./scc.html">SCC</a></td>
+<td><code>import atcoder/scc</code></td>
+<td><code>add_edge, scc</code></td>
+</tr>
+<tr>
+<td>モノイド $(S, \cdot: S \times S \to S, e \in S)$、つまり</td>
+<td><a href="./segtree.html">Segtree</a></td>
+<td><code>import atcoder/segtree</code></td>
+<td><code>set, get, prod, all_prod, max_right</code></td>
+</tr>
+<tr>
+<td>文字列アルゴリズム詰め合わせです。 文字列に関する様々なアルゴリズムが入っています。</td>
+<td><a href="./string.html">String</a></td>
+<td><code>import atcoder/string</code></td>
+<td><code>suffix_array, lcp_array, z_algorithm</code></td>
 </tr>
 </tbody>
 </table>
-<h3 id="_3">ガイド</h3>
+<h4 id="extra">Extra / データ構造</h4>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>ドキュメント</th>
+<th>import方法</th>
+<th>主なAPI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/structure/binary_tree_node_utils.html">binary_tree_node_utils</a></td>
+<td><code>import atcoder/extra/structure/binary_tree_node_utils</code></td>
+<td><code>BinaryTreeNode, BinaryTree, greater_func, isLeaf, leftMost</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/structure/binary_tree_utils.html">binary_tree_utils</a></td>
+<td><code>import atcoder/extra/structure/binary_tree_utils</code></td>
+<td><code>SomeSortedTree, SomeSortedSet, SomeSortedMap, SomeSortedMultiSet, SomeSortedMultiMap</code></td>
+</tr>
+<tr>
+<td>BinaryTrie は、整数を二進表記した bit 列として Trie に入れる data structure です。</td>
+<td><a href="./extra/structure/binary_trie.html">BinaryTrie</a></td>
+<td><code>import atcoder/extra/structure/binary_trie</code></td>
+<td><code>BinaryTrieNode, initBinaryTrie, empty, add, insert</code></td>
+</tr>
+<tr>
+<td>CartesianTree は、配列の index 順序を inorder traversal として保ちながら、値について heap 条件を満たす二分木です。</td>
+<td><a href="./extra/structure/cartesian_tree.html">CartesianTree</a></td>
+<td><code>import atcoder/extra/structure/cartesian_tree</code></td>
+<td><code>CartesianTree, initCartesianTree, initMinCartesianTree, initMaxCartesianTree, empty</code></td>
+</tr>
+<tr>
+<td>ConvexHullTrickAddMonotone は、傾きが単調に追加される一次関数集合に対して、指定した x における最小値または最大値を求める data struct…</td>
+<td><a href="./extra/structure/convex_hull_trick_add_monotone.html">ConvexHullTrickAddMonotone</a></td>
+<td><code>import atcoder/extra/structure/convex_hull_trick_add_monotone</code></td>
+<td><code>ConvexHullTrickAddMonotone, initConvexHullTrickAddMonotone, empty, add, query</code></td>
+</tr>
+<tr>
+<td>DisjointSparseTable は、静的配列に対する結合的演算の区間積を O(1) で求める data structure です。</td>
+<td><a href="./extra/structure/disjoint_sparse_table.html">DisjointSparseTable</a></td>
+<td><code>import atcoder/extra/structure/disjoint_sparse_table</code></td>
+<td><code>DisjointSparseTable, initDisjointSparseTable, prod</code></td>
+</tr>
+<tr>
+<td>DualFenwickTree は、区間加算・一点取得を行う Fenwick Tree です。</td>
+<td><a href="./extra/structure/dual_fenwicktree.html">DualFenwickTree</a></td>
+<td><code>import atcoder/extra/structure/dual_fenwicktree</code></td>
+<td><code>DualFenwickTree, DualFenwickTreeType, getType, initDualFenwickTree, add</code></td>
+</tr>
+<tr>
+<td>FastSet は、整数 universe [0, n) 上の集合を階層化 bitset で管理する data structure です。</td>
+<td><a href="./extra/structure/fast_set.html">FastSet</a></td>
+<td><code>import atcoder/extra/structure/fast_set</code></td>
+<td><code>FastSet, initFastSet, empty, contains, insert</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/structure/generalized_slope_trick.html">generalized_slope_trick</a></td>
+<td><code>import atcoder/extra/structure/generalized_slope_trick</code></td>
+<td><code>split_lower_bound, merge_wuh, insert_lower_bound, GeneralizedSlopeTrick, initGeneralizedSlopeTrick</code></td>
+</tr>
+<tr>
+<td>乱択priorityを持つ暗黙Treapによって、動的な列を管理します。</td>
+<td><a href="./extra/structure/implicit_treap.html">Implicit Treap</a></td>
+<td><code>import atcoder/extra/structure/implicit_treap</code></td>
+<td><code>ImplicitTreapType, insert, erase, reverse, prod</code></td>
+</tr>
+<tr>
+<td>固定された多次元点集合に対して、最近傍点探索と直交範囲探索を行います。</td>
+<td><a href="./extra/structure/kd_tree.html">KD-tree</a></td>
+<td><code>import atcoder/extra/structure/kd_tree</code></td>
+<td><code>nearest, rangeSearch, len</code></td>
+</tr>
+<tr>
+<td>LiChaoTree は、一次関数を追加し、指定した座標での最小値を求める data structure です。</td>
+<td><a href="./extra/structure/li_chao_tree.html">LiChaoTree</a></td>
+<td><code>import atcoder/extra/structure/li_chao_tree</code></td>
+<td><code>Line, initLine, over, initLiChaoTree, query</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/structure/link_cut_tree.html">link_cut_tree</a></td>
+<td><code>import atcoder/extra/structure/link_cut_tree</code></td>
+<td><code>LinkCutTree, expose, link, cut, evert</code></td>
+</tr>
+<tr>
+<td>MexSet は、整数 multiset の mex を動的に管理します。</td>
+<td><a href="./extra/structure/mex_set.html">MexSet</a></td>
+<td><code>import atcoder/extra/structure/mex_set</code></td>
+<td><code>MexSet, initMexSet, empty, count, contains</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/structure/mo.html">mo</a></td>
+<td><code>import atcoder/extra/structure/mo</code></td>
+<td><code>Mo, initMo, insert, run</code></td>
+</tr>
+<tr>
+<td>PartiallyPersistentDSU は、過去の時刻に対して連結判定・連結成分サイズ取得ができる Union-Find です。</td>
+<td><a href="./extra/structure/partially_persistent_dsu.html">PartiallyPersistentDSU</a></td>
+<td><code>import atcoder/extra/structure/partially_persistent_dsu</code></td>
+<td><code>PartiallyPersistentDSU, initPartiallyPersistentDSU, leader, merge, same</code></td>
+</tr>
+<tr>
+<td>1個の木がすべてのノードを管理し、PersistentVersionが各時点の 根を表します。</td>
+<td><a href="./extra/structure/persistent_segment_tree.html">Persistent Segment Tree（永続セグメント木）</a></td>
+<td><code>import atcoder/extra/structure/persistent_segment_tree</code></td>
+<td><code>PersistentSegmentTreeNode, initPersistentSegmentTree, nodeCount, setValue, prod</code></td>
+</tr>
+<tr>
+<td>RadixHeap は、整数 key 用の優先度付き queue です。</td>
+<td><a href="./extra/structure/radix_heap.html">RadixHeap</a></td>
+<td><code>import atcoder/extra/structure/radix_heap</code></td>
+<td><code>RadixHeap, getbit, initRadixHeap, empty, pop</code></td>
+</tr>
+<tr>
+<td>&gt; 使い方の概要と RedBlackTree / RBST / SplayTree の比較は Tree backends も参照してください。</td>
+<td><a href="./extra/structure/randomized_binary_search_tree_with_parent.html">randomized_binary_search_tree_with_parent</a></td>
+<td><code>import atcoder/extra/structure/randomized_binary_search_tree_with_parent</code></td>
+<td><code>RBSTNode, RBSTType, RandomizedBinarySearchTree, LazyRandomizedBinarySearchTree, SomeRBST</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/structure/range_chmin_chmax_add_range_sum.html">range_chmin_chmax_add_range_sum</a></td>
+<td><code>import atcoder/extra/structure/range_chmin_chmax_add_range_sum</code></td>
+<td><code>RCCARS_S, initS, RangeChminChmaxAddRangeSum, Chmin, Chmax</code></td>
+</tr>
+<tr>
+<td>&gt; 使い方の概要と RedBlackTree / RBST / SplayTree の比較は Tree backends も参照してください。</td>
+<td><a href="./extra/structure/red_black_tree.html">red_black_tree</a></td>
+<td><code>import atcoder/extra/structure/red_black_tree</code></td>
+<td><code>Color, getleaf, newNode, isRoot, write</code></td>
+</tr>
+<tr>
+<td>RollbackDSU は、merge 操作を巻き戻せる Union-Find です。</td>
+<td><a href="./extra/structure/rollback_dsu.html">RollbackDSU</a></td>
+<td><code>import atcoder/extra/structure/rollback_dsu</code></td>
+<td><code>undo</code></td>
+</tr>
+<tr>
+<td>SegTree2D は、二次元座標上の点に値を持たせ、矩形範囲の集約値を取得する data structure です。</td>
+<td><a href="./extra/structure/segtree_2d.html">SegTree2D</a></td>
+<td><code>import atcoder/extra/structure/segtree_2d</code></td>
+<td><code>SegTree2D, initSegTree2D, add, prod</code></td>
+</tr>
+<tr>
+<td>&gt; これは RBST backend による古い順序付き set / map 実装です。新規コードでは通常 sortedsetmap を推奨します。RBST 自体を直接使う場…</td>
+<td><a href="./extra/structure/set_map_by_randomized_binary_search_tree.html">set_map_by_randomized_binary_search_tree</a></td>
+<td><code>import atcoder/extra/structure/set_map_by_randomized_binary_search_tree</code></td>
+<td><code>SortedMultiSet, SortedSet, SortedMultiMap, SortedMap, getType</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/structure/skew_heap.html">skew_heap</a></td>
+<td><code>import atcoder/extra/structure/skew_heap</code></td>
+<td><code>initSkewHeap, propagate, merge, top, pop</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/structure/sliding_window_aggregation.html">sliding_window_aggregation</a></td>
+<td><code>import atcoder/extra/structure/sliding_window_aggregation</code></td>
+<td><code>initSlidingWindowAggregation, empty, fold_all, pop</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/structure/slope_trick.html">slope_trick</a></td>
+<td><code>import atcoder/extra/structure/slope_trick</code></td>
+<td><code>SlopeTrick, initSlopeTrick, push_R, top_R, pop_R</code></td>
+</tr>
+<tr>
+<td>sortedsetmap は、順序付き集合・順序付き写像を提供します。</td>
+<td><a href="./extra/structure/sorted_set_map.html">sorted_set_map</a></td>
+<td><code>import atcoder/extra/structure/sorted_set_map</code></td>
+<td><code>SortedTree, SortedSetType, empty, check_tree, write</code></td>
+</tr>
+<tr>
+<td>SparseTable は、静的な列に対して区間集約を高速に行う data structure です。</td>
+<td><a href="./extra/structure/sparse_table.html">SparseTable</a></td>
+<td><code>import atcoder/extra/structure/sparse_table</code></td>
+<td><code>SparseTable, initSparseTable, prod</code></td>
+</tr>
+<tr>
+<td>&gt; 使い方の概要と RedBlackTree / RBST / SplayTree の比較は Tree backends も参照してください。</td>
+<td><a href="./extra/structure/splay_tree.html">splay_tree</a></td>
+<td><code>import atcoder/extra/structure/splay_tree</code></td>
+<td><code>SplayTreeNode, SplayTreeType, SplayTree, SomeSplayTree, calc_op</code></td>
+</tr>
+<tr>
+<td>SqrtTree は、静的なモノイド列を再帰的に平方分割し、区間積 query を高速に処理する data structure です。</td>
+<td><a href="./extra/structure/sqrt_tree.html">Sqrt Tree</a></td>
+<td><code>import atcoder/extra/structure/sqrt_tree</code></td>
+<td><code>initSqrtTree, prod, allProd</code></td>
+</tr>
+<tr>
+<td>SuccinctIndexableDictionary は、bit 列に対して rank query を高速に処理するための data structure です。</td>
+<td><a href="./extra/structure/succinct_indexable_dictionary.html">SuccinctIndexableDictionary</a></td>
+<td><code>import atcoder/extra/structure/succinct_indexable_dictionary</code></td>
+<td><code>SuccinctIndexableDictionary, initSuccinctIndexableDictionary, rank</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/structure/trie.html">trie</a></td>
+<td><code>import atcoder/extra/structure/trie</code></td>
+<td><code>TrieNode, initTrieNode, Trie, initTrie, update_direct</code></td>
+</tr>
+<tr>
+<td>Universal SegTree は、通常のセグメント木、遅延セグメント木、双対セグメント木、区間長依存の遅延セグメント木、SegTree Beats 風の構造を、共通の実…</td>
+<td><a href="./extra/structure/universal_segtree.html">UniversalSegTree</a></td>
+<td><code>import atcoder/extra/structure/universal_segtree</code></td>
+<td><code>all_prod</code></td>
+</tr>
+<tr>
+<td>WaveletMatrix は、静的な整数列に対して、区間内の順位統計や出現回数を高速に求める data structure です。</td>
+<td><a href="./extra/structure/wavelet_matrix.html">WaveletMatrix</a></td>
+<td><code>import atcoder/extra/structure/wavelet_matrix</code></td>
+<td><code>CompressedWaveletMatrix</code></td>
+</tr>
+<tr>
+<td>WeightedUnionFind は、各頂点に potential を持たせる Union-Find です。</td>
+<td><a href="./extra/structure/weighted_union_find.html">WeightedUnionFind</a></td>
+<td><code>import atcoder/extra/structure/weighted_union_find</code></td>
+<td><code>WeightedUnionFind, initWeightedUnionFind, root, weight, unionSet</code></td>
+</tr>
+<tr>
+<td>永続配列と同様に、=演算子で、ある時点でのDSUの状態を「コピー」してそれぞれ別のデータ構造として更新が可能です。 当然中身をすべてコピーしないため、高速です。</td>
+<td><a href="./extra/structure/persistent_dsu.html">永続DSU</a></td>
+<td><code>import atcoder/extra/structure/persistent_dsu</code></td>
+<td><code>merge, leader</code></td>
+</tr>
+<tr>
+<td>通常の配列の機能と同様、=演算子で、ある時点での配列変数を「コピー」してそれぞれ別の配列として更新が可能です。</td>
+<td><a href="./extra/structure/persistent_array.html">永続配列</a></td>
+<td><code>import atcoder/extra/structure/persistent_array</code></td>
+<td><code>PersistentArrayNode, initPersistentArray</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="extra_1">Extra / グラフ</h4>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>ドキュメント</th>
+<th>import方法</th>
+<th>主なAPI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>根付き木から必要な頂点と、それらのLCAだけを取り出して圧縮木を構築します。</td>
+<td><a href="./extra/graph/virtual_tree.html">Auxiliary Tree（Virtual Tree／仮想木）</a></td>
+<td><code>import atcoder/extra/graph/virtual_tree</code></td>
+<td><code>buildVirtualTree</code></td>
+</tr>
+<tr>
+<td>Boruvka は、各連結成分から出る最小辺を反復的に選んで最小全域木の重みを求めるための補助構造です。</td>
+<td><a href="./extra/graph/boruvka.html">Boruvka</a></td>
+<td><code>import atcoder/extra/graph/boruvka</code></td>
+<td><code>Boruvka, initBoruvka, find</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/graph/chromatic_number.html">chromatic_number</a></td>
+<td><code>import atcoder/extra/graph/chromatic_number</code></td>
+<td><code>chromatic_number</code></td>
+</tr>
+<tr>
+<td>minimumSpanningTreeArborescence(es, V, start) は、有向 graph の最小全域有向木、つまり rooted directed M…</td>
+<td><a href="./extra/graph/chu_liu_edmonds.html">Chu-Liu/Edmonds</a></td>
+<td><code>import atcoder/extra/graph/chu_liu_edmonds</code></td>
+<td><code>minimumSpanningTreeArborescence</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/graph/cycle_detection.html">cycle_detection</a></td>
+<td><code>import atcoder/extra/graph/cycle_detection</code></td>
+<td><code>cycleDetection, cycleDetectionUndirected</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/graph/dijkstra_multi_dimensional.html">dijkstra_multi_dimensional</a></td>
+<td><code>import atcoder/extra/graph/dijkstra_multi_dimensional</code></td>
+<td><code>TupleSeq, dijkstra</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/graph/dijkstra_result.html">dijkstra_result</a></td>
+<td><code>import atcoder/extra/graph/dijkstra_result</code></td>
+<td><code>DijkstraResult, contains, prev, path</code></td>
+</tr>
+<tr>
+<td>DSUOnTree は、木の各頂点 v について「v の subtree に含まれる情報」を効率よく集計する technique です。</td>
+<td><a href="./extra/graph/dsu_on_tree.html">DSUOnTree</a></td>
+<td><code>import atcoder/extra/graph/dsu_on_tree</code></td>
+<td><code>DSUOnTree, initDSUOnTree, subtreeVertices, run, runDSUOnTree</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/graph/ear_decomposition.html">ear_decomposition</a></td>
+<td><code>import atcoder/extra/graph/ear_decomposition</code></td>
+<td><code>ear_decomposition</code></td>
+</tr>
+<tr>
+<td>EulerTour は、木をDFSし、各subtreeをpreorder上の連続区間へ変換するutilityです。</td>
+<td><a href="./extra/graph/euler_tour.html">Euler Tour</a></td>
+<td><code>import atcoder/extra/graph/euler_tour</code></td>
+<td><code>initEulerTour, subtreeRange, subtreeSize, isAncestor, vertexAt</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/graph/eulerian_trail.html">eulerian_trail</a></td>
+<td><code>import atcoder/extra/graph/eulerian_trail</code></td>
+<td><code>EulerianTrail, initEulerianTrail, get_edge, enumerate_eulerian_trail, enumerate_semi_eulerian_trail</code></td>
+</tr>
+<tr>
+<td>FunctionalGraph は、各頂点から出る辺がちょうど 1 本の有向グラフです。</td>
+<td><a href="./extra/graph/functional_graph.html">FunctionalGraph / Doubling</a></td>
+<td><code>import atcoder/extra/graph/functional_graph</code></td>
+<td><code>Doubling, initDoubling, jump, initFunctionalGraph, cycleInfo</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/graph/gabow_edmonds.html">gabow_edmonds</a></td>
+<td><code>import atcoder/extra/graph/gabow_edmonds</code></td>
+<td><code>initGabowEdmonds, maxMatching</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/graph/graph_concept.html">graph_concept</a></td>
+<td><code>import atcoder/extra/graph/graph_concept</code></td>
+<td><code>GraphC</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/graph/graph_template_directed_undirected.html">graph_template_directed_undirected</a></td>
+<td><code>import atcoder/extra/graph/graph_template_directed_undirected</code></td>
+<td><code>initEdge, initUndirectedGraph, initDirectedGraph, addEdge</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/graph/graphviz.html">graphviz</a></td>
+<td><code>import atcoder/extra/graph/graphviz</code></td>
+<td><code>graphviz</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/graph/kruskal.html">kruskal</a></td>
+<td><code>import atcoder/extra/graph/kruskal</code></td>
+<td><code>kruskal</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/graph/lowlink.html">lowlink</a></td>
+<td><code>import atcoder/extra/graph/lowlink</code></td>
+<td><code>LowLink</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/graph/maxflow_lowerbound.html">maxflow_lowerbound</a></td>
+<td><code>import atcoder/extra/graph/maxflow_lowerbound</code></td>
+<td><code>MaxFlowLowerBound, initMaxFlowLowerBound, can_flow, max_flow</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/graph/maximum_independent_set.html">maximum_independent_set</a></td>
+<td><code>import atcoder/extra/graph/maximum_independent_set</code></td>
+<td><code>maximum_independent_set</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/graph/mcf_costscaling.html">mcf_costscaling</a></td>
+<td><code>import atcoder/extra/graph/mcf_costscaling</code></td>
+<td><code>MCFEdge, initMCFCostScaling, addEdge, addSupply, addDemand</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/graph/mincostflow_generalized.html">mincostflow_generalized</a></td>
+<td><code>import atcoder/extra/graph/mincostflow_generalized</code></td>
+<td><code>GRAPHTYPE_POSITIVEEDGE, MCFEdge, MCFGraph, initMCFGraph, initMinCostFLow</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/graph/mincostflow_lowerbound.html">mincostflow_lowerbound</a></td>
+<td><code>import atcoder/extra/graph/mincostflow_lowerbound</code></td>
+<td><code>MinCostFlowLowerBound, initMinCostFlowLowerBound, can_flow, max_flow, slope</code></td>
+</tr>
+<tr>
+<td>minimumArborescence(es, vertexCount, root) は、Chu–Liu/Edmonds 実装の機能名による別名です。</td>
+<td><a href="./extra/graph/minimum_arborescence.html">Minimum Arborescence</a></td>
+<td><code>import atcoder/extra/graph/minimum_arborescence</code></td>
+<td><code>minimumArborescence</code></td>
+</tr>
+<tr>
+<td>OfflineDynamicConnectivity は、辺の追加・削除があるグラフを offline に処理するための helper です。</td>
+<td><a href="./extra/graph/offline_dynamic_connectivity.html">OfflineDynamicConnectivity</a></td>
+<td><code>import atcoder/extra/graph/offline_dynamic_connectivity</code></td>
+<td><code>OfflineDCEdge, initOfflineDynamicConnectivity, addEdgeInterval, run, componentCounts</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/graph/prim.html">prim</a></td>
+<td><code>import atcoder/extra/graph/prim</code></td>
+<td><code>prim</code></td>
+</tr>
+<tr>
+<td>dijkstraradixheap(g, s) は、Radix Heap を用いて非負整数重み graph の単一始点最短路を求めます。</td>
+<td><a href="./extra/graph/dijkstra_radix_heap.html">Radix Heap Dijkstra</a></td>
+<td><code>import atcoder/extra/graph/dijkstra_radix_heap</code></td>
+<td><code>dijkstra_radix_heap</code></td>
+</tr>
+<tr>
+<td>Rerooting DP は、木 DP をすべての頂点を root とした場合について高速に求める technique です。</td>
+<td><a href="./extra/graph/rerooting_dp.html">Rerooting DP</a></td>
+<td><code>import atcoder/extra/graph/rerooting_dp</code></td>
+<td><code>RerootingEdge, initRerootingGraph, addEdge, rerooting, rerootingDP</code></td>
+</tr>
+<tr>
+<td>StaticGraph は、辺を追加してから build() することで隣接リストを構築する graph です。</td>
+<td><a href="./extra/graph/static_graph.html">Static Graph</a></td>
+<td><code>import atcoder/extra/graph/static_graph</code></td>
+<td><code>addBiEdge, build</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/graph/topological_sort.html">topological_sort</a></td>
+<td><code>import atcoder/extra/graph/topological_sort</code></td>
+<td><code>topologicalSort</code></td>
+</tr>
+<tr>
+<td>この module は、無向グラフに対する次の分解をまとめて提供します。</td>
+<td><a href="./extra/graph/undirected_decomposition.html">Undirected Graph Decomposition</a></td>
+<td><code>import atcoder/extra/graph/undirected_decomposition</code></td>
+<td><code>UndirectedEdge, initUndirectedGraph, edgeCount, addEdge, other</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/graph/visualizer.html">visualizer</a></td>
+<td><code>import atcoder/extra/graph/visualizer</code></td>
+<td><code>visualize</code></td>
+</tr>
+<tr>
+<td>グラフを作成します。ノードの型を$U$, 重みの型を$T$としています。</td>
+<td><a href="./extra/graph/graph_template.html">グラフのテンプレート</a></td>
+<td><code>import atcoder/extra/graph/graph_template</code></td>
+<td><code>ADJTYPE_SEQ, initEdge, initGraph, addBiEdge, addEdge</code></td>
+</tr>
+<tr>
+<td>重みが非負のグラフの単一始点最短距離を計算します。</td>
+<td><a href="./extra/graph/dijkstra.html">ダイクストラ法</a></td>
+<td><code>import atcoder/extra/graph/dijkstra</code></td>
+<td><code>DijkstraObj, dijkstra01, dijkstra</code></td>
+</tr>
+<tr>
+<td>割当問題をハンガリアンで解きます</td>
+<td><a href="./extra/graph/hungarian.html">ハンガリアン法</a></td>
+<td><code>import atcoder/extra/graph/hungarian</code></td>
+<td><code>hungarian</code></td>
+</tr>
+<tr>
+<td>重みが任意のグラフの単一始点最短距離を計算します。</td>
+<td><a href="./extra/graph/bellman_ford.html">ベルマンフォード法</a></td>
+<td><code>import atcoder/extra/graph/bellman_ford</code></td>
+<td><code>BellmanFordResult, path, bellman_ford</code></td>
+</tr>
+<tr>
+<td>重みが任意のグラフの全頂点間最短距離を計算します。</td>
+<td><a href="./extra/graph/warshall_floyd.html">ワーシャル・フロイト法</a></td>
+<td><code>import atcoder/extra/graph/warshall_floyd</code></td>
+<td><code>WarshallFloydResult, warshallFloyd, path</code></td>
+</tr>
+<tr>
+<td>Hopcroft-Karp法によって二部グラフの最大マッチングを求めます。</td>
+<td><a href="./extra/graph/hopcroft_karp.html">二部グラフの最大マッチング・最小頂点被覆</a></td>
+<td><code>import atcoder/extra/graph/hopcroft_karp</code></td>
+<td><code>HopcroftKarp, initHopcroftKarp, maximum_matching, minimum_vertex_cover, maximum_stable_set</code></td>
+</tr>
+<tr>
+<td>二部多重グラフの各辺を、同じ頂点に接続する辺同士が異なる色になるように 彩色します。使用する色数は最大次数 Δ であり、最適です。</td>
+<td><a href="./extra/graph/bipartite_edge_coloring.html">二部グラフ辺彩色</a></td>
+<td><code>import atcoder/extra/graph/bipartite_edge_coloring</code></td>
+<td><code>bipartiteEdgeColoring</code></td>
+</tr>
+<tr>
+<td>橋のない無向グラフ$G$とその辺のリスト$es$が与えられたときに、$G$を強連結有向グラフとなるような$es$の向きを返す。</td>
+<td><a href="./extra/graph/strong_orientation.html">強連結な向き付け</a></td>
+<td><code>import atcoder/extra/graph/strong_orientation</code></td>
+<td><code>strong_orienation</code></td>
+</tr>
+<tr>
+<td>下限・上限付き有向辺、各頂点の供給量・需要量、および辺費用を持つ 最小費用B-flow問題を解きます。</td>
+<td><a href="./extra/graph/bflow.html">最小費用B-flow</a></td>
+<td><code>import atcoder/extra/graph/bflow</code></td>
+<td><code>BFlow, initBFlow, add_supply, add_demand, solve</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="extra_2">Extra / 木</h4>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>ドキュメント</th>
+<th>import方法</th>
+<th>主なAPI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/tree/centroid_decomposition.html">centroid_decomposition</a></td>
+<td><code>import atcoder/extra/tree/centroid_decomposition</code></td>
+<td><code>centroidDecomposition</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/tree/doubling_lowest_common_ancestor.html">doubling_lowest_common_ancestor</a></td>
+<td><code>import atcoder/extra/tree/doubling_lowest_common_ancestor</code></td>
+<td><code>DoublingLowestCommonAncestor, initDoublingLowestCommonAncestor, ancestor, lca, dist</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/tree/heavy_light_decomposition.html">heavy_light_decomposition</a></td>
+<td><code>import atcoder/extra/tree/heavy_light_decomposition</code></td>
+<td><code>initHeavyLightDecomposition, la, lca, dist, query</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/tree/tree_diameter.html">tree_diameter</a></td>
+<td><code>import atcoder/extra/tree/tree_diameter</code></td>
+<td><code>treeDiameter, centroid</code></td>
+</tr>
+<tr>
+<td>木に対して、全方位木DPを行います。全方位DPについては例えばhttps://algo-logic.info/tree-dp/をご覧ください。</td>
+<td><a href="./extra/tree/rerooting.html">全方位木DP</a></td>
+<td><code>import atcoder/extra/tree/rerooting</code></td>
+<td><code>ReRooting, initReRootingImpl, initReRooting, add_bi_edge, dfs1</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="extra_3">Extra / 数学</h4>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>ドキュメント</th>
+<th>import方法</th>
+<th>主なAPI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ArbitraryModBinomial は、任意 mod で二項係数 n choose k を計算するための構造です。</td>
+<td><a href="./extra/math/arbitrary_mod_combination.html">Arbitrary Mod Combination</a></td>
+<td><code>import atcoder/extra/math/arbitrary_mod_combination</code></td>
+<td><code>initArbitraryModBinomial, C</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/arbitrary_mod_convolution.html">arbitrary_mod_convolution</a></td>
+<td><code>import atcoder/extra/math/arbitrary_mod_convolution</code></td>
+<td><code>ArbitraryModConvolution, ArbitraryModFFTElem, setLen, fft, inplace_partial_dot</code></td>
+</tr>
+<tr>
+<td>有限列のprefixから、そのprefixを生成する最短の線形漸化式を求めます。</td>
+<td><a href="./extra/math/berlekamp_massey.html">Berlekamp–Massey（線形漸化式の推定）</a></td>
+<td><code>import atcoder/extra/math/berlekamp_massey</code></td>
+<td><code>berlekampMassey</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/bigint.html">bigint</a></td>
+<td><code>import atcoder/extra/math/bigint</code></td>
+<td><code>bigint, initbigint, toBigInt, size, inner_mul_fft</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/bitwise_convolution.html">bitwise_convolution</a></td>
+<td><code>import atcoder/extra/math/bitwise_convolution</code></td>
+<td><code>AndConvolution, OrConvolution</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/characteristic_polynomial.html">characteristic_polynomial</a></td>
+<td><code>import atcoder/extra/math/characteristic_polynomial</code></td>
+<td><code>characteristicPolynomial</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/chirp_z.html">chirp_z</a></td>
+<td><code>import atcoder/extra/math/chirp_z</code></td>
+<td><code>ChirpZ</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/coef_of_generating_function.html">coef_of_generating_function</a></td>
+<td><code>import atcoder/extra/math/coef_of_generating_function</code></td>
+<td><code>RationalFormalPowerSeries</code></td>
+</tr>
+<tr>
+<td>combinationtable は、二項係数や階乗を必要に応じて遅延構築する小さな補助 module です。</td>
+<td><a href="./extra/math/combination_table.html">Combination Table</a></td>
+<td><code>import atcoder/extra/math/combination_table</code></td>
+<td><code>C, H, P, fact, resetCombination</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/composition.html">composition</a></td>
+<td><code>import atcoder/extra/math/composition</code></td>
+<td><code>composition</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/composition_kinoshita_li.html">composition_kinoshita_li</a></td>
+<td><code>import atcoder/extra/math/composition_kinoshita_li</code></td>
+<td><code>composition</code></td>
+</tr>
+<tr>
+<td>toSeq と toInt は、整数と基数 b 表現の digit 列を相互変換します。</td>
+<td><a href="./extra/math/convert_base.html">Convert Base</a></td>
+<td><code>import atcoder/extra/math/convert_base</code></td>
+<td><code>toInt, toSeq</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/convolution_int128.html">convolution_int128</a></td>
+<td><code>import atcoder/extra/math/convolution_int128</code></td>
+<td><code>convolution_int128</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/convolution_universal.html">convolution_universal</a></td>
+<td><code>import atcoder/extra/math/convolution_universal</code></td>
+<td><code>fft_info, initFFTInfo, butterfly, butterfly_inv, convolution_naive</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/estimate_modint_frac.html">estimate_modint_frac</a></td>
+<td><code>import atcoder/extra/math/estimate_modint_frac</code></td>
+<td><code>estimate</code></td>
+</tr>
+<tr>
+<td>集合冪級数fの指数関数を計算します。</td>
+<td><a href="./extra/math/exp_of_set_power_series.html">Exp of Set Power Series（集合冪級数の指数関数）</a></td>
+<td><code>import atcoder/extra/math/exp_of_set_power_series</code></td>
+<td><code>expOfSetPowerSeries</code></td>
+</tr>
+<tr>
+<td>factorialModInt は、modint 上で n! を求めます。</td>
+<td><a href="./extra/math/factorial.html">Factorial</a></td>
+<td><code>import atcoder/extra/math/factorial</code></td>
+<td><code>factorial</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/fft.html">fft</a></td>
+<td><code>import atcoder/extra/math/fft</code></td>
+<td><code>initComplex, conj, initSeqComplex, setLen, swap</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/fft2d.html">fft2d</a></td>
+<td><code>import atcoder/extra/math/fft2d</code></td>
+<td><code>fft2d, ifft2d, multiply2d_naive, multiply2d_partially_naive, multiply2d</code></td>
+</tr>
+<tr>
+<td>floorsumsquare(n, m, a, b) は、次の 3 つの和を同時に求めます。</td>
+<td><a href="./extra/math/floor_sum_square.html">Floor Sum Square</a></td>
+<td><code>import atcoder/extra/math/floor_sum_square</code></td>
+<td><code>floor_sum_square</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/floor_sum_general.html">floor_sum_general</a></td>
+<td><code>import atcoder/extra/math/floor_sum_general</code></td>
+<td><code>monoid_pow, floor_monoid_product, MonoidForFloorSum, op, unit</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/formal_power_series_differential_equation.html">formal_power_series_differential_equation</a></td>
+<td><code>import atcoder/extra/math/formal_power_series_differential_equation</code></td>
+<td><code>DifferentialEquation</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/formal_power_series_sqrt.html">formal_power_series_sqrt</a></td>
+<td><code>import atcoder/extra/math/formal_power_series_sqrt</code></td>
+<td><code>sqrt</code></td>
+</tr>
+<tr>
+<td>atcoder/extra/math/fps は、modint 係数の形式的べき級数を短く書くための convenience facade です。</td>
+<td><a href="./extra/math/fps.html">FPS facade</a></td>
+<td><code>import atcoder/extra/math/fps</code></td>
+<td><code>useFPSPrecTemplate, F, useFPS, useFPSDecl</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/gaussian_elimination_bit.html">gaussian_elimination_bit</a></td>
+<td><code>import atcoder/extra/math/gaussian_elimination_bit</code></td>
+<td><code>base</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/int128.html">int128</a></td>
+<td><code>import atcoder/extra/math/int128</code></td>
+<td><code>Int128, Uint128, to_Int128, to_Uint128, to_int</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/kitamasa.html">kitamasa</a></td>
+<td><code>import atcoder/extra/math/kitamasa</code></td>
+<td><code>kitamasa</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/lagrange_polynomial.html">lagrange_polynomial</a></td>
+<td><code>import atcoder/extra/math/lagrange_polynomial</code></td>
+<td><code>lagrange_polynomial</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/matrix.html">matrix</a></td>
+<td><code>import atcoder/extra/math/matrix</code></td>
+<td><code>StaticMatrix, DynamicMatrix, DynamicVector, StaticMatrixObj, StaticVector</code></td>
+</tr>
+<tr>
+<td>modSqrt(a) は、modint 上で x^2 = a を満たす x をひとつ求めます。</td>
+<td><a href="./extra/math/mod_sqrt.html">Mod Sqrt</a></td>
+<td><code>import atcoder/extra/math/mod_sqrt</code></td>
+<td><code>modSqrt</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/modint61.html">modint61</a></td>
+<td><code>import atcoder/extra/math/modint61</code></td>
+<td><code>modint61, getMod, inv, pow</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/modint_asm.html">modint_asm</a></td>
+<td><code>import atcoder/extra/math/modint_asm</code></td>
+<td><code>ModInt, initModInt, declareModInt, DMint, setModSub</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/modint_montgomery.html">modint_montgomery</a></td>
+<td><code>import atcoder/extra/math/modint_montgomery</code></td>
+<td><code>StaticLazyMontgomeryModInt, DynamicLazyMontgomeryModInt, isStaticModInt, isDynamicModInt, isStatic</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/multipoint_evaluation.html">multipoint_evaluation</a></td>
+<td><code>import atcoder/extra/math/multipoint_evaluation</code></td>
+<td><code>multipointEvaluation</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/multipoint_evaluation_slow.html">multipoint_evaluation_slow</a></td>
+<td><code>import atcoder/extra/math/multipoint_evaluation_slow</code></td>
+<td><code>initProductTree, multipointEvaluationImpl, multipointEvaluation</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/newton_method.html">newton_method</a></td>
+<td><code>import atcoder/extra/math/newton_method</code></td>
+<td><code>newtonMethod</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/ntt.html">ntt</a></td>
+<td><code>import atcoder/extra/math/ntt</code></td>
+<td><code>get_fft_type, fft, ifft, dot, inplace_partial_dot</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/ntt_quadratic_field.html">ntt_quadratic_field</a></td>
+<td><code>import atcoder/extra/math/ntt_quadratic_field</code></td>
+<td><code>inplace_fft, fft, inplace_ifft, ifft, dot</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/particular_mod_convolution.html">particular_mod_convolution</a></td>
+<td><code>import atcoder/extra/math/particular_mod_convolution</code></td>
+<td><code>ParticularModConvolution, fft, inplace_fft, inplace_partial_dot, dot</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/polynomial.html">polynomial</a></td>
+<td><code>import atcoder/extra/math/polynomial</code></td>
+<td><code>poly, eval, integral</code></td>
+</tr>
+<tr>
+<td>相異なる点 (xs[i], ys[i]) をすべて通る、次数が xs.len 未満の 一意な多項式を構成します。</td>
+<td><a href="./extra/math/polynomial_interpolation.html">Polynomial Interpolation（多項式補間）</a></td>
+<td><code>import atcoder/extra/math/polynomial_interpolation</code></td>
+<td><code>polynomialInterpolation</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/polynomial_taylor_shift.html">polynomial_taylor_shift</a></td>
+<td><code>import atcoder/extra/math/polynomial_taylor_shift</code></td>
+<td><code>taylor_shift</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/power_projection.html">power_projection</a></td>
+<td><code>import atcoder/extra/math/power_projection</code></td>
+<td><code>power_projection</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/quadratic_field.html">quadratic_field</a></td>
+<td><code>import atcoder/extra/math/quadratic_field</code></td>
+<td><code>QF, inv, pow, get_pow2_root</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/rational_approximation.html">rational_approximation</a></td>
+<td><code>import atcoder/extra/math/rational_approximation</code></td>
+<td><code>rational_approximation</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/simplex.html">simplex</a></td>
+<td><code>import atcoder/extra/math/simplex</code></td>
+<td><code>TwoStageSimplexResult, twoStageSimplex</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/sqrt_int.html">sqrt_int</a></td>
+<td><code>import atcoder/extra/math/sqrt_int</code></td>
+<td><code>sqrt_int</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/static_eratosthenes.html">static_eratosthenes</a></td>
+<td><code>import atcoder/extra/math/static_eratosthenes</code></td>
+<td><code>Eratosthenes, initEratosthenes, isPrime, primeDivisor, factor</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/subproduct_tree.html">subproduct_tree</a></td>
+<td><code>import atcoder/extra/math/subproduct_tree</code></td>
+<td><code>subproduct_tree</code></td>
+</tr>
+<tr>
+<td>集合関数f, gの部分集合畳み込みを計算します。</td>
+<td><a href="./extra/math/subset_convolution.html">Subset Convolution（部分集合畳み込み）</a></td>
+<td><code>import atcoder/extra/math/subset_convolution</code></td>
+<td><code>subsetConvolution</code></td>
+</tr>
+<tr>
+<td>XorBasis は、整数集合から XOR で作れる値の集合を「線形基底」として管理する data structure です。</td>
+<td><a href="./extra/math/xor_basis.html">XorBasis</a></td>
+<td><code>import atcoder/extra/math/xor_basis</code></td>
+<td><code>merge</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/math/zeta_transform.html">zeta_transform</a></td>
+<td><code>import atcoder/extra/math/zeta_transform</code></td>
+<td><code>zeta_transform, movius_transform, zeta_superset, movius_superset, zeta_subset</code></td>
+</tr>
+<tr>
+<td>エラトステネス法で素数を列挙したり、与えられた整数を素因数分解したり約数を列挙したりします。</td>
+<td><a href="./extra/math/eratosthenes.html">エラトステネス法</a></td>
+<td><code>import atcoder/extra/math/eratosthenes</code></td>
+<td><code>Eratosthenes, initEratosthenes, isPrime, primeDivisor, factor</code></td>
+</tr>
+<tr>
+<td>形式的べき級数を扱うライブラリです。加減乗除や逆元、exp, logなどが計算できます。 形式的べき級数についてはhttps://trap.jp/post/1657/を参照し…</td>
+<td><a href="./extra/math/formal_power_series.html">形式的べき級数ライブラリ</a></td>
+<td><code>import atcoder/extra/math/formal_power_series</code></td>
+<td><code>FormalPowerSeries, Poly, FPS, toStr, hasFFTC</code></td>
+</tr>
+<tr>
+<td>約数を列挙したりします。基本$O(\sqrt n)$の計算量がかかります。 扱う整数$n$が100万程度と小さく、$O(n)$の計算量と空間をかけていいのであれば、エラトステ…</td>
+<td><a href="./extra/math/divisor.html">約数列挙</a></td>
+<td><code>import atcoder/extra/math/divisor</code></td>
+<td><code>divisor, prime_factorization</code></td>
+</tr>
+<tr>
+<td>pollardrho法による素因数分解を行います。 $O(\sqrt n)$でも間に合わない大きな数を分解しない限りは遅いと思われるので、エラトステネス法等のアルゴリズムを用…</td>
+<td><a href="./extra/math/factorization.html">素因数分解</a></td>
+<td><code>import atcoder/extra/math/factorization</code></td>
+<td><code>isPrime, factor</code></td>
+</tr>
+<tr>
+<td>これ一つで階乗、階乗の逆元、ならし$O(1)$の逆元、組み合わせ($nCr$, $nPr$, $nHr$)のすべてが求められるライブラリです。 配列の確保更新は倍々に自動で行…</td>
+<td><a href="./extra/math/combination.html">組み合わせライブラリ</a></td>
+<td><code>import atcoder/extra/math/combination</code></td>
+<td><code>Combination, CombinationC, zero, fact, rfact</code></td>
+</tr>
+<tr>
+<td>空集合の係数が 1 である集合冪級数の対数を計算します。</td>
+<td><a href="./extra/math/log_of_set_power_series.html">集合冪級数の対数</a></td>
+<td><code>import atcoder/extra/math/log_of_set_power_series</code></td>
+<td><code>logOfSetPowerSeries</code></td>
+</tr>
+<tr>
+<td>凸列と任意列のmin-plus convolutionを計算します。</td>
+<td><a href="./extra/math/min_plus_convolution.html">Min-Plus Convolution</a></td>
+<td><code>import atcoder/extra/math/min_plus_convolution</code></td>
+<td><code>minPlusConvolutionConvexArbitrary</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="extra-dp">Extra / DP</h4>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>ドキュメント</th>
+<th>import方法</th>
+<th>主なAPI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CumulativeSum は、点加算と区間和取得を行うための一次元累積和です。</td>
+<td><a href="./extra/dp/cumulative_sum.html">Cumulative Sum</a></td>
+<td><code>import atcoder/extra/dp/cumulative_sum</code></td>
+<td><code>initCumulativeSum, add, sum</code></td>
+</tr>
+<tr>
+<td>CumulativeSum2D は、二次元配列の矩形和を求めるための二次元累積和です。</td>
+<td><a href="./extra/dp/cumulative_sum_2d.html">Cumulative Sum 2D</a></td>
+<td><code>import atcoder/extra/dp/cumulative_sum_2d</code></td>
+<td><code>initCumulativeSum2D, add, build</code></td>
+</tr>
+<tr>
+<td>DualCumulativeSum は、区間加算・一点取得を行うための一次元 imos 構造です。</td>
+<td><a href="./extra/dp/dual_cumulative_sum.html">Dual Cumulative Sum</a></td>
+<td><code>import atcoder/extra/dp/dual_cumulative_sum</code></td>
+<td><code>initDualCumulativeSum, add</code></td>
+</tr>
+<tr>
+<td>DualCumulativeSum2D は、二次元の矩形加算・一点取得を行う imos 構造です。</td>
+<td><a href="./extra/dp/dual_cumulative_sum_2d.html">Dual Cumulative Sum 2D</a></td>
+<td><code>import atcoder/extra/dp/dual_cumulative_sum_2d</code></td>
+<td><code>initDualCumulativeSum2D, add, build</code></td>
+</tr>
+<tr>
+<td>editDistance(S, T) は、文字列 S を T に変換するための編集距離を求めます。</td>
+<td><a href="./extra/dp/edit_distance.html">Edit Distance</a></td>
+<td><code>import atcoder/extra/dp/edit_distance</code></td>
+<td><code>editDistance</code></td>
+</tr>
+<tr>
+<td>largestRectangle(height) は、histogram に含まれる最大長方形の面積を求めます。</td>
+<td><a href="./extra/dp/largest_rectangle.html">Largest Rectangle</a></td>
+<td><code>import atcoder/extra/dp/largest_rectangle</code></td>
+<td><code>largestRectangle</code></td>
+</tr>
+<tr>
+<td>longestIncreasingSubsequence は、最長増加部分列、LIS を求めます。</td>
+<td><a href="./extra/dp/longest_increasing_subsequence.html">Longest Increasing Subsequence</a></td>
+<td><code>import atcoder/extra/dp/longest_increasing_subsequence</code></td>
+<td><code>longestIncreasingSubsequence</code></td>
+</tr>
+<tr>
+<td>各行の最小値を取る列が単調非減少になる行列について、各行の最小列を分割統治で求めます。</td>
+<td><a href="./extra/dp/monotone_minima.html">Monotone Minima</a></td>
+<td><code>import atcoder/extra/dp/monotone_minima</code></td>
+<td><code>monotoneMinima, divideAndConquerOptimization, divideAndConquerDpLayer</code></td>
+</tr>
+<tr>
+<td>slideMin は、長さ k の sliding window minimum を求めます。 slideMax は sliding window maximum を求めます。</td>
+<td><a href="./extra/dp/slide_min.html">Slide Min / Slide Max</a></td>
+<td><code>import atcoder/extra/dp/slide_min</code></td>
+<td><code>slideMin, slideMax</code></td>
+</tr>
+<tr>
+<td>totally monotoneな暗黙行列について、各行の最小要素の列を求めます。</td>
+<td><a href="./extra/dp/smawk.html">SMAWK</a></td>
+<td><code>import atcoder/extra/dp/smawk</code></td>
+<td><code>smawk</code></td>
+</tr>
+<tr>
+<td>Monotone Minimaを分割統治DP最適化の名前で利用します。</td>
+<td><a href="./extra/dp/divide_and_conquer_optimization.html">Divide-and-Conquer Optimization</a></td>
+<td><code>import atcoder/extra/dp/divide_and_conquer_optimization</code></td>
+<td><code>monotoneMinima</code>, <code>divideAndConquerOptimization</code>, <code>divideAndConquerDpLayer</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="extra_4">Extra / 文字列</h4>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>ドキュメント</th>
+<th>import方法</th>
+<th>主なAPI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aho-Corasick は、複数の pattern 文字列をまとめて検索するためのアルゴリズムです。</td>
+<td><a href="./extra/string/aho_corasick.html">Aho-Corasick</a></td>
+<td><code>import atcoder/extra/string/aho_corasick</code></td>
+<td><code>AhoCorasickNode, initAhoCorasick, addPattern, patternCount, nextState</code></td>
+</tr>
+<tr>
+<td>KMP は、pattern を text 内から線形時間で検索するアルゴリズムです。</td>
+<td><a href="./extra/string/kmp.html">KMP / Prefix Function</a></td>
+<td><code>import atcoder/extra/string/kmp</code></td>
+<td><code>KMPMatcher, prefixFunction, initKMP, findAll, findFirst</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/string/knuth_morris_pratt.html">knuth_morris_pratt</a></td>
+<td><code>import atcoder/extra/string/knuth_morris_pratt</code></td>
+<td><code>KnuthMorrisPratt</code></td>
+</tr>
+<tr>
+<td>Manacher は、文字列中のすべての回文半径を線形時間で求めるアルゴリズムです。</td>
+<td><a href="./extra/string/manacher.html">Manacher</a></td>
+<td><code>import atcoder/extra/string/manacher</code></td>
+<td><code>Manacher, manacherOdd, manacherEven, palindromeRadii, initManacher</code></td>
+</tr>
+<tr>
+<td>Minimum Rotation は、文字列または sequence の巡回 shift のうち、辞書順最小のものを線形時間で求めます。</td>
+<td><a href="./extra/string/minimum_rotation.html">Minimum Rotation / Booth</a></td>
+<td><code>import atcoder/extra/string/minimum_rotation</code></td>
+<td><code>minimumRotationIndex, minimalRotationIndex, maximumRotationIndex, rotated, minimumRotation</code></td>
+</tr>
+<tr>
+<td>PalindromicTree は、文字列に含まれる異なる回文 substring を状態として管理する data structure です。Eertree とも呼ばれます。</td>
+<td><a href="./extra/string/palindromic_tree.html">PalindromicTree / Eertree</a></td>
+<td><code>import atcoder/extra/string/palindromic_tree</code></td>
+<td><code>PalindromicTreeNode, initPalindromicTree, add, buildOccurrences, distinctPalindromeCount</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/string/rolling_hash.html">rolling_hash</a></td>
+<td><code>import atcoder/extra/string/rolling_hash</code></td>
+<td><code>MASK, RH_Base, multRaw, calcMod, hash</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/string/run_enumerate.html">run_enumerate</a></td>
+<td><code>import atcoder/extra/string/run_enumerate</code></td>
+<td><code>reversed, RunEnumerate</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/string/run_length_compress.html">run_length_compress</a></td>
+<td><code>import atcoder/extra/string/run_length_compress</code></td>
+<td><code>encode, decode</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/string/suffix_array_utils.html">suffix_array_utils</a></td>
+<td><code>import atcoder/extra/string/suffix_array_utils</code></td>
+<td><code>lt_substr, initSuffixArray, size, lowerBound, lowerUpperBound</code></td>
+</tr>
+<tr>
+<td>SuffixAutomaton は、1つの文字列に含まれるすべての substring を受理する最小 DFA です。</td>
+<td><a href="./extra/string/suffix_automaton.html">SuffixAutomaton</a></td>
+<td><code>import atcoder/extra/string/suffix_automaton</code></td>
+<td><code>SuffixAutomatonState, initSuffixAutomaton, extend, add, buildOccurrences</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="extra_5">Extra / 幾何</h4>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>ドキュメント</th>
+<th>import方法</th>
+<th>主なAPI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>closestpair(ps) は、二次元点集合の最近点対距離を求めます。</td>
+<td><a href="./extra/geometry/closest_pair.html">Closest Pair</a></td>
+<td><code>import atcoder/extra/geometry/closest_pair</code></td>
+<td><code>inplace_merge, closest_pair</code></td>
+</tr>
+<tr>
+<td>atcoder/extra/geometry/geometry は、二次元幾何 library を使いやすくするための facade module です。</td>
+<td><a href="./extra/geometry/geometry.html">Geometry</a></td>
+<td><code>import atcoder/extra/geometry/geometry</code></td>
+<td><code>Point2, point, line, segment, circle</code></td>
+</tr>
+<tr>
+<td>geometrytemplate は、二次元幾何で使う基本型と基本関数を提供します。</td>
+<td><a href="./extra/geometry/geometry_template.html">Geometry Template</a></td>
+<td><code>import atcoder/extra/geometry/geometry_template</code></td>
+<td><code>Point, Circle, ccw</code></td>
+</tr>
+<tr>
+<td>2つの点集合の凸包についてMinkowski和を計算します。</td>
+<td><a href="./extra/geometry/minkowski_sum.html">Minkowski Sum</a></td>
+<td><code>import atcoder/extra/geometry/minkowski_sum</code></td>
+<td><code>minkowskiSum</code></td>
+</tr>
+<tr>
+<td>polygon は、二次元 polygon に対する基本操作を提供します。</td>
+<td><a href="./extra/geometry/polygon.html">Polygon</a></td>
+<td><code>import atcoder/extra/geometry/polygon</code></td>
+<td><code>Polygon, isConvex, convexHull, convex_cut, convex_diameter</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/geometry/segment_graph.html">segment_graph</a></td>
+<td><code>import atcoder/extra/geometry/segment_graph</code></td>
+<td><code>merge_segments, segment_arrangement</code></td>
+</tr>
+<tr>
+<td>tangent は、円に対する接線を求める module です。</td>
+<td><a href="./extra/geometry/tangent.html">Tangent</a></td>
+<td><code>import atcoder/extra/geometry/tangent</code></td>
+<td><code>tangent</code></td>
+</tr>
+<tr>
+<td>triangle は三角形の代表的な中心や円を求める module です。</td>
+<td><a href="./extra/geometry/triangle.html">Triangle</a></td>
+<td><code>import atcoder/extra/geometry/triangle</code></td>
+<td><code>centroid, incircle, incenter, excircle, excenter</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/geometry/visualizer.html">visualizer</a></td>
+<td><code>import atcoder/extra/geometry/visualizer</code></td>
+<td><code>initCanvas, add, show</code></td>
+</tr>
+<tr>
+<td>二次元点集合を含む最小半径の円を求めます。</td>
+<td><a href="./extra/geometry/minimum_enclosing_circle.html">Minimum Enclosing Circle（最小包含円）</a></td>
+<td><code>import atcoder/extra/geometry/minimum_enclosing_circle</code></td>
+<td><code>minimumEnclosingCircle</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="extra-monoid">Extra / Monoid</h4>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>ドキュメント</th>
+<th>import方法</th>
+<th>主なAPI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MonoidType は、型 E、二項演算 op、単位元 e から monoid 型を作るための helper です。</td>
+<td><a href="./extra/monoid/monoid.html">monoid</a></td>
+<td><code>import atcoder/extra/monoid/monoid</code></td>
+<td><code>Monoid, InversibleMonoid, ActedMonoid, MonoidBase, MonoidType</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="extra_6">Extra / アルゴリズム</h4>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>ドキュメント</th>
+<th>import方法</th>
+<th>主なAPI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>座標圧縮は、大きい値や飛び飛びの値を、大小関係を保ったまま 0, 1, ..., k-1 に置き換える technique です。</td>
+<td><a href="./extra/algorithm/coordinate_compression.html">Coordinate Compression</a></td>
+<td><code>import atcoder/extra/algorithm/coordinate_compression</code></td>
+<td><code>CoordinateCompression, initCoordinateCompression, empty, lowerBoundIndex, upperBoundIndex</code></td>
+</tr>
+<tr>
+<td>Mo は、静的配列に対する多数の offline 区間 query を、区間端点の移動回数が少なくなる順序に並べ替える technique です。</td>
+<td><a href="./extra/algorithm/mo.html">Mo's Algorithm</a></td>
+<td><code>import atcoder/extra/algorithm/mo</code></td>
+<td><code>MoQuery, initMo, addQuery, orderedQueries, run</code></td>
+</tr>
+<tr>
+<td>Run-Length Encoding, RLE は、連続する同じ値を</td>
+<td><a href="./extra/algorithm/run_length_encoding.html">Run-Length Encoding</a></td>
+<td><code>import atcoder/extra/algorithm/run_length_encoding</code></td>
+<td><code>Run, runLengthEncode, rle, runLengthDecode, runLengthDecodeString</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="extra_7">Extra / その他</h4>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>ドキュメント</th>
+<th>import方法</th>
+<th>主なAPI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/algorithmutils.html">algorithmutils</a></td>
+<td><code>import atcoder/extra/other/algorithmutils</code></td>
+<td><code>permutation, combination, copy, reverse, nth_element</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/assignment_operator.html">assignment_operator</a></td>
+<td><code>import atcoder/extra/other/assignment_operator</code></td>
+<td><code>generateAssignmentOperator</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/binary_search.html">binary_search</a></td>
+<td><code>import atcoder/extra/other/binary_search</code></td>
+<td><code>minLeft, maxRight</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/binary_search_float.html">binary_search_float</a></td>
+<td><code>import atcoder/extra/other/binary_search_float</code></td>
+<td><code>minLeft, maxRight</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/bitset.html">bitset</a></td>
+<td><code>import atcoder/extra/other/bitset</code></td>
+<td><code>BitSet, initBitSet1, init1, getSize, DynamicBitSet</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/bitutils.html">bitutils</a></td>
+<td><code>import atcoder/extra/other/bitutils</code></td>
+<td><code>seqToBits, and, or, xor, iterBits</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/cfor.html">cfor</a></td>
+<td><code>import atcoder/extra/other/cfor</code></td>
+<td><code>For, cfor</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/compress.html">compress</a></td>
+<td><code>import atcoder/extra/other/compress</code></td>
+<td><code>initCompress, id, val</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/copy_proc.html">copy_proc</a></td>
+<td><code>import atcoder/extra/other/copy_proc</code></td>
+<td><code>copyProc0, copyProc1, copyProc2, copyProc3</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/debug.html">debug</a></td>
+<td><code>import atcoder/extra/other/debug</code></td>
+<td><code>debugImpl, debug</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/decimal.html">decimal</a></td>
+<td><code>import atcoder/extra/other/decimal</code></td>
+<td><code>calcPi, exp, initPrec, sin_impl, sin</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/decimal_gmp.html">decimal_gmp</a></td>
+<td><code>import atcoder/extra/other/decimal_gmp</code></td>
+<td><code>Decimal, setPrec, finalizeDecimal, clone, newDecimal</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/decimal_mp.html">decimal_mp</a></td>
+<td><code>import atcoder/extra/other/decimal_mp</code></td>
+<td><code>toDecimal, calcPi, initPrec, sin_impl, sin</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/decimal_mpfr.html">decimal_mpfr</a></td>
+<td><code>import atcoder/extra/other/decimal_mpfr</code></td>
+<td><code>mpfr_init2, mpfr_clear, mpfr_free_cache, mpfr_set_prec, mpfr_get_emin</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/dice.html">dice</a></td>
+<td><code>import atcoder/extra/other/dice</code></td>
+<td><code>FACE, dice, initDice, roll, roll_x</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/direction.html">direction</a></td>
+<td><code>import atcoder/extra/other/direction</code></td>
+<td><code>neighbor</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/divutils.html">divutils</a></td>
+<td><code>import atcoder/extra/other/divutils</code></td>
+<td><code>ceilDiv, ceilMod</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/floatutils.html">floatutils</a></td>
+<td><code>import atcoder/extra/other/floatutils</code></td>
+<td><code>getParameters, floatConverter, float64Converter, float32Converter, getPi</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/fold.html">fold</a></td>
+<td><code>import atcoder/extra/other/fold</code></td>
+<td><code>fold_associative, fold_staircase_sum</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/format_expression.html">format_expression</a></td>
+<td><code>import atcoder/extra/other/format_expression</code></td>
+<td><code>formatExpression</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/inf.html">inf</a></td>
+<td><code>import atcoder/extra/other/inf</code></td>
+<td><code>inf, infRepr, isInf</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/interactive.html">interactive</a></td>
+<td><code>import atcoder/extra/other/interactive</code></td>
+<td><code>solveInteractive</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/listutils.html">listutils</a></td>
+<td><code>import atcoder/extra/other/listutils</code></td>
+<td><code>split, merge</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/operator.html">operator</a></td>
+<td><code>import atcoder/extra/other/operator</code></td>
+<td><code>getOperator, OperatorType, zero, unit, add</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/random_tree.html">random_tree</a></td>
+<td><code>import atcoder/extra/other/random_tree</code></td>
+<td><code>pruefer_decode, random_tree, enumerate_tree</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/reader.html">reader</a></td>
+<td><code>import atcoder/extra/other/reader</code></td>
+<td><code>nextString, nextInt, nextFloat, toStr, print0</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/reference.html">reference</a></td>
+<td><code>import atcoder/extra/other/reference</code></td>
+<td><code>byaddr</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/return_type.html">return_type</a></td>
+<td><code>import atcoder/extra/other/return_type</code></td>
+<td><code>ReturnType</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/seq_array_utils.html">seq_array_utils</a></td>
+<td><code>import atcoder/extra/other/seq_array_utils</code></td>
+<td><code>fill, makeSeq, makeArray</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/shadowing.html">shadowing</a></td>
+<td><code>import atcoder/extra/other/shadowing</code></td>
+<td><code>shadow</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/sliceutils.html">sliceutils</a></td>
+<td><code>import atcoder/extra/other/sliceutils</code></td>
+<td><code>index, rev, items, low, high</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/solve_proc.html">solve_proc</a></td>
+<td><code>import atcoder/extra/other/solve_proc</code></td>
+<td><code>compare_answer_string, solveProc, procName</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/special_judge.html">special_judge</a></td>
+<td><code>import atcoder/extra/other/special_judge</code></td>
+<td><code>echo, check</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/static_var.html">static_var</a></td>
+<td><code>import atcoder/extra/other/static_var</code></td>
+<td><code>staticVar</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/uncompress.html">uncompress</a></td>
+<td><code>import atcoder/extra/other/uncompress</code></td>
+<td><code>Uint, inflate, inflateEnd, inflateInit2u, uncompress</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/warlus_operator.html">warlus_operator</a></td>
+<td><code>import atcoder/extra/other/warlus_operator</code></td>
+<td><code>discardableId</code></td>
+</tr>
+<tr>
+<td>このページは自動生成された下書きです。</td>
+<td><a href="./extra/other/zip.html">zip</a></td>
+<td><code>import atcoder/extra/other/zip</code></td>
+<td><code>zip, unzip</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">ガイド</h3>
 <ul>
 <li><a href="./guide/atcoder_level_guide.html">AtCoderレベル別ガイド</a></li>
 <li><a href="./guide/atcoder_algorithm_lectures_coverage.html">AtCoderアルゴリズム講座カバレッジ</a></li>
 </ul>
-<h3 id="_4">ドキュメントの構成</h3>
-<p>追加ライブラリのページは原則として、一般形、引数・型、前提条件、
-返り値・副作用、具体例、関連API、計算量・内部実装の順に記載しています。</p>
+<h3 id="_5">ドキュメントの構成</h3>
+<p>公開APIのページは原則として、次の順序で記載します。</p>
+<ol>
+<li>型付きの完全なsignature</li>
+<li>引数名・型・意味</li>
+<li>返り値の型・意味</li>
+<li>制約</li>
+<li>計算量</li>
+<li>使用例</li>
+</ol>
 <!-- NIM_ACL_HOME_NAV_END -->
 
-<h2 id="_5">ガイド</h2>
+<h2 id="_6">ガイド</h2>
 <ul>
 <li><a href="./guide/atcoder_level_guide.html">AtCoder 色別ライブラリガイド</a></li>
 <li><a href="./guide/atcoder_algorithm_lectures_coverage.html">AtCoder Algorithm Lectures 対応表</a></li>
 </ul>
-<h2 id="_6">インストール方法</h2>
+<h2 id="_7">インストール方法</h2>
 <ul>
 <li>zipファイルを解凍すると、<code>ac-library</code>フォルダ, そしてその中に<code>atcoder</code>フォルダが入っているはずです。</li>
 <li>g++を使っている場合, <code>atcoder</code>フォルダを<code>main.nim</code>と同じ場所に置いて、<code>nim cpp main.nim --include:.</code>でコンパイルできます。  </li>
 <li>詳しくは <a href="./appendix.html">Appendix</a> を参照してください。</li>
 </ul>
-<h2 id="_7">お約束</h2>
+<h2 id="_8">お約束</h2>
 <ul>
 <li>制約外の入力を入れたときの挙動はすべて未定義です。</li>
 <li>このドキュメントでは長い型を便宜上短く書きます</li>
@@ -253,22 +1810,22 @@
 <li>$0^0$ は $1$ です</li>
 <li>明記されていない場合、多重辺や自己ループも入力可能です。</li>
 </ul>
-<h2 id="_8">リスト</h2>
+<h2 id="_9">リスト</h2>
 <p><code>import atcoder/all</code> : 一括include</p>
-<h3 id="_9">データ構造</h3>
+<h3 id="_10">データ構造</h3>
 <ul>
 <li><a href="./fenwicktree.html"><code>import atcoder/fenwicktree</code></a></li>
 <li><a href="./segtree.html"><code>import atcoder/segtree</code></a></li>
 <li><a href="./lazysegtree.html"><code>import atcoder/lazysegtree</code></a></li>
 <li><a href="./string.html"><code>import atcoder/string</code></a></li>
 </ul>
-<h3 id="_10">数学</h3>
+<h3 id="_11">数学</h3>
 <ul>
 <li><a href="./math.html"><code>import atcoder/math</code></a></li>
 <li><a href="./convolution.html"><code>import atcoder/convolution</code></a></li>
 <li>💻<a href="./modint.html"><code>import atcoder/modint</code></a></li>
 </ul>
-<h3 id="_11">グラフ</h3>
+<h3 id="_12">グラフ</h3>
 <ul>
 <li><a href="./dsu.html"><code>import atcoder/dsu</code></a></li>
 <li><a href="./maxflow.html"><code>import atcoder/maxflow</code></a></li>
@@ -276,9 +1833,9 @@
 <li><a href="./scc.html"><code>import atcoder/scc</code></a></li>
 <li><a href="./twosat.html"><code>import atcoder/twosat</code></a></li>
 </ul>
-<h2 id="_12">エキストラライブラリ</h2>
+<h2 id="_13">エキストラライブラリ</h2>
 <p>ACLには収録されていないが、使用頻度が高そうなライブラリを追加しました。</p>
-<h3 id="_13">データ構造</h3>
+<h3 id="_14">データ構造</h3>
 <ul>
 <li>ソート済みのset, table(map)(C++のset, mapと同機能)  <a href="./extra/structure/sorted_set_map.html"><code>import atcoder/extra/structure/set_map</code></a></li>
 <li>Skew Heap</li>
@@ -299,7 +1856,7 @@
 <li>永続DSU <a href="./extra/structure/persistent_dsu.html"><code>import atcoder/extra/structure/persistent_dsu</code></a></li>
 <li>Partially Persistent DSU</li>
 </ul>
-<h3 id="_14">数学</h3>
+<h3 id="_15">数学</h3>
 <ul>
 <li>約数系</li>
 <li>約数列挙 <a href="./extra/math/divisor.html"><code>import atcoder/extra/math/divisor</code></a></li>
@@ -324,7 +1881,7 @@
 <li>modintによる平方根</li>
 <li>modintの分数推測</li>
 </ul>
-<h3 id="_15">グラフ</h3>
+<h3 id="_16">グラフ</h3>
 <ul>
 <li><a href="./extra/graph/graph_template.html"><code>import atcoder/extra/graph/graph_template</code></a></li>
 <li><a href="./extra/graph/static_graph.html"><code>import atcoder/extra/graph/static_graph</code></a></li>
@@ -363,7 +1920,7 @@
 <li>強連結の向き付け</li>
 <li><a href="./extra/graph/strong_orientation.html"><code>import atcoder/extra/graph/strong_orientation</code></a></li>
 </ul>
-<h3 id="_16">木</h3>
+<h3 id="_17">木</h3>
 <ul>
 <li>木の直径</li>
 <li>重心分解</li>
@@ -371,7 +1928,7 @@
 <li>Heavy-Light Decomposition</li>
 <li>全方位DP(rerooting): <a href="./extra/tree/rerooting.html"><code>import atcoder/extra/tree/rerooting</code></a></li>
 </ul>
-<h3 id="_17">その他</h3>
+<h3 id="_18">その他</h3>
 <ul>
 <li>Assignment Operator</li>
 <li>二分探索</li>
@@ -421,31 +1978,31 @@
 </ul>
 <!-- PROMOTED-EXTRA-LIBRARY-DOCS:END -->
 
-<h2 id="_18">付録</h2>
+<h2 id="_19">付録</h2>
 <ul>
 <li><a href="./appendix.html">Appendix / FAQ</a></li>
 </ul>
-<h2 id="_19">テスト</h2>
+<h2 id="_20">テスト</h2>
 <ul>
 <li><a href="https://atcoder.jp/contests/practice2" target="_blank" rel="noopener">こちら</a> で実際にこの Library を使う問題を解いてみることができます。</li>
 </ul>
-<h2 id="_20">ライセンス</h2>
+<h2 id="_21">ライセンス</h2>
 <p>ヘッダファイル群(同梱の <code>atcoder</code> フォルダ以下)はCC0ライセンスで公開しています。詳しくは<code>atcoder/LICENSE</code>を参照してください。</p>
 <!-- NIM_ACL_CURATED_JA_FACADE_V1 -->
 <h2 id="facade">日本語facade</h2>
-<h3 id="_21">グラフ</h3>
+<h3 id="_22">グラフ</h3>
 <ul>
 <li><a href="extra/ja/graph/最小全域木.html">Minimum Spanning Tree（最小全域木）</a></li>
 <li><a href="extra/ja/graph/最小全域有向木.html">Minimum Arborescence（Directed MST／最小全域有向木）</a></li>
 </ul>
-<h3 id="_22">データ構造</h3>
+<h3 id="_23">データ構造</h3>
 <ul>
 <li><a href="extra/ja/structure/素集合データ構造.html">Disjoint Set Union（Union-Find／素集合データ構造）</a></li>
 </ul>
 <!-- /NIM_ACL_CURATED_JA_FACADE_V1 -->
 
 <!-- NIM_ACL_CURATED_AUXILIARY_TREE_V1 -->
-<h2 id="_23">木アルゴリズム</h2>
+<h2 id="_24">木アルゴリズム</h2>
 <ul>
 <li><a href="extra/graph/virtual_tree.html">Auxiliary Tree（Virtual Tree／仮想木）</a></li>
 </ul>
@@ -461,9 +2018,9 @@
 
 <!-- AUTO-GENERATED-DOC-LINKS:BEGIN -->
 
-<h2 id="_24">自動生成ドキュメント一覧</h2>
+<h2 id="_25">自動生成ドキュメント一覧</h2>
 <p>この節は <code>tools/create_missing_docs_and_update_index.py</code> により自動更新されます。</p>
-<h3 id="_25">標準ライブラリ</h3>
+<h3 id="_26">標準ライブラリ</h3>
 <ul>
 <li><a href="convolution.html">convolution</a></li>
 <li><a href="dsu.html">dsu</a></li>
@@ -482,7 +2039,7 @@
 <li><a href="string.html">string</a></li>
 <li><a href="twosat.html">twosat</a></li>
 </ul>
-<h3 id="extra">Extra / データ構造</h3>
+<h3 id="extra_8">Extra / データ構造</h3>
 <ul>
 <li><a href="extra/structure/binary_tree_node_utils.html">binary_tree_node_utils</a></li>
 <li><a href="extra/structure/binary_tree_utils.html">binary_tree_utils</a></li>
@@ -501,7 +2058,7 @@
 <li><a href="extra/structure/splay_tree.html">splay_tree</a></li>
 <li><a href="extra/structure/trie.html">trie</a></li>
 </ul>
-<h3 id="extra_1">Extra / グラフ</h3>
+<h3 id="extra_9">Extra / グラフ</h3>
 <ul>
 <li><a href="extra/graph/bellman_ford.html">bellman_ford</a></li>
 <li><a href="extra/graph/bflow.html">bflow</a></li>
@@ -536,7 +2093,7 @@
 <li><a href="extra/graph/visualizer.html">visualizer</a></li>
 <li><a href="extra/graph/warshall_floyd.html">warshall_floyd</a></li>
 </ul>
-<h3 id="extra_2">Extra / 木</h3>
+<h3 id="extra_10">Extra / 木</h3>
 <ul>
 <li><a href="extra/tree/centroid_decomposition.html">centroid_decomposition</a></li>
 <li><a href="extra/tree/doubling_lowest_common_ancestor.html">doubling_lowest_common_ancestor</a></li>
@@ -544,7 +2101,7 @@
 <li><a href="extra/tree/rerooting.html">rerooting</a></li>
 <li><a href="extra/tree/tree_diameter.html">tree_diameter</a></li>
 </ul>
-<h3 id="extra_3">Extra / 数学</h3>
+<h3 id="extra_11">Extra / 数学</h3>
 <ul>
 <li><a href="extra/math/arbitrary_mod_combination.html">arbitrary_mod_combination</a></li>
 <li><a href="extra/math/arbitrary_mod_convolution.html">arbitrary_mod_convolution</a></li>
@@ -599,7 +2156,7 @@
 <li><a href="extra/math/subproduct_tree.html">subproduct_tree</a></li>
 <li><a href="extra/math/zeta_transform.html">zeta_transform</a></li>
 </ul>
-<h3 id="extra-dp">Extra / DP</h3>
+<h3 id="extra-dp_1">Extra / DP</h3>
 <ul>
 <li><a href="extra/dp/cumulative_sum.html">cumulative_sum</a></li>
 <li><a href="extra/dp/cumulative_sum_2d.html">cumulative_sum_2d</a></li>
@@ -610,7 +2167,7 @@
 <li><a href="extra/dp/longest_increasing_subsequence.html">longest_increasing_subsequence</a></li>
 <li><a href="extra/dp/slide_min.html">slide_min</a></li>
 </ul>
-<h3 id="extra_4">Extra / 文字列</h3>
+<h3 id="extra_12">Extra / 文字列</h3>
 <ul>
 <li><a href="extra/string/aho_corasick.html">aho_corasick</a></li>
 <li><a href="extra/string/knuth_morris_pratt.html">knuth_morris_pratt</a></li>
@@ -620,7 +2177,7 @@
 <li><a href="extra/string/suffix_array_utils.html">suffix_array_utils</a></li>
 <li><a href="extra/string/suffix_automaton.html">suffix_automaton</a></li>
 </ul>
-<h3 id="extra_5">Extra / 幾何</h3>
+<h3 id="extra_13">Extra / 幾何</h3>
 <ul>
 <li><a href="extra/geometry/closest_pair.html">closest_pair</a></li>
 <li><a href="extra/geometry/geometry_template.html">geometry_template</a></li>
@@ -630,11 +2187,11 @@
 <li><a href="extra/geometry/triangle.html">triangle</a></li>
 <li><a href="extra/geometry/visualizer.html">visualizer</a></li>
 </ul>
-<h3 id="extra-monoid">Extra / Monoid</h3>
+<h3 id="extra-monoid_1">Extra / Monoid</h3>
 <ul>
 <li><a href="extra/monoid/monoid.html">monoid</a></li>
 </ul>
-<h3 id="extra_6">Extra / その他</h3>
+<h3 id="extra_14">Extra / その他</h3>
 <ul>
 <li><a href="extra/other/algorithmutils.html">algorithmutils</a></li>
 <li><a href="extra/other/assignment_operator.html">assignment_operator</a></li>
