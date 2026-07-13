@@ -35,7 +35,7 @@ when not declared ATCODER_BITSET_HPP:
   #  result.data[0] = b.uint64
 
   proc initBitSet1*(N:static[int]): BitSet[N] =
-    result = initBitSet(N)
+    result = initBitSet[N]()
     let (q, r) = getBitDivMod(N)
     for i in 0..<q:result.data[i] = (not 0'u64)
     if r > 0:result.data[q] = ((1'u64 shl uint64(r)) - 1)
@@ -125,7 +125,7 @@ when not declared ATCODER_BITSET_HPP:
     var b = 0
     for i in 0 ..< a.data.len:
       let f = firstSetBit(a.data[i])
-      if f != BitWidth: return b + f
+      if f != 0: return b + f - 1
       b += BitWidth
     return a.N
   proc fastLog2*(a:SomeBitSet):int =
@@ -175,10 +175,25 @@ when not declared ATCODER_BITSET_HPP:
         result.data[^1] = result.data[^1] and mask
   proc `shr`*(a: SomeBitSet, n:int): auto = a shl (-n)
   proc `<`*(a, b:SomeBitSet):bool =
+    assert a.getSize() == b.getSize()
+
+    if a.data.len == 0:
+      return false
+
     for i in countdown(a.data.len - 1, 0):
-      if a[i] != b[i]: return a[i] < b[i]
+      if a.data[i] != b.data[i]:
+        return a.data[i] < b.data[i]
+
     return false
+
   proc `<=`*(a, b:SomeBitSet):bool =
+    assert a.getSize() == b.getSize()
+
+    if a.data.len == 0:
+      return true
+
     for i in countdown(a.data.len - 1, 0):
-      if a[i] != b[i]: return a[i] < b[i]
+      if a.data[i] != b.data[i]:
+        return a.data[i] < b.data[i]
+
     return true

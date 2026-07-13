@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>bitutils</title>
+  <title>BitUtils</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -61,6 +61,186 @@
     };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style id="nim-acl-highlight-style-v1">
+:root {
+  --nim-code-background: #f6f8fa;
+  --nim-code-foreground: #24292f;
+  --nim-code-border: #d0d7de;
+  --nim-code-line-number: #8c959f;
+  --nim-code-line-number-border: #d8dee4;
+
+  --nim-token-keyword: #8250df;
+  --nim-token-string: #0a7f37;
+  --nim-token-escape: #116329;
+  --nim-token-number: #0550ae;
+  --nim-token-comment: #6e7781;
+  --nim-token-operator: #cf222e;
+  --nim-token-punctuation: #57606a;
+  --nim-token-identifier: #24292f;
+  --nim-token-directive: #953800;
+  --nim-token-hyperlink: #0969da;
+  --nim-token-other: #24292f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nim-code-background: #161b22;
+    --nim-code-foreground: #c9d1d9;
+    --nim-code-border: #30363d;
+    --nim-code-line-number: #7d8590;
+    --nim-code-line-number-border: #30363d;
+
+    --nim-token-keyword: #d2a8ff;
+    --nim-token-string: #a5d6ff;
+    --nim-token-escape: #79c0ff;
+    --nim-token-number: #79c0ff;
+    --nim-token-comment: #8b949e;
+    --nim-token-operator: #ff7b72;
+    --nim-token-punctuation: #c9d1d9;
+    --nim-token-identifier: #c9d1d9;
+    --nim-token-directive: #ffa657;
+    --nim-token-hyperlink: #58a6ff;
+    --nim-token-other: #c9d1d9;
+  }
+}
+
+html[data-theme="dark"],
+html.dark,
+body.dark,
+body[data-theme="dark"] {
+  --nim-code-background: #161b22;
+  --nim-code-foreground: #c9d1d9;
+  --nim-code-border: #30363d;
+  --nim-code-line-number: #7d8590;
+  --nim-code-line-number-border: #30363d;
+
+  --nim-token-keyword: #d2a8ff;
+  --nim-token-string: #a5d6ff;
+  --nim-token-escape: #79c0ff;
+  --nim-token-number: #79c0ff;
+  --nim-token-comment: #8b949e;
+  --nim-token-operator: #ff7b72;
+  --nim-token-punctuation: #c9d1d9;
+  --nim-token-identifier: #c9d1d9;
+  --nim-token-directive: #ffa657;
+  --nim-token-hyperlink: #58a6ff;
+  --nim-token-other: #c9d1d9;
+}
+
+pre.nim-code {
+  position: relative;
+  overflow: auto;
+  box-sizing: border-box;
+  tab-size: 2;
+
+  background: var(--nim-code-background);
+  color: var(--nim-code-foreground);
+  border: 1px solid var(--nim-code-border);
+  border-radius: 7px;
+}
+
+pre.nim-code code {
+  display: block;
+  box-sizing: border-box;
+  min-width: max-content;
+
+  color: var(--nim-code-foreground);
+  background: transparent;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    monospace;
+  line-height: 1.55;
+}
+
+pre.nim-line-numbers code {
+  counter-reset: nim-code-line;
+}
+
+pre.nim-line-numbers .code-line {
+  display: block;
+  position: relative;
+  min-height: 1.55em;
+  padding-left: 4.25rem;
+  padding-right: 1rem;
+  white-space: pre;
+}
+
+pre.nim-line-numbers .code-line::before {
+  counter-increment: nim-code-line;
+  content: counter(nim-code-line);
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 3.25rem;
+  padding-right: 0.75rem;
+
+  color: var(--nim-code-line-number);
+  border-right: 1px solid var(--nim-code-line-number-border);
+  text-align: right;
+
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+.tok-keyword {
+  color: var(--nim-token-keyword);
+  font-weight: 650;
+}
+
+.tok-string {
+  color: var(--nim-token-string);
+}
+
+.tok-escape {
+  color: var(--nim-token-escape);
+  font-weight: 600;
+}
+
+.tok-number {
+  color: var(--nim-token-number);
+}
+
+.tok-comment {
+  color: var(--nim-token-comment);
+  font-style: italic;
+}
+
+.tok-operator {
+  color: var(--nim-token-operator);
+}
+
+.tok-punctuation {
+  color: var(--nim-token-punctuation);
+}
+
+.tok-identifier {
+  color: var(--nim-token-identifier);
+}
+
+.tok-directive {
+  color: var(--nim-token-directive);
+  font-weight: 600;
+}
+
+.tok-hyperlink {
+  color: var(--nim-token-hyperlink);
+  text-decoration: underline;
+}
+
+.tok-other {
+  color: var(--nim-token-other);
+}
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -70,43 +250,142 @@
     </a>
   </header>
   <main>
-<h1 id="bitutils">bitutils</h1>
-<p>このページは自動生成された下書きです。</p>
-<p>公開 API と基本的な import パスを整理しています。詳細な説明、計算量、注意点、使用例は必要に応じて追記してください。</p>
-<h2 id="import">import</h2>
-<pre><code>import atcoder/extra/other/bitutils
-</code></pre>
-<h2 id="api">公開 API</h2>
-<pre><code>const ATCODER_BITUTILS_HPP* = 1
-proc `&lt;&lt;`*[B:SomeInteger](b:B, n:SomeInteger):B = b shl n
-proc `&gt;&gt;`*[B:SomeInteger](b:B, n:SomeInteger):B = b shr n
-proc seqToBits*[B:SomeInteger](v:varargs[int]): B =
-proc `[]`*[B:SomeInteger](b:B,n:int):int = (if b.testBit(n): 1 else: 0)
-proc `[]`*[B:SomeInteger](b:B,s:Slice[int]):int = (b shr s.a) mod (B(1) shl (s.b - s.a + 1))
-proc `[]=`*[B:SomeInteger](b:var B,n:int,t:int) =
-proc `and`*[B:SomeInteger](b:B, v:openArray[int]):B = b and seqToBits[B](v)
-proc `or`*[B:SomeInteger](b:B, v:openArray[int]):B = b or seqToBits[B](v)
-proc `xor`*[B:SomeInteger](b:B, v:openArray[int]):B = b xor seqToBits[B](v)
-proc `&amp;`*[B:SomeInteger](a:B, b:openarray[int]):auto = a and b
-proc `|`*[B:SomeInteger](a:B, b:openarray[int]):auto = a or b
-proc `&amp;`*(a:SomeInteger, b:SomeInteger):auto = a and b
-proc `|`*(a:SomeInteger, b:SomeInteger):auto = a or b
-iterator iterBits*[B:SomeInteger](b:B):int =
-proc bitsToSeq*[B:SomeInteger](b:B):seq[int] =
-proc `@`*[B:SomeInteger](b:B): seq[int] = bitsToSeq(b)
-proc `@^`*(v:openArray[int]): int =
-proc toBitStr*[B:SomeInteger](b:B, n = -1):string =
-let n = if n == -1: sizeof(B) * 8 else: n
-proc allSetBits*[B:SomeInteger](n:int):B =
-iterator subsets*(v:seq[int], B:typedesc[SomeInteger] = int):B =
-iterator subsets*[B:SomeInteger](b:B):B =
-</code></pre>
+<h1 id="bitutils">BitUtils</h1>
 <h2 id="_1">概要</h2>
-<p>TODO: このライブラリの用途と使いどころを記述してください。</p>
-<h2 id="_2">使用例</h2>
-<p>TODO: 使用例を追加してください。</p>
-<h2 id="_3">注意</h2>
-<p>TODO: 制約、前提条件、落とし穴を記述してください。</p>
+<p>整数1個をbit maskとして扱うためのutilityです。</p>
+<p>bit位置列との相互変換、bit access、bit範囲の抽出、
+下位bit mask、set bit列挙、submask列挙を提供します。</p>
+<p>複数の64bit wordが必要な場合は<code>BitSet</code>を使用してください。</p>
+<h2 id="import">import</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">other</span><span class="tok-operator">/</span><span class="tok-identifier">bitutils</span>
+</code></pre>
+<h2 id="bit-access">bit access</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">bit</span> <span class="tok-operator">=</span> <span class="tok-identifier">value</span><span class="tok-punctuation">[</span><span class="tok-identifier">i</span><span class="tok-punctuation">]</span>
+
+<span class="tok-identifier">value</span><span class="tok-punctuation">[</span><span class="tok-identifier">i</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-number">0</span>
+<span class="tok-identifier">value</span><span class="tok-punctuation">[</span><span class="tok-identifier">i</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-number">1</span>
+</code></pre>
+<h2 id="bit-slice">bit Slice</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">part</span><span class="tok-punctuation">:</span> <span class="tok-identifier">uint64</span> <span class="tok-operator">=</span> <span class="tok-identifier">value</span><span class="tok-punctuation">[</span><span class="tok-identifier">first</span> <span class="tok-operator">..</span> <span class="tok-identifier">last</span><span class="tok-punctuation">]</span>
+</code></pre>
+<p>Sliceは両端を含みます。</p>
+<p>bit <code>first</code>が結果のbit 0になるように右へ詰められ、
+返り値の型は入力整数と同じ型です。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">value</span> <span class="tok-operator">=</span> <span class="tok-number">0b11010110&#39;</span><span class="tok-identifier">u64</span>
+
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">value</span><span class="tok-punctuation">[</span><span class="tok-number">1</span> <span class="tok-operator">..</span> <span class="tok-number">3</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">0b011&#39;</span><span class="tok-identifier">u64</span>
+</code></pre>
+<p><code>uint64</code>の<code>0 .. 63</code>など、整数型の全幅も取得できます。</p>
+<h2 id="bitmask">bit位置とmaskの変換</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">mask</span> <span class="tok-operator">=</span> <span class="tok-identifier">seqToBits</span><span class="tok-punctuation">[</span><span class="tok-identifier">uint64</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">)</span>
+
+<span class="tok-keyword">let</span> <span class="tok-identifier">positions</span> <span class="tok-operator">=</span> <span class="tok-identifier">bitsToSeq</span><span class="tok-punctuation">(</span><span class="tok-identifier">mask</span><span class="tok-punctuation">)</span>
+
+<span class="tok-keyword">for</span> <span class="tok-identifier">position</span> <span class="tok-keyword">in</span> <span class="tok-identifier">iterBits</span><span class="tok-punctuation">(</span><span class="tok-identifier">mask</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span>
+  <span class="tok-keyword">discard</span>
+</code></pre>
+<p><code>iterBits</code>と<code>bitsToSeq</code>は、set bitのindexを小さい順に返します。</p>
+<p>既存の短縮表記もあります。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">positions</span> <span class="tok-operator">=</span> <span class="tok-operator">@</span><span class="tok-identifier">mask</span>
+<span class="tok-keyword">let</span> <span class="tok-identifier">mask</span> <span class="tok-operator">=</span> <span class="tok-operator">@^</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">]</span>
+</code></pre>
+<p>可読性を優先するコードでは名前付きAPIを推奨します。</p>
+<h2 id="bit-mask">下位bit mask</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">allSetBits</span><span class="tok-punctuation">[</span><span class="tok-identifier">uint64</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">n</span><span class="tok-punctuation">)</span>
+</code></pre>
+<p>下位<code>n</code>bitが1の値を返します。</p>
+<p><code>n = 0</code>と<code>n = sizeof(B) * 8</code>の両方を安全に扱えます。</p>
+<h2 id="bit">bit位置集合との演算</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">mask</span> <span class="tok-keyword">and</span> <span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">]</span>
+<span class="tok-identifier">mask</span> <span class="tok-keyword">or</span> <span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">]</span>
+<span class="tok-identifier">mask</span> <span class="tok-keyword">xor</span> <span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">]</span>
+
+<span class="tok-identifier">mask</span> <span class="tok-operator">&amp;</span> <span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">]</span>
+<span class="tok-identifier">mask</span> <span class="tok-operator">|</span> <span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">]</span>
+</code></pre>
+<h2 id="submask">submask列挙</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">for</span> <span class="tok-identifier">submask</span> <span class="tok-keyword">in</span> <span class="tok-identifier">subsets</span><span class="tok-punctuation">(</span><span class="tok-identifier">mask</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span>
+  <span class="tok-keyword">discard</span>
+</code></pre>
+<p><code>mask</code>の全submaskを遅延列挙します。
+<code>uint32</code>や<code>uint64</code>を渡した場合も同じ整数型を返します。</p>
+<p>bit位置列からも列挙できます。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">for</span> <span class="tok-identifier">mask</span> <span class="tok-keyword">in</span> <span class="tok-identifier">subsets</span><span class="tok-punctuation">(</span><span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">,</span> <span class="tok-number">7</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">uint64</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span>
+  <span class="tok-keyword">discard</span>
+</code></pre>
+<h2 id="_2">表示</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">toBitStr</span><span class="tok-punctuation">(</span><span class="tok-identifier">mask</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">toBitStr</span><span class="tok-punctuation">(</span><span class="tok-identifier">mask</span><span class="tok-punctuation">,</span> <span class="tok-identifier">width</span><span class="tok-punctuation">)</span>
+</code></pre>
+<h2 id="_3">境界条件</h2>
+<ul>
+<li>bit indexは0始まりです。</li>
+<li>indexとSliceは整数型のbit幅内に収めてください。</li>
+<li><code>allSetBits[B](n)</code>では
+  <code>0 &lt;= n &lt;= sizeof(B) * 8</code>です。</li>
+<li>signed整数のset bit列挙には非負の値を使用してください。</li>
+<li>submaskの列挙順ではなく、列挙される集合へ依存してください。</li>
+</ul>
+<h2 id="_4">計算量</h2>
+<p><code>k</code>をset bit数、<code>m</code>を列挙対象のbit数とします。</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th style="text-align: right;">計算量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bit取得・更新</td>
+<td style="text-align: right;"><code>O(1)</code></td>
+</tr>
+<tr>
+<td>bit Slice</td>
+<td style="text-align: right;"><code>O(1)</code></td>
+</tr>
+<tr>
+<td><code>seqToBits</code></td>
+<td style="text-align: right;"><code>O(引数数)</code></td>
+</tr>
+<tr>
+<td><code>iterBits</code>, <code>bitsToSeq</code></td>
+<td style="text-align: right;"><code>O(k)</code></td>
+</tr>
+<tr>
+<td><code>allSetBits</code></td>
+<td style="text-align: right;"><code>O(1)</code></td>
+</tr>
+<tr>
+<td>全submask列挙</td>
+<td style="text-align: right;"><code>O(2^m)</code></td>
+</tr>
+<tr>
+<td>各submaskの追加領域</td>
+<td style="text-align: right;"><code>O(1)</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">使用例</h2>
+<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">other</span><span class="tok-operator">/</span><span class="tok-identifier">bitutils</span></span><span class="code-line"></span><span class="code-line"><span class="tok-keyword">let</span> <span class="tok-identifier">mask</span> <span class="tok-operator">=</span> <span class="tok-identifier">seqToBits</span><span class="tok-punctuation">[</span><span class="tok-identifier">uint64</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">,</span> <span class="tok-number">63</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">mask</span><span class="tok-punctuation">[</span><span class="tok-number">63</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">1</span></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">bitsToSeq</span><span class="tok-punctuation">(</span><span class="tok-identifier">mask</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">,</span> <span class="tok-number">2</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">,</span> <span class="tok-number">63</span><span class="tok-punctuation">]</span></span><span class="code-line"></span><span class="code-line"><span class="tok-keyword">for</span> <span class="tok-identifier">submask</span> <span class="tok-keyword">in</span> <span class="tok-identifier">subsets</span><span class="tok-punctuation">(</span><span class="tok-identifier">mask</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span></span><span class="code-line">  <span class="tok-keyword">discard</span></span></code></pre>
+<h2 id="_6">関連</h2>
+<ul>
+<li><code>atcoder/extra/other/bitset</code></li>
+<li>複数wordにまたがる固定長・可変長bit列</li>
+<li><code>std/bitops</code></li>
+<li>整数型に対する標準bit操作</li>
+</ul>
+<h2 id="_7">検証</h2>
+<p>専用testで以下を確認しています。</p>
+<ul>
+<li><code>uint8</code>, <code>uint16</code>, <code>uint32</code>, <code>uint64</code>, <code>int</code></li>
+<li>0bit・部分幅・全幅mask</li>
+<li>全Slice endpointのrandom differential</li>
+<li>set bit列挙</li>
+<li><code>uint64</code> submask列挙</li>
+<li>refc / ORC</li>
+<li>Nim 2.2.10 / AtCoder Nim 2.2.4</li>
+</ul>
   </main>
 </body>
 </html>

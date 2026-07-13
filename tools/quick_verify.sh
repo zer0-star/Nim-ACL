@@ -707,6 +707,35 @@ done
 
 # <<< BITUTILS_THREE_DEFECTS_REGRESSION_V1_END >>>
 
+
+# <<< BITSET_CONTRACT_REGRESSION_V1 >>>
+STEP="BitSet dedicated contract regression"
+
+python3 tools/audit_bit_utility_contract.py \
+  >>"$LOG" 2>&1
+
+for mm in refc orc
+do
+  output="/tmp/nacl_bitset_contract_${mm}_$$"
+  cache="/tmp/nacl_bitset_contract_${mm}_cache_$$"
+
+  nim cpp \
+    -r \
+    --hints:off \
+    --verbosity:0 \
+    --path:src \
+    -d:release \
+    --mm:"$mm" \
+    --nimcache:"$cache" \
+    -o:"$output" \
+    tests/test_extra_bitset.nim \
+    >>"$LOG" 2>&1
+
+  rm -rf "$output" "$cache"
+done
+
+# <<< BITSET_CONTRACT_REGRESSION_V1_END >>>
+
 STEP="cleanup compiler runtime after final Nim tests"
 rm -rf .nim_runtime nimcache
 
