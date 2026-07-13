@@ -62,7 +62,7 @@ Nim-ACLはAtCoder Library互換APIに加えて、
 | 最大フロー問題 を解くライブラリです。 | [MaxFlow](./maxflow.html) | `import atcoder/maxflow` | `add_edge, flow, min_cut, change_edge` |
 | Minimum-cost flow problemを扱うライブラリです。 | [MinCostFlow](./mincostflow.html) | `import atcoder/mincostflow` | `add_edge, edges` |
 | 自動でmodを取る構造体です。AC Libraryはmodintを使わなくとも全アルゴリズムが使えるように整備しているので、必ずしもこのファイルの内容を把握する必要はありません。 | [Modint](./modint.html) | `import atcoder/modint` | `mod, val, inv, raw` |
-| このページは自動生成された下書きです。 | [rangeutils](./rangeutils.html) | `import atcoder/rangeutils` | `RangeType, IndexType, halfOpenEndpoints` |
+| Nimのclosed・half-open・末尾相対rangeを共通の半開区間へ正規化します。 | [Range utilities](./rangeutils.html) | `import atcoder/rangeutils` | `RangeType, IndexType, halfOpenEndpoints` |
 | 有向グラフを強連結成分分解します。 | [SCC](./scc.html) | `import atcoder/scc` | `add_edge, scc` |
 | モノイド $(S, \cdot: S \times S \to S, e \in S)$、つまり | [Segtree](./segtree.html) | `import atcoder/segtree` | `set, get, prod, all_prod, max_right` |
 | 文字列アルゴリズム詰め合わせです。 文字列に関する様々なアルゴリズムが入っています。 | [String](./string.html) | `import atcoder/string` | `suffix_array, lcp_array, z_algorithm` |
@@ -325,7 +325,7 @@ Nim-ACLはAtCoder Library互換APIに加えて、
 | このページは自動生成された下書きです。 | [return_type](./extra/other/return_type.html) | `import atcoder/extra/other/return_type` | `ReturnType` |
 | このページは自動生成された下書きです。 | [seq_array_utils](./extra/other/seq_array_utils.html) | `import atcoder/extra/other/seq_array_utils` | `fill, makeSeq, makeArray` |
 | このページは自動生成された下書きです。 | [shadowing](./extra/other/shadowing.html) | `import atcoder/extra/other/shadowing` | `shadow` |
-| このページは自動生成された下書きです。 | [sliceutils](./extra/other/sliceutils.html) | `import atcoder/extra/other/sliceutils` | `index, rev, items, low, high` |
+| Sliceの逆順・step列挙、部分取得とstep付き代入を提供します。 | [Slice utilities](./extra/other/sliceutils.html) | `import atcoder/extra/other/sliceutils` | `index, rev, items, >>, <<, low, high` |
 | このページは自動生成された下書きです。 | [solve_proc](./extra/other/solve_proc.html) | `import atcoder/extra/other/solve_proc` | `compare_answer_string, solveProc, procName` |
 | このページは自動生成された下書きです。 | [special_judge](./extra/other/special_judge.html) | `import atcoder/extra/other/special_judge` | `echo, check` |
 | このページは自動生成された下書きです。 | [static_var](./extra/other/static_var.html) | `import atcoder/extra/other/static_var` | `staticVar` |

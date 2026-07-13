@@ -774,6 +774,85 @@ done
 
 # <<< BITSET_CONTRACT_REGRESSION_V1_END >>>
 
+
+# <<< RANGE_SLICE_CONTRACT_REGRESSION_V2 >>>
+
+STEP="Range and Slice validated contract regression"
+
+python3 tools/audit_range_slice_contract.py \
+  >>"$LOG" 2>&1
+
+for range_slice_test in \
+  tests/test_rangeutils.nim \
+  tests/test_sliceutils.nim
+do
+  range_slice_name="$(
+    basename "$range_slice_test" .nim
+  )"
+
+  for range_slice_mm in refc orc
+  do
+    range_slice_output="/tmp/nacl_${range_slice_name}_${range_slice_mm}_$$"
+    range_slice_cache="/tmp/nacl_${range_slice_name}_${range_slice_mm}_cache_$$"
+
+    nim cpp \
+      -r \
+      --hints:off \
+      --verbosity:0 \
+      --path:src \
+      -d:release \
+      --mm:"$range_slice_mm" \
+      --nimcache:"$range_slice_cache" \
+      -o:"$range_slice_output" \
+      "$range_slice_test" \
+      >>"$LOG" 2>&1
+
+    rm -rf \
+      "$range_slice_output" \
+      "$range_slice_cache"
+  done
+done
+
+for range_overflow_mm in refc orc
+do
+  range_overflow_output="/tmp/nacl_range_overflow_${range_overflow_mm}_$$"
+  range_overflow_cache="/tmp/nacl_range_overflow_${range_overflow_mm}_cache_$$"
+  range_overflow_log="/tmp/nacl_range_overflow_${range_overflow_mm}_$$.log"
+
+  if nim cpp \
+    -r \
+    --hints:off \
+    --verbosity:0 \
+    --path:src \
+    -d:release \
+    --overflowChecks:on \
+    --mm:"$range_overflow_mm" \
+    --nimcache:"$range_overflow_cache" \
+    -o:"$range_overflow_output" \
+    tests/test_rangeutils_overflow.nim \
+    >"$range_overflow_log" 2>&1
+  then
+    cat "$range_overflow_log" >>"$LOG"
+    echo \
+      "RANGE_SLICE_CONTRACT_ERROR: checked overflow unexpectedly passed" \
+      >>"$LOG"
+    false
+  fi
+
+  cat "$range_overflow_log" >>"$LOG"
+
+  grep -Eiq \
+    'OverflowDefect|overflow' \
+    "$range_overflow_log"
+
+  rm -rf \
+    "$range_overflow_output" \
+    "$range_overflow_cache" \
+    "$range_overflow_log"
+done
+
+# <<< RANGE_SLICE_CONTRACT_REGRESSION_V2_END >>>
+
 STEP="cleanup compiler runtime after final Nim tests"
 rm -rf .nim_runtime nimcache
 

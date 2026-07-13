@@ -1,6 +1,10 @@
 when not declared ATCODER_RANGEUTILS_HPP:
   const ATCODER_RANGEUTILS_HPP* = 1
-  type RangeType* = Slice[int] | HSlice[int, BackwardsIndex] | Slice[BackwardsIndex]
+  type RangeType* =
+    Slice[int] |
+    HSlice[int, BackwardsIndex] |
+    HSlice[BackwardsIndex, int] |
+    Slice[BackwardsIndex]
   type IndexType* = int | BackwardsIndex
   template halfOpenEndpoints*(p:Slice[int]):(int,int) = (p.a, p.b + 1)
   template `^^`*(s, i: untyped): untyped =
