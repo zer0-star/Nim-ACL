@@ -10,7 +10,43 @@ when not declared ATCODER_BITUTILS_HPP:
     for x in v: result = (result or (B(1) shl B(x)))
 
   proc `[]`*[B:SomeInteger](b:B,n:int):int = (if b.testBit(n): 1 else: 0)
-  proc `[]`*[B:SomeInteger](b:B,s:Slice[int]):int = (b shr s.a) mod (B(1) shl (s.b - s.a + 1))
+  proc bitutilsLowMask[B:SomeInteger](n:int):B =
+    const bitWidth = sizeof(B) * 8
+    doAssert 0 <= n and n <= bitWidth
+
+    when sizeof(B) == 1:
+      type U = uint8
+    elif sizeof(B) == 2:
+      type U = uint16
+    elif sizeof(B) == 4:
+      type U = uint32
+    elif sizeof(B) == 8:
+      type U = uint64
+    else:
+      {.error: "unsupported integer width".}
+
+    var mask: U
+
+    if n == 0:
+      mask = U(0)
+    elif n == bitWidth:
+      mask = high(U)
+    else:
+      mask = (U(1) shl n) - U(1)
+
+    result = cast[B](mask)
+
+  proc `[]`*[B:SomeInteger](b:B,s:Slice[int]):B =
+    const bitWidth = sizeof(B) * 8
+    doAssert 0 <= s.a and s.a <= s.b and s.b < bitWidth
+
+    let width = s.b - s.a + 1
+
+    if width == bitWidth:
+      result = b
+    else:
+      result =
+        (b shr s.a) and bitutilsLowMask[B](width)
   
   proc `[]=`*[B:SomeInteger](b:var B,n:int,t:int) =
     if t == 0: b.clearBit(n)
@@ -43,7 +79,7 @@ when not declared ATCODER_BITUTILS_HPP:
     result = ""
     for i in countdown(n-1,0):result.add if b[i] == 1: '1' else: '0'
   proc allSetBits*[B:SomeInteger](n:int):B =
-    return (not B(0)) shr (8 * sizeof(B) - n)
+    result = bitutilsLowMask[B](n)
   iterator subsets*(v:seq[int], B:typedesc[SomeInteger] = int):B =
     var s = B(0)
     yield s
@@ -60,5 +96,5 @@ when not declared ATCODER_BITUTILS_HPP:
       if not found: break
 
   iterator subsets*[B:SomeInteger](b:B):B =
-    for b in subsets[B](@b):
-      yield b
+    for subset in subsets(@b, B):
+      yield subset

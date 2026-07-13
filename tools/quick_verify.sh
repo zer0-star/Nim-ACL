@@ -681,6 +681,32 @@ then
 fi
 # <<< DOCS_HOMEPAGE_AUDIT <<<
 
+
+# <<< BITUTILS_THREE_DEFECTS_REGRESSION_V1 >>>
+STEP="BitUtils dedicated regression"
+
+for mm in refc orc
+do
+  output="/tmp/nacl_bitutils_regression_${mm}_$$"
+  cache="/tmp/nacl_bitutils_regression_${mm}_cache_$$"
+
+  nim cpp \
+    -r \
+    --hints:off \
+    --verbosity:0 \
+    --path:src \
+    -d:release \
+    --mm:"$mm" \
+    --nimcache:"$cache" \
+    -o:"$output" \
+    tests/test_extra_bitutils.nim \
+    >>"$LOG" 2>&1
+
+  rm -rf "$output" "$cache"
+done
+
+# <<< BITUTILS_THREE_DEFECTS_REGRESSION_V1_END >>>
+
 STEP="cleanup compiler runtime after final Nim tests"
 rm -rf .nim_runtime nimcache
 
