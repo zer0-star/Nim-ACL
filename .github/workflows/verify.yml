@@ -9,7 +9,17 @@ on:
 
 jobs:
   quick-verify:
+    name: quick-verify / ${{ matrix.profile }} / Nim ${{ matrix.nim-version }}
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - profile: latest
+            nim-version: '2.2.10'
+          - profile: atcoder
+            nim-version: '2.2.4'
 
     steps:
       - uses: actions/checkout@v4
@@ -17,7 +27,7 @@ jobs:
       - name: Set up Nim
         uses: jiro4989/setup-nim-action@v2
         with:
-          nim-version: '2.2.10'
+          nim-version: ${{ matrix.nim-version }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -34,6 +44,13 @@ jobs:
           fi
           python -m pip install Markdown toml jinja2 markupsafe
 
-      - name: Run quick verify
+      - name: Audit Nim version policy
         run: |
-          bash tools/quick_verify.sh
+          python3 tools/audit_nim_version_matrix.py
+
+      - name: Run quick verify
+        env:
+          NACL_NIM_PROFILE: ${{ matrix.profile }}
+          NACL_NIM_EXPECTED_VERSION: ${{ matrix.nim-version }}
+        run: |
+          bash tools/run_nim_compatibility.sh "${{ matrix.profile }}"

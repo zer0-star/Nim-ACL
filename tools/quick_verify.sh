@@ -771,3 +771,6 @@ python3 tools/audit_persistent_segment_tree_api.py
 python3 tools/audit_tuning_parameters.py
 # NIM_ACL_JAPANESE_FACADE_AUDIT_V1
 python3 tools/audit_japanese_facades.py
+
+# NIM_ACL_NIM_VERSION_MATRIX_AUDIT_V1
+python3 tools/audit_nim_version_matrix.py

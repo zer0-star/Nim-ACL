@@ -3,10 +3,6 @@ name: oj-verify
 on:
   workflow_dispatch:
     inputs:
-      nim-version:
-        description: 'Nim version used for oj-verify'
-        required: true
-        default: '2.2.4'
       verify-target:
         description: 'oj-verify target'
         required: true
@@ -14,8 +10,18 @@ on:
 
 jobs:
   oj-verify:
+    name: oj-verify / ${{ matrix.profile }} / Nim ${{ matrix.nim-version }}
     runs-on: ubuntu-latest
     timeout-minutes: 180
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - profile: latest
+            nim-version: '2.2.10'
+          - profile: atcoder
+            nim-version: '2.2.4'
 
     steps:
       - uses: actions/checkout@v4
@@ -23,7 +29,7 @@ jobs:
       - name: Set up Nim
         uses: jiro4989/setup-nim-action@v2
         with:
-          nim-version: ${{ inputs.nim-version }}
+          nim-version: ${{ matrix.nim-version }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -35,11 +41,17 @@ jobs:
           python -m pip install -U pip
           python -m pip install -U online-judge-verify-helper
 
+      - name: Audit Nim version policy
+        run: |
+          python3 tools/audit_nim_version_matrix.py
+
       - name: Run oj-verify
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
           GH_PAT: ${{ secrets.GH_PAT }}
+          NACL_NIM_PROFILE: ${{ matrix.profile }}
+          NACL_NIM_EXPECTED_VERSION: ${{ matrix.nim-version }}
         run: |
           cd src
           oj-verify ${{ inputs.verify-target }}

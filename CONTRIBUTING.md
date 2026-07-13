@@ -171,3 +171,30 @@ python3 tools/postprocess_document_links.py
 python3 tools/audit_generated_document_html.py
 ~~~
 
+## Nim compiler compatibility policy
+
+Required CI and verification profiles are:
+
+- `latest`: Nim `2.2.10`
+- `atcoder`: Nim `2.2.4`
+
+Both profiles run `tools/quick_verify.sh`.
+The manual `oj-verify` workflow also runs both profiles independently.
+
+AtCoder additionally provides Nim `1.6.20`.
+It is recorded as `atcoder_legacy` in
+`tools/nim_version_policy.json`, but it is not currently a required
+per-push compatibility target.
+
+To run the local suite after selecting a compiler with a version
+manager:
+
+~~~bash
+bash tools/run_nim_compatibility.sh latest
+bash tools/run_nim_compatibility.sh atcoder
+~~~
+
+When either the current stable Nim release or the AtCoder judge
+environment changes, update the policy file and both workflow
+matrices in the same commit. The quick verification suite audits
+their consistency.

@@ -1,0 +1,9 @@
+{
+  "latest": "2.2.10",
+  "atcoder": "2.2.4",
+  "atcoder_legacy": "1.6.20",
+  "required_profiles": [
+    "latest",
+    "atcoder"
+  ]
+}
