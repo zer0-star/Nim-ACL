@@ -4,9 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       verify-target:
-        description: 'oj-verify target'
+        description: 'all or a path relative to src/'
         required: true
         default: 'all'
+
+permissions:
+  contents: read
 
 jobs:
   oj-verify:
@@ -24,7 +27,7 @@ jobs:
             nim-version: '2.2.4'
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Nim
         uses: jiro4989/setup-nim-action@v2
@@ -32,26 +35,26 @@ jobs:
           nim-version: ${{ matrix.nim-version }}
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
-          python-version: '3.x'
+          python-version: '3.12'
 
       - name: Install verification-helper
         run: |
-          python -m pip install -U pip
-          python -m pip install -U online-judge-verify-helper
+          python -m pip install --upgrade pip 'setuptools<81' wheel
+          python -m pip install --upgrade online-judge-verify-helper
 
-      - name: Audit Nim version policy
+      - name: Audit CI and Nim version policy
         run: |
           python3 tools/audit_nim_version_matrix.py
+          python3 tools/audit_ci_workflows.py
 
       - name: Run oj-verify
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERIFY_TARGET: ${{ inputs.verify-target }}
+          OJ_VERIFY_JOBS: '2'
           YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
-          GH_PAT: ${{ secrets.GH_PAT }}
           NACL_NIM_PROFILE: ${{ matrix.profile }}
           NACL_NIM_EXPECTED_VERSION: ${{ matrix.nim-version }}
         run: |
-          cd src
-          oj-verify ${{ inputs.verify-target }}
+          bash tools/run_oj_verify_target.sh "$VERIFY_TARGET"
