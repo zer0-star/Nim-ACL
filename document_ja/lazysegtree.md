@@ -189,3 +189,29 @@ seg.all_prod():S
 @{example.lazyseg_practice1}
 
 @{example.lazyseg_practice2}
+
+<!-- NIM_ACL_LAZY_MONOID_SEGTREE_FACADE_START -->
+
+## ActionMonoid記述子による構築
+
+`atcoder/extra/structure/monoid_segtree`をimportすると、
+ActionMonoid記述子からLazySegTreeを構築できます。
+
+```nim
+useActionMonoid(
+  RangeAddMax,
+  AddMonoid,
+  MaxMonoid,
+  mapping,
+)
+
+var tree = RangeAddMax.initLazySegTree(values)
+```
+
+公開上は作用Monoid `F`を値Monoid `S`より先に記述します。
+作用合成`composition(f, g)`は`f` after `g`です。
+
+従来の`useActedMonoid(Name, S, F, mapping)`と
+callback constructorも維持されます。
+
+<!-- NIM_ACL_LAZY_MONOID_SEGTREE_FACADE_END -->

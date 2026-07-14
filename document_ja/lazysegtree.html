@@ -480,6 +480,26 @@ block:
       seg.apply(l..&lt;r, true)
     else:
       echo seg.prod(l..&lt;r).inversion</div>
+
+<!-- NIM_ACL_LAZY_MONOID_SEGTREE_FACADE_START -->
+
+<h2 id="actionmonoid">ActionMonoid記述子による構築</h2>
+<p><code>atcoder/extra/structure/monoid_segtree</code>をimportすると、
+ActionMonoid記述子からLazySegTreeを構築できます。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">useActionMonoid</span><span class="tok-punctuation">(</span>
+  <span class="tok-identifier">RangeAddMax</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">AddMonoid</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">MaxMonoid</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">mapping</span><span class="tok-punctuation">,</span>
+<span class="tok-punctuation">)</span>
+
+<span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span> <span class="tok-identifier">RangeAddMax</span><span class="tok-operator">.</span><span class="tok-identifier">initLazySegTree</span><span class="tok-punctuation">(</span><span class="tok-identifier">values</span><span class="tok-punctuation">)</span>
+</code></pre>
+<p>公開上は作用Monoid <code>F</code>を値Monoid <code>S</code>より先に記述します。
+作用合成<code>composition(f, g)</code>は<code>f</code> after <code>g</code>です。</p>
+<p>従来の<code>useActedMonoid(Name, S, F, mapping)</code>と
+callback constructorも維持されます。</p>
+<!-- NIM_ACL_LAZY_MONOID_SEGTREE_FACADE_END -->
   </main>
 </body>
 </html>

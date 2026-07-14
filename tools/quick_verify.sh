@@ -897,6 +897,48 @@ done
 
 # <<< ITERTOOLS_CONTRACT_REGRESSION_V1_END >>>
 
+
+# <<< MONOID_SEGTREE_FACADE_REGRESSION_V1 >>>
+
+STEP="Monoid SegTree facade regression"
+
+python3 tools/audit_monoid_segtree_facade.py \
+  >>"$LOG" 2>&1
+
+for facade_test in \
+  tests/test_action_monoid_alias.nim \
+  tests/test_monoid_segtree_facade.nim \
+  tests/test_monoid_segtree_header.nim
+do
+  facade_name="$(
+    basename "$facade_test" .nim
+  )"
+
+  for facade_mm in refc orc
+  do
+    facade_output="/tmp/nacl_${facade_name}_${facade_mm}_$$"
+    facade_cache="/tmp/nacl_${facade_name}_${facade_mm}_cache_$$"
+
+    nim cpp \
+      -r \
+      --hints:off \
+      --verbosity:0 \
+      --path:src \
+      -d:release \
+      --mm:"$facade_mm" \
+      --nimcache:"$facade_cache" \
+      -o:"$facade_output" \
+      "$facade_test" \
+      >>"$LOG" 2>&1
+
+    rm -rf \
+      "$facade_output" \
+      "$facade_cache"
+  done
+done
+
+# <<< MONOID_SEGTREE_FACADE_REGRESSION_V1_END >>>
+
 STEP="cleanup compiler runtime after final Nim tests"
 rm -rf .nim_runtime nimcache
 

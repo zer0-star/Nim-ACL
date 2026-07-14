@@ -188,3 +188,20 @@ seg.all_prod():S
 ## @{keyword.examples}
 
 @{example.segtree_practice}
+
+<!-- NIM_ACL_MONOID_SEGTREE_FACADE_START -->
+
+## Monoid記述子による構築
+
+`atcoder/extra/structure/monoid_segtree`をimportすると、
+Monoid記述子から構築できます。
+
+```nim
+var tree = SumMonoid.initSegTree(values)
+var emptyTree = SumMonoid.initSegTree(n)
+```
+
+長さconstructorは各葉をMonoidの単位元で初期化します。
+既存のcallback constructorも維持されます。
+
+<!-- NIM_ACL_MONOID_SEGTREE_FACADE_END -->

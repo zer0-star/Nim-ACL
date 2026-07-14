@@ -97,3 +97,21 @@ when not declared ATCODER_EXTRA_MONOID_MONOID_HPP:
 
   proc mapping*[T: ActedMonoidBase](_: typedesc[T], f: T.F, s: T.S): T.S =
     T.p[0](f, s)
+
+
+  template useActionMonoid*(
+      Name,
+      MF,
+      MS,
+      mapping0: untyped
+  ): untyped =
+    ## Defines an acted monoid using the public semantic order
+    ## action monoid F, followed by value monoid S.
+    ##
+    ## The existing implementation order is preserved internally.
+    useActedMonoid(
+      Name,
+      MS,
+      MF,
+      mapping0,
+    )

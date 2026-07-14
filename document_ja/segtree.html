@@ -426,6 +426,18 @@ for i in 0..&lt;q:
     let p = nextInt() - 1
     target = nextInt()
     echo seg.max_right(p, f) + 1</div>
+
+<!-- NIM_ACL_MONOID_SEGTREE_FACADE_START -->
+
+<h2 id="monoid">Monoid記述子による構築</h2>
+<p><code>atcoder/extra/structure/monoid_segtree</code>をimportすると、
+Monoid記述子から構築できます。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">tree</span> <span class="tok-operator">=</span> <span class="tok-identifier">SumMonoid</span><span class="tok-operator">.</span><span class="tok-identifier">initSegTree</span><span class="tok-punctuation">(</span><span class="tok-identifier">values</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">var</span> <span class="tok-identifier">emptyTree</span> <span class="tok-operator">=</span> <span class="tok-identifier">SumMonoid</span><span class="tok-operator">.</span><span class="tok-identifier">initSegTree</span><span class="tok-punctuation">(</span><span class="tok-identifier">n</span><span class="tok-punctuation">)</span>
+</code></pre>
+<p>長さconstructorは各葉をMonoidの単位元で初期化します。
+既存のcallback constructorも維持されます。</p>
+<!-- NIM_ACL_MONOID_SEGTREE_FACADE_END -->
   </main>
 </body>
 </html>

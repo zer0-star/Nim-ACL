@@ -34,6 +34,7 @@ when not declared ATCODER_EXTRA_HEADER_CHAEMON_HEADER_HPP:
   import atcoder/extra/other/cfor
   import atcoder/extra/other/sliceutils
   import atcoder/extra/other/itertools
+  import atcoder/extra/structure/monoid_segtree
   import atcoder/extra/other/assignment_operator
   import atcoder/extra/other/inf
   import atcoder/extra/other/warlus_operator
