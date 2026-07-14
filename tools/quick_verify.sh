@@ -1039,11 +1039,18 @@ python3 tools/audit_nim_version_matrix.py
 # BEGIN SORTED_SET_MAP_ALWAYS_COUNTABLE_CONTRACT
 echo "[quick] Sorted Set / Map always-countable and iterator contract"
 
+sorted_set_map_nim_bin="$(type -P nim || true)"
+
+if [ -z "$sorted_set_map_nim_bin" ]; then
+  echo "ERROR: Nim executable was not found in PATH" >&2
+  exit 1
+fi
+
 sorted_set_map_contract_tmp="$(
   mktemp -d "${TMPDIR:-/tmp}/nim_acl_sorted_set_map_contract.XXXXXX"
 )"
 
-nim cpp \
+"$sorted_set_map_nim_bin" cpp \
   --hints:off \
   --verbosity:0 \
   --path:src \
@@ -1056,7 +1063,7 @@ nim cpp \
 "$sorted_set_map_contract_tmp/refc" \
   >"$sorted_set_map_contract_tmp/refc.out"
 
-nim cpp \
+"$sorted_set_map_nim_bin" cpp \
   --hints:off \
   --verbosity:0 \
   --path:src \
