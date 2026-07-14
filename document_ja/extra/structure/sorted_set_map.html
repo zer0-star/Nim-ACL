@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>sorted_set_map</title>
+  <title>Sorted Set / Map</title>
   <link rel="stylesheet" href="../../lib/main.css">
 
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.37.5/src-min-noconflict/ace.js"></script>
@@ -250,110 +250,204 @@ pre.nim-line-numbers .code-line::before {
     </a>
   </header>
   <main>
-<h1 id="sorted_set_map">sorted_set_map</h1>
-<p><code>sorted_set_map</code> は、順序付き集合・順序付き写像を提供します。</p>
-<p>Nim 標準の <code>sets</code> / <code>tables</code> は hash-based ですが、この module は C++ の <code>std::set</code> / <code>std::map</code> に近い、key の順序に基づく container です。</p>
-<p>通常の順序付き set / map はこちらを推奨します。内部 backend は RedBlackTree です。RBST / SplayTree など低レベル木 backend との関係は <a href="./tree_backends.html">Tree backends</a> も参照してください。</p>
-<h2 id="import">import</h2>
+<h1 id="sorted-set-map">Sorted Set / Map</h1>
+<p><code>SortedSet</code>、<code>SortedMultiSet</code>、<code>SortedMap</code>、<code>SortedMultiMap</code>は、
+比較関数が定める順序を保つ連想コンテナです。</p>
 <pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">structure</span><span class="tok-operator">/</span><span class="tok-identifier">sorted_set_map</span>
 </code></pre>
-<h2 id="_1">型</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">type</span> <span class="tok-identifier">SortedSet</span><span class="tok-punctuation">(</span><span class="tok-identifier">K</span><span class="tok-punctuation">,</span> <span class="tok-identifier">countable</span> <span class="tok-operator">=</span> <span class="tok-identifier">false</span><span class="tok-punctuation">,</span> <span class="tok-identifier">comp</span> <span class="tok-operator">=</span> <span class="tok-keyword">nil</span><span class="tok-punctuation">)</span>
-<span class="tok-keyword">type</span> <span class="tok-identifier">SortedMultiSet</span><span class="tok-punctuation">(</span><span class="tok-identifier">K</span><span class="tok-punctuation">,</span> <span class="tok-identifier">countable</span> <span class="tok-operator">=</span> <span class="tok-identifier">false</span><span class="tok-punctuation">,</span> <span class="tok-identifier">comp</span> <span class="tok-operator">=</span> <span class="tok-keyword">nil</span><span class="tok-punctuation">)</span>
-<span class="tok-keyword">type</span> <span class="tok-identifier">SortedMap</span><span class="tok-punctuation">(</span><span class="tok-identifier">K</span><span class="tok-punctuation">,</span> <span class="tok-identifier">V</span><span class="tok-punctuation">,</span> <span class="tok-identifier">countable</span> <span class="tok-operator">=</span> <span class="tok-identifier">false</span><span class="tok-punctuation">,</span> <span class="tok-identifier">comp</span> <span class="tok-operator">=</span> <span class="tok-keyword">nil</span><span class="tok-punctuation">)</span>
-<span class="tok-keyword">type</span> <span class="tok-identifier">SortedMultiMap</span><span class="tok-punctuation">(</span><span class="tok-identifier">K</span><span class="tok-punctuation">,</span> <span class="tok-identifier">V</span><span class="tok-punctuation">,</span> <span class="tok-identifier">countable</span> <span class="tok-operator">=</span> <span class="tok-identifier">false</span><span class="tok-punctuation">,</span> <span class="tok-identifier">comp</span> <span class="tok-operator">=</span> <span class="tok-keyword">nil</span><span class="tok-punctuation">)</span>
+<h2 id="_1">初期化</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">sortedSet</span> <span class="tok-operator">=</span> <span class="tok-identifier">initSortedSet</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">var</span> <span class="tok-identifier">sortedMultiSet</span> <span class="tok-operator">=</span> <span class="tok-identifier">initSortedMultiSet</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
+
+<span class="tok-keyword">var</span> <span class="tok-identifier">sortedMap</span> <span class="tok-operator">=</span> <span class="tok-identifier">initSortedMap</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">string</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">var</span> <span class="tok-identifier">sortedMultiMap</span> <span class="tok-operator">=</span> <span class="tok-identifier">initSortedMultiMap</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">string</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
 </code></pre>
-<ul>
-<li><code>SortedSet</code>: 重複なし集合</li>
-<li><code>SortedMultiSet</code>: 重複あり集合</li>
-<li><code>SortedMap</code>: key-value map</li>
-<li><code>SortedMultiMap</code>: 重複 key を許す map</li>
-<li><code>countable = true</code>: index access や順位取得を使う場合に指定します。</li>
-<li><code>comp</code>: 比較関数です。省略時は昇順です。</li>
-</ul>
-<h2 id="_2">コンストラクタ</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">initSortedSet</span><span class="tok-punctuation">[</span><span class="tok-identifier">K</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">countable</span> <span class="tok-operator">=</span> <span class="tok-identifier">false</span><span class="tok-punctuation">,</span> <span class="tok-identifier">comp</span> <span class="tok-operator">=</span> <span class="tok-keyword">nil</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">auto</span>
-<span class="tok-keyword">proc</span> <span class="tok-identifier">initSortedSet</span><span class="tok-punctuation">[</span><span class="tok-identifier">K</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">:</span> <span class="tok-identifier">openArray</span><span class="tok-punctuation">[</span><span class="tok-identifier">K</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">countable</span> <span class="tok-operator">=</span> <span class="tok-identifier">false</span><span class="tok-punctuation">,</span> <span class="tok-identifier">comp</span> <span class="tok-operator">=</span> <span class="tok-keyword">nil</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">auto</span>
+<p>すべてのコンテナは常に部分木サイズを保持します。
+追加のmode指定なしで、比較順による順位アクセス、iteratorの<code>index</code>、
+iterator間の<code>distance</code>を利用できます。</p>
+<p>過去のコードとのソース互換性のため<code>countable</code>引数も受理されますが、
+公開仕様上はその値によらず順序統計が常に利用できます。
+新しいコードでは指定しません。</p>
+<h2 id="_2">基本操作</h2>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">s</span> <span class="tok-operator">=</span> <span class="tok-identifier">initSortedSet</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
 
-<span class="tok-keyword">proc</span> <span class="tok-identifier">initSortedMultiSet</span><span class="tok-punctuation">[</span><span class="tok-identifier">K</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">countable</span> <span class="tok-operator">=</span> <span class="tok-identifier">false</span><span class="tok-punctuation">,</span> <span class="tok-identifier">comp</span> <span class="tok-operator">=</span> <span class="tok-keyword">nil</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">auto</span>
-<span class="tok-keyword">proc</span> <span class="tok-identifier">initSortedMultiSet</span><span class="tok-punctuation">[</span><span class="tok-identifier">K</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">:</span> <span class="tok-identifier">openArray</span><span class="tok-punctuation">[</span><span class="tok-identifier">K</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">countable</span> <span class="tok-operator">=</span> <span class="tok-identifier">false</span><span class="tok-punctuation">,</span> <span class="tok-identifier">comp</span> <span class="tok-operator">=</span> <span class="tok-keyword">nil</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">auto</span>
+<span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">insert</span><span class="tok-punctuation">(</span><span class="tok-number">30</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">insert</span><span class="tok-punctuation">(</span><span class="tok-number">10</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">insert</span><span class="tok-punctuation">(</span><span class="tok-number">20</span><span class="tok-punctuation">)</span>
 
-<span class="tok-keyword">proc</span> <span class="tok-identifier">initSortedMap</span><span class="tok-punctuation">[</span><span class="tok-identifier">K</span><span class="tok-punctuation">,</span> <span class="tok-identifier">V</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">countable</span> <span class="tok-operator">=</span> <span class="tok-identifier">false</span><span class="tok-punctuation">,</span> <span class="tok-identifier">comp</span> <span class="tok-operator">=</span> <span class="tok-keyword">nil</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">auto</span>
-<span class="tok-keyword">proc</span> <span class="tok-identifier">initSortedMap</span><span class="tok-punctuation">[</span><span class="tok-identifier">K</span><span class="tok-punctuation">,</span> <span class="tok-identifier">V</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">:</span> <span class="tok-identifier">openArray</span><span class="tok-punctuation">[</span><span class="tok-punctuation">(</span><span class="tok-identifier">K</span><span class="tok-punctuation">,</span> <span class="tok-identifier">V</span><span class="tok-punctuation">)</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">countable</span> <span class="tok-operator">=</span> <span class="tok-identifier">false</span><span class="tok-punctuation">,</span> <span class="tok-identifier">comp</span> <span class="tok-operator">=</span> <span class="tok-keyword">nil</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">auto</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-number">20</span> <span class="tok-keyword">in</span> <span class="tok-identifier">s</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">==</span> <span class="tok-number">3</span>
 
-<span class="tok-keyword">proc</span> <span class="tok-identifier">initSortedMultiMap</span><span class="tok-punctuation">[</span><span class="tok-identifier">K</span><span class="tok-punctuation">,</span> <span class="tok-identifier">V</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">countable</span> <span class="tok-operator">=</span> <span class="tok-identifier">false</span><span class="tok-punctuation">,</span> <span class="tok-identifier">comp</span> <span class="tok-operator">=</span> <span class="tok-keyword">nil</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">auto</span>
-<span class="tok-keyword">proc</span> <span class="tok-identifier">initSortedMultiMap</span><span class="tok-punctuation">[</span><span class="tok-identifier">K</span><span class="tok-punctuation">,</span> <span class="tok-identifier">V</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">:</span> <span class="tok-identifier">openArray</span><span class="tok-punctuation">[</span><span class="tok-punctuation">(</span><span class="tok-identifier">K</span><span class="tok-punctuation">,</span> <span class="tok-identifier">V</span><span class="tok-punctuation">)</span><span class="tok-punctuation">]</span><span class="tok-punctuation">,</span> <span class="tok-identifier">countable</span> <span class="tok-operator">=</span> <span class="tok-identifier">false</span><span class="tok-punctuation">,</span> <span class="tok-identifier">comp</span> <span class="tok-operator">=</span> <span class="tok-keyword">nil</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">auto</span>
+<span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">erase</span><span class="tok-punctuation">(</span><span class="tok-number">20</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-number">20</span> <span class="tok-keyword">notin</span> <span class="tok-identifier">s</span>
 </code></pre>
-<h2 id="_3">共通操作</h2>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">empty</span><span class="tok-punctuation">(</span><span class="tok-identifier">s</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">bool</span>
-<span class="tok-keyword">proc</span> <span class="tok-identifier">len</span><span class="tok-punctuation">(</span><span class="tok-identifier">s</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span>
+<p>Mapでは<code>[]</code>がkeyによるvalueアクセスです。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">m</span> <span class="tok-operator">=</span> <span class="tok-identifier">initSortedMap</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">string</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
 
-<span class="tok-keyword">proc</span> <span class="tok-identifier">insert</span><span class="tok-punctuation">(</span><span class="tok-identifier">s</span><span class="tok-punctuation">:</span> <span class="tok-keyword">var</span> <span class="tok-identifier">SortedSet</span><span class="tok-punctuation">,</span> <span class="tok-identifier">key</span><span class="tok-punctuation">)</span>
-<span class="tok-keyword">proc</span> <span class="tok-identifier">insert</span><span class="tok-punctuation">(</span><span class="tok-identifier">s</span><span class="tok-punctuation">:</span> <span class="tok-keyword">var</span> <span class="tok-identifier">SortedMap</span><span class="tok-punctuation">,</span> <span class="tok-identifier">item</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">m</span><span class="tok-punctuation">[</span><span class="tok-number">20</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;twenty&quot;</span>
+<span class="tok-identifier">m</span><span class="tok-punctuation">[</span><span class="tok-number">10</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;ten&quot;</span>
 
-<span class="tok-keyword">proc</span> <span class="tok-identifier">erase</span><span class="tok-punctuation">(</span><span class="tok-identifier">s</span><span class="tok-punctuation">:</span> <span class="tok-keyword">var</span> <span class="tok-identifier">SortedSet</span><span class="tok-punctuation">,</span> <span class="tok-identifier">key</span><span class="tok-punctuation">)</span>
-<span class="tok-keyword">proc</span> <span class="tok-identifier">erase</span><span class="tok-punctuation">(</span><span class="tok-identifier">s</span><span class="tok-punctuation">:</span> <span class="tok-keyword">var</span> <span class="tok-identifier">SortedMap</span><span class="tok-punctuation">,</span> <span class="tok-identifier">key</span><span class="tok-punctuation">)</span>
-
-<span class="tok-keyword">proc</span> <span class="tok-identifier">contains</span><span class="tok-punctuation">(</span><span class="tok-identifier">s</span><span class="tok-punctuation">,</span> <span class="tok-identifier">key</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">bool</span>
-<span class="tok-keyword">proc</span> <span class="tok-identifier">find</span><span class="tok-punctuation">(</span><span class="tok-identifier">s</span><span class="tok-punctuation">,</span> <span class="tok-identifier">key</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-keyword">iterator</span>
-<span class="tok-keyword">proc</span> <span class="tok-identifier">lower_bound</span><span class="tok-punctuation">(</span><span class="tok-identifier">s</span><span class="tok-punctuation">,</span> <span class="tok-identifier">key</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-keyword">iterator</span>
-<span class="tok-keyword">proc</span> <span class="tok-identifier">upper_bound</span><span class="tok-punctuation">(</span><span class="tok-identifier">s</span><span class="tok-punctuation">,</span> <span class="tok-identifier">key</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-keyword">iterator</span>
-<span class="tok-keyword">proc</span> <span class="tok-identifier">begin</span><span class="tok-punctuation">(</span><span class="tok-identifier">s</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-keyword">iterator</span>
-<span class="tok-keyword">proc</span> <span class="tok-keyword">end</span><span class="tok-punctuation">(</span><span class="tok-identifier">s</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-keyword">iterator</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">m</span><span class="tok-punctuation">[</span><span class="tok-number">10</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-string">&quot;ten&quot;</span>
 </code></pre>
-<p><code>key in s</code> / <code>key notin s</code> も使えます。</p>
-<h2 id="sortedset">SortedSet の使用例</h2>
-<!-- nim-line-numbers -->
+<h2 id="_3">比較順による順位アクセス</h2>
+<p>順位は0-basedです。<code>container{index}</code>は、比較順で<code>index</code>番目を指す
+iteratorを返します。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">s</span> <span class="tok-operator">=</span> <span class="tok-identifier">initSortedSet</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
 
-<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">s</span> <span class="tok-operator">=</span> <span class="tok-identifier">initSortedSet</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">countable</span> <span class="tok-operator">=</span> <span class="tok-identifier">true</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">insert</span><span class="tok-punctuation">(</span><span class="tok-number">3</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">insert</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">insert</span><span class="tok-punctuation">(</span><span class="tok-number">4</span><span class="tok-punctuation">)</span></span><span class="code-line"><span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">insert</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">==</span> <span class="tok-number">3</span></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-number">1</span> <span class="tok-keyword">in</span> <span class="tok-identifier">s</span></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-number">2</span> <span class="tok-keyword">notin</span> <span class="tok-identifier">s</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-operator">*</span><span class="tok-identifier">s</span><span class="tok-punctuation">{</span><span class="tok-number">0</span><span class="tok-punctuation">}</span> <span class="tok-operator">==</span> <span class="tok-number">1</span></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-operator">*</span><span class="tok-identifier">s</span><span class="tok-punctuation">{</span><span class="tok-number">1</span><span class="tok-punctuation">}</span> <span class="tok-operator">==</span> <span class="tok-number">3</span></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-operator">*</span><span class="tok-identifier">s</span><span class="tok-punctuation">{</span><span class="tok-number">2</span><span class="tok-punctuation">}</span> <span class="tok-operator">==</span> <span class="tok-number">4</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">erase</span><span class="tok-punctuation">(</span><span class="tok-number">3</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-number">3</span> <span class="tok-keyword">notin</span> <span class="tok-identifier">s</span></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">len</span> <span class="tok-operator">==</span> <span class="tok-number">2</span></span></code></pre>
-<h2 id="sortedmap">SortedMap の使用例</h2>
-<!-- nim-line-numbers -->
+<span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">insert</span><span class="tok-punctuation">(</span><span class="tok-number">30</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">insert</span><span class="tok-punctuation">(</span><span class="tok-number">10</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">insert</span><span class="tok-punctuation">(</span><span class="tok-number">20</span><span class="tok-punctuation">)</span>
 
-<pre class="nim-code nim-acl-highlighted nim-line-numbers"><code class="language-nim nim-acl-highlighted"><span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">mp</span> <span class="tok-operator">=</span> <span class="tok-identifier">initSortedMap</span><span class="tok-punctuation">[</span><span class="tok-identifier">string</span><span class="tok-punctuation">,</span> <span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">countable</span> <span class="tok-operator">=</span> <span class="tok-identifier">true</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">mp</span><span class="tok-punctuation">[</span><span class="tok-string">&quot;three&quot;</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-number">3</span></span><span class="code-line"><span class="tok-identifier">mp</span><span class="tok-punctuation">[</span><span class="tok-string">&quot;one&quot;</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-number">100</span></span><span class="code-line"><span class="tok-identifier">mp</span><span class="tok-punctuation">[</span><span class="tok-string">&quot;one&quot;</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-number">1</span></span><span class="code-line"><span class="tok-identifier">mp</span><span class="tok-punctuation">[</span><span class="tok-string">&quot;four&quot;</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-number">4</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-string">&quot;one&quot;</span> <span class="tok-keyword">in</span> <span class="tok-identifier">mp</span></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-string">&quot;two&quot;</span> <span class="tok-keyword">notin</span> <span class="tok-identifier">mp</span></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">mp</span><span class="tok-punctuation">[</span><span class="tok-string">&quot;one&quot;</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">1</span></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">mp</span><span class="tok-punctuation">[</span><span class="tok-string">&quot;four&quot;</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-number">4</span></span><span class="code-line"></span><span class="code-line"><span class="tok-keyword">var</span> <span class="tok-identifier">xs</span><span class="tok-punctuation">:</span> <span class="tok-identifier">seq</span><span class="tok-punctuation">[</span><span class="tok-punctuation">(</span><span class="tok-identifier">string</span><span class="tok-punctuation">,</span> <span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-punctuation">]</span></span><span class="code-line"><span class="tok-keyword">for</span> <span class="tok-identifier">k</span><span class="tok-punctuation">,</span> <span class="tok-identifier">v</span> <span class="tok-keyword">in</span> <span class="tok-identifier">mp</span><span class="tok-punctuation">:</span></span><span class="code-line">  <span class="tok-identifier">xs</span><span class="tok-operator">.</span><span class="tok-identifier">add</span><span class="tok-punctuation">(</span><span class="tok-punctuation">(</span><span class="tok-identifier">k</span><span class="tok-punctuation">,</span> <span class="tok-identifier">v</span><span class="tok-punctuation">)</span><span class="tok-punctuation">)</span></span><span class="code-line"></span><span class="code-line"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">xs</span> <span class="tok-operator">==</span> <span class="tok-operator">@</span><span class="tok-punctuation">[</span><span class="tok-punctuation">(</span><span class="tok-string">&quot;four&quot;</span><span class="tok-punctuation">,</span> <span class="tok-number">4</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span> <span class="tok-punctuation">(</span><span class="tok-string">&quot;one&quot;</span><span class="tok-punctuation">,</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span><span class="tok-punctuation">,</span> <span class="tok-punctuation">(</span><span class="tok-string">&quot;three&quot;</span><span class="tok-punctuation">,</span> <span class="tok-number">3</span><span class="tok-punctuation">)</span><span class="tok-punctuation">]</span></span></code></pre>
-<h2 id="multiset-multimap">MultiSet / MultiMap</h2>
-<p><code>SortedMultiSet</code> と <code>SortedMultiMap</code> は重複 key を許します。</p>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">s</span> <span class="tok-operator">=</span> <span class="tok-identifier">initSortedMultiSet</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">countable</span> <span class="tok-operator">=</span> <span class="tok-identifier">true</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">let</span> <span class="tok-identifier">first</span> <span class="tok-operator">=</span> <span class="tok-identifier">s</span><span class="tok-punctuation">{</span><span class="tok-number">0</span><span class="tok-punctuation">}</span>
+<span class="tok-keyword">let</span> <span class="tok-identifier">second</span> <span class="tok-operator">=</span> <span class="tok-identifier">s</span><span class="tok-punctuation">{</span><span class="tok-number">1</span><span class="tok-punctuation">}</span>
+<span class="tok-keyword">let</span> <span class="tok-identifier">third</span> <span class="tok-operator">=</span> <span class="tok-identifier">s</span><span class="tok-punctuation">{</span><span class="tok-number">2</span><span class="tok-punctuation">}</span>
 
-<span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">insert</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-operator">*</span><span class="tok-identifier">first</span> <span class="tok-operator">==</span> <span class="tok-number">10</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-operator">*</span><span class="tok-identifier">second</span> <span class="tok-operator">==</span> <span class="tok-number">20</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-operator">*</span><span class="tok-identifier">third</span> <span class="tok-operator">==</span> <span class="tok-number">30</span>
+</code></pre>
+<p>明示的な既存APIとして<code>kth_element(index)</code>も利用できます。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">kth_element</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-identifier">s</span><span class="tok-punctuation">{</span><span class="tok-number">1</span><span class="tok-punctuation">}</span>
+</code></pre>
+<p>前提条件は次です。</p>
+<pre><code class="language-text">0 &lt;= index &lt; container.len
+</code></pre>
+<p>Mapでは<code>[]</code>と<code>{}</code>の意味が異なります。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">m</span> <span class="tok-operator">=</span> <span class="tok-identifier">initSortedMap</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">string</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
+
+<span class="tok-identifier">m</span><span class="tok-punctuation">[</span><span class="tok-number">30</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;thirty&quot;</span>
+<span class="tok-identifier">m</span><span class="tok-punctuation">[</span><span class="tok-number">10</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;ten&quot;</span>
+<span class="tok-identifier">m</span><span class="tok-punctuation">[</span><span class="tok-number">20</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;twenty&quot;</span>
+
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">m</span><span class="tok-punctuation">[</span><span class="tok-number">20</span><span class="tok-punctuation">]</span> <span class="tok-operator">==</span> <span class="tok-string">&quot;twenty&quot;</span>  <span class="tok-comment"># key 20のvalue</span>
+
+<span class="tok-keyword">let</span> <span class="tok-identifier">it</span> <span class="tok-operator">=</span> <span class="tok-identifier">m</span><span class="tok-punctuation">{</span><span class="tok-number">1</span><span class="tok-punctuation">}</span>               <span class="tok-comment"># 比較順で1番目のpair</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-operator">*</span><span class="tok-identifier">it</span> <span class="tok-operator">==</span> <span class="tok-punctuation">(</span><span class="tok-number">20</span><span class="tok-punctuation">,</span> <span class="tok-string">&quot;twenty&quot;</span><span class="tok-punctuation">)</span>
+</code></pre>
+<p><code>MultiSet</code>と<code>MultiMap</code>では、重複する要素もそれぞれ1個として順位を持ちます。</p>
+<h2 id="for"><code>for</code>による反復</h2>
+<p>Set系は比較順に要素を返します。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">s</span> <span class="tok-operator">=</span> <span class="tok-identifier">initSortedSet</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
+
+<span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">insert</span><span class="tok-punctuation">(</span><span class="tok-number">3</span><span class="tok-punctuation">)</span>
 <span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">insert</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">)</span>
 <span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">insert</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">)</span>
-<span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">insert</span><span class="tok-punctuation">(</span><span class="tok-number">3</span><span class="tok-punctuation">)</span>
 
-<span class="tok-identifier">doAssert</span> <span class="tok-number">2</span> <span class="tok-keyword">in</span> <span class="tok-identifier">s</span>
-
-<span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">erase</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">)</span>
-
-<span class="tok-identifier">doAssert</span> <span class="tok-number">2</span> <span class="tok-keyword">notin</span> <span class="tok-identifier">s</span>
+<span class="tok-keyword">for</span> <span class="tok-identifier">value</span> <span class="tok-keyword">in</span> <span class="tok-identifier">s</span><span class="tok-punctuation">:</span>
+  <span class="tok-identifier">echo</span> <span class="tok-identifier">value</span>
 </code></pre>
-<p>現在の <code>erase(key)</code> は、その key に等しい要素をまとめて削除します。</p>
-<h2 id="custom-comparator">custom comparator</h2>
-<p><code>comp</code> を指定すると、順序を変えられます。</p>
-<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">proc</span> <span class="tok-identifier">desc</span><span class="tok-punctuation">(</span><span class="tok-identifier">a</span><span class="tok-punctuation">,</span> <span class="tok-identifier">b</span><span class="tok-punctuation">:</span> <span class="tok-identifier">int</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span> <span class="tok-identifier">bool</span> <span class="tok-operator">=</span> <span class="tok-identifier">a</span> <span class="tok-operator">&gt;</span> <span class="tok-identifier">b</span>
-
-<span class="tok-keyword">var</span> <span class="tok-identifier">s</span> <span class="tok-operator">=</span> <span class="tok-identifier">initSortedSet</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-identifier">countable</span> <span class="tok-operator">=</span> <span class="tok-identifier">true</span><span class="tok-punctuation">,</span> <span class="tok-identifier">desc</span><span class="tok-punctuation">)</span>
-
-<span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">insert</span><span class="tok-punctuation">(</span><span class="tok-number">3</span><span class="tok-punctuation">)</span>
-<span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">insert</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">)</span>
-<span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">insert</span><span class="tok-punctuation">(</span><span class="tok-number">4</span><span class="tok-punctuation">)</span>
-
-<span class="tok-identifier">doAssert</span> <span class="tok-operator">*</span><span class="tok-identifier">s</span><span class="tok-punctuation">{</span><span class="tok-number">0</span><span class="tok-punctuation">}</span> <span class="tok-operator">==</span> <span class="tok-number">4</span>
-<span class="tok-identifier">doAssert</span> <span class="tok-operator">*</span><span class="tok-identifier">s</span><span class="tok-punctuation">{</span><span class="tok-number">1</span><span class="tok-punctuation">}</span> <span class="tok-operator">==</span> <span class="tok-number">3</span>
-<span class="tok-identifier">doAssert</span> <span class="tok-operator">*</span><span class="tok-identifier">s</span><span class="tok-punctuation">{</span><span class="tok-number">2</span><span class="tok-punctuation">}</span> <span class="tok-operator">==</span> <span class="tok-number">1</span>
+<p><code>items</code>を明示しても同じです。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">for</span> <span class="tok-identifier">value</span> <span class="tok-keyword">in</span> <span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">items</span><span class="tok-punctuation">:</span>
+  <span class="tok-identifier">echo</span> <span class="tok-identifier">value</span>
 </code></pre>
-<h2 id="_4">注意</h2>
+<p>Map系はkeyとvalueを比較順に返します。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">m</span> <span class="tok-operator">=</span> <span class="tok-identifier">initSortedMap</span><span class="tok-punctuation">[</span><span class="tok-identifier">int</span><span class="tok-punctuation">,</span> <span class="tok-identifier">string</span><span class="tok-punctuation">]</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
+
+<span class="tok-identifier">m</span><span class="tok-punctuation">[</span><span class="tok-number">2</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;two&quot;</span>
+<span class="tok-identifier">m</span><span class="tok-punctuation">[</span><span class="tok-number">1</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;one&quot;</span>
+
+<span class="tok-keyword">for</span> <span class="tok-identifier">key</span><span class="tok-punctuation">,</span> <span class="tok-identifier">value</span> <span class="tok-keyword">in</span> <span class="tok-identifier">m</span><span class="tok-punctuation">:</span>
+  <span class="tok-identifier">echo</span> <span class="tok-identifier">key</span><span class="tok-punctuation">,</span> <span class="tok-string">&quot;: &quot;</span><span class="tok-punctuation">,</span> <span class="tok-identifier">value</span>
+
+<span class="tok-keyword">for</span> <span class="tok-identifier">key</span><span class="tok-punctuation">,</span> <span class="tok-identifier">value</span> <span class="tok-keyword">in</span> <span class="tok-identifier">m</span><span class="tok-operator">.</span><span class="tok-identifier">pairs</span><span class="tok-punctuation">:</span>
+  <span class="tok-identifier">echo</span> <span class="tok-identifier">key</span><span class="tok-punctuation">,</span> <span class="tok-string">&quot;: &quot;</span><span class="tok-punctuation">,</span> <span class="tok-identifier">value</span>
+</code></pre>
+<h2 id="iterator">iteratorの直接操作</h2>
+<h3 id="beginend"><code>begin</code>と<code>end</code></h3>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">it</span> <span class="tok-operator">=</span> <span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">begin</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
+
+<span class="tok-keyword">while</span> <span class="tok-identifier">it</span> <span class="tok-operator">!=</span> <span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-keyword">end</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span>
+  <span class="tok-identifier">echo</span> <span class="tok-operator">*</span><span class="tok-identifier">it</span>
+  <span class="tok-identifier">it</span><span class="tok-operator">.</span><span class="tok-identifier">inc</span>
+</code></pre>
+<p><code>end()</code>は終端iteratorです。<code>end()</code>をdereferenceしてはいけません。</p>
+<h3 id="find"><code>find</code></h3>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">it</span> <span class="tok-operator">=</span> <span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">find</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">)</span>
+
+<span class="tok-keyword">if</span> <span class="tok-identifier">it</span> <span class="tok-operator">!=</span> <span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-keyword">end</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span><span class="tok-punctuation">:</span>
+  <span class="tok-identifier">doAssert</span> <span class="tok-operator">*</span><span class="tok-identifier">it</span> <span class="tok-operator">==</span> <span class="tok-number">2</span>
+</code></pre>
+<h3 id="lower_boundupper_bound"><code>lower_bound</code>と<code>upper_bound</code></h3>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">first</span> <span class="tok-operator">=</span> <span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">lower_bound</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">let</span> <span class="tok-identifier">last</span> <span class="tok-operator">=</span> <span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">upper_bound</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">)</span>
+</code></pre>
 <ul>
-<li>通常は <code>sorted_set_map</code> を直接使うのを推奨します。</li>
-<li><code>set_map</code> は互換用 alias です。</li>
-<li>低レベル backend を直接使う必要がある場合は <a href="./tree_backends.html">Tree backends</a> を参照してください。</li>
+<li><code>lower_bound(value)</code>は、<code>value</code>以上となる最初の位置を返します。</li>
+<li><code>upper_bound(value)</code>は、<code>value</code>より大きくなる最初の位置を返します。</li>
 </ul>
-<h2 id="_5">計算量</h2>
-<p>要素数を <code>n</code> とすると、主な操作はおおよそ次の通りです。</p>
+<p>比較の意味はコンテナの比較関数に従います。</p>
+<h3 id="incdec"><code>inc</code>と<code>dec</code></h3>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">var</span> <span class="tok-identifier">it</span> <span class="tok-operator">=</span> <span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">begin</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">it</span><span class="tok-operator">.</span><span class="tok-identifier">inc</span>
+
+<span class="tok-keyword">var</span> <span class="tok-identifier">last</span> <span class="tok-operator">=</span> <span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-keyword">end</span><span class="tok-punctuation">(</span><span class="tok-punctuation">)</span>
+<span class="tok-identifier">last</span><span class="tok-operator">.</span><span class="tok-identifier">dec</span>
+</code></pre>
 <ul>
-<li><code>insert</code>: <code>O(log n)</code></li>
-<li><code>erase</code>: <code>O(log n)</code></li>
-<li><code>find</code>, <code>lower_bound</code>, <code>upper_bound</code>: <code>O(log n)</code></li>
-<li>index access <code>{i}</code>: <code>O(log n)</code></li>
+<li><code>it.inc</code>は次の要素へ進みます。</li>
+<li><code>it.dec</code>は前の要素へ戻ります。</li>
 </ul>
+<h3 id="index"><code>index</code></h3>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">it</span> <span class="tok-operator">=</span> <span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">find</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">)</span>
+
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">it</span><span class="tok-operator">.</span><span class="tok-identifier">index</span> <span class="tok-operator">==</span> <span class="tok-number">1</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">s</span><span class="tok-punctuation">{</span><span class="tok-identifier">it</span><span class="tok-operator">.</span><span class="tok-identifier">index</span><span class="tok-punctuation">}</span> <span class="tok-operator">==</span> <span class="tok-identifier">it</span>
+</code></pre>
+<p><code>index</code>は比較順における0-based順位です。</p>
+<h3 id="distance"><code>distance</code></h3>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">let</span> <span class="tok-identifier">first</span> <span class="tok-operator">=</span> <span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">lower_bound</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">)</span>
+<span class="tok-keyword">let</span> <span class="tok-identifier">last</span> <span class="tok-operator">=</span> <span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">upper_bound</span><span class="tok-punctuation">(</span><span class="tok-number">2</span><span class="tok-punctuation">)</span>
+
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">s</span><span class="tok-operator">.</span><span class="tok-identifier">distance</span><span class="tok-punctuation">(</span><span class="tok-identifier">first</span><span class="tok-punctuation">,</span> <span class="tok-identifier">last</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-number">2</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">distance</span><span class="tok-punctuation">(</span><span class="tok-identifier">first</span><span class="tok-punctuation">,</span> <span class="tok-identifier">last</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-number">2</span>
+</code></pre>
+<p><code>distance(first, last)</code>は、iteratorの順位の差を返します。</p>
+<h2 id="_4">計算量</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th style="text-align: right;">計算量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>insert</code>、<code>erase</code></td>
+<td style="text-align: right;"><code>O(log n)</code></td>
+</tr>
+<tr>
+<td><code>find</code>、<code>lower_bound</code>、<code>upper_bound</code></td>
+<td style="text-align: right;"><code>O(log n)</code></td>
+</tr>
+<tr>
+<td><code>{index}</code>、<code>kth_element(index)</code></td>
+<td style="text-align: right;"><code>O(log n)</code></td>
+</tr>
+<tr>
+<td><code>iterator.index</code></td>
+<td style="text-align: right;"><code>O(log n)</code></td>
+</tr>
+<tr>
+<td><code>distance</code></td>
+<td style="text-align: right;"><code>O(log n)</code></td>
+</tr>
+<tr>
+<td>全要素の反復</td>
+<td style="text-align: right;"><code>O(n)</code></td>
+</tr>
+<tr>
+<td><code>len</code></td>
+<td style="text-align: right;"><code>O(1)</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">互換性</h2>
+<p><code>countable</code>を指定する古いconstructor呼び出しは引き続き受理されます。</p>
+<p>この指定でも順序統計は利用できます。ただし新しいコードでは、
+引数を省略した通常のconstructorを使用してください。</p>
+<p><code>kth_element</code>と<code>{index}</code>は現在の公開APIです。
+<code>[]</code>／<code>{}</code>の割り当てや明示的な順位アクセス名については、
+この文書更新では変更していません。</p>
   </main>
 </body>
 </html>

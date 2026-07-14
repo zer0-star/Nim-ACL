@@ -1,169 +1,235 @@
-# sorted_set_map
+# Sorted Set / Map
 
-`sorted_set_map` は、順序付き集合・順序付き写像を提供します。
+`SortedSet`、`SortedMultiSet`、`SortedMap`、`SortedMultiMap`は、
+比較関数が定める順序を保つ連想コンテナです。
 
-Nim 標準の `sets` / `tables` は hash-based ですが、この module は C++ の `std::set` / `std::map` に近い、key の順序に基づく container です。
-
-通常の順序付き set / map はこちらを推奨します。内部 backend は RedBlackTree です。RBST / SplayTree など低レベル木 backend との関係は [Tree backends](./tree_backends.html) も参照してください。
-
-## import
-
-~~~nim
+```nim
 import atcoder/extra/structure/sorted_set_map
-~~~
+```
 
-## 型
+## 初期化
 
-~~~nim
-type SortedSet(K, countable = false, comp = nil)
-type SortedMultiSet(K, countable = false, comp = nil)
-type SortedMap(K, V, countable = false, comp = nil)
-type SortedMultiMap(K, V, countable = false, comp = nil)
-~~~
+```nim
+var sortedSet = initSortedSet[int]()
+var sortedMultiSet = initSortedMultiSet[int]()
 
-- `SortedSet`: 重複なし集合
-- `SortedMultiSet`: 重複あり集合
-- `SortedMap`: key-value map
-- `SortedMultiMap`: 重複 key を許す map
-- `countable = true`: index access や順位取得を使う場合に指定します。
-- `comp`: 比較関数です。省略時は昇順です。
+var sortedMap = initSortedMap[int, string]()
+var sortedMultiMap = initSortedMultiMap[int, string]()
+```
 
-## コンストラクタ
+すべてのコンテナは常に部分木サイズを保持します。
+追加のmode指定なしで、比較順による順位アクセス、iteratorの`index`、
+iterator間の`distance`を利用できます。
 
-~~~nim
-proc initSortedSet[K](countable = false, comp = nil): auto
-proc initSortedSet[K](a: openArray[K], countable = false, comp = nil): auto
+過去のコードとのソース互換性のため`countable`引数も受理されますが、
+公開仕様上はその値によらず順序統計が常に利用できます。
+新しいコードでは指定しません。
 
-proc initSortedMultiSet[K](countable = false, comp = nil): auto
-proc initSortedMultiSet[K](a: openArray[K], countable = false, comp = nil): auto
+## 基本操作
 
-proc initSortedMap[K, V](countable = false, comp = nil): auto
-proc initSortedMap[K, V](a: openArray[(K, V)], countable = false, comp = nil): auto
+```nim
+var s = initSortedSet[int]()
 
-proc initSortedMultiMap[K, V](countable = false, comp = nil): auto
-proc initSortedMultiMap[K, V](a: openArray[(K, V)], countable = false, comp = nil): auto
-~~~
+s.insert(30)
+s.insert(10)
+s.insert(20)
 
-## 共通操作
-
-~~~nim
-proc empty(s): bool
-proc len(s): int
-
-proc insert(s: var SortedSet, key)
-proc insert(s: var SortedMap, item)
-
-proc erase(s: var SortedSet, key)
-proc erase(s: var SortedMap, key)
-
-proc contains(s, key): bool
-proc find(s, key): iterator
-proc lower_bound(s, key): iterator
-proc upper_bound(s, key): iterator
-proc begin(s): iterator
-proc end(s): iterator
-~~~
-
-`key in s` / `key notin s` も使えます。
-
-## SortedSet の使用例
-
-<!-- nim-line-numbers -->
-~~~nim
-var s = initSortedSet[int](countable = true)
-
-s.insert(3)
-s.insert(1)
-s.insert(4)
-s.insert(1)
-
+doAssert 20 in s
 doAssert s.len == 3
-doAssert 1 in s
-doAssert 2 notin s
 
-doAssert *s{0} == 1
-doAssert *s{1} == 3
-doAssert *s{2} == 4
+s.erase(20)
+doAssert 20 notin s
+```
 
-s.erase(3)
+Mapでは`[]`がkeyによるvalueアクセスです。
 
-doAssert 3 notin s
-doAssert s.len == 2
-~~~
+```nim
+var m = initSortedMap[int, string]()
 
-## SortedMap の使用例
+m[20] = "twenty"
+m[10] = "ten"
 
-<!-- nim-line-numbers -->
-~~~nim
-var mp = initSortedMap[string, int](countable = true)
+doAssert m[10] == "ten"
+```
 
-mp["three"] = 3
-mp["one"] = 100
-mp["one"] = 1
-mp["four"] = 4
+## 比較順による順位アクセス
 
-doAssert "one" in mp
-doAssert "two" notin mp
-doAssert mp["one"] == 1
-doAssert mp["four"] == 4
+順位は0-basedです。`container{index}`は、比較順で`index`番目を指す
+iteratorを返します。
 
-var xs: seq[(string, int)] = @[]
-for k, v in mp:
-  xs.add((k, v))
+```nim
+var s = initSortedSet[int]()
 
-doAssert xs == @[("four", 4), ("one", 1), ("three", 3)]
-~~~
+s.insert(30)
+s.insert(10)
+s.insert(20)
 
-## MultiSet / MultiMap
+let first = s{0}
+let second = s{1}
+let third = s{2}
 
-`SortedMultiSet` と `SortedMultiMap` は重複 key を許します。
+doAssert *first == 10
+doAssert *second == 20
+doAssert *third == 30
+```
 
-~~~nim
-var s = initSortedMultiSet[int](countable = true)
+明示的な既存APIとして`kth_element(index)`も利用できます。
 
-s.insert(2)
+```nim
+doAssert s.kth_element(1) == s{1}
+```
+
+前提条件は次です。
+
+```text
+0 <= index < container.len
+```
+
+Mapでは`[]`と`{}`の意味が異なります。
+
+```nim
+var m = initSortedMap[int, string]()
+
+m[30] = "thirty"
+m[10] = "ten"
+m[20] = "twenty"
+
+doAssert m[20] == "twenty"  # key 20のvalue
+
+let it = m{1}               # 比較順で1番目のpair
+doAssert *it == (20, "twenty")
+```
+
+`MultiSet`と`MultiMap`では、重複する要素もそれぞれ1個として順位を持ちます。
+
+## `for`による反復
+
+Set系は比較順に要素を返します。
+
+```nim
+var s = initSortedSet[int]()
+
+s.insert(3)
 s.insert(1)
 s.insert(2)
-s.insert(3)
 
-doAssert 2 in s
+for value in s:
+  echo value
+```
 
-s.erase(2)
+`items`を明示しても同じです。
 
-doAssert 2 notin s
-~~~
+```nim
+for value in s.items:
+  echo value
+```
 
-現在の `erase(key)` は、その key に等しい要素をまとめて削除します。
+Map系はkeyとvalueを比較順に返します。
 
-## custom comparator
+```nim
+var m = initSortedMap[int, string]()
 
-`comp` を指定すると、順序を変えられます。
+m[2] = "two"
+m[1] = "one"
 
-~~~nim
-proc desc(a, b: int): bool = a > b
+for key, value in m:
+  echo key, ": ", value
 
-var s = initSortedSet[int](countable = true, desc)
+for key, value in m.pairs:
+  echo key, ": ", value
+```
 
-s.insert(3)
-s.insert(1)
-s.insert(4)
+## iteratorの直接操作
 
-doAssert *s{0} == 4
-doAssert *s{1} == 3
-doAssert *s{2} == 1
-~~~
+### `begin`と`end`
 
-## 注意
+```nim
+var it = s.begin()
 
-- 通常は `sorted_set_map` を直接使うのを推奨します。
-- `set_map` は互換用 alias です。
-- 低レベル backend を直接使う必要がある場合は [Tree backends](./tree_backends.html) を参照してください。
+while it != s.end():
+  echo *it
+  it.inc
+```
+
+`end()`は終端iteratorです。`end()`をdereferenceしてはいけません。
+
+### `find`
+
+```nim
+let it = s.find(2)
+
+if it != s.end():
+  doAssert *it == 2
+```
+
+### `lower_bound`と`upper_bound`
+
+```nim
+let first = s.lower_bound(2)
+let last = s.upper_bound(2)
+```
+
+- `lower_bound(value)`は、`value`以上となる最初の位置を返します。
+- `upper_bound(value)`は、`value`より大きくなる最初の位置を返します。
+
+比較の意味はコンテナの比較関数に従います。
+
+### `inc`と`dec`
+
+```nim
+var it = s.begin()
+it.inc
+
+var last = s.end()
+last.dec
+```
+
+- `it.inc`は次の要素へ進みます。
+- `it.dec`は前の要素へ戻ります。
+
+### `index`
+
+```nim
+let it = s.find(2)
+
+doAssert it.index == 1
+doAssert s{it.index} == it
+```
+
+`index`は比較順における0-based順位です。
+
+### `distance`
+
+```nim
+let first = s.lower_bound(1)
+let last = s.upper_bound(2)
+
+doAssert s.distance(first, last) == 2
+doAssert distance(first, last) == 2
+```
+
+`distance(first, last)`は、iteratorの順位の差を返します。
 
 ## 計算量
 
-要素数を `n` とすると、主な操作はおおよそ次の通りです。
+| 操作 | 計算量 |
+|---|---:|
+| `insert`、`erase` | `O(log n)` |
+| `find`、`lower_bound`、`upper_bound` | `O(log n)` |
+| `{index}`、`kth_element(index)` | `O(log n)` |
+| `iterator.index` | `O(log n)` |
+| `distance` | `O(log n)` |
+| 全要素の反復 | `O(n)` |
+| `len` | `O(1)` |
 
-- `insert`: `O(log n)`
-- `erase`: `O(log n)`
-- `find`, `lower_bound`, `upper_bound`: `O(log n)`
-- index access `{i}`: `O(log n)`
+## 互換性
+
+`countable`を指定する古いconstructor呼び出しは引き続き受理されます。
+
+
+この指定でも順序統計は利用できます。ただし新しいコードでは、
+引数を省略した通常のconstructorを使用してください。
+
+`kth_element`と`{index}`は現在の公開APIです。
+`[]`／`{}`の割り当てや明示的な順位アクセス名については、
+この文書更新では変更していません。
