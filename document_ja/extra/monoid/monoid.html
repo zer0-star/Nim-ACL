@@ -318,6 +318,28 @@ pre.nim-line-numbers .code-line::before {
 <span class="tok-keyword">type</span> <span class="tok-identifier">AddAction</span> <span class="tok-operator">=</span> <span class="tok-identifier">ActedMonoidType</span><span class="tok-punctuation">(</span><span class="tok-identifier">Sum</span><span class="tok-punctuation">,</span> <span class="tok-identifier">Sum</span><span class="tok-punctuation">,</span> <span class="tok-identifier">addMap</span><span class="tok-punctuation">)</span>
 </code></pre>
 <p><code>useMonoid</code> 系は、競技プログラミング中に型宣言を短く書くための convenience helper です。</p>
+<!-- NIM_ACL_ACTION_MONOID_FACADE_START -->
+
+<h2 id="actionmonoid">ActionMonoidの公開順序</h2>
+<p>作用を表す公開facadeでは、作用Monoid <code>F</code>を値Monoid <code>S</code>より
+先に提示します。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">useActionMonoid</span><span class="tok-punctuation">(</span>
+  <span class="tok-identifier">Name</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">FMonoid</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">SMonoid</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">mapping</span><span class="tok-punctuation">,</span>
+<span class="tok-punctuation">)</span>
+</code></pre>
+<p>内部では既存形式へ委譲します。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">useActedMonoid</span><span class="tok-punctuation">(</span>
+  <span class="tok-identifier">Name</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">SMonoid</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">FMonoid</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">mapping</span><span class="tok-punctuation">,</span>
+<span class="tok-punctuation">)</span>
+</code></pre>
+<p><code>useActedMonoid</code>は互換APIとして維持されます。</p>
+<!-- NIM_ACL_ACTION_MONOID_FACADE_END -->
   </main>
 </body>
 </html>

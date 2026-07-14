@@ -93,3 +93,34 @@ type AddAction = ActedMonoidType(Sum, Sum, addMap)
 ```
 
 `useMonoid` 系は、競技プログラミング中に型宣言を短く書くための convenience helper です。
+
+<!-- NIM_ACL_ACTION_MONOID_FACADE_START -->
+
+## ActionMonoidの公開順序
+
+作用を表す公開facadeでは、作用Monoid `F`を値Monoid `S`より
+先に提示します。
+
+```nim
+useActionMonoid(
+  Name,
+  FMonoid,
+  SMonoid,
+  mapping,
+)
+```
+
+内部では既存形式へ委譲します。
+
+```nim
+useActedMonoid(
+  Name,
+  SMonoid,
+  FMonoid,
+  mapping,
+)
+```
+
+`useActedMonoid`は互換APIとして維持されます。
+
+<!-- NIM_ACL_ACTION_MONOID_FACADE_END -->
