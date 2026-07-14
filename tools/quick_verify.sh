@@ -1,21 +1,6 @@
 #!/usr/bin/env bash
 set -u
 
-# BEGIN NIM_ACL_PROFILE_NIM_CAPTURE
-# Preserve the workflow-selected Nim before runtime-matrix probes replace or remove temporary runtimes.
-hash -r
-nim_acl_profile_nim_bin="$(type -P nim || true)"
-
-if [ -z "$nim_acl_profile_nim_bin" ] || [ ! -x "$nim_acl_profile_nim_bin" ]; then
-  echo "ERROR: initial Nim executable was not found in PATH" >&2
-  exit 1
-fi
-
-readonly nim_acl_profile_nim_bin
-echo "[quick] Captured profile Nim executable: $nim_acl_profile_nim_bin"
-# END NIM_ACL_PROFILE_NIM_CAPTURE
-
-
 LOG="${NACL_QUICK_VERIFY_LOG:-/tmp/nacl_quick_verify.log}"
 STATUS=OK
 STEP=init
@@ -954,6 +939,64 @@ done
 
 # <<< MONOID_SEGTREE_FACADE_REGRESSION_V1_END >>>
 
+# BEGIN SORTED_SET_MAP_ALWAYS_COUNTABLE_CONTRACT
+STEP="sorted set map always-countable and iterator contract"
+echo "[quick] Sorted Set / Map always-countable and iterator contract"
+
+
+sorted_set_map_contract_tmp="$(
+  mktemp -d "${TMPDIR:-/tmp}/nim_acl_sorted_set_map_contract.XXXXXX"
+)"
+
+nim cpp \
+  --hints:off \
+  --verbosity:0 \
+  --path:src \
+  -d:release \
+  --mm:refc \
+  --nimcache:"$sorted_set_map_contract_tmp/refc_cache" \
+  -o:"$sorted_set_map_contract_tmp/refc" \
+  tests/extra/structure/sorted_set_map_always_countable_contract.nim
+
+"$sorted_set_map_contract_tmp/refc" \
+  >"$sorted_set_map_contract_tmp/refc.out"
+
+nim cpp \
+  --hints:off \
+  --verbosity:0 \
+  --path:src \
+  -d:release \
+  --mm:orc \
+  --nimcache:"$sorted_set_map_contract_tmp/orc_cache" \
+  -o:"$sorted_set_map_contract_tmp/orc" \
+  tests/extra/structure/sorted_set_map_always_countable_contract.nim
+
+"$sorted_set_map_contract_tmp/orc" \
+  >"$sorted_set_map_contract_tmp/orc.out"
+
+cmp \
+  "$sorted_set_map_contract_tmp/refc.out" \
+  "$sorted_set_map_contract_tmp/orc.out"
+
+grep -qx \
+  'SORTED_ALWAYS_COUNTABLE_OK' \
+  "$sorted_set_map_contract_tmp/refc.out"
+
+grep -qx \
+  'SORTED_ORDER_ACCESS_OK' \
+  "$sorted_set_map_contract_tmp/refc.out"
+
+grep -qx \
+  'SORTED_MAP_KEY_VS_INDEX_OK' \
+  "$sorted_set_map_contract_tmp/refc.out"
+
+grep -qx \
+  'SORTED_ITERATOR_API_OK' \
+  "$sorted_set_map_contract_tmp/refc.out"
+
+rm -rf "$sorted_set_map_contract_tmp"
+# END SORTED_SET_MAP_ALWAYS_COUNTABLE_CONTRACT
+
 STEP="cleanup compiler runtime after final Nim tests"
 rm -rf .nim_runtime nimcache
 
@@ -1051,69 +1094,3 @@ python3 tools/audit_japanese_facades.py
 # NIM_ACL_NIM_VERSION_MATRIX_AUDIT_V1
 python3 tools/audit_nim_version_matrix.py
 
-# BEGIN SORTED_SET_MAP_ALWAYS_COUNTABLE_CONTRACT
-echo "[quick] Sorted Set / Map always-countable and iterator contract"
-
-# The runtime matrix may leave a stale hashed Nim path.
-hash -r
-sorted_set_map_nim_bin="$nim_acl_profile_nim_bin"
-
-if [ -z "$sorted_set_map_nim_bin" ]; then
-  echo "ERROR: Nim executable was not found in PATH" >&2
-  exit 1
-fi
-
-echo "[quick] Sorted Set / Map Nim executable: $sorted_set_map_nim_bin"
-
-sorted_set_map_contract_tmp="$(
-  mktemp -d "${TMPDIR:-/tmp}/nim_acl_sorted_set_map_contract.XXXXXX"
-)"
-
-"$sorted_set_map_nim_bin" cpp \
-  --hints:off \
-  --verbosity:0 \
-  --path:src \
-  -d:release \
-  --mm:refc \
-  --nimcache:"$sorted_set_map_contract_tmp/refc_cache" \
-  -o:"$sorted_set_map_contract_tmp/refc" \
-  tests/extra/structure/sorted_set_map_always_countable_contract.nim
-
-"$sorted_set_map_contract_tmp/refc" \
-  >"$sorted_set_map_contract_tmp/refc.out"
-
-"$sorted_set_map_nim_bin" cpp \
-  --hints:off \
-  --verbosity:0 \
-  --path:src \
-  -d:release \
-  --mm:orc \
-  --nimcache:"$sorted_set_map_contract_tmp/orc_cache" \
-  -o:"$sorted_set_map_contract_tmp/orc" \
-  tests/extra/structure/sorted_set_map_always_countable_contract.nim
-
-"$sorted_set_map_contract_tmp/orc" \
-  >"$sorted_set_map_contract_tmp/orc.out"
-
-cmp \
-  "$sorted_set_map_contract_tmp/refc.out" \
-  "$sorted_set_map_contract_tmp/orc.out"
-
-grep -qx \
-  'SORTED_ALWAYS_COUNTABLE_OK' \
-  "$sorted_set_map_contract_tmp/refc.out"
-
-grep -qx \
-  'SORTED_ORDER_ACCESS_OK' \
-  "$sorted_set_map_contract_tmp/refc.out"
-
-grep -qx \
-  'SORTED_MAP_KEY_VS_INDEX_OK' \
-  "$sorted_set_map_contract_tmp/refc.out"
-
-grep -qx \
-  'SORTED_ITERATOR_API_OK' \
-  "$sorted_set_map_contract_tmp/refc.out"
-
-rm -rf "$sorted_set_map_contract_tmp"
-# END SORTED_SET_MAP_ALWAYS_COUNTABLE_CONTRACT
