@@ -520,12 +520,6 @@
 <td><code>SlopeTrick, initSlopeTrick, push_R, top_R, pop_R</code></td>
 </tr>
 <tr>
-<td>sortedsetmap は、順序付き集合・順序付き写像を提供します。</td>
-<td><a href="./extra/structure/sorted_set_map.html">sorted_set_map</a></td>
-<td><code>import atcoder/extra/structure/sorted_set_map</code></td>
-<td><code>SortedTree, SortedSetType, empty, check_tree, write</code></td>
-</tr>
-<tr>
 <td>SparseTable は、静的な列に対して区間集約を高速に行う data structure です。</td>
 <td><a href="./extra/structure/sparse_table.html">SparseTable</a></td>
 <td><code>import atcoder/extra/structure/sparse_table</code></td>
@@ -566,6 +560,12 @@
 <td><a href="./extra/structure/monoid_segtree.html">Monoid SegTree facade</a></td>
 <td><code>import atcoder/extra/structure/monoid_segtree</code></td>
 <td><code>useActionMonoid, initSegTree, initLazySegTree</code></td>
+</tr>
+<tr>
+<td><a href="extra/structure/sorted_set_map.html">Sorted Set / Map</a></td>
+<td>常時利用可能な順序統計と、比較順での反復・直接iterator操作を備えた連想コンテナ</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>WaveletMatrix は、静的な整数列に対して、区間内の順位統計や出現回数を高速に求める data structure です。</td>
@@ -1849,7 +1849,6 @@
 <p>ACLには収録されていないが、使用頻度が高そうなライブラリを追加しました。</p>
 <h3 id="_14">データ構造</h3>
 <ul>
-<li>ソート済みのset, table(map)(C++のset, mapと同機能)  <a href="./extra/structure/sorted_set_map.html"><code>import atcoder/extra/structure/set_map</code></a></li>
 <li>Skew Heap</li>
 <li>dual fenwick tree</li>
 <li>Splay Tree</li>
@@ -1972,7 +1971,6 @@
 </ul>
 <!-- PROMOTED-EXTRA-LIBRARY-DOCS:BEGIN -->
 <ul>
-<li><a href="extra/structure/sorted_set_map.html">sorted_set_map</a></li>
 <li><a href="extra/structure/set_map.html">set_map</a></li>
 <li><a href="extra/structure/universal_segtree.html">universal_segtree</a></li>
 <li><a href="extra/structure/weighted_union_find.html">weighted_union_find</a></li>
