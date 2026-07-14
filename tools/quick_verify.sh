@@ -1,6 +1,21 @@
 #!/usr/bin/env bash
 set -u
 
+# BEGIN NIM_ACL_PROFILE_NIM_CAPTURE
+# Preserve the workflow-selected Nim before runtime-matrix probes replace or remove temporary runtimes.
+hash -r
+nim_acl_profile_nim_bin="$(type -P nim || true)"
+
+if [ -z "$nim_acl_profile_nim_bin" ] || [ ! -x "$nim_acl_profile_nim_bin" ]; then
+  echo "ERROR: initial Nim executable was not found in PATH" >&2
+  exit 1
+fi
+
+readonly nim_acl_profile_nim_bin
+echo "[quick] Captured profile Nim executable: $nim_acl_profile_nim_bin"
+# END NIM_ACL_PROFILE_NIM_CAPTURE
+
+
 LOG="${NACL_QUICK_VERIFY_LOG:-/tmp/nacl_quick_verify.log}"
 STATUS=OK
 STEP=init
@@ -1041,7 +1056,7 @@ echo "[quick] Sorted Set / Map always-countable and iterator contract"
 
 # The runtime matrix may leave a stale hashed Nim path.
 hash -r
-sorted_set_map_nim_bin="$(type -P nim || true)"
+sorted_set_map_nim_bin="$nim_acl_profile_nim_bin"
 
 if [ -z "$sorted_set_map_nim_bin" ]; then
   echo "ERROR: Nim executable was not found in PATH" >&2
