@@ -278,6 +278,29 @@ pre.nim-line-numbers .code-line::before {
 <pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">cs</span><span class="tok-punctuation">[</span><span class="tok-identifier">x1</span> <span class="tok-operator">..</span> <span class="tok-identifier">x2</span><span class="tok-punctuation">,</span> <span class="tok-identifier">y1</span> <span class="tok-operator">..</span> <span class="tok-identifier">y2</span><span class="tok-punctuation">]</span>
 </code></pre>
 <p>閉矩形 <code>[x1, x2] × [y1, y2]</code> の和を返します。</p>
+<!-- CUMULATIVE-SUM-2D-HALF-OPEN:BEGIN -->
+<h2 id="api_1">半開矩形API</h2>
+<p><code>width</code> と <code>height</code> は構築対象の大きさを返します。</p>
+<p><code>sum(xLeft, xRight, yLeft, yRight)</code> は半開矩形</p>
+<pre><code class="language-text">[xLeft, xRight) × [yLeft, yRight)
+</code></pre>
+<p>の総和を返します。<code>allSum</code> は全領域の総和です。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">doAssert</span> <span class="tok-identifier">cs</span><span class="tok-operator">.</span><span class="tok-identifier">width</span> <span class="tok-operator">==</span> <span class="tok-identifier">W</span>
+<span class="tok-identifier">doAssert</span> <span class="tok-identifier">cs</span><span class="tok-operator">.</span><span class="tok-identifier">height</span> <span class="tok-operator">==</span> <span class="tok-identifier">H</span>
+
+<span class="tok-keyword">let</span> <span class="tok-identifier">partial</span> <span class="tok-operator">=</span>
+  <span class="tok-identifier">cs</span><span class="tok-operator">.</span><span class="tok-identifier">sum</span><span class="tok-punctuation">(</span>
+    <span class="tok-identifier">xLeft</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">xRight</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">yLeft</span><span class="tok-punctuation">,</span>
+    <span class="tok-identifier">yRight</span><span class="tok-punctuation">,</span>
+  <span class="tok-punctuation">)</span>
+
+<span class="tok-keyword">let</span> <span class="tok-identifier">total</span> <span class="tok-operator">=</span> <span class="tok-identifier">cs</span><span class="tok-operator">.</span><span class="tok-identifier">allSum</span>
+</code></pre>
+<p>従来の <code>cs[rx, ry]</code> は終端を含む <code>Slice</code> APIとして維持されます。</p>
+<!-- CUMULATIVE-SUM-2D-HALF-OPEN:END -->
+
 <h2 id="_4">計算量</h2>
 <ul>
 <li><code>add</code>: <code>O(1)</code></li>

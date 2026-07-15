@@ -107,6 +107,18 @@
 <td><code>FenwickTree</code>, <code>add</code>, <code>sum</code></td>
 </tr>
 <tr>
+<td>2次元累積和</td>
+<td><a href="./extra/dp/cumulative_sum_2d.html">CumulativeSum2D</a></td>
+<td><code>import atcoder/extra/dp/cumulative_sum_2d</code></td>
+<td><code>initCumulativeSum2D</code>, <code>sum</code>, <code>allSum</code></td>
+</tr>
+<tr>
+<td>密な2次元Fenwick Tree</td>
+<td><a href="./extra/structure/dense_fenwicktree_2d.html">DenseFenwickTree2D</a></td>
+<td><code>import atcoder/extra/structure/dense_fenwicktree_2d</code></td>
+<td><code>initDenseFenwickTree2D</code>, <code>add</code>, <code>prefixSum</code>, <code>sum</code></td>
+</tr>
+<tr>
 <td>畳み込み</td>
 <td><a href="./convolution.html">Convolution</a></td>
 <td><code>import atcoder/convolution</code></td>
@@ -500,6 +512,12 @@
 <td><a href="./extra/structure/compressed_segtree_2d.html">CompressedSegTree2D</a></td>
 <td><code>import atcoder/extra/structure/compressed_segtree_2d</code></td>
 <td><code>CompressedSegTree2D, initCompressedSegTree2D, set, combineAt, prod, allProd</code></td>
+</tr>
+<tr>
+<td>DenseFenwickTree2D は、固定された二次元格子上で点加算と半開矩形和を処理します。</td>
+<td><a href="./extra/structure/dense_fenwicktree_2d.html">DenseFenwickTree2D</a></td>
+<td><code>import atcoder/extra/structure/dense_fenwicktree_2d</code></td>
+<td><code>DenseFenwickTree2D, initDenseFenwickTree2D, width, height, add, prefixSum, sum, get, allSum</code></td>
 </tr>
 <tr>
 <td>SegTree2D compatibility APIは、従来constructor・add・inclusive Slice queryを維持します。</td>
@@ -1304,10 +1322,10 @@
 <td><code>initDualCumulativeSum, add</code></td>
 </tr>
 <tr>
-<td>DualCumulativeSum2D は、二次元の矩形加算・一点取得を行う imos 構造です。</td>
+<td>DualCumulativeSum2D は、矩形加算後に各点の値を取得します。</td>
 <td><a href="./extra/dp/dual_cumulative_sum_2d.html">Dual Cumulative Sum 2D</a></td>
 <td><code>import atcoder/extra/dp/dual_cumulative_sum_2d</code></td>
-<td><code>initDualCumulativeSum2D, add, build</code></td>
+<td><code>initDualCumulativeSum2D, add, build, get</code></td>
 </tr>
 <tr>
 <td>editDistance(S, T) は、文字列 S を T に変換するための編集距離を求めます。</td>
@@ -1991,6 +2009,7 @@
 <li><a href="extra/structure/radix_heap.html">radix_heap</a></li>
 <li><a href="extra/structure/partially_persistent_dsu.html">partially_persistent_dsu</a></li>
 <li><a href="extra/structure/compressed_segtree_2d.html">compressed_segtree_2d</a></li>
+<li><a href="extra/structure/dense_fenwicktree_2d.html">dense_fenwicktree_2d</a></li>
 <li><a href="extra/structure/segtree_2d.html">segtree_2d</a></li>
 <li><a href="extra/structure/wavelet_matrix.html">wavelet_matrix</a></li>
 <li><a href="extra/structure/succinct_indexable_dictionary.html">succinct_indexable_dictionary</a></li>

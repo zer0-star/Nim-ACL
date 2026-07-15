@@ -73,6 +73,38 @@ cs[x1 .. x2, y1 .. y2]
 
 閉矩形 `[x1, x2] × [y1, y2]` の和を返します。
 
+
+<!-- CUMULATIVE-SUM-2D-HALF-OPEN:BEGIN -->
+## 半開矩形API
+
+`width` と `height` は構築対象の大きさを返します。
+
+`sum(xLeft, xRight, yLeft, yRight)` は半開矩形
+
+~~~text
+[xLeft, xRight) × [yLeft, yRight)
+~~~
+
+の総和を返します。`allSum` は全領域の総和です。
+
+~~~nim
+doAssert cs.width == W
+doAssert cs.height == H
+
+let partial =
+  cs.sum(
+    xLeft,
+    xRight,
+    yLeft,
+    yRight,
+  )
+
+let total = cs.allSum
+~~~
+
+従来の `cs[rx, ry]` は終端を含む `Slice` APIとして維持されます。
+<!-- CUMULATIVE-SUM-2D-HALF-OPEN:END -->
+
 ## 計算量
 
 - `add`: `O(1)`

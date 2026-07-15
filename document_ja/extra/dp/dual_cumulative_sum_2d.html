@@ -274,6 +274,24 @@ pre.nim-line-numbers .code-line::before {
 <pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">ds</span><span class="tok-punctuation">[</span><span class="tok-identifier">x</span><span class="tok-punctuation">,</span> <span class="tok-identifier">y</span><span class="tok-punctuation">]</span>
 </code></pre>
 <p>座標 <code>(x, y)</code> の値を返します。</p>
+<!-- DUAL-CUMULATIVE-SUM-2D-HALF-OPEN:BEGIN -->
+<h2 id="api_1">半開矩形API</h2>
+<p>5整数版の <code>add</code> は半開矩形へ値を加算します。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-identifier">ds</span><span class="tok-operator">.</span><span class="tok-identifier">add</span><span class="tok-punctuation">(</span>
+  <span class="tok-identifier">xLeft</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">xRight</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">yLeft</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">yRight</span><span class="tok-punctuation">,</span>
+  <span class="tok-identifier">value</span><span class="tok-punctuation">,</span>
+<span class="tok-punctuation">)</span>
+</code></pre>
+<p>対象領域は次の通りです。</p>
+<pre><code class="language-text">[xLeft, xRight) × [yLeft, yRight)
+</code></pre>
+<p><code>get(x, y)</code> は <code>ds[x, y]</code> と同じ点取得です。</p>
+<p>従来の <code>add(rx, ry, value)</code> は終端を含む <code>Slice</code> APIとして維持されます。</p>
+<!-- DUAL-CUMULATIVE-SUM-2D-HALF-OPEN:END -->
+
 <h2 id="_3">計算量</h2>
 <ul>
 <li><code>add</code>: <code>O(1)</code></li>
