@@ -1117,6 +1117,57 @@ grep -qx \
 rm -rf "$cumulative_sum_2d_tmp"
 # END CUMULATIVE_SUM_2D_CONTRACT_V1
 
+# BEGIN DENSE_FENWICKTREE_2D_CONTRACT_V1
+STEP="dense fenwicktree 2d contract"
+echo "[quick] DenseFenwickTree2Dの点加算・半開矩形和・generic加法型を確認します"
+
+dense_fenwicktree_2d_tmp="$(
+  mktemp -d "${TMPDIR:-/tmp}/nim_acl_dense_fenwicktree_2d.XXXXXX"
+)"
+
+for dense_fenwicktree_2d_mm in refc orc
+do
+  dense_fenwicktree_2d_binary="$dense_fenwicktree_2d_tmp/program_${dense_fenwicktree_2d_mm}"
+  dense_fenwicktree_2d_cache="$dense_fenwicktree_2d_tmp/cache_${dense_fenwicktree_2d_mm}"
+  dense_fenwicktree_2d_output="$dense_fenwicktree_2d_tmp/output_${dense_fenwicktree_2d_mm}.txt"
+
+  nim cpp \
+    --hints:off \
+    --verbosity:0 \
+    --path:src \
+    -d:release \
+    --mm:"$dense_fenwicktree_2d_mm" \
+    --nimcache:"$dense_fenwicktree_2d_cache" \
+    -o:"$dense_fenwicktree_2d_binary" \
+    tests/extra/structure/dense_fenwicktree_2d_contract.nim
+
+  "$dense_fenwicktree_2d_binary" \
+    >"$dense_fenwicktree_2d_output"
+done
+
+cmp \
+  "$dense_fenwicktree_2d_tmp/output_refc.txt" \
+  "$dense_fenwicktree_2d_tmp/output_orc.txt"
+
+grep -qx \
+  'DENSE_FENWICKTREE_2D_DIMENSIONS_OK' \
+  "$dense_fenwicktree_2d_tmp/output_refc.txt"
+
+grep -qx \
+  'DENSE_FENWICKTREE_2D_RECTANGLE_OK' \
+  "$dense_fenwicktree_2d_tmp/output_refc.txt"
+
+grep -qx \
+  'DENSE_FENWICKTREE_2D_EMPTY_OK' \
+  "$dense_fenwicktree_2d_tmp/output_refc.txt"
+
+grep -qx \
+  'DENSE_FENWICKTREE_2D_GENERIC_OK' \
+  "$dense_fenwicktree_2d_tmp/output_refc.txt"
+
+rm -rf "$dense_fenwicktree_2d_tmp"
+# END DENSE_FENWICKTREE_2D_CONTRACT_V1
+
 STEP="cleanup compiler runtime after final Nim tests"
 rm -rf .nim_runtime nimcache
 
