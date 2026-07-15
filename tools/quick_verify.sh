@@ -997,6 +997,74 @@ grep -qx \
 rm -rf "$sorted_set_map_contract_tmp"
 # END SORTED_SET_MAP_ALWAYS_COUNTABLE_CONTRACT
 
+# BEGIN COMPRESSED_SEGTREE_2D_CONTRACT_V1
+STEP="compressed segtree 2d canonical and compatibility contracts"
+echo "[quick] CompressedSegTree2Dの可換性・set再計算・legacy互換性を確認します"
+
+compressed_segtree_2d_tmp="$(
+  mktemp -d "${TMPDIR:-/tmp}/nim_acl_compressed_segtree_2d.XXXXXX"
+)"
+
+for compressed_segtree_2d_test in \
+  tests/extra/structure/compressed_segtree_2d_contract.nim \
+  tests/extra/structure/segtree_2d_legacy_contract.nim
+do
+  compressed_segtree_2d_name="$(
+    basename "$compressed_segtree_2d_test" .nim
+  )"
+
+  for compressed_segtree_2d_mm in refc orc
+  do
+    compressed_segtree_2d_binary="$compressed_segtree_2d_tmp/${compressed_segtree_2d_name}_${compressed_segtree_2d_mm}"
+    compressed_segtree_2d_cache="$compressed_segtree_2d_tmp/${compressed_segtree_2d_name}_${compressed_segtree_2d_mm}_cache"
+    compressed_segtree_2d_output="$compressed_segtree_2d_tmp/${compressed_segtree_2d_name}_${compressed_segtree_2d_mm}.out"
+
+    nim cpp \
+      --hints:off \
+      --verbosity:0 \
+      --path:src \
+      -d:release \
+      --mm:"$compressed_segtree_2d_mm" \
+      --nimcache:"$compressed_segtree_2d_cache" \
+      -o:"$compressed_segtree_2d_binary" \
+      "$compressed_segtree_2d_test"
+
+    "$compressed_segtree_2d_binary" \
+      >"$compressed_segtree_2d_output"
+  done
+
+  cmp \
+    "$compressed_segtree_2d_tmp/${compressed_segtree_2d_name}_refc.out" \
+    "$compressed_segtree_2d_tmp/${compressed_segtree_2d_name}_orc.out"
+done
+
+grep -qx \
+  'COMPRESSED_SEGTREE_2D_DUPLICATE_Y_SET_OK' \
+  "$compressed_segtree_2d_tmp/compressed_segtree_2d_contract_refc.out"
+
+grep -qx \
+  'COMPRESSED_SEGTREE_2D_POINT_COUNT_OK' \
+  "$compressed_segtree_2d_tmp/compressed_segtree_2d_contract_refc.out"
+
+grep -qx \
+  'COMPRESSED_SEGTREE_2D_BUILDER_OK' \
+  "$compressed_segtree_2d_tmp/compressed_segtree_2d_contract_refc.out"
+
+grep -qx \
+  'COMPRESSED_SEGTREE_2D_GENERIC_OK' \
+  "$compressed_segtree_2d_tmp/compressed_segtree_2d_contract_refc.out"
+
+grep -qx \
+  'COMPRESSED_SEGTREE_2D_EMPTY_OK' \
+  "$compressed_segtree_2d_tmp/compressed_segtree_2d_contract_refc.out"
+
+grep -qx \
+  'SEGTREE_2D_LEGACY_OK' \
+  "$compressed_segtree_2d_tmp/segtree_2d_legacy_contract_refc.out"
+
+rm -rf "$compressed_segtree_2d_tmp"
+# END COMPRESSED_SEGTREE_2D_CONTRACT_V1
+
 STEP="cleanup compiler runtime after final Nim tests"
 rm -rf .nim_runtime nimcache
 

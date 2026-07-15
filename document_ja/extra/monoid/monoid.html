@@ -278,6 +278,21 @@ pre.nim-line-numbers .code-line::before {
 <span class="tok-identifier">doAssert</span> <span class="tok-identifier">AddAction</span><span class="tok-operator">.</span><span class="tok-identifier">composition</span><span class="tok-punctuation">(</span><span class="tok-number">4</span><span class="tok-punctuation">,</span> <span class="tok-number">5</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-number">9</span>
 <span class="tok-identifier">doAssert</span> <span class="tok-identifier">AddAction</span><span class="tok-operator">.</span><span class="tok-identifier">mapping</span><span class="tok-punctuation">(</span><span class="tok-number">7</span><span class="tok-punctuation">,</span> <span class="tok-number">10</span><span class="tok-punctuation">)</span> <span class="tok-operator">==</span> <span class="tok-number">17</span>
 </code></pre>
+<!-- COMMUTATIVE-MONOID-DOC:BEGIN -->
+<h2 id="_1">可換モノイド</h2>
+<p><code>CommutativeMonoidType</code> は、既存のmonoid型へ可換性の契約を加える型レベルtagです。</p>
+<pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">type</span>
+  <span class="tok-identifier">CommutativeSum</span> <span class="tok-operator">=</span>
+    <span class="tok-identifier">CommutativeMonoidOf</span><span class="tok-punctuation">(</span>
+      <span class="tok-identifier">int</span><span class="tok-punctuation">,</span>
+      <span class="tok-identifier">addInt</span><span class="tok-punctuation">,</span>
+      <span class="tok-identifier">zeroInt</span><span class="tok-punctuation">,</span>
+    <span class="tok-punctuation">)</span>
+</code></pre>
+<p>名前付き宣言には <code>useCommutativeMonoid</code> も使用できます。</p>
+<p>可換性そのものはcompilerが証明するものではなく、利用者が保証する代数的な前提です。</p>
+<!-- COMMUTATIVE-MONOID-DOC:END -->
+
 <h2 id="import">import</h2>
 <pre class="nim-code nim-acl-highlighted"><code class="language-nim nim-acl-highlighted"><span class="tok-keyword">import</span> <span class="tok-identifier">atcoder</span><span class="tok-operator">/</span><span class="tok-identifier">extra</span><span class="tok-operator">/</span><span class="tok-identifier">monoid</span><span class="tok-operator">/</span><span class="tok-identifier">monoid</span>
 </code></pre>
@@ -288,6 +303,11 @@ pre.nim-line-numbers .code-line::before {
 <li><code>ActedMonoid</code></li>
 <li><code>MonoidType</code></li>
 <li><code>ActedMonoidType</code></li>
+<li><code>CommutativeMonoid</code></li>
+<li><code>CommutativeMonoidBase</code></li>
+<li><code>CommutativeMonoidType</code></li>
+<li><code>CommutativeMonoidOf</code></li>
+<li><code>useCommutativeMonoid</code></li>
 <li><code>value_type</code></li>
 <li><code>S</code></li>
 <li><code>F</code></li>
@@ -297,7 +317,7 @@ pre.nim-line-numbers .code-line::before {
 <li><code>id</code></li>
 <li><code>mapping</code></li>
 </ul>
-<h2 id="_1">注意</h2>
+<h2 id="_2">注意</h2>
 <p><code>MonoidType</code> / <code>ActedMonoidType</code> は、既存の低レベル API と互換性を保ったまま使うための型生成 helper です。より短い競技プログラミング向け facade は、今後 <code>fps</code> と同じ方針で追加できます。</p>
 <h2 id="facade-aliases">facade aliases</h2>
 <p><code>MonoidOf</code>, <code>GroupOf</code>, <code>ActedMonoidOf</code> は、既存の <code>MonoidType</code> / <code>ActedMonoidType</code> の読みやすい別名です。</p>

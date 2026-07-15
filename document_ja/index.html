@@ -210,6 +210,12 @@
 <td><code>initialVersion</code>, <code>set</code>, <code>prod</code></td>
 </tr>
 <tr>
+<td>座標圧縮2次元セグメント木</td>
+<td><a href="./extra/structure/compressed_segtree_2d.html">CompressedSegTree2D</a></td>
+<td><code>import atcoder/extra/structure/compressed_segtree_2d</code></td>
+<td><code>initCompressedSegTree2D</code>, <code>set</code>, <code>combineAt</code>, <code>prod</code></td>
+</tr>
+<tr>
 <td>動的列</td>
 <td><a href="./extra/structure/implicit_treap.html">Implicit Treap</a></td>
 <td><code>import atcoder/extra/structure/implicit_treap</code></td>
@@ -490,8 +496,14 @@
 <td><code>undo</code></td>
 </tr>
 <tr>
-<td>SegTree2D は、二次元座標上の点に値を持たせ、矩形範囲の集約値を取得する data structure です。</td>
-<td><a href="./extra/structure/segtree_2d.html">SegTree2D</a></td>
+<td>CompressedSegTree2D は、登録済み二次元座標に対して点更新と半開矩形積を行う座標圧縮data structureです。</td>
+<td><a href="./extra/structure/compressed_segtree_2d.html">CompressedSegTree2D</a></td>
+<td><code>import atcoder/extra/structure/compressed_segtree_2d</code></td>
+<td><code>CompressedSegTree2D, initCompressedSegTree2D, set, combineAt, prod, allProd</code></td>
+</tr>
+<tr>
+<td>SegTree2D compatibility APIは、従来constructor・add・inclusive Slice queryを維持します。</td>
+<td><a href="./extra/structure/segtree_2d.html">SegTree2D compatibility</a></td>
 <td><code>import atcoder/extra/structure/segtree_2d</code></td>
 <td><code>SegTree2D, initSegTree2D, add, prod</code></td>
 </tr>
@@ -1978,6 +1990,7 @@
 <li><a href="extra/structure/sparse_table.html">sparse_table</a></li>
 <li><a href="extra/structure/radix_heap.html">radix_heap</a></li>
 <li><a href="extra/structure/partially_persistent_dsu.html">partially_persistent_dsu</a></li>
+<li><a href="extra/structure/compressed_segtree_2d.html">compressed_segtree_2d</a></li>
 <li><a href="extra/structure/segtree_2d.html">segtree_2d</a></li>
 <li><a href="extra/structure/wavelet_matrix.html">wavelet_matrix</a></li>
 <li><a href="extra/structure/succinct_indexable_dictionary.html">succinct_indexable_dictionary</a></li>

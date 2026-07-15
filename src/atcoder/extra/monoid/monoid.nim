@@ -115,3 +115,67 @@ when not declared ATCODER_EXTRA_MONOID_MONOID_HPP:
       MF,
       mapping0,
     )
+
+  # BEGIN NIM_ACL_COMMUTATIVE_MONOID_V1
+
+  type
+    CommutativeMonoidBase*[M] = object
+
+  type CommutativeMonoid* = concept C, type T
+    T is CommutativeMonoidBase
+    T.M is Monoid
+
+  template CommutativeMonoidType*(
+      M: typedesc
+  ): typedesc[CommutativeMonoidBase] =
+    ## Marks an existing Monoid type as commutative.
+    ##
+    ## Commutativity is an algebraic contract supplied by the caller.
+    CommutativeMonoidBase[M]
+
+  template CommutativeMonoidOf*(
+      E: typedesc,
+      op0,
+      e0: untyped
+  ): untyped =
+    CommutativeMonoidType(
+      MonoidType(E, op0, e0)
+    )
+
+  template useCommutativeMonoid*(
+      Name,
+      E,
+      op0,
+      e0: untyped
+  ): untyped =
+    type Name =
+      CommutativeMonoidOf(
+        E,
+        op0,
+        e0,
+      )
+
+  template value_type*[
+      T: CommutativeMonoidBase
+  ](
+      _: typedesc[T]
+  ): typedesc =
+    T.M.value_type
+
+  proc op*[
+      T: CommutativeMonoidBase
+  ](
+      _: typedesc[T],
+      a,
+      b: T.M.value_type
+  ): T.M.value_type {.inline.} =
+    T.M.op(a, b)
+
+  proc e*[
+      T: CommutativeMonoidBase
+  ](
+      _: typedesc[T]
+  ): T.M.value_type {.inline.} =
+    T.M.e()
+
+  # END NIM_ACL_COMMUTATIVE_MONOID_V1
