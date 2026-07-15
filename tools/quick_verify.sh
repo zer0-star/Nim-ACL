@@ -1065,6 +1065,58 @@ grep -qx \
 rm -rf "$compressed_segtree_2d_tmp"
 # END COMPRESSED_SEGTREE_2D_CONTRACT_V1
 
+# BEGIN CUMULATIVE_SUM_2D_CONTRACT_V1
+STEP="cumulative sum 2d half-open and compatibility contracts"
+echo "[quick] CumulativeSum2Dの半開矩形APIとlegacy Slice互換性を確認します"
+
+cumulative_sum_2d_tmp="$(
+  mktemp -d "${TMPDIR:-/tmp}/nim_acl_cumulative_sum_2d.XXXXXX"
+)"
+
+for cumulative_sum_2d_test in \
+  tests/extra/dp/cumulative_sum_2d_contract.nim \
+  tests/extra/dp/dual_cumulative_sum_2d_contract.nim
+do
+  cumulative_sum_2d_name="$(
+    basename "$cumulative_sum_2d_test" .nim
+  )"
+
+  for cumulative_sum_2d_mm in refc orc
+  do
+    cumulative_sum_2d_binary="$cumulative_sum_2d_tmp/${cumulative_sum_2d_name}_${cumulative_sum_2d_mm}"
+    cumulative_sum_2d_cache="$cumulative_sum_2d_tmp/${cumulative_sum_2d_name}_${cumulative_sum_2d_mm}_cache"
+    cumulative_sum_2d_output="$cumulative_sum_2d_tmp/${cumulative_sum_2d_name}_${cumulative_sum_2d_mm}.out"
+
+    nim cpp \
+      --hints:off \
+      --verbosity:0 \
+      --path:src \
+      -d:release \
+      --mm:"$cumulative_sum_2d_mm" \
+      --nimcache:"$cumulative_sum_2d_cache" \
+      -o:"$cumulative_sum_2d_binary" \
+      "$cumulative_sum_2d_test"
+
+    "$cumulative_sum_2d_binary" \
+      >"$cumulative_sum_2d_output"
+  done
+
+  cmp \
+    "$cumulative_sum_2d_tmp/${cumulative_sum_2d_name}_refc.out" \
+    "$cumulative_sum_2d_tmp/${cumulative_sum_2d_name}_orc.out"
+done
+
+grep -qx \
+  'CUMULATIVE_SUM_2D_MATRIX_OK' \
+  "$cumulative_sum_2d_tmp/cumulative_sum_2d_contract_refc.out"
+
+grep -qx \
+  'DUAL_CUMULATIVE_SUM_2D_LEGACY_OK' \
+  "$cumulative_sum_2d_tmp/dual_cumulative_sum_2d_contract_refc.out"
+
+rm -rf "$cumulative_sum_2d_tmp"
+# END CUMULATIVE_SUM_2D_CONTRACT_V1
+
 STEP="cleanup compiler runtime after final Nim tests"
 rm -rf .nim_runtime nimcache
 

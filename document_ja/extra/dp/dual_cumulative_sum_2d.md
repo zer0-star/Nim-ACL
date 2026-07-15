@@ -62,6 +62,33 @@ ds[x, y]
 
 座標 `(x, y)` の値を返します。
 
+
+<!-- DUAL-CUMULATIVE-SUM-2D-HALF-OPEN:BEGIN -->
+## 半開矩形API
+
+5整数版の `add` は半開矩形へ値を加算します。
+
+~~~nim
+ds.add(
+  xLeft,
+  xRight,
+  yLeft,
+  yRight,
+  value,
+)
+~~~
+
+対象領域は次の通りです。
+
+~~~text
+[xLeft, xRight) × [yLeft, yRight)
+~~~
+
+`get(x, y)` は `ds[x, y]` と同じ点取得です。
+
+従来の `add(rx, ry, value)` は終端を含む `Slice` APIとして維持されます。
+<!-- DUAL-CUMULATIVE-SUM-2D-HALF-OPEN:END -->
+
 ## 計算量
 
 - `add`: `O(1)`

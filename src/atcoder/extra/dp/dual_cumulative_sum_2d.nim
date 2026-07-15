@@ -71,3 +71,38 @@ when not declared ATCODER_DUAL_CUMULATIVE_SUM_2D_HPP:
       for y in 0 ..< self.Y:
         stdout.write(self[x, y])
       echo ""
+
+  # BEGIN HALF_OPEN_DUAL_CUMULATIVE_SUM_2D_API_V1
+  proc add*[T](
+      self: var DualCumulativeSum2D[T],
+      xLeft,
+      xRight,
+      yLeft,
+      yRight: int,
+      value: T
+  ) =
+    ## Adds value to the half-open rectangle
+    ## [xLeft, xRight) x [yLeft, yRight).
+    assert 0 <= xLeft
+    assert xLeft <= xRight
+    assert xRight <= self.X
+    assert 0 <= yLeft
+    assert yLeft <= yRight
+    assert yRight <= self.Y
+
+    if xLeft == xRight or yLeft == yRight:
+      return
+
+    self.add(
+      xLeft .. xRight - 1,
+      yLeft .. yRight - 1,
+      value,
+    )
+
+  proc get*[T](
+      self: DualCumulativeSum2D[T],
+      x,
+      y: int
+  ): T {.inline.} =
+    self[x, y]
+  # END HALF_OPEN_DUAL_CUMULATIVE_SUM_2D_API_V1

@@ -17,6 +17,7 @@ Nim-ACLはAtCoder Library互換APIに加えて、
 | 区間積 | [Segment Tree](./segtree.html) | `import atcoder/segtree` | `SegTree`, `prod`, `set` |
 | 遅延伝播 | [Lazy Segment Tree](./lazysegtree.html) | `import atcoder/lazysegtree` | `LazySegTree`, `apply`, `prod` |
 | 累積和 | [Fenwick Tree](./fenwicktree.html) | `import atcoder/fenwicktree` | `FenwickTree`, `add`, `sum` |
+| 2次元累積和 | [CumulativeSum2D](./extra/dp/cumulative_sum_2d.html) | `import atcoder/extra/dp/cumulative_sum_2d` | `initCumulativeSum2D`, `sum`, `allSum` |
 | 畳み込み | [Convolution](./convolution.html) | `import atcoder/convolution` | `convolution` |
 | 最大流 | [Max Flow](./maxflow.html) | `import atcoder/maxflow` | `MFGraph`, `flow` |
 | 最小費用流 | [Min-Cost Flow](./mincostflow.html) | `import atcoder/mincostflow` | `MCFGraph`, `flow`, `slope` |
@@ -240,7 +241,7 @@ Nim-ACLはAtCoder Library互換APIに加えて、
 | CumulativeSum は、点加算と区間和取得を行うための一次元累積和です。 | [Cumulative Sum](./extra/dp/cumulative_sum.html) | `import atcoder/extra/dp/cumulative_sum` | `initCumulativeSum, add, sum` |
 | CumulativeSum2D は、二次元配列の矩形和を求めるための二次元累積和です。 | [Cumulative Sum 2D](./extra/dp/cumulative_sum_2d.html) | `import atcoder/extra/dp/cumulative_sum_2d` | `initCumulativeSum2D, add, build` |
 | DualCumulativeSum は、区間加算・一点取得を行うための一次元 imos 構造です。 | [Dual Cumulative Sum](./extra/dp/dual_cumulative_sum.html) | `import atcoder/extra/dp/dual_cumulative_sum` | `initDualCumulativeSum, add` |
-| DualCumulativeSum2D は、二次元の矩形加算・一点取得を行う imos 構造です。 | [Dual Cumulative Sum 2D](./extra/dp/dual_cumulative_sum_2d.html) | `import atcoder/extra/dp/dual_cumulative_sum_2d` | `initDualCumulativeSum2D, add, build` |
+| DualCumulativeSum2D は、矩形加算後に各点の値を取得します。 | [Dual Cumulative Sum 2D](./extra/dp/dual_cumulative_sum_2d.html) | `import atcoder/extra/dp/dual_cumulative_sum_2d` | `initDualCumulativeSum2D, add, build, get` |
 | editDistance(S, T) は、文字列 S を T に変換するための編集距離を求めます。 | [Edit Distance](./extra/dp/edit_distance.html) | `import atcoder/extra/dp/edit_distance` | `editDistance` |
 | largestRectangle(height) は、histogram に含まれる最大長方形の面積を求めます。 | [Largest Rectangle](./extra/dp/largest_rectangle.html) | `import atcoder/extra/dp/largest_rectangle` | `largestRectangle` |
 | longestIncreasingSubsequence は、最長増加部分列、LIS を求めます。 | [Longest Increasing Subsequence](./extra/dp/longest_increasing_subsequence.html) | `import atcoder/extra/dp/longest_increasing_subsequence` | `longestIncreasingSubsequence` |
