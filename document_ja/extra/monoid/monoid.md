@@ -36,6 +36,27 @@ doAssert AddAction.composition(4, 5) == 9
 doAssert AddAction.mapping(7, 10) == 17
 ```
 
+
+<!-- COMMUTATIVE-MONOID-DOC:BEGIN -->
+## 可換モノイド
+
+`CommutativeMonoidType` は、既存のmonoid型へ可換性の契約を加える型レベルtagです。
+
+```nim
+type
+  CommutativeSum =
+    CommutativeMonoidOf(
+      int,
+      addInt,
+      zeroInt,
+    )
+```
+
+名前付き宣言には `useCommutativeMonoid` も使用できます。
+
+可換性そのものはcompilerが証明するものではなく、利用者が保証する代数的な前提です。
+<!-- COMMUTATIVE-MONOID-DOC:END -->
+
 ## import
 
 ```nim
@@ -49,6 +70,11 @@ import atcoder/extra/monoid/monoid
 - `ActedMonoid`
 - `MonoidType`
 - `ActedMonoidType`
+- `CommutativeMonoid`
+- `CommutativeMonoidBase`
+- `CommutativeMonoidType`
+- `CommutativeMonoidOf`
+- `useCommutativeMonoid`
 - `value_type`
 - `S`
 - `F`
