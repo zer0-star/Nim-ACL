@@ -1,5 +1,6 @@
 when not declared ATCODER_CYCLE_DETECTION_HPP:
   const ATCODER_CYCLE_DETECTION_HPP* = 1
+  import std/algorithm
   import atcoder/extra/graph/graph_template
   import std/options, std/sequtils
 

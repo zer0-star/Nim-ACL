@@ -51,7 +51,7 @@ when not declared ATCODER_STATIC_GRAPH_HPP:
     for i in self.g.start[u] ..< self.g.start[u + 1]:
       yield self.g.elist[i]
 
-  proc degree*[T](self: StaticGraph[T], u:int):int = self.start[u + 1] - self.start[u]
+  proc degree*[T](self: StaticGraph[T], u:int):int = self.g.start[u + 1] - self.g.start[u]
 
   proc initStaticBiGraph*[T](n: int, u, v: seq[int]):StaticGraph[T] =
     var g = initStaticGraph[T](n)
