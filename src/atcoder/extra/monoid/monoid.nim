@@ -178,4 +178,65 @@ when not declared ATCODER_EXTRA_MONOID_MONOID_HPP:
   ): T.M.value_type {.inline.} =
     T.M.e()
 
+
+  # BEGIN NIM_ACL_COMMUTATIVE_GROUP_V1
+
+  type CommutativeGroup* = concept C, type T
+    T is CommutativeMonoid
+    T is InversibleMonoid
+
+  template CommutativeGroupType*[
+      M: InversibleMonoid
+  ](
+      _: typedesc[M]
+  ): untyped =
+    ## Marks an inverse-capable monoid as commutative.
+    CommutativeMonoidType(
+      M
+    )
+
+  template CommutativeGroupOf*(
+      E: typedesc,
+      op0,
+      e0,
+      inv0: untyped
+  ): untyped =
+    CommutativeGroupType(
+      GroupOf(
+        E,
+        op0,
+        e0,
+        inv0,
+      )
+    )
+
+  template useCommutativeGroup*(
+      Name,
+      E,
+      op0,
+      e0,
+      inv0: untyped
+  ): untyped =
+    type Name =
+      CommutativeGroupOf(
+        E,
+        op0,
+        e0,
+        inv0,
+      )
+
+  proc inv*[
+      M: InversibleMonoid
+  ](
+      _: typedesc[
+        CommutativeMonoidBase[M]
+      ],
+      value: M.value_type
+  ): M.value_type {.inline.} =
+    M.inv(
+      value
+    )
+
+  # END NIM_ACL_COMMUTATIVE_GROUP_V1
+
   # END NIM_ACL_COMMUTATIVE_MONOID_V1
