@@ -1,6 +1,6 @@
 when not declared ATCODER_DUAL_CUMULATIVE_SUM_HPP:
   const ATCODER_DUAL_CUMULATIVE_SUM_HPP* = 1
-  import std/sequtils
+  import std/algorithm
 
   type DualCumulativeSum*[T] = object
     pos: int
