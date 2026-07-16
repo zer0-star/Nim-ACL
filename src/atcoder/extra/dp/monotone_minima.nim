@@ -154,12 +154,13 @@ when not declared ATCODER_EXTRA_DP_MONOTONE_MINIMA_HPP:
     if stateCount > 0:
       doAssert previous.len > 0
 
+    let previousOwned = @previous
     let transitionValue =
       proc(
           state,
           candidate: int,
       ): T =
-        previous[candidate] +
+        previousOwned[candidate] +
           cost(
             candidate,
             state,
