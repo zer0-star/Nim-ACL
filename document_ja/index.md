@@ -202,6 +202,7 @@ Nim-ACLはAtCoder Library互換APIに加えて、
 | atcoder/extra/math/fps は、modint 係数の形式的べき級数を短く書くための convenience facade です。 | [FPS facade](./extra/math/fps.html) | `import atcoder/extra/math/fps` | `useFPSPrecTemplate, F, useFPS, useFPSDecl` |
 | このページは自動生成された下書きです。 | [gaussian_elimination_bit](./extra/math/gaussian_elimination_bit.html) | `import atcoder/extra/math/gaussian_elimination_bit` | `base` |
 | このページは自動生成された下書きです。 | [int128](./extra/math/int128.html) | `import atcoder/extra/math/int128` | `Int128, Uint128, to_Int128, to_Uint128, to_int` |
+| このページは自動生成された下書きです。 | [int128 (numeric)](./extra/numeric/int128.html) | `import atcoder/extra/numeric/int128` | `Int128, Uint128, to_Int128, to_Uint128, to_int` |
 | このページは自動生成された下書きです。 | [kitamasa](./extra/math/kitamasa.html) | `import atcoder/extra/math/kitamasa` | `kitamasa` |
 | このページは自動生成された下書きです。 | [lagrange_polynomial](./extra/math/lagrange_polynomial.html) | `import atcoder/extra/math/lagrange_polynomial` | `lagrange_polynomial` |
 | このページは自動生成された下書きです。 | [matrix](./extra/math/matrix.html) | `import atcoder/extra/math/matrix` | `StaticMatrix, DynamicMatrix, DynamicVector, StaticMatrixObj, StaticVector` |

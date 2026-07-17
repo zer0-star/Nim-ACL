@@ -1,6 +1,6 @@
 when not declared ATCODER_MODINT61_HPP:
   const ATCODER_MODINT61_HPP* = 1
-  import atcoder/extra/math/int128
+  import atcoder/extra/numeric/int128
   import std/sugar
   const MOD = (1'u shl 61) - 1
   type modint61* = object

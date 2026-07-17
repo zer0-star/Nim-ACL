@@ -5,7 +5,7 @@ when not declared ATCODER_EXTRA_CONVOLUTION128_HPP:
   #atcoder/internal_bit
   #import atcoder/element_concepts
 
-  import atcoder/extra/math/int128
+  import atcoder/extra/numeric/int128
   import atcoder/convolution
   import atcoder/modint
 

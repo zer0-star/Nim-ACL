@@ -1,7 +1,7 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/min_cost_b_flow
 
 import atcoder/header
-import atcoder/extra/math/int128
+import atcoder/extra/numeric/int128
 
 import atcoder/extra/graph/bflow
 

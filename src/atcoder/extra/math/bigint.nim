@@ -1,6 +1,6 @@
 when not declared ATCODER_MULTIPRECISION_HPP:
   const ATCODER_MULTIPRECISION_HPP* = 1
-  import atcoder/extra/math/int128, atcoder/modint
+  import atcoder/extra/numeric/int128, atcoder/modint
   import atcoder/extra/math/convolution_int128
   import atcoder/convolution
   import std/sequtils, std/unicode
