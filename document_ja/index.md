@@ -203,6 +203,7 @@ Nim-ACLはAtCoder Library互換APIに加えて、
 | このページは自動生成された下書きです。 | [gaussian_elimination_bit](./extra/math/gaussian_elimination_bit.html) | `import atcoder/extra/math/gaussian_elimination_bit` | `base` |
 | このページは自動生成された下書きです。 | [int128](./extra/math/int128.html) | `import atcoder/extra/math/int128` | `Int128, Uint128, to_Int128, to_Uint128, to_int` |
 | このページは自動生成された下書きです。 | [int128 (numeric)](./extra/numeric/int128.html) | `import atcoder/extra/numeric/int128` | `Int128, Uint128, to_Int128, to_Uint128, to_int` |
+| このページは自動生成された下書きです。 | [int256 (numeric)](./extra/numeric/int256.html) | `import atcoder/extra/numeric/int256` | `UInt256, Int256, parseUInt256, parseInt256` |
 | このページは自動生成された下書きです。 | [kitamasa](./extra/math/kitamasa.html) | `import atcoder/extra/math/kitamasa` | `kitamasa` |
 | このページは自動生成された下書きです。 | [lagrange_polynomial](./extra/math/lagrange_polynomial.html) | `import atcoder/extra/math/lagrange_polynomial` | `lagrange_polynomial` |
 | このページは自動生成された下書きです。 | [matrix](./extra/math/matrix.html) | `import atcoder/extra/math/matrix` | `StaticMatrix, DynamicMatrix, DynamicVector, StaticMatrixObj, StaticVector` |
