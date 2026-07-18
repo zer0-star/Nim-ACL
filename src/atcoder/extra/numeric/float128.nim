@@ -1985,3 +1985,83 @@ func fusedMultiplyAdd*(
     resultMagnitude,
     commonBaseExponent,
   )
+# ----------------------------------------------------------------------
+# Exact raw-bit hexadecimal text foundation
+# ----------------------------------------------------------------------
+
+func float128HexDigit(value: uint64): char {.inline.} =
+  if value < 10'u64:
+    char(ord('0') + int(value))
+  else:
+    char(ord('A') + int(value - 10'u64))
+
+func float128HexNibble(value: char): int {.inline.} =
+  case value
+  of '0'..'9':
+    ord(value) - ord('0')
+  of 'A'..'F':
+    ord(value) - ord('A') + 10
+  of 'a'..'f':
+    ord(value) - ord('a') + 10
+  else:
+    -1
+
+func toHexString*(value: Float128): string =
+  ## Returns the exact raw binary128 encoding as 0xHHHH...LLLL.
+  let bits = toBits(value)
+
+  result = newString(34)
+  result[0] = '0'
+  result[1] = 'x'
+
+  for index in 0 ..< 16:
+    let shift = (15 - index) * 4
+
+    result[2 + index] =
+      float128HexDigit(
+        (bits.high shr shift) and 0xF'u64
+      )
+
+    result[18 + index] =
+      float128HexDigit(
+        (bits.low shr shift) and 0xF'u64
+      )
+
+proc tryParseHexFloat128*(
+    text: string;
+    destination: var Float128;
+): bool =
+  ## Parses the exact raw binary128 form emitted by toHexString.
+  destination = fromBits(0'u64, 0'u64)
+
+  if text.len != 34:
+    return false
+
+  if text[0] != '0' or
+      (text[1] != 'x' and text[1] != 'X'):
+    return false
+
+  var
+    high = 0'u64
+    low = 0'u64
+
+  for index in 0 ..< 16:
+    let nibble = float128HexNibble(text[2 + index])
+
+    if nibble < 0:
+      return false
+
+    high =
+      (high shl 4) or uint64(nibble)
+
+  for index in 0 ..< 16:
+    let nibble = float128HexNibble(text[18 + index])
+
+    if nibble < 0:
+      return false
+
+    low =
+      (low shl 4) or uint64(nibble)
+
+  destination = fromBits(high, low)
+  true
