@@ -714,3 +714,289 @@ proc tryToInt256*(
     destination = cast[Int256](magnitude)
 
   true
+
+# ----------------------------------------------------------------------
+# Exact binary128 downconversion
+# ----------------------------------------------------------------------
+
+func float128HighestBit64(value: uint64): int {.inline.} =
+  for index in countdown(63, 0):
+    if ((value shr index) and 1'u64) != 0'u64:
+      return index
+
+  -1
+
+func float128HighestBit112(
+    high, low: uint64;
+): int {.inline.} =
+  if high != 0'u64:
+    return 64 + float128HighestBit64(high)
+
+  float128HighestBit64(low)
+
+func float128ShiftRightToUInt64(
+    high, low: uint64;
+    shift: int;
+): uint64 {.inline.} =
+  if shift <= 0:
+    if shift == 0:
+      return low
+
+    let leftShift = -shift
+
+    if high == 0'u64 and leftShift < 64:
+      return low shl leftShift
+
+    return 0'u64
+
+  if shift < 64:
+    return
+      (low shr shift) or
+      (high shl (64 - shift))
+
+  if shift == 64:
+    return high
+
+  if shift < 128:
+    return high shr (shift - 64)
+
+  0'u64
+
+func float128RoundShiftToUInt64(
+    high, low: uint64;
+    shift: int;
+): uint64 {.inline.} =
+  if shift <= 0:
+    return float128ShiftRightToUInt64(
+      high,
+      low,
+      shift,
+    )
+
+  if shift > 128:
+    return 0'u64
+
+  let
+    retained =
+      float128ShiftRightToUInt64(
+        high,
+        low,
+        shift,
+      )
+    guardPosition = shift - 1
+
+  var
+    guard = 0'u64
+    sticky = false
+
+  if guardPosition < 64:
+    guard =
+      (low shr guardPosition) and 1'u64
+
+    if guardPosition > 0:
+      let mask =
+        (1'u64 shl guardPosition) - 1'u64
+
+      sticky = (low and mask) != 0'u64
+  else:
+    let highPosition = guardPosition - 64
+
+    guard =
+      (high shr highPosition) and 1'u64
+
+    sticky = low != 0'u64
+
+    if highPosition > 0:
+      let mask =
+        (1'u64 shl highPosition) - 1'u64
+
+      sticky =
+        sticky or
+        ((high and mask) != 0'u64)
+
+  if guard != 0'u64 and
+      (sticky or ((retained and 1'u64) != 0'u64)):
+    return retained + 1'u64
+
+  retained
+
+func float128ToBinaryBits(
+    value: Float128;
+    targetFractionBits: int;
+    targetBias: int;
+    targetMinimumExponent: int;
+    targetMaximumExponent: int;
+    targetSignShift: int;
+    targetExponentAllOnes: uint64;
+): uint64 =
+  let
+    source = toBits(value)
+    sourceHigh = source.high
+    sourceLow = source.low
+    sourceSign = sourceHigh shr 63
+    sourceExponent =
+      int((sourceHigh shr 48) and 0x7FFF'u64)
+    sourceFractionHigh =
+      sourceHigh and 0x0000_FFFF_FFFF_FFFF'u64
+    targetSign =
+      sourceSign shl targetSignShift
+
+  if sourceExponent == 0x7FFF:
+    if sourceFractionHigh == 0'u64 and
+        sourceLow == 0'u64:
+      return
+        targetSign or
+        (targetExponentAllOnes shl targetFractionBits)
+
+    let payloadShift =
+      112 - targetFractionBits
+
+    var targetFraction =
+      float128ShiftRightToUInt64(
+        sourceFractionHigh,
+        sourceLow,
+        payloadShift,
+      )
+
+    if targetFraction == 0'u64:
+      targetFraction = 1'u64
+
+    return
+      targetSign or
+      (targetExponentAllOnes shl targetFractionBits) or
+      targetFraction
+
+  if sourceExponent == 0 and
+      sourceFractionHigh == 0'u64 and
+      sourceLow == 0'u64:
+    return targetSign
+
+  var
+    significandHigh: uint64
+    significandLow = sourceLow
+    highestBit: int
+    binaryExponent: int
+
+  if sourceExponent == 0:
+    significandHigh = sourceFractionHigh
+    highestBit =
+      float128HighestBit112(
+        significandHigh,
+        significandLow,
+      )
+    binaryExponent = -16494
+  else:
+    significandHigh =
+      sourceFractionHigh or
+      (1'u64 shl 48)
+    highestBit = 112
+    binaryExponent =
+      sourceExponent - 16383 - 112
+
+  let resultExponent =
+    highestBit + binaryExponent
+
+  if resultExponent > targetMaximumExponent:
+    return
+      targetSign or
+      (targetExponentAllOnes shl targetFractionBits)
+
+  let targetHiddenBit =
+    1'u64 shl targetFractionBits
+
+  if resultExponent >= targetMinimumExponent:
+    let shift =
+      highestBit - targetFractionBits
+
+    var
+      roundedSignificand =
+        float128RoundShiftToUInt64(
+          significandHigh,
+          significandLow,
+          shift,
+        )
+      normalizedExponent = resultExponent
+
+    if roundedSignificand ==
+        (targetHiddenBit shl 1):
+      roundedSignificand =
+        roundedSignificand shr 1
+      inc normalizedExponent
+
+    if normalizedExponent > targetMaximumExponent:
+      return
+        targetSign or
+        (targetExponentAllOnes shl targetFractionBits)
+
+    let
+      targetExponent =
+        uint64(normalizedExponent + targetBias)
+      targetFraction =
+        roundedSignificand - targetHiddenBit
+
+    return
+      targetSign or
+      (targetExponent shl targetFractionBits) or
+      targetFraction
+
+  let
+    targetQuantumExponent =
+      targetMinimumExponent - targetFractionBits
+    shift =
+      targetQuantumExponent - binaryExponent
+    roundedFraction =
+      float128RoundShiftToUInt64(
+        significandHigh,
+        significandLow,
+        shift,
+      )
+
+  if roundedFraction == 0'u64:
+    return targetSign
+
+  if roundedFraction >= targetHiddenBit:
+    return
+      targetSign or
+      (1'u64 shl targetFractionBits)
+
+  targetSign or roundedFraction
+
+func toFloat32*(value: Float128): float32 =
+  ## Converts binary128 to binary32 using roundTiesToEven.
+  ##
+  ## Signed zero and infinity are preserved. NaN sign and the most
+  ## significant representable payload bits are retained. A signaling
+  ## NaN remains signaling when its retained payload is nonzero.
+  let bits =
+    uint32(
+      float128ToBinaryBits(
+        value,
+        23,
+        127,
+        -126,
+        127,
+        31,
+        0xFF'u64,
+      )
+    )
+
+  cast[float32](bits)
+
+func toFloat64*(value: Float128): float64 =
+  ## Converts binary128 to binary64 using roundTiesToEven.
+  ##
+  ## Signed zero and infinity are preserved. NaN sign and the most
+  ## significant representable payload bits are retained. A signaling
+  ## NaN remains signaling when its retained payload is nonzero.
+  let bits =
+    float128ToBinaryBits(
+      value,
+      52,
+      1023,
+      -1022,
+      1023,
+      63,
+      0x7FF'u64,
+    )
+
+  cast[float64](bits)
