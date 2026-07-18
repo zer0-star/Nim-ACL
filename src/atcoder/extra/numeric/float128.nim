@@ -1606,3 +1606,77 @@ func `/`*(lhs, rhs: Float128): Float128 =
     exponent,
     quotient,
   )
+
+# ----------------------------------------------------------------------
+# IEEE 754 binary128 numeric comparisons
+# ----------------------------------------------------------------------
+
+func float128MagnitudeLessBits(
+    lhsHigh, lhsLow, rhsHigh, rhsLow: uint64;
+): bool {.inline.} =
+  let
+    lhsMagnitudeHigh =
+      lhsHigh and 0x7FFF_FFFF_FFFF_FFFF'u64
+    rhsMagnitudeHigh =
+      rhsHigh and 0x7FFF_FFFF_FFFF_FFFF'u64
+
+  if lhsMagnitudeHigh != rhsMagnitudeHigh:
+    return lhsMagnitudeHigh < rhsMagnitudeHigh
+
+  lhsLow < rhsLow
+
+func `==`*(lhs, rhs: Float128): bool =
+  let
+    lhsBits = toBits(lhs)
+    rhsBits = toBits(rhs)
+
+  if float128IsNaNBits(lhsBits.high, lhsBits.low) or
+      float128IsNaNBits(rhsBits.high, rhsBits.low):
+    return false
+
+  if float128IsZeroBits(lhsBits.high, lhsBits.low) and
+      float128IsZeroBits(rhsBits.high, rhsBits.low):
+    return true
+
+  lhsBits.high == rhsBits.high and
+    lhsBits.low == rhsBits.low
+
+func `<`*(lhs, rhs: Float128): bool =
+  let
+    lhsBits = toBits(lhs)
+    rhsBits = toBits(rhs)
+
+  if float128IsNaNBits(lhsBits.high, lhsBits.low) or
+      float128IsNaNBits(rhsBits.high, rhsBits.low):
+    return false
+
+  if float128IsZeroBits(lhsBits.high, lhsBits.low) and
+      float128IsZeroBits(rhsBits.high, rhsBits.low):
+    return false
+
+  let
+    lhsNegative =
+      (lhsBits.high shr 63) != 0'u64
+    rhsNegative =
+      (rhsBits.high shr 63) != 0'u64
+
+  if lhsNegative != rhsNegative:
+    return lhsNegative
+
+  if lhsNegative:
+    return float128MagnitudeLessBits(
+      rhsBits.high,
+      rhsBits.low,
+      lhsBits.high,
+      lhsBits.low,
+    )
+
+  float128MagnitudeLessBits(
+    lhsBits.high,
+    lhsBits.low,
+    rhsBits.high,
+    rhsBits.low,
+  )
+
+func `<=`*(lhs, rhs: Float128): bool =
+  (lhs < rhs) or (lhs == rhs)
