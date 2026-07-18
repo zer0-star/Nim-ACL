@@ -473,3 +473,244 @@ func toFloat128*(value: float64): Float128 =
       (sourceFraction shr 4),
     sourceFraction shl 60
   )
+
+# ----------------------------------------------------------------------
+# Checked Float128 to fixed-width integer conversion
+# ----------------------------------------------------------------------
+
+proc float128IntegerMagnitude128(
+    value: Float128;
+    destination: var UInt128;
+    negative: var bool;
+    unbiasedExponent: var int;
+    sourceFractionNonzero: var bool;
+): bool =
+  destination = toUInt128(0'u64)
+
+  let
+    raw = toBits(value)
+    exponentField =
+      int((raw.high shr 48) and 0x7FFF'u64)
+    fractionHigh =
+      raw.high and 0x0000_FFFF_FFFF_FFFF'u64
+
+  negative =
+    (raw.high and 0x8000_0000_0000_0000'u64) != 0'u64
+
+  sourceFractionNonzero =
+    fractionHigh != 0'u64 or raw.low != 0'u64
+
+  unbiasedExponent = -16383
+
+  if exponentField == 0x7FFF:
+    return false
+
+  if exponentField == 0:
+    return true
+
+  unbiasedExponent = exponentField - 16383
+
+  if unbiasedExponent < 0:
+    return true
+
+  if unbiasedExponent > 127:
+    return false
+
+  let significand =
+    (
+      toUInt128(
+        fractionHigh or 0x0001_0000_0000_0000'u64
+      ) shl 64
+    ) or toUInt128(raw.low)
+
+  if unbiasedExponent >= 112:
+    destination =
+      significand shl (unbiasedExponent - 112)
+  else:
+    destination =
+      significand shr (112 - unbiasedExponent)
+
+  true
+
+proc float128IntegerMagnitude256(
+    value: Float128;
+    destination: var UInt256;
+    negative: var bool;
+    unbiasedExponent: var int;
+    sourceFractionNonzero: var bool;
+): bool =
+  destination = toUInt256(0'u64)
+
+  let
+    raw = toBits(value)
+    exponentField =
+      int((raw.high shr 48) and 0x7FFF'u64)
+    fractionHigh =
+      raw.high and 0x0000_FFFF_FFFF_FFFF'u64
+
+  negative =
+    (raw.high and 0x8000_0000_0000_0000'u64) != 0'u64
+
+  sourceFractionNonzero =
+    fractionHigh != 0'u64 or raw.low != 0'u64
+
+  unbiasedExponent = -16383
+
+  if exponentField == 0x7FFF:
+    return false
+
+  if exponentField == 0:
+    return true
+
+  unbiasedExponent = exponentField - 16383
+
+  if unbiasedExponent < 0:
+    return true
+
+  if unbiasedExponent > 255:
+    return false
+
+  let significand128 =
+    (
+      toUInt128(
+        fractionHigh or 0x0001_0000_0000_0000'u64
+      ) shl 64
+    ) or toUInt128(raw.low)
+
+  let significand =
+    toUInt256(significand128)
+
+  if unbiasedExponent >= 112:
+    destination =
+      significand shl (unbiasedExponent - 112)
+  else:
+    destination =
+      significand shr (112 - unbiasedExponent)
+
+  true
+
+proc tryToUInt128*(
+    value: Float128;
+    destination: var UInt128;
+): bool =
+  destination = toUInt128(0'u64)
+
+  var
+    magnitude: UInt128
+    negative: bool
+    unbiasedExponent: int
+    sourceFractionNonzero: bool
+
+  if not float128IntegerMagnitude128(
+    value,
+    magnitude,
+    negative,
+    unbiasedExponent,
+    sourceFractionNonzero,
+  ):
+    return false
+
+  if negative and unbiasedExponent >= 0:
+    return false
+
+  destination = magnitude
+  true
+
+proc tryToInt128*(
+    value: Float128;
+    destination: var Int128;
+): bool =
+  destination =
+    cast[Int128](toUInt128(0'u64))
+
+  var
+    magnitude: UInt128
+    negative: bool
+    unbiasedExponent: int
+    sourceFractionNonzero: bool
+
+  if not float128IntegerMagnitude128(
+    value,
+    magnitude,
+    negative,
+    unbiasedExponent,
+    sourceFractionNonzero,
+  ):
+    return false
+
+  if unbiasedExponent == 127:
+    if not negative or sourceFractionNonzero:
+      return false
+
+  if negative:
+    destination =
+      cast[Int128](
+        toUInt128(0'u64) - magnitude
+      )
+  else:
+    destination = cast[Int128](magnitude)
+
+  true
+
+proc tryToUInt256*(
+    value: Float128;
+    destination: var UInt256;
+): bool =
+  destination = toUInt256(0'u64)
+
+  var
+    magnitude: UInt256
+    negative: bool
+    unbiasedExponent: int
+    sourceFractionNonzero: bool
+
+  if not float128IntegerMagnitude256(
+    value,
+    magnitude,
+    negative,
+    unbiasedExponent,
+    sourceFractionNonzero,
+  ):
+    return false
+
+  if negative and unbiasedExponent >= 0:
+    return false
+
+  destination = magnitude
+  true
+
+proc tryToInt256*(
+    value: Float128;
+    destination: var Int256;
+): bool =
+  destination =
+    cast[Int256](toUInt256(0'u64))
+
+  var
+    magnitude: UInt256
+    negative: bool
+    unbiasedExponent: int
+    sourceFractionNonzero: bool
+
+  if not float128IntegerMagnitude256(
+    value,
+    magnitude,
+    negative,
+    unbiasedExponent,
+    sourceFractionNonzero,
+  ):
+    return false
+
+  if unbiasedExponent == 255:
+    if not negative or sourceFractionNonzero:
+      return false
+
+  if negative:
+    destination =
+      cast[Int256](
+        toUInt256(0'u64) - magnitude
+      )
+  else:
+    destination = cast[Int256](magnitude)
+
+  true
