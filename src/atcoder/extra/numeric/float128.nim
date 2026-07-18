@@ -2065,3 +2065,567 @@ proc tryParseHexFloat128*(
 
   destination = fromBits(high, low)
   true
+
+# ----------------------------------------------------------------------
+# Correctly rounded decimal text parsing
+# ----------------------------------------------------------------------
+
+const
+  float128DecimalMaximumInputBytes = 10_000
+  float128DecimalMaximumExponentDigits = 9
+  float128DecimalMaximumAbsoluteExponent = 100_000
+
+type
+  Float128DecimalBigUInt = object
+    limbs: seq[uint32]
+
+func float128DecimalIsZero(
+    value: Float128DecimalBigUInt;
+): bool {.inline.} =
+  value.limbs.len == 0
+
+proc float128DecimalNormalize(
+    value: var Float128DecimalBigUInt;
+) =
+  while value.limbs.len > 0 and
+      value.limbs[^1] == 0'u32:
+    value.limbs.setLen(value.limbs.len - 1)
+
+proc float128DecimalAddSmall(
+    value: var Float128DecimalBigUInt;
+    addend: uint32;
+) =
+  if addend == 0'u32:
+    return
+
+  if value.limbs.len == 0:
+    value.limbs = @[addend]
+    return
+
+  var
+    index = 0
+    carry = uint64(addend)
+
+  while carry != 0'u64:
+    if index == value.limbs.len:
+      value.limbs.add(0'u32)
+
+    let total =
+      uint64(value.limbs[index]) + carry
+
+    value.limbs[index] =
+      uint32(total and 0xFFFF_FFFF'u64)
+    carry = total shr 32
+    inc index
+
+proc float128DecimalMultiplySmall(
+    value: var Float128DecimalBigUInt;
+    factor: uint32;
+) =
+  if value.float128DecimalIsZero or factor == 1'u32:
+    return
+
+  if factor == 0'u32:
+    value.limbs.setLen(0)
+    return
+
+  var carry = 0'u64
+
+  for index in 0 ..< value.limbs.len:
+    let product =
+      uint64(value.limbs[index]) *
+        uint64(factor) +
+      carry
+
+    value.limbs[index] =
+      uint32(product and 0xFFFF_FFFF'u64)
+    carry = product shr 32
+
+  if carry != 0'u64:
+    value.limbs.add(uint32(carry))
+
+proc float128DecimalMultiplyPowerOfFive(
+    value: var Float128DecimalBigUInt;
+    exponent: int;
+) =
+  for _ in 0 ..< exponent:
+    value.float128DecimalMultiplySmall(5'u32)
+
+func float128DecimalPowerOfFive(
+    exponent: int;
+): Float128DecimalBigUInt =
+  result.limbs = @[1'u32]
+  result.float128DecimalMultiplyPowerOfFive(exponent)
+
+func float128DecimalFromDigits(
+    digits: string;
+    first, pastLast: int;
+): Float128DecimalBigUInt =
+  for index in first ..< pastLast:
+    result.float128DecimalMultiplySmall(10'u32)
+    result.float128DecimalAddSmall(
+      uint32(ord(digits[index]) - ord('0'))
+    )
+
+  result.float128DecimalNormalize()
+
+func float128DecimalCompare(
+    lhs, rhs: Float128DecimalBigUInt;
+): int =
+  if lhs.limbs.len != rhs.limbs.len:
+    if lhs.limbs.len < rhs.limbs.len:
+      return -1
+
+    return 1
+
+  if lhs.limbs.len == 0:
+    return 0
+
+  for index in countdown(lhs.limbs.len - 1, 0):
+    if lhs.limbs[index] < rhs.limbs[index]:
+      return -1
+
+    if lhs.limbs[index] > rhs.limbs[index]:
+      return 1
+
+  0
+
+func float128DecimalLimbBitLength(
+    value: uint32;
+): int =
+  var remaining = value
+
+  while remaining != 0'u32:
+    inc result
+    remaining = remaining shr 1
+
+func float128DecimalBitLength(
+    value: Float128DecimalBigUInt;
+): int =
+  if value.float128DecimalIsZero:
+    return 0
+
+  (value.limbs.len - 1) * 32 +
+    float128DecimalLimbBitLength(value.limbs[^1])
+
+func float128DecimalShiftLeft(
+    value: Float128DecimalBigUInt;
+    distance: int;
+): Float128DecimalBigUInt =
+  if value.float128DecimalIsZero:
+    return
+
+  if distance == 0:
+    return value
+
+  let
+    limbShift = distance div 32
+    bitShift = distance mod 32
+
+  result.limbs = newSeq[uint32](
+    value.limbs.len + limbShift + 1
+  )
+
+  var carry = 0'u64
+
+  for index in 0 ..< value.limbs.len:
+    let combined =
+      (uint64(value.limbs[index]) shl bitShift) or
+      carry
+
+    result.limbs[index + limbShift] =
+      uint32(combined and 0xFFFF_FFFF'u64)
+    carry = combined shr 32
+
+  if carry != 0'u64:
+    result.limbs[value.limbs.len + limbShift] =
+      uint32(carry)
+
+  result.float128DecimalNormalize()
+
+proc float128DecimalShiftLeftOne(
+    value: var Float128DecimalBigUInt;
+) =
+  if value.float128DecimalIsZero:
+    return
+
+  var carry = 0'u64
+
+  for index in 0 ..< value.limbs.len:
+    let combined =
+      (uint64(value.limbs[index]) shl 1) or carry
+
+    value.limbs[index] =
+      uint32(combined and 0xFFFF_FFFF'u64)
+    carry = combined shr 32
+
+  if carry != 0'u64:
+    value.limbs.add(uint32(carry))
+
+proc float128DecimalSubtractAssign(
+    value: var Float128DecimalBigUInt;
+    subtrahend: Float128DecimalBigUInt;
+) =
+  doAssert float128DecimalCompare(value, subtrahend) >= 0
+
+  var borrow = 0'u64
+
+  for index in 0 ..< value.limbs.len:
+    let
+      lhs = uint64(value.limbs[index])
+      rhs =
+        (
+          if index < subtrahend.limbs.len:
+            uint64(subtrahend.limbs[index])
+          else:
+            0'u64
+        ) + borrow
+
+    if lhs >= rhs:
+      value.limbs[index] = uint32(lhs - rhs)
+      borrow = 0'u64
+    else:
+      value.limbs[index] =
+        uint32((1'u64 shl 32) + lhs - rhs)
+      borrow = 1'u64
+
+  doAssert borrow == 0'u64
+  value.float128DecimalNormalize()
+
+proc float128DecimalSetExtendedBit(
+    value: var UInt256;
+    position: int;
+) =
+  value =
+    value or
+    (float128UInt256One() shl position)
+
+func float128DecimalNormalizedRatio(
+    numerator, denominator: Float128DecimalBigUInt;
+): tuple[
+    exponent: int,
+    extended: UInt256,
+    remainderNonzero: bool,
+] =
+  doAssert not numerator.float128DecimalIsZero
+  doAssert not denominator.float128DecimalIsZero
+
+  var exponent =
+    numerator.float128DecimalBitLength -
+    denominator.float128DecimalBitLength
+
+  if exponent >= 0:
+    let scaledDenominator =
+      denominator.float128DecimalShiftLeft(exponent)
+
+    if float128DecimalCompare(
+      numerator,
+      scaledDenominator,
+    ) < 0:
+      dec exponent
+  else:
+    let scaledNumerator =
+      numerator.float128DecimalShiftLeft(-exponent)
+
+    if float128DecimalCompare(
+      scaledNumerator,
+      denominator,
+    ) < 0:
+      dec exponent
+
+  var
+    normalizedDenominator: Float128DecimalBigUInt
+    remainder: Float128DecimalBigUInt
+
+  if exponent >= 0:
+    normalizedDenominator =
+      denominator.float128DecimalShiftLeft(exponent)
+    remainder = numerator
+    remainder.float128DecimalSubtractAssign(
+      normalizedDenominator
+    )
+  else:
+    remainder =
+      numerator.float128DecimalShiftLeft(-exponent)
+    normalizedDenominator = denominator
+    remainder.float128DecimalSubtractAssign(
+      normalizedDenominator
+    )
+
+  result.exponent = exponent
+  result.extended.float128DecimalSetExtendedBit(115)
+
+  for position in countdown(114, 1):
+    remainder.float128DecimalShiftLeftOne()
+
+    if float128DecimalCompare(
+      remainder,
+      normalizedDenominator,
+    ) >= 0:
+      remainder.float128DecimalSubtractAssign(
+        normalizedDenominator
+      )
+      result.extended.float128DecimalSetExtendedBit(
+        position
+      )
+
+  remainder.float128DecimalShiftLeftOne()
+
+  if float128DecimalCompare(
+    remainder,
+    normalizedDenominator,
+  ) >= 0:
+    remainder.float128DecimalSubtractAssign(
+      normalizedDenominator
+    )
+    result.extended.float128DecimalSetExtendedBit(0)
+
+  result.remainderNonzero =
+    not remainder.float128DecimalIsZero
+
+  if result.remainderNonzero:
+    result.extended.float128DecimalSetExtendedBit(0)
+
+func float128DecimalAsciiLower(
+    value: char;
+): char {.inline.} =
+  if value >= 'A' and value <= 'Z':
+    char(ord(value) + ord('a') - ord('A'))
+  else:
+    value
+
+func float128DecimalEqualsIgnoreCase(
+    text: string;
+    first: int;
+    expected: string;
+): bool =
+  if text.len - first != expected.len:
+    return false
+
+  for index in 0 ..< expected.len:
+    if float128DecimalAsciiLower(
+      text[first + index]
+    ) != expected[index]:
+      return false
+
+  true
+
+proc tryParseFloat128*(
+    text: string;
+    destination: var Float128;
+): bool =
+  ## Parses an ASCII decimal binary128 value using roundTiesToEven.
+  ##
+  ## Accepted finite forms are digits, digits., digits.fraction,
+  ## .fraction, and an optional e/E exponent. Optional leading signs
+  ## and the case-insensitive specials inf, infinity, and nan are
+  ## accepted. Whitespace and digit separators are rejected.
+  destination = fromBits(0'u64, 0'u64)
+
+  if text.len == 0 or
+      text.len > float128DecimalMaximumInputBytes:
+    return false
+
+  var
+    index = 0
+    negative = false
+
+  if text[index] == '+' or text[index] == '-':
+    negative = text[index] == '-'
+    inc index
+
+    if index == text.len:
+      return false
+
+  let signBits =
+    if negative:
+      0x8000_0000_0000_0000'u64
+    else:
+      0'u64
+
+  if float128DecimalEqualsIgnoreCase(
+    text,
+    index,
+    "inf",
+  ) or float128DecimalEqualsIgnoreCase(
+    text,
+    index,
+    "infinity",
+  ):
+    destination = fromBits(
+      signBits or 0x7FFF_0000_0000_0000'u64,
+      0'u64,
+    )
+    return true
+
+  if float128DecimalEqualsIgnoreCase(
+    text,
+    index,
+    "nan",
+  ):
+    destination = fromBits(
+      signBits or 0x7FFF_8000_0000_0000'u64,
+      0'u64,
+    )
+    return true
+
+  var
+    digits = newStringOfCap(text.len)
+    fractionalDigitCount = 0
+    sawDigit = false
+    sawPoint = false
+
+  while index < text.len and
+      text[index] != 'e' and
+      text[index] != 'E':
+    let character = text[index]
+
+    if character >= '0' and character <= '9':
+      sawDigit = true
+      digits.add(character)
+
+      if sawPoint:
+        inc fractionalDigitCount
+    elif character == '.' and not sawPoint:
+      sawPoint = true
+    else:
+      return false
+
+    inc index
+
+  if not sawDigit:
+    return false
+
+  var explicitExponent = 0
+
+  if index < text.len:
+    inc index
+
+    if index == text.len:
+      return false
+
+    var exponentNegative = false
+
+    if text[index] == '+' or text[index] == '-':
+      exponentNegative = text[index] == '-'
+      inc index
+
+      if index == text.len:
+        return false
+
+    var exponentDigitCount = 0
+
+    while index < text.len:
+      let character = text[index]
+
+      if character < '0' or character > '9':
+        return false
+
+      inc exponentDigitCount
+
+      if exponentDigitCount >
+          float128DecimalMaximumExponentDigits:
+        return false
+
+      explicitExponent =
+        explicitExponent * 10 +
+        ord(character) -
+        ord('0')
+
+      if explicitExponent >
+          float128DecimalMaximumAbsoluteExponent:
+        return false
+
+      inc index
+
+    if exponentDigitCount == 0:
+      return false
+
+    if exponentNegative:
+      explicitExponent = -explicitExponent
+
+  var firstNonzero = -1
+
+  for digitIndex in 0 ..< digits.len:
+    if digits[digitIndex] != '0':
+      firstNonzero = digitIndex
+      break
+
+  if firstNonzero < 0:
+    destination = fromBits(signBits, 0'u64)
+    return true
+
+  var trailingZeroCount = 0
+  var trailingIndex = digits.len - 1
+
+  while trailingIndex >= firstNonzero and
+      digits[trailingIndex] == '0':
+    inc trailingZeroCount
+    dec trailingIndex
+
+  let
+    significantPastLast =
+      digits.len - trailingZeroCount
+    significantDigitCount =
+      significantPastLast - firstNonzero
+    decimalExponent =
+      explicitExponent -
+      fractionalDigitCount +
+      trailingZeroCount
+    decimalOrder =
+      significantDigitCount -
+      1 +
+      decimalExponent
+
+  if decimalOrder > 4932:
+    destination = fromBits(
+      signBits or 0x7FFF_0000_0000_0000'u64,
+      0'u64,
+    )
+    return true
+
+  if decimalOrder < -4966:
+    destination = fromBits(signBits, 0'u64)
+    return true
+
+  var
+    numerator =
+      float128DecimalFromDigits(
+        digits,
+        firstNonzero,
+        significantPastLast,
+      )
+    denominator: Float128DecimalBigUInt
+    binaryExponent = decimalExponent
+
+  if decimalExponent >= 0:
+    numerator.float128DecimalMultiplyPowerOfFive(
+      decimalExponent
+    )
+    denominator.limbs = @[1'u32]
+  else:
+    denominator =
+      float128DecimalPowerOfFive(-decimalExponent)
+
+  let extracted =
+    float128DecimalNormalizedRatio(
+      numerator,
+      denominator,
+    )
+
+  destination =
+    float128PackRounded(
+      negative,
+      extracted.exponent + binaryExponent,
+      extracted.extended,
+    )
+
+  true
+
+proc parseFloat128*(text: string): Float128 =
+  ## Parses an ASCII decimal binary128 value or raises ValueError.
+  if not tryParseFloat128(text, result):
+    raise newException(
+      ValueError,
+      "invalid Float128 decimal text",
+    )
