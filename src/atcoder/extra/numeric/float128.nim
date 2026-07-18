@@ -1000,3 +1000,392 @@ func toFloat64*(value: Float128): float64 =
     )
 
   cast[float64](bits)
+
+# ----------------------------------------------------------------------
+# IEEE 754 binary128 unary minus, addition and subtraction
+# ----------------------------------------------------------------------
+
+type Float128FiniteParts = object
+  sign: bool
+  exponent: int
+  significand: UInt256
+
+func float128UInt256One(): UInt256 {.inline.} =
+  toUInt256(1'u64)
+
+func float128IsZeroBits(
+    high, low: uint64;
+): bool {.inline.} =
+  (high and 0x7FFF_FFFF_FFFF_FFFF'u64) == 0'u64 and
+    low == 0'u64
+
+func float128IsInfinityBits(
+    high, low: uint64;
+): bool {.inline.} =
+  (high and 0x7FFF_FFFF_FFFF_FFFF'u64) ==
+      0x7FFF_0000_0000_0000'u64 and
+    low == 0'u64
+
+func float128IsNaNBits(
+    high, low: uint64;
+): bool {.inline.} =
+  ((high shr 48) and 0x7FFF'u64) == 0x7FFF'u64 and
+    (
+      (high and 0x0000_FFFF_FFFF_FFFF'u64) != 0'u64 or
+      low != 0'u64
+    )
+
+func float128QuietNaNBits(
+    high, low: uint64;
+): Float128 {.inline.} =
+  fromBits(
+    high or 0x0000_8000_0000_0000'u64,
+    low,
+  )
+
+func float128CanonicalQuietNaN(): Float128 {.inline.} =
+  fromBits(
+    0x7FFF_8000_0000_0000'u64,
+    0'u64,
+  )
+
+func float128HighestBit256(
+    value: UInt256;
+): int {.inline.} =
+  for index in countdown(255, 0):
+    if (toUInt(value shr index) and 1'u64) != 0'u64:
+      return index
+
+  -1
+
+func float128ShiftRightJam256(
+    value: UInt256;
+    distance: int;
+): UInt256 {.inline.} =
+  let zero = default(UInt256)
+
+  if value == zero:
+    return zero
+
+  if distance <= 0:
+    return value shl (-distance)
+
+  if distance >= 256:
+    return float128UInt256One()
+
+  var shifted = value shr distance
+
+  if (shifted shl distance) != value:
+    shifted = shifted or float128UInt256One()
+
+  shifted
+
+func float128DecodeFiniteBits(
+    high, low: uint64;
+): Float128FiniteParts =
+  result.sign =
+    (high and 0x8000_0000_0000_0000'u64) != 0'u64
+
+  let
+    exponentField =
+      int((high shr 48) and 0x7FFF'u64)
+    fraction =
+      (
+        toUInt256(
+          high and 0x0000_FFFF_FFFF_FFFF'u64
+        ) shl 64
+      ) or
+      toUInt256(low)
+
+  if exponentField == 0:
+    let highest = float128HighestBit256(fraction)
+    let normalizationShift = 112 - highest
+
+    result.exponent =
+      -16382 - normalizationShift
+    result.significand =
+      fraction shl normalizationShift
+  else:
+    result.exponent =
+      exponentField - 16383
+    result.significand =
+      fraction or
+      (float128UInt256One() shl 112)
+
+func float128MagnitudeLess(
+    lhs, rhs: Float128FiniteParts;
+): bool {.inline.} =
+  if lhs.exponent != rhs.exponent:
+    return lhs.exponent < rhs.exponent
+
+  lhs.significand < rhs.significand
+
+func float128PackRounded(
+    sign: bool;
+    sourceExponent: int;
+    sourceExtended: UInt256;
+): Float128 =
+  let
+    zero = default(UInt256)
+    one = float128UInt256One()
+    hiddenBit = one shl 112
+    carryBit = one shl 113
+    signBits =
+      if sign:
+        0x8000_0000_0000_0000'u64
+      else:
+        0'u64
+
+  if sourceExtended == zero:
+    return fromBits(signBits, 0'u64)
+
+  var
+    exponent = sourceExponent
+    extended = sourceExtended
+
+  if exponent < -16382:
+    extended =
+      float128ShiftRightJam256(
+        extended,
+        -16382 - exponent,
+      )
+    exponent = -16382
+
+  var retained = extended shr 3
+  let roundBits = toUInt(extended) and 7'u64
+
+  if roundBits > 4'u64 or
+      (
+        roundBits == 4'u64 and
+        ((toUInt(retained) and 1'u64) != 0'u64)
+      ):
+    retained = retained + one
+
+  if retained >= carryBit:
+    retained = retained shr 1
+    inc exponent
+
+  if exponent > 16383:
+    return fromBits(
+      signBits or 0x7FFF_0000_0000_0000'u64,
+      0'u64,
+    )
+
+  if retained == zero:
+    return fromBits(signBits, 0'u64)
+
+  if exponent == -16382 and retained < hiddenBit:
+    return fromBits(
+      signBits or
+        (
+          toUInt(retained shr 64) and
+          0x0000_FFFF_FFFF_FFFF'u64
+        ),
+      toUInt(retained),
+    )
+
+  let
+    fraction = retained - hiddenBit
+    exponentField = uint64(exponent + 16383)
+
+  fromBits(
+    signBits or
+      (exponentField shl 48) or
+      (
+        toUInt(fraction shr 64) and
+        0x0000_FFFF_FFFF_FFFF'u64
+      ),
+    toUInt(fraction),
+  )
+
+func float128AddSub(
+    lhs, rhs: Float128;
+    subtract: bool;
+): Float128 =
+  let
+    lhsBits = toBits(lhs)
+    rhsBits = toBits(rhs)
+
+  if float128IsNaNBits(lhsBits.high, lhsBits.low):
+    return float128QuietNaNBits(
+      lhsBits.high,
+      lhsBits.low,
+    )
+
+  if float128IsNaNBits(rhsBits.high, rhsBits.low):
+    return float128QuietNaNBits(
+      rhsBits.high,
+      rhsBits.low,
+    )
+
+  let
+    effectiveRhsHigh =
+      if subtract:
+        rhsBits.high xor 0x8000_0000_0000_0000'u64
+      else:
+        rhsBits.high
+    lhsInfinity =
+      float128IsInfinityBits(
+        lhsBits.high,
+        lhsBits.low,
+      )
+    rhsInfinity =
+      float128IsInfinityBits(
+        effectiveRhsHigh,
+        rhsBits.low,
+      )
+
+  if lhsInfinity and rhsInfinity:
+    let
+      lhsSign = lhsBits.high shr 63
+      rhsSign = effectiveRhsHigh shr 63
+
+    if lhsSign != rhsSign:
+      return float128CanonicalQuietNaN()
+
+    return lhs
+
+  if lhsInfinity:
+    return lhs
+
+  if rhsInfinity:
+    return fromBits(
+      effectiveRhsHigh,
+      rhsBits.low,
+    )
+
+  let
+    lhsZero =
+      float128IsZeroBits(
+        lhsBits.high,
+        lhsBits.low,
+      )
+    rhsZero =
+      float128IsZeroBits(
+        effectiveRhsHigh,
+        rhsBits.low,
+      )
+
+  if lhsZero and rhsZero:
+    let
+      lhsSign = lhsBits.high shr 63
+      rhsSign = effectiveRhsHigh shr 63
+
+    if lhsSign == rhsSign:
+      return fromBits(lhsSign shl 63, 0'u64)
+
+    return fromBits(0'u64, 0'u64)
+
+  if lhsZero:
+    return fromBits(
+      effectiveRhsHigh,
+      rhsBits.low,
+    )
+
+  if rhsZero:
+    return lhs
+
+  let
+    lhsParts =
+      float128DecodeFiniteBits(
+        lhsBits.high,
+        lhsBits.low,
+      )
+    rhsParts =
+      float128DecodeFiniteBits(
+        effectiveRhsHigh,
+        rhsBits.low,
+      )
+
+  if lhsParts.sign == rhsParts.sign:
+    var
+      larger = lhsParts
+      smaller = rhsParts
+
+    if float128MagnitudeLess(larger, smaller):
+      swap(larger, smaller)
+
+    let
+      exponentDifference =
+        larger.exponent - smaller.exponent
+      largerExtended =
+        larger.significand shl 3
+      smallerExtended =
+        float128ShiftRightJam256(
+          smaller.significand shl 3,
+          exponentDifference,
+        )
+
+    var
+      sum = largerExtended + smallerExtended
+      exponent = larger.exponent
+
+    let highest = float128HighestBit256(sum)
+
+    if highest > 115:
+      let shift = highest - 115
+      sum =
+        float128ShiftRightJam256(
+          sum,
+          shift,
+        )
+      exponent += shift
+
+    return float128PackRounded(
+      larger.sign,
+      exponent,
+      sum,
+    )
+
+  var
+    larger = lhsParts
+    smaller = rhsParts
+
+  if float128MagnitudeLess(larger, smaller):
+    swap(larger, smaller)
+
+  let
+    exponentDifference =
+      larger.exponent - smaller.exponent
+    largerExtended =
+      larger.significand shl 3
+    smallerExtended =
+      float128ShiftRightJam256(
+        smaller.significand shl 3,
+        exponentDifference,
+      )
+    zero = default(UInt256)
+
+  var difference =
+    largerExtended - smallerExtended
+
+  if difference == zero:
+    return fromBits(0'u64, 0'u64)
+
+  var exponent = larger.exponent
+  let highest = float128HighestBit256(difference)
+
+  if highest < 115:
+    let shift = 115 - highest
+    difference = difference shl shift
+    exponent -= shift
+
+  float128PackRounded(
+    larger.sign,
+    exponent,
+    difference,
+  )
+
+func `-`*(value: Float128): Float128 =
+  let bits = toBits(value)
+
+  fromBits(
+    bits.high xor 0x8000_0000_0000_0000'u64,
+    bits.low,
+  )
+
+func `+`*(lhs, rhs: Float128): Float128 =
+  float128AddSub(lhs, rhs, false)
+
+func `-`*(lhs, rhs: Float128): Float128 =
+  float128AddSub(lhs, rhs, true)
