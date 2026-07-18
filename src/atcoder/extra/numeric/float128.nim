@@ -1680,3 +1680,83 @@ func `<`*(lhs, rhs: Float128): bool =
 
 func `<=`*(lhs, rhs: Float128): bool =
   (lhs < rhs) or (lhs == rhs)
+# ----------------------------------------------------------------------
+# IEEE 754 binary128 square root candidate
+# ----------------------------------------------------------------------
+
+func float128IntegerSqrt256(
+    value: UInt256;
+): tuple[root, remainder: UInt256] =
+  let zero = default(UInt256)
+
+  if value == zero:
+    return (zero, zero)
+
+  let
+    one = float128UInt256One()
+    bitLength =
+      float128HighestBit256(value) + 1
+
+  var current =
+    one shl ((bitLength + 1) div 2)
+
+  while true:
+    let next =
+      (current + value div current) shr 1
+
+    if next >= current:
+      return (
+        current,
+        value - current * current,
+      )
+
+    current = next
+
+func sqrt*(value: Float128): Float128 =
+  let bits = toBits(value)
+
+  if float128IsNaNBits(bits.high, bits.low):
+    return float128QuietNaNBits(
+      bits.high,
+      bits.low,
+    )
+
+  if float128IsZeroBits(bits.high, bits.low):
+    return value
+
+  if (bits.high shr 63) != 0'u64:
+    return float128CanonicalQuietNaN()
+
+  if float128IsInfinityBits(bits.high, bits.low):
+    return value
+
+  let parts =
+    float128DecodeFiniteBits(
+      bits.high,
+      bits.low,
+    )
+
+  var
+    exponent = parts.exponent
+    significand = parts.significand
+
+  if (exponent and 1) != 0:
+    significand = significand shl 1
+    dec exponent
+
+  let
+    radicand = significand shl 118
+    integerResult =
+      float128IntegerSqrt256(radicand)
+    one = float128UInt256One()
+
+  var extendedRoot = integerResult.root
+
+  if integerResult.remainder != default(UInt256):
+    extendedRoot = extendedRoot or one
+
+  float128PackRounded(
+    false,
+    exponent div 2,
+    extendedRoot,
+  )
