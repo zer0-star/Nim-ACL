@@ -355,3 +355,121 @@ func toFloat128*(value: Int256): Float128 =
     integerLimbs(magnitude),
     negative
   )
+
+# ----------------------------------------------------------------------
+# Exact float32 / float64 conversion
+# ----------------------------------------------------------------------
+
+func float32SourceHighestBit(value: uint32): int {.inline.} =
+  for index in countdown(31, 0):
+    if ((value shr index) and 1'u32) != 0'u32:
+      return index
+
+  -1
+
+func float64SourceHighestBit(value: uint64): int {.inline.} =
+  for index in countdown(63, 0):
+    if ((value shr index) and 1'u64) != 0'u64:
+      return index
+
+  -1
+
+func toFloat128*(value: float32): Float128 =
+  ## Converts an IEEE 754 binary32 value exactly to binary128.
+  ##
+  ## NaN sign, quiet/signaling state and payload bits are preserved by
+  ## left-aligning the binary32 fraction in the binary128 fraction.
+  let
+    sourceBits = cast[uint32](value)
+    sourceSign = uint64(sourceBits shr 31) shl 63
+    sourceExponent = (sourceBits shr 23) and 0xFF'u32
+    sourceFraction = sourceBits and 0x007F_FFFF'u32
+
+  if sourceExponent == 0'u32:
+    if sourceFraction == 0'u32:
+      return fromBits(sourceSign, 0'u64)
+
+    let
+      highestBit = float32SourceHighestBit(sourceFraction)
+      targetExponent = uint64(highestBit + 16234)
+      remainder =
+        sourceFraction xor (1'u32 shl highestBit)
+      targetFractionHigh =
+        uint64(remainder) shl (48 - highestBit)
+
+    return fromBits(
+      sourceSign or
+        (targetExponent shl 48) or
+        targetFractionHigh,
+      0'u64
+    )
+
+  let targetExponent =
+    if sourceExponent == 0xFF'u32:
+      0x7FFF'u64
+    else:
+      uint64(sourceExponent) + 16256'u64
+
+  fromBits(
+    sourceSign or
+      (targetExponent shl 48) or
+      (uint64(sourceFraction) shl 25),
+    0'u64
+  )
+
+func toFloat128*(value: float64): Float128 =
+  ## Converts an IEEE 754 binary64 value exactly to binary128.
+  ##
+  ## NaN sign, quiet/signaling state and payload bits are preserved by
+  ## left-aligning the binary64 fraction in the binary128 fraction.
+  let
+    sourceBits = cast[uint64](value)
+    sourceSign = sourceBits and 0x8000_0000_0000_0000'u64
+    sourceExponent =
+      (sourceBits shr 52) and 0x7FF'u64
+    sourceFraction =
+      sourceBits and 0x000F_FFFF_FFFF_FFFF'u64
+
+  if sourceExponent == 0'u64:
+    if sourceFraction == 0'u64:
+      return fromBits(sourceSign, 0'u64)
+
+    let
+      highestBit = float64SourceHighestBit(sourceFraction)
+      targetExponent = uint64(highestBit + 15309)
+      remainder =
+        sourceFraction xor (1'u64 shl highestBit)
+
+    var
+      targetFractionHigh: uint64
+      targetFractionLow: uint64
+
+    if highestBit <= 48:
+      targetFractionHigh =
+        remainder shl (48 - highestBit)
+      targetFractionLow = 0'u64
+    else:
+      targetFractionHigh =
+        remainder shr (highestBit - 48)
+      targetFractionLow =
+        remainder shl (112 - highestBit)
+
+    return fromBits(
+      sourceSign or
+        (targetExponent shl 48) or
+        targetFractionHigh,
+      targetFractionLow
+    )
+
+  let targetExponent =
+    if sourceExponent == 0x7FF'u64:
+      0x7FFF'u64
+    else:
+      sourceExponent + 15360'u64
+
+  fromBits(
+    sourceSign or
+      (targetExponent shl 48) or
+      (sourceFraction shr 4),
+    sourceFraction shl 60
+  )
