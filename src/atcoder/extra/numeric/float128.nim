@@ -1760,3 +1760,228 @@ func sqrt*(value: Float128): Float128 =
     exponent div 2,
     extendedRoot,
   )
+
+# ----------------------------------------------------------------------
+# IEEE 754 binary128 fused multiply-add
+# ----------------------------------------------------------------------
+
+func float128ScaleInteger(
+    value: UInt256;
+    rightShift: int;
+): UInt256 {.inline.} =
+  if rightShift > 0:
+    return float128ShiftRightJam256(
+      value,
+      rightShift,
+    )
+
+  if rightShift < 0:
+    return value shl (-rightShift)
+
+  value
+
+func float128PackExactInteger(
+    negative: bool;
+    magnitude: UInt256;
+    binaryExponent: int;
+): Float128 =
+  let zero = default(UInt256)
+
+  if magnitude == zero:
+    return fromBits(0'u64, 0'u64)
+
+  let
+    highest = float128HighestBit256(magnitude)
+    normalizationShift = highest - 115
+    extended =
+      float128ScaleInteger(
+        magnitude,
+        normalizationShift,
+      )
+    exponent =
+      highest + binaryExponent
+
+  float128PackRounded(
+    negative,
+    exponent,
+    extended,
+  )
+
+func fusedMultiplyAdd*(
+    a, b, c: Float128;
+): Float128 =
+  ## Computes a*b+c with one final roundTiesToEven operation.
+  let
+    aBits = toBits(a)
+    bBits = toBits(b)
+    cBits = toBits(c)
+
+  if float128IsNaNBits(aBits.high, aBits.low):
+    return float128QuietNaNBits(
+      aBits.high,
+      aBits.low,
+    )
+
+  if float128IsNaNBits(bBits.high, bBits.low):
+    return float128QuietNaNBits(
+      bBits.high,
+      bBits.low,
+    )
+
+  if float128IsNaNBits(cBits.high, cBits.low):
+    return float128QuietNaNBits(
+      cBits.high,
+      cBits.low,
+    )
+
+  let
+    aInfinity =
+      float128IsInfinityBits(
+        aBits.high,
+        aBits.low,
+      )
+    bInfinity =
+      float128IsInfinityBits(
+        bBits.high,
+        bBits.low,
+      )
+    cInfinity =
+      float128IsInfinityBits(
+        cBits.high,
+        cBits.low,
+      )
+    aZero =
+      float128IsZeroBits(
+        aBits.high,
+        aBits.low,
+      )
+    bZero =
+      float128IsZeroBits(
+        bBits.high,
+        bBits.low,
+      )
+    cZero =
+      float128IsZeroBits(
+        cBits.high,
+        cBits.low,
+      )
+    productNegative =
+      (
+        (aBits.high xor bBits.high) and
+        0x8000_0000_0000_0000'u64
+      ) != 0'u64
+    productSignBits =
+      if productNegative:
+        0x8000_0000_0000_0000'u64
+      else:
+        0'u64
+
+  if (aInfinity and bZero) or
+      (bInfinity and aZero):
+    return float128CanonicalQuietNaN()
+
+  if aInfinity or bInfinity:
+    if cInfinity:
+      let cNegative =
+        (cBits.high shr 63) != 0'u64
+
+      if cNegative != productNegative:
+        return float128CanonicalQuietNaN()
+
+    return fromBits(
+      productSignBits or
+        0x7FFF_0000_0000_0000'u64,
+      0'u64,
+    )
+
+  if cInfinity:
+    return c
+
+  if aZero or bZero:
+    let productZero =
+      fromBits(productSignBits, 0'u64)
+
+    return productZero + c
+
+  if cZero:
+    return a * b
+
+  let
+    aParts =
+      float128DecodeFiniteBits(
+        aBits.high,
+        aBits.low,
+      )
+    bParts =
+      float128DecodeFiniteBits(
+        bBits.high,
+        bBits.low,
+      )
+    cParts =
+      float128DecodeFiniteBits(
+        cBits.high,
+        cBits.low,
+      )
+    productMagnitude =
+      aParts.significand *
+      bParts.significand
+    productBaseExponent =
+      aParts.exponent +
+      bParts.exponent -
+      224
+    cBaseExponent =
+      cParts.exponent - 112
+    productHighest =
+      float128HighestBit256(productMagnitude)
+    productTopExponent =
+      productBaseExponent + productHighest
+    cTopExponent =
+      cParts.exponent
+    targetTopExponent =
+      max(
+        productTopExponent,
+        cTopExponent,
+      )
+    commonBaseExponent =
+      targetTopExponent - 254
+    productAligned =
+      float128ScaleInteger(
+        productMagnitude,
+        commonBaseExponent -
+          productBaseExponent,
+      )
+    cAligned =
+      float128ScaleInteger(
+        cParts.significand,
+        commonBaseExponent -
+          cBaseExponent,
+      )
+    zero = default(UInt256)
+
+  var
+    resultNegative: bool
+    resultMagnitude: UInt256
+
+  if productNegative == cParts.sign:
+    resultNegative = productNegative
+    resultMagnitude =
+      productAligned + cAligned
+  elif productAligned > cAligned:
+    resultNegative = productNegative
+    resultMagnitude =
+      productAligned - cAligned
+  elif cAligned > productAligned:
+    resultNegative = cParts.sign
+    resultMagnitude =
+      cAligned - productAligned
+  else:
+    return fromBits(0'u64, 0'u64)
+
+  if resultMagnitude == zero:
+    return fromBits(0'u64, 0'u64)
+
+  float128PackExactInteger(
+    resultNegative,
+    resultMagnitude,
+    commonBaseExponent,
+  )
