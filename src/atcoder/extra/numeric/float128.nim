@@ -8,6 +8,9 @@
 ##
 ## Arithmetic and numeric conversions are intentionally deferred.
 
+import atcoder/extra/numeric/int128
+import atcoder/extra/numeric/int256
+
 const
   Float128ExponentBits* = 15
   Float128FractionBits* = 112
@@ -152,3 +155,203 @@ func infinityFloat128*(negative: bool = false): Float128 {.inline.} =
     negativeInfinityFloat128
   else:
     positiveInfinityFloat128
+
+# ----------------------------------------------------------------------
+# Exact integer conversion using IEEE 754 roundTiesToEven
+# ----------------------------------------------------------------------
+
+type
+  Float128IntegerLimbs = array[4, uint64]
+
+func integerLimbs(value: UInt128): Float128IntegerLimbs {.inline.} =
+  result = [
+    low64(value),
+    high64(value),
+    0'u64,
+    0'u64
+  ]
+
+func integerLimbs(value: UInt256): Float128IntegerLimbs {.inline.} =
+  let lowHalf = low128(value)
+  let highHalf = high128(value)
+
+  result = [
+    low64(lowHalf),
+    high64(lowHalf),
+    low64(highHalf),
+    high64(highHalf)
+  ]
+
+func integerBit(
+    limbs: Float128IntegerLimbs,
+    index: int
+  ): bool {.inline.} =
+  let limbIndex = index shr 6
+  let bitIndex = index and 63
+
+  ((limbs[limbIndex] shr bitIndex) and 1'u64) != 0'u64
+
+func integerBitLength(
+    limbs: Float128IntegerLimbs
+  ): int =
+  for index in countdown(255, 0):
+    if integerBit(limbs, index):
+      return index + 1
+
+  0
+
+func anyIntegerBitsBelow(
+    limbs: Float128IntegerLimbs,
+    highExclusive: int
+  ): bool =
+  if highExclusive <= 0:
+    return false
+
+  for index in 0 ..< highExclusive:
+    if integerBit(limbs, index):
+      return true
+
+  false
+
+func setSignificandBit(
+    significandHigh: var uint64,
+    significandLow: var uint64,
+    index: int
+  ) {.inline.} =
+  if index < 64:
+    significandLow =
+      significandLow or (1'u64 shl index)
+  else:
+    significandHigh =
+      significandHigh or (1'u64 shl (index - 64))
+
+func toFloat128FromIntegerLimbs(
+    limbs: Float128IntegerLimbs,
+    negative: bool
+  ): Float128 =
+  let bitLength = integerBitLength(limbs)
+
+  if bitLength == 0:
+    return positiveZeroFloat128
+
+  var exponent = bitLength - 1
+  var significandHigh = 0'u64
+  var significandLow = 0'u64
+
+  if bitLength <= Float128PrecisionBits:
+    let leftShift = Float128PrecisionBits - bitLength
+
+    for sourceBit in 0 ..< bitLength:
+      if integerBit(limbs, sourceBit):
+        setSignificandBit(
+          significandHigh,
+          significandLow,
+          sourceBit + leftShift
+        )
+  else:
+    let rightShift = bitLength - Float128PrecisionBits
+
+    for destinationBit in 0 ..< Float128PrecisionBits:
+      if integerBit(
+          limbs,
+          destinationBit + rightShift
+        ):
+        setSignificandBit(
+          significandHigh,
+          significandLow,
+          destinationBit
+        )
+
+    let guardBit =
+      integerBit(limbs, rightShift - 1)
+
+    let stickyBit =
+      anyIntegerBitsBelow(
+        limbs,
+        rightShift - 1
+      )
+
+    let retainedLeastBitIsOdd =
+      (significandLow and 1'u64) != 0'u64
+
+    if guardBit and
+        (stickyBit or retainedLeastBitIsOdd):
+      significandLow = significandLow + 1'u64
+
+      if significandLow == 0'u64:
+        significandHigh = significandHigh + 1'u64
+
+      if significandHigh ==
+          0x0002_0000_0000_0000'u64:
+        significandHigh =
+          0x0001_0000_0000_0000'u64
+
+        significandLow = 0'u64
+        exponent += 1
+
+  let fractionHigh =
+    significandHigh and
+    0x0000_FFFF_FFFF_FFFF'u64
+
+  var high =
+    (uint64(exponent + Float128ExponentBias) shl 48) or
+    fractionHigh
+
+  if negative:
+    high = high or 0x8000_0000_0000_0000'u64
+
+  fromBits(high, significandLow)
+
+func toFloat128*(value: UInt128): Float128 =
+  ## Converts UInt128 exactly when possible and otherwise uses
+  ## IEEE 754 roundTiesToEven.
+  toFloat128FromIntegerLimbs(
+    integerLimbs(value),
+    false
+  )
+
+func toFloat128*(value: Int128): Float128 =
+  ## Converts Int128 using its two's-complement magnitude.
+  let bits = cast[UInt128](value)
+
+  let negative =
+    (high64(bits) and 0x8000_0000_0000_0000'u64) !=
+    0'u64
+
+  let magnitude =
+    if negative:
+      toUInt128(0'u64) - bits
+    else:
+      bits
+
+  toFloat128FromIntegerLimbs(
+    integerLimbs(magnitude),
+    negative
+  )
+
+func toFloat128*(value: UInt256): Float128 =
+  ## Converts UInt256 using IEEE 754 roundTiesToEven.
+  toFloat128FromIntegerLimbs(
+    integerLimbs(value),
+    false
+  )
+
+func toFloat128*(value: Int256): Float128 =
+  ## Converts Int256 using its two's-complement magnitude.
+  let bits = cast[UInt256](value)
+  let highHalf = high128(bits)
+
+  let negative =
+    (high64(highHalf) and 0x8000_0000_0000_0000'u64) !=
+    0'u64
+
+  let magnitude =
+    if negative:
+      toUInt256(0'u64) - bits
+    else:
+      bits
+
+  toFloat128FromIntegerLimbs(
+    integerLimbs(magnitude),
+    negative
+  )
