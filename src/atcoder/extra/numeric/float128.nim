@@ -2629,3 +2629,316 @@ proc parseFloat128*(text: string): Float128 =
       ValueError,
       "invalid Float128 decimal text",
     )
+# ----------------------------------------------------------------------
+# 36-significant-digit scientific decimal formatting
+# ----------------------------------------------------------------------
+
+func float128DecimalClone(
+    value: Float128DecimalBigUInt;
+): Float128DecimalBigUInt =
+  result.limbs = newSeq[uint32](value.limbs.len)
+
+  for index in 0 ..< value.limbs.len:
+    result.limbs[index] = value.limbs[index]
+
+func float128DecimalFromUInt256(
+    value: UInt256;
+): Float128DecimalBigUInt =
+  for index in 0 ..< 8:
+    result.limbs.add(
+      uint32(
+        toUInt(value shr (index * 32)) and
+        0xFFFF_FFFF'u64
+      )
+    )
+
+  result.float128DecimalNormalize()
+
+func float128DecimalMultiplyBig(
+    lhs, rhs: Float128DecimalBigUInt;
+): Float128DecimalBigUInt =
+  if lhs.float128DecimalIsZero or
+      rhs.float128DecimalIsZero:
+    return
+
+  result.limbs = newSeq[uint32](
+    lhs.limbs.len + rhs.limbs.len + 1
+  )
+
+  for lhsIndex in 0 ..< lhs.limbs.len:
+    var carry = 0'u64
+
+    for rhsIndex in 0 ..< rhs.limbs.len:
+      let
+        position = lhsIndex + rhsIndex
+        total =
+          uint64(result.limbs[position]) +
+          uint64(lhs.limbs[lhsIndex]) *
+            uint64(rhs.limbs[rhsIndex]) +
+          carry
+
+      result.limbs[position] =
+        uint32(total and 0xFFFF_FFFF'u64)
+      carry = total shr 32
+
+    var position = lhsIndex + rhs.limbs.len
+
+    while carry != 0'u64:
+      let total =
+        uint64(result.limbs[position]) + carry
+
+      result.limbs[position] =
+        uint32(total and 0xFFFF_FFFF'u64)
+      carry = total shr 32
+      inc position
+
+  result.float128DecimalNormalize()
+
+func float128DecimalPowerOfTenFast(
+    exponent: int;
+): Float128DecimalBigUInt =
+  doAssert exponent >= 0
+
+  result.limbs = @[1'u32]
+
+  if exponent == 0:
+    return
+
+  var
+    remaining = exponent
+    base: Float128DecimalBigUInt
+
+  base.limbs = @[10'u32]
+
+  while remaining != 0:
+    if (remaining and 1) != 0:
+      result =
+        float128DecimalMultiplyBig(result, base)
+
+    remaining = remaining shr 1
+
+    if remaining != 0:
+      base =
+        float128DecimalMultiplyBig(base, base)
+
+func float128DecimalCompareRatioPowerOfTen(
+    numerator, denominator: Float128DecimalBigUInt;
+    decimalExponent: int;
+): int =
+  let power =
+    float128DecimalPowerOfTenFast(
+      abs(decimalExponent)
+    )
+
+  if decimalExponent >= 0:
+    let scaledDenominator =
+      float128DecimalMultiplyBig(
+        denominator,
+        power,
+      )
+
+    return float128DecimalCompare(
+      numerator,
+      scaledDenominator,
+    )
+
+  let scaledNumerator =
+    float128DecimalMultiplyBig(
+      numerator,
+      power,
+    )
+
+  float128DecimalCompare(
+    scaledNumerator,
+    denominator,
+  )
+
+func float128DecimalFloorLog10Estimate(
+    binaryExponent: int;
+): int =
+  let product = binaryExponent * 78_913
+
+  if product >= 0:
+    product div 262_144
+  else:
+    -((-product + 262_143) div 262_144)
+
+proc float128DecimalIncrementDigits(
+    digits: var string;
+    decimalExponent: var int;
+) =
+  var index = digits.len - 1
+
+  while index >= 0 and digits[index] == '9':
+    digits[index] = '0'
+    dec index
+
+  if index >= 0:
+    digits[index] =
+      char(ord(digits[index]) + 1)
+  else:
+    digits[0] = '1'
+
+    for position in 1 ..< digits.len:
+      digits[position] = '0'
+
+    inc decimalExponent
+
+func toScientificString*(
+    value: Float128;
+): string =
+  ## Returns 36 significant decimal digits in scientific notation.
+  ##
+  ## Every finite output round-trips through tryParseFloat128.
+  let bits = toBits(value)
+  let negative = (bits.high shr 63) != 0'u64
+
+  if float128IsNaNBits(bits.high, bits.low):
+    if negative:
+      return "-nan"
+
+    return "nan"
+
+  if float128IsInfinityBits(bits.high, bits.low):
+    if negative:
+      return "-inf"
+
+    return "inf"
+
+  if float128IsZeroBits(bits.high, bits.low):
+    if negative:
+      return "-0"
+
+    return "0"
+
+  let
+    parts =
+      float128DecodeFiniteBits(
+        bits.high,
+        bits.low,
+      )
+    binaryExponent = parts.exponent - 112
+
+  var
+    numerator =
+      float128DecimalFromUInt256(
+        parts.significand
+      )
+    denominator: Float128DecimalBigUInt
+
+  denominator.limbs = @[1'u32]
+
+  if binaryExponent >= 0:
+    numerator =
+      numerator.float128DecimalShiftLeft(
+        binaryExponent
+      )
+  else:
+    denominator =
+      denominator.float128DecimalShiftLeft(
+        -binaryExponent
+      )
+
+  var decimalExponent =
+    float128DecimalFloorLog10Estimate(
+      parts.exponent
+    )
+
+  while float128DecimalCompareRatioPowerOfTen(
+    numerator,
+    denominator,
+    decimalExponent,
+  ) < 0:
+    dec decimalExponent
+
+  while float128DecimalCompareRatioPowerOfTen(
+    numerator,
+    denominator,
+    decimalExponent + 1,
+  ) >= 0:
+    inc decimalExponent
+
+  var
+    scaledNumerator: Float128DecimalBigUInt
+    scaledDenominator: Float128DecimalBigUInt
+
+  if decimalExponent >= 0:
+    scaledNumerator =
+      numerator.float128DecimalClone()
+
+    scaledDenominator =
+      float128DecimalMultiplyBig(
+        denominator,
+        float128DecimalPowerOfTenFast(
+          decimalExponent
+        ),
+      )
+  else:
+    scaledNumerator =
+      float128DecimalMultiplyBig(
+        numerator,
+        float128DecimalPowerOfTenFast(
+          -decimalExponent
+        ),
+      )
+
+    scaledDenominator =
+      denominator.float128DecimalClone()
+
+  var
+    remainder =
+      scaledNumerator.float128DecimalClone()
+    digits = newString(36)
+
+  for position in 0 ..< 36:
+    var digit = 0
+
+    while float128DecimalCompare(
+      remainder,
+      scaledDenominator,
+    ) >= 0:
+      remainder.float128DecimalSubtractAssign(
+        scaledDenominator
+      )
+      inc digit
+
+    doAssert digit >= 0 and digit <= 9
+    digits[position] = char(ord('0') + digit)
+
+    if position != 35:
+      remainder.float128DecimalMultiplySmall(10'u32)
+
+  var doubledRemainder =
+    remainder.float128DecimalClone()
+
+  doubledRemainder.float128DecimalShiftLeftOne()
+
+  let roundingComparison =
+    float128DecimalCompare(
+      doubledRemainder,
+      scaledDenominator,
+    )
+
+  if roundingComparison > 0 or
+      (
+        roundingComparison == 0 and
+        ((ord(digits[^1]) - ord('0')) and 1) != 0
+      ):
+    digits.float128DecimalIncrementDigits(
+      decimalExponent
+    )
+
+  result = newStringOfCap(44)
+
+  if negative:
+    result.add('-')
+
+  result.add(digits[0])
+  result.add('.')
+  result.add(digits[1 .. ^1])
+  result.add('e')
+
+  if decimalExponent >= 0:
+    result.add('+')
+
+  result.add($decimalExponent)
