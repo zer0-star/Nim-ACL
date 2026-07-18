@@ -1389,3 +1389,104 @@ func `+`*(lhs, rhs: Float128): Float128 =
 
 func `-`*(lhs, rhs: Float128): Float128 =
   float128AddSub(lhs, rhs, true)
+
+# ----------------------------------------------------------------------
+# IEEE 754 binary128 multiplication
+# ----------------------------------------------------------------------
+
+func `*`*(lhs, rhs: Float128): Float128 =
+  let
+    lhsBits = toBits(lhs)
+    rhsBits = toBits(rhs)
+
+  if float128IsNaNBits(lhsBits.high, lhsBits.low):
+    return float128QuietNaNBits(
+      lhsBits.high,
+      lhsBits.low,
+    )
+
+  if float128IsNaNBits(rhsBits.high, rhsBits.low):
+    return float128QuietNaNBits(
+      rhsBits.high,
+      rhsBits.low,
+    )
+
+  let
+    negative =
+      (
+        (lhsBits.high xor rhsBits.high) and
+        0x8000_0000_0000_0000'u64
+      ) != 0'u64
+    signBits =
+      if negative:
+        0x8000_0000_0000_0000'u64
+      else:
+        0'u64
+    lhsInfinity =
+      float128IsInfinityBits(
+        lhsBits.high,
+        lhsBits.low,
+      )
+    rhsInfinity =
+      float128IsInfinityBits(
+        rhsBits.high,
+        rhsBits.low,
+      )
+    lhsZero =
+      float128IsZeroBits(
+        lhsBits.high,
+        lhsBits.low,
+      )
+    rhsZero =
+      float128IsZeroBits(
+        rhsBits.high,
+        rhsBits.low,
+      )
+
+  if (lhsInfinity and rhsZero) or
+      (rhsInfinity and lhsZero):
+    return float128CanonicalQuietNaN()
+
+  if lhsInfinity or rhsInfinity:
+    return fromBits(
+      signBits or 0x7FFF_0000_0000_0000'u64,
+      0'u64,
+    )
+
+  if lhsZero or rhsZero:
+    return fromBits(signBits, 0'u64)
+
+  let
+    lhsParts =
+      float128DecodeFiniteBits(
+        lhsBits.high,
+        lhsBits.low,
+      )
+    rhsParts =
+      float128DecodeFiniteBits(
+        rhsBits.high,
+        rhsBits.low,
+      )
+    product =
+      lhsParts.significand *
+      rhsParts.significand
+    highest =
+      float128HighestBit256(product)
+    normalizationShift =
+      highest - 115
+    extended =
+      float128ShiftRightJam256(
+        product,
+        normalizationShift,
+      )
+    exponent =
+      lhsParts.exponent +
+      rhsParts.exponent +
+      highest -
+      224
+
+  float128PackRounded(
+    negative,
+    exponent,
+    extended,
+  )
