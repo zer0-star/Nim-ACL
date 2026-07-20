@@ -8,47 +8,102 @@ when not declared ATCODER_TEST_EXTRA_DP_2D_EDIT_RECTANGLE:
   import atcoder/extra/dp/largest_rectangle
 
   suite "extra dp 2d and string utilities":
-    test "cumulative_sum_2d from matrix":
-      let a = @[
+    test "cumulative_sum_2d from non-square matrix":
+      let data = @[
         @[1, 2, 3],
         @[4, 5, 6],
-        @[7, 8, 9],
       ]
 
-      var cs = initCumulativeSum2D(a)
+      let cumulative =
+        initCumulativeSum2D(data)
 
-      check cs[0 .. 0, 0 .. 0] == 1
-      check cs[0 .. 1, 0 .. 1] == 12
-      check cs[1 .. 2, 1 .. 2] == 28
-      check cs[0 .. 2, 0 .. 2] == 45
+      check cumulative.height == 2
+      check cumulative.width == 3
+
+      check cumulative[
+        0 .. 0,
+        0 .. 0,
+      ] == 1
+
+      check cumulative[
+        0 .. 1,
+        1 .. 2,
+      ] == 16
+
+      check cumulative.sum(
+        1,
+        2,
+        0,
+        3,
+      ) == 15
+
+      check cumulative.allSum == 21
 
     test "cumulative_sum_2d point add and build":
-      var cs = initCumulativeSum2D[int](3, 3)
+      var cumulative =
+        initCumulativeSum2D[int](
+          2,
+          3,
+        )
 
-      cs.add(0, 0, 5)
-      cs.add(2, 1, 7)
-      cs.add(1, 2, 11)
-      cs.build()
+      cumulative.add(0, 2, 7)
+      cumulative.add(1, 1, 11)
+      cumulative.add(0, 0, 5)
+      cumulative.build()
 
-      check cs[0 .. 2, 0 .. 2] == 23
-      check cs[2 .. 2, 1 .. 1] == 7
-      check cs[1 .. 2, 1 .. 2] == 18
+      check cumulative.height == 2
+      check cumulative.width == 3
+
+      check cumulative[
+        0 .. 1,
+        0 .. 2,
+      ] == 23
+
+      check cumulative[
+        0 .. 0,
+        2 .. 2,
+      ] == 7
+
+      check cumulative[
+        1 .. 1,
+        1 .. 1,
+      ] == 11
 
     test "dual_cumulative_sum_2d range add point get":
-      var ds = initDualCumulativeSum2D[int](4, 4)
+      var difference =
+        initDualCumulativeSum2D[int](
+          3,
+          4,
+        )
 
-      ds.add(1 .. 2, 0 .. 1, 10)
-      ds.add(0 .. 3, 3 .. 3, 5)
-      ds.add(2, 2, -4)
-      ds.build()
+      difference.add(
+        1 .. 2,
+        0 .. 1,
+        10,
+      )
 
-      check ds[0, 0] == 0
-      check ds[1, 0] == 10
-      check ds[2, 1] == 10
-      check ds[2, 2] == -4
-      check ds[3, 3] == 5
-      check ds[-1, 0] == 0
-      check ds[4, 0] == 0
+      difference.add(
+        0 .. 2,
+        3 .. 3,
+        5,
+      )
+
+      difference.add(
+        2,
+        2,
+        -4,
+      )
+
+      difference.build()
+
+      check difference[0, 0] == 0
+      check difference[1, 0] == 10
+      check difference[2, 1] == 10
+      check difference[2, 2] == -4
+      check difference[2, 3] == 5
+      check difference[-1, 0] == 0
+      check difference[3, 0] == 0
+      check difference[0, 4] == 0
 
     test "edit_distance":
       check editDistance("", "") == 0
@@ -58,7 +113,18 @@ when not declared ATCODER_TEST_EXTRA_DP_2D_EDIT_RECTANGLE:
       check editDistance("", "abc") == 3
 
     test "largest_rectangle":
-      check largestRectangle(@[2, 1, 5, 6, 2, 3]) == 10
-      check largestRectangle(@[2, 4]) == 4
-      check largestRectangle(@[1, 1, 1, 1]) == 4
-      check largestRectangle(newSeq[int]()) == 0
+      check largestRectangle(
+        @[2, 1, 5, 6, 2, 3],
+      ) == 10
+
+      check largestRectangle(
+        @[2, 4],
+      ) == 4
+
+      check largestRectangle(
+        @[1, 1, 1, 1],
+      ) == 4
+
+      check largestRectangle(
+        newSeq[int](),
+      ) == 0

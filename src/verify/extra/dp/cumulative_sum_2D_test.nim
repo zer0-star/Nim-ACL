@@ -4,41 +4,86 @@ import atcoder/header
 import atcoder/extra/dp/dual_cumulative_sum_2d
 import atcoder/extra/dp/cumulative_sum_2d
 
-let H, W, N, M = nextInt()
-var T, U, L, R, A = newSeq[int](N)
-for i in 0..<N:
-  T[i] = nextInt() - 1
-  U[i] = nextInt() - 1
-  L[i] = nextInt() - 1
-  R[i] = nextInt() - 1
-  A[i] = nextInt()
+let height, width, queryCount, sourceCount = nextInt()
 
-var cs = initDualCumulativeSum2D[int](H, W)
+var
+  rowBegin = newSeq[int](queryCount)
+  rowEnd = newSeq[int](queryCount)
+  colBegin = newSeq[int](queryCount)
+  colEnd = newSeq[int](queryCount)
+  threshold = newSeq[int](queryCount)
 
-for i in 0..<M:
-  var X, Y, B, C = nextInt()
-  X.dec;Y.dec
-  var xl = max(X - B, 0)
-  var yl = max(Y - B, 0)
-  var xr = min(X + B, H - 1)
-  var yr = min(Y + B, W - 1)
-  cs.add(xl..xr, yl..yr, C)
+for index in 0 ..< queryCount:
+  rowBegin[index] = nextInt() - 1
+  rowEnd[index] = nextInt() - 1
+  colBegin[index] = nextInt() - 1
+  colEnd[index] = nextInt() - 1
+  threshold[index] = nextInt()
 
-cs.build()
+var difference =
+  initDualCumulativeSum2D[int](
+    height,
+    width,
+  )
 
-var cs2 = initCumulativeSum2D[int](H, W)
+for _ in 0 ..< sourceCount:
+  var
+    row = nextInt() - 1
+    col = nextInt() - 1
+    radius = nextInt()
+    value = nextInt()
 
-for i in 0..<H:
-  for j in 0..<W:
-    var d = cs[i, j]
-    cs2.add(i, j, d)
+  let
+    firstRow = max(
+      row - radius,
+      0,
+    )
+    firstCol = max(
+      col - radius,
+      0,
+    )
+    lastRow = min(
+      row + radius,
+      height - 1,
+    )
+    lastCol = min(
+      col + radius,
+      width - 1,
+    )
 
-cs2.build()
+  difference.add(
+    firstRow .. lastRow,
+    firstCol .. lastCol,
+    value,
+  )
 
-var ans = 0
+difference.build()
 
-for i in 0..<N:
-  var d = cs2[T[i]..U[i], L[i]..R[i]]
-  if d < A[i]: ans.inc
+var cumulative =
+  initCumulativeSum2D[int](
+    height,
+    width,
+  )
 
-echo ans
+for row in 0 ..< height:
+  for col in 0 ..< width:
+    cumulative.add(
+      row,
+      col,
+      difference[row, col],
+    )
+
+cumulative.build()
+
+var answer = 0
+
+for index in 0 ..< queryCount:
+  let value = cumulative[
+    rowBegin[index] .. rowEnd[index],
+    colBegin[index] .. colEnd[index],
+  ]
+
+  if value < threshold[index]:
+    answer.inc
+
+echo answer

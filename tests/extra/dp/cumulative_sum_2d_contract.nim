@@ -3,20 +3,20 @@ import atcoder/extra/dp/cumulative_sum_2d
 block emptyConstruction:
   var cumulative =
     initCumulativeSum2D[int](
-      0,
-      0,
+      height = 0,
+      width = 3,
     )
 
   cumulative.build()
 
-  doAssert cumulative.width == 0
   doAssert cumulative.height == 0
+  doAssert cumulative.width == 3
 
   doAssert cumulative.sum(
-    0,
-    0,
-    0,
-    0,
+    rowBegin = 0,
+    rowEnd = 0,
+    colBegin = 0,
+    colEnd = 3,
   ) == 0
 
   doAssert cumulative.allSum == 0
@@ -26,47 +26,52 @@ block emptyConstruction:
 block incrementalConstruction:
   var cumulative =
     initCumulativeSum2D[int](
-      4,
-      3,
+      height = 3,
+      width = 4,
     )
 
-  cumulative.add(0, 0, 1)
+  cumulative.add(
+    row = 0,
+    col = 0,
+    value = 1,
+  )
+
   cumulative.add(1, 1, 5)
-  cumulative.add(3, 2, 7)
+  cumulative.add(2, 3, 7)
   cumulative.build()
 
-  doAssert cumulative.width == 4
   doAssert cumulative.height == 3
+  doAssert cumulative.width == 4
 
   doAssert cumulative[
-    0..0,
-    0..0,
+    0 .. 0,
+    0 .. 0,
   ] == 1
 
   doAssert cumulative[
-    0..3,
-    0..2,
+    0 .. 2,
+    0 .. 3,
   ] == 13
 
   doAssert cumulative.sum(
-    0,
-    4,
-    0,
-    3,
+    rowBegin = 0,
+    rowEnd = 3,
+    colBegin = 0,
+    colEnd = 4,
   ) == 13
 
   doAssert cumulative.sum(
     1,
-    4,
-    1,
     3,
+    1,
+    4,
   ) == 12
 
   doAssert cumulative.sum(
     2,
     2,
     0,
-    3,
+    4,
   ) == 0
 
   doAssert cumulative.allSum == 13
@@ -75,31 +80,36 @@ block incrementalConstruction:
 
 block matrixConstruction:
   let data = @[
-    @[1, 2],
-    @[3, 4],
-    @[5, 6],
+    @[1, 2, 3, 4],
+    @[5, 6, 7, 8],
+    @[9, 10, 11, 12],
   ]
 
   let cumulative =
-    initCumulativeSum2D(
-      data
-    )
+    initCumulativeSum2D(data)
 
-  doAssert cumulative.width == 3
-  doAssert cumulative.height == 2
+  doAssert cumulative.height == 3
+  doAssert cumulative.width == 4
 
   doAssert cumulative[
-    1..2,
-    0..0,
-  ] == 8
+    1 .. 2,
+    2 .. 3,
+  ] == 38
 
   doAssert cumulative.sum(
     1,
     3,
-    0,
-    1,
-  ) == 8
+    2,
+    4,
+  ) == 38
 
-  doAssert cumulative.allSum == 21
+  doAssert cumulative.sum(
+    0,
+    3,
+    1,
+    3,
+  ) == 39
+
+  doAssert cumulative.allSum == 78
 
   echo "CUMULATIVE_SUM_2D_MATRIX_OK"

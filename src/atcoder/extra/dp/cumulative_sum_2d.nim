@@ -3,112 +3,178 @@ when not declared ATCODER_CUMULATIVE_SUM_2D_HPP:
 
   import std/sequtils
 
-  type CumulativeSum2D*[T] = object
-    built: bool
-    data: seq[seq[T]]
+  type
+    CumulativeSum2D*[T] = object
+      built: bool
+      data: seq[seq[T]]
 
-  proc initCumulativeSum2D*[T](W, H: int): CumulativeSum2D[T] =
+  proc initCumulativeSum2D*[T](
+      height,
+      width: int,
+  ): CumulativeSum2D[T] =
+    ## Constructs an initially zero H x W grid.
+    ##
+    ## The first coordinate is row and the second is column.
+
+    assert height >= 0
+    assert width >= 0
+
     CumulativeSum2D[T](
       built: false,
-      data: newSeqWith(W + 1, newSeqWith(H + 1, T(0)))
+      data: newSeqWith(
+        height + 1,
+        newSeqWith(
+          width + 1,
+          T(0),
+        ),
+      ),
     )
 
-  proc initCumulativeSum2D*[T](data: seq[seq[T]]): CumulativeSum2D[T] =
-    let W = data.len
-    let H = if W == 0: 0 else: data[0].len
+  proc initCumulativeSum2D*[T](
+      data: seq[seq[T]],
+  ): CumulativeSum2D[T] =
+    ## Constructs a prefix-sum grid from data[row][col].
 
-    result = initCumulativeSum2D[T](W, H)
+    let
+      height = data.len
+      width =
+        if height == 0:
+          0
+        else:
+          data[0].len
 
-    for x in 0 ..< data.len:
-      assert data[x].len == H
-      for y in 0 ..< data[x].len:
-        result.add(x, y, data[x][y])
+    result =
+      initCumulativeSum2D[T](
+        height,
+        width,
+      )
+
+    for row in 0 ..< height:
+      assert data[row].len == width
+
+      for col in 0 ..< width:
+        result.add(
+          row,
+          col,
+          data[row][col],
+        )
 
     result.build()
 
-  proc add*[T](self: var CumulativeSum2D[T]; x, y: int, z: T) =
+  proc add*[T](
+      self: var CumulativeSum2D[T],
+      row,
+      col: int,
+      value: T,
+  ) =
+    ## Adds value to data[row][col] before build().
+    ##
+    ## Coordinates outside the grid are ignored, matching the
+    ## historical behavior of this module.
+
     assert not self.built
-    let nx = x + 1
-    let ny = y + 1
 
-    if nx <= 0 or ny <= 0:
+    let
+      rowIndex = row + 1
+      colIndex = col + 1
+
+    if rowIndex <= 0 or colIndex <= 0:
       return
-    if nx >= self.data.len or ny >= self.data[0].len:
+
+    if rowIndex >= self.data.len or
+        colIndex >= self.data[0].len:
       return
 
-    self.data[nx][ny] += z
+    self.data[rowIndex][colIndex] += value
 
-  proc build*[T](self: var CumulativeSum2D[T]) =
+  proc build*[T](
+      self: var CumulativeSum2D[T],
+  ) =
+    ## Builds row-major two-dimensional prefix sums.
+
     if self.built:
       return
 
     self.built = true
 
-    for x in 1 ..< self.data.len:
-      for y in 1 ..< self.data[x].len:
-        self.data[x][y] += self.data[x][y - 1] + self.data[x - 1][y] - self.data[x - 1][y - 1]
+    for row in 1 ..< self.data.len:
+      for col in 1 ..< self.data[row].len:
+        self.data[row][col] +=
+          self.data[row - 1][col] +
+          self.data[row][col - 1] -
+          self.data[row - 1][col - 1]
 
-  proc `[]`*[T](self: CumulativeSum2D[T], rx, ry: Slice[int]): T =
+  proc `[]`*[T](
+      self: CumulativeSum2D[T],
+      rowRange,
+      colRange: Slice[int],
+  ): T =
+    ## Returns the sum over the inclusive rectangle
+    ## rowRange x colRange.
+
     assert self.built
 
-    let gx = rx.b + 1
-    let gy = ry.b + 1
-    let sx = rx.a
-    let sy = ry.a
+    let
+      rowEnd = rowRange.b + 1
+      colEnd = colRange.b + 1
+      rowBegin = rowRange.a
+      colBegin = colRange.a
 
-    return self.data[gx][gy] - self.data[sx][gy] - self.data[gx][sy] + self.data[sx][sy]
+    self.data[rowEnd][colEnd] -
+    self.data[rowBegin][colEnd] -
+    self.data[rowEnd][colBegin] +
+    self.data[rowBegin][colBegin]
 
-  # BEGIN HALF_OPEN_CUMULATIVE_SUM_2D_API_V1
-  proc width*[T](
-      self: CumulativeSum2D[T]
+  proc height*[T](
+      self: CumulativeSum2D[T],
   ): int {.inline.} =
     if self.data.len == 0:
       0
     else:
       self.data.len - 1
 
-  proc height*[T](
-      self: CumulativeSum2D[T]
+  proc width*[T](
+      self: CumulativeSum2D[T],
   ): int {.inline.} =
     if self.data.len == 0 or
-       self.data[0].len == 0:
+        self.data[0].len == 0:
       0
     else:
       self.data[0].len - 1
 
   proc sum*[T](
       self: CumulativeSum2D[T],
-      xLeft,
-      xRight,
-      yLeft,
-      yRight: int
+      rowBegin,
+      rowEnd,
+      colBegin,
+      colEnd: int,
   ): T =
     ## Returns the sum over the half-open rectangle
-    ## [xLeft, xRight) x [yLeft, yRight).
-    assert self.built
-    assert 0 <= xLeft
-    assert xLeft <= xRight
-    assert xRight <= self.width
-    assert 0 <= yLeft
-    assert yLeft <= yRight
-    assert yRight <= self.height
+    ## [rowBegin, rowEnd) x [colBegin, colEnd).
 
-    if xLeft == xRight or
-       yLeft == yRight:
+    assert self.built
+    assert 0 <= rowBegin
+    assert rowBegin <= rowEnd
+    assert rowEnd <= self.height
+    assert 0 <= colBegin
+    assert colBegin <= colEnd
+    assert colEnd <= self.width
+
+    if rowBegin == rowEnd or
+        colBegin == colEnd:
       return T(0)
 
     self[
-      xLeft .. xRight - 1,
-      yLeft .. yRight - 1,
+      rowBegin .. rowEnd - 1,
+      colBegin .. colEnd - 1,
     ]
 
   proc allSum*[T](
-      self: CumulativeSum2D[T]
+      self: CumulativeSum2D[T],
   ): T {.inline.} =
     self.sum(
       0,
-      self.width,
-      0,
       self.height,
+      0,
+      self.width,
     )
-  # END HALF_OPEN_CUMULATIVE_SUM_2D_API_V1

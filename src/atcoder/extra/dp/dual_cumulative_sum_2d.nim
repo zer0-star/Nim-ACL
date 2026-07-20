@@ -3,106 +3,192 @@ when not declared ATCODER_DUAL_CUMULATIVE_SUM_2D_HPP:
 
   import std/sequtils
 
-  type DualCumulativeSum2D*[T] = object
-    X, Y: int
-    built: bool
-    data: seq[seq[T]]
+  type
+    DualCumulativeSum2D*[T] = object
+      heightValue: int
+      widthValue: int
+      built: bool
+      data: seq[seq[T]]
 
-  proc init*[T](self: var DualCumulativeSum2D[T], X, Y: int) =
-    self.X = X
-    self.Y = Y
+  proc init*[T](
+      self: var DualCumulativeSum2D[T],
+      height,
+      width: int,
+  ) =
+    ## Initializes an H x W row-major difference grid.
+
+    assert height >= 0
+    assert width >= 0
+
+    self.heightValue = height
+    self.widthValue = width
     self.built = false
-    self.data = newSeqWith(X + 1, newSeqWith(Y + 1, T(0)))
 
-  proc initDualCumulativeSum2D*[T](X, Y: int): DualCumulativeSum2D[T] =
-    result.init(X, Y)
+    self.data = newSeqWith(
+      height + 1,
+      newSeqWith(
+        width + 1,
+        T(0),
+      ),
+    )
 
-  proc add*[T](self: var DualCumulativeSum2D[T]; rx, ry: Slice[int], z: T) =
+  proc initDualCumulativeSum2D*[T](
+      height,
+      width: int,
+  ): DualCumulativeSum2D[T] =
+    result.init(
+      height,
+      width,
+    )
+
+  proc add*[T](
+      self: var DualCumulativeSum2D[T],
+      rowRange,
+      colRange: Slice[int],
+      value: T,
+  ) =
+    ## Adds value to the inclusive rectangle
+    ## rowRange x colRange, clipped to the grid.
+
     assert not self.built
 
-    let gx = min(rx.b + 1, self.X)
-    let gy = min(ry.b + 1, self.Y)
-    let sx = max(rx.a, 0)
-    let sy = max(ry.a, 0)
+    let
+      rowEnd =
+        min(
+          rowRange.b + 1,
+          self.heightValue,
+        )
+      colEnd =
+        min(
+          colRange.b + 1,
+          self.widthValue,
+        )
+      rowBegin =
+        max(
+          rowRange.a,
+          0,
+        )
+      colBegin =
+        max(
+          colRange.a,
+          0,
+        )
 
-    if gx < 0 or gy < 0:
+    if rowEnd < 0 or colEnd < 0:
       return
-    if sx >= self.X or sy >= self.Y:
+
+    if rowBegin >= self.heightValue or
+        colBegin >= self.widthValue:
       return
-    if sx >= gx or sy >= gy:
+
+    if rowBegin >= rowEnd or
+        colBegin >= colEnd:
       return
 
-    self.data[sx][sy] += z
-    self.data[gx][sy] -= z
-    self.data[sx][gy] -= z
-    self.data[gx][gy] += z
+    self.data[rowBegin][colBegin] += value
+    self.data[rowEnd][colBegin] -= value
+    self.data[rowBegin][colEnd] -= value
+    self.data[rowEnd][colEnd] += value
 
-  proc add*[T](self: var DualCumulativeSum2D[T]; x, y: int, z: T) =
-    self.add(x .. x, y .. y, z)
+  proc add*[T](
+      self: var DualCumulativeSum2D[T],
+      row,
+      col: int,
+      value: T,
+  ) =
+    ## Adds value to one cell.
 
-  proc build*[T](self: var DualCumulativeSum2D[T]) =
+    self.add(
+      row .. row,
+      col .. col,
+      value,
+    )
+
+  proc build*[T](
+      self: var DualCumulativeSum2D[T],
+  ) =
+    ## Builds the row-major two-dimensional difference grid.
+
     if self.built:
       return
 
     self.built = true
 
-    for x in 1 ..< self.data.len:
-      for y in 0 ..< self.data[x].len:
-        self.data[x][y] += self.data[x - 1][y]
+    for row in 1 ..< self.data.len:
+      for col in 0 ..< self.data[row].len:
+        self.data[row][col] +=
+          self.data[row - 1][col]
 
-    for y in 1 ..< self.data[0].len:
-      for x in 0 ..< self.data.len:
-        self.data[x][y] += self.data[x][y - 1]
+    for col in 1 ..< self.data[0].len:
+      for row in 0 ..< self.data.len:
+        self.data[row][col] +=
+          self.data[row][col - 1]
 
-  proc `[]`*[T](self: DualCumulativeSum2D[T], x, y: int): T =
+  proc `[]`*[T](
+      self: DualCumulativeSum2D[T],
+      row,
+      col: int,
+  ): T =
     assert self.built
 
-    if x < 0 or y < 0:
-      return T(0)
-    if x >= self.X or y >= self.Y:
+    if row < 0 or col < 0:
       return T(0)
 
-    return self.data[x][y]
+    if row >= self.heightValue or
+        col >= self.widthValue:
+      return T(0)
 
-  proc write*[T](self: DualCumulativeSum2D[T]) =
+    self.data[row][col]
+
+  proc write*[T](
+      self: DualCumulativeSum2D[T],
+  ) =
+    ## Writes rows outermost and columns innermost.
+
     assert self.built
 
-    for x in 0 ..< self.X:
-      for y in 0 ..< self.Y:
-        stdout.write(self[x, y])
+    for row in 0 ..< self.heightValue:
+      for col in 0 ..< self.widthValue:
+        stdout.write(
+          self[row, col],
+        )
+
       echo ""
 
-  # BEGIN HALF_OPEN_DUAL_CUMULATIVE_SUM_2D_API_V1
   proc add*[T](
       self: var DualCumulativeSum2D[T],
-      xLeft,
-      xRight,
-      yLeft,
-      yRight: int,
-      value: T
+      rowBegin,
+      rowEnd,
+      colBegin,
+      colEnd: int,
+      value: T,
   ) =
     ## Adds value to the half-open rectangle
-    ## [xLeft, xRight) x [yLeft, yRight).
-    assert 0 <= xLeft
-    assert xLeft <= xRight
-    assert xRight <= self.X
-    assert 0 <= yLeft
-    assert yLeft <= yRight
-    assert yRight <= self.Y
+    ## [rowBegin, rowEnd) x [colBegin, colEnd).
 
-    if xLeft == xRight or yLeft == yRight:
+    assert 0 <= rowBegin
+    assert rowBegin <= rowEnd
+    assert rowEnd <= self.heightValue
+    assert 0 <= colBegin
+    assert colBegin <= colEnd
+    assert colEnd <= self.widthValue
+
+    if rowBegin == rowEnd or
+        colBegin == colEnd:
       return
 
     self.add(
-      xLeft .. xRight - 1,
-      yLeft .. yRight - 1,
+      rowBegin .. rowEnd - 1,
+      colBegin .. colEnd - 1,
       value,
     )
 
   proc get*[T](
       self: DualCumulativeSum2D[T],
-      x,
-      y: int
+      row,
+      col: int,
   ): T {.inline.} =
-    self[x, y]
-  # END HALF_OPEN_DUAL_CUMULATIVE_SUM_2D_API_V1
+    self[
+      row,
+      col,
+    ]
