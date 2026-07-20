@@ -5,87 +5,226 @@ when not declared ATCODER_EXTRA_STRUCTURE_DENSE_RANGE_FENWICKTREE_2D_HPP:
 
   type
     DenseRangeFenwickTree2D*[T] = object
-      heightValue, widthValue: int
-      b00, b10, b01, b11: DenseFenwickTree2D[T]
+      heightValue: int
+      widthValue: int
+      b00: DenseFenwickTree2D[T]
+      b10: DenseFenwickTree2D[T]
+      b01: DenseFenwickTree2D[T]
+      b11: DenseFenwickTree2D[T]
 
   proc initDenseRangeFenwickTree2D*[T](
-      height, width: int,
+      height,
+      width: int,
   ): DenseRangeFenwickTree2D[T] =
     assert height >= 0
     assert width >= 0
+
     result.heightValue = height
     result.widthValue = width
-    result.b00 = initDenseFenwickTree2D[T](width, height)
-    result.b10 = initDenseFenwickTree2D[T](width, height)
-    result.b01 = initDenseFenwickTree2D[T](width, height)
-    result.b11 = initDenseFenwickTree2D[T](width, height)
+
+    result.b00 =
+      initDenseFenwickTree2D[T](
+        height,
+        width,
+      )
+
+    result.b10 =
+      initDenseFenwickTree2D[T](
+        height,
+        width,
+      )
+
+    result.b01 =
+      initDenseFenwickTree2D[T](
+        height,
+        width,
+      )
+
+    result.b11 =
+      initDenseFenwickTree2D[T](
+        height,
+        width,
+      )
 
   proc addCorner[T](
       self: var DenseRangeFenwickTree2D[T],
-      y, x: int,
+      row,
+      col: int,
       delta: T,
   ) =
     mixin `*`
-    assert 0 <= y and y <= self.heightValue
-    assert 0 <= x and x <= self.widthValue
-    if y == self.heightValue or x == self.widthValue:
+
+    assert 0 <= row
+    assert row <= self.heightValue
+    assert 0 <= col
+    assert col <= self.widthValue
+
+    if row == self.heightValue or
+        col == self.widthValue:
       return
-    let ty = T(y)
-    let tx = T(x)
-    self.b00.add(x, y, delta)
-    self.b10.add(x, y, delta * ty)
-    self.b01.add(x, y, delta * tx)
-    self.b11.add(x, y, delta * ty * tx)
+
+    let
+      rowValue = T(row)
+      colValue = T(col)
+
+    self.b00.add(
+      row,
+      col,
+      delta,
+    )
+
+    self.b10.add(
+      row,
+      col,
+      delta * rowValue,
+    )
+
+    self.b01.add(
+      row,
+      col,
+      delta * colValue,
+    )
+
+    self.b11.add(
+      row,
+      col,
+      delta * rowValue * colValue,
+    )
 
   proc prefixSum[T](
       self: DenseRangeFenwickTree2D[T],
-      yRight, xRight: int,
+      rowEnd,
+      colEnd: int,
   ): T =
     mixin `+`, `-`, `*`
-    assert 0 <= yRight and yRight <= self.heightValue
-    assert 0 <= xRight and xRight <= self.widthValue
-    let ty = T(yRight)
-    let tx = T(xRight)
-    let q00 = self.b00.prefixSum(xRight, yRight)
-    let q10 = self.b10.prefixSum(xRight, yRight)
-    let q01 = self.b01.prefixSum(xRight, yRight)
-    let q11 = self.b11.prefixSum(xRight, yRight)
-    result = ty * tx * q00 - tx * q10 - ty * q01 + q11
+
+    assert 0 <= rowEnd
+    assert rowEnd <= self.heightValue
+    assert 0 <= colEnd
+    assert colEnd <= self.widthValue
+
+    let
+      rowValue = T(rowEnd)
+      colValue = T(colEnd)
+      q00 = self.b00.prefixSum(
+        rowEnd,
+        colEnd,
+      )
+      q10 = self.b10.prefixSum(
+        rowEnd,
+        colEnd,
+      )
+      q01 = self.b01.prefixSum(
+        rowEnd,
+        colEnd,
+      )
+      q11 = self.b11.prefixSum(
+        rowEnd,
+        colEnd,
+      )
+
+    result =
+      rowValue * colValue * q00 -
+      colValue * q10 -
+      rowValue * q01 +
+      q11
 
   proc add*[T](
       self: var DenseRangeFenwickTree2D[T],
-      y1, y2, x1, x2: int,
+      rowBegin,
+      rowEnd,
+      colBegin,
+      colEnd: int,
       delta: T,
   ) =
     mixin `-`
-    assert 0 <= y1 and y1 <= y2 and y2 <= self.heightValue
-    assert 0 <= x1 and x1 <= x2 and x2 <= self.widthValue
-    if y1 == y2 or x1 == x2:
+
+    assert 0 <= rowBegin
+    assert rowBegin <= rowEnd
+    assert rowEnd <= self.heightValue
+    assert 0 <= colBegin
+    assert colBegin <= colEnd
+    assert colEnd <= self.widthValue
+
+    if rowBegin == rowEnd or
+        colBegin == colEnd:
       return
-    self.addCorner(y1, x1, delta)
-    self.addCorner(y1, x2, -delta)
-    self.addCorner(y2, x1, -delta)
-    self.addCorner(y2, x2, delta)
+
+    self.addCorner(
+      rowBegin,
+      colBegin,
+      delta,
+    )
+
+    self.addCorner(
+      rowBegin,
+      colEnd,
+      -delta,
+    )
+
+    self.addCorner(
+      rowEnd,
+      colBegin,
+      -delta,
+    )
+
+    self.addCorner(
+      rowEnd,
+      colEnd,
+      delta,
+    )
 
   proc sum*[T](
       self: DenseRangeFenwickTree2D[T],
-      y1, y2, x1, x2: int,
+      rowBegin,
+      rowEnd,
+      colBegin,
+      colEnd: int,
   ): T =
     mixin `+`, `-`
-    assert 0 <= y1 and y1 <= y2 and y2 <= self.heightValue
-    assert 0 <= x1 and x1 <= x2 and x2 <= self.widthValue
-    if y1 == y2 or x1 == x2:
+
+    assert 0 <= rowBegin
+    assert rowBegin <= rowEnd
+    assert rowEnd <= self.heightValue
+    assert 0 <= colBegin
+    assert colBegin <= colEnd
+    assert colEnd <= self.widthValue
+
+    if rowBegin == rowEnd or
+        colBegin == colEnd:
       return T(0)
+
     result =
-      self.prefixSum(y2, x2) -
-      self.prefixSum(y1, x2) -
-      self.prefixSum(y2, x1) +
-      self.prefixSum(y1, x1)
+      self.prefixSum(
+        rowEnd,
+        colEnd,
+      ) -
+      self.prefixSum(
+        rowBegin,
+        colEnd,
+      ) -
+      self.prefixSum(
+        rowEnd,
+        colBegin,
+      ) +
+      self.prefixSum(
+        rowBegin,
+        colBegin,
+      )
 
   proc get*[T](
       self: DenseRangeFenwickTree2D[T],
-      y, x: int,
+      row,
+      col: int,
   ): T {.inline.} =
-    assert 0 <= y and y < self.heightValue
-    assert 0 <= x and x < self.widthValue
-    self.sum(y, y + 1, x, x + 1)
+    assert 0 <= row
+    assert row < self.heightValue
+    assert 0 <= col
+    assert col < self.widthValue
+
+    self.sum(
+      row,
+      row + 1,
+      col,
+      col + 1,
+    )

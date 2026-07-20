@@ -6,31 +6,29 @@ type
 
 proc `+`(
     a,
-    b: Box
+    b: Box,
 ): Box =
   Box(
-    value:
-      a.value + b.value
+    value: a.value + b.value,
   )
 
 proc `-`(
     a,
-    b: Box
+    b: Box,
 ): Box =
   Box(
-    value:
-      a.value - b.value
+    value: a.value - b.value,
   )
 
 block dimensions:
   let tree =
     initDenseFenwickTree2D[int](
-      4,
-      3,
+      height = 3,
+      width = 4,
     )
 
-  doAssert tree.width == 4
   doAssert tree.height == 3
+  doAssert tree.width == 4
   doAssert tree.allSum == 0
 
   echo "DENSE_FENWICKTREE_2D_DIMENSIONS_OK"
@@ -38,43 +36,52 @@ block dimensions:
 block pointAddAndRectangleSum:
   var tree =
     initDenseFenwickTree2D[int](
-      4,
       3,
+      4,
     )
 
-  tree.add(0, 0, 1)
+  tree.add(
+    row = 0,
+    col = 0,
+    delta = 1,
+  )
+
   tree.add(1, 1, 5)
-  tree.add(3, 2, 7)
+  tree.add(2, 3, 7)
   tree.add(1, 1, 4)
 
   doAssert tree.prefixSum(
-    2,
-    2,
+    rowEnd = 2,
+    colEnd = 2,
   ) == 10
 
   doAssert tree.sum(
-    0,
-    4,
-    0,
-    3,
+    rowBegin = 0,
+    rowEnd = 3,
+    colBegin = 0,
+    colEnd = 4,
   ) == 17
 
   doAssert tree.sum(
     1,
-    4,
-    1,
     3,
+    1,
+    4,
   ) == 16
 
   doAssert tree.sum(
     2,
     2,
     0,
-    3,
+    4,
   ) == 0
 
-  doAssert tree.get(1, 1) == 9
-  doAssert tree[3, 2] == 7
+  doAssert tree.get(
+    row = 1,
+    col = 1,
+  ) == 9
+
+  doAssert tree[2, 3] == 7
   doAssert tree.allSum == 17
 
   echo "DENSE_FENWICKTREE_2D_RECTANGLE_OK"
@@ -104,7 +111,7 @@ block genericAdditiveType:
   var tree =
     initDenseFenwickTree2D[Box](
       2,
-      2,
+      3,
     )
 
   tree.add(
@@ -115,7 +122,7 @@ block genericAdditiveType:
 
   tree.add(
     1,
-    1,
+    2,
     Box(value: 8),
   )
 
@@ -124,8 +131,8 @@ block genericAdditiveType:
   doAssert tree.sum(
     1,
     2,
-    1,
     2,
+    3,
   ).value == 8
 
   echo "DENSE_FENWICKTREE_2D_GENERIC_OK"

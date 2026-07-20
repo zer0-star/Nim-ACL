@@ -3,166 +3,166 @@ when not declared ATCODER_EXTRA_STRUCTURE_DENSE_FENWICKTREE_2D_HPP:
 
   type
     DenseFenwickTree2D*[T] = object
-      widthValue: int
       heightValue: int
+      widthValue: int
       data: seq[seq[T]]
 
   proc initDenseFenwickTree2D*[T](
-      width,
-      height: int
+      height,
+      width: int,
   ): DenseFenwickTree2D[T] =
     ## Constructs a dense two-dimensional Fenwick tree.
     ##
-    ## Valid coordinates satisfy:
+    ## Valid array indices satisfy:
     ##
-    ##   0 <= x < width
-    ##   0 <= y < height
-    assert width >= 0
+    ## 0 <= row < height
+    ## 0 <= col < width
+
     assert height >= 0
+    assert width >= 0
 
-    result.widthValue = width
     result.heightValue = height
+    result.widthValue = width
 
-    result.data =
-      newSeq[seq[T]](
-        width + 1
+    result.data = newSeq[seq[T]](
+      height + 1,
+    )
+
+    for row in 0 .. height:
+      result.data[row] = newSeq[T](
+        width + 1,
       )
 
-    for x in 0..width:
-      result.data[x] =
-        newSeq[T](
-          height + 1
-        )
-
-  proc width*[T](
-      tree: DenseFenwickTree2D[T]
-  ): int {.inline.} =
-    tree.widthValue
-
   proc height*[T](
-      tree: DenseFenwickTree2D[T]
+      tree: DenseFenwickTree2D[T],
   ): int {.inline.} =
     tree.heightValue
 
+  proc width*[T](
+      tree: DenseFenwickTree2D[T],
+  ): int {.inline.} =
+    tree.widthValue
+
   proc add*[T](
       tree: var DenseFenwickTree2D[T],
-      x,
-      y: int,
-      delta: T
+      row,
+      col: int,
+      delta: T,
   ) =
-    ## Adds delta to point (x, y).
+    ## Adds delta to array element (row, col).
+
     mixin `+`
-    assert 0 <= x
-    assert x < tree.widthValue
-    assert 0 <= y
-    assert y < tree.heightValue
 
-    var xi =
-      x + 1
+    assert 0 <= row
+    assert row < tree.heightValue
+    assert 0 <= col
+    assert col < tree.widthValue
 
-    while xi <= tree.widthValue:
-      var yi =
-        y + 1
+    var rowIndex = row + 1
 
-      while yi <= tree.heightValue:
-        tree.data[xi][yi] =
-          tree.data[xi][yi] + delta
+    while rowIndex <= tree.heightValue:
+      var colIndex = col + 1
 
-        yi +=
-          yi and -yi
+      while colIndex <= tree.widthValue:
+        tree.data[rowIndex][colIndex] =
+          tree.data[rowIndex][colIndex] +
+          delta
 
-      xi +=
-        xi and -xi
+        colIndex += colIndex and -colIndex
+
+      rowIndex += rowIndex and -rowIndex
 
   proc prefixSum*[T](
       tree: DenseFenwickTree2D[T],
-      xRight,
-      yRight: int
+      rowEnd,
+      colEnd: int,
   ): T =
-    ## Returns the sum over [0, xRight) x [0, yRight).
+    ## Returns the sum over
+    ## [0, rowEnd) x [0, colEnd).
+
     mixin `+`
-    assert 0 <= xRight
-    assert xRight <= tree.widthValue
-    assert 0 <= yRight
-    assert yRight <= tree.heightValue
 
-    var xi =
-      xRight
+    assert 0 <= rowEnd
+    assert rowEnd <= tree.heightValue
+    assert 0 <= colEnd
+    assert colEnd <= tree.widthValue
 
-    while xi > 0:
-      var yi =
-        yRight
+    var rowIndex = rowEnd
 
-      while yi > 0:
+    while rowIndex > 0:
+      var colIndex = colEnd
+
+      while colIndex > 0:
         result =
-          result + tree.data[xi][yi]
+          result +
+          tree.data[rowIndex][colIndex]
 
-        yi -=
-          yi and -yi
+        colIndex -= colIndex and -colIndex
 
-      xi -=
-        xi and -xi
+      rowIndex -= rowIndex and -rowIndex
 
   proc sum*[T](
       tree: DenseFenwickTree2D[T],
-      xLeft,
-      xRight,
-      yLeft,
-      yRight: int
+      rowBegin,
+      rowEnd,
+      colBegin,
+      colEnd: int,
   ): T =
     ## Returns the sum over
-    ## [xLeft, xRight) x [yLeft, yRight).
+    ## [rowBegin, rowEnd) x [colBegin, colEnd).
+
     mixin `+`, `-`
-    assert 0 <= xLeft
-    assert xLeft <= xRight
-    assert xRight <= tree.widthValue
-    assert 0 <= yLeft
-    assert yLeft <= yRight
-    assert yRight <= tree.heightValue
+
+    assert 0 <= rowBegin
+    assert rowBegin <= rowEnd
+    assert rowEnd <= tree.heightValue
+    assert 0 <= colBegin
+    assert colBegin <= colEnd
+    assert colEnd <= tree.widthValue
 
     tree.prefixSum(
-      xRight,
-      yRight,
+      rowEnd,
+      colEnd,
     ) -
     tree.prefixSum(
-      xLeft,
-      yRight,
+      rowBegin,
+      colEnd,
     ) -
     tree.prefixSum(
-      xRight,
-      yLeft,
+      rowEnd,
+      colBegin,
     ) +
     tree.prefixSum(
-      xLeft,
-      yLeft,
+      rowBegin,
+      colBegin,
     )
 
   proc get*[T](
       tree: DenseFenwickTree2D[T],
-      x,
-      y: int
+      row,
+      col: int,
   ): T {.inline.} =
     tree.sum(
-      x,
-      x + 1,
-      y,
-      y + 1,
+      row,
+      row + 1,
+      col,
+      col + 1,
     )
 
   proc allSum*[T](
-      tree: DenseFenwickTree2D[T]
+      tree: DenseFenwickTree2D[T],
   ): T {.inline.} =
     tree.prefixSum(
-      tree.widthValue,
       tree.heightValue,
+      tree.widthValue,
     )
 
   proc `[]`*[T](
       tree: DenseFenwickTree2D[T],
-      x,
-      y: int
+      row,
+      col: int,
   ): T {.inline.} =
     tree.get(
-      x,
-      y,
+      row,
+      col,
     )
