@@ -224,6 +224,66 @@ block emptyTopology:
     100,
   ) == 0
 
+block inclusivePrefixBoundaries:
+  let points = @[
+    (
+      x: low(int),
+      y: low(int),
+    ),
+    (
+      x: 0,
+      y: 0,
+    ),
+    (
+      x: high(int),
+      y: high(int),
+    ),
+  ]
+
+  var tree =
+    initCompressedFenwickTree2D(
+      points,
+      AdditiveInt64Group,
+    )
+
+  tree.add(
+    low(int),
+    low(int),
+    2,
+  )
+
+  tree.add(
+    0,
+    0,
+    3,
+  )
+
+  tree.add(
+    high(int),
+    high(int),
+    7,
+  )
+
+  doAssert tree.prefixSum(
+    low(int),
+    high(int),
+  ) == 0
+
+  doAssert tree.prefixSumInclusive(
+    low(int),
+    low(int),
+  ) == 2
+
+  doAssert tree.prefixSumInclusive(
+    0,
+    0,
+  ) == 5
+
+  doAssert tree.prefixSumInclusive(
+    high(int),
+    high(int),
+  ) == 12
+
 type
   Box =
     object

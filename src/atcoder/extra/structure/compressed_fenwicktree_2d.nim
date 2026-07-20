@@ -389,6 +389,49 @@ when not declared ATCODER_EXTRA_STRUCTURE_COMPRESSED_FENWICKTREE_2D_HPP:
       xi -=
         xi and -xi
 
+  proc prefixSumInclusive*[
+      CG: CommutativeGroup
+  ](
+      tree:
+        CompressedFenwickTree2D[CG],
+      xRightInclusive,
+      yRightInclusive: int
+  ): CG.value_type =
+    ## Returns the sum of registered point values satisfying
+    ## x <= xRightInclusive and y <= yRightInclusive.
+    ##
+    ## upperBound is used directly, so low(int) and high(int)
+    ## require no successor arithmetic.
+
+    result =
+      CG.e()
+
+    var xi =
+      upperBound(
+        tree.xCoordinates,
+        xRightInclusive,
+      )
+
+    while xi > 0:
+      var yi =
+        upperBound(
+          tree.yCoordinates[xi],
+          yRightInclusive,
+        )
+
+      while yi > 0:
+        result =
+          CG.op(
+            result,
+            tree.data[xi][yi],
+          )
+
+        yi -=
+          yi and -yi
+
+      xi -=
+        xi and -xi
+
   proc sum*[
       CG: CommutativeGroup
   ](
